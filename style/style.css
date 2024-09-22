@@ -1,0 +1,55 @@
+  /* font จาก google fonts */
+  /* font-family: 'Press Start 2P', system-ui; */
+  @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+  /* font-family: 'Bai Jamjuree', sans-serif; */
+  @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
+
+  /* -style--------------------------------------------------------------------------------------------- */
+
+  /* Code for Firefox */
+  ::-moz-selection {
+    background: #000000B3;
+    color: #1ed760;
+  }
+
+  ::selection {
+    background: #000000B3;
+    color: #1ed760;
+  }
+
+  ::-moz-scrollbar {
+    scrollbar-color: #409EFE #131616;
+    scrollbar-width: thin;
+  }
+
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  ::-webkit-scrollbar-button {
+    cursor: pointer;
+    background-color: #409EFE;
+    height: 50px;
+  }
+
+  ::-webkit-scrollbar-track {
+    cursor: pointer;
+    background: #131616 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#131616));
+    background: #131616 -moz-linear-gradient(top, #000000, #131616);
+    background-repeat: no-repeat;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    cursor: grab;
+    background-color: #409EFE;
+    margin: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    cursor: grabbing;
+  }
+
+  bode {
+  font-family: 'Bai Jamjuree', sans-serif;
+  font-weight: bold;
+  }

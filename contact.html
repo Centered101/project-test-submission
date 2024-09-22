@@ -1,0 +1,324 @@
+<!-- <!DOCTYPE html> -->
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contact</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/script/tailwind.config.js"></script>
+    <link href="/dist/output.css" rel="stylesheet">
+
+</head>
+<style type="text/css" media="all">
+    /* font จาก google fonts */
+    /* font-family: 'Press Start 2P', system-ui; */
+    @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+    /* font-family: 'Bai Jamjuree', sans-serif; */
+    @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
+
+    /* -style--------------------------------------------------------------------------------------------- */
+
+    /* Code for Firefox */
+    ::-moz-selection {
+        background: #000000B3;
+        color: #1ed760;
+    }
+
+    ::selection {
+        background: #000000B3;
+        color: #1ed760;
+    }
+
+    html {
+        scrollbar-color: #409EFE #CCCCCC;
+        scrollbar-width: thin;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        outline: 0;
+    }
+
+    body {
+        font-family: "Bai Jamjuree", sans-serif;
+        animation: fade 1.5s ease-in-out;
+    }
+
+    @keyframes fade {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    header h1 {
+        font-family: 'Press Start 2P', system-ui;
+    }
+
+    .peer:checked~svg {
+        fill: #409EFE;
+    }
+</style>
+
+<body
+    class="animate-fade bg-gradient-to-b from-blue-400 to-blue-500 dark:from-[#131616] dark:to-black bg-no-repeat font-bold">
+
+    <header class="bg-white sticky top-1 max-w-md mx-auto p-2 my-8 border-l-4 border-red-500 rounded-lg z-10">
+        <div class="grid grid-cols-2">
+            <h1 class="text-xl first-letter:text-blue-500 col-span-1 cursor-pointer" onclick="resetWindow()">Center<span
+                    class="animate-bounce w-6 h-6 text-[#fBB9B6] duration-300">ed101</span></h1>
+            <h2 class="text-xl text-center col-span-1">ติดต่อเรา</h2>
+        </div>
+        <div class="space-y-2 mt-4 p-1">
+            <div role="alert"
+                class="bg-green-100 border-l-4 border-green-500 text-green-900 p-2 rounded-lg flex items-center transition ease-in-out hover:bg-green-200 transform hover:scale-105 duration-300">
+                <svg stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                    class="h-5 w-5 flex-shrink-0 mr-2 text-green-600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 16h-1v-4h1m0-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"
+                        stroke-linejoin="round" stroke-linecap="round">
+                    </path>
+                </svg>
+                <p class="text-xs font-semibold">Success - ทุกอย่างเป็นไปอย่างราบรื่น!</p>
+            </div>
+
+            <div role="alert"
+                class="bg-blue-100 border-l-4 border-blue-500 text-blue-900 p-2 rounded-lg flex items-center transition ease-in-out hover:bg-blue-200 transform hover:scale-105 duration-300">
+                <svg stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                    class="h-5 w-5 flex-shrink-0 mr-2 text-blue-600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 16h-1v-4h1m0-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"
+                        stroke-linejoin="round" stroke-linecap="round">
+                    </path>
+                </svg>
+                <p class="text-xs font-semibold">
+                    Info - นี่คือข้อมูลบางอย่างสำหรับคุณ.
+                </p>
+            </div>
+
+            <div role="alert"
+                class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-900 p-2 rounded-lg flex items-center transition ease-in-out hover:bg-yellow-200 transform hover:scale-105 duration-300">
+                <svg stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                    class="h-5 w-5 flex-shrink-0 mr-2 text-yellow-600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 16h-1v-4h1m0-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"
+                        stroke-linejoin="round" stroke-linecap="round">
+                    </path>
+                </svg>
+                <p class="text-xs font-semibold">
+                    Warning - ระวังขั้นตอนต่อไปนี้.
+                </p>
+            </div>
+
+            <div role="alert"
+                class="bg-red-100 border-l-4 border-red-500 text-red-900 p-2 rounded-lg flex items-center transition ease-in-out hover:bg-red-200 transform hover:scale-105 duration-300">
+                <svg stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                    class="h-5 w-5 flex-shrink-0 mr-2 text-red-600" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 16h-1v-4h1m0-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"
+                        stroke-linejoin="round" stroke-linecap="round">
+                    </path>
+                </svg>
+                <p class="text-xs font-semibold">Error - มีบางอย่างผิดพลาด.</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-white max-w-md mx-auto p-2 mb-8 text-sm border-l-4 border-red-500 rounded-lg">
+
+        <form method="post" action="https://script.google.com/macros/s/AKfycbxc4UnlBGE5-Vc2nZJkm5hka-tmEZj94bbUpX3bSCAO3d-Ns5UMS4H4MLm6waUIT-Cs5g/exec" name="Contac">
+            <div class="mb-4">
+                <label class="mb-1" for="name">ชื่อ ของคุณ</label>
+                <input class="w-full text-slate-600 placeholder:text-slate-600 placeholder:opacity-50 border border-slate-200 outline-none rounded-lg p-2 hover:border-slate-600 focus:border-slate-600 tracking-widest duration-300"
+                    placeholder="ป้อน ชื่อ ของคุณ..." name="name" id="name" type="text" />
+            </div>
+            <div class="mb-4">
+                <label class="mb-1" for="email">อีเมล ของคุณ</label>
+                <input class="w-full text-slate-600 placeholder:text-slate-600 placeholder:opacity-50 border border-slate-200 outline-none rounded-lg p-2 hover:border-slate-600 focus:border-slate-600 tracking-widest duration-300"
+                    placeholder="ป้อน อีเมล ของคุณ..." name="email" id="email" type="email" />
+            </div>
+            <div class="mb-4"> <!-- animate-ping -->
+                <label class="mb-1" for="message">ข้อความ ของคุณ
+                    <span class="text-red-500">*</span></label>
+                <textarea class="w-full text-slate-600 placeholder:text-slate-600 placeholder:opacity-50 border border-slate-200 outline-none rounded-lg p-2 hover:border-slate-600 focus:border-slate-600 tracking-widest duration-300"
+                    rows="4" placeholder="ป้อน ข้อความ ของคุณ..." name="message" id="message" required ></textarea>
+            </div>
+            <div class="mb-4">
+                <label
+                    class="group flex flex-col items-center justify-center h-[300px] cursor-pointer border-2 border-dashed border-slate-200 hover:border-slate-600 rounded-lg hover:bg-gray-100 duration-300"
+                    for="file">
+                    <div class="flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="w-20 h-20 text-gray-300 group-hover:text-gray-900 duration-300" viewBox="0 0 24 24">
+                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path fill="currentColor"
+                                    d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z"
+                                    clip-rule="evenodd" fill-rule="evenodd"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <span
+                        class="font-normal text-gray-300 group-hover:text-gray-900 duration-300">คลิกเพื่ออัพโหลดภาพ</span>
+                    <input type="file" id="file" name="image" class="hidden">
+                </label>
+
+                <div id="fileDisplay" class="rounded-lg mt-4 p-2 bg-slate-100 hidden"></div>
+
+            </div>
+
+            <div class="sticky bottom-6 border border-slate-200 grid grid-cols-6 gap-2 rounded-xl p-2">
+
+                <label for="happy"
+                    class="fill-slate-600 col-span-1 flex justify-center items-center rounded-lg p-2 bg-slate-100 hover:border-slate-600 border border-slate-200 duration-300 cursor-pointer">
+                    <input id="happy" class="opacity-0 absolute peer" type="radio" name="rating" value="😀">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 512 512">
+                        <path
+                            d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm177.6 62.1C192.8 334.5 218.8 352 256 352s63.2-17.5 78.4-33.9c9-9.7 24.2-10.4 33.9-1.4s10.4 24.2 1.4 33.9c-22 23.8-60 49.4-113.6 49.4s-91.7-25.5-113.6-49.4c-9-9.7-8.4-24.9 1.4-33.9s24.9-8.4 33.9 1.4zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z">
+                        </path>
+                    </svg>
+                </label>
+                <label for="none_happy"
+                    class="fill-slate-600 col-span-1 flex justify-center items-center rounded-lg p-2 bg-slate-100 hover:border-slate-600 border border-slate-200 duration-300 cursor-pointer">
+                    <input id="none_happy" class="opacity-0 absolute peer" type="radio" name="rating" value="😐">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 512 512">
+                        <path
+                            d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM174.6 384.1c-4.5 12.5-18.2 18.9-30.7 14.4s-18.9-18.2-14.4-30.7C146.9 319.4 198.9 288 256 288s109.1 31.4 126.6 79.9c4.5 12.5-2 26.2-14.4 30.7s-26.2-2-30.7-14.4C328.2 358.5 297.2 336 256 336s-72.2 22.5-81.4 48.1zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z">
+                        </path>
+                    </svg>
+                </label>
+
+                <button
+                    class="col-span-4 bg-slate-100 stroke-slate-600 border border-slate-200 flex justify-center rounded-lg p-2 hover:border-slate-600 focus:stroke-blue-200 focus:bg-blue-500 duration-300"
+                    type="submit">
+                    <svg fill="none" viewBox="0 0 24 24" height="30px" width="30px" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5"
+                            d="M7.39999 6.32003L15.89 3.49003C19.7 2.22003 21.77 4.30003 20.51 8.11003L17.68 16.6C15.78 22.31 12.66 22.31 10.76 16.6L9.91999 14.08L7.39999 13.24C1.68999 11.34 1.68999 8.23003 7.39999 6.32003Z">
+                        </path>
+                        <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5"
+                            d="M10.11 13.6501L13.69 10.0601"></path>
+                    </svg>
+                </button>
+                <div id="loadDisplay"
+                    class="col-span-4 bg-slate-100 stroke-slate-600 text-center border border-slate-200 rounded-lg p-2 cursor-not-allowed hidden">
+                    Upload...</div>
+            </div>
+        </form>
+    </div>
+
+    <footer class="text-center bg-white max-w-md mx-auto p-2 mb-8 text-sm border-l-4 border-red-500 rounded-lg">
+        <ul class="flex gap-8 justify-center mb-4 list-none">
+            <li>
+                <a href="https://www.instagram.com/Centered101/" rel="noreferrer" target="_blank"
+                    class="transition text-blue-500 hover:text-blue-500 duration-300">
+                    <span class="sr-only">Instagram</span>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/Centered101/" rel="noreferrer" target="_blank"
+                    class="transition text-blue-500 hover:text-blue-500 duration-300">
+                    <span class=" sr-only">Twitter</span>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                        </path>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://discord.gg/KD8ba2uUpT" rel="noreferrer" target="_blank"
+                    class="transition text-blue-500 hover:text-blue-500 duration-300">
+                    <span class="sr-only">Discord</span>
+                    <svg width="33" height="27" class="w-6 h-6" viewBox="0 0 33 27" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M27.9541 2.81323C25.818 1.81378 23.5339 1.08742 21.146 0.673828C20.8527 1.20404 20.5101 1.91719 20.2739 2.4845C17.7354 2.10275 15.2203 2.10275 12.7286 2.4845C12.4924 1.91719 12.142 1.20404 11.8461 0.673828C9.45561 1.08742 7.16891 1.81645 5.03277 2.81853C0.724134 9.32943 -0.443865 15.6786 0.140135 21.9377C2.99785 24.0717 5.76731 25.3681 8.49004 26.2164C9.1623 25.2912 9.76186 24.3077 10.2784 23.2711C9.29466 22.8973 8.35248 22.4361 7.46223 21.9006C7.69841 21.7256 7.92943 21.5426 8.15262 21.3544C13.5825 23.8941 19.4822 23.8941 24.847 21.3544C25.0724 21.5426 25.3034 21.7256 25.5396 21.9006C24.6479 22.4389 23.7036 22.9001 22.7172 23.2711C23.2338 24.3097 23.8333 25.2932 24.5099 26.2183C27.2326 25.3701 30.0021 24.0737 32.8598 21.9377C33.5743 14.472 31.2806 8.15501 27.9541 2.81323ZM11.2007 18.2805C9.45293 18.2805 8.03987 16.7426 8.03987 14.8823C8.03987 13.022 9.40067 11.4841 11.2007 11.4841C13.0007 11.4841 14.4138 13.022 14.3865 14.8823C14.3865 16.7426 13.0007 18.2805 11.2007 18.2805ZM21.8404 18.2805C20.0926 18.2805 18.6795 16.7426 18.6795 14.8823C18.6795 13.022 20.0403 11.4841 21.8404 11.4841C23.6404 11.4841 25.0535 13.022 25.0262 14.8823C25.0262 16.7426 23.6404 18.2805 21.8404 18.2805Z"
+                            fill="currentColor"></path>
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/centered101/" rel="noreferrer" target="_blank"
+                    class="transition text-blue-500 hover:text-blue-500 duration-300">
+                    <span class="sr-only">GitHub</span>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 .297C5.37.297 0 5.667 0 12.292c0 5.302 3.438 9.8 8.207 11.385.6.113.793-.26.793-.577 0-.285-.01-1.04-.016-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.386-1.334-1.756-1.334-1.756-1.09-.745.082-.73.082-.73 1.205.085 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.776.419-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.467-2.382 1.235-3.22-.124-.306-.535-1.53.116-3.19 0 0 1.008-.322 3.3 1.23a11.488 11.488 0 013.007-.403c1.02.004 2.046.138 3.007.403 2.29-1.552 3.296-1.23 3.296-1.23.653 1.66.242 2.884.118 3.19.77.838 1.233 1.91 1.233 3.22 0 4.61-2.807 5.623-5.48 5.92.43.37.823 1.1.823 2.216 0 1.6-.014 2.888-.014 3.28 0 .32.192.694.8.576C20.565 22.092 24 17.592 24 12.292 24 5.667 18.63.297 12 .297z" />
+                    </svg>
+                </a>
+            </li>
+        </ul>
+        <p>Version: 1.1.0</p>
+        <p class="first-letter:text-blue-500">
+            <script>document.write("© " + (new Date().getFullYear()))</script> <span
+                class="text-blue-500">Centered101</span>. All Rights Reserved.
+        </p>
+    </footer>
+    <!-- <form id="myForm">
+        <input type="text" name="name" placeholder="ชื่อ" required><br>
+        <input type="email" name="email" placeholder="อีเมล" required><br>
+        <textarea name="message" placeholder="ข้อความ"></textarea><br>
+        <input type="file" name="image" id="imageUpload" required><br>
+        <button type="submit">ส่งข้อมูล</button>
+      </form> -->
+</body>
+<script>
+
+    function resetWindow() {
+        window.location.reload(true);
+    }
+
+  document.getElementById('myForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    var formData = new FormData();
+    var fileInput = document.getElementById('file');
+    formData.append('image', fileInput.files[0]);
+
+    // Convert image to Base64
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var imageBase64 = e.target.result;
+
+      var data = {
+        name: document.querySelector('[name="name"]').value,
+        email: document.querySelector('[name="email"]').value,
+        message: document.querySelector('[name="message"]').value,
+        imageURL: imageBase64 // ส่งรูปภาพในรูปแบบ Base64
+      };
+
+      fetch('YOUR_GOOGLE_SCRIPT_URL', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => response.text())
+        .then(result => {
+          console.log(result);
+        }).catch(error => console.log('Error:', error));
+    }
+    reader.readAsDataURL(fileInput.files[0]);
+  });
+
+
+    // เพิ่มเหตุการณ์เมื่อทำการส่งแบบฟอร์ม
+    form.addEventListener('submit', submitForm);
+
+    document.getElementById('file').addEventListener('change', function (e) {
+        var fileName = e.target.files[0].name;
+        document.getElementById('fileDisplay').textContent = 'ไฟล์ที่เลือก: ' + fileName;
+        document.getElementById('fileDisplay').style.display = 'block';
+    });
+
+</script>
+
+</html>
