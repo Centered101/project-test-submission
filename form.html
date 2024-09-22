@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <title>แบบประเมิน ตู้กดอเนกประสงค์</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="เว็บสำหรับประเมินความพึงพอใจ" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript" />
+    <meta name="author" content="Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://project-test-submission.web.app" />
+    <meta property="og:title" content="Centered101" />
+    <meta property="og:description" content="เว็บสำหรับประเมินความพึงพอใจ" />
+    <meta property="og:image" content="../images/logo3.ico" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://project-test-submission.web.app" />
+    <meta property="twitter:title" content="Centered101" />
+    <meta property="twitter:description" content="เว็บสำหรับประเมินความพึงพอใจ" />
+    <meta property="twitter:image" content="../images/logo3.ico" />
+
+    <!-- รูปโปรไฟร์หัวข้อหน้าเว็บ รูปแแบบ external -->
+    <link id="favicon" rel="icon" type="image/png" href="../images/logo3.ico" />
+
+    <link rel="stylesheet" href="/style/fullscreen.css" />
+    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="/style/forms.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="/script/firebase.js"></script>
+
+</head>
+<style>
+    body {
+        font-family: "Kanit", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        padding: 40px 20px;
+        margin: 0;
+        background-color: #84d4fa;
+    }
+
+    .container {
+        max-width: 100vh;
+        /* min-width: 400px; */
+        margin: auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px #0000001a;
+    }
+
+    img {
+        user-select: none;
+        cursor: pointer;
+    }
+
+    h1 {
+        text-align: center;
+        color: #0056b3;
+        margin: 0 0 20px 0;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    span {
+        color: #ff0000;
+    }
+
+    th,
+    td {
+        padding: 15px;
+        border-bottom: 1px solid #ccc;
+        text-align: center;
+        line-height: 18px;
+        font-weight: 400;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    @media (min-width: 568px) {
+
+        th,
+        td {
+            word-break: keep-all;
+        }
+    }
+
+    input[type="text"],
+    textarea {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin: 10px 0 0 0;
+        letter-spacing: 1px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        vertical-align: middle;
+        background-color: #f7f7f7;
+    }
+
+    input[type="radio"] {
+        position: absolute;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+        margin-right: 10px;
+        position: absolute;
+        cursor: pointer;
+        opacity: 0;
+        height: 0;
+        width: 0;
+    }
+
+    input[type="submit"],
+    input[type="button"] {
+        width: 100%;
+        padding: 10px;
+        font-weight: 600;
+        background-color: #0056b3;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .submit {
+        display: none;
+        padding: 10px;
+        background-color: #1ED760;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    input[type="submit"]:hover,
+    input[type="button"]:hover {
+        background-color: #004494;
+    }
+
+    .section-2 {
+        display: none;
+    }
+
+    .section-3 {
+        display: none;
+    }
+
+
+    .rating {
+        display: flex;
+        justify-content: space-evenly;
+        /* box-shadow: 0 0 0 5px #ffffff80; */
+        background-color: #0056b3;
+        padding: .4rem .4rem .1rem .4rem;
+        border-radius: 7px;
+        margin-bottom: 20px;
+    }
+
+    .svg {
+        fill: #f2f2f2;
+        cursor: pointer;
+        height: 70px;
+        width: 70px;
+        cursor: pointer;
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .super-happy,
+    .neutral,
+    .super-sad {
+        position: absolute;
+        opacity: 0;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+
+    .super-happy[class="super-happy"]:hover+svg,
+    .super-happy[class="super-happy"]:checked+svg,
+    .super-happy[class="super-happy"]:focus+svg {
+        fill: #00cc4f;
+        transition: 1.5s;
+        transform: scale(1.05);
+    }
+
+    .neutral[class="neutral"]:hover+svg,
+    .neutral[class="neutral"]:checked+svg,
+    .neutral[class="neutral"]:focus+svg {
+        fill: #e8d600;
+        transition: 1.5s;
+        transform: scale(1.05);
+    }
+
+    .super-sad[class="super-sad"]:hover+svg,
+    .super-sad[class="super-sad"]:checked+svg,
+    .super-sad[class="super-sad"]:focus+svg {
+        fill: #EF2A10;
+        transition: 1.5s;
+        transform: scale(1.05);
+    }
+
+    .gender[class="gender"]:hover+svg,
+    .gender[class="gender"]:checked+svg,
+    .gender[class="gender"]:focus+svg,
+    .satisfaction[class="satisfaction"]:hover+svg,
+    .satisfaction[class="satisfaction"]:checked+svg,
+    .satisfaction[class="satisfaction"]:focus+svg {
+        fill: #EF2A10;
+        background-color: #0056b3;
+        border-radius: 50%;
+        transition: .1s;
+        transform: scale(1.2);
+    }
+
+    .card {
+        font-size: 18px;
+        margin-block: 20px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .card .thumbnail,
+    svg {
+        max-width: 100%;
+        cursor: pointer;
+        transition: all .5s ease-in-out 0s;
+        object-position: 0px;
+        margin-inline: 10px;
+    }
+
+    .card .thumbnail {
+        cursor: pointer;
+        border-radius: 5px;
+        /* margin: 10px; */
+        transition: transform 0.2s;
+    }
+
+    .thumbnail:hover {
+        transform: scale(1.05);
+    }
+
+    /* เพิ่มสไตล์สำหรับองค์ประกอบที่ลากได้ */
+    #draggable {
+        cursor: grab;
+        touch-action: none;
+    }
+
+
+    .image-container {
+        max-width: 250px;
+        cursor: pointer;
+        align-items: center;
+        /* display: flex; */
+        justify-content: space-between;
+        position: fixed;
+        right: 0;
+        bottom: 15%;
+        z-index: 1;
+    }
+
+    .image {
+        display: block;
+        width: 100%;
+        height: auto;
+        cursor: grab;
+    }
+
+    .text {
+        position: absolute;
+        bottom: 110px;
+        left: 10%;
+        transform: translateX(-50%);
+        background-color: #000000b3;
+        color: #ffffff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+</style>
+
+<body>
+    <div class="container">
+
+        <div style="display: flex; justify-content: center; margin-bottom: 10px;">
+            <img onclick="resetWindow()" src="../images/logo3.ico"
+                style="width: 90px; height: 90px; object-fit: contain; object-position: center;" width="90" height="90"
+                srcset="../images/logo3.ico" fetchpriority="high">
+        </div>
+
+        <div id="draggable" class="image-container" onclick="hide()">
+            <img class="image" id="image" src="/images/555040-01-removebg-preview.png" alt="Image" />
+            <div class="text" id="text-1">Hi there 👋</div>
+            <div class="text" id="text-2">i'm DOZER</div>
+            <!-- <div class="text" id="text-3"></div> -->
+        </div>
+
+        <h1>เว็บสำหรับประเมินความพึงพอใจ <span id="sectionTracker">1-2</span><br>โครงงาน ตู้กดอเนกประสงค์</h1>
+
+        <form id="surveyForm" method="post"
+            action="https://script.google.com/macros/s/AKfycbwXvZYX5TyRZUQ7k_O4pLj_TgpqrwrS4lRqd1TisYAI8ZNOP95E0331MiC_Guosuw0i/exec">
+
+            <!-- —section-1——————————————————————————————————————————————————————————————————————————————————————————————————— -->
+
+            <section class="section-1">
+                <div class="form-group">
+
+                    <label>เลือกเพศของคุณ<span>*</span></label>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>ชาย</th>
+                                <th>หญิง</th>
+                                <th>อื่นๆ</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="gender_male">
+                                        <input name="gender_DOZER" type="radio" class="gender" id="gender_male"
+                                            value="ชาย" />
+                                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"
+                                            fill-rule="evenodd" clip-rule="evenodd">
+                                            <path
+                                                d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11z" />
+                                        </svg>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label for="gender_female">
+                                        <input name="gender_DOZER" type="radio" class="gender" id="gender_female"
+                                            value="หญิง" />
+                                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"
+                                            fill-rule="evenodd" clip-rule="evenodd">
+                                            <path
+                                                d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11z" />
+                                        </svg>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label for="gender_other">
+                                        <input name="gender_DOZER" type="radio" class="gender" id="gender_other"
+                                            value="อื่นๆ" required />
+                                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"
+                                            fill-rule="evenodd" clip-rule="evenodd">
+                                            <path
+                                                d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11z" />
+                                        </svg>
+                                    </label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                        <label for="name">ชื่อ - นามสกุล<span>*</span></label>
+                        <input type="text" id="name" name="name_DOZER" placeholder="ชื่อ - นามสกุล" maxlength="255"
+                            required />
+                    </div>
+                    <input type="button" value="ถัดไป" onclick="showSection2()" />
+            </section>
+
+            <!-- —section-2——————————————————————————————————————————————————————————————————————————————————————————————————— -->
+
+            <section class="section-2">
+                <div class="card">
+                    <img src="/images/23455.jpg" class="thumbnail" alt="23455.jpg">
+                </div>
+                <div class="fullscreen" id="fullscreen" onclick="closeFullscreen()">
+                    <img id="fullscreenImage" src="" alt="Fullscreen Image">
+                </div>
+                <label for="comments">แสดงความรู้สึกต่อ รูปนี้</label>
+                <div class="rating">
+                    <label for="super-happy">
+                        <input type="radio" name="rating_DOZER" class="super-happy" id="super-happy" value="😀">
+                        <svg class="svg" viewBox="0 0 24 24">
+                            <path
+                                d="M12,17.5C14.33,17.5 16.3,16.04 17.11,14H6.89C7.69,16.04 9.67,17.5 12,17.5M8.5,11A1.5,1.5 0 0,0 10,9.5A1.5,1.5 0 0,0 8.5,8A1.5,1.5 0 0,0 7,9.5A1.5,1.5 0 0,0 8.5,11M15.5,11A1.5,1.5 0 0,0 17,9.5A1.5,1.5 0 0,0 15.5,8A1.5,1.5 0 0,0 14,9.5A1.5,1.5 0 0,0 15.5,11M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z">
+                            </path>
+                        </svg>
+                    </label>
+                    <label for="neutral">
+                        <input type="radio" name="rating_DOZER" class="neutral" id="neutral" value="😐">
+                        <svg class="svg" viewBox="0 0 24 24">
+                            <path
+                                d="M8.5,11A1.5,1.5 0 0,1 7,9.5A1.5,1.5 0 0,1 8.5,8A1.5,1.5 0 0,1 10,9.5A1.5,1.5 0 0,1 8.5,11M15.5,11A1.5,1.5 0 0,1 14,9.5A1.5,1.5 0 0,1 15.5,8A1.5,1.5 0 0,1 17,9.5A1.5,1.5 0 0,1 15.5,11M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M9,14H15A1,1 0 0,1 16,15A1,1 0 0,1 15,16H9A1,1 0 0,1 8,15A1,1 0 0,1 9,14Z">
+                            </path>
+                        </svg>
+                    </label>
+                    <label for="super-sad">
+                        <input type="radio" name="rating_DOZER" class="super-sad" id="super-sad" value="😒">
+                        <svg class="svg" viewBox="0 0 24 24">
+                            <path
+                                d="M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M16.18,7.76L15.12,8.82L14.06,7.76L13,8.82L14.06,9.88L13,10.94L14.06,12L15.12,10.94L16.18,12L17.24,10.94L16.18,9.88L17.24,8.82L16.18,7.76M7.82,12L8.88,10.94L9.94,12L11,10.94L9.94,9.88L11,8.82L9.94,7.76L8.88,8.82L7.82,7.76L6.76,8.82L7.82,9.88L6.76,10.94L7.82,12M12,14C9.67,14 7.69,15.46 6.89,17.5H17.11C16.31,15.46 14.33,14 12,14Z">
+                            </path>
+                        </svg>
+                    </label>
+                </div>
+
+
+                <!-- <input type="button" value="ถัดไป" onclick="showSection3()" /> -->
+            </section>
+
+            <!-- —section-3——————————————————————————————————————————————————————————————————————————————————————————————————— -->
+
+            <section class="section-3">
+                <p id="h4">ความประทับใจโดยรวมของคุณคืออะไร?<span>*</span></p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>พอใจมาก</th>
+                            <th>พอใจ</th>
+                            <th>ไม่พอใจ</th>
+                            <th>ไม่พอใจอย่างมาก</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="Very_Satisfied">
+                                    <input name="satisfaction_DOZER" type="radio" class="satisfaction"
+                                        id="Very_Satisfied" value="พอใจมาก 👍💯" required />
+                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                                        clip-rule="evenodd">
+                                        <path
+                                            d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11z" />
+                                    </svg>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="Satisfied">
+                                    <input name="satisfaction_DOZER" type="radio" class="satisfaction" id="Satisfied"
+                                        value="พอใจ  👍" />
+                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                                        clip-rule="evenodd">
+                                        <path
+                                            d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11z" />
+                                    </svg>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="Unsatisfied">
+                                    <input name="satisfaction_DOZER" type="radio" class="satisfaction" id="Unsatisfied"
+                                        value="ไม่พอใจ  😐" />
+                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                                        clip-rule="evenodd">
+                                        <path
+                                            d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11z" />
+                                    </svg>
+                                </label>
+                            </td>
+                            <td>
+                                <label for="Very_Unsatisfied">
+                                    <input name="satisfaction_DOZER" type="radio" class="satisfaction"
+                                        id="Very_Unsatisfied" value="ไม่พอใจอย่างมาก  😠" />
+                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+                                        clip-rule="evenodd">
+                                        <path
+                                            d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11z" />
+                                    </svg>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <label for="comments">ความคิดเห็นเพิ่มเติม</label>
+                    <textarea id="comments" name="comments_DOZER"
+                        placeholder="อย่าลังเลที่จะเพิ่มความคิดเห็นหรือข้อเสนอแนะอื่นๆ" maxlength=""
+                        rows="5"></textarea>
+                </div>
+                <input type="submit" value="ส่งแบบประเมิน" />
+                <div class="submit">
+                    <p>กำลังส่งแบบประเมิน...</p>
+                </div>
+            </section>
+        </form>
+    </div>
+</body>
+<script>
+    function resetWindow() {
+        window.location.reload(true);
+    }
+
+    window.onload = function () {
+        const image = document.getElementById("image");
+        const textOne = document.getElementById("text-1");
+        const textTwo = document.getElementById("text-2");
+        const textTree = document.getElementById("text-3");
+
+        setTimeout(() => {
+            textOne.style.opacity = '1';
+            textTwo.style.opacity = '0';
+            textTree.style.opacity = '0';
+        }, 5000);
+
+        setTimeout(() => {
+            textOne.style.opacity = '0';
+            textOne.style.opacity = '0';
+            textTwo.style.opacity = '1';
+            textTree.style.opacity = '0';
+        }, 10000);
+
+        setTimeout(() => {
+            textOne.style.opacity = '0';
+            textTwo.style.opacity = '0';
+            textTree.style.opacity = '1';
+        }, 15000);
+
+        setTimeout(() => {
+            textOne.style.opacity = '0';
+            textTwo.style.opacity = '0';
+            textTree.style.opacity = '0';
+        }, 20000);
+    };
+
+    // เลือกทุก thumbnail และเพิ่ม event listener สำหรับการคลิก
+    document.querySelectorAll('.thumbnail').forEach(img => {
+        img.addEventListener('click', function () {
+            openFullscreen(this.src); // เมื่อคลิกที่รูปภาพ, เรียกฟังก์ชัน openFullscreen
+        });
+    });
+
+    // ฟังก์ชันแสดงรูปภาพแบบเต็มหน้าจอ
+    function openFullscreen(imageSrc) {
+        const fullscreen = document.getElementById('fullscreen');
+        const fullscreenImage = document.getElementById('fullscreenImage');
+
+        fullscreenImage.src = imageSrc; // ตั้งค่าที่มาของรูปภาพแบบเต็มหน้าจอ
+        fullscreen.style.display = 'grid'; // แสดงส่วน fullscreen
+    }
+
+    // ฟังก์ชันปิดการแสดงผลรูปภาพแบบเต็มหน้าจอ
+    function closeFullscreen() {
+        const fullscreen = document.getElementById('fullscreen');
+        fullscreen.style.display = 'none'; // ซ่อนส่วน fullscreen
+    }
+
+    function updateSectionTracker(currentSection) {
+        const totalSections = 2;
+        document.getElementById('sectionTracker').textContent = `${currentSection}-${totalSections}`;
+    }
+
+    function showSection2() {
+        const requiredFields = document.querySelectorAll('.section-1 input[required]');
+        let allFilled = true;
+
+        requiredFields.forEach(function (field) {
+            if (!field.value) {
+                allFilled = false;
+                field.style.borderColor = '#ff0000';
+            } else {
+                field.style.borderColor = '#0056b3';
+            }
+        });
+
+        if (allFilled) {
+            document.querySelector('.section-1').style.display = 'none';
+            document.querySelector('.section-2').style.display = 'block';
+            document.querySelector('.section-3').style.display = 'block';
+            // document.querySelector('.pewcenter').style. = 'block';
+            updateSectionTracker(2);
+        } else {
+            alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+        }
+    }
+
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzzF-GNwZW3h99qiqKZRXcLxtZp4r-VEFcx7PE5FI-k8FxTr7G2wwZ_s9bBw6K5AkgE/exec";
+    const form = document.getElementById("surveyForm");
+    const submitButton = form.querySelector('input[type="submit"]');
+    const submitDiv = form.querySelector('.submit');
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // ซ่อนปุ่ม submit และแสดง submitDiv
+        submitButton.style.display = "none";
+        submitDiv.style.display = "block";
+
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+            .then((response) => {
+                alert("ขอบคุณ! แบบฟอร์มของคุณถูกส่งเรียบร้อยแล้ว");
+                // ทำการ reload หน้าหลังจากแสดงข้อความแจ้งเตือน
+                window.location.href = "/index.html";
+            })
+            .catch((error) => {
+                handleError(error);
+            });
+    });
+
+    function handleError(error) {
+        console.error("Error!", error.message);
+
+        // แสดงปุ่ม submit อีกครั้ง และซ่อน submitDiv
+        submitButton.style.display = "block";
+        submitDiv.style.display = "none";
+    }
+
+    function hide() {
+        const draggable = document.getElementById('draggable');
+        draggable.style.display = "none";
+    }
+
+    const draggable = document.getElementById('draggable');
+
+    let isDragging = false; // สถานะการลาก
+    let offsetX, offsetY; // ตัวแปรสำหรับเก็บการชดเชยของตำแหน่ง
+
+    // ฟังก์ชันเริ่มการลากด้วยเมาส์
+    draggable.addEventListener('mousedown', (event) => {
+        startDragging(event.clientX, event.clientY);
+    });
+
+    // ฟังก์ชันเริ่มการลากด้วยการสัมผัส
+    draggable.addEventListener('touchstart', (event) => {
+        const touch = event.touches[0];
+        startDragging(touch.clientX, touch.clientY);
+    });
+
+    // ฟังก์ชันเริ่มการลาก (ทั่วไป)
+    function startDragging(clientX, clientY) {
+        isDragging = true;
+        offsetX = clientX - draggable.offsetLeft;
+        offsetY = clientY - draggable.offsetTop;
+        draggable.style.cursor = 'grabbing'; // เปลี่ยน cursor ขณะลาก
+    }
+
+    // ฟังก์ชันการลากด้วยเมาส์
+    document.addEventListener('mousemove', (event) => {
+        if (isDragging) {
+            moveElement(event.clientX, event.clientY);
+        }
+    });
+
+    // ฟังก์ชันการลากด้วยการสัมผัส
+    document.addEventListener('touchmove', (event) => {
+        if (isDragging) {
+            const touch = event.touches[0];
+            moveElement(touch.clientX, touch.clientY);
+        }
+    });
+
+    // ฟังก์ชันการเลื่อนตำแหน่งขององค์ประกอบ (ทั่วไป)
+    function moveElement(clientX, clientY) {
+        draggable.style.left = `${clientX - offsetX}px`;
+        draggable.style.top = `${clientY - offsetY}px`;
+    }
+
+    // ฟังก์ชันหยุดการลากด้วยเมาส์
+    document.addEventListener('mouseup', () => stopDragging());
+
+    // ฟังก์ชันหยุดการลากด้วยการสัมผัส
+    document.addEventListener('touchend', () => stopDragging());
+
+    // ฟังก์ชันหยุดการลาก (ทั่วไป)
+    function stopDragging() {
+        isDragging = false;
+        draggable.style.cursor = 'grab'; // เปลี่ยน cursor กลับเมื่อปล่อย
+    }
+</script>
+
+</html>
