@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link
+    <title>ตารางเก็บเงิน</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            font-family: 'Bai Jamjuree', sans-serif;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        header {
+            background-color: #333;
+            border-radius: 10px;
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 5px;
+            padding: 10px;
+            text-align: center;
+            top: 0;
+            width: 97%;
+        }
+
+        section {
+            background-color: #333;
+            border-radius: 10px;
+            margin: 5px;
+            width: 100%;
+        }
+
+        form {
+            color: #666;
+            display: flex;
+            flex-direction: column;
+            font-size: 18px;
+            max-width: 300px;
+            margin: auto;
+            width: 100%;
+        }
+
+        label {
+            margin: 5px;
+        }
+
+        input {
+            background-color: #666;
+            border: none;
+            border-radius: 5px;
+            color: #333;
+            font-size: 18px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #666;
+            border-radius: 5px;
+            color: #333;
+            font-size: 18px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        button:hover,
+        input:hover {
+            background-color: #999;
+            color: #666;
+        }
+
+        table {
+            width: 100%;
+            border-radius: 10px;
+            border: none;
+        }
+
+        th,
+        td {
+            background-color: #666;
+            border: 5px solid #333;
+            border-radius: 10px;
+            color: #000;
+            font-size: 18px;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>ตารางเก็บเงิน</h1>
+    </header>
+
+    <section class="section-top">
+        <form id="paymentForm">
+            <label for="paymentAmount">จำนวนเงิน:</label>
+            <input type="number" id="paymentAmount" name="paymentAmount" required>
+
+            <label for="paymentDate">วันที่ชำระเงิน:</label>
+            <input type="date" id="paymentDate" name="paymentDate" required>
+
+            <button type="button" onclick="addPayment()">บันทึก</button>
+        </form>
+    </section>
+
+    <section>
+        <table border=" 1" id="paymentTable">
+            <thead>
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>จำนวนเงิน</th>
+                    <th>วันที่ชำระเงิน</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        function addPayment() {
+            var amount = document.getElementById('paymentAmount').value;
+            var date = document.getElementById('paymentDate').value;
+            var table = document.getElementById('paymentTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.rows.length);
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            cell1.innerHTML = table.rows.length; // ลำดับ
+            cell2.innerHTML = amount; // จำนวนเงิน
+            cell3.innerHTML = date; // วันที่ชำระเงิน
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>สูตรคูณพ่อผมครับ</title>
+    <style>
+        html{
+            background-color: #000;
+        }
+
+        body {
+            font-family: 'Bai Jamjuree', sans-serif;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h4 {
+            background-color: #000;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .ควย-padding {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        .ควย-text-lead {
+            color: #fff;
+        }
+
+        .ควย-input {
+            font-size: 18px;
+            padding: 5px;
+            width: 90%;
+            border-radius: 5px;
+            background-color: #999;
+            color: #fff;
+        }
+
+        .ควย-button {
+            font-size: 18px;
+            padding: 10px;
+            background-color: #999;
+            color: #fff;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .ควย-button:hover {
+            background-color: #666;
+        }
+
+        .ควย-card {
+            border-radius: 8px;
+        }
+
+        .ควย-card-secondary {
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .ควย-text-large {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ควย-padding">
+        <h4 class="ควย-text-lead">ใส้เลขมาครับน้อง<br>เดี่ยวพ่อผมคูณเลขให้ดู</h4>
+        <p>
+            <input id="number-input" class="ควย-input ควย-form-large" type="number" />
+        </p>
+        <p>
+            <button id="run-button" class="ควย-button ควย-button-primary ควย-width-1-1">กดครับน้อง</button>
+        </p>
+        <div id="output" class="ควย-card ควย-card-secondary ควย-card-body ควย-text-large"><i>---คำตอบครับ---</i></div>
+    </div>
+
+    <script>
+        let numberInput = document.getElementById('number-input');
+        let runButton = document.getElementById('run-button');
+        let output = document.getElementById('output');
+
+        function printMultiply() {
+            let number = Number(numberInput.value);
+            let outputHtml = '';
+            for (let ควย = 1; ควย <= 100; ควย++) {
+                outputHtml += '<p>';
+                outputHtml += number + ' X ' + ควย + ' = ' + (number * ควย);
+                outputHtml += '</p>';
+            }
+            output.innerHTML = outputHtml;
+        }
+
+        runButton.addEventListener('click', printMultiply);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@200;400&display=swap" rel="stylesheet">
+
+    <link rel="Icon" type="png" href="https://rms.lbtech.ac.th/rms2012/files/importpicstd/01/66201020151.jpg">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            background-image: url('https://rms.lbtech.ac.th/rms2012/files/importpicstd/01/66201020151.jpg');
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-gap: 5px;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: #ffffff;
+            border: 1px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .button {
+            text-decoration: none;
+            position: relative;
+            background: #409EFE;
+            color: #000000;
+            margin-right: 1px;
+            padding: 5px 5px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            margin: 0px -3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="game-board">
+        <div class="cell" onclick="handleClick(0)"></div>
+        <div class="cell" onclick="handleClick(1)"></div>
+        <div class="cell" onclick="handleClick(2)"></div>
+        <div class="cell" onclick="handleClick(3)"></div>
+        <div class="cell" onclick="handleClick(4)"></div>
+        <div class="cell" onclick="handleClick(5)"></div>
+        <div class="cell" onclick="handleClick(6)"></div>
+        <div class="cell" onclick="handleClick(7)"></div>
+        <div class="cell" onclick="handleClick(8)"></div>
+
+        <a class="button" target="_blank" href="#">รีเซ็ต</a>
+    </div>
+
+    <script>
+        let currentPlayer = 'X';
+
+        function handleClick(index) {
+            const cell = document.getElementsByClassName('cell')[index];
+            if (!cell.innerText) {
+                cell.innerText = currentPlayer;
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
