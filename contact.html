@@ -39,7 +39,7 @@
 
     <!-- Meta Tags Generated with https://metatags.io -->
 
-    <link id="favicon" rel="icon" type="image/png" href="/images/icon/เว็บไซต์1200x1200.png">
+    <link id="favicon" rel="icon" type="image/png" href="https://centered101-webfollow.web.app/images/Tes-D.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/script/tailwind.config.js"></script>
@@ -99,13 +99,14 @@
 <body
     class="mx-4 animate-fade bg-gradient-to-b from-blue-400 to-blue-500 dark:from-[#131616] dark:to-black bg-no-repeat font-bold">
 
-    <header role="banner" class="bg-white sticky top-1 max-w-md mx-auto my-8 rounded-lg p-2 z-20">
+    <header role="banner" class="bg-white sticky top-1 drop-shadow-lg max-w-md mx-auto my-8 rounded-lg p-2 z-20">
 
-        <div class="border border-slate-200 rounded-lg p-2">
+        <div id="resetWindow" class="border border-slate-200 rounded-lg p-2">
             <h1 title="รีเซ็ต" class="capitalize text-xl first-letter:text-blue-500 cursor-pointer"
                 onclick="resetWindow()">center<span
                     class="animate-bounce w-6 h-6 text-[#fBB9B6] duration-300">ed101</span></h1>
         </div>
+
 
         <div id="contentAlert" class="space-y-2 px-1">
 
@@ -157,22 +158,31 @@
                 <p class="text-xs font-semibold">Error - <span id="alertError"></span></p>
             </div>
         </div>
+
     </header>
 
-    <button href="javascript:void(0)" title="กลับสู่หน้าก่อนหน้า" role="button go back" onclick="goBack()"
-        class="mx-auto mb-8 bg-green-100 text-center w-48 rounded-lg h-14 relative text-sm font-semibold group"
-        type="button">
-        <div
-            class="bg-green-400 rounded-lg h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-300">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="25px" width="25px">
-                <path d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z" fill="#000000"></path>
-                <path
-                    d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
-                    fill="#000000"></path>
-            </svg>
-        </div>
-        <p class="translate-x-2">กลับไป</p>
-    </button>
+    <div class="max-w-md mx-auto mb-8 grid grid-cols-2 gap-16 text-xl">
+        <p
+            class="col-span-1 flex items-center justify-center bg-slate-100 text-center border border-slate-200 rounded-xl p-2">
+            ติดต่อเรา
+        </p>
+
+        <button href="javascript:void(0)" title="กลับสู่หน้าก่อนหน้า" role="button go back" onclick="goBack()"
+            class="col-span-1 bg-green-100 text-center w-48 rounded-lg h-14 relative font-semibold group" type="button">
+            <div
+                class="bg-green-400 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-300">
+
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="25px" width="25px">
+                    <path d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z" fill="#000000"></path>
+                    <path
+                        d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+                        fill="#000000"></path>
+                </svg>
+            </div>
+            <p class="translate-x-2">กลับไป</p>
+        </button>
+
+    </div>
 
     <!-- ———————————————————————————————————————————————————————————————————————————————————————————————————— -->
 
@@ -183,7 +193,6 @@
         <!-- ———————————————————————————————————————————————————————————————————————————————————————————————————— -->
 
         <div role="main" class="bg-white max-w-md mx-auto p-2 mb-8 text-sm rounded-lg">
-            <p class="bg-slate-100 text-xl text-center mb-4 border border-slate-200 rounded-xl p-2">ติดต่อเรา</p>
             <label class="mb-1" for="gender">โปรดเลือกเพศของคุณ</label>
             <div
                 class="sticky bg-slate-100 mb-4 p-6 border border-slate-200 rounded-lg hover:border-slate-600 focus:border-slate-600 overflow-hidden duration-300">
@@ -296,7 +305,7 @@
                     for="file">
                     <div class="icon flex items-center justify-center">
                         <svg id="SVGRepo_iconCarrier" xmlns="http://www.w3.org/2000/svg"
-                            class="w-20 h-20 text-neutral-600 opacity-0  duration-300" viewBox="0 0 24 24">
+                            class="animate-bounce w-20 h-20 text-gray-400 opacity-0  duration-300" viewBox="0 0 24 24">
                             <path fill="currentColor"
                                 d="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V9C19 9.55228 19.4477 10 20 10C20.5523 10 21 9.55228 21 9V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM14 15.5C14 14.1193 15.1193 13 16.5 13C17.8807 13 19 14.1193 19 15.5V16V17H20C21.1046 17 22 17.8954 22 19C22 20.1046 21.1046 21 20 21H13C11.8954 21 11 20.1046 11 19C11 17.8954 11.8954 17 13 17H14V16V15.5ZM16.5 11C14.142 11 12.2076 12.8136 12.0156 15.122C10.2825 15.5606 9 17.1305 9 19C9 21.2091 10.7909 23 13 23H20C22.2091 23 24 21.2091 24 19C24 17.1305 22.7175 15.5606 20.9844 15.122C20.7924 12.8136 18.858 11 16.5 11Z"
                                 clip-rule="evenodd" fill-rule="evenodd"></path>
@@ -335,12 +344,13 @@
 
             <!-- ———————————————————————————————————————————————————————————————————————————————————————————————————— -->
 
-            <div class="sticky bottom-1 bg-white border border-slate-200 grid grid-cols-6 gap-2 rounded-xl p-2">
+            <div
+                class="sticky bottom-1 drop-shadow-lg bg-white border border-slate-200 grid grid-cols-6 gap-2 rounded-xl p-2">
 
                 <button title="ส่งข้อมูล" role="ส่งข้อมูล"
                     class="col-span-6 bg-slate-100 stroke-slate-600 border border-slate-200 flex justify-center rounded-lg p-2 hover:border-slate-600 focus:stroke-blue-200 focus:bg-blue-500 duration-300"
                     type="submit">
-                    <svg fill="none" viewBox="0 0 24 24" height="30px" width="30px" xmlns="http://www.w3.org/2000/svg">
+                    <svg fill="none" viewBox="0 0 24 24" class="h-[30px] w-[30px]" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5"
                             d="M7.39999 6.32003L15.89 3.49003C19.7 2.22003 21.77 4.30003 20.51 8.11003L17.68 16.6C15.78 22.31 12.66 22.31 10.76 16.6L9.91999 14.08L7.39999 13.24C1.68999 11.34 1.68999 8.23003 7.39999 6.32003Z">
                         </path>
@@ -406,10 +416,10 @@
                 </a>
             </li>
         </ul>
-        <p>Version: 1.2.0</p>
+        <p>Version: 1.2.1</p>
         <p class="first-letter:text-blue-500">
             <script>document.write("© " + (new Date().getFullYear()))</script> <span
-                class="text-blue-500">Centered101</span>. All Rights Reserved.
+                class="text-blue-500">Centered101</span> All Rights Reserved.
         </p>
     </footer>
 </body>
@@ -419,9 +429,11 @@
         window.location.reload(true);
         document.getElementById('alertWarning').textContent = 'กำลังรีเซ็ตหน้าเว็บ';
         document.getElementById('Warning').style.display = 'flex';
+        document.getElementById('resetWindow').style.display = 'none';
 
         setTimeout(function () {
             document.getElementById('Warning').style.display = 'none';
+            document.getElementById('resetWindow').style.display = 'block';
         }, 4000);
     }
 
@@ -429,9 +441,11 @@
         window.history.back(true);
         document.getElementById('alertWarning').textContent = 'กำลังกลับสู่หน้า ก่อนหน้า';
         document.getElementById('Warning').style.display = 'flex';
+        document.getElementById('resetWindow').style.display = 'none';
 
         setTimeout(function () {
             document.getElementById('Warning').style.display = 'none';
+            document.getElementById('resetWindow').style.display = 'block';
         }, 4000);
     }
 
@@ -439,24 +453,25 @@
 
         setTimeout(() => {
             document.getElementById('SVGRepo_iconCarrier').style.opacity = '1';
-        }, 500);
+        }, 1000);
     };
 
     const scriptURL = "https://script.google.com/macros/s/AKfycbyUoxoEZ-tRpgADACvd5nENXQncuUBJjGGNfYrJShAnV4JUy8VqBWw1F1Jp5GSdi3zfaw/exec";
     const form = document.getElementById("contact");
     const messageField = document.getElementById('message');
-
+    const file = document.getElementById('file');
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        // ตรวจสอบว่า messageField มีข้อมูลหรือไม่
         if (messageField.value === '') {
             document.getElementById('alertInfo').textContent = 'กรุณากรอกข้อมูล ที่สำคัญก่อน!';
             document.getElementById('Info').style.display = 'flex';
+            document.getElementById('resetWindow').style.display = 'none';
 
             setTimeout(function () {
                 document.getElementById('Info').style.display = 'none';
+                document.getElementById('resetWindow').style.display = 'block';
             }, 4000);
         } else {
             document.querySelector('button[type="submit"]').style.display = 'none';
@@ -466,9 +481,11 @@
 
             document.getElementById('alertWarning').textContent = 'กำลังอัพโหลดไฟล์';
             document.getElementById('Warning').style.display = 'flex';
+            document.getElementById('resetWindow').style.display = 'none';
 
             setTimeout(function () {
                 document.getElementById('Warning').style.display = 'none';
+                document.getElementById('resetWindow').style.display = 'block';
             }, 4000);
 
             fetch(scriptURL, { method: "POST", body: new FormData(form) })
@@ -477,20 +494,23 @@
                     document.getElementById('Success').style.display = 'flex';
                     document.getElementById('alertInfo').textContent = 'ขอบคุณ! แบบฟอร์มของคุณถูกส่งเรียบร้อยแล้ว';
                     document.getElementById('Info').style.display = 'flex';
-                    // window.location.href = "/index.html";
+                    window.location.href = "/index.html";
 
                     setTimeout(function () {
                         document.getElementById('Success').style.display = 'none';
                         document.getElementById('Info').style.display = 'none';
+                        document.getElementById('resetWindow').style.display = 'block';
                     }, 4000);
                 })
                 .catch((error) => {
                     handleError(error);
                     document.getElementById('alertError').textContent = 'เกิดข้อผิดพลาดในการส่งข้อมูล: ' + error.message;
                     document.getElementById('Error').style.display = 'flex';
+                    document.getElementById('resetWindow').style.display = 'none';
 
                     setTimeout(function () {
                         document.getElementById('Error').style.display = 'none';
+                        document.getElementById('resetWindow').style.display = 'block';
                     }, 4000);
                 });
 
@@ -498,10 +518,9 @@
     });
 
     document.getElementById('file').addEventListener('change', function (e) {
-        var file = e.target.files[0];  // ดึงไฟล์ที่ถูกเลือก
+        var file = e.target.files[0];
         if (file) {
 
-            // ตรวจสอบประเภทไฟล์
             var validTypes = ['image/jpeg', 'image/png', 'image/gif']; // ประเภทไฟล์ที่อนุญาต
             if (!validTypes.includes(file.type)) {
                 document.getElementById('alertInfo').textContent = 'กรุณาเลือกไฟล์รูปภาพ (.jpg, .png, .gif) เท่านั้น!';
@@ -509,6 +528,7 @@
 
                 setTimeout(function () {
                     document.getElementById('Info').style.display = 'none';
+                    document.getElementById('resetWindow').style.display = 'block';
                 }, 4000);
                 document.getElementById('file').value = ''; // ล้างค่าของไฟล์ที่เลือก
                 return;
@@ -520,9 +540,11 @@
 
             document.getElementById('alertSuccess').textContent = 'อัพโหลดไฟล์สำเร็จ!';
             document.getElementById('Success').style.display = 'flex';
+            document.getElementById('resetWindow').style.display = 'none';
 
             setTimeout(function () {
                 document.getElementById('Success').style.display = 'none';
+                document.getElementById('resetWindow').style.display = 'block';
             }, 4000);
         }
     });
@@ -534,9 +556,11 @@
         document.getElementById('fileDisplay').textContent = 'ไม่ได้เลือกไฟล์';
         document.getElementById('alertSuccess').textContent = 'ลบไฟล์สำเร็จ!';
         document.getElementById('Success').style.display = 'flex';
+        document.getElementById('resetWindow').style.display = 'none';
 
         setTimeout(function () {
             document.getElementById('Success').style.display = 'none';
+            document.getElementById('resetWindow').style.display = 'block';
         }, 4000);
     });
 

@@ -38,941 +38,206 @@
     <meta property="twitter:image" content="https://centered101-webfollow.web.app/images/Tes-D.png" />
 
     <link rel="icon" type="image/png" href="https://centered101-webfollow.web.app/images/Tes-D.png">
+    <link rel="stylesheet" href="/style/style-start.css">
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-<style>
-    /* font จาก google fonts */
-    /* font-family: 'Press Start 2P', system-ui; */
-    @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-    /* font-family: 'Bai Jamjuree', sans-serif; */
-    @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
-
-    /* โหมดมืด */
-    [data-theme="dark"] {
-        * {
-            margin: 0;
-            padding: 0;
-            outline: 0;
-        }
-
-        body {
-            user-select: none;
-            padding: 80px 100px;
-            font: 13px "Helvetica Neue", "Lucida Grande", "Arial";
-            background: #131616 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#131616));
-            background: #131616 -moz-linear-gradient(top, #000000, #131616);
-            background-repeat: no-repeat;
-            color: #555555;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1,
-        h2,
-        h3 {
-            font-size: 22px;
-            color: #343434;
-        }
-
-        h1 em,
-        h2 em {
-            padding: 0 5px;
-            font-weight: normal;
-        }
-
-        h1 {
-            font-size: 60px;
-        }
-
-        h2 {
-            margin-top: 10px;
-        }
-
-        h3 {
-            margin: 5px 0 10px 0;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #EEEEEE;
-            font-size: 18px;
-        }
-
-        ul li {
-            list-style: none;
-        }
-
-        ul li:hover {
-            cursor: pointer;
-            color: #2E2E2E;
-        }
-
-        ul li .path {
-            padding-left: 5px;
-            font-weight: bold;
-        }
-
-        ul li .line {
-            padding-right: 5px;
-            font-style: italic;
-        }
-
-        ul li:first-child .path {
-            padding-left: 0;
-        }
-
-        p {
-            line-height: 1.5;
-        }
-
-        a {
-            color: #555555;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #303030;
-        }
-
-        #stacktrace {
-            margin-top: 15px;
-        }
-
-        .directory h1 {
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        ul#files {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        ul#files li {
-            float: left;
-            width: 30%;
-            line-height: 25px;
-            margin: 1px;
-        }
-
-        ul#files li a {
-            display: block;
-            height: 25px;
-            border: 1px solid transparent;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        ul#files li a:focus,
-        ul#files li a:hover {
-            background: #FFFFFFA6;
-            border: 1px solid #ECECEC;
-        }
-
-        ul#files li a.highlight {
-            -webkit-transition: background .4s ease-in-out;
-            background: #FFFF4F;
-            border-color: #E9DC51;
-        }
-
-        #search {
-            display: block;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 90px;
-            -webkit-transition: width ease 0.2s, opacity ease 0.4s;
-            -moz-transition: width ease 0.2s, opacity ease 0.4s;
-            -webkit-border-radius: 32px;
-            -moz-border-radius: 32px;
-            -webkit-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 255, 255, 0.03);
-            -moz-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 255, 255, 0.03);
-            -webkit-font-smoothing: antialiased;
-            text-align: left;
-            font: 13px "Helvetica Neue", Arial, sans-serif;
-            padding: 4px 10px;
-            border: none;
-            background: transparent;
-            margin-bottom: 0;
-            outline: none;
-            opacity: 0.7;
-            color: #888888;
-        }
-
-        #search:focus {
-            width: 120px;
-            opacity: 1.0;
-        }
-
-        /*views*/
-        #files span {
-            display: inline-block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            text-indent: 10px;
-        }
-
-        #files .name {
-            background-repeat: no-repeat;
-        }
-
-        #files .icon .name {
-            text-indent: 28px;
-        }
-
-        /*tiles*/
-        .view-tiles .name {
-            width: 100%;
-            background-position: 8px 5px;
-        }
-
-        .view-tiles .size,
-        .view-tiles .date {
-            display: none;
-        }
-
-        /*details*/
-        ul#files.view-details li {
-            float: none;
-            display: block;
-            width: 90%;
-        }
-
-        ul#files.view-details li.header {
-            height: 25px;
-            background: #FFFFFF;
-            color: #FFFFFF;
-            font-weight: bold;
-        }
-
-        .view-details .header {
-            border-radius: 5px;
-        }
-
-        .view-details .name {
-            width: 60%;
-            background-position: 8px 5px;
-        }
-
-        .view-details .size {
-            width: 10%;
-        }
-
-        .view-details .date {
-            width: 30%;
-        }
-
-        .view-details .size,
-        .view-details .date {
-            text-align: right;
-            direction: rtl;
-        }
-
-        /*mobile*/
-        @media (max-width: 768px) {
-
-            body {
-                font-size: 13px;
-                line-height: 16px;
-                padding: 0;
-            }
-
-            #search {
-                position: static;
-                width: 100%;
-                font-size: 2em;
-                line-height: 1.8em;
-                text-indent: 10px;
-                border: 0;
-                border-radius: 0;
-                padding: 10px 0;
-                margin: 0;
-            }
-
-            #search:focus {
-                width: 100%;
-                border: 0;
-                opacity: 1;
-            }
-
-            .directory h1 {
-                font-size: 2em;
-                line-height: 1.5em;
-                color: #000000;
-                background: #F5A623;
-                padding: 15px 10px;
-                margin: 0;
-            }
-
-            ul#files {
-                border-top: 1px solid #353535;
-            }
-
-            ul#files li {
-                float: none;
-                width: auto !important;
-                display: block;
-                border-bottom: 1px solid #353535;
-                font-size: 2em;
-                line-height: 1.2em;
-                text-indent: 0;
-                margin: 0;
-            }
-
-            ul#files li:nth-child(odd) {
-                background: #1F1F1F;
-            }
-
-            ul#files li a {
-                height: auto;
-                border: 0;
-                border-radius: 0;
-                padding: 15px 10px;
-            }
-
-            ul#files li a:focus,
-            ul#files li a:hover {
-                border: 0;
-            }
-
-            #files .header,
-            #files .size,
-            #files .date {
-                display: none !important;
-            }
-
-            #files .name {
-                float: none;
-                display: inline-block;
-                width: 100%;
-                text-indent: 0;
-                background-position: 0 50%;
-            }
-
-            #files .icon .name {
-                text-indent: 41px;
-            }
-
-            .mb-96 {
-                background: #ECE9E9 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#ECE9E9));
-                background: #ECE9E9 -moz-linear-gradient(top, #FFFFFF, #ECE9E9);
-            }
-        }
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        outline: 0;
-    }
-
-    body {
-        user-select: none;
-        padding: 80px 100px;
-        /* font: 13px "Helvetica Neue", "Lucida Grande", "Arial"; */
-        font-family: 'Bai Jamjuree', sans-serif;
-        background: #ECE9E9 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#ECE9E9));
-        background: #ECE9E9 -moz-linear-gradient(top, #FFFFFF, #ECE9E9);
-        background-repeat: no-repeat;
-        color: #555555;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    h1,
-    h2,
-    h3 {
-        font-size: 22px;
-        color: #343434;
-    }
-
-    h1 em,
-    h2 em {
-        padding: 0 5px;
-        font-weight: normal;
-    }
-
-    h1 {
-        font-size: 60px;
-    }
-
-    h2 {
-        margin-top: 10px;
-    }
-
-    h3 {
-        margin: 5px 0 10px 0;
-        padding-bottom: 5px;
-        border-bottom: 1px solid #EEEEEE;
-        font-size: 18px;
-    }
-
-    ul li {
-        list-style: none;
-    }
-
-    ul li:hover {
-        cursor: pointer;
-        color: #2E2E2E;
-    }
-
-    ul li .path {
-        padding-left: 5px;
-        font-weight: bold;
-    }
-
-    ul li .line {
-        padding-right: 5px;
-        font-style: italic;
-    }
-
-    ul li:first-child .path {
-        padding-left: 0;
-    }
-
-    p {
-        line-height: 1.5;
-    }
-
-    a {
-        color: #555555;
-        text-decoration: none;
-    }
-
-    a:hover {
-        color: #303030;
-    }
-
-    #stacktrace {
-        margin-top: 15px;
-    }
-
-    .directory h1 {
-        margin-bottom: 15px;
-        font-size: 18px;
-    }
-
-    ul#files {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    ul#files li {
-        float: left;
-        width: 30%;
-        line-height: 25px;
-        margin: 1px;
-    }
-
-    ul#files li a {
-        display: block;
-        height: 25px;
-        border: 1px solid transparent;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-
-    ul#files li a:focus,
-    ul#files li a:hover {
-        background: #FFFFFFA6;
-        border: 1px solid #ECECEC;
-    }
-
-    ul#files li a.highlight {
-        -webkit-transition: background .4s ease-in-out;
-        background: #FFFF4F;
-        border-color: #E9DC51;
-    }
-
-    #search {
-        display: block;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        width: 90px;
-        -webkit-transition: width ease 0.2s, opacity ease 0.4s;
-        -moz-transition: width ease 0.2s, opacity ease 0.4s;
-        -webkit-border-radius: 32px;
-        -moz-border-radius: 32px;
-        -webkit-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 255, 255, 0.03);
-        -moz-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 255, 255, 0.03);
-        -webkit-font-smoothing: antialiased;
-        text-align: left;
-        font: 13px "Helvetica Neue", Arial, sans-serif;
-        padding: 4px 10px;
-        border: none;
-        background: transparent;
-        margin-bottom: 0;
-        outline: none;
-        opacity: 0.7;
-        color: #888888;
-    }
-
-    #search:focus {
-        width: 120px;
-        opacity: 1.0;
-    }
-
-    /*views*/
-    #files span {
-        display: inline-block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-indent: 10px;
-    }
-
-    #files .name {
-        background-repeat: no-repeat;
-    }
-
-    #files .icon .name {
-        text-indent: 28px;
-    }
-
-    /*tiles*/
-    .view-tiles .name {
-        width: 100%;
-        background-position: 8px 5px;
-    }
-
-    .view-tiles .size,
-    .view-tiles .date {
-        display: none;
-    }
-
-    /*details*/
-    ul#files.view-details li {
-        float: none;
-        display: block;
-        width: 90%;
-    }
-
-    ul#files.view-details li.header {
-        height: 25px;
-        background: #000000;
-        color: #FFFFFF;
-        font-weight: bold;
-    }
-
-    .view-details .header {
-        border-radius: 5px;
-    }
-
-    .view-details .name {
-        width: 60%;
-        background-position: 8px 5px;
-    }
-
-    .view-details .size {
-        width: 10%;
-    }
-
-    .view-details .date {
-        width: 30%;
-    }
-
-    .view-details .size,
-    .view-details .date {
-        text-align: right;
-        direction: rtl;
-    }
-
-    /*mobile*/
-    @media (max-width: 768px) {
-
-        body {
-            font-size: 13px;
-            line-height: 16px;
-            padding: 0;
-        }
-
-        #search {
-            position: static;
-            width: 100%;
-            font-size: 2em;
-            line-height: 1.8em;
-            text-indent: 10px;
-            border: 0;
-            border-radius: 0;
-            padding: 10px 0;
-            margin: 0;
-        }
-
-        #search:focus {
-            width: 100%;
-            border: 0;
-            opacity: 1;
-        }
-
-        .directory h1 {
-            font-size: 2em;
-            line-height: 1.5em;
-            color: #FFFFFF;
-            background: #F5A623;
-            padding: 15px 10px;
-            margin: 0;
-        }
-
-        ul#files {
-            border-top: 1px solid #CACACA;
-        }
-
-        ul#files li {
-            float: none;
-            width: auto !important;
-            display: block;
-            border-bottom: 1px solid #CACACA;
-            font-size: 2em;
-            line-height: 1.2em;
-            text-indent: 0;
-            margin: 0;
-        }
-
-        ul#files li:nth-child(odd) {
-            background: #E0E0E0;
-        }
-
-        ul#files li a {
-            height: auto;
-            border: 0;
-            border-radius: 0;
-            padding: 15px 10px;
-        }
-
-        ul#files li a:focus,
-        ul#files li a:hover {
-            border: 0;
-        }
-
-        #files .header,
-        #files .size,
-        #files .date {
-            display: none !important;
-        }
-
-        #files .name {
-            float: none;
-            display: inline-block;
-            width: 100%;
-            text-indent: 0;
-            background-position: 0 50%;
-        }
-
-        #files .icon .name {
-            text-indent: 41px;
-        }
-    }
-
-    #files .icon-default .name {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC4SURBVCjPdZFbDsIgEEWnrsMm7oGGfZrohxvU+Iq1TyjU60Bf1pac4Yc5YS4ZAtGWBMk/drQBOVwJlZrWYkLhsB8UV9K0BUrPGy9cWbng2CtEEUmLGppPjRwpbixUKHBiZRS0p+ZGhvs4irNEvWD8heHpbsyDXznPhYFOyTjJc13olIqzZCHBouE0FRMUjA+s1gTjaRgVFpqRwC8mfoXPPEVPS7LbRaJL2y7bOifRCTEli3U7BMWgLzKlW/CuebZPAAAAAElFTkSuQmCC);
-    }
-
-    #files .icon-directory .name {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAAWtQTFRFAAAA/PPQ9Nhc2q402qQ12qs2/PTX2pg12p81+/LM89NE9dto2q82+/fp2rM22qY39d6U+/bo2qo2/frx/vz32q812qs12qE279SU8c4w9NZP+/LK//367s9y7s925cp0/vzw9t92//342po2/vz25s1579B6+OSO2bQ0/v799NyT8tE79dld8Msm+OrC/vzx79KA2IYs7s6I9d6R4cJe9+OF/PLI/fry79OF/v30//328tWB89RJ8c9p8c0u9eCf//7+9txs6sts5Mdr+++5+u2z/vrv+/fq6cFz8dBs8tA57cpq+OaU9uGs27Y8//799NdX/PbY9uB89unJ//z14sNf+emh+emk+vDc+uys9+OL8dJy89NH+eic8tN5+OaV+OWR9N2n9dtl9t529+KF9+GB9Nue9NdU8tR/9t5y89qW9dpj89iO89eG/vvu2pQ12Y4z/vzy2Ict/vvv48dr/vzz4sNg///+2Igty3PqwQAAAAF0Uk5TAEDm2GYAAACtSURBVBjTY2AgA2iYlJWVhfohBPg0yx38y92dS0pKVOVBAqIi6sb2vsWWpfrFeTI8QAEhYQEta28nCwM1OVleZqCAmKCEkUdwYWmhQnFeOStQgL9cySqkNNDHVJGbiY0FKCCuYuYSGRsV5KgjxcXIARRQNncNj09JTgqw0ZbkZAcK5LuFJaRmZqfHeNnpSucDBQoiEtOycnIz4qI9bfUKQA6pKKqAgqIKQyK8BgAZ5yfODmnHrQAAAABJRU5ErkJggg==);
-    }
-
-    #files .icon-php .name {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGsSURBVDjLjZNLSwJRFICtFv2AgggS2vQLDFvVpn0Pi4iItm1KItvWJqW1pYsRemyyNILARbZpm0WtrJ0kbmbUlHmr4+t0z60Z7oSSAx935txzvrlPBwA4EPKMEVwE9z+ME/qtOkbgqtVqUqPRaDWbTegE6YdQKBRkJazAjcWapoGu6xayLIMoilAoFKhEEAQIh8OWxCzuQwEmVKtVMAyDtoiqqiBJEhSLRSqoVCqAP+E47keCAvfU5sDQ8MRs/OYNtr1x2PXdwuJShLLljcFlNAW5HA9khLYp0TUhSYMLHm7PLEDS7zyw3ybRqyfg+TyBtwl2sDP1nKWFiUSazFex3tk45sXjL1Aul20CGTs+syVY37igBbwg03eMsfH9gwSsrZ+Doig2QZsdNiZmMkVrKmwc18azHKELyQrOMEHTDJp8HXu1hostG8dY8PiRngdWMEq467ZwbDxwlIR8XrQLcBvn5k9Gpmd8fn/gHlZWT20C/D4k8eTDB3yVFKjX6xSbgD1If8G970Q3QbvbPehAyxL8SibJEdaxo5dikqvS28sInCjp4Tqb4NV3fgPirZ4pD4KS4wAAAABJRU5ErkJggg==);
-    }
-
-    #files .icon-image .name {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAGWSURBVBgZpcE/a1NhGMbh3/OeN56cKq2Dp6AoCOKmk4uCn8DNycEOIojilr2TaBfRzVnESQR3Bz+FFDoWA2IjtkRqmpyc97k9qYl/IQV7XSaJw4g0VlZfP0m13dwepPbuiH85fyhyWCx4/ubxjU6kkdxWHt69VC6XpZlFBAhwJgwJJHAmRKorbj94ewvoRBrbuykvT5R2/+lLTp05Tp45STmEJYJBMAjByILxYeM9jzr3GCczGpHGYAQhRM6fO8uFy1fJQoaUwCKYEcwwC4QQaGUBd36KTDmQ523axTGQmEcIEBORKQfG1ZDxcA/MkBxXwj1ggCQyS9TVAMmZiUxJ8Ln/kS+9PmOvcSW+jrao0mmMH5bzHfa+9UGBmciUBJ+2Fmh1h+yTQCXSkJkdCrpd8btIwwEJQnaEkOXMk7XaiF8CUxL/JdKQOwb0Ntc5SG9zHXQNd/ZFGsaEeLa2ChjzXQcqZiKNxSL0vR4unVwwMENMCATib0ZdV+QtE41I42geXt1Ze3dlMNZFdw6Ut6CIvKBhkjiM79Pyq1YUmtkKAAAAAElFTkSuQmCC);
-    }
-
-    #files .icon-text-html .name,
-    #files .icon-text-css .name {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAHtSURBVDjLjZM9T9tQFIYpQ5eOMBKlW6eWIQipa8RfQKQghEAKqZgKFQgmFn5AWyVDCipVQZC2EqBWlEqdO2RCpAssQBRsx1+1ndix8wFvfW6wcUhQsfTI0j33PD7n+N4uAF2E+/S5RFwG/8Njl24/LyCIOI6j1+v1y0ajgU64cSSTybdBSVAwSMmmacKyLB/DMKBpGkRRZBJBEJBKpXyJl/yABLTBtm1Uq1X2JsrlMnRdhyRJTFCpVEAfSafTTUlQoFs1luxBAkoolUqQZbmtJTYTT/AoHInOfpcwtVtkwcSBgrkDGYph+60oisIq4Xm+VfB0+U/P0Lvj3NwPGfHPTcHMvoyFXwpe7UmQtAqTUCU0D1VVbwTPVk5jY19Fe3ZfQny7CE51WJDXqpjeEUHr45ki9rIqa4dmQiJfMLItGEs/FcQ2ucbRmdnSYy5vYWyLx/w3EaMfLmBaDpMQvuDJ65PY8Dpnz3wpYmLtApzcrIAqmfrEgdZH1grY/a36w6Xz0DKD8ES25/niYS6+wWE8mWfByY8cXmYEJFYLkHUHtVqNQcltAvoLD3v7o/FUHsNvzlnwxfsCEukC/ho3yUHaBN5Buo17Ojtyl+DqrnvQgUtfcC0ZcAdkUeA+ye7eMru9AUGIJPe4zh509UP/AAfNypi8oj/mAAAAAElFTkSuQmCC);
-    }
-
-    #files .icon-application-javascript .name {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAHdSURBVDjLjZNPaxNBGIdrLwURLznWgkcvIrQhRw9FGgy01IY0TVsQ0q6GFkT0kwjJId9AP4AHP4Q9FO2hJ7El2+yf7OzMbja7Sf0578QdNybFLjwszLu/Z2femZkDMEfI54FkRVL4Dw8l8zqXEawMBgM2HA6vR6MRZiHraDabH7KSrKBA4SAIEIahxvd9eJ6HbrerJKZpotVqaUkavkMC+iCKIsRxrN6EEAKMMViWpQT9fh/0k3a7PZZkBUPmqXAKCSjAOYdt21NLUj1JBYW7C6vi6BC8vKWKQXUXQcNA5Nh6KY7jqJl0Op1JwY/Hi7mLp/lT/uoA/OX2WLC3C9FoQBwfILKulIRmQv1wXfevwHmyuMPXS5Fv1MHrFSTmhSomnUvw/Spo3C+vg3/+pJZDPSGRFvilNV+8PUZvoziKvn+d3LZvJ/BelMDevIZXK2EQCiUhtMDM53bY5rOIGXtwjU3EVz/HM5Az8eplqPFKEfzLR91cOg8TPTgr3MudFx+d9owK7KMNVfQOtyQ1OO9qiHsWkiRRUHhKQLuwfH9+1XpfhVVfU0V3//k4zFwdzjIlSA/Sv8jTOZObBL9uugczuNaCP5K8bFBIhduE5bdC3d6MYIkkt7jOKXT1l34DkIu9e0agZjoAAAAASUVORK5CYII=);
-    }
-
-    #files .icon-cpp .name {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAH/SURBVDjLjZPNaxNRFMWrf4cFwV13JVKXLuta61apIChIV0rblUqhjYpRcUaNboxIqxFTQgVti4hQQTe1C7FFSUmnmvmM85XJzCSpx3efzmTSRtqBw7yZ9+5v7rl3bg+AHhK7DjClmAZ20UGm/XFcApAKgsBqNptbrVYL3cT2IQjCnSQkCRig4FqtBs/zYtm2DdM0oaoqh8iyDFEUY0gUvI8AdMD3fYRhyO8k13VhWRY0TeOAer0O+kg2m/0LIcDx9LdDgxff5jJzKjJzCmbe6fi0anEABTiOA13Xd1jiNTlxfT01UVB/CfMG7r/WILxScaOo4FpeBrPEfUdWDMPgmVQqlTbgtCjls4sGjl16PxuRny5oGH3yA7oZoPjR4BDbqeHlksLrUa1W24DJWRU3Wer9Qw/Gk+kVmA2lGuDKtMQzsVwfl6c3eE3IUgyYeCFjsqCgb3DqQhJwq/gTY7lyV61Jdhtw7qFUSjNA/8m8kASkc5tYXnN4BvTs1kO23uAdIksx4OjI19Grzys4c7fkfCm5MO0QU483cf5eGcurNq8BWfD8kK11HtwBoDYeGV4ZO5X57ow8knBWLGP49jqevVF5IKnRaOxQByD6kT6smFj6bHb0OoJsV1cAe/n7f3PQRVsx4B/kMCuQRxt7CWZnXT69CUAvQfYwzpFo9Hv/AD332dKni9XnAAAAAElFTkSuQmCC);
-    }
-</style>
 
 <body class="directory" onload="showURL()">
     <input id="search" type="text" placeholder="Search" autocomplete="off" />
     <div id="wrapper">
-        <h1><a id="urlDisplay" href="/">~</a></h1>
-        <ul id="files" class="view-tiles" style="margin-bottom: 50vh;">
-
-            <!-- <li><a href="/images" class="icon icon-directory" title="images"><span class="name">images</span><span
-                        class="size"></span><span class="date">8/31/2024 7:00:57 AM</span></a></li> -->
-
-            <li><a href="/project-random-color" class="icon icon-directory" title="project-random-color"><span
-                        class="name">project-random-color</span><span class="size"></span><span class="date">9/7/2024
-                        3:50:28 AM</span></a></li>
-
-            <li><a href="/PROJECTS_ALL" class="icon icon-directory" title="PROJECTS_ALL"><span
-                        class="name">PROJECTS_ALL</span><span class="size"></span><span class="date">9/24/2024 7:56:23
-                        PM</span></a></li>
-
-            <!-- <li><a href="/script" class="icon icon-directory" title="script"><span class="name">script</span><span
-                        class="size"></span><span class="date">8/30/2024 5:12:39 PM</span></a></li> -->
-
-            <!-- <li><a href="/style" class="icon icon-directory" title="style"><span class="name">style</span><span
-                        class="size"></span><span class="date">8/30/2024 5:10:27 PM</span></a></li> -->
-
-            <li><a href="/test-register-%26-login-database" class="icon icon-directory"
-                    title="test-register-&amp;-login-database"><span
-                        class="name">test-register-&amp;-login-database</span><span class="size"></span><span
-                        class="date">9/15/2024 12:35:07 AM</span></a></li>
-
-            <li><a href="/%23jedagjedug.mp3" class="icon icon icon-mp3 icon-default" title="#jedagjedug.mp3"><span
-                        class="name">#jedagjedug.mp3</span><span class="size">3544944</span><span class="date">9/18/2024
-                        11:31:09 AM</span></a></li>
-
-            <li><a href="/404.html" class="icon icon icon-html icon-text-html" title="404.html"><span
-                        class="name">404.html</span><span class="size">10199</span><span class="date">9/10/2024 10:59:28
-                        PM</span></a></li>
-
-            <li><a href="/contact.html" class="icon icon icon-html icon-text-html" title="contact.html"><span
-                        class="name">contact.html</span><span class="size">19288</span><span class="date">9/21/2024
-                        4:24:22 PM</span></a></li>
-
-            <li><a href="/IoT%20WiFi%20Blynk%20MQTT.cpp" class="icon icon icon-cpp"
-                    title="IoT WiFi Blynk MQTT.cpp"><span class="name">IoT WiFi Blynk MQTT.cpp</span><span
-                        class="size">598</span><span class="date">9/24/2024 7:23:20 PM</span></a></li>
-
-            <li><a href="/index.html" class="icon icon icon-html icon-text-html" title="index.html"><span
-                        class="name">index.html</span><span class="size">11163</span><span class="date">9/15/2024
-                        2:49:19 AM</span></a></li>
-
-            <li><a href="/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%A5%E0%B8%A2%E0%B9%8C%E0%B9%80%E0%B8%AD%E0%B8%B2%E0%B8%97%E0%B9%8C%20Responsive%20Grid.htm"
-                    class="icon icon icon-htm icon-text-html" title="สร้างเลย์เอาท์ Responsive Grid.htm"><span
-                        class="name">สร้างเลย์เอาท์ Responsive Grid.htm</span><span class="size">5017</span><span
-                        class="date">9/14/2024 4:15:24 PM</span></a></li>
+        <h1>
+            <a href="/">
+                <script>
+                    document.write(window.location.href);
+                </script>
+            </a>
+        </h1>
+        <ul id="files" class="view-tiles mb-[100vh]">
+            <li>
+                <a href="/" class="icon icon-directory" title="..">
+                    <span class="name">..</span>
+                    <span class="size"></span>
+                    <span class="date"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/images" class="icon icon-directory" title="images">
+                    <span class="name">images</span>
+                    <span class="size"></span>
+                    <span class="date">8/31/2024
+                        7:00:57 AM</span>
+                </a>
+            </li>
+            <li>
+                <a href="/project-random-color" class="icon icon-directory" title="project-random-color">
+                    <span class="name">project-random-color</span>
+                    <span class="size"></span>
+                    <span class="date">9/7/2024 3:50:28 AM</span>
+                </a>
+            </li>
+            <li>
+                <a href="/PROJECTS_ALL" class="icon icon-directory" title="PROJECTS_ALL">
+                    <span class="name">PROJECTS_ALL</span>
+                    <span class="size"></span>
+                    <span class="date">9/24/2024 7:56:23PM</span>
+                </a>
+            </li>
+            <li>
+                <a href="/script" class="icon icon-directory" title="script">
+                    <span class="name">script</span>
+                    <span class="size"></span>
+                    <span class="date">8/30/2024
+                        5:12:39 PM</span>
+                </a>
+            </li>
+            <li>
+                <a href="/style" class="icon icon-directory" title="style">
+                    <span class="name">style</span>
+                    <span class="size"></span>
+                    <span class="date">8/30/2024
+                        5:10:27 PM</span>
+                </a>
+            </li>
+            <li>
+                <a href="/test-register-%26-login-database" class="icon icon-directory"
+                    title="test-register-&amp;-login-database">
+                    <span class="name">test-register-&amp;-login-database</span>
+                    <span class="size"></span>
+                    <span class="date">9/15/2024 12:35:07 AM</span>
+                </a>
+            </li>
+            <li>
+                <a href="/%23jedagjedug.mp3" class="icon icon icon-mp3 icon-default" title="#jedagjedug.mp3">
+                    <span class="name">#jedagjedug.mp3</span>
+                    <span class="size">3544944</span>
+                    <span class="date">9/18/2024
+                        11:31:09 AM</span>
+                </a>
+            </li>
+            <li>
+                <a href="/404.html" class="icon icon icon-html icon-text-html" title="404.html">
+                    <span class="name">404.html</span>
+                    <span class="size">10199</span>
+                    <span class="date">9/10/2024
+                        10:59:28 PM</span>
+                </a>
+            </li>
+            <li>
+                <a href="/contact.html" class="icon icon icon-html icon-text-html" title="contact.html">
+                    <span class="name">contact.html</span>
+                    <span class="size">19288</span>
+                    <span class="date">9/21/2024
+                        4:24:22 PM</span>
+                </a>
+            </li>
+            <li>
+                <a href="/IoT%20WiFi%20Blynk%20MQTT.cpp" class="icon icon icon-cpp" title="IoT WiFi Blynk MQTT.cpp">
+                    <span class="name">IoT WiFi Blynk MQTT.cpp</span>
+                    <span class="size">598</span>
+                    <span class="date">9/24/2024
+                        7:23:20 PM</span>
+                </a>
+            </li>
+            <li>
+                <a href="/index.html" class="icon icon icon-html icon-text-html" title="index.html">
+                    <span class="name">index.html</span>
+                    <span class="size">11163</span>
+                    <span class="date">9/15/2024
+                        2:49:19 AM</span>
+                </a>
+            </li>
+            <li>
+                <a href="/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%A5%E0%B8%A2%E0%B9%8C%E0%B9%80%E0%B8%AD%E0%B8%B2%E0%B8%97%E0%B9%8C%20Responsive%20Grid.htm"
+                    class="icon icon icon-htm icon-text-html" title="สร้างเลย์เอาท์ Responsive Grid.htm">
+                    <span class="name">สร้างเลย์เอาท์ Responsive Grid.htm</span>
+                    <span class="size">5017</span>
+                    <span class="date">9/14/2024
+                        4:15:24 PM</span></a>
+            </li>
         </ul>
 
-        <h1 class="truncate">View project files</h1>
-        <div class="mb-96 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            <div class="relative group inline-block w-full">
-                <a href="/project-random-color"
-                    class="bg-stone-200 py-2 rounded-md shadow-lg hover:cursor-pointer hover:border-slate-600 flex items-center gap-4 px-4">
-                    <svg xmlns="http://www.w3.org/2000000/svg" fill="none" viewBox="0 0 18 14" height="25" width="25">
-                        <path fill="#FFA000000"
-                            d="M16.2 1.75H8.1L6.3 0H1.8C0.81 0 0 0.7875 0 1.75V12.25C0 13.2125 0.81 14 1.8 14H15.165L18 9.1875V3.5C18 2.5375 17.19 1.75 16.2 1.75Z">
-                        </path>
-                        <path fill="#FFCA28"
-                            d="M16.2 2H1.8C0.81 2 0 2.77143 0 3.71429V12.2857C0 13.2286 0.81 14 1.8 14H16.2C17.19 14 18 13.2286 18 12.2857V3.71429C18 2.77143 17.19 2 16.2 2Z">
-                        </path>
-                    </svg>
-                    <h2 class="truncate">project-random-color</h2>
-                </a>
-
-                <div
-                    class="left-0 mt-2 bg-stone-200 border border-gray-200 rounded-md shadow-lg max-h-0 opacity-0 overflow-hidden group-hover:max-h-full group-hover:opacity-100 transition-all duration-10000000 ease-in-out">
-                    <ul class="p-4 space-y-1 flex-col">
-                        <li class="py-1">📁 images</li>
-                        <a href="/project-random-color/images/logo3.ico">
-                            <li class="pl-4 py-1">🖼 logo3.ico</li>
-                        </a>
-                        <a href="/project-random-color/images/เทรดดีเพื่อเธอ.jpg">
-                            <li class="pl-4 py-1">🖼 เทรดดีเพื่อเธอ.jpg</li>
-                        </a>
-                        <a href="/project-random-color/dashboard-component.js">
-                            <li class="pl-1 py-1">📄 dashboard-component.js</li>
-                        </a>
-                        <a href="/project-random-color/index.html">
-                            <li class="pl-1 py-1">📄 index.html</li>
-                        </a>
-                        <a href="/project-random-color/random.html">
-                            <li class="pl-1 py-1">📄 random.html</li>
-                        </a>
-                        <a href="/project-random-color/style-css.css">
-                            <li class="pl-1 py-1">📄 style-css.css</li>
-                        </a>
-                        <a href="/project-random-color/style.css">
-                            <li class="pl-1 py-1">📄 style.css</li>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="relative group inline-block w-full">
-                <a href="/test-register-&-login-database/"
-                    class="bg-stone-200 py-2 rounded-md shadow-lg hover:cursor-pointer flex items-center gap-4 px-4">
-                    <svg xmlns="http://www.w3.org/2000000/svg" fill="none" viewBox="0 0 18 14" height="25" width="25">
-                        <path fill="#FFA000000"
-                            d="M16.2 1.75H8.1L6.3 0H1.8C0.81 0 0 0.7875 0 1.75V12.25C0 13.2125 0.81 14 1.8 14H15.165L18 9.1875V3.5C18 2.5375 17.19 1.75 16.2 1.75Z">
-                        </path>
-                        <path fill="#FFCA28"
-                            d="M16.2 2H1.8C0.81 2 0 2.77143 0 3.71429V12.2857C0 13.2286 0.81 14 1.8 14H16.2C17.19 14 18 13.2286 18 12.2857V3.71429C18 2.77143 17.19 2 16.2 2Z">
-                        </path>
-                    </svg>
-                    <h2 class="truncate">test-register-&-login-database</h2>
-                </a>
-
-                <div
-                    class="left-0 mt-2 bg-stone-200 border border-gray-200 rounded-md shadow-lg max-h-0 opacity-0 overflow-hidden group-hover:max-h-full group-hover:opacity-100 transition-all duration-10000000 ease-in-out">
-
-                    <ul class="p-4 space-y-1 flex-col">
-                        <!-- <li class="pl-1 py-1">📁 images</li> -->
-                        <a href="/test-register-&-login-database/die.png">
-                            <li class="pl-1 py-1">🖼 die.png</li>
-                        </a>
-                        <a href="/test-register-&-login-database/doyou.png">
-                            <li class="pl-1 py-1">🖼 doyou.png</li>
-                        </a>
-                        <a href="/test-register-&-login-database/hm.png">
-                            <li class="pl-1 py-1">🖼 hm.png</li>
-                        </a>
-                        <a href="/test-register-&-login-database/loveu.png">
-                            <li class="pl-1 py-1">🖼 loveu.png</li>
-                        </a>
-                        <a href="/test-register-&-login-database/pinkping.png">
-                            <li class="pl-1 py-1">🖼 pinkping.png</li>
-                        </a>
-                        <a href="/test-register-&-login-database/love.html">
-                            <li class="pl-1 py-1">📄 love.html</li>
-                        </a>
-                        <a href="/test-register-&-login-database/batabase.sql">
-                            <li class="pl-1 py-1">🗃 batabase.sql</li>
-                        </a>
-                        <a href="/test-register-&-login-database/connect.php">
-                            <li class="pl-1 py-1">📄 connect.php</li>
-                        </a>
-                        <a href="/test-register-&-login-database/process.php">
-                            <li class="pl-1 py-1">📄 process.php</li>
-                        </a>
-                        <a href="/test-register-&-login-database/login.php">
-                            <li class="pl-1 py-1">📄 login.php</li>
-                        </a>
-                        <a href="/test-register-&-login-database/register.php">
-                            <li class="pl-1 py-1">📄 register.php</li>
-                        </a>
-                        <a href="/test-register-&-login-database/script.js">
-                            <li class="pl-1 py-1">📄 script.js</li>
-                        </a>
-                        <a href="/test-register-&-login-database/style-index.css">
-                            <li class="pl-1 py-1">📄 style-index.css</li>
-                        </a>
-                        <a href="/test-register-&-login-database/style.css">
-                            <li class="pl-1 py-1">📄 style.css</li>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div class="fixed bottom-6 left-6 bg-amber-400 border border-black rounded-lg p-2">
-        <p id="screen-size"></p>
-        <p>Version: 2.2.4</p>
+        <footer class="truncate text-xl mb-20 m-8 max-w-[780px] truncate">
+            <p class="">Version: 2.2.5</p>
+            <p>
+                <script>
+                    document.write("ขนาดหน้าจอของคุณ: " + window.innerWidth + "W" + " ⨉ " + window.innerHeight + "H");
+                </script>
+            </p>
+            <ul
+                class="list-outside list-decimal bg-neutral-50 border border-gray-300 hover:border-gray-500 rounded-lg my-4 p-2">
+                ลิงก์ไปหน้าที่เกี่ยวข้อง
+                <li>
+                    <a class="text-blue-500" href="https://centered101.netlify.app/">
+                        ♡ https://centered101.netlify.app/</a>
+                </li>
+                <li>
+                    <a class="text-blue-500" href="https://centered101-webfollow.web.app/">
+                        ♡ https://centered101-webfollow.web.app/</a>
+                </li>
+                <li>
+                    <a class="text-blue-500" href="https://project-test-submission.web.app/">
+                        ♡ https://project-test-submission.web.app/</a>
+                </li>
+                <li>
+                    <a class="text-blue-500" href="https://asia-lb.web.app/">
+                        ♡ https://asia-lb.web.app/</a>
+                </li>
+            </ul>
+            <ul role="navigation" class="flex gap-8 justify-center my-4 list-none">
+                <li title="Instagram" class="transform hover:scale-110 duration-300">
+                    <a href="https://www.instagram.com/Centered101/" rel="noreferrer" target="_blank"
+                        class="transition text-slate-600  hover:text-blue-500 duration-300">
+                        <span class="sr-only">Instagram</span>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li title="Twitter" class="transform hover:scale-110 duration-300">
+                    <a href="https://twitter.com/Centered101/" rel="noreferrer" target="_blank"
+                        class="transition text-slate-600  hover:text-blue-500 duration-300">
+                        <span class=" sr-only">Twitter</span>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                            </path>
+                        </svg>
+                    </a>
+                </li>
+                <li title="Discord" class="transform hover:scale-110 duration-300">
+                    <a href="https://discord.gg/KD8ba2uUpT" rel="noreferrer" target="_blank"
+                        class="transition text-slate-600  hover:text-blue-500 duration-300">
+                        <span class="sr-only">Discord</span>
+                        <svg width="33" height="27" class="w-6 h-6" viewBox="0 0 33 27" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M27.9541 2.81323C25.818 1.81378 23.5339 1.08742 21.146 0.673828C20.8527 1.20404 20.5101 1.91719 20.2739 2.4845C17.7354 2.10275 15.2203 2.10275 12.7286 2.4845C12.4924 1.91719 12.142 1.20404 11.8461 0.673828C9.45561 1.08742 7.16891 1.81645 5.03277 2.81853C0.724134 9.32943 -0.443865 15.6786 0.140135 21.9377C2.99785 24.0717 5.76731 25.3681 8.49004 26.2164C9.1623 25.2912 9.76186 24.3077 10.2784 23.2711C9.29466 22.8973 8.35248 22.4361 7.46223 21.9006C7.69841 21.7256 7.92943 21.5426 8.15262 21.3544C13.5825 23.8941 19.4822 23.8941 24.847 21.3544C25.0724 21.5426 25.3034 21.7256 25.5396 21.9006C24.6479 22.4389 23.7036 22.9001 22.7172 23.2711C23.2338 24.3097 23.8333 25.2932 24.5099 26.2183C27.2326 25.3701 30.0021 24.0737 32.8598 21.9377C33.5743 14.472 31.2806 8.15501 27.9541 2.81323ZM11.2007 18.2805C9.45293 18.2805 8.03987 16.7426 8.03987 14.8823C8.03987 13.022 9.40067 11.4841 11.2007 11.4841C13.0007 11.4841 14.4138 13.022 14.3865 14.8823C14.3865 16.7426 13.0007 18.2805 11.2007 18.2805ZM21.8404 18.2805C20.0926 18.2805 18.6795 16.7426 18.6795 14.8823C18.6795 13.022 20.0403 11.4841 21.8404 11.4841C23.6404 11.4841 25.0535 13.022 25.0262 14.8823C25.0262 16.7426 23.6404 18.2805 21.8404 18.2805Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li title="GitHub" class="transform hover:scale-110 duration-300">
+                    <a href="https://github.com/centered101/" rel="noreferrer" target="_blank"
+                        class="transition text-slate-600  hover:text-blue-500 duration-300">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 .297C5.37.297 0 5.667 0 12.292c0 5.302 3.438 9.8 8.207 11.385.6.113.793-.26.793-.577 0-.285-.01-1.04-.016-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.386-1.334-1.756-1.334-1.756-1.09-.745.082-.73.082-.73 1.205.085 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.997.108-.776.419-1.305.762-1.605-2.665-.305-5.467-1.332-5.467-5.93 0-1.31.467-2.382 1.235-3.22-.124-.306-.535-1.53.116-3.19 0 0 1.008-.322 3.3 1.23a11.488 11.488 0 013.007-.403c1.02.004 2.046.138 3.007.403 2.29-1.552 3.296-1.23 3.296-1.23.653 1.66.242 2.884.118 3.19.77.838 1.233 1.91 1.233 3.22 0 4.61-2.807 5.623-5.48 5.92.43.37.823 1.1.823 2.216 0 1.6-.014 2.888-.014 3.28 0 .32.192.694.8.576C20.565 22.092 24 17.592 24 12.292 24 5.667 18.63.297 12 .297z" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+            <p class="first-letter:text-blue-500 text-center">
+                <script>document.write("© " + (new Date().getFullYear()))</script> <span class="text-blue-500">
+                    <a href="https://centered101.netlify.app/">Centered101</a>
+                </span> All Rights Reserved.
+            </p>
+        </footer>
     </div>
 </body>
-<script>
-    function showURL() {
-        var currentURL = window.location.href;
-        document.getElementById('urlDisplay').innerText = currentURL;
-    }
-</script>
-<script>
-    function $(id) {
-        var el = 'string' == typeof id
-            ? document.getElementById(id)
-            : id;
-
-        el.on = function (event, fn) {
-            if ('content loaded' == event) {
-                event = window.attachEvent ? "load" : "DOMContentLoaded";
-            }
-            el.addEventListener
-                ? el.addEventListener(event, fn, false)
-                : el.attachEvent("on" + event, fn);
-        };
-
-        el.all = function (selector) {
-            return $(el.querySelectorAll(selector));
-        };
-
-        el.each = function (fn) {
-            for (var i = 0, len = el.length; i < len; ++i) {
-                fn($(el[i]), i);
-            }
-        };
-
-        el.getClasses = function () {
-            return this.getAttribute('class').split(/\s+/);
-        };
-
-        el.addClass = function (name) {
-            var classes = this.getAttribute('class');
-            el.setAttribute('class', classes
-                ? classes + ' ' + name
-                : name);
-        };
-
-        el.removeClass = function (name) {
-            var classes = this.getClasses().filter(function (curr) {
-                return curr != name;
-            });
-            this.setAttribute('class', classes.join(' '));
-        };
-
-        return el;
-    }
-
-    function search() {
-        var str = $('search').value.toLowerCase();
-        var links = $('files').all('a');
-
-        links.each(function (link) {
-            var text = link.textContent.toLowerCase();
-
-            if ('..' == text) return;
-            if (str.length && ~text.indexOf(str)) {
-                link.addClass('highlight');
-            } else {
-                link.removeClass('highlight');
-            }
-        });
-    }
-
-    $(window).on('content loaded', function () {
-        $('search').on('keyup', search);
-    });
-
-    // ฟังก์ชั่นอัพเดตขนาดหน้าจอ
-    function updateScreenSize() {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        document.querySelector("#screen-size").innerHTML = `ขนาดหน้าจอ: ${width} ⨉ ${height}`;
-    }
-
-    // การตรวจสอบเบื้องต้น
-    updateScreenSize();
-
-    // ฟังเหตุการณ์สำหรับการปรับขนาดหน้าต่าง
-    window.addEventListener('resize', updateScreenSize);
-
-
-    // ฟังก์ชันเพื่อตรวจสอบโหมดของผู้ใช้งาน
-    function applyTheme(theme) {
-        if (theme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
-    }
-
-    // ตรวจสอบการตั้งค่าโหมดสีของผู้ใช้งาน
-    const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-    // ตั้งค่าโหมดตามการตั้งค่าของผู้ใช้งาน
-    applyTheme(userPrefersDark.matches ? 'dark' : 'light');
-
-    // ฟังค์ชันที่รับการเปลี่ยนแปลงเมื่อผู้ใช้เปลี่ยนการตั้งค่าโหมดสีในระบบ
-    userPrefersDark.addEventListener('change', (event) => {
-        applyTheme(event.matches ? 'dark' : 'light');
-    });
-</script>
+<script src="/script/script-start.js"></script>
 
 </html>
