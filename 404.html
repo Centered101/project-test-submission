@@ -88,6 +88,11 @@
     cursor: grabbing;
   }
 
+  html {
+    scrollbar-color: #409EFE #000000;
+    scrollbar-width: thin;
+  }
+
   :root {
     /* main-color */
     --white-1: #FFFFFF;
@@ -113,8 +118,6 @@
     --white-transparent-2: #FFFFFF80;
     --green-transparent-1: #00CC4FB3;
     --black-transparent: #000000B3;
-
-    --2p: "Press Start 2P", system-ui;
   }
 
   * {
@@ -130,6 +133,11 @@
 
     ::-webkit-scrollbar-thumb {
       background-color: #FF7070;
+    }
+
+    html {
+      scrollbar-color: #FF7070 #000000;
+      scrollbar-width: thin;
     }
 
     header h1::first-letter,
@@ -154,20 +162,8 @@
     animation: opacity 1.5s ease-in-out;
   }
 
-  header {
-    position: absolute;
-    top: 2.5rem;
-    margin-left: 2.5rem;
-  }
-
-  /* ::first-letter: ใช้เพื่อเลือกตัวอักษรตัวแรกของเนื้อหา */
-  header h1::first-letter {
-    color: var(--blue-1);
-  }
-
   header h1 {
     font-family: "Press Start 2P";
-    color: var(--white-2);
   }
 
   .content {
@@ -266,10 +262,6 @@
 
   /* Mobile View */
   @media (max-width: 768px) {
-
-    header h1 {
-      font-size: 1.5rem;
-    }
 
     .content .container_error p::first-line {
       font-size: 3.5rem;
@@ -652,19 +644,25 @@
       </div>
     </div>
   </div>
-  <header>
-    <h1>Centered101</h1>
+  <header class="absolute top-10 left-10 text-6xl text-slate-100">
+    <script>
+      function resetWindow() {
+        window.location.reload(true);
+      }
+
+      document.write('<h1 title="รีโหลดหน้า" class="capitalize text-xl first-letter:text-blue-500 dark:first-letter:text-red-500 cursor-pointer" onclick="resetWindow()">center<span class="animate-bounce w-6 h-6 text-[#fBB9B6] duration-300">ed101</span></h1>');
+    </script>
   </header>
+
   <div class="content">
     <div class="container_error">
       <p>Error <br />
         404 <small>:(</small>
       </p>
     </div>
-    <h2>
-      ดูเหมือนคุณจะหลงทางแล้ว<span>!</span> <br />
-      <a title="" id="urlDisplay" href="/"></a>
-      <a href="/">
+    <h2 class="grid gap-1">
+      <p>ดูเหมือนคุณจะหลงทางแล้ว<span>!</span></p>
+      <a title="หน้าหลัก" class="text-blue-500 dark:text-red-500" href="/">
         <script>
           document.write(window.location.href);
         </script>
@@ -678,27 +676,29 @@
   </a>
 
 
-  <footer role="complementary" class="truncate text-slate-400 text-sm my-4 text-center border-t-4 border-blue-500">
-    <div class="flex justify-center my-8">
-      <div class="relative flex justify-center h-[300px] w-[160px] border-4 border-black rounded-2xl bg-gray-50" style="box-shadow: 5px 5px 2.5px 6px #d1dada">
-        <span class="border border-black bg-black w-20 h-2 rounded-br-xl rounded-bl-xl"></span>
-        <span class="absolute -right-2 top-14 border-4 border-black h-7 rounded-md"></span>
-        <span class="absolute -right-2 bottom-36 border-4 border-black h-10 rounded-md"></span>
-        <h1>Centered101</h1>
-        <p>ลิงก์ที่เกี่ยวข้อง</p>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="https://centered101.netlyfy.app/website-and-social-links/">website and social links</a></li>
-          <li><a href="contact">ติดต่อเรา</a></li>
-        </ul>
-      </div>
-    </div>
+  <footer role="complementary"
+    class="truncate text-slate-400 text-sm my-4 py-8 text-center border-t-8 border-blue-500 dark:border-red-500">
+
+
+    <p class="text-xl mb-4">ลิงก์ที่เกี่ยวข้อง</p>
+    <ul
+      class="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3 border border-blue-500 dark:border-red-500 rounded p-8 mx-8 ">
+      <li class="border border-whie hover:border-gray-400 rounded-lg truncate">
+        <a href="index.html">Home</a>
+      </li>
+      <li class="border border-whie hover:border-gray-400 rounded-lg truncate">
+        <a href="https://centered101.netlyfy.app/website-and-social-links/">website and social links</a>
+      </li>
+      <li class="border border-whie hover:border-gray-400 rounded-lg truncate">
+        <a href="contact.html">ติดต่อเรา</a>
+      </li>
+    </ul>
 
     <ul role="navigation" class="flex gap-8 justify-center my-4 list-none">
       <li title="Instagram">
         <a href="https://instagram.com/centered101/">
           <div
-            class="group w-12 hover:w-44 h-12 hover:bg-blue-400 relative bg-blue-500 rounded text-neutral-50 duration-700 before:duration-700 before:hover:500 font-bold flex justify-start gap-2 items-center p-2 pr-6 before:absolute before:-z-10 before:left-8 before:hover:left-40 before:w-6 before:h-6 before:bg-blue-500 before:hover:bg-blue-400 before:rotate-45">
+            class="group w-12 hover:w-44 h-12 hover:bg-blue-400 dark:hover:bg-red-400 relative bg-blue-500 dark:bg-red-500 rounded text-neutral-50 duration-700 before:duration-700 before:hover:500 font-bold flex justify-start gap-2 items-center p-2 pr-6 before:absolute before:-z-10 before:left-8 before:hover:left-40 before:w-6 before:h-6 before:bg-blue-500 dark:before:bg-red-500 before:hover:bg-blue-400 dark:hover:before:bg-red-400 before:rotate-45">
             <span class="sr-only">Instagram</span>
             <svg class="w-8 h-8 shrink-0 fill-neutral-50" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path fill-rule="evenodd"
@@ -714,7 +714,7 @@
       <li title="Twitter">
         <a href="https://twitter.com/Centered101/">
           <div
-            class="group w-12 hover:w-44 h-12 hover:bg-blue-400 relative bg-blue-500 rounded text-neutral-50 duration-700 before:duration-700 before:hover:500 font-bold flex justify-start gap-2 items-center p-2 pr-6 before:absolute before:-z-10 before:left-8 before:hover:left-40 before:w-6 before:h-6 before:bg-blue-500 before:hover:bg-blue-400 before:rotate-45">
+            class="group w-12 hover:w-44 h-12 hover:bg-blue-400 dark:hover:bg-red-400 relative bg-blue-500 dark:bg-red-500 rounded text-neutral-50 duration-700 before:duration-700 before:hover:500 font-bold flex justify-start gap-2 items-center p-2 pr-6 before:absolute before:-z-10 before:left-8 before:hover:left-40 before:w-6 before:h-6 before:bg-blue-500 dark:before:bg-red-500 before:hover:bg-blue-400 dark:hover:before:bg-red-400 before:rotate-45">
             <span class="sr-only">Twitter</span>
             <svg class="w-8 h-8 shrink-0 fill-neutral-50" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -728,9 +728,9 @@
         </a>
       </li>
       <li title="Linkedin">
-        <a href="https://linkedin.com/centered101/">
+        <a href="https://linkedin.com/in/centered101/">
           <div
-            class="group w-12 hover:w-44 h-12 hover:bg-blue-400 relative bg-blue-500 rounded text-neutral-50 duration-700 before:duration-700 before:hover:500 font-bold flex justify-start gap-2 items-center p-2 pr-6 before:absolute before:-z-10 before:left-8 before:hover:left-40 before:w-6 before:h-6 before:bg-blue-500 before:hover:bg-blue-400 before:rotate-45">
+            class="group w-12 hover:w-44 h-12 hover:bg-blue-400 dark:hover:bg-red-400 relative bg-blue-500 dark:bg-red-500 rounded text-neutral-50 duration-700 before:duration-700 before:hover:500 font-bold flex justify-start gap-2 items-center p-2 pr-6 before:absolute before:-z-10 before:left-8 before:hover:left-40 before:w-6 before:h-6 before:bg-blue-500 dark:before:bg-red-500 before:hover:bg-blue-400 dark:hover:before:bg-red-400 before:rotate-45">
             <span class="sr-only">Linkedin</span>
             <svg class="w-8 h-8 shrink-0 fill-neutral-50" y="0" xmlns="http://www.w3.org/2000/svg" x="0" width="100"
               viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" height="100">
@@ -747,7 +747,7 @@
       <li title="GitHub">
         <a href="https://github.com/centered101/">
           <div
-            class="group w-12 hover:w-44 h-12 hover:bg-blue-400 relative bg-blue-500 rounded text-neutral-50 duration-700 before:duration-700 before:hover:500 font-bold flex justify-start gap-2 items-center p-2 pr-6 before:absolute before:-z-10 before:left-8 before:hover:left-40 before:w-6 before:h-6 before:bg-blue-500 before:hover:bg-blue-400 before:rotate-45">
+            class="group w-12 hover:w-44 h-12 hover:bg-blue-400 dark:hover:bg-red-400 relative bg-blue-500 dark:bg-red-500 rounded text-neutral-50 duration-700 before:duration-700 before:hover:500 font-bold flex justify-start gap-2 items-center p-2 pr-6 before:absolute before:-z-10 before:left-8 before:hover:left-40 before:w-6 before:h-6 before:bg-blue-500 dark:before:bg-red-500 before:hover:bg-blue-400 dark:hover:before:bg-red-400 before:rotate-45">
             <span class="sr-only">GitHub</span>
             <svg class="w-8 h-8 shrink-0 fill-neutral-50" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path fill-rule="evenodd" clip-rule="evenodd"
