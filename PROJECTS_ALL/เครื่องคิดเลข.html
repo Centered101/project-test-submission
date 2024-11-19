@@ -4,123 +4,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>เครื่องคิดเลข</title>
-    <style>
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
 
-        #calculator {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        input[type="text"] {
-            width: calc(100% - 20px);
-            height: 40px;
-            margin: 10px;
-            font-size: 18px;
-            border: none;
-            outline: none;
-            text-align: right;
-            color: #000;
-            background-color: #999;
-            border-radius: 5px
-        }
-
-        input[type="button"] {
-            width: 100%;
-            height: 50px;
-            font-size: 18px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        input:hover {
-            background-color: #999;
-        }
-
-        .ควย {
-            color: #42AAFF;
-        }
-
-        .ควย-c {
-            color: red;
-        }
-
-        .ควย-c:hover {
-            background-color: #1212;
-        }
-
-        .ควย-calculate {
-            background-color: #42AAFf;
-            color: #fff;
-        }
-
-        .ควย-calculate:hover {
-            background-color: #0092C5;
-        }
-    </style>
 </head>
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+    }
+
+    #calculator {
+        width: 300px;
+        padding: 15px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #display {
+        width: calc(100% - 15px);
+        height: 50px;
+        margin-bottom: 10px;
+        font-size: 24px;
+        text-align: right;
+        padding-right: 10px;
+        border: none;
+        outline: none;
+        color: #333;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        box-shadow:
+            inset 0px 0px 3px rgba(0, 0, 0, 0.2),
+            inset 0px 1px 3px rgba(0, 0, 0, 0.2),
+            0px 1px 0px rgba(255, 255, 255, 0.03);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    input {
+        font-weight: bold;
+        outline: 0;
+        box-shadow:
+            inset 0px 0px 3px rgba(0, 0, 0, 0.2),
+            inset 0px 1px 3px rgba(0, 0, 0, 0.2),
+            0px 1px 0px rgba(255, 255, 255, 0.03);
+    }
+
+    input[type="button"] {
+        width: 100%;
+        height: 60px;
+        font-size: 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    input[type="button"]:active {
+        opacity: .50;
+    }
+
+    .num-btn {
+        background-color: #f1f1f1;
+        color: #333333;
+    }
+
+    .op-btn {
+        background-color: #42AAFF;
+        color: #FFFFFF;
+    }
+
+    .clear-btn {
+        background-color: #FF7070;
+        color: #FFFFFF;
+    }
+
+    .equal-btn {
+        background-color: #42AAFF;
+        color: #FFFFFF;
+    }
+</style>
 
 <body>
     <div id="calculator">
         <input type="text" id="display" disabled>
         <table>
             <tr>
-                <td><input type="button" value="7" onclick="appendToDisplay('7')"></td>
-                <td><input type="button" value="8" onclick="appendToDisplay('8')"></td>
-                <td><input type="button" value="9" onclick="appendToDisplay('9')"></td>
-                <td><input class="ควย" type="button" value="÷" onclick="appendToDisplay('/')"></td>
+                <td colspan="1"><input type="button" value="c" class="clear-btn" onclick="clearDisplay()"></td>
+                <td colspan="1"><input type="button" value="/" class="op-btn" onclick="appendToDisplay('/')"></td>
+                <td colspan="1"><input type="button" value="*" class="op-btn" onclick="appendToDisplay('*')"></td>
+                <td colspan="1"><input type="button" value="-" class="op-btn" onclick="appendToDisplay('-')"></td>
             </tr>
             <tr>
-                <td><input type="button" value="4" onclick="appendToDisplay('4')"></td>
-                <td><input type="button" value="5" onclick="appendToDisplay('5')"></td>
-                <td><input type="button" value="6" onclick="appendToDisplay('6')"></td>
-                <td><input class="ควย" type="button" value="-" onclick="appendToDisplay('-')"></td>
+                <td colspan="1"><input type="button" value="7" class="num-btn" onclick="appendToDisplay('7')"></td>
+                <td colspan="1"><input type="button" value="8" class="num-btn" onclick="appendToDisplay('8')"></td>
+                <td colspan="1"><input type="button" value="9" class="num-btn" onclick="appendToDisplay('9')"></td>
+                <td rowspan="1"><input type="button" value="+" class="op-btn" onclick="appendToDisplay('+')"></td>
             </tr>
             <tr>
-                <td><input type="button" value="1" onclick="appendToDisplay('1')"></td>
-                <td><input type="button" value="2" onclick="appendToDisplay('2')"></td>
-                <td><input type="button" value="3" onclick="appendToDisplay('3')"></td>
-                <td><input class="ควย" type="button" value="+" onclick="appendToDisplay('+')"></td>
+                <td colspan="1"><input type="button" value="4" class="num-btn" onclick="appendToDisplay('4')"></td>
+                <td colspan="1"><input type="button" value="5" class="num-btn" onclick="appendToDisplay('5')"></td>
+                <td colspan="1"><input type="button" value="6" class="num-btn" onclick="appendToDisplay('6')"></td>
+                <td colspan="1"><input type="button" value="e" class="op-btn" onclick="appendToDisplay(Math.E)"></td>
             </tr>
             <tr>
-                <td><input class="ควย-c" type="button" value="c" onclick="clearDisplay()"></td>
-                <td><input type="button" value="0" onclick="appendToDisplay('0')"></td>
-                <td><input class="ควย" type="button" value="." onclick="appendToDisplay('.')"></td>
-                <td><input class="ควย-calculate" type="button" value="=" onclick="calculate()"></td>
+                <td colspan="1"><input type="button" value="1" class="num-btn" onclick="appendToDisplay('1')"></td>
+                <td colspan="1"><input type="button" value="2" class="num-btn" onclick="appendToDisplay('2')"></td>
+                <td colspan="1"><input type="button" value="3" class="num-btn" onclick="appendToDisplay('3')"></td>
+                <td colspan="1"><input type="button" value="π" class="op-btn" onclick="appendPi()"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="button" value="0" class="num-btn" onclick="appendToDisplay('0')"></td>
+                <td colspan="1"><input type="button" value="." class="op-btn" onclick="appendToDisplay('.')"></td>
+                <td colspan="1"><input type="button" value="=" class="equal-btn" onclick="calculate()"></td>
+            </tr>
+            <tr>
             </tr>
         </table>
     </div>
 
     <script>
         function appendToDisplay(value) {
-            const currentDisplay = document.getElementById('display').value;
-            if (!currentDisplay.includes('.') || value !== '.') {
-                document.getElementById('display').value += value;
-            }
+            const display = document.getElementById('display');
+            display.value += value;
+        }
+
+        function appendPi() {
+            const display = document.getElementById('display');
+            display.value += Math.PI; // แสดงค่า π = 3.14
         }
 
         function calculate() {
+            const display = document.getElementById('display');
             try {
-                document.getElementById('display').value = eval(document.getElementById('display').value);
-            } catch (error) {
-                document.getElementById('display').value = 'Error ' + 'กด C';
+                display.value = eval(display.value);
+            } catch {
+                display.value = 'Error';
+            } finally {
+                display.value = display.value.replace(/\.0+$/, ''); // ลบ .0 ที่ไม่จำเป็น
+            }
+
+            if (display.value === 'undefined') {
+                display.value = 'พ่อมึงอะ';
+            } else if (display.value === "271828") {
+                display.value = "2.7182818284590452353602874713526624977572";
+            } else if (display.value === "101") {
+                display.value = "พ่อมึงอะ";
             }
         }
 

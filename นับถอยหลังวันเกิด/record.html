@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>นับถอยหลังวันเกิดเพื่อน</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>บันทึกและนับถอยหลังวันเกิด</h1>
+    <form id="birthday-form">
+        <label for="friend-name">ชื่อเพื่อน:</label>
+        <input type="text" id="friend-name" maxlength="30" required>
+        <br>
+        <label for="friend-birthday">วันเกิด:</label>
+        <input type="date" id="friend-birthday" required>
+        <br>
+        <button type="submit">บันทึก</button>
+    </form>
+    <div class="friend-list" id="friend-list"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

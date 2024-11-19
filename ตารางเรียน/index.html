@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+
+<head>
+    <meta name="theme-color" content="#1ED760" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-compatible" content="IE=edge" />
+
+    <!-- Primary Meta Tags -->
+    <title>Class Schedule — Centered101</title>
+    <meta name="title" content="ตารางเรียน" />
+    <meta name="description" content="ตารางเรียน ปวช. คอมพิวเตอร์ธุรกิจ — Centered101" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://centered101.netlify.app" />
+    <meta property="og:title" content="ตารางเรียน" />
+    <meta property="og:description" content="ตารางเรียน ปวช. คอมพิวเตอร์ธุรกิจ — Centered101" />
+
+    <meta property="og:image" content="https://centered101.netlify.app/images/Tes-D.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://centered101.netlify.app" />
+    <meta property="twitter:title" content="ตารางเรียน" />
+    <meta property="twitter:description" content="ตารางเรียน ปวช. คอมพิวเตอร์ธุรกิจ — Centered101" />
+
+    <meta property="twitter:image" content="https://centered101.netlify.app/images/Tes-D.png" />
+
+    <link id="favicon" rel="icon" type="image/png" href="https://centered101.netlify.app/images/Tes-D.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://portfolio-centered101.netlify.app/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gradient-to-b from-slate-200 to-slate-300 bg-[length:200%_200%] bg-center md:grid sm:grid-cols-2">
+
+    <script>
+        let isNameHidden = true;
+    
+        function toggleName() {
+            if (isNameHidden) {
+                document.getElementById('images').src = 'https://centered101.netlify.app/images/Tes-Dee.png';
+                document.getElementById('images').classList.add('w-52');
+                document.getElementById('images').classList.add('shadow-lg');
+                document.getElementById('firstName').textContent = 'พงศ์พล';
+                document.getElementById('lastName').textContent = 'พรมผา';
+                document.getElementById('id').textContent = '3130';
+            } else {
+                document.getElementById('images').src = 'https://centered101-webfollow.web.app/images/icon/%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C1200x1200.png';
+                document.getElementById('images').classList.remove('w-52');
+                document.getElementById('images').classList.remove('shadow-lg');
+                document.getElementById('firstName').textContent = '*****';
+                document.getElementById('lastName').textContent = '*****';
+                document.getElementById('id').textContent = '*****';
+            }
+            isNameHidden = !isNameHidden;
+        }
+    </script>
+
+    <div class="md:sticky inset-0 text-sm sm:text-base flex justify-center items-center h-[100vh] select-none"
+        style="background-image: url(https://cpe221.patta.dev/public/images/textura.png);">
+        <div onclick="toggleName()"
+            class="w-96 h-min m-5 bg-gradient-to-br from-[#409EFE] to-white bg-[length:200%_200%] bg-center border border-black rounded-lg shadow-xl transition-all cursor-pointer">
+            <div class="flex flex-col justify-center items-center gap-5 p-5">
+                <h1 class="animationShow-y text-center sm:text-xl font-bold mt-2">บัตรประจำตัวนักศึกษาออนไลน์</h1>
+                <img id="images" class="animationShow-y h-60 object-cover select-none rounded"
+                    src="https://centered101-webfollow.web.app/images/icon/%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C1200x1200.png" draggable="false"
+                    oncontextmenu="return false;" alt="โปรไฟล์">
+            </div>
+            <div class="flex flex-col justify-center items-center pl-5">
+                <div role="region" tabindex="0" class="w-full">
+                    <table class="table-auto w-full text-left">
+                        <tbody>
+                            <tr>
+                                <td class="animationShow-x font-bold p-1">ชื่อ</td>
+                                <td class="animationShow-y font-sans p-2" id="firstName">*****</td>
+                            </tr>
+                            <tr>
+                                <td class="animationShow-x font-bold p-2">นามสกุล</td>
+                                <td class="animationShow-y font-sans p-2" id="lastName">*****</td>
+                            </tr>
+                            <tr>
+                                <td class="animationShow-x font-bold p-2">เลขประจำตัว</td>
+                                <td class="animationShow-y font-sans p-2" id="id">*****</td>
+                            </tr>
+                            <tr>
+                                <td class="animationShow-x font-bold p-2">สาขาวิชา</td>
+                                <td class="animationShow-y font-sans p-2">เทคโนโลยีธุรกิจดิจิทัล</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="flex justify-end items-center p-5">
+                <img class="animationShow-y w-20 select-none border border-gray-300 shadow-md" src="./qr-code.svg"
+                    draggable="false" oncontextmenu="return false;" alt="3130">
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="font-black text-xl pt-24 border-t-4 border-black md:border-t-0 md:border-l-4">
+        <h1 class="animationShow-y text-center text-3xl font-black mb-24 mx-5">ตารางเรียน ปวช. คอมพิวเตอร์ธุรกิจ
+        </h1>
+
+        <h1 class="animationShow-y text-center m-5 mt-20">ปวช. 1, 2024</h1>
+        <div class="animationShow-y grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5 mx-5">
+            <a href="./class-schedule-1-1.html"
+                class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-red-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                <h1>ภาคเรียนที่ 1</h1>
+            </a>
+            <a href="./class-schedule-1-2.html"
+                class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-green-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                <h1>ภาคเรียนที่ 2</h1>
+            </a>
+        </div>
+
+        <h1 class="animationShow-y text-center m-5 mt-20">ปวช. 2, 2025</h1>
+        <div class="animationShow-y grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5 mx-5">
+            <a href="#"
+                class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-blue-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                <h1>ภาคเรียนที่ 1</h1>
+            </a>
+            <a href="#"
+                class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-yellow-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                <h1>ภาคเรียนที่ 2</h1>
+            </a>
+        </div>
+
+        <h1 class="animationShow-y text-center m-5 mt-20">ปวช. 3, 2026</h1>
+        <div class="animationShow-y grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5 mx-5">
+            <a href="#"
+                class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-orange-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                <h1>ภาคเรียนที่ 1</h1>
+            </a>
+            <a href="#"
+                class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-lime-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                <h1>ภาคเรียนที่ 2</h1>
+            </a>
+        </div>
+
+        <footer role="complementary" class="truncate text-sm my-4 mt-24 text-center dark:text-slate-400">
+            <script>document.write("ขนาดหน้าจอของคุณ: " + window.innerWidth + "W ⨉ " + window.innerHeight + "H");</script>
+            <p class="first-letter:text-[#409EFE] truncate">Version: <span id="version"></span></p>
+            <p class="first-letter:text-[#409EFE] truncate">
+                <script>document.write("&copy; " + (new Date().getFullYear()))</script>
+                <span title="Centered101 website" class="text-[#409EFE] underline-offset-1">
+                    <a href="https://centered101.netlify.app/">Centered101</a>
+                </span>— All Rights Reserved.
+            </p>
+        </footer>
+    </div>
+
+</body>
+<script src="https://project-test-submission.web.app/script/path/to/version.js"></script>
+<script src="https://portfolio-centered101.netlify.app/script.js"></script>
+<script>
+    document.getElementById('version').textContent = appVersionProjectTest;
+</script>
+
+</html>

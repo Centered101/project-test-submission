@@ -1,0 +1,96 @@
+<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
+<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
+<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
+<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
+<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
+
+<!DOCTYPE html>
+<html lang="th">
+
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+
+<head>
+
+    <meta name="theme-color" content="#1ED760">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="listing directory — Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>listing directory /script/path/</title>
+    <meta name="title" content="listing directory — Centered101" />
+    <meta name="description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://centered101-webfollow.web.app" />
+    <meta property="og:title" content="listing directory — Centered101" />
+    <meta property="og:description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
+    <meta property="og:image" content="https://centered101-webfollow.web.app/images/Tes-D.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://centered101-webfollow.web.app" />
+    <meta property="twitter:title" content="listing directory — Centered101" />
+    <meta property="twitter:description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
+    <meta property="twitter:image" content="https://centered101-webfollow.web.app/images/Tes-D.png" />
+
+    <link rel="icon" type="image/png" href="https://centered101-webfollow.web.app/images/Tes-D.png">
+    <link rel="stylesheet" href="/style/style-start.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="directory" onload="showURL()">
+    <input id="search" type="text" placeholder="Search" autocomplete="off" />
+    <div id="wrapper">
+        <h1>
+            <a href="/">
+                <script>
+                    document.write(window.location.href);
+                </script>
+            </a>
+        </h1>
+        <ul id="files" class="view-tiles mb-[100vh]">
+
+            <li>
+                <a href="/script" class="icon icon-directory" title="..">
+                    <span class="name">..</span>
+                    <span class="size"></span>
+                    <span class="date"></span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/script/path/to" class="icon icon-directory" title="to">
+                    <span class="name">to</span>
+                    <span class="size"></span>
+                    <span class="date">10/17/2024 6:04:07 PM</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+    <footer role="complementary" class="truncate text-sm my-4 text-center dark:text-slate-400">
+        <script>document.write("ขนาดหน้าจอของคุณ: " + window.innerWidth + "W ⨉ " + window.innerHeight + "H");</script>
+        <p class="first-letter:text-[#1ED760] truncate">Version: <span id="version"></span></p>
+        <p class="first-letter:text-[#1ED760] truncate">
+            <script>document.write("&copy; " + (new Date().getFullYear()))</script>
+            <span title="Centered101 website" class="text-[#1ED760] underline-offset-1">
+                <a href="https://centered101.netlify.app/">Centered101</a>
+            </span>— All Rights Reserved.
+        </p>
+    </footer>
+
+
+</body>
+<script src="/script/path/to/version.js"></script>
+<script src="/script/script-start.js"></script>
+<script>
+    document.getElementById('version').textContent = appVersionProjectTest;
+</script>
+
+</html>
