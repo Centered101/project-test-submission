@@ -19,7 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <div class="friend-countdown" id="countdown-${index}">กำลังคำนวณ...</div>
                 </div>
-                <button class="delete-btn" data-index="${index}"></button>
+                <div>
+                    <button class="delete-btn" data-index="${index}"></button>
+                    <button class="edit-btn" data-index="${index}"></button>
+                </div>
             `;
 
             friendList.appendChild(listItem);
@@ -63,6 +66,19 @@ document.addEventListener("DOMContentLoaded", () => {
         renderFriends(); // อัปเดตหน้าจอทันที
     };
 
+    // ฟังก์ชันแก้ไขเพื่อน
+    const editFriend = (index) => {
+        const newName = prompt("กรุณาใส่ชื่อใหม่:", friends[index].name);
+        const newBirthday = prompt("กรุณาใส่วันเกิดใหม่ (yyyy-mm-dd):", friends[index].birthday);
+
+        if (newName && newBirthday) {
+            friends[index].name = newName;
+            friends[index].birthday = newBirthday;
+            localStorage.setItem("friends", JSON.stringify(friends)); // อัปเดต Local Storage
+            renderFriends(); // อัปเดตหน้าจอทันที
+        }
+    };
+
     // ตรวจสอบว่าอยู่หน้า index.html หรือ deploy.html
     if (friendList) {
         renderFriends(); // แสดงรายชื่อเพื่อน
@@ -70,6 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.target.classList.contains("delete-btn")) {
                 const index = e.target.dataset.index;
                 deleteFriend(index);
+            } else if (e.target.classList.contains("edit-btn")) {
+                const index = e.target.dataset.index;
+                editFriend(index);
             }
         });
     }
