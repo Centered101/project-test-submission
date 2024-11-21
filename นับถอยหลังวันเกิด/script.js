@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const friendList = document.getElementById("friend-list");
     const sortSelect = document.getElementById("sort-select");
     const friends = JSON.parse(localStorage.getItem("friends")) || [];
+    let countdownIntervals = {}; // เก็บ ID ของ Interval สำหรับแต่ละเพื่อน
 
     // ฟังก์ชันแสดงรายชื่อเพื่อน
     const renderFriends = () => {
@@ -72,6 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateCountdown = (index, birthday) => {
         const countdownElement = document.getElementById(`countdown-${index}`);
 
+        if (countdownIntervals[index]) {
+            clearInterval(countdownIntervals[index]); // ลบ Interval เก่าถ้ามี
+        }
+
         const calculateCountdown = () => {
             const today = new Date();
             const nextBirthday = new Date(birthday);
@@ -90,9 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
             countdownElement.textContent = `${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที`;
         };
 
-        // อัปเดตข้อความทุกวินาที
         calculateCountdown();
-        setInterval(calculateCountdown, 1000);
+        countdownIntervals[index] = setInterval(calculateCountdown, 1000); // เก็บ ID Interval ไว้ในอ็อบเจกต์
     };
 
     // ฟังก์ชันลบเพื่อน
@@ -107,15 +111,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const newName = prompt("กรุณาใส่ชื่อใหม่:", friends[index].name);
         const newBirthday = prompt("กรุณาใส่วันเกิดใหม่ (yyyy-mm-dd):", friends[index].birthday);
 
-        if (newName && newBirthday) {
+        if (newName && newBirthday && !isNaN(new Date(newBirthday).getTime())) {
             friends[index].name = newName;
             friends[index].birthday = newBirthday;
             localStorage.setItem("friends", JSON.stringify(friends)); // อัปเดต Local Storage
             renderFriends(); // อัปเดตหน้าจอทันที
+        } else {
+            alert("ข้อมูลไม่ถูกต้อง!");
         }
     };
 
-    // ตรวจสอบว่าอยู่หน้า index.html หรือ deploy.html
     if (friendList) {
         renderFriends(); // แสดงรายชื่อเพื่อน
         friendList.addEventListener("click", (e) => {
@@ -141,6 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const name = document.getElementById("friend-name").value;
             const birthday = document.getElementById("friend-birthday").value;
 
+            if (!name || !birthday || isNaN(new Date(birthday).getTime())) {
+                alert("กรุณากรอกข้อมูลให้ถูกต้อง");
+                return;
+            }
+
             friends.push({ name, birthday }); // เพิ่มข้อมูลใหม่
             localStorage.setItem("friends", JSON.stringify(friends)); // อัปเดต Local Storage
             renderFriends(); // อัปเดตหน้าจอทันที
@@ -149,7 +159,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+let i = true;
+
 function addBirthday() {
-    document.getElementById("birthday-form").style.display = "grid";
-    document.querySelector("h1").textContent = "บันทึกและนับถอยหลังวันเกิด";
+    if (i) {
+        document.documentElement.scrollTop = 0;
+        document.getElementById("birthday-form").style.display = "grid";
+        document.querySelector("h1").textContent = "บันทึกและนับถอยหลังวันเกิด";
+        document.querySelector("header button").textContent = "ดูรายชื่อเพื่อน";
+    } else {
+        document.getElementById("birthday-form").style.display = "none";
+        document.querySelector("h1").textContent = "รายชื่อและวันเกิด";
+        document.querySelector("header button").textContent = "เพื่มรายชื่อเพื่อน";
+    }
+    i = !i;
 }
+

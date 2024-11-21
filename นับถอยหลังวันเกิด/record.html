@@ -40,9 +40,10 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
-    <h1>บันทึกและนับถอยหลังวันเกิด</h1>
-    <form id="birthday-form">
+    <h1>รายชื่อและวันเกิด</h1>
+    <form id="birthday-form" action="" method="post">
         <label for="friend-name">ชื่อ:</label>
         <input type="text" id="friend-name" maxlength="30" required>
         <br>
@@ -51,6 +52,28 @@
         <br>
         <button type="submit">บันทึก</button>
     </form>
+    <div class="editFriend" id="editFriend" style="display: none;">
+        <div class="editFriend-container">
+            <h3>แก้ไขข้อมูลเพื่อน</h3>
+            <form id="editFriendForm">
+                <label for="edit-name">ชื่อ:</label>
+                <input type="text" id="edit-name" required />
+                <label for="edit-birthday">วันเกิด:</label>
+                <input type="date" id="edit-birthday" required />
+                <div class="editFriend-actions">
+                    <button type="submit" class="save-btn">บันทึก</button>
+                    <button type="button" class="cancel-btn" id="cancelEdit">ยกเลิก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <header>
+        <select id="sort-select">
+            <option value="birthday">ตามวันเกิด</option>
+            <option value="name">ตามชื่อ</option>
+        </select>
+        <button onclick="addBirthday()">เพื่มรายชื่อเพื่อน</button>
+    </header>
     <div class="friend-list" id="friend-list"></div>
 
     <script src="script.js"></script>
