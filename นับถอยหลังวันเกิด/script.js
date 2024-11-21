@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const today = new Date();
             const friendBirthday = new Date(friend.birthday);
             friendBirthday.setFullYear(today.getFullYear());
-            const isBirthday = 
-                today.getDate() === friendBirthday.getDate() && 
+            const isBirthday =
+                today.getDate() === friendBirthday.getDate() &&
                 today.getMonth() === friendBirthday.getMonth();
 
             listItem.innerHTML = `
@@ -104,8 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ฟังก์ชันแก้ไขเพื่อน
     const editFriend = (index) => {
-        const newName = prompt("กรุณาแก้ไขชื่อใหม่:", friends[index].name);
-        const newBirthday = prompt("กรุณาแก่ไขวันเกิดใหม่ (yyyy-mm-dd):", friends[index].birthday);
+        const newName = prompt("กรุณาใส่ชื่อใหม่:", friends[index].name);
+        const newBirthday = prompt("กรุณาใส่วันเกิดใหม่ (yyyy-mm-dd):", friends[index].birthday);
 
         if (newName && newBirthday) {
             friends[index].name = newName;
@@ -148,3 +148,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+function addBirthday() {
+    document.getElementById("birthday-form").style.display = "grid";
+    document.querySelector("h1").textContent = "บันทึกและนับถอยหลังวันเกิด";
+}
