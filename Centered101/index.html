@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+
+<head>
+    <meta name="theme-color" content="#409EFE" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-compatible" content="IE=edge" />
+
+    <!-- Primary Meta Tags -->
+    <title>Centered101</title>
+    <meta name="title" content="Centered101" />
+    <meta name="description" content="Centered101" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://centered101.netlify.app" />
+    <meta property="og:title" content="Centered101" />
+    <meta property="og:description" content="Centered101" />
+    <meta property="og:image" content="https://centered101.netlify.app/images/Tes-D.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://centered101.netlify.app" />
+    <meta property="twitter:title" content="Centered101" />
+    <meta property="twitter:description" content="Centered101" />
+    <meta property="twitter:image" content="https://centered101.netlify.app/images/Tes-D.png" />
+
+    <link id="favicon" rel="icon" type="image/png" href="https://centered101.netlify.app/images/Tes-D.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://project-test-submission.web.app/animation/style.css">
+</head>
+<style>
+    /* font จาก google fonts */
+    /* font-family: 'Press Start 2P', system-ui; */
+    @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+    /* font-family: 'Bai Jamjuree', sans-serif; */
+    @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
+
+    /* Code for Firefox */
+    ::-moz-selection {
+        background: #000000B3;
+        color: #1ED760;
+    }
+
+    ::selection {
+        background: #000000B3;
+        color: #1ED760;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        box-sizing: border-box;
+        font-family: 'Bai Jamjuree', sans-serif;
+    }
+
+    html {
+        scrollbar-color: #EFEFEF #CCCCCC;
+        scrollbar-width: thin;
+        scroll-behavior: smooth;
+        /* ทำให้เลื่อนนุ่มนวล */
+    }
+
+    body {
+        animation: fadeIn 1s ease-in-out;
+    }
+</style>
+
+<body>
+    <audio id="welcomeSound">
+        <source src="https://project-test-submission.web.app/Audio/Music/ชอบพี่คนนี้.mp3" type="audio/mp3">
+    </audio>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const audio = document.getElementById("welcomeSound");
+            audio.volume = .2;
+            audio.play();
+        });
+    </script>
+    <main class="min-h-screen bg-gradient-to-b from-white to-gray-200 dark:from-gray-900 dark:to-gray-800">
+        <div class="container mx-auto px-4 py-8">
+            <section class="text-center py-20">
+                <img alt="Centered101" loading="lazy" width="200" height="200" decoding="async" data-nimg="1"
+                    class="rounded-full mx-auto mb-4" src="https://centered101.netlify.app/images/Tes-D.png"
+                    style="color: transparent;">
+                <h1 class="text-4xl font-bold mb-2">Centered101</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-4">Web Developer &amp; Designer</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="https://github.com/Centered101" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-github">
+                            <path
+                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                            </path>
+                            <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/Centered101" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-linkedin">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect width="4" height="12" x="2" y="9"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/Centered101" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-twitter">
+                            <path
+                                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </section>
+            <section class="py-20">
+                <h2 class="text-3xl font-bold mb-8 text-center capitalize">All project websites</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <div class="md:col-span-2 rounded-lg border bg-[#EFEFEF] shadow-sm" data-v0-t="card">
+                        <a href="https://portfolio-centered101.netlify.app">
+                            <img alt="Project 3" loading="lazy" width="300" height="200" decoding="async" data-nimg="1"
+                                class="w-full h-48 object-cover hover:border hover:border-[#CCCCCC] rounded-lg shadow-sm transform-all"
+                                src="https://project-test-submission.web.app//images/placeholder.svg"
+                                style="color: transparent;">
+                        </a>
+                        <div class="flex flex-col space-y-1.5 p-6">
+                            <h3 class="text-2xl font-semibold leading-none tracking-tight capitalize">
+                                portfolio-centered101</h3>
+                            <a href="https://portfolio-centered101.netlify.app"
+                                class="text-sm uppercase">https://portfolio-centered101.netlify.app/</a>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2">
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">HTML</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">CSS</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">JavaScript</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">TallwindCSS</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-lg border bg-[#EFEFEF] shadow-sm" data-v0-t="card">
+                        <a href="https://centered101-webfollow.web.app/">
+                            <img alt="Project 1" loading="lazy" width="300" height="200" decoding="async" data-nimg="1"
+                                class="w-full h-48 object-cover hover:border hover:border-[#CCCCCC] rounded-lg shadow-sm tranf"
+                                src="https://project-test-submission.web.app//images/placeholder.svg"
+                                style="color: transparent;">
+                        </a>
+                        <div class="flex flex-col space-y-1.5 p-6">
+                            <h3 class="text-2xl font-semibold leading-none tracking-tight capitalize">
+                                centered101-webfollow</h3>
+                            <a href="https://centered101-webfollow.web.app/"
+                                class="text-sm uppercase">https://centered101-webfollow.web.app/</a>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2">
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">HTML</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">CSS</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">JavaScript</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">Node.js</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-lg border bg-[#EFEFEF] shadow-sm" data-v0-t="card">
+                        <a href="https://centered101.netlify.app/">
+                            <img alt="Project 1" loading="lazy" width="300" height="200" decoding="async" data-nimg="1"
+                                class="w-full h-48 object-cover hover:border hover:border-[#CCCCCC] rounded-lg shadow-sm tranf"
+                                src="https://project-test-submission.web.app//images/placeholder.svg"
+                                style="color: transparent;">
+                        </a>
+                        <div class="flex flex-col space-y-1.5 p-6">
+                            <h3 class="text-2xl font-semibold leading-none tracking-tight capitalize">
+                                centered101-webfollow</h3>
+                            <a href="https://centered101.netlify.app/"
+                                class="text-sm uppercase">https://centered101.netlify.app/</a>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2">
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">HTML</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">CSS</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">JavaScript</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-lg border bg-[#EFEFEF] shadow-sm" data-v0-t="card">
+                        <a href="https://project-test-submission.web.app/">
+                            <img alt="Project 1" loading="lazy" width="300" height="200" decoding="async" data-nimg="1"
+                                class="w-full h-48 object-cover hover:border hover:border-[#CCCCCC] rounded-lg shadow-sm tranf"
+                                src="https://project-test-submission.web.app//images/placeholder.svg"
+                                style="color: transparent;">
+                        </a>
+                        <div class="flex flex-col space-y-1.5 p-6">
+                            <h3 class="text-2xl font-semibold leading-none tracking-tight capitalize">
+                                project-test-submission</h3>
+                            <a href="https://project-test-submission.web.app"
+                                class="text-sm uppercase">https://project-test-submission.web.app</a>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2">
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">HTML</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">CSS</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">JavaScript</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">TallwindCSS</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">Node.js</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-lg border bg-[#EFEFEF] shadow-sm" data-v0-t="card">
+                        <a href="https://asia-lb.web.app/">
+                            <img alt="Project 1" loading="lazy" width="300" height="200" decoding="async" data-nimg="1"
+                                class="w-full h-48 object-cover hover:border hover:border-[#CCCCCC] rounded-lg shadow-sm tranf"
+                                src="https://project-test-submission.web.app//images/placeholder.svg"
+                                style="color: transparent;">
+                        </a>
+                        <div class="flex flex-col space-y-1.5 p-6">
+                            <h3 class="text-2xl font-semibold leading-none tracking-tight capitalize">
+                                asia-LB</h3>
+                            <a href="https://asia-lb.web.app/" class="text-sm uppercase">https://asia-lb.web.app/</a>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2">
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">HTML</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">CSS</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">JavaScript</div>
+                                <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                    data-v0-t="badge">Node.js</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+<script src="https://project-test-submission.web.app/animation/script"></script>
+
+</html>

@@ -3,7 +3,7 @@
 <!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
 
 <head>
-    <meta name="theme-color" content="#1ED760" />
+    <meta name="theme-color" content="#409EFE" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
     <meta name="author" content="Centered101" />
@@ -33,15 +33,15 @@
 
     <link id="favicon" rel="icon" type="image/png" href="https://centered101.netlify.app/images/Tes-D.png" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://portfolio-centered101.netlify.app/style.css">
+    <link rel="stylesheet" href="https://project-test-submission.web.app/animation/style.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-gradient-to-b from-slate-200 to-slate-300 bg-[length:200%_200%] bg-center md:grid sm:grid-cols-2">
+<body class="text-[#0D0D0D] bg-gradient-to-b from-slate-200 to-slate-300 bg-[length:200%_200%] bg-center md:grid sm:grid-cols-2">
 
     <script>
         let isNameHidden = true;
-    
+
         function toggleName() {
             if (isNameHidden) {
                 document.getElementById('images').src = 'https://centered101.netlify.app/images/Tes-Dee.png';
@@ -67,37 +67,37 @@
         <div onclick="toggleName()"
             class="w-96 h-min m-5 bg-gradient-to-br from-[#409EFE] to-white bg-[length:200%_200%] bg-center border border-black rounded-lg shadow-xl transition-all cursor-pointer">
             <div class="flex flex-col justify-center items-center gap-5 p-5">
-                <h1 class="animationShow-y text-center sm:text-xl font-bold mt-2">บัตรประจำตัวนักศึกษาออนไลน์</h1>
-                <img id="images" class="animationShow-y h-60 object-cover select-none rounded"
-                    src="https://centered101-webfollow.web.app/images/icon/%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C1200x1200.png" draggable="false"
-                    oncontextmenu="return false;" alt="โปรไฟล์">
+                <h1 class="animationShow-x text-center sm:text-xl font-bold mt-2">บัตรประจำตัวนักศึกษาออนไลน์</h1>
+                <img id="images" class="animationShow-x h-60 object-cover select-none rounded"
+                    src="https://centered101-webfollow.web.app/images/icon/%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C1200x1200.png"
+                    draggable="false" oncontextmenu="return false;" alt="โปรไฟล์">
             </div>
             <div class="flex flex-col justify-center items-center pl-5">
                 <div role="region" tabindex="0" class="w-full">
                     <table class="table-auto w-full text-left">
                         <tbody>
                             <tr>
-                                <td class="animationShow-x font-bold p-1">ชื่อ</td>
-                                <td class="animationShow-y font-sans p-2" id="firstName">*****</td>
+                                <td class="animationShow-y font-bold p-1">ชื่อ</td>
+                                <td class="animationShow-x font-sans p-2" id="firstName">*****</td>
                             </tr>
                             <tr>
-                                <td class="animationShow-x font-bold p-2">นามสกุล</td>
-                                <td class="animationShow-y font-sans p-2" id="lastName">*****</td>
+                                <td class="animationShow-y font-bold p-2">นามสกุล</td>
+                                <td class="animationShow-x font-sans p-2" id="lastName">*****</td>
                             </tr>
                             <tr>
-                                <td class="animationShow-x font-bold p-2">เลขประจำตัว</td>
-                                <td class="animationShow-y font-sans p-2" id="id">*****</td>
+                                <td class="animationShow-y font-bold p-2">เลขประจำตัว</td>
+                                <td class="animationShow-x font-sans p-2" id="id">*****</td>
                             </tr>
                             <tr>
-                                <td class="animationShow-x font-bold p-2">สาขาวิชา</td>
-                                <td class="animationShow-y font-sans p-2">เทคโนโลยีธุรกิจดิจิทัล</td>
+                                <td class="animationShow-y font-bold p-2">สาขาวิชา</td>
+                                <td class="animationShow-x font-sans p-2">เทคโนโลยีธุรกิจดิจิทัล</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="flex justify-end items-center p-5">
-                <img class="animationShow-y w-20 select-none border border-gray-300 shadow-md" src="./qr-code.svg"
+                <img class="animationShow-x w-20 select-none border border-gray-300 shadow-md" src="./qr-code.svg"
                     draggable="false" oncontextmenu="return false;" alt="3130">
             </div>
         </div>
@@ -159,9 +159,37 @@
 
 </body>
 <script src="https://project-test-submission.web.app/script/path/to/version.js"></script>
-<script src="https://portfolio-centered101.netlify.app/script.js"></script>
+<script src="https://project-test-submission.web.app/animation/script.js"></script>
 <script>
     document.getElementById('version').textContent = appVersionProjectTest;
+</script>
+<script>
+    function nextPage(link) {
+        // ปิดการใช้งานลิงก์
+        link.style.opacity = '0.5'; // ทำให้ลิงก์ดูจางลง
+        link.style.cursor = 'default'; // เปลี่ยน cursor ให้เป็นค่า default (ไม่แสดงมือเมื่อ hover)
+        link.style.pointerEvents = 'none'; // ปิดการทำงานของลิงก์ ไม่ให้สามารถคลิกได้
+        setTimeout(function () {
+            link.style.opacity = '1';
+            link.style.cursor = 'pointer';
+            link.style.pointerEvents = 'auto';
+        }, 3000);
+    }
+
+    // เลือกทุกแท็ก <a> ใน div ที่มีคลาส 'animationShow-y'
+    const links = document.querySelectorAll('a');
+
+    links.forEach(link => {
+        // ตรวจสอบว่า href ของแท็ก <a> ว่างหรือไม่
+        if (!link.getAttribute('href') || link.getAttribute('href') === '#') {
+            // ถ้า href ว่าง ให้ปิดการใช้งานการคลิก
+            link.classList.add('cursor-default');
+            link.classList.add('opacity-25');
+            link.onclick = (event) => {
+                event.preventDefault(); // ป้องกันการทำงานของลิงค์
+            };
+        }
+    });
 </script>
 
 </html>

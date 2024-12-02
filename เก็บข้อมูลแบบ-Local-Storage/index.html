@@ -1,0 +1,311 @@
+<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
+<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
+<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
+<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
+<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
+
+<!DOCTYPE html>
+<html lang="th">
+
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>การเก็บข้อมูลแบบ Local Storage</title>
+    <meta name="title" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta name="description" content="การเก็บข้อมูลแบบ Local Storage" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://centered101-webfollow.web.app" />
+    <meta property="og:title" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta property="og:description" content="การเก็บข้อมูลแบบ Local Storage" />
+    <meta property="og:image" content="https://centered101-webfollow.web.app/images/Tes-D.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://centered101-webfollow.web.app" />
+    <meta property="twitter:title" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta property="twitter:description" content="การเก็บข้อมูลแบบ Local Storage" />
+    <meta property="twitter:image" content="https://centered101-webfollow.web.app/images/Tes-D.png" />
+
+    <link rel="icon" type="image/png" href="https://centered101-webfollow.web.app/images/Tes-D.png">
+    <link rel="stylesheet" href="/animation/style.css">
+
+</head>
+<style>
+    /* font จาก google fonts */
+    /* font-family: 'Press Start 2P', system-ui; */
+    @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+    /* font-family: 'Bai Jamjuree', sans-serif; */
+    @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
+
+    * {
+        outline: 0;
+        box-sizing: border-box;
+        color: #0D0D0D;
+    }
+
+    html {
+        scrollbar-width: thin;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Bai Jamjuree', sans-serif;
+    }
+
+    code {
+        font-size: 1.2rem;
+        background-color: #ECECEC;
+        font-size: 14px;
+        padding: 2px 4px;
+        border-radius: 4px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    body {
+        background-color: #f2f4f6;
+        line-height: 1.5;
+        letter-spacing: normal;
+    }
+
+    header {
+        background-color: #f2f4f6;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 50px;
+        margin-inline: auto;
+        padding: 4px 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 40;
+
+        p {
+            font-size: x-large;
+            font-weight: 700;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        img {
+            background-color: #EFEFEF;
+            user-select: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 9999px;
+        }
+    }
+
+    main {
+        max-width: 768px;
+        margin-inline: auto;
+        padding: 40px 24px;
+
+        h1 {
+            font-size: xx-large;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        p {
+            line-height: 1.625;
+            margin-bottom: 16px;
+        }
+    }
+
+    div.title {
+        margin: 20px;
+    }
+
+    div.content {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-block: 40px;
+
+        div.container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+
+                a {
+                    text-decoration: none;
+
+                    button {
+                        user-select: none;
+                        min-width: 160px;
+                        padding: 10px;
+                        cursor: pointer;
+                    }
+                }
+
+                p {
+                    margin: 10px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        div.container {
+            text-align: center;
+            flex-direction: column;
+        }
+    }
+
+    footer {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-block: 16px;
+        text-align: center;
+
+        p::first-letter {
+            --tw-text-opacity: 1;
+            color: rgb(64 158 254 / var(--tw-text-opacity))
+                /* #409EFE */
+            ;
+        }
+
+        a {
+            text-decoration: none;
+            color: #409EFE;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            text-decoration-color: #409EFE;
+            text-underline-offset: 1px;
+        }
+    }
+</style>
+
+<body>
+    <!-- Header -->
+    <header>
+        <p class="animationShow-x">การเก็บข้อมูลแบบ Local Storage</p>
+        <a href="./index.html">
+            <img class="animationShow"
+                src="https://lh3.googleusercontent.com/a/AEdFTp7yR1AsxMgl6Oki84l-EM45wQ8E8OLuSjNg3kTs-A=s96-c"
+                draggable="false" oncontextmenu="return false;" alt="User">
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <h1 class="animationShow-x">Local Storage คืออะไร?</h1>
+        <p class="animationShow-y">
+            <strong>Local Storage</strong>
+            คือพื้นที่เก็บข้อมูลในเบราว์เซอร์ที่ช่วยให้เว็บแอปพลิเคชันสามารถจัดเก็บข้อมูลผู้ใช้ได้ในรูปแบบ
+            <code>Key-Value</code>
+            โดยข้อมูลที่เก็บจะไม่ถูกลบแม้ผู้ใช้จะปิดเบราว์เซอร์หรือรีสตาร์ทเครื่อง เหมาะสำหรับการเก็บข้อมูลชั่วคราว
+            เช่น การตั้งค่าผู้ใช้ หรือสถานะบางอย่างของแอปพลิเคชัน
+        </p>
+        <div class="animationShow-y">
+            <strong>คุณสมบัติหลัก</strong>
+            <ol>
+                <li><strong>เก็บข้อมูลแบบ Key-Value:</strong> ข้อมูลถูกจัดเก็บในคู่ <code>key</code>
+                    และ
+                    <code>value</code>
+                </li>
+                <li><strong>ไม่มีวันหมดอายุ:</strong> ข้อมูลจะอยู่จนกว่าผู้ใช้หรือโปรแกรมจะลบออก
+                </li>
+                <li><strong>พื้นที่จัดเก็บ:</strong> จำกัดพื้นที่ประมาณ <strong>5MB</strong>
+                    ต่อโดเมน</li>
+                <li><strong>เหมาะสำหรับข้อมูลไม่สำคัญ:</strong> เช่น การตั้งค่าธีมหรือสถานะผู้ใช้
+                </li>
+                <li><strong>ไม่ปลอดภัยสำหรับข้อมูลสำคัญ:</strong>
+                    เพราะสามารถเข้าถึงได้ง่ายผ่านเครื่องมือเบราว์เซอร์
+                </li>
+            </ol>
+        </div>
+        <div class="animationShow-y">
+            <!-- Advantages -->
+            <strong>ข้อดี</strong>
+            <ul>
+                <li>ใช้งานง่ายด้วย JavaScript</li>
+                <li>ทำงานได้เร็ว เพราะไม่ต้องเรียกใช้เซิร์ฟเวอร์</li>
+                <li>เหมาะสำหรับเก็บข้อมูลที่ไม่สำคัญ เช่น การตั้งค่าผู้ใช้ หรือสถานะชั่วคราว
+                </li>
+            </ul>
+            <!-- Disadvantages -->
+            <strong>ข้อเสีย</strong>
+            <ul>
+                <li>เก็บข้อมูลได้จำกัด</li>
+                <li>ข้อมูลไม่ปลอดภัยสำหรับการใช้งานสำคัญ</li>
+                <li>ต้องการโดเมนเดียวกัน (Same-origin policy)</li>
+            </ul>
+        </div>
+        <p class="animationShow-y">
+            <strong>Local Storage</strong>
+            เหมาะสำหรับเว็บที่ต้องการจัดเก็บข้อมูลผู้ใช้แบบพื้นฐานและต้องการลดการพึ่งพาเซิร์ฟเวอร์! 😊
+        </p>
+        <p class="animationShow-y">
+            <strong>Local Storage</strong>
+            คือพื้นที่เก็บข้อมูลของเว็บเบราว์เซอร์ที่ช่วยให้เว็บแอปพลิเคชันสามารถจัดเก็บข้อมูลได้บนอุปกรณ์ของผู้ใช้แบบถาวร
+            โดยไม่ต้องใช้ฐานข้อมูลหรือเซิร์ฟเวอร์ในบางกรณี ข้อมูลที่เก็บไว้ใน Local Storage
+            จะยังคงอยู่แม้ปิดเบราว์เซอร์หรือรีสตาร์ทเครื่อง (ยกเว้นผู้ใช้ลบข้อมูลด้วยตนเอง)
+        </p>
+    </main>
+    <hr>
+    <div class="animationShow-x title">
+        <h3>โปรเจกต์เกี่ยวกับ Local Storage</h3>
+        <p>สำรวจโปรเจกต์ที่พัฒนาขึ้นโดยใช้ Local Storage เพื่อจัดเก็บข้อมูลผู้ใช้อย่างง่าย</p>
+    </div>
+    <hr>
+    <div class="content">
+        <div class="container">
+            <!-- Project 1 -->
+            <div>
+                <a href="./birthday-countdown.html">
+                    <button class="animationShow-y">นับถอยหลังวันเกิด</button>
+                </a>
+                <p class="animationShow-y">โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิดโดยบันทึกข้อมูลใน Local Storage</p>
+            </div>
+
+            <!-- Project 2 -->
+            <div>
+                <a href="./daily-life-schedule.html">
+                    <button class="animationShow-y">ตารางชีวิตประจำวัน</button>
+                </a>
+                <p class="animationShow-y">จัดการตารางชีวิตของคุณโดยบันทึกการตั้งค่าด้วย Local Storage</p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer role="complementary">
+        <p>
+            <script>document.write("&copy; " + (new Date().getFullYear()))</script>
+            <span title="Centered101 website">
+                <a href="https://centered101.netlify.app/">Centered101</a>
+            </span>— All Rights Reserved.
+        </p>
+    </footer>
+
+</body>
+<script src="/animation/script.js"></script>
+
+</html>

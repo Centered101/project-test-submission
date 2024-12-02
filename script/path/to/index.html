@@ -42,8 +42,201 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
+<style>
+    #search,
+    div#wrapper,
+    footer {
+        filter: blur(8px);
+    }
+
+    #logout-section {
+        display: none;
+        /* ซ่อนปุ่มโดยเริ่มต้น */
+    }
+
+    #logout-section.active {
+        display: block;
+        /* แสดงปุ่มเมื่อผู้ใช้ล็อกอินสำเร็จ */
+    }
+</style>
 
 <body class="directory" onload="showURL()">
+    <div id="login-form" class="fixed flex items-center justify-center inset-0 z-50">
+        <!-- แจ้งเตือน -->
+        <div id="output"
+            class="min-w-32 absolute top-1/4 left-1/2 transform -translate-x-1/2 bg-[#EFEFEF] border border-[#CCCCCC] rounded shadow-lg text-center p-2 opacity-0 transition-opacity duration-500">
+        </div>
+        <!-- ฟอร์มล็อกอิน -->
+        <div class="w-full max-w-md bg-[#EFEFEF] border border-[#CCCCCC] rounded shadow-lg">
+            <div class="bg-[#DFDFDF] space-y-2 p-2 shadow">
+                <p class="text-center text-lg font-bold text-[#0D0D0D]">
+                    คุณจำเป็นต้องมีรหัสผ่านในการเข้าถึงข้อมูลสำคัญ
+                </p>
+                <p>รหัสนักศึกษา ม.3 รร.พระนารายณ์ ผมครับน้อง</p>
+            </div>
+            <div class="space-y-5 p-5">
+                <div class="flex gap-4 items-center">
+                    <input type="password" id="passwordInput" placeholder="รหัสผ่าน"
+                        class="flex-grow border border-[#CCCCCC] rounded p-2 focus:outline-none">
+                    <button id="togglePassword" onclick="togglePassword()"
+                        class="w-32 bg-[#DFDFDF] text-gray-800 border border-[#CCCCCC] rounded p-2 active:opacity-75">
+                        แสดงรหัสผ่าน
+                    </button>
+                </div>
+                <button id="loginButton"
+                    class="w-full bg-[#1ED760] text-white rounded p-2 active:opacity-75 transition-colors">
+                    ล็อกอิน
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="logout-section" class="fixed bottom-5 right-5 z-50">
+        <button onclick="logout()"
+            class="flex items-center justify-between gap-1 rounded hover:opacity-75 transition-opacity duration-300">
+            <p id="logout-text" class="bg-[#FF7070] rounded text-white p-2 transition-opacity shadow">ออกจากระบบ</p>
+            <img class="w-9 bg-[#FF7070] rounded p-2 shadow" width="48" height="48"
+                src="https://img.icons8.com/sf-regular/48/exit.png" alt="exit" />
+        </button>
+    </div>
+
+    <script>
+        setTimeout(function () {
+            document.getElementById('logout-text').style.opacity = '0';
+        }, 5000);
+
+        setTimeout(() => {
+            document.getElementById('logout-text').style.display = 'none'; // ซ่อนหลังการเคลื่อนไหว
+        }, 5100);
+
+        document.getElementById("passwordInput").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                processLogin();
+            }
+        }); // ฟังก์ชันสำหรับปุ่ม Enter
+
+        // ตรวจสอบสถานะการล็อกอินเมื่อโหลดหน้าเว็บ
+        window.onload = function () {
+            var isLoggedIn = localStorage.getItem("isLoggedIn");
+
+            if (isLoggedIn === "true") {
+                document.getElementById('login-form').style.display = "none";
+                document.getElementById('search').style.filter = "none";
+                document.getElementById('wrapper').style.filter = "none";
+                document.querySelector('footer').style.filter = "none";
+
+                // แสดงปุ่ม Logout
+                document.getElementById('logout-section').classList.add("active");
+            }
+        };
+
+        var maxAttempts = 3;
+        var attempts = 0;
+
+        function processLogin() {
+            var password = document.getElementById("passwordInput").value;
+            var texDeploy = document.getElementById("output");
+
+            if (password === "") {
+                texDeploy.style.opacity = "1";
+                texDeploy.innerHTML = "ใส่ข้อมูลเพื่อเข้าสู่ระบบ";
+                setTimeout(function () {
+                    texDeploy.style.opacity = "0";
+                }, 5000);
+            } else if (password === "36887") {
+                texDeploy.style.opacity = "1";
+                texDeploy.innerHTML = "ล็อกอินสำเร็จ!";
+                setTimeout(function () {
+                    texDeploy.style.opacity = "0";
+                }, 5000);
+
+                // บันทึกสถานะการล็อกอินลงใน Local Storage
+                localStorage.setItem("isLoggedIn", "true");
+
+                // ซ่อนฟอร์มล็อกอินและแสดงเนื้อหา
+                document.getElementById('login-form').style.display = "none";
+                document.getElementById('search').style.filter = "none";
+                document.getElementById('wrapper').style.filter = "none";
+                document.querySelector('footer').style.filter = "none";
+            } else {
+                attempts++;
+                if (attempts >= maxAttempts) {
+                    document.querySelector("body").style.display = "none";
+                    setTimeout(function () {
+                        window.location.href = "https://github.com/centered101";
+                    }, 1000);
+                } else {
+                    passwordInput.value = "";
+                    texDeploy.style.opacity = "1";
+                    texDeploy.innerHTML = "ล็อกอินล้มเหลว โปรดตรวจสอบรหัสผ่านของคุณ " + attempts + "/" + maxAttempts;
+                    setTimeout(function () {
+                        texDeploy.style.opacity = "0";
+                    }, 5000);
+                }
+            }
+        }
+
+        // ปุ่มออกจากระบบ
+        function logout() {
+            // ลบสถานะการล็อกอินจาก Local Storage
+            localStorage.removeItem("isLoggedIn");
+
+            // รีเฟรชหน้าเว็บเพื่อแสดงฟอร์มล็อกอิน
+            window.location.reload();
+        }
+
+        document.getElementById("loginButton").addEventListener("click", processLogin);
+
+        function togglePassword() {
+            var passwordInput = document.getElementById("passwordInput");
+            var toggleButton = document.getElementById("togglePassword");
+            var texDeploy = document.getElementById("output");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                texDeploy.style.opacity = "1";
+                texDeploy.innerHTML = "แสดง รหัสผ่าน";
+                toggleButton.innerHTML = "แสดง รหัสผ่าน";
+                setTimeout(function () {
+                    texDeploy.style.opacity = "0";
+                }, 5000);
+            } else {
+                passwordInput.type = "password";
+                texDeploy.style.opacity = "1";
+                texDeploy.innerHTML = "ซ่อน รหัสผ่าน";
+                toggleButton.innerHTML = "ซ่อน รหัสผ่าน";
+                setTimeout(function () {
+                    texDeploy.style.opacity = "0";
+                }, 5000);
+            }
+        }
+
+        // ตรวจสอบสถานะล็อกอินตอนโหลดหน้าเว็บ
+        window.onload = function () {
+            var isLoggedIn = localStorage.getItem("isLoggedIn");
+
+            if (isLoggedIn === "true") {
+                document.getElementById('login-form').style.display = "none";
+                document.getElementById('search').style.filter = "none";
+                document.getElementById('wrapper').style.filter = "none";
+                document.querySelector('footer').style.filter = "none";
+
+                // แสดงปุ่ม Logout
+                document.getElementById('logout-section').classList.add("active");
+            }
+        };
+
+        function logout() {
+            // ลบสถานะล็อกอินใน Local Storage
+            localStorage.removeItem("isLoggedIn");
+
+            // ซ่อนปุ่ม Logout
+            document.getElementById('logout-section').classList.remove("active");
+
+            // รีเฟรชหน้าเว็บเพื่อแสดงฟอร์มล็อกอิน
+            window.location.reload();
+        }
+
+    </script>
     <input id="search" type="text" placeholder="Search" autocomplete="off" />
     <div id="wrapper">
         <h1>

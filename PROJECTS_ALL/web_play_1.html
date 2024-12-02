@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เล่นเพลง</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Press Start 2P';
+            background-color: #000;
+            color: #333;
+        }
+
+        #audio-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #volume-control {
+            /* margin-top: 10px; */
+            width: 100%; /* ปรับขนาดของส่วนควบคุมเสียงให้ไม่เต็มหน้าจอ */
+        }
+
+        #playlist {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: row; /* เปลี่ยนจาก column เป็น row */
+            justify-content: center; /* จัดให้รายการเพลงอยู่ตรงกลาง */
+            flex-wrap: wrap; /* ให้รายการเพลงขึ้นบรรทัดใหม่เมื่อต้องการ */
+        }
+
+        .song-item {
+            margin: 10px;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease-in-out;
+            padding: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            width: 120px; /* ปรับขนาดของรายการเพลง */
+        }
+
+        .song-item:hover {
+            color: #f7ca18;
+        }
+
+        #volume-slider {
+            width: 100%;
+            margin-top: 5px;
+            appearance: none;
+            background: #333;
+            height: 5px;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+            cursor: pointer;
+        }
+
+        #volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            background: #f7ca18;
+            cursor: pointer;
+        }
+
+        #volume-slider::-moz-range-thumb {
+            appearance: none;
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            background: #f7ca18;
+            cursor: pointer;
+        }
+
+        #volume-label {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>เว็บเล่นเพลง</h1>
+
+<div id="audio-controls">
+    <audio id="myAudio" src="" ontimeupdate="updateProgressBar()"></audio>
+
+    <div id="volume-control">
+        <label for="volume-slider">ควบคุมเสียง:</label>
+        <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1" oninput="updateVolume()">
+        <div id="volume-label">เสียง: <span id="volume-percentage">100%</span></div>
+    </div>
+</div>
+
+<div id="playlist">
+    <div class="song-item" onclick="playSong(0)">เพลงที่หนึ่ง</div>
+    <div class="song-item" onclick="playSong(1)">เพลงที่สอง</div>
+    <div class="song-item" onclick="playSong(2)">เพลงที่สาม</div>
+    <div class="song-item" onclick="playSong(3)">เพลงที่สี่</div>
+    <div class="song-item" onclick="playSong(4)">เพลงที่ห้า</div>
+    <div class="song-item" onclick="playSong(5)">เพลงที่หก</div>
+    <div class="song-item" onclick="playSong(6)">เพลงที่เจ็ด</div>
+    <div class="song-item" onclick="playSong(7)">เพลงที่แปด</div>
+    <div class="song-item" onclick="playSong(8)">เพลงที่เก้า</div>
+    <div class="song-item" onclick="playSong(9)">เพลงที่สิบ</div>
+</div>
+
+<script>
+    var audio = document.getElementById("myAudio");
+    var volumeSlider = document.getElementById("volume-slider");
+    var volumeLabel = document.getElementById("volume-percentage");
+
+    var songs = [
+        { title: "เพลงที่หนึ่ง", src: "song1.mp3" },
+        { title: "เพลงที่สอง", src: "song2.mp3" },
+        { title: "เพลงที่สาม", src: "song3.mp3" },
+        { title: "เพลงที่สี่", src: "song4.mp3" },
+        { title: "เพลงที่ห้า", src: "song5.mp3" },
+        { title: "เพลงที่หก", src: "song6.mp3" },
+        { title: "เพลงที่เจ็ด", src: "song7.mp3" },
+        { title: "เพลงที่แปด", src: "song8.mp3" },
+        { title: "เพลงที่เก้า", src: "song9.mp3" },
+        { title: "เพลงที่สิบ", src: "song10.mp3" }
+    ];
+
+    function updateVolume() {
+        audio.volume = volumeSlider.value;
+        updateVolumeLabel();
+    }
+
+    function updateVolumeLabel() {
+        var volumePercentage = Math.round(audio.volume * 100);
+        volumeLabel.textContent = volumePercentage + "%";
+    }
+
+    function playSong(index) {
+        audio.src = songs[index].src;
+        audio.play();
+    }
+
+    function updateProgressBar() {
+        // Your progress bar update logic here
+    }
+</script>
+
+</body>
+</html>
