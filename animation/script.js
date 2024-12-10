@@ -1,3 +1,17 @@
+
+
+
+// ฟังก์ชันเพื่อเพิ่มลิงก์ CSS เข้าไปใน head ของ HTML
+function loadCSS() {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/animation/style.css'; // เส้นทางไปยังไฟล์ style.css
+    document.head.appendChild(link); // เพิ่ม link ไปยัง <head> ของ HTML
+}
+
+// เรียกฟังก์ชัน loadCSS เมื่อหน้าโหลด
+window.addEventListener('load', loadCSS);
+
 // เรียก checkElementsInView ทุกครั้งที่เลื่อนหน้าเว็บ
 window.addEventListener('scroll', checkElementsInView);
 window.addEventListener('load', checkElementsInView);
@@ -17,6 +31,7 @@ function isElementInViewport(el) {
 
 function checkElementsInView() {
     const animationShow = document.querySelectorAll('.animationShow');
+    const _animationShowX = document.querySelectorAll('.-animationShow-x');
     const animationShowX = document.querySelectorAll('.animationShow-x');
     const animationShowY = document.querySelectorAll('.animationShow-y');
 
@@ -24,6 +39,12 @@ function checkElementsInView() {
     animationShow.forEach(el => {
         if (isElementInViewport(el)) {
             el.classList.add('showAnimation');
+        }
+    });
+
+    _animationShowX.forEach(el => {
+        if (isElementInViewport(el)) {
+            el.classList.add('-showAnimation-x');
         }
     });
 

@@ -1,5 +1,9 @@
-.showAnimation {
+.animationShow {
   animation: fadeIn 1s ease-in-out;
+}
+
+.-showAnimation-x {
+  animation: -slideInX 1s ease-in-out;
 }
 
 .showAnimation-x {
@@ -50,6 +54,16 @@
 @keyframes slideInX {
   from {
     transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes -slideInX {
+  from {
+    transform: translateX(100%);
   }
 
   to {

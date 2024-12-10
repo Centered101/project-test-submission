@@ -11,7 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <!-- Primary Meta Tags -->
-  <title>404 NOT FOUND — Centered101</title>
+  <title>404 NOT FOUND • Centered101</title>
   <meta name="title" content="404 NOT FOUND" />
   <meta name="description" content="Error 404 NOT FOUND ดูเหมือนคุณจะหลงทางแล้ว" />
 
@@ -30,68 +30,32 @@
   <meta property="twitter:image" content="https://centered101.netlify.app/images/Tes-D.png" />
 
   <link id="favicon" rel="icon" type="image/png" href="https://centered101.netlify.app/images/Tes-D.png" />
+
+  <link rel="stylesheet" href="/style/style.css">
+
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <audio id="welcomeSound">
-    <source src="#jedagjedug.mp3" type="audio/mp3" />
+  <audio id="audio" autoplay>
+    <source src="/Audio/Music/Interstellar on Piano.mp3" type="audio/mp3" />
   </audio>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const audioElement = document.getElementById("audio");
+
+      // ตั้งค่า volume เริ่มต้น
+      audioElement.volume = 0.1;
+
+      // เล่นซ้ำเมื่อเพลงจบ
+      audioElement.addEventListener("ended", function () {
+        audioElement.currentTime = 19; // ตั้งค่าเริ่มต้นที่ 19 วินาที
+        audioElement.play(); // เล่นเพลงใหม่
+      });
+    });
+  </script>
+
 </head>
 <style type="text/css" media="all">
-  /* font จาก google fonts */
-  /* font-family: 'Press Start 2P', system-ui; */
-  @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-  /* font-family: 'Bai Jamjuree', sans-serif; */
-  @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
-
   /* -style--------------------------------------------------------------------------------------------- */
-
-  /* Code for Firefox */
-  ::-moz-selection {
-    background: #000000B3;
-    color: #1ED760;
-  }
-
-  ::selection {
-    background: #000000B3;
-    color: #1ED760;
-  }
-
-  ::-moz-scrollbar {
-    scrollbar-color: #409EFE #131616;
-    scrollbar-width: thin;
-  }
-
-  ::-webkit-scrollbar {
-    width: 20px;
-  }
-
-  ::-webkit-scrollbar-button {
-    cursor: pointer;
-    background-color: #409EFE;
-    height: 50px;
-  }
-
-  ::-webkit-scrollbar-track {
-    cursor: pointer;
-    background: #131616 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#131616));
-    background: #131616 -moz-linear-gradient(top, #000000, #131616);
-    background-repeat: no-repeat;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    cursor: grab;
-    background-color: #409EFE;
-    margin: 10px;
-  }
-
-  ::-webkit-scrollbar-thumb:active {
-    cursor: grabbing;
-  }
-
-  html {
-    scrollbar-color: #409EFE #000000;
-    scrollbar-width: thin;
-  }
 
   :root {
     /* main-color */
@@ -120,38 +84,6 @@
     --black-transparent: #000000B3;
   }
 
-  * {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    box-sizing: border-box;
-  }
-
-  [data-theme="dark"] {
-    ::-webkit-scrollbar-button {
-      background-color: #FF7070;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background-color: #FF7070;
-    }
-
-    html {
-      scrollbar-color: #FF7070 #000000;
-      scrollbar-width: thin;
-    }
-
-    header h1::first-letter,
-    #urlDisplay,
-    .content .container_error p small,
-    /* ::first-line: ใช้เพื่อเลือกบรรทัดแรกของเนื้อหา */
-    .content .container_error p::first-line,
-    .content h2 span {
-      color: var(--red-1);
-    }
-
-  }
-
   body {
     background: #131616 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#131616));
     background: #131616 -moz-linear-gradient(top, #000000, #131616);
@@ -160,7 +92,7 @@
     font-family: "Bai Jamjuree", sans-serif;
     font-weight: bold;
     overflow: hidden;
-    animation: opacity 1.5s ease-in-out;
+    animation: opacity 1s ease-in-out;
   }
 
   .content {
@@ -657,7 +589,7 @@
   </a>
 
 </body>
-<script>
+<!-- <script>
   // ฟังก์ชันเพื่อตรวจสอบโหมดของผู้ใช้งาน
   function applyTheme(theme) {
     if (theme === "dark") {
@@ -677,6 +609,6 @@
   userPrefersDark.addEventListener("change", (event) => {
     applyTheme(event.matches ? "dark" : "light");
   });
-</script>
+</script> -->
 
 </html>

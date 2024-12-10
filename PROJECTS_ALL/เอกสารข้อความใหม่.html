@@ -22,21 +22,26 @@
       margin: 0;
       padding: 0;
       background-color: #F9F9F9;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
 
     .carousel-container {
       max-width: 500px;
-      margin: 100px auto 0 auto;
+      margin: auto 40px;
       position: relative;
       background-color: #EFEFEF;
-      border: solid #DDDDDD 1px;
+      border: solid #CCCCCC 1px;
       border-radius: 8px;
       box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .carousel-slides {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      transition: transform .4s ease-in-out;
     }
 
     .carousel-slide {
@@ -81,13 +86,12 @@
       left: 50%;
       transform: translatex(-50%);
       background-color: #EFEFEF;
-      padding: 20px;
-      border: solid #DDDDDD 1px;
+      padding: 12px;
+      border: solid #CCCCCC 1px;
       border-radius: 50% 50% 0 0;
       display: flex;
       justify-content: center;
-      margin-top: 15px;
-      z-index: -10;
+      margin-top: 22px;
     }
 
     .dot {
@@ -97,13 +101,13 @@
       border-radius: 50%;
       margin: 0 5px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color .4s ease;
     }
 
     .dot:hover,
     .dot:active {
       transform: scale(1.3);
-      transition: background-color 0.5s ease;
+      transition: all .4s;
     }
 
     .dot.active {
@@ -134,10 +138,10 @@
     </div>
     <!-- Arrows -->
     <div class="arrow arrow-left">
-      <img src="/images/reshot-icon-button-arrow-right-W9BZ38CUD2.svg" alt="arrow-left">
+      <img src="/images/img/reshot-icon-button-arrow-right-W9BZ38CUD2.svg" alt="arrow-left">
     </div>
     <div class="arrow arrow-right">
-      <img src="/images/reshot-icon-button-arrow-right-W9BZ38CUD2.svg" alt="arrow-right">
+      <img src="/images/img/reshot-icon-button-arrow-right-W9BZ38CUD2.svg" alt="arrow-right">
     </div>
     <!-- Dots -->
     <div class="dots">

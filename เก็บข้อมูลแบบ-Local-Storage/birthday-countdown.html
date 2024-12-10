@@ -1,3 +1,4 @@
+
 <!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
 <!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
 <!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
@@ -18,26 +19,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Primary Meta Tags -->
-    <title>นับถอยหลังวันเกิด</title>
+    <title>นับถอยหลังวันเกิด • Centered101</title>
     <meta name="title" content="นับถอยหลังวันเกิด — Centered101" />
     <meta name="description" content="นับถอยหลังวันเกิด" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://centered101-webfollow.web.app" />
-    <meta property="og:title" content="นับถอยหลังวันเกิด — Centered101" />
-    <meta property="og:description" content="นับถอยหลังวันเกิด" />
-    <meta property="og:image" content="https://centered101-webfollow.web.app/images/Tes-D.png" />
+    <meta property="og:url" content="https://project-test-submission.web.app/ก็บข้อมูลแบบ-Local-Storage/" />
+    <meta property="og:title" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta property="og:description" content="การเก็บข้อมูลแบบ Local Storage" />
+    <meta property="og:image" content="https://project-test-submission.web.app/images/Tes-D.png" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://centered101-webfollow.web.app" />
-    <meta property="twitter:title" content="นับถอยหลังวันเกิด — Centered101" />
-    <meta property="twitter:description" content="นับถอยหลังวันเกิด" />
-    <meta property="twitter:image" content="https://centered101-webfollow.web.app/images/Tes-D.png" />
+    <meta property="twitter:url" content="https://project-test-submission.web.app/เก็บข้อมูลแบบ-Local-Storage/" />
+    <meta property="twitter:title" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta property="twitter:description" content="การเก็บข้อมูลแบบ Local Storage" />
+    <meta property="twitter:image" content="https://project-test-submission.web.app/images/Tes-D.png" />
 
-    <link rel="icon" type="image/png" href="https://centered101-webfollow.web.app/images/Tes-D.png">
-    <link rel="stylesheet" href="https://project-test-submission.web.app/animation/style.css">
+    <link rel="icon" type="image/png" href="https://project-test-submission.web.app/images/Tes-D.png">
+    
+    <script src="/animation/script.js"></script>
 
 </head>
 <style>
@@ -151,11 +153,11 @@
         }
 
         button#add-btn::after {
-            background-image: url("/images/add.png");
+            background-image: url("/images/img/add.png");
         }
 
         button#see-btn::after {
-            background-image: url("/images/visibility.png");
+            background-image: url("/images/img/visibility.png");
             width: 1.25rem;
             height: 1.25rem;
         }
@@ -228,11 +230,11 @@
             }
 
             button.delete-btn::after {
-                background-image: url("/images/delete.png");
+                background-image: url("/images/img/delete.png");
             }
 
             button.edit-btn::after {
-                background-image: url("/images/edit.png");
+                background-image: url("/images/img/edit.png");
             }
         }
     }
@@ -285,7 +287,6 @@
     </header>
     <div class="friend-list" id="friend-list"></div>
 </body>
-<script src="https://project-test-submission.web.app/animation/script.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const friendList = document.getElementById("friend-list");
