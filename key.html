@@ -1,0 +1,88 @@
+<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
+<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
+<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
+<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
+<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
+
+<!DOCTYPE html>
+<html lang="th">
+
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="listing directory — Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>listing directory/key/</title>
+    <meta name="title" content="listing directory — Centered101" />
+    <meta name="description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://project-test-submission.web.app/" />
+    <meta property="og:title" content="listing directory — Centered101" />
+    <meta property="og:description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
+    <meta property="og:image" content="/images/Tes-D.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://project-test-submission.web.app/" />
+    <meta property="twitter:title" content="listing directory — Centered101" />
+    <meta property="twitter:description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
+    <meta property="twitter:image" content="/images/Tes-D.png" />
+
+    <link rel="icon" type="image/png" href="/images/Tes-D.png">
+    <link rel="stylesheet" href="/style/style-start.css">
+    <link rel="stylesheet" href="/style/style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/animation/script.js"></script>
+
+</head>
+
+<body class="directory" onload="showURL()">
+    <input id="search" type="text" placeholder="Search" autocomplete="off" />
+    <div id="wrapper">
+        <h1>
+            <a href="/">
+                <script>
+                    document.write(window.location.href);
+                </script>
+            </a>
+        </h1>
+        <ul id="files" class="view-tiles">
+            <li><a href="/" class="icon icon-directory" title="..">
+                    <span class="name">..</span>
+                    <span class="size"></span>
+                    <span class="date"></span></a></li>
+            <li><a href="/images" class="icon icon-directory" title="images">
+                    <span class="name">images</span>
+                    <span class="size"></span>
+                    <span class="date">11/30/2024 9:15:01 PM</span></a></li>
+            <li><a href="/images/Video" class="icon icon-directory" title="Video">
+                    <span class="name">Video</span>
+                    <span class="size"></span>
+                    <span class="date">12/19/2024 12:03:14 PM</span></a></li>
+            <li><a href="/script" class="icon icon-directory" title="script">
+                    <span class="name">script</span>
+                    <span class="size"></span>
+                    <span class="date">12/26/2024 6:16:20 PM</span></a></li>
+            <li><a href="/style" class="icon icon-directory" title="style">
+                    <span class="name">style</span>
+                    <span class="size"></span>
+                    <span class="date">12/16/2024 6:50:36 AM</span></a></li>
+        </ul>
+    </div>
+
+</body>
+<script src="/script/version.js"></script>
+<script src="/script/script-start.js"></script>
+<script>
+    document.getElementById('version').textContent = appVersionProjectTest;
+</script>
+
+</html>

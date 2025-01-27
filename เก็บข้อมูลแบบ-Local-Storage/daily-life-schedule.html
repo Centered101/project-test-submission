@@ -1,0 +1,347 @@
+
+<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
+<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
+<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
+<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
+<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
+
+<!DOCTYPE html>
+<html lang="th">
+
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="ตารางชีวิตประจำวัน — Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>ตารางชีวิตประจำวัน • Centered101</title>
+    <meta name="title" content="ตารางชีวิตประจำวัน — Centered101" />
+    <meta name="description" content="ตารางชีวิตประจำวัน" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://project-test-submission.web.app/ก็บข้อมูลแบบ-Local-Storage/" />
+    <meta property="og:title" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta property="og:description" content="การเก็บข้อมูลแบบ Local Storage" />
+    <meta property="og:image" content="https://project-test-submission.web.app/images/Tes-D.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://project-test-submission.web.app/เก็บข้อมูลแบบ-Local-Storage/" />
+    <meta property="twitter:title" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta property="twitter:description" content="การเก็บข้อมูลแบบ Local Storage" />
+    <meta property="twitter:image" content="https://project-test-submission.web.app/images/Tes-D.png" />
+
+    <link rel="icon" type="image/png" href="https://project-test-submission.web.app/images/Tes-D.png">
+    
+    <script src="/animation/script.js"></script>
+
+</head>
+<style>
+    /* font จาก google fonts */
+    /* font-family: 'Press Start 2P', system-ui; */
+    @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+    /* font-family: 'Bai Jamjuree', sans-serif; */
+    @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
+
+    * {
+        text-overflow: hidden;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    html,
+    body {
+        height: 100%;
+        font-family: 'Bai Jamjuree', sans-serif;
+    }
+
+    div.table {
+        display: table;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+
+    div.table table {
+        height: 100%;
+        width: 100%;
+        border: 1px solid #CCCCCC;
+        table-layout: fixed;
+        border-collapse: collapse;
+        background-color: #FFFFFF;
+    }
+
+    div.table caption {
+        caption-side: top;
+        font-size: 18px;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    div.table th,
+    div.table td {
+        border: 1px solid #CCCCCC;
+        padding: 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    div.table th {
+        background-color: #EFEFEF;
+        font-weight: bold;
+        color: #000000;
+    }
+
+
+    div#deploy-popup,
+    div#input-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #FFFFFF;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        width: 300px;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+    div#deploy-popup {
+        background-color: #FFFFFF;
+        border: 1px solid #CCCCCC;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    div#deploy {
+        height: 200px;
+        padding: 20px;
+        text-align: start;
+        overflow-x: auto;
+    }
+
+    div#input-popup h3 {
+        padding: 10px;
+        border-bottom: solid #CCCCCC 1px;
+        background-color: #EFEFEF;
+    }
+
+    div#input-popup div.input-group {
+        display: grid;
+        gap: 10px;
+        margin: 20px 20px 10px 20px;
+    }
+
+    div#input-popup input {
+        grid-column: 1 / span 2;
+        width: 100%;
+        padding: 10px;
+    }
+
+    div#input-popup button {
+        grid-column: 3;
+    }
+
+    div#input-popup div.buttons {
+        margin: 0 20px 20px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px 20px;
+    }
+
+    div.overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+</style>
+
+<body>
+    <div class="table">
+        <table>
+            <!-- <caption></caption> -->
+            <thead class="animationShow-x">
+                <tr>
+                    <th>อาทิตย์</th>
+                    <th>จันทร์</th>
+                    <th>อังคาร</th>
+                    <th>พุธ</th>
+                    <th>พฤหัสบดี</th>
+                    <th>ศุกร์</th>
+                    <th>เสาร์</th>
+                </tr>
+            </thead>
+            <tbody id="schedule-body">
+                <!-- Generate rows dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="overlay"></div>
+
+    <div id="deploy-popup">
+        <div id="deploy"></div>
+    </div>
+    <div class="overlay"></div>
+
+    <div id="input-popup">
+        <h3>เพิ่มกิจกรรม</h3>
+        <div class="input-group">
+            <input type="text" id="activity-input" placeholder="กรอกกิจกรรม" maxlength="255" />
+            <button id="delete-btn" style="display: none;">ลบ</button>
+        </div>
+        <div class="buttons">
+            <button id="save-btn">บันทึก</button>
+            <button id="cancel-btn">ยกเลิก</button>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const scheduleBody = document.getElementById("schedule-body");
+        const popup = document.getElementById("input-popup");
+        const overlay = document.querySelector(".overlay");
+        const activityInput = document.getElementById("activity-input");
+        const saveBtn = document.getElementById("save-btn");
+        const cancelBtn = document.getElementById("cancel-btn");
+        const deleteBtn = document.getElementById("delete-btn");
+        const deployPopup = document.getElementById("deploy-popup");
+        const deployDiv = document.getElementById("deploy");
+        let currentCell;
+
+        // โหลดข้อมูลจาก Local Storage
+        const loadData = () => {
+            const data = JSON.parse(localStorage.getItem("schedule")) || [];
+            data.forEach((row, rowIndex) => {
+                const tr = document.createElement("tr");
+                row.forEach((cell, colIndex) => {
+                    const td = document.createElement("td");
+                    td.textContent = cell || "";
+                    td.addEventListener("contextmenu", (e) => {
+                        e.preventDefault();
+                        editCell(td, rowIndex, colIndex);
+                    });
+                    td.addEventListener("click", () => viewDetails(td));
+                    tr.appendChild(td);
+                });
+                scheduleBody.appendChild(tr);
+            });
+        };
+
+        // บันทึกข้อมูลลง Local Storage
+        const saveData = () => {
+            const data = Array.from(scheduleBody.rows).map(row =>
+                Array.from(row.cells).map(cell => cell.textContent)
+            );
+            localStorage.setItem("schedule", JSON.stringify(data));
+        };
+
+        // สร้างตารางเปล่าเมื่อไม่มีข้อมูล
+        const createEmptyTable = () => {
+            for (let i = 0; i < 9; i++) {
+                const tr = document.createElement("tr");
+                for (let j = 0; j < 7; j++) {
+                    const td = document.createElement("td");
+                    td.addEventListener("contextmenu", (e) => {
+                        e.preventDefault();
+                        editCell(td, i, j);
+                    });
+                    td.addEventListener("click", () => viewDetails(td));
+                    tr.appendChild(td);
+                }
+                scheduleBody.appendChild(tr);
+            }
+        };
+
+        // เปิด Popup สำหรับแก้ไข
+        const editCell = (cell, rowIndex, colIndex) => {
+            currentCell = cell;
+            activityInput.value = cell.textContent;
+            deleteBtn.style.display = cell.textContent.trim() ? "inline-block" : "none"; // แสดงปุ่มลบถ้ามีข้อมูล
+            popup.style.display = "block";
+            overlay.style.display = "block";
+        };
+
+        // ปิด Popup
+        const closePopup = () => {
+            popup.style.display = "none";
+            overlay.style.display = "none";
+            activityInput.value = "";
+        };
+
+        // บันทึกข้อมูลเมื่อกดปุ่มบันทึก
+        saveBtn.addEventListener("click", () => {
+            if (currentCell) {
+                currentCell.textContent = activityInput.value;
+                saveData();
+                closePopup();
+            }
+        });
+
+        // ล้างข้อมูลเมื่อกดปุ่มลบ
+        deleteBtn.addEventListener("click", () => {
+            if (currentCell) {
+                currentCell.textContent = ""; // ล้างค่า
+                saveData(); // บันทึกข้อมูล
+                closePopup(); // ปิด Popup
+            }
+        });
+
+        // ยกเลิกการแก้ไข
+        cancelBtn.addEventListener("click", closePopup);
+
+        // ดูรายละเอียดเมื่อคลิกซ้ายและแสดงใน div#deploy
+        const viewDetails = (cell) => {
+            const content = cell.textContent.trim() || "ไม่มีข้อมูล";
+            deployDiv.textContent = content; // แสดงข้อมูลใน div#deploy
+            deployPopup.style.display = "block";
+            overlay.style.display = "block";
+        };
+
+        // ปิด deploy-popup
+        const closeDeployPopup = () => {
+            deployPopup.style.display = "none";
+            overlay.style.display = "none";
+        };
+
+        // กดที่ overlay เพื่อปิดทั้ง popup และ deploy-popup
+        overlay.addEventListener("click", () => {
+            closePopup();
+            closeDeployPopup();
+        });
+
+        // เริ่มต้นการทำงาน
+        if (!localStorage.getItem("schedule")) {
+            createEmptyTable();
+            saveData();
+        } else {
+            loadData();
+        }
+    });
+</script>
+
+</html>

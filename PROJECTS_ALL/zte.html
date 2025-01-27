@@ -1,0 +1,168 @@
+<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
+<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
+<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
+<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
+<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
+
+<!DOCTYPE html>
+<html lang="th">
+
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+
+<head>
+
+    <meta name="theme-color" content="#409EFE">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>Contact Us — Centered101</title>
+    <meta name="title" content="Contact Us" />
+    <meta name="description" content="ติดต่อเรา" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://centered101-webfollow.web.app" />
+    <meta property="og:title" content="Contact Us" />
+    <meta property="og:description" content="ติดต่อเรา" />
+    <meta property="og:image" content="https://centered101-webfollow.web.app/images/Tes-D.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://centered101-webfollow.web.app" />
+    <meta property="twitter:title" content="Contact Us" />
+    <meta property="twitter:description" content="ติดต่อเรา" />
+    <meta property="twitter:image" content="https://centered101-webfollow.web.app/images/Tes-D.png" />
+
+    <!-- Meta Tags Generated with https://metatags.io -->
+
+    <link id="favicon" rel="icon" type="image/png" href="https://centered101-webfollow.web.app/images/Tes-D.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<style type="text/css" media="all">
+    /* font จาก google fonts */
+    /* font-family: 'Press Start 2P', system-ui; */
+    @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+    /* font-family: 'Bai Jamjuree', sans-serif; */
+    @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
+    @import url(/style/color.css);
+
+    /* Code for Firefox */
+    ::-moz-selection {
+        background: #000000B3;
+        color: #1ED760;
+    }
+
+    ::selection {
+        background: #000000B3;
+        color: #1ED760;
+    }
+
+    html {
+        scrollbar-color: #409EFE #CCCCCC;
+        scrollbar-width: thin;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        outline: 0;
+    }
+
+    body {
+        font-family: "Bai Jamjuree", sans-serif;
+        animation: fade 1.5s ease-in-out;
+    }
+
+    @keyframes fade {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    header h1 {
+        font-family: 'Press Start 2P', system-ui;
+    }
+</style>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal overflow-hidden bg-repeat"
+    style="background-image: url(https://cpe221.patta.dev/public/images/textura.png);">
+    <div class=" container mx-auto mt-10 p-5 max-w-lg">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">ติดต่อเรา</h2>
+        <form action="/submit-form" method="POST" class="bg-white shadow-md rounded-lg p-8">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">ชื่อ-นามสกุล</label>
+                <input type="text" id="name" placeholder="ชื่อ-นามสกุลของคุณ"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">อีเมล</label>
+                <input type="email" id="email" placeholder="อีเมลของคุณ"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="message">ข้อความ</label>
+                <textarea id="message" placeholder="พิมพ์ข้อความของคุณที่นี่"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    rows="4"></textarea>
+            </div>
+            <div class="flex items-center justify-center">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">
+                    ส่งข้อความ
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    // server.js
+    const express = require("express");
+    const nodemailer = require("nodemailer");
+
+    const app = express();
+    app.use(express.json());
+
+    app.post("/submit-form", async (req, res) => {
+        const { name, email, message } = req.body;
+        // ตั้งค่า nodemailer สำหรับส่งอีเมล
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: "your-email@gmail.com",
+                pass: "your-email-password"
+            }
+        });
+
+        const mailOptions = {
+            from: email,
+            to: "your-email@gmail.com",
+            subject: "New Contact Form Submission",
+            text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+        };
+
+        try {
+            await transporter.sendMail(mailOptions);
+            res.status(200).send("Message sent successfully");
+        } catch (error) {
+            res.status(500).send("Error sending message");
+        }
+    });
+
+    app.listen(3000, () => {
+        console.log("Server running on http://localhost:3000");
+    });
+
+</script>
+
+</html>

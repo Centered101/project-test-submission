@@ -1,0 +1,42 @@
+@import url("https://project-test-submission.firebaseapp.com/style/style.css");
+
+html {
+  scrollbar-color: #409EFE #CCCCCC;
+}
+
+body {
+  animation: opacity 1s ease-in-out;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+div.table_component table {
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+div.table_component th {
+  background-color: #EFEFEF;
+}
+
+th,
+td {
+  border: 1px solid #CCCCCC;
+  cursor: default;
+  transition: all 300ms;
+}
+
+th:hover,
+td:hover {
+  background-color: #84D4FA !important;
+}

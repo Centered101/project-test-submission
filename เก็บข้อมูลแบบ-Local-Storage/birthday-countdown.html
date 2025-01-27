@@ -1,0 +1,524 @@
+
+<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
+<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
+<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
+<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
+<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
+
+<!DOCTYPE html>
+<html lang="th">
+
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="นับถอยหลังวันเกิด — Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>นับถอยหลังวันเกิด • Centered101</title>
+    <meta name="title" content="นับถอยหลังวันเกิด — Centered101" />
+    <meta name="description" content="นับถอยหลังวันเกิด" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://project-test-submission.web.app/ก็บข้อมูลแบบ-Local-Storage/" />
+    <meta property="og:title" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta property="og:description" content="การเก็บข้อมูลแบบ Local Storage" />
+    <meta property="og:image" content="https://project-test-submission.web.app/images/Tes-D.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://project-test-submission.web.app/เก็บข้อมูลแบบ-Local-Storage/" />
+    <meta property="twitter:title" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta property="twitter:description" content="การเก็บข้อมูลแบบ Local Storage" />
+    <meta property="twitter:image" content="https://project-test-submission.web.app/images/Tes-D.png" />
+
+    <link rel="icon" type="image/png" href="https://project-test-submission.web.app/images/Tes-D.png">
+    
+    <script src="/animation/script.js"></script>
+
+</head>
+<style>
+    /* font จาก google fonts */
+    /* font-family: 'Press Start 2P', system-ui; */
+    @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+    /* font-family: 'Bai Jamjuree', sans-serif; */
+    @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
+
+    * {
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scrollbar-width: thin;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Bai Jamjuree', sans-serif;
+    }
+
+    h1 {
+        text-align: center;
+        margin: 20px;
+    }
+
+    form#birthday-form {
+        width: 480px;
+        display: none;
+        margin: 20px auto;
+        padding: 20px;
+
+        label {
+            text-wrap: nowrap;
+        }
+    }
+
+    input,
+    form#birthday-form button,
+    header select,
+    header button {
+        margin: 10px;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    input[type="date"],
+    button,
+    select,
+    option {
+        cursor: pointer;
+    }
+
+    header button::after,
+    div.buttons button::after {
+        content: "";
+        display: inline-block;
+        background-size: cover;
+        width: 1rem;
+        height: 1rem;
+    }
+
+    div.editFriend {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        z-index: 1000;
+        border-radius: 8px;
+        width: 300px;
+    }
+
+    div.editFriend-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    div.editFriend-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    header {
+        position: sticky;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        backdrop-filter: blur(12px);
+        box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.1);
+
+        select {
+            min-width: 160px;
+            background-color: #efefef;
+        }
+
+        button {
+            min-width: 160px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button#add-btn::after {
+            background-image: url("/images/img/add.png");
+        }
+
+        button#see-btn::after {
+            background-image: url("/images/img/visibility.png");
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+    }
+
+    div.friend-list {
+        margin-top: 20px;
+
+        div.friend-item {
+            margin: 10px;
+            padding-top: 10px;
+            border: solid #cccccc 1px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        div.friend-details {
+            border-right: solid #cccccc 1px;
+            width: 100%;
+            padding-left: 10px;
+            display: flex;
+            flex-direction: column;
+            white-space: nowrap;
+            overflow-x: auto;
+
+            div.friend-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 18px;
+                width: 100%;
+                padding-bottom: 10px;
+                border-bottom: solid #cccccc 1px;
+                gap: 5px;
+
+                span.friend-name {
+                    font-weight: bold;
+                }
+
+                span.friend-birthday {
+                    padding-right: 10px;
+                    font-size: 14px;
+                }
+            }
+
+            div.friend-countdown {
+                margin-top: 10px;
+                font-size: 16px;
+                color: #333333;
+            }
+        }
+
+        div.buttons {
+            margin: 0 10px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            button.delete-btn,
+            button.edit-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 5px;
+                width: 30px;
+                height: 25px;
+            }
+
+            button.delete-btn::after {
+                background-image: url("/images/img/delete.png");
+            }
+
+            button.edit-btn::after {
+                background-image: url("/images/img/edit.png");
+            }
+        }
+    }
+
+    footer {
+        margin: 20px;
+
+        p {
+            text-align: center;
+            font-size: 16px;
+        }
+    }
+</style>
+
+<body class="animationShow">
+    <h1 class="animationShow-x">รายชื่อและวันเกิด</h1>
+    <form id="birthday-form" action="" method="post">
+        <label for="friend-name">ชื่อ:</label>
+        <input type="text" id="friend-name" maxlength="30" required>
+        <br>
+        <label for="friend-birthday">วันเกิด:</label>
+        <input type="date" id="friend-birthday" required>
+        <br>
+        <button type="submit">บันทึก</button>
+    </form>
+    <div class="editFriend" id="editFriend" style="display: none;">
+        <div class="editFriend-container">
+            <h3>แก้ไขข้อมูลเพื่อน</h3>
+            <form id="editFriendForm">
+                <label for="edit-name">ชื่อ:</label>
+                <input type="text" id="edit-name" required />
+                <label for="edit-birthday">วันเกิด:</label>
+                <input type="date" id="edit-birthday" required />
+                <div class="editFriend-actions">
+                    <button type="submit" class="save-btn">บันทึก</button>
+                    <button type="button" class="cancel-btn" id="cancelEdit">ยกเลิก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <header class="animationShow-x">
+        <select id="sort-select">
+            <option value="createdDate">วันที่เพิ่ม</option>
+            <option value="name">ตามชื่อ</option>
+            <option value="birthday">ใกล้วันเกิด</option>
+            <option value="pastBirthdays">ผ่านไปแล้ว</option>
+        </select>
+        <button id="add-btn" onclick="addBirthday()">เพื่มรายชื่อ</button>
+        <button id="see-btn" onclick="addBirthday()" style="display: none;">มุมมองรายชื่อ</button>
+    </header>
+    <div class="friend-list" id="friend-list"></div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const friendList = document.getElementById("friend-list");
+        const sortSelect = document.getElementById("sort-select");
+        const friends = JSON.parse(localStorage.getItem("friends")) || [];
+        let countdownIntervals = {}; // เก็บ ID ของ Interval สำหรับแต่ละเพื่อน
+
+        const renderFriends = () => {
+            if (!friendList) return; // หากไม่มี friend-list ให้ข้ามฟังก์ชันนี้
+            friendList.innerHTML = ""; // ล้างข้อมูลเก่า
+
+            // จัดเรียงข้อมูลก่อนแสดง
+            const sortedFriends = getSortedFriends();
+
+            sortedFriends.forEach((friend, index) => {
+                const listItem = document.createElement("div");
+                listItem.id = `friend-list-${index}`; // กำหนด id ให้แต่ละรายการ
+                listItem.classList.add("friend-item");
+
+                // ตรวจสอบวันเกิด
+                const today = new Date();
+                const birthday = new Date(friend.birthday);
+                birthday.setFullYear(today.getFullYear());
+
+                // ปรับวันเกิดในปีปัจจุบัน
+                if (birthday < today) {
+                    birthday.setFullYear(today.getFullYear() + 1); // หากวันเกิดผ่านไปแล้ว ให้ใช้ปีถัดไป
+                }
+
+                // คำนวณจำนวนวันก่อนถึงวันเกิด
+                const diffTime = birthday - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // แปลงเป็นวัน
+
+                // กำหนดสีพื้นหลังตามเงื่อนไข
+                let backgroundColor = "#F9F9F9"; // สีพื้นหลังเริ่มต้น
+                if (diffDays === 0) {
+                    backgroundColor = "#FF7070"; // วันเกิด
+                } else if (diffDays <= 7) {
+                    backgroundColor = "#E8D6001A"; // ใกล้ถึงวันเกิด (7 วันก่อน)
+                } else if (today > birthday) {
+                    backgroundColor = "#00CC4F1A"; // เลยวันเกิดแล้ว:
+                }
+
+                listItem.innerHTML = `
+                <div class="friend-details">
+                    <div class="friend-header">
+                        <span class="friend-name">${friend.name} ${diffDays === 0 ? "🎉" : ""}</span>
+                        <span class="friend-birthday">${friend.birthday}</span>
+                    </div>
+                    <div class="friend-countdown" id="countdown-${index}">กำลังคำนวณ...</div>
+                </div>
+                <div class="buttons">
+                    <button class="delete-btn" data-index="${index}"></button>
+                    <button class="edit-btn" data-index="${index}"></button>
+                </div>
+            `;
+
+                // กำหนดสีพื้นหลังให้ `id="friend-list-${index}"`
+                listItem.style.backgroundColor = backgroundColor;
+
+                friendList.appendChild(listItem);
+
+                // อัปเดตการนับถอยหลังแบบเรียลไทม์
+                updateCountdown(index, friend.birthday);
+            });
+        };
+
+        // ฟังก์ชันเรียงลำดับข้อมูล
+        const getSortedFriends = () => {
+            const sortType = sortSelect ? sortSelect.value : "createdDate";
+
+            if (sortType === "createdDate") {
+                // เรียงตามวันที่เพิ่ม (ล่าสุดมาก่อน)
+                return friends.slice().sort((a, b) => {
+                    const aCreated = new Date(a.createdDate);
+                    const bCreated = new Date(b.createdDate);
+                    return bCreated - aCreated; // ล่าสุดก่อน
+                });
+            } else if (sortType === "name") {
+                // เรียงตามชื่อ (A-Z)
+                return friends.slice().sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortType === "birthday") {
+                // เรียงตามวันเกิด (ใกล้ที่สุดมาก่อน)
+                const today = new Date();
+
+                return friends.slice().sort((a, b) => {
+                    const aBirthday = new Date(a.birthday);
+                    const bBirthday = new Date(b.birthday);
+
+                    // ปรับวันเกิดให้เป็นปีปัจจุบัน
+                    aBirthday.setFullYear(today.getFullYear());
+                    bBirthday.setFullYear(today.getFullYear());
+
+                    // เลื่อนวันเกิดที่ผ่านแล้วไปปีหน้า
+                    if (aBirthday < today) aBirthday.setFullYear(today.getFullYear() + 1);
+                    if (bBirthday < today) bBirthday.setFullYear(today.getFullYear() + 1);
+
+                    return aBirthday - bBirthday; // ใกล้ที่สุดมาก่อน
+                });
+            } else if (sortType === "pastBirthdays") {
+                // แสดงเฉพาะวันเกิดที่ผ่านไปแล้ว
+                const today = new Date();
+
+                return friends.slice().filter((friend) => {
+                    const friendBirthday = new Date(friend.birthday);
+                    friendBirthday.setFullYear(today.getFullYear());
+
+                    // เลือกเฉพาะวันเกิดที่ผ่านมาแล้ว
+                    return friendBirthday < today;
+                }).sort((a, b) => {
+                    const aBirthday = new Date(a.birthday);
+                    const bBirthday = new Date(b.birthday);
+                    return bBirthday - aBirthday; // เรียงตามวันที่ย้อนหลัง
+                });
+            }
+
+            return friends;
+        };
+
+        // ตัวอย่างการใช้งาน
+        sortSelect.addEventListener("change", () => {
+            renderFriends(); // อัปเดตการแสดงผลเมื่อเปลี่ยนตัวเลือกการเรียงลำดับ
+        });
+
+        // ฟังก์ชันอัปเดตข้อความการนับถอยหลัง
+        const updateCountdown = (index, birthday) => {
+            const countdownElement = document.getElementById(`countdown-${index}`);
+
+            if (countdownIntervals[index]) {
+                clearInterval(countdownIntervals[index]); // ลบ Interval เก่าถ้ามี
+            }
+
+            const calculateCountdown = () => {
+                const today = new Date();
+                const nextBirthday = new Date(birthday);
+                nextBirthday.setFullYear(today.getFullYear());
+                if (nextBirthday < today) {
+                    nextBirthday.setFullYear(today.getFullYear() + 1);
+                }
+
+                const diffTime = nextBirthday - today;
+
+                const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+                countdownElement.textContent = `${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที`;
+            };
+
+            calculateCountdown();
+            countdownIntervals[index] = setInterval(calculateCountdown, 1000); // เก็บ ID Interval ไว้ในอ็อบเจกต์
+        };
+
+        // ฟังก์ชันลบเพื่อน
+        const deleteFriend = (index) => {
+            friends.splice(index, 1); // ลบข้อมูลในอาร์เรย์
+            localStorage.setItem("friends", JSON.stringify(friends)); // อัปเดต Local Storage
+            renderFriends(); // อัปเดตหน้าจอทันที
+        };
+
+        // ฟังก์ชันแก้ไขเพื่อน
+        const editFriend = (index) => {
+            const newName = prompt("กรุณาใส่ชื่อใหม่:", friends[index].name);
+            const newBirthday = prompt("กรุณาใส่วันเกิดใหม่ (yyyy-mm-dd):", friends[index].birthday);
+
+            if (newName && newBirthday && !isNaN(new Date(newBirthday).getTime())) {
+                friends[index].name = newName;
+                friends[index].birthday = newBirthday;
+                localStorage.setItem("friends", JSON.stringify(friends)); // อัปเดต Local Storage
+                renderFriends(); // อัปเดตหน้าจอทันที
+            } else {
+                alert("ข้อมูลไม่ถูกต้อง!");
+            }
+        };
+
+        if (friendList) {
+            renderFriends(); // แสดงรายชื่อเพื่อน
+            friendList.addEventListener("click", (e) => {
+                if (e.target.classList.contains("delete-btn")) {
+                    const index = e.target.dataset.index;
+                    deleteFriend(index);
+                } else if (e.target.classList.contains("edit-btn")) {
+                    const index = e.target.dataset.index;
+                    editFriend(index);
+                }
+            });
+
+            if (sortSelect) {
+                sortSelect.addEventListener("change", renderFriends); // เปลี่ยนการเรียง
+            }
+        }
+
+        // หากอยู่ใน index.html ให้เพิ่มฟังก์ชันการบันทึกข้อมูล
+        const form = document.getElementById("birthday-form");
+        if (form) {
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const name = document.getElementById("friend-name").value;
+                const birthday = document.getElementById("friend-birthday").value;
+
+                if (!name || !birthday || isNaN(new Date(birthday).getTime())) {
+                    alert("กรุณากรอกข้อมูลให้ถูกต้อง");
+                    return;
+                }
+
+                friends.push({ name, birthday }); // เพิ่มข้อมูลใหม่
+                localStorage.setItem("friends", JSON.stringify(friends)); // อัปเดต Local Storage
+                renderFriends(); // อัปเดตหน้าจอทันที
+                form.reset(); // รีเซ็ตฟอร์ม
+            });
+        }
+    });
+
+    let i = true;
+
+    function addBirthday() {
+        if (i) {
+            document.documentElement.scrollTop = 0;
+            document.querySelector("h1").textContent = "บันทึกและนับถอยหลังวันเกิด";
+            document.getElementById("birthday-form").style.display = "grid";
+            document.getElementById("add-btn").style.display = "none";
+            document.getElementById("see-btn").style.display = "flex";
+        } else {
+            document.querySelector("h1").textContent = "รายชื่อและวันเกิด";
+            document.getElementById("birthday-form").style.display = "none";
+            document.getElementById("add-btn").style.display = "flex";
+            document.getElementById("see-btn").style.display = "none";
+        }
+        i = !i;
+    }
+
+</script>
+
+</html>

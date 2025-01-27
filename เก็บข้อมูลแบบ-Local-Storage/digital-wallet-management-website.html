@@ -1,0 +1,194 @@
+<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
+<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
+<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
+<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
+<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
+
+<!DOCTYPE html>
+<html lang="th">
+
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="เว็บบริหารเงินดิจิทัลวอลเล็ต — Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>เว็บบริหารเงินดิจิทัลวอลเล็ต • Centered101</title>
+    <meta name="title" content="เว็บบริหารเงินดิจิทัลวอลเล็ต — Centered101" />
+    <meta name="description" content="เว็บบริหารเงินดิจิทัลวอลเล็ต" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://project-test-submission.web.app/ก็บข้อมูลแบบ-Local-Storage/" />
+    <meta property="og:title" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta property="og:description" content="การเก็บข้อมูลแบบ Local Storage" />
+    <meta property="og:image" content="https://project-test-submission.web.app/images/Tes-D.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://project-test-submission.web.app/เก็บข้อมูลแบบ-Local-Storage/" />
+    <meta property="twitter:title" content="การเก็บข้อมูลแบบ Local Storage — Centered101" />
+    <meta property="twitter:description" content="การเก็บข้อมูลแบบ Local Storage" />
+    <meta property="twitter:image" content="https://project-test-submission.web.app/images/Tes-D.png" />
+
+    <link rel="icon" type="image/png" href="https://project-test-submission.web.app/images/Tes-D.png">
+
+    <link rel="stylesheet" href="/style/style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/animation/script.js"></script>
+
+</head>
+
+<body class="bg-gray-100 p-4">
+    <div class="max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-lg">
+        <h1 class="text-2xl font-bold mb-4 text-center text-blue-600">เว็บบริหารเงินดิจิทัลวอลเล็ต</h1>
+
+        <!-- Input ต้นสัปดาห์ -->
+        <div class="mb-4">
+            <label for="initial-money" class="block text-gray-700 font-semibold">ใส่จำนวนเงินต้นสัปดาห์:</label>
+            <input type="number" id="initial-money" class="w-full px-4 py-2 border rounded focus:outline-blue-500"
+                placeholder="เช่น 500 บาท">
+        </div>
+
+        <!-- Input ท้ายสัปดาห์ -->
+        <div class="mb-4">
+            <label for="remaining-money" class="block text-gray-700 font-semibold">เงินเหลือท้ายสัปดาห์:</label>
+            <input type="number" id="remaining-money" class="w-full px-4 py-2 border rounded focus:outline-blue-500"
+                placeholder="เช่น 50 บาท">
+        </div>
+
+        <!-- ปุ่มคำนวณ -->
+        <button id="calculate-btn" class="w-full px-4 py-2 text-white bg-[#409EFE] border border-[#CCCCCC] rounded">
+            คำนวณและบันทึก
+        </button>
+
+        <!-- แสดงผลการแบ่งเงิน -->
+        <div id="results" class="mt-6 hidden">
+            <h2 class="text-xl font-semibold mb-2 text-green-600">ผลการแบ่งเงิน:</h2>
+            <div id="money-breakdown" class="space-y-2"></div>
+        </div>
+
+        <!-- ส่วนข้อมูลที่บันทึก -->
+        <h2 class="text-lg font-bold mt-8">ประวัติการบริหารเงิน</h2>
+        <div id="history-container" class="mt-4 space-y-4"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const calculateBtn = document.getElementById("calculate-btn");
+            let weekCount = JSON.parse(localStorage.getItem("weekCount")) || 1;
+            const initialMoneyInput = document.getElementById("initial-money");
+            const remainingMoneyInput = document.getElementById("remaining-money");
+            const resultsDiv = document.getElementById("results");
+            const moneyBreakdownDiv = document.getElementById("money-breakdown");
+            const historyContainer = document.getElementById("history-container");
+
+            // ฟังก์ชันกดปุ่มคำนวณ
+            function clickCalculate() {
+                calculateBtn.click(); // Trigger event click ของปุ่ม
+            }
+
+            // ฟังก์ชันทำงานเมื่อกด Enter ใน input field
+            initialMoneyInput.addEventListener("keypress", (event) => {
+                if (event.key === "Enter") {
+                    clickCalculate();
+                }
+            });
+
+            remainingMoneyInput.addEventListener("keypress", (event) => {
+                if (event.key === "Enter") {
+                    clickCalculate();
+                }
+            });
+
+            // โหลดข้อมูลจาก Local Storage
+            loadHistory();
+
+            calculateBtn.addEventListener("click", () => {
+                const initialMoney = parseFloat(initialMoneyInput.value) || 0;
+                const remainingMoney = parseFloat(remainingMoneyInput.value) || 0;
+
+                document.querySelectorAll("input").forEach(function (input) {
+                    input.value = "";
+                });
+
+                if (initialMoney <= 0) {
+                    alert("กรุณาใส่จำนวนเงินต้นสัปดาห์ให้ถูกต้อง!");
+                    return;
+                }
+
+                const essential = (initialMoney * 0.5).toFixed(2);
+                const luxury = (initialMoney * 0.3).toFixed(2);
+                const savings = (initialMoney * 0.2).toFixed(2);
+                const totalSavings = (remainingMoney + parseFloat(savings)).toFixed(2);
+
+                // แสดงผลลัพธ์การแบ่งเงิน
+                resultsDiv.classList.remove("hidden");
+                moneyBreakdownDiv.innerHTML = `
+          <p>ค่าใช้จ่ายจำเป็น (50%): <span class="font-bold text-blue-600">${essential} บาท</span></p>
+          <p>ค่าใช้จ่ายฟุ่มเฟือย (30%): <span class="font-bold text-yellow-600">${luxury} บาท</span></p>
+          <p>การออมและการลงทุน (20%): <span class="font-bold text-green-600">${savings} บาท</span></p>
+          <p>ยอดรวมเงินออม/ลงทุน (รวมท้ายสัปดาห์): <span class="font-bold text-purple-600">${totalSavings} บาท</span></p>
+        `;
+
+                // บันทึกข้อมูล
+                saveToHistory(initialMoney, remainingMoney, essential, luxury, savings, totalSavings);
+                loadHistory();
+            });
+
+            function saveToHistory(initialMoney, remainingMoney, essential, luxury, savings, totalSavings) {
+                let history = JSON.parse(localStorage.getItem("moneyHistory")) || [];
+                history.push({
+                    id: Date.now(),
+                    week: weekCount, // เพิ่มสัปดาห์ที่เท่าไหร่
+                    initialMoney,
+                    remainingMoney,
+                    essential,
+                    luxury,
+                    savings,
+                    totalSavings,
+                });
+
+                localStorage.setItem("moneyHistory", JSON.stringify(history));
+
+                // เพิ่มจำนวนสัปดาห์ขึ้น 1 และบันทึก
+                weekCount++;
+                localStorage.setItem("weekCount", JSON.stringify(weekCount));
+            }
+
+            function loadHistory() {
+                const history = JSON.parse(localStorage.getItem("moneyHistory")) || [];
+                historyContainer.innerHTML = "";
+                history.forEach((item) => {
+                    const div = document.createElement("div");
+                    div.classList = "p-4 bg-gray-200 rounded-lg relative";
+                    div.innerHTML = `
+            <p><span class="font-bold text-gray-700">สัปดาห์ที่ ${item.week}</span></p>
+            <p>เงินต้นสัปดาห์: <span class="font-bold">${item.initialMoney} บาท</span></p>
+            <p>เงินเหลือท้ายสัปดาห์: <span class="font-bold">${item.remainingMoney} บาท</span></p>
+            <p>ค่าใช้จ่ายจำเป็น: ${item.essential} บาท | ฟุ่มเฟือย: ${item.luxury} บาท | ออม/ลงทุน: ${item.savings} บาท</p>
+            <p>ยอดรวมเงินออม/ลงทุน: <span class="font-bold text-purple-600">${item.totalSavings} บาท</span></p>
+            <button onclick="deleteHistory(${item.id})" class="absolute top-2 right-2 text-red-600 hover:text-red-800">ลบ</button>
+        `;
+                    historyContainer.appendChild(div);
+                });
+            }
+
+            window.deleteHistory = (id) => {
+                let history = JSON.parse(localStorage.getItem("moneyHistory")) || [];
+                history = history.filter((item) => item.id !== id);
+                localStorage.setItem("moneyHistory", JSON.stringify(history));
+                loadHistory();
+            };
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="th">
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+
+<head>
+    <meta name="theme-color" content="#FF7070" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-compatible" content="IE=edge" />
+
+    <!-- Primary Meta Tags -->
+    <title>ส่งจีบคุณ — Centered101</title>
+    <meta name="title" content="Class Schedule" />
+    <meta name="description" content="ส่งจีบคุณ — Centered101" />
+
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://centered101.netlify.app" />
+    <meta property="og:title" content="Class Schedule" />
+    <meta property="og:description" content="ส่งจีบคุณ — Centered101" />
+    <meta property="og:image" content="https://www.iconpacks.net/icons/1/free-heart-icon-431-thumb.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://centered101.netlify.app" />
+    <meta property="twitter:title" content="Class Schedule" />
+    <meta property="twitter:description" content="ส่งจีบคุณ — Centered101" />
+    <meta property="twitter:image" content="https://www.iconpacks.net/icons/1/free-heart-icon-431-thumb.png" />
+
+    <link id="favicon" rel="icon" type="image/png"
+        href="https://www.iconpacks.net/icons/1/free-heart-icon-431-thumb.png" />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+    <header>
+        <a title="ดูต้นฉบับ" class="btn-github" rel="noopener" target="_blank" aria-label="View original"
+            href="https://axiostq.github.io/game-y-n/" data-v-14a7b7ba="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55">
+                <polygon points="0,0 55,0 55,55" fill="#FF7070" />
+            </svg>
+        </a>
+    </header>
+
+    <div class="content">
+        <img id="images" src="images/doyou.png" draggable="false" oncontextmenu="return false;" alt="images">
+        <div id="lovePage" class="hidden">
+            <img src="images/loveu.png" draggable="false" oncontextmenu="return false;" alt="images">
+        </div>
+
+        <h1 id="title">เธอ รักเค้าม้ายยย </h1>
+
+        <div id="noPage" class="hidden">
+            <img src="images/die.png" draggable="false" oncontextmenu="return false;" alt="images">
+        </div>
+        <div id="buttons">
+            <button id="yes-button" onmouseover="changeImage('images/pinkping.png')" onmouseout="resetImage()"
+                onclick="showPage('lovePage')">รัก</button>
+            <button id="no-button" onmouseover="changeImage('images/hm.png')" onmouseout="resetImage()"
+                onclick="handleNoClick()">ไม่</button>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" charset="utf-8">
+    let clickCount = 0;
+    const maxClicks = 10;
+
+    function showPage(pageId) {
+        const title = document.getElementById('title');
+        const lovePage = document.getElementById('lovePage');
+        const noPage = document.getElementById('noPage');
+
+        // ลบภาพก่อนหน้า
+        lovePage.innerHTML = '';
+        noPage.innerHTML = '';
+
+        if (pageId === 'lovePage') {
+            title.textContent = "เขาก็ตัวเองรักเหมือนกัน ";
+            document.getElementById('lovePage').style.display = "block";
+            document.getElementById('images').style.display = 'none';
+            lovePage.innerHTML = "<img src='images/loveu.png' draggable='false' oncontextmenu='return false;' alt='images'>";
+            document.getElementById('buttons').style.display = "none";
+            setTimeout(() => {
+                title.textContent = "Good Bye ";
+            }, 1500);
+            setTimeout(() => {
+                window.location.href = "/..";
+            }, 3000);
+        } else if (pageId === 'noPage') {
+            title.innerHTML = "ทำมั้ย ";
+            noPage.innerHTML = "<img src='images/die.png' draggable='false' oncontextmenu='return false;' alt='images'>";
+        }
+
+        clickCount++;
+        if (clickCount >= maxClicks) {
+            showFinalImage();
+            document.getElementById('images').style.display = "none";
+            document.getElementById('buttons').style.display = "none";
+            title.style.display = "none";
+            setTimeout(() => {
+                window.location.href = "/..";
+            }, 3000);
+        } else {
+            randomizeButtons();
+        }
+    }
+
+    function handleNoClick() {
+        showPage('noPage');
+    }
+
+    function randomizeButtons() {
+        const button = document.getElementById('no-button');
+        const randomX = Math.random() * (window.innerWidth - button.offsetWidth);
+        const randomY = Math.random() * (window.innerHeight - button.offsetHeight);
+        button.style.position = 'absolute';
+        button.style.left = `${randomX}px`;
+        button.style.top = `${randomY}px`;
+    }
+
+
+    function showFinalImage() {
+        const finalImage = document.createElement('img');
+        finalImage.src = 'images/die.png';
+        document.body.appendChild(finalImage);
+
+        // Disable buttons after max clicks
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => button.disabled = true);
+    }
+
+    // Function to change image on mouse over
+    function changeImage(imgPath) {
+        document.getElementById('images').src = imgPath;
+    }
+
+    // Function to reset image on mouse out
+    function resetImage() {
+        document.getElementById('images').src = 'images/doyou.png';
+    }
+
+</script>
+
+</html>

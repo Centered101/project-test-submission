@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="th">
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+<!-- Login V2. -->
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Centered101 – ล็อกอินสำหรับแอดมิน</title>
+
+    <!-- รูปโปรไฟร์หัวข้อหน้าเว็บ รูปแแบบ external -->
+    <link rel="icon" type="image/png" href="/images/icon/เว็บไซต์1200x1200.png">
+
+    <style type="text/css" media="all">
+        @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap');
+
+        .bai-jamjuree-regular {
+            font-family: "Bai Jamjuree", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            background: #000000;
+            margin: 0;
+            padding: 20px;
+            font-family: "Bai Jamjuree", sans-serif;
+        }
+
+        body {
+            /* background style */
+            --color: rgba(114, 114, 114, 0.3);
+            background-color: #191A1A;
+            background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+            background-size: 55px 55px;
+        }
+
+        body,
+        input,
+        button {
+            font-size: 100%;
+            /* ปรับขนาดฟอนต์เป็น 100% ของขนาดปกติ */
+        }
+
+        @media screen and (max-width: 768px) {
+
+            body,
+            input,
+            button {
+                font-size: 80%;
+                /* ลดขนาดฟอนต์เมื่อหน้าจอมีความกว้างไม่เกิน 768px */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+
+            body,
+            input,
+            button {
+                font-size: 70%;
+                /* ลดขนาดฟอนต์เมื่อหน้าจอมีความกว้างไม่เกิน 480px */
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        a,
+        p,
+        ol,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        header {
+            color: #CCCCCC;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 20px;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
+        }
+
+        .container {
+            /* background style */
+            --color: #CCCCCC;
+            background-color: #F3F3F3;
+            background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
+            background-size: 55px 55px;
+        }
+
+        .container div h1 {
+            border: solid 1px #000000;
+            border-radius: 3px;
+            padding: 10px;
+        }
+
+        .container div h1 a {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #00CC4FB3;
+            animation: typeAndDelete 6s steps(16) infinite, blinkCursor .5s step-end infinite alternate;
+        }
+
+        @keyframes typeAndDelete {
+
+            0%,
+            10% {
+                width: 0;
+            }
+
+            45%,
+            55% {
+                width: 11.2em;
+            }
+
+            90%,
+            100% {
+                width: 0;
+            }
+        }
+
+        .container div h3 {
+            margin: 10px;
+        }
+
+        .container div input[type="text"],
+        .container div input[type="password"],
+        .container div button {
+            border: solid 1px #000000;
+            background: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .container div input {
+            margin-right: 20px;
+        }
+
+        .container div button {
+            caret-color: #00CC4FB3;
+            margin-top: -20px;
+            background: #00CC4FB3;
+            width: 100%;
+        }
+
+        .container div h6 {
+            border: solid 1px #000000;
+            border-radius: 3px;
+            padding: 10px;
+            letter-spacing: 2px;
+            margin-top: -20px;
+        }
+
+        footer {
+            align-items: center;
+            bottom: 0;
+            width: 100%;
+            position: fixed;
+            color: #CCCCCC;
+            margin-bottom: 20px;
+        }
+
+        /*------ ตั่งค่า ------*/
+        .container div .togglePassword {
+            --color: #CCCCCC;
+            --size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            font-size: var(--size);
+            user-select: none;
+            fill: var(--color);
+            margin-left: 90%;
+            margin-bottom: -20px;
+        }
+
+        .container div .togglePassword .eye {
+            position: absolute;
+            animation: keyframes-fill .5s;
+        }
+
+        .container div .togglePassword .eye-slash {
+            position: absolute;
+            animation: keyframes-fill .5s;
+            display: none;
+        }
+
+        /* ------ ในงานเช็คเอ้าท์ ------ */
+        .container div .togglePassword input:checked~.eye {
+            display: none;
+        }
+
+        .container div .togglePassword input:checked~.eye-slash {
+            display: block;
+        }
+
+        /* ------ ซ่อนช่องทำเครื่องหมายเริ่มต้น ------ */
+        .container div .togglePassword input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* ------ แอนิเมชั่น ------ */
+        @keyframes keyframes-fill {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+    </header>
+    <div class="container">
+        <div>
+            <h1><a type="button" onclick="showtext()">ล็อกอินสำหรับแอดมิน.</a></h1>
+            <h3>กรุณาล็อกอินเพื่อเข้าถึงพาเนลของแอดมิน</h3>
+        </div>
+        <div action="test.html" method="post">
+            <input type="text" id="usernameInput" placeholder="ชื่อผู้ใช้">
+            <!-- เพิ่มปุ่มสำหรับสลับการแสดงรหัสผ่าน -->
+            <label class="togglePassword">
+                <input type="checkbox" checked="checked" id="togglePassword" onclick="togglePassword()">
+                <svg class="eye" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                    <path
+                        d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z">
+                    </path>
+                </svg>
+                <svg class="eye-slash" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512">
+                    <path
+                        d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z">
+                    </path>
+                </svg>
+            </label>
+            <input type="password" id="passwordInput" placeholder="รหัสผ่าน">
+            <button id="loginButton">ล็อกอิน</button>
+            <h6>>>> <a id="output">?</a></h6>
+        </div>
+    </div>
+    <footer>
+        <h4>
+            <p id="countdown">
+                ออกจากหน้านี้ ภายใน: 1:30
+            </p>
+            <script>
+                function displayCurrentTimeAndDate() {
+                    var now = new Date();
+                    var thaiMonths = [
+                        "มกราคม",
+                        "กุมภาพันธ์",
+                        "มีนาคม",
+                        "เมษายน",
+                        "พฤษภาคม",
+                        "มิถุนายน",
+                        "กรกฎาคม",
+                        "สิงหาคม",
+                        "กันยายน",
+                        "ตุลาคม",
+                        "พฤศจิกายน",
+                        "ธันวาคม"
+                    ];
+                    var monthIndex = now.getMonth();
+                    var currentMonth = thaiMonths[monthIndex];
+                    var currentDate = now.getDate();
+                    var currentYear = now.getFullYear() + 543; // แปลงเป็นปีไทย
+
+                    document.write("วันที่ปัจจุบัน: " + currentDate + " " + currentMonth + " " + currentYear);
+                }
+                // เรียกใช้งานฟังก์ชันเมื่อหน้าเว็บโหลดเสร็จ
+                displayCurrentTimeAndDate();
+            </script>
+        </h4>
+    </footer>
+
+    <script type="text/javascript" charset="utf-8">
+
+        function showtext() {
+            console.log("มีการกดคำไบ้"),
+                alert("รหัสล็อคหน้าจอ คุณอะ แอดมินจำไม่ได้หรอ");
+        }
+
+        var maxAttempts = 3;
+        var attempts = 0;
+
+        function processLogin() {
+            var username = document.getElementById("usernameInput").value;
+            var password = document.getElementById("passwordInput").value;
+            var outputDiv = document.getElementById("output");
+
+            if (username === "" && password === "") {
+                outputDiv.innerHTML = "ใส่ข้อมูลเพื่อเข้าสู่ระบบ";
+            } else if (username === "admin" && password === "admin123") {
+                outputDiv.innerHTML = "ล็อกอินสำเร็จ!";
+                // ที่นี่คุณสามารถเปลี่ยนเส้นทางผู้ใช้ไปยังพาเนลของแอดมินหรือดำเนินการอื่นๆ ได้
+                // นำทางไปยังหน้าถัดไปหลังจากล็อกอินสำเร็จ
+                window.location.href = "/www/website_and_social_links/website_and_social_links.html"; // เปลี่ยน next_page.html เป็น URL ของหน้าถัดไปที่คุณต้องการ
+            } else {
+                attempts++;
+                if (attempts >= maxAttempts) {
+                    window.location.href = "/www/other/countdown.html"; // เปลี่ยนเป็น URL ของหน้าเคาท์ดาวน์ที่คุณต้องการให้ไป
+                } else {
+                    usernameInput.value = "";
+                    passwordInput.value = "";
+                    outputDiv.innerHTML = "ล็อกอินล้มเหลว โปรดตรวจสอบชื่อผู้ใช้และรหัสผ่านของคุณ";
+                }
+            }
+            // ส่งข้อมูลไปยัง login.php แทนการประมวลผลด้วย JavaScript
+            // document.forms[0].submit();
+        }
+
+
+        document.getElementById("loginButton").addEventListener("click", processLogin);
+
+        function togglePassword() {
+            var passwordInput = document.getElementById("passwordInput");
+            var toggleButton = document.getElementById("togglePassword");
+            var outputDiv = document.getElementById("output");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                outputDiv.innerHTML = "แสดง รหัสผ่าน";
+            } else {
+                passwordInput.type = "password";
+                outputDiv.innerHTML = "ซ่อน รหัสผ่าน";
+            }
+        }
+
+        var countdown = 90;
+        var timer = setInterval(function () {
+            countdown--;
+            var minutes = Math.floor(countdown / 60);
+            var seconds = countdown % 60;
+            document.getElementById('countdown').innerText = "ออกจากหน้านี้ ภายใน: " + minutes + ':' + (seconds < 10 ? '0' : '') + seconds  + " / " + " ผิดไป " + attempts + " ครั้ง ไม่เกิน 3 ครั้ง";
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.location.href = "/index.html";
+            }
+        }, 1000); // นับถอยหลังทุกๆ 1 วินาที
+    </script>
+</body>
+
+</html>

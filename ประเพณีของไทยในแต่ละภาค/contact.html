@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact • Centered101</title>
+    <link rel="shortcut icon" href="https://project-test-submission.web.app/images/icon.ico" type="image/x-icon">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        color: #0D0D0D;
+        text-transform: uppercase;
+    }
+
+    body {
+        background-color: #DFDFDFDF;
+        overflow: hidden;
+    }
+
+    form.content {
+        height: 100vh;
+        margin-left: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form.content::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-width: 512px;
+        margin-left: auto;
+        opacity: .75;
+        background-image: url("https://project-test-submission.web.app/images/icon.ico");
+        background-size: contain;
+        background-position: right;
+        background-repeat: no-repeat;
+        position: absolute;
+        inset: 0;
+        z-index: -10;
+    }
+
+    fieldset {
+        background-color: #F5F5f5;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        max-width: 320px;
+        margin: 10px;
+        padding: 20px;
+        border: solid #0D0D0D 2px;
+        border-radius: 4px;
+        display: grid;
+        gap: 40px;
+        z-index: 50;
+
+        legend {
+            background-color: #F5F5f5;
+            font-size: 22px;
+            letter-spacing: 3px;
+            margin: 0;
+            padding: 2px 10px;
+            border: solid #0D0D0D 2px;
+            border-radius: 4px;
+        }
+
+        div {
+            display: grid;
+            gap: 10px;
+
+            input,
+            textarea {
+                font-size: 12px;
+                padding: 10px;
+                border: none;
+                color: #0D0D0D;
+                font-size: 12px;
+                background: transparent;
+                border-left: 2px solid #0D0D0D;
+                border-bottom: 2px solid #0D0D0D;
+                transition: 0.1s;
+                border-bottom-left-radius: 8px;
+            }
+
+            input,
+            textarea {
+                background-color: transparent;
+                letter-spacing: 0.2em;
+                width: 100%;
+                margin: 0;
+                padding: 8px;
+                border: 0;
+                border: solid transparent 2px;
+                border-left-color: #0D0D0D;
+                border-bottom-color: #0D0D0D;
+                border-radius: 0 0 0 4px;
+                transition-property: all;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 300ms;
+            }
+
+            textarea {
+                max-width: 320px;
+                min-width: 320px;
+                max-height: 180px;
+            }
+
+        }
+
+        div:hover>input,
+        div:valid>input,
+        div:focus>input,
+        div:hover>textarea,
+        div:valid>textarea,
+        div:focus>textarea {
+            border: solid #0D0D0D 2px;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #0D0D0D;
+            color: #DFDFDF;
+            width: 100%;
+            margin: 0;
+            padding: 4px;
+            border: solid #0D0D0D 2px;
+            border-radius: 4px;
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+
+        }
+
+        button:hover {
+            background-color: transparent;
+            color: #0D0D0D;
+            cursor: pointer
+        }
+    }
+</style>
+
+<body>
+
+    <form class="content">
+        <marquee behavior="slide" direction="left" scrollamount="20">
+            <fieldset>
+                <legend>Contact</legend>
+                <div>
+                    <label for="Message">Your name</label>
+                    <input tyle="text" id="neme" name="name" maxlength="24">
+                </div>
+                <div>
+                    <label for="Message">Your mail</label>
+                    <input tyle="mail" id="mail" name="mail" maxlength="24">
+                </div>
+                <div>
+                    <label for="Message">Message</label>
+                    <textarea id="message" name="message" rows="4" cols="50"></textarea>
+                </div>
+
+                <button tyle="submit" id="submit" name="submit">submit</button>
+            </fieldset>
+        </marquee>
+    </form>
+
+</body>
+
+</html>

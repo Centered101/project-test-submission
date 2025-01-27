@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  user-select: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 100vh;
+  background-color: #FDFDFD;
+  padding: 1.25rem;
+}
+
+header a.btn-github[data-v-14a7b7ba] {
+  position: fixed;
+  top: 0;
+  right: 0;
+  opacity: .8;
+  transition: opacity .1s linear
+}
+
+header a.btn-github[data-v-14a7b7ba]:hover {
+  opacity: .9
+}
+
+div.content>*+* {
+  margin-top: 1.25rem;
+}
+
+div.content img {
+  user-select: none;
+  width: 100%;
+}
+
+div.content h1#title {
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  background: linear-gradient(9deg, #FF69B4, #FFC0CB);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+div.content h1#title::after {
+  content: '?';
+  color: #FF7070;
+}
+
+div.content div#buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+div.content div#buttons button {
+  padding: 1rem 3rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 24px;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  transition: transform .3s ease, background-color .3s ease;
+}
+
+div.content div#buttons button#yes-button {
+  background-image: linear-gradient(to right, #FF69B4, #FFC0CB);
+}
+
+div.content div#buttons button#yes-button:active {
+  transform: scale(1.05) rotate(-5deg);
+}
+
+div.content div#buttons button#no-button {
+  background-image: linear-gradient(to left, #FF7070, #FBB9B6);
+}
+
+div.content div#buttons button#no-button:active {
+  transform: scale(1.05) rotate(5deg);
+}
+
+div.hidden {
+  display: none;
+}

@@ -1,0 +1,205 @@
+<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
+<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
+<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
+<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
+<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
+
+<!DOCTYPE html>
+<html lang="th">
+
+<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
+
+<head>
+    <meta name="theme-color" content="#409EFE" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="Class Schedule" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>Class Schedule • Centered101</title>
+    <meta name="title" content="Class Schedule" />
+    <meta name="description" content="Class Schedule — Centered101" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://project-test-submission.firebaseapp.com/" />
+    <meta property="og:title" content="Class Schedule" />
+    <meta property="og:description" content="Class Schedule — Centered101" />
+    <meta property="og:image" content="https://project-test-submission.firebaseapp.com/images/Tes-D.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://project-test-submission.firebaseapp.com/" />
+    <meta property="twitter:title" content="Class Schedule" />
+    <meta property="twitter:description" content="Class Schedule — Centered101" />
+    <meta property="twitter:image" content="https://project-test-submission.firebaseapp.com/images/Tes-D.png" />
+
+    <link rel="icon" type="image/png" href="https://project-test-submission.firebaseapp.com/images/Tes-D.png">
+    <link rel="stylesheet" href="https://project-test-submission.firebaseapp.com/style/style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://project-test-submission.firebaseapp.com/animation/script.js"></script>
+
+</head>
+
+<body
+    class="text-[#0D0D0D] bg-gradient-to-b from-slate-200 to-slate-300 bg-[length:200%_200%] bg-center md:grid sm:grid-cols-2">
+
+    <script>
+        let isNameHidden = true;
+
+        function toggleName() {
+            if (isNameHidden) {
+                document.getElementById('images').src = 'https://rms.lbtech.ac.th/rms2012/files/importpicstd/01/66201020151.jpg';
+                document.getElementById('images').classList.add('w-52');
+                document.getElementById('images').classList.add('bg-[#F5F5F5]');
+                document.getElementById('images').classList.add('shadow-lg');
+                document.getElementById('firstName').textContent = 'พงศ์พล';
+                document.getElementById('lastName').textContent = 'พรมผา';
+                document.getElementById('id').textContent = '3130';
+            } else {
+                document.getElementById('images').src = 'https://project-test-submission.firebaseapp.com/images/icon.ico';
+                document.getElementById('images').classList.remove('w-52');
+                document.getElementById('images').classList.remove('bg-[#F5F5F5]');
+                document.getElementById('images').classList.remove('shadow-lg');
+                document.getElementById('firstName').textContent = '*****';
+                document.getElementById('lastName').textContent = '*****';
+                document.getElementById('id').textContent = '*****';
+            }
+            isNameHidden = !isNameHidden;
+        }
+    </script>
+
+    <section
+        class="md:sticky inset-0 text-sm sm:text-base flex justify-center items-center h-[100vh] select-none overflow-hidden"
+        style="background-image: url(/images/img/BG-Programming.png);">
+        <div onclick="toggleName()"
+            class="animationShow-x w-96 h-min m-5 bg-gradient-to-br from-[#F5F5F5] to-[#F9F9F9] bg-[length:200%_200%] bg-center border border-black rounded-lg shadow-xl transition-all cursor-pointer">
+            <div class="flex flex-col justify-center items-center gap-5 p-5">
+                <h1 class="text-center sm:text-xl font-bold mt-2">บัตรประจำตัวนักศึกษาออนไลน์</h1>
+                <img id="images" class="h-60 object-cover object-bottom select-none rounded"
+                    src="https://project-test-submission.firebaseapp.com/images/icon.ico" draggable="false"
+                    oncontextmenu="return false;" alt="โปรไฟล์">
+            </div>
+            <div class="flex flex-col justify-center items-center pl-5">
+                <div role="region" tabindex="0" class="w-full">
+                    <table class="table-auto w-full text-left">
+                        <tbody>
+                            <tr>
+                                <td class="font-bold p-1">ชื่อ</td>
+                                <td class="p-2" id="firstName">*****</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold p-2">นามสกุล</td>
+                                <td class="p-2" id="lastName">*****</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold p-2">เลขประจำตัว</td>
+                                <td class="p-2" id="id">*****</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold p-2">สาขาวิชา</td>
+                                <td class="p-2">เทคโนโลยีธุรกิจดิจิทัล</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="flex justify-end items-center p-5">
+                <img class="w-20 select-none fill-[#F9F9F9]" src="qr-code.svg" draggable="false"
+                    oncontextmenu="return false;" alt="3130">
+            </div>
+        </div>
+    </section>
+
+    <section class="pt-24 border-t-4 border-black md:border-t-0 md:border-l-4 overflow-hidden">
+        <main class="font-black text-xl">
+            <h1 class="animationShow-y text-center text-3xl font-black mb-24 mx-5">ตารางเรียน ปวช. คอมพิวเตอร์ธุรกิจ
+            </h1>
+
+            <h1 class="animationShow-y text-center m-5 mt-20">ปวช. 1, 2024</h1>
+            <div class="animationShow-y grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5 mx-5">
+                <a href="./class-schedule-1-1.html"
+                    class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-red-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                    <h1>ภาคเรียนที่ 1</h1>
+                </a>
+                <a href="./class-schedule-1-2.html"
+                    class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-green-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                    <h1>ภาคเรียนที่ 2</h1>
+                </a>
+            </div>
+
+            <h1 class="animationShow-y text-center m-5 mt-20">ปวช. 2, 2025</h1>
+            <div class="animationShow-y grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5 mx-5">
+                <a href="#"
+                    class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-blue-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                    <h1>ภาคเรียนที่ 1</h1>
+                </a>
+                <a href="#"
+                    class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-yellow-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                    <h1>ภาคเรียนที่ 2</h1>
+                </a>
+            </div>
+
+            <h1 class="animationShow-y text-center m-5 mt-20">ปวช. 3, 2026</h1>
+            <div class="animationShow-y grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-5 mx-5">
+                <a href="#"
+                    class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-orange-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                    <h1>ภาคเรียนที่ 1</h1>
+                </a>
+                <a href="#"
+                    class="text-center w-full h-52 hover:shadow-none flex justify-center items-center bg-lime-200 border-4 border-black rounded-lg hover:opacity-25 transition-all">
+                    <h1>ภาคเรียนที่ 2</h1>
+                </a>
+            </div>
+        </main>
+
+        <footer class="pt-24">
+            <p class="first-letter:text-[#409EFE] text-center truncate my-8">
+                <script>
+                    document.write("© " + (new Date().getFullYear()))
+                </script>
+                <span title="Centered101" class="text-[#409EFE] underline-offset-1">
+                    <a href="https://github.com/Centered101/">Centered101</a>
+                </span>— All Rights Reserved.
+            </p>
+        </footer>
+    </section>
+
+</body>
+<script src="https://project-test-submission.firebaseapp.com/script/key.js"></script>
+<script>
+    document.getElementById('version').textContent = appVersionProjectTest;
+</script>
+<script>
+    function nextPage(link) {
+        // ปิดการใช้งานลิงก์
+        link.style.opacity = '0.5'; // ทำให้ลิงก์ดูจางลง
+        link.style.cursor = 'default'; // เปลี่ยน cursor ให้เป็นค่า default (ไม่แสดงมือเมื่อ hover)
+        link.style.pointerEvents = 'none'; // ปิดการทำงานของลิงก์ ไม่ให้สามารถคลิกได้
+        setTimeout(function () {
+            link.style.opacity = '1';
+            link.style.cursor = 'pointer';
+            link.style.pointerEvents = 'auto';
+        }, 3000);
+    }
+
+    // เลือกทุกแท็ก <a> ใน div ที่มีคลาส 'animationShow-y'
+    const links = document.querySelectorAll('a');
+
+    links.forEach(link => {
+        // ตรวจสอบว่า href ของแท็ก <a> ว่างหรือไม่
+        if (!link.getAttribute('href') || link.getAttribute('href') === '#') {
+            // ถ้า href ว่าง ให้ปิดการใช้งานการคลิก
+            link.classList.add('cursor-default');
+            link.classList.add('opacity-25');
+            link.onclick = (event) => {
+                event.preventDefault(); // ป้องกันการทำงานของลิงค์
+            };
+        }
+    });
+</script>
+
+</html>

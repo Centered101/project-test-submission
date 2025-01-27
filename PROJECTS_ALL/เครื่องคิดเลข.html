@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เครื่องคิดเลข</title>
+
+    <link rel="stylesheet" href="/style/style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #F5F5F5;
+        }
+
+        #calculator {
+            max-width: 768px;
+            padding: 16px;
+            background-color: #DFDFDF;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #display {
+            font-size: 24px;
+            text-align: right;
+            margin-bottom: 16px;
+            padding: 4px;
+            background-color: #EFEFEF;
+            border: 1px solid #CCC;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        input {
+            width: 100%;
+            height: 60px;
+        }
+
+        input[type="button"] {
+            border: solid #CCCCCC 1px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        input[type="button"]:active {
+            opacity: .75;
+        }
+
+        .num-btn,
+        .op-btn,
+        .clear-btn,
+        .equal-btn {
+            background-color: #EFEFEF;
+            color: #0d0d00;
+        }
+
+        rowspan {
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="calculator">
+        <input type="text" id="display"><!-- disabled -->
+        <table>
+            <tr>
+                <td colspan="1"><input type="button" value="c" class="clear-btn" onclick="clearDisplay()"></td>
+                <td colspan="1"><input type="button" value="÷" class="op-btn" onclick="appendToDisplay('/')"></td>
+                <td colspan="1"><input type="button" value="×" class="op-btn" onclick="appendToDisplay('*')"></td>
+                <td colspan="1"><input type="button" value="-" class="op-btn" onclick="appendToDisplay('-')"></td>
+            </tr>
+            <tr>
+                <td colspan="1"><input type="button" value="7" class="num-btn" onclick="appendToDisplay('7')"></td>
+                <td colspan="1"><input type="button" value="8" class="num-btn" onclick="appendToDisplay('8')"></td>
+                <td colspan="1"><input type="button" value="9" class="num-btn" onclick="appendToDisplay('9')"></td>
+                <td rowspan="1"><input type="button" value="+" class="op-btn" onclick="appendToDisplay('+')">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1"><input type="button" value="4" class="num-btn" onclick="appendToDisplay('4')"></td>
+                <td colspan="1"><input type="button" value="5" class="num-btn" onclick="appendToDisplay('5')"></td>
+                <td colspan="1"><input type="button" value="6" class="num-btn" onclick="appendToDisplay('6')"></td>
+                <td colspan="1"><input type="button" value="e" class="op-btn" onclick="appendToDisplay(Math.E)">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1"><input type="button" value="1" class="num-btn" onclick="appendToDisplay('1')"></td>
+                <td colspan="1"><input type="button" value="2" class="num-btn" onclick="appendToDisplay('2')"></td>
+                <td colspan="1"><input type="button" value="3" class="num-btn" onclick="appendToDisplay('3')"></td>
+                <td colspan="1"><input type="button" value="π" class="op-btn" onclick="appendPi()"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="button" value="0" class="num-btn" onclick="appendToDisplay('0')"></td>
+                <td colspan="1"><input type="button" value="•" class="op-btn" onclick="appendToDisplay('.')"></td>
+                <td colspan="1"><input type="button" value="=" class="equal-btn" onclick="calculate()"></td>
+            </tr>
+            <tr>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+
+        // เพิ่ม Event Listener สำหรับการกด Enter
+        display.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                calculate();
+            }
+        });
+
+        function appendToDisplay(value) {
+            display.value += value;
+        }
+
+        function appendPi() {
+            display.value += Math.PI; // แสดงค่า π = 3.14
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch {
+                display.value = 'Error';
+            } finally {
+                display.value = display.value.replace(/\.0+$/, ''); // ลบ .0 ที่ไม่จำเป็น
+            }
+
+            if (display.value === 'Error' || display.value === 'NaN' || display.value === '') {
+                display.value = '';
+            } else if (display.value === "271828") {
+                display.value = "2.7182818284590452353602874713526624977572";
+            } else if (display.value === '0' || display.value === '101' || display.value === 'undefined') {
+                display.value = 'พ่อมึงอะ';
+            } else if (display.value === "111") {
+                display.value = "111แม่มึงอ่ะ";
+            } else if (display.value === "545") {
+                display.value = "i love u";
+            }
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+    </script>
+</body>
+
+</html>
