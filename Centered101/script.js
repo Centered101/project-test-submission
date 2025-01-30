@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById(savedSection).classList.add('flex');
 
     if (savedSection === 'section1') {
-        changeAudio('https://project-test-submission.firebaseapp.com/Audio/Music/blue - yung kai.mp3');
+        changeAudio('https://project-test-submission.netlify.app/Audio/Music/blue - yung kai.mp3');
         document.querySelectorAll('#title').forEach((title) => {
             title.textContent = 'blue';
         });
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (savedSection === 'section2') {
-        changeAudio('https://project-test-submission.firebaseapp.com/Audio/Music/(Skit).mp3');
+        changeAudio('https://project-test-submission.netlify.app/Audio/Music/(Skit).mp3');
         document.querySelectorAll('#title').forEach((title) => {
             title.textContent = '(Skit)';
         });
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (savedSection === 'section3') {
         // changeVideo('/images/Video/เซ็ทผมไปหน่อย.mp4');
-        changeAudio('https://project-test-submission.firebaseapp.com/Audio/Music/NEW%20DROP.mp3');
+        changeAudio('https://project-test-submission.netlify.app/Audio/Music/NEW%20DROP.mp3');
         document.querySelectorAll('#title').forEach((title) => {
             title.textContent = 'NEW DROP';
         });

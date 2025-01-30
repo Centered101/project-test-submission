@@ -3,11 +3,11 @@
 function resetWindow() {
     window.location.reload(true);
     document.body.innerHTML = `
-    <div class="fixed inset-0 flex flex-col justify-center items-center text-center min-h-screen bg-gradient-to-b from-[#FFFFFF] dark:from-[#000000] to-[#F5F5F5] dark:to-[#111827] text-[#0D0D0D] dark:text-zinc-500">
-      <div class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[#409EFE] mx-auto"></div>
-      <h2 class="mt-4">Loading...</h2>
-      <p>Your adventure is about to begin</p>
-    </div>
+<div class="fixed inset-0 flex flex-col justify-center items-center text-center min-h-screen bg-gradient-to-b from-[#FFFFFF] dark:from-[#000000] to-[#F5F5F5] dark:to-[#111827] text-[#0D0D0D] dark:text-zinc-500">
+    <div class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[#409EFE] mx-auto"></div>
+    <h2 class="mt-4">Loading...</h2>
+    <p>Your adventure is about to begin</p>
+</div>
         `;
 
 }// —[ Progress Bar ]———————————————————————————————————————————————————————————————————————————————————————————————————
@@ -47,22 +47,8 @@ const screenSize = `Your screen size: ${window.innerWidth}W ⨉ ${window.innerHe
 // document.querySelector("footer").innerHTML +=
 document.body.innerHTML +=
     `
-<style>
-a.btn-github[data-v-14a7b7ba] {
-        position: fixed;
-        top: 0;
-        right: 0;
-        opacity: .8;
-        transition: opacity 150ms linear;
-        z-index: 1;
-    }
-
-    a.btn-github[data-v-14a7b7ba]:hover {
-        opacity: .9
-    }
-</style>
-<a class="-animationShow-x btn-github top-0 reft-0 opacity-80 transition-opacity z-10 hover:opacity-90" rel="noopener" target="_blank" aria-label="View source on GitHub"
-    href="https://github.com/centered101" data-v-14a7b7ba="">
+<a class="-animationShow-x fixed top-0 right-0 opacity-75 z-50 hover:opacity-100 ease-in-out duration-300"
+    target="_blank" href="https://github.com/centered101">
     <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 250 250" fill="#121212"
         data-v-14a7b7ba="">
         <path d="M0 0l115 115h15l12 27 108 108V0z" fill="#D7D7D7"></path>
@@ -74,16 +60,14 @@ a.btn-github[data-v-14a7b7ba] {
     </svg>
 </a>
 <footer role="complementary" class="truncate text-sm my-4 text-center">
-<p>${screenSize}</p>
-<p class="first-letter:text-[#409EFE] truncate">Version:
-<span id="version"></span>
-</p>
-<p class="first-letter:text-[#409EFE] truncate">
-&copy; ${new Date().getFullYear()}
-<span title="Portfolio Centered101" class="text-[#409EFE] underline-offset-1">
-<a href="https://portfolio-centered101.netlify.app/">Centered101</a>
-</span>— All Rights Reserved.
-</p>
+    <p>${screenSize}</p>
+    <p class="first-letter:text-[#409EFE] truncate">Version:
+        <span id="version"></span>
+    </p>
+    <p class="first-letter:text-[#409EFE] truncate">&copy; ${new Date().getFullYear()}
+        <span title="Portfolio Centered101" class="text-[#409EFE] underline-offset-1">
+        <a href="https://portfolio-centered101.netlify.app/">Centered101</a></span>— All Rights Reserved.
+    </p>
 </footer>
 `;
 
@@ -144,10 +128,68 @@ setInterval(checkTimeAndToggleDisplay, 1000);
 
 // —[ metadata HTML ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-const meta = document.createElement('meta');
-meta.name = 'theme-color';
-meta.content = '#409EFE';
-document.head.appendChild(meta);
+// สร้าง <head> element
+const head = document.createElement("head");
+
+// สร้างและเพิ่ม meta tags
+const metaTags = [
+    { httpEquiv: "content-type", content: "text/html; charset=utf-8" },
+    { name: "keywords", content: "HTML,CSS,XML,JavaScript,Centered101" },
+    { name: "author", content: "listing directory — Centered101" },
+    { name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" },
+    { httpEquiv: "X-UA-Compatible", content: "IE=edge" },
+    { name: "title", content: "listing directory — Centered101" },
+    { name: "description", content: "โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "https://project-test-submission.netlify.app/" },
+    { property: "og:title", content: "listing directory — Centered101" },
+    { property: "og:description", content: "โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" },
+    { property: "og:image", content: "/images/Tes-D.png" },
+    { property: "twitter:card", content: "summary_large_image" },
+    { property: "twitter:url", content: "https://project-test-submission.netlify.app/" },
+    { property: "twitter:title", content: "listing directory — Centered101" },
+    { property: "twitter:description", content: "โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" },
+    { property: "twitter:image", content: "/images/Tes-D.png" },
+];
+
+metaTags.forEach(attrs => {
+    const meta = document.createElement("meta");
+    Object.entries(attrs).forEach(([key, value]) => meta.setAttribute(key, value));
+    head.appendChild(meta);
+});
+
+// สร้างและเพิ่ม <title>
+const title = document.createElement("title");
+title.textContent = "listing directory/";
+head.appendChild(title);
+
+// สร้างและเพิ่ม <link> สำหรับ favicon และ stylesheets
+const linkTags = [
+    { rel: "icon", type: "image/png", href: "/images/Tes-D.png" },
+    { rel: "stylesheet", href: "/style/style-start.css" },
+    { rel: "stylesheet", href: "/style/style.css" },
+];
+
+linkTags.forEach(attrs => {
+    const link = document.createElement("link");
+    Object.entries(attrs).forEach(([key, value]) => link.setAttribute(key, value));
+    head.appendChild(link);
+});
+
+// สร้างและเพิ่ม <script>
+const scriptTags = [
+    { src: "https://cdn.tailwindcss.com" },
+    { src: "/animation/script.js" },
+];
+
+scriptTags.forEach(attrs => {
+    const script = document.createElement("script");
+    Object.entries(attrs).forEach(([key, value]) => script.setAttribute(key, value));
+    head.appendChild(script);
+});
+
+// เพิ่ม <head> ไปยังเอกสาร
+document.documentElement.prepend(head);
 
 // —[  ]———————————————————————————————————————————————————————————————————————————————————————————————————
 

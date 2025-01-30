@@ -1,4 +1,4 @@
-@import url("https://project-test-submission.firebaseapp.com/style/style.css");
+@import url("https://project-test-submission.netlify.app/style/style.css");
 
 body::after {
     content: "";
@@ -29,8 +29,8 @@ body.BG-images1::after {
 }
 
 body.BG-images2::after {
-    background-image: url("https://project-test-submission.firebaseapp.com/images/เงาแห่งความเหงา.jpg");
-    background-image: url("https://project-test-submission.firebaseapp.com/images/เงาความเหงา.jpg");
+    background-image: url("https://project-test-submission.netlify.app/images/เงาแห่งความเหงา.jpg");
+    background-image: url("https://project-test-submission.netlify.app/images/เงาความเหงา.jpg");
     filter: brightness(50%);
 }
 
