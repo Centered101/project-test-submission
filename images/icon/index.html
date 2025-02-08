@@ -1,250 +1,66 @@
-
-<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
-<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
-<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
-<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
-<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
-
-<!DOCTYPE html>
-<html lang="th">
-
-<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
-
+<!doctype html>
+<html lang=th>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
-    <meta name="author" content="listing directory — Centered101" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Primary Meta Tags -->
-    <title>listing directory/images/icon/</title>
-    <meta name="title" content="listing directory — Centered101" />
-    <meta name="description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://project-test-submission.netlify.app/" />
-    <meta property="og:title" content="listing directory — Centered101" />
-    <meta property="og:description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
-    <meta property="og:image" content="/images/Tes-D.png" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://project-test-submission.netlify.app/" />
-    <meta property="twitter:title" content="listing directory — Centered101" />
-    <meta property="twitter:description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
-    <meta property="twitter:image" content="/images/Tes-D.png" />
-
-    <link rel="icon" type="image/png" href="/images/Tes-D.png">
-    <link rel="stylesheet" href="/style/style-start.css">
-    <link rel="stylesheet" href="/style/style.css">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/animation/script.js"></script>
-
+<title>listing directory/images/icon/</title>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<meta name=keywords content=HTML,CSS,XML,JavaScript,Centered101>
+<meta name=author content="listing directory — Centered101">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<meta name=title content="listing directory — Centered101">
+<meta name=description content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=og:type content=website>
+<meta property=og:url content=https://project-test-submission.netlify.app/ >
+<meta property=og:title content="listing directory — Centered101">
+<meta property=og:description content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=og:image content=/images/Tes-D.webp>
+<meta property=twitter:card content=summary_large_image>
+<meta property=twitter:url content=https://project-test-submission.netlify.app/ >
+<meta property=twitter:title content="listing directory — Centered101">
+<meta property=twitter:description content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=twitter:image content=/images/Tes-D.webp>
+<link rel="shortcut icon" href=/images/Tes-D.webp type=image/x-icon>
+<link rel=preload href=/style/style.css as=style onload='this.rel="stylesheet"'>
+<link rel=preload href=/style/style-start.css as=style onload='this.rel="stylesheet"'>
+<script src=https://cdn.tailwindcss.com></script>
+<script src=/animation/script.js defer></script>
 </head>
-
-<body class="directory" onload="showURL()">
-    <input id="search" type="text" placeholder="Search" autocomplete="off" />
-    <div id="wrapper">
-        <h1>
-            <a href="/">
-                <script>
-                    document.write(window.location.href);
-                </script>
-            </a>
-        </h1>
-        <ul id="files" class="view-tiles">
-            <li>
-                <a href="/images" class="icon icon-directory" title="..">
-                    <span class="name">..</span>
-                    <span class="size"></span>
-                    <span class="date"></span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/buy_me_a_coffee.png" class="icon icon icon-png icon-image"
-                    title="buy_me_a_coffee.png">
-                    <span class="name">buy_me_a_coffee.png</span>
-                    <span class="size">6949</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/discord.svg" class="icon icon icon-svg icon-image-svg+xml" title="discord.svg">
-                    <span class="name">discord.svg</span>
-                    <span class="size">1835</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/epic_games.png" class="icon icon icon-png icon-image" title="epic_games.png">
-                    <span class="name">epic_games.png</span>
-                    <span class="size">8621</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/facebook-messenger.svg" class="icon icon icon-svg icon-image-svg+xml"
-                    title="facebook-messenger.svg">
-                    <span class="name">facebook-messenger.svg</span>
-                    <span class="size">1095</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/facebook.svg" class="icon icon icon-svg icon-image-svg+xml" title="facebook.svg">
-                    <span class="name">facebook.svg</span>
-                    <span class="size">723</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/github.svg" class="icon icon icon-svg icon-image-svg+xml" title="github.svg">
-                    <span class="name">github.svg</span>
-                    <span class="size">2684</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/globe.svg" class="icon icon icon-svg icon-image-svg+xml" title="globe.svg">
-                    <span class="name">globe.svg</span>
-                    <span class="size">1011</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/google.svg" class="icon icon icon-svg icon-image-svg+xml" title="google.svg">
-                    <span class="name">google.svg</span>
-                    <span class="size">839</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/instagram.svg" class="icon icon icon-svg icon-image-svg+xml"
-                    title="instagram.svg">
-                    <span class="name">instagram.svg</span>
-                    <span class="size">1813</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/ko_fi.png" class="icon icon icon-png icon-image" title="ko_fi.png">
-                    <span class="name">ko_fi.png</span>
-                    <span class="size">7173</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/line.svg" class="icon icon icon-svg icon-image-svg+xml" title="line.svg">
-                    <span class="name">line.svg</span>
-                    <span class="size">2184</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/linkedin.png" class="icon icon icon-png icon-image" title="linkedin.png">
-                    <span class="name">linkedin.png</span>
-                    <span class="size">4699</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/medium.svg" class="icon icon icon-svg icon-image-svg+xml" title="medium.svg">
-                    <span class="name">medium.svg</span>
-                    <span class="size">880</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/ngl.png" class="icon icon icon-png icon-image" title="ngl.png">
-                    <span class="name">ngl.png</span>
-                    <span class="size">6728</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/pinterest.svg" class="icon icon icon-svg icon-image-svg+xml"
-                    title="pinterest.svg">
-                    <span class="name">pinterest.svg</span>
-                    <span class="size">1308</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/spotify.svg" class="icon icon icon-svg icon-image-svg+xml" title="spotify.svg">
-                    <span class="name">spotify.svg</span>
-                    <span class="size">1302</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/steam.png" class="icon icon icon-png icon-image" title="steam.png">
-                    <span class="name">steam.png</span>
-                    <span class="size">18099</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/telegram.png" class="icon icon icon-png icon-image" title="telegram.png">
-                    <span class="name">telegram.png</span>
-                    <span class="size">11312</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/threads.svg" class="icon icon icon-svg icon-image-svg+xml" title="threads.svg">
-                    <span class="name">threads.svg</span>
-                    <span class="size">1764</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/tik-tok.svg" class="icon icon icon-svg icon-image-svg+xml" title="tik-tok.svg">
-                    <span class="name">tik-tok.svg</span>
-                    <span class="size">946</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/twitch.svg" class="icon icon icon-svg icon-image-svg+xml" title="twitch.svg">
-                    <span class="name">twitch.svg</span>
-                    <span class="size">743</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/twitter-alt-circle.svg" class="icon icon icon-svg icon-image-svg+xml"
-                    title="twitter-alt-circle.svg">
-                    <span class="name">twitter-alt-circle.svg</span>
-                    <span class="size">451</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/user-interface.png" class="icon icon icon-png icon-image"
-                    title="user-interface.png">
-                    <span class="name">user-interface.png</span>
-                    <span class="size">10510</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/images/icon/youtube.svg" class="icon icon icon-svg icon-image-svg+xml" title="youtube.svg">
-                    <span class="name">youtube.svg</span>
-                    <span class="size">845</span>
-                    <span class="date">8/31/2024 3:37:02 PM</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-
+<body class=directory onload=showURL()>
+<input id=search placeholder=Search autocomplete=off>
+<div id=wrapper>
+<h1>
+<a href=/ >
+<script>document.write(window.location.href)</script>
+</a>
+</h1>
+<ul id=files class=view-tiles><li><a href=/images class="icon icon-directory" title=..><span class=name>..</span><span class=size></span><span class=date></span></a></li>
+<li><a href=/images/icon/buy_me_a_coffee.png class="icon icon icon-png icon-image" title=buy_me_a_coffee.png><span class=name>buy_me_a_coffee.png</span><span class=size>6949</span><span class=date>12/11/2024 6:17:16 AM</span></a></li>
+<li><a href=/images/icon/discord.svg class="icon icon icon-svg icon-image-svg+xml" title=discord.svg><span class=name>discord.svg</span><span class=size>1835</span><span class=date>12/11/2024 6:17:26 AM</span></a></li>
+<li><a href=/images/icon/epic_games.png class="icon icon icon-png icon-image" title=epic_games.png><span class=name>epic_games.png</span><span class=size>8621</span><span class=date>12/11/2024 6:17:31 AM</span></a></li>
+<li><a href=/images/icon/facebook-messenger.svg class="icon icon icon-svg icon-image-svg+xml" title=facebook-messenger.svg><span class=name>facebook-messenger.svg</span><span class=size>1095</span><span class=date>12/11/2024 6:17:39 AM</span></a></li>
+<li><a href=/images/icon/facebook.svg class="icon icon icon-svg icon-image-svg+xml" title=facebook.svg><span class=name>facebook.svg</span><span class=size>723</span><span class=date>12/11/2024 6:17:47 AM</span></a></li>
+<li><a href=/images/icon/github.svg class="icon icon icon-svg icon-image-svg+xml" title=github.svg><span class=name>github.svg</span><span class=size>2684</span><span class=date>12/11/2024 6:17:56 AM</span></a></li>
+<li><a href=/images/icon/globe.svg class="icon icon icon-svg icon-image-svg+xml" title=globe.svg><span class=name>globe.svg</span><span class=size>1011</span><span class=date>12/11/2024 6:18:03 AM</span></a></li>
+<li><a href=/images/icon/google.svg class="icon icon icon-svg icon-image-svg+xml" title=google.svg><span class=name>google.svg</span><span class=size>839</span><span class=date>12/11/2024 6:18:12 AM</span></a></li>
+<li><a href=/images/icon/instagram.svg class="icon icon icon-svg icon-image-svg+xml" title=instagram.svg><span class=name>instagram.svg</span><span class=size>1813</span><span class=date>12/11/2024 6:18:21 AM</span></a></li>
+<li><a href=/images/icon/ko_fi.png class="icon icon icon-png icon-image" title=ko_fi.png><span class=name>ko_fi.png</span><span class=size>7173</span><span class=date>12/11/2024 6:18:29 AM</span></a></li>
+<li><a href=/images/icon/line.svg class="icon icon icon-svg icon-image-svg+xml" title=line.svg><span class=name>line.svg</span><span class=size>2184</span><span class=date>12/11/2024 6:18:38 AM</span></a></li>
+<li><a href=/images/icon/linkedin.png class="icon icon icon-png icon-image" title=linkedin.png><span class=name>linkedin.png</span><span class=size>4699</span><span class=date>12/11/2024 6:18:47 AM</span></a></li>
+<li><a href=/images/icon/medium.svg class="icon icon icon-svg icon-image-svg+xml" title=medium.svg><span class=name>medium.svg</span><span class=size>880</span><span class=date>12/11/2024 6:18:56 AM</span></a></li>
+<li><a href=/images/icon/ngl.png class="icon icon icon-png icon-image" title=ngl.png><span class=name>ngl.png</span><span class=size>6728</span><span class=date>12/11/2024 6:19:05 AM</span></a></li>
+<li><a href=/images/icon/pinterest.svg class="icon icon icon-svg icon-image-svg+xml" title=pinterest.svg><span class=name>pinterest.svg</span><span class=size>1308</span><span class=date>12/11/2024 6:19:17 AM</span></a></li>
+<li><a href=/images/icon/spotify.svg class="icon icon icon-svg icon-image-svg+xml" title=spotify.svg><span class=name>spotify.svg</span><span class=size>1302</span><span class=date>12/11/2024 6:19:25 AM</span></a></li>
+<li><a href=/images/icon/steam.png class="icon icon icon-png icon-image" title=steam.png><span class=name>steam.png</span><span class=size>18099</span><span class=date>12/11/2024 6:19:34 AM</span></a></li>
+<li><a href=/images/icon/telegram.png class="icon icon icon-png icon-image" title=telegram.png><span class=name>telegram.png</span><span class=size>11312</span><span class=date>12/11/2024 6:19:46 AM</span></a></li>
+<li><a href=/images/icon/threads.svg class="icon icon icon-svg icon-image-svg+xml" title=threads.svg><span class=name>threads.svg</span><span class=size>1764</span><span class=date>12/11/2024 6:19:56 AM</span></a></li>
+<li><a href=/images/icon/tik-tok.svg class="icon icon icon-svg icon-image-svg+xml" title=tik-tok.svg><span class=name>tik-tok.svg</span><span class=size>946</span><span class=date>12/11/2024 6:20:11 AM</span></a></li>
+<li><a href=/images/icon/twitch.svg class="icon icon icon-svg icon-image-svg+xml" title=twitch.svg><span class=name>twitch.svg</span><span class=size>743</span><span class=date>12/11/2024 6:20:34 AM</span></a></li>
+<li><a href=/images/icon/twitter-alt-circle.svg class="icon icon icon-svg icon-image-svg+xml" title=twitter-alt-circle.svg><span class=name>twitter-alt-circle.svg</span><span class=size>451</span><span class=date>12/11/2024 6:20:41 AM</span></a></li>
+<li><a href=/images/icon/user-interface.png class="icon icon icon-png icon-image" title=user-interface.png><span class=name>user-interface.png</span><span class=size>10510</span><span class=date>12/11/2024 6:20:55 AM</span></a></li>
+<li><a href=/images/icon/youtube.svg class="icon icon icon-svg icon-image-svg+xml" title=youtube.svg><span class=name>youtube.svg</span><span class=size>845</span><span class=date>12/11/2024 6:20:23 AM</span></a></li></ul>
+</div>
+<script src=/script/version.js></script>
+<script src=/script/script-start.js></script>
+<script>document.getElementById("version").textContent=appVersionProjectTest</script>
 </body>
-<script src="/script/version.js"></script>
-<script src="/script/script-start.js"></script>
-<script>
-    document.getElementById('version').textContent = appVersionProjectTest;
-</script>
-
 </html>

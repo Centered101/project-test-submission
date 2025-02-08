@@ -1,5 +1,4 @@
 :root {
-    /* main-color */
     --white-1: #FFFFFF;
     --white-2: #F5F5F5;
     --blue-1: #409EFE;
@@ -18,9 +17,8 @@
     --grey-4: #999999;
     --grey-5: #CCCCCC;
     --black: #000000;
-    /* color-transparent */
     --white-transparent-1: #F5F5F5B3;
     --white-transparent-2: #FFFFFF80;
     --green-transparent-1: #00CC4FB3;
-    --black-transparent: #000000B3;
-  }
+    --black-transparent: #000000B3
+}

@@ -1,100 +1,46 @@
-<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
-<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
-<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
-<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
-<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
-
-<!DOCTYPE html>
-<html lang="th">
-
-<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
-
+<!doctype html>
+<html lang=th>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
-    <meta name="author" content="listing directory — Centered101" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Primary Meta Tags -->
-    <title>listing directory/style/</title>
-    <meta name="title" content="listing directory — Centered101" />
-    <meta name="description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://project-test-submission.netlify.app/" />
-    <meta property="og:title" content="listing directory — Centered101" />
-    <meta property="og:description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
-    <meta property="og:image" content="/images/Tes-D.png" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://project-test-submission.netlify.app/" />
-    <meta property="twitter:title" content="listing directory — Centered101" />
-    <meta property="twitter:description" content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" />
-    <meta property="twitter:image" content="/images/Tes-D.png" />
-
-    <link rel="icon" type="image/png" href="/images/Tes-D.png">
-    <link rel="stylesheet" href="/style/style-start.css">
-    <link rel="stylesheet" href="/style/style.css">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/animation/script.js"></script>
-
+<title>listing directory/style/</title>
+<meta http-equiv=content-type content="text/html; charset=utf-8">
+<meta name=keywords content=HTML,CSS,XML,JavaScript,Centered101>
+<meta name=author content="listing directory — Centered101">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<meta name=title content="listing directory — Centered101">
+<meta name=description content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=og:type content=website>
+<meta property=og:url content=https://project-test-submission.netlify.app/ >
+<meta property=og:title content="listing directory — Centered101">
+<meta property=og:description content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=og:image content=/images/Tes-D.webp>
+<meta property=twitter:card content=summary_large_image>
+<meta property=twitter:url content=https://project-test-submission.netlify.app/ >
+<meta property=twitter:title content="listing directory — Centered101">
+<meta property=twitter:description content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=twitter:image content=/images/Tes-D.webp>
+<link rel="shortcut icon" href=/images/Tes-D.webp type=image/x-icon>
+<link rel=preload href=/style/style.css as=style onload='this.rel="stylesheet"'>
+<link rel=preload href=/style/style-start.css as=style onload='this.rel="stylesheet"'>
+<script src=https://cdn.tailwindcss.com></script>
+<script src=/animation/script.js defer></script>
 </head>
-
-<body class="directory" onload="showURL()">
-    <input id="search" type="text" placeholder="Search" autocomplete="off" />
-    <div id="wrapper">
-        <h1>
-            <a href="/">
-                <script>
-                    document.write(window.location.href);
-                </script>
-            </a>
-        </h1>
-        <ul id="files" class="view-tiles mb-[100vh]">
-            <li>
-                <a href="/" class="icon icon-directory" title="..">
-                    <span class="name">..</span>
-                    <span class="size"></span>
-                    <span class="date"></span>
-                </a>
-            </li>
-            <li>
-                <a href="/style/color.css" class="icon icon icon-css icon-text-css" title="color.css">
-                    <span class="name">color.css</span>
-                    <span class="size">655</span>
-                    <span class="date">9/21/2024 4:34:21
-                        PM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/style/style-start.css" class="icon icon icon-css icon-text-css" title="style-start.css">
-                    <span class="name">style-start.css</span>
-                    <span class="size">21575</span>
-                    <span class="date">9/26/2024
-                        12:23:20 AM</span>
-                </a>
-            </li>
-            <li>
-                <a href="/style/style.css" class="icon icon icon-css icon-text-css" title="style.css">
-                    <span class="name">style.css</span>
-                    <span class="size">1375</span>
-                    <span class="date">9/21/2024 4:35:41
-                        PM</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-
+<body class=directory onload=showURL()>
+<input id=search placeholder=Search autocomplete=off>
+<div id=wrapper>
+<h1>
+<a href=/ >
+<script>document.write(window.location.href)</script>
+</a>
+</h1>
+<ul id=files class=view-tiles><li><a href=/ class="icon icon-directory" title=..><span class=name>..</span><span class=size></span><span class=date></span></a></li>
+<li><a href=/style/color.css class="icon icon icon-css icon-text-css" title=color.css><span class=name>color.css</span><span class=size>444</span><span class=date>2/1/2025 10:25:59 PM</span></a></li>
+<li><a href=/style/style-start.css class="icon icon icon-css icon-text-css" title=style-start.css><span class=name>style-start.css</span><span class=size>11677</span><span class=date>2/1/2025 10:26:18 PM</span></a></li>
+<li><a href=/style/style.css class="icon icon icon-css icon-text-css" title=style.css><span class=name>style.css</span><span class=size>659</span><span class=date>2/1/2025 10:27:43 PM</span></a></li></ul>
+</div>
+<script src=/script/version.js></script>
+<script src=/script/script-start.js></script>
+<script src=/script/key.js defer></script>
+<script>document.getElementById("version").textContent=appVersionProjectTest</script>
 </body>
-<script src="/script/version.js"></script>
-<script src="/script/script-start.js"></script>
-<script src="/script/key.js"></script>
-<script>
-    document.getElementById('version').textContent = appVersionProjectTest;
-</script>
-
 </html>
