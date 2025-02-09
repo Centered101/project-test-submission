@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔔 Web Push Notification</title>
+    <link rel="shortcut icon" href="/images/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="p-6 bg-white shadow-lg rounded-xl text-center">
+        <h1 class="text-2xl font-bold mb-4">🔔 Web Push Notification</h1>
+        <button id="requestPermission" class="px-4 py-2 bg-[#409EFE] text-white rounded-lg mb-3">
+            ขออนุญาตแจ้งเตือน
+        </button>
+        <button id="testNotification" class="px-4 py-2 bg-[#00CC4F] text-white rounded-lg">
+            ทดสอบแจ้งเตือน
+        </button>
+    </div>
+
+    <script>
+        window.onload = function () {
+            Toastify({
+                text: "👋 ยินดีต้อนรับ! คลิกที่นี่เพื่อดูคู่มือ",
+                duration: 1500,
+                destination: "/",
+                newWindow: true,
+                gravity: "top",
+                position: "center",
+            }).showToast();
+        };
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js").then(registration => {
+                console.log("✅ Service Worker ลงทะเบียนสำเร็จ:", registration);
+            }).catch(error => {
+                console.log("❌ Service Worker ล้มเหลว:", error);
+            });
+        }
+
+        // ปุ่มขออนุญาตแจ้งเตือน
+        document.getElementById("requestPermission").addEventListener("click", async () => {
+            const permission = await Notification.requestPermission();
+            if (permission === "granted") {
+                Toastify({
+                    text: "✅ คุณได้อนุญาตให้แจ้งเตือนแล้ว!",
+                    duration: 1500,
+                    newWindow: true,
+                    gravity: "top",
+                    position: "left",
+                }).showToast();
+                navigator.serviceWorker.ready.then(registration => {
+                    registration.showNotification("🔔 การแจ้งเตือนทดสอบ", {
+                        body: "นี่คือตัวอย่างข้อความแจ้งเตือน 🚀\n✅ คุณได้อนุญาตให้แจ้งเตือนแล้ว!",
+                        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047711.png"
+                    });
+                });
+            } else {
+                Toastify({
+                    text: "❌ คุณปฏิเสธการแจ้งเตือน",
+                    duration: 1500,
+                    newWindow: true,
+                    gravity: "top",
+                    position: "left",
+                }).showToast();
+            }
+        });
+
+        // ปุ่มทดสอบแจ้งเตือน
+        document.getElementById("testNotification").addEventListener("click", () => {
+            if (Notification.permission === "granted") {
+                navigator.serviceWorker.ready.then(registration => {
+                    registration.showNotification("🔔 การแจ้งเตือนทดสอบ", {
+                        body: "นี่คือตัวอย่างข้อความแจ้งเตือน 🚀",
+                        icon: "/images/icon.svg"
+                    });
+                });
+            } else {
+                Toastify({
+                    text: "⚠️ กรุณากดขออนุญาตแจ้งเตือนก่อน!",
+                    duration: 1500,
+                    newWindow: true,
+                    gravity: "top",
+                    position: "left",
+                }).showToast();
+            }
+        });
+    </script>
+</body>
+
+</html>
