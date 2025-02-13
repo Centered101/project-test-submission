@@ -53,10 +53,15 @@
                     gravity: "top",
                     position: "left",
                 }).showToast();
+
                 navigator.serviceWorker.ready.then(registration => {
                     registration.showNotification("🔔 การแจ้งเตือนทดสอบ", {
-                        body: "นี่คือตัวอย่างข้อความแจ้งเตือน 🚀\n✅ คุณได้อนุญาตให้แจ้งเตือนแล้ว!",
-                        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047711.png"
+                        body: "นี่คือตัวอย่างข้อความแจ้งเตือน 🚀\n✅ กดที่แจ้งเตือนเพื่อกลับไปยังหน้าเว็บ",
+                        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047711.png",
+                        data: { url: "https://project-test-submission.netlify.app/" }, // ✅ เพิ่ม URL ที่จะเปิด
+                        actions: [
+                            { action: "open_url", title: "🔗 เปิดเว็บ" } // ✅ ปุ่มสำหรับเปิดเว็บ
+                        ]
                     });
                 });
             } else {
@@ -67,6 +72,17 @@
                     gravity: "top",
                     position: "left",
                 }).showToast();
+            }
+        });
+
+        // ✅ ดักจับการคลิกแจ้งเตือนใน Service Worker (sw.js)
+        self.addEventListener("notificationclick", event => {
+            event.notification.close(); // ปิดการแจ้งเตือน
+
+            if (event.action === "open_url") {
+                clients.openWindow(event.notification.data.url); // ✅ เปิดหน้าเว็บ
+            } else {
+                clients.openWindow("https://project-test-submission.netlify.app/"); // ✅ เปิดเว็บหลักถ้าไม่มี action
             }
         });
 
