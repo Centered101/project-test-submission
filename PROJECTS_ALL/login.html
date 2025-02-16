@@ -24,6 +24,7 @@
             margin: 0;
             padding: 20px;
             font-family: "Bai Jamjuree", sans-serif;
+            box-sizing: border-box;
         }
 
         body {
@@ -34,48 +35,6 @@
                 linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);
             background-size: 55px 55px;
         }
-
-        body,
-        input,
-        button {
-            font-size: 100%;
-            /* ปรับขนาดฟอนต์เป็น 100% ของขนาดปกติ */
-        }
-
-        @media screen and (max-width: 768px) {
-
-            body,
-            input,
-            button {
-                font-size: 80%;
-                /* ลดขนาดฟอนต์เมื่อหน้าจอมีความกว้างไม่เกิน 768px */
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-
-            body,
-            input,
-            button {
-                font-size: 70%;
-                /* ลดขนาดฟอนต์เมื่อหน้าจอมีความกว้างไม่เกิน 480px */
-            }
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        a,
-        p,
-        ol,
-        li {
-            margin: 0;
-            padding: 0;
-        }
-
 
         header {
             color: #CCCCCC;
@@ -157,7 +116,7 @@
             width: 100%;
         }
 
-        .container div h6 {
+        .container div p {
             border: solid 1px #000000;
             border-radius: 3px;
             padding: 10px;
@@ -257,7 +216,7 @@
             </label>
             <input type="password" id="passwordInput" placeholder="รหัสผ่าน">
             <button id="loginButton">ล็อกอิน</button>
-            <h6>>>> <a id="output">?</a></h6>
+            <p>>>> <a id="output">?</a></p>
         </div>
     </div>
     <footer>
