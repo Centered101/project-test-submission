@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang=en>
+
+<head>
+    <title translate=no>Portfolio • Centered101</title>
+    <meta name=theme-color content=#409EFE>
+    <meta http-equiv=content-type content="text/html; charset=utf-8">
+    <meta name=keywords content=HTML,CSS,XML,JavaScript,Centered101>
+    <meta name=author content=Centered101>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta http-equiv=X-UA-compatible content="IE=edge">
+    <meta name=title content="Portfolio • Centered101">
+    <meta name=description content="Portfolio — Centered101">
+    <meta property=og:type content=website>
+    <meta property=og:url content=https://portfolio-centered101.netlify.app />
+    <meta property=og:title content="Portfolio • Centered101">
+    <meta property=og:description content="Portfolio — Centered101">
+    <meta property=og:image content=https://project-test-submission.netlify.app/images/Tes-D.webp>
+    <meta property=twitter:card content=summary_large_image>
+    <meta property=twitter:url content=https://portfolio-centered101.netlify.app />
+    <meta property=twitter:title content="Portfolio • Centered101">
+    <meta property=twitter:description content="Portfolio — Centered101">
+    <meta property=twitter:image content=https://project-test-submission.netlify.app/images/Tes-D.webp>
+    <link rel="shortcut icon" href=https://project-test-submission.netlify.app/images/Tes-D.webp type=image/x-icon>
+    <link rel="stylesheet" href=style.css>
+    <script src=https://cdn.tailwindcss.com></script>
+    <!-- <script src=https:/project-test-submission.netlify.app/animation/script.js defer></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body draggable="false" oncontextmenu="return false;"
+    class="animationShow text-[#0D0D0D] bg-gradient-to-b from-[#F5F5F5] to-[#FFF] dark:from-[#000000] dark:to-[#111827] dark:text-zinc-500">
+
+    <header class="fixed top-0 w-full h-auto flex items-center justify-between p-4 z-50 select-none sm:px-8">
+        <!-- <div class="flex gap-4">
+            <a class="shrink-0" aria-label="Home" href=/ onclick=loading()>
+                <svg viewBox="0 0 162 24" fill="none" class="h-6 text-[#000] dark:text-[#FFF]">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M16.668 2c-4.445 0-7.223 2.222-8.334 6.667 1.667-2.222 3.611-3.055 5.833-2.5 1.268.317 2.175 1.236 3.178 2.255C18.979 10.081 20.87 12 25 12c4.445 0 7.223-2.222 8.334-6.666-1.666 2.222-3.61 3.055-5.833 2.5-1.269-.318-2.175-1.237-3.178-2.255C22.69 3.919 20.8 2 16.668 2zM8.334 12C3.889 12 1.11 14.222 0 18.667c1.667-2.222 3.612-3.056 5.833-2.5 1.269.316 2.175 1.236 3.178 2.255C10.645 20.081 12.536 22 16.668 22c4.444 0 7.222-2.222 8.333-6.666-1.667 2.222-3.611 3.055-5.833 2.5-1.268-.317-2.175-1.238-3.177-2.255C14.356 13.92 12.463 12 8.334 12z"
+                        class="fill-[#409EFE]"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M50 10.427h-2.908v5.63c0 1.501.985 1.477 2.909 1.383v2.276c-3.895.47-5.443-.61-5.443-3.66v-5.63H42.4V7.988h2.158v-3.15l2.534-.751v3.901H50v2.44zm11.088-2.44h2.533v11.729h-2.533v-1.689c-.892 1.243-2.276 1.994-4.105 1.994-3.19 0-5.841-2.698-5.841-6.17 0-3.494 2.65-6.169 5.84-6.169 1.83 0 3.215.75 4.106 1.97V7.988zm-3.706 9.618c2.111 0 3.706-1.572 3.706-3.754s-1.595-3.753-3.706-3.753c-2.111 0-3.706 1.572-3.706 3.753 0 2.182 1.595 3.754 3.706 3.754zM67.844 6.228c-.891 0-1.618-.75-1.618-1.619.002-.43.173-.842.476-1.145a1.612 1.612 0 012.283 0c.304.303.475.715.477 1.145 0 .868-.727 1.619-1.618 1.619zm-1.267 13.488V7.987h2.534v11.729h-2.534zm5.466 0V2.59h2.533v17.124h-2.533zM91.021 7.987h2.674l-3.683 11.729h-2.487l-2.44-7.905-2.463 7.905h-2.486L76.453 7.987h2.674l2.276 8.092 2.463-8.092h2.416l2.44 8.092 2.299-8.092zm5.817-1.759c-.892 0-1.619-.75-1.619-1.619.003-.43.174-.842.477-1.145a1.612 1.612 0 012.284 0c.303.303.475.715.477 1.145 0 .868-.727 1.619-1.619 1.619zm-1.266 13.488V7.987h2.533v11.729H95.57zm11.634-12.034c2.628 0 4.504 1.783 4.504 4.833v7.2h-2.533v-6.943c0-1.783-1.032-2.72-2.627-2.72-1.666 0-2.979.985-2.979 3.377v6.287h-2.534V7.987h2.534V9.49c.774-1.22 2.04-1.807 3.635-1.807zm16.515-4.386h2.533v16.42h-2.533v-1.69c-.891 1.244-2.275 1.994-4.105 1.994-3.19 0-5.841-2.697-5.841-6.17 0-3.494 2.651-6.168 5.841-6.168 1.83 0 3.214.75 4.105 1.97V3.296zm-3.707 14.309c2.112 0 3.707-1.572 3.707-3.754s-1.595-3.753-3.707-3.753c-2.111 0-3.706 1.572-3.706 3.753 0 2.182 1.595 3.754 3.706 3.754zm14.732 2.416c-3.542 0-6.193-2.698-6.193-6.17 0-3.494 2.651-6.169 6.193-6.169 2.299 0 4.293 1.196 5.231 3.026l-2.182 1.267c-.516-1.102-1.665-1.806-3.072-1.806-2.065 0-3.636 1.572-3.636 3.682 0 2.111 1.571 3.683 3.636 3.683 1.407 0 2.556-.727 3.119-1.806l2.182 1.243c-.985 1.853-2.979 3.05-5.278 3.05zm9.453-8.797c0 2.135 6.311.844 6.311 5.185 0 2.346-2.041 3.612-4.574 3.612-2.346 0-4.035-1.056-4.786-2.745l2.182-1.266c.375 1.055 1.313 1.689 2.604 1.689 1.126 0 1.993-.376 1.993-1.315 0-2.087-6.31-.914-6.31-5.113 0-2.205 1.9-3.589 4.293-3.589 1.924 0 3.519.892 4.34 2.44l-2.135 1.196c-.422-.915-1.243-1.337-2.205-1.337-.915 0-1.713.399-1.713 1.243zm10.815 0c0 2.135 6.31.844 6.31 5.185 0 2.346-2.041 3.612-4.575 3.612-2.345 0-4.034-1.056-4.785-2.745l2.182-1.266c.375 1.055 1.313 1.689 2.603 1.689 1.126 0 1.995-.376 1.995-1.315 0-2.087-6.31-.914-6.31-5.113 0-2.205 1.899-3.589 4.292-3.589 1.924 0 3.519.892 4.34 2.44l-2.135 1.196c-.422-.915-1.243-1.337-2.205-1.337-.915 0-1.712.399-1.712 1.243z"
+                        fill="currentColor"></path>
+                </svg>
+            </a>
+        </div> -->
+        <div class="flex items-center gap-4">
+            <img class="size-12" src="https://project-test-submission.netlify.app/images/icon.svg">
+            <span>
+                <h1 class="text-2xl font-semibold text-[#409EFE] max-sm:text-xl">Phongphon Phompha</h1>
+                <p class="uppercase">programmer & full stack developer</p>
+            </span>
+        </div>
+        <div class="flex items-center gap-6">
+            <a title="GitHub repository" aria-label="GitHub repository" href="https://github.com/centered101/">
+                <svg viewBox="0 0 20 20" class="size-5 fill-[#121212] max-md:hidden dark:fill-[#D7D7D7]">
+                    <path
+                        d="M10 0C4.475 0 0 4.475 0 10a9.994 9.994 0 006.838 9.488c.5.087.687-.213.687-.476 0-.237-.013-1.024-.013-1.862-2.512.463-3.162-.612-3.362-1.175-.113-.287-.6-1.175-1.025-1.412-.35-.188-.85-.65-.013-.663.788-.013 1.35.725 1.538 1.025.9 1.512 2.337 1.087 2.912.825.088-.65.35-1.088.638-1.338-2.225-.25-4.55-1.112-4.55-4.937 0-1.088.387-1.987 1.025-2.688-.1-.25-.45-1.274.1-2.65 0 0 .837-.262 2.75 1.026a9.28 9.28 0 012.5-.338c.85 0 1.7.112 2.5.337 1.912-1.3 2.75-1.024 2.75-1.024.55 1.375.2 2.4.1 2.65.637.7 1.025 1.587 1.025 2.687 0 3.838-2.337 4.688-4.562 4.938.362.312.675.912.675 1.85 0 1.337-.013 2.412-.013 2.75 0 .262.188.574.688.474A10.016 10.016 0 0020 10c0-5.525-4.475-10-10-10z">
+                    </path>
+                </svg>
+            </a>
+            <nav class="flex justify-end items-center">
+                <input hidden type="checkbox" id="sidebar-active" class="peer">
+
+                <label title="menu" for="sidebar-active" class="cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" height=32 viewBox="0 -960 960 960" width=32
+                        class="fill-[#121212] dark:fill-[#409EFE]">
+                        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+                    </svg>
+                </label>
+
+                <div
+                    class="fixed top-0 right-0 h-full w-64 flex flex-col items-start bg-[#FFF] border-l border-[#CCC] translate-x-full peer-checked:translate-x-0 transition-transform ease-in-out duration-300 dark:bg-[#000]">
+
+                    <label for=sidebar-active class="self-end w-full flex justify-end p-4 cursor-pointer sm:pr-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" height=32 viewBox="0 -960 960 960" width=32
+                            class="fill-[#121212] dark:fill-[#409EFE]">
+                            <path
+                                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                        </svg>
+                    </label>
+
+                    <a class="w-full px-5 py-3 border-l-2 hover:border-[#409EFE] hover:bg-[#EFEFEF]" href=#home>Home</a>
+                    <a class="w-full px-5 py-3 border-l-2 hover:border-[#409EFE] hover:bg-[#EFEFEF]" href="#about">About</a>
+                    <a class="w-full px-6 py-3 border-l-2 hover:border-[#409EFE] hover:bg-[#EFEFEF]" href="#skills">skills</a>
+                    <a class="w-full px-6 py-3 border-l-2 hover:border-[#409EFE] hover:bg-[#EFEFEF]" href="#experience">experience</a>
+                    <a class="w-full px-5 py-3 border-l-2 hover:border-[#409EFE] hover:bg-[#EFEFEF]" href="#projects">Projects</a>
+                    <div class="m-5 mt-auto text-center">
+                        Centered101
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="min-h-screen">
+        <section id="home" class="min-h-screen max-w-9xl flex justify-center items-end mx-auto px-8 select-none">
+            <img class="md:w-1/2 absolute right-8 top-8 max-sm:my-auto dark:brightness-50" src="https://watracz.com/assets/images/bg_home.png" alt="">
+            <div class="max-w-7xl space-y-6 ml-24 mr-auto mb-56 z-10">
+                <p class="uppercase">phongphon phompha</p>
+                <h1 class="text-6xl font-semibold text-[#409EFE] max-sm:text-3xl">Programmer and<br>
+                    Full stack developer</h1>
+            </div>
+            <svg class="animate-bounce absolute bottom-8 max-md:hidden" xmlns=http://www.w3.org/2000/svg height=32
+                viewBox="0 -960 960 960" width=32 fill=#409EFE>
+                <path
+                    d="M480-80q-116 0-198-82t-82-198v-240q0-116 82-198t198-82q116 0 198 82t82 198v240q0 116-82 198T480-80Zm40-520h160q0-72-45.5-127T520-796v196Zm-240 0h160v-196q-69 14-114.5 69T280-600Zm200 440q83 0 141.5-58.5T680-360v-160H280v160q0 83 58.5 141.5T480-160Zm0-360Zm40-80Zm-80 0Zm40 80Z" />
+            </svg>
+        </section>
+        <section id="about" class="min-h-screen max-w-7xl mx-auto"></section>
+        <section id="skills" class="min-h-screen max-w-7xl mx-auto"></section>
+        <section id="experience" class="min-h-screen max-w-7xl mx-auto"></section>
+        <section id="projects" class="min-h-screen max-w-7xl mx-auto"></section>
+    </main>
+    <footer class="max-h-1/2 h-1/2">
+
+    </footer>
+</body>
+
+</html>
