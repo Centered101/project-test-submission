@@ -1,14 +1,9 @@
 @import url(https://project-test-submission.netlify.app/style/style.css);
 
-img {
-  user-select: none;
-  /* ป้องกันการคุมดำ */
-  -webkit-user-drag: none;
-  /* ป้องกันการลากในเบราว์เซอร์ที่รองรับ Webkit เช่น Chrome */
-  -moz-user-select: none;
-  /* สำหรับ Firefox */
-  -ms-user-select: none;
-  /* สำหรับ Internet Explorer/Edge */
+
+html {
+  scrollbar-color: #000 #FFF;
+  scrollbar-width: thin;
 }
 
 main {
