@@ -14,7 +14,7 @@ function loading() {
 document.body.innerHTML +=
     `
 <div id="progressbar" role="progressbar" aria-hidden="true" class="fixed inset-x-0 top-0 left-0 z-50 h-1 opacity-0">
-    <div class="h-full bg-gradient-to-r from-[#84D4FA] to-[#409EFE] transition-all duration-1000 ease-in-out w-0"></div>
+    <div class="h-full bg-gradient-to-r from-[#000] to-[#000] transition-all duration-1000 ease-in-out w-0 dark:from-[#84D4FA] dark:to-[#409EFE]"></div>
 </div>
 `;
 
