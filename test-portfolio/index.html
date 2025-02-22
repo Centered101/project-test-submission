@@ -24,40 +24,30 @@
     <link rel="shortcut icon" href=https://project-test-submission.netlify.app/images/Tes-D.webp type=image/x-icon>
     <link rel="stylesheet" href=style.css>
     <script src=https://cdn.tailwindcss.com></script>
-    <!-- <script src=https:/project-test-submission.netlify.app/animation/script.js defer></script> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src=https:/project-test-submission.netlify.app/animation/script.js defer></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> -->
 </head>
 
 <body draggable="false" oncontextmenu="return false;"
-    class="animationShow text-[#000] bg-gradient-to-b from-[#F5F5F5] to-[#FFF] dark:from-[#000000] dark:to-[#111827] dark:text-zinc-500">
+    class="animationShow text-[#000] bg-gradient-to-b from-[#F5F5F5] to-[#FFF] overflow-x-hidden dark:from-[#000000] dark:to-[#111827] dark:text-zinc-500">
 
     <header class="fixed top-0 w-full flex items-center justify-between p-4 z-50 select-none sm:px-8">
-        <!-- <div class="flex gap-4">
-            <a class="shrink-0" aria-label="Home" href=/ onclick=loading()>
-                <svg viewBox="0 0 162 24" fill="none" class="h-6 text-[#000] dark:text-[#FFF]">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M16.668 2c-4.445 0-7.223 2.222-8.334 6.667 1.667-2.222 3.611-3.055 5.833-2.5 1.268.317 2.175 1.236 3.178 2.255C18.979 10.081 20.87 12 25 12c4.445 0 7.223-2.222 8.334-6.666-1.666 2.222-3.61 3.055-5.833 2.5-1.269-.318-2.175-1.237-3.178-2.255C22.69 3.919 20.8 2 16.668 2zM8.334 12C3.889 12 1.11 14.222 0 18.667c1.667-2.222 3.612-3.056 5.833-2.5 1.269.316 2.175 1.236 3.178 2.255C10.645 20.081 12.536 22 16.668 22c4.444 0 7.222-2.222 8.333-6.666-1.667 2.222-3.611 3.055-5.833 2.5-1.268-.317-2.175-1.238-3.177-2.255C14.356 13.92 12.463 12 8.334 12z"
-                        class="fill-[#409EFE]"></path>
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M50 10.427h-2.908v5.63c0 1.501.985 1.477 2.909 1.383v2.276c-3.895.47-5.443-.61-5.443-3.66v-5.63H42.4V7.988h2.158v-3.15l2.534-.751v3.901H50v2.44zm11.088-2.44h2.533v11.729h-2.533v-1.689c-.892 1.243-2.276 1.994-4.105 1.994-3.19 0-5.841-2.698-5.841-6.17 0-3.494 2.65-6.169 5.84-6.169 1.83 0 3.215.75 4.106 1.97V7.988zm-3.706 9.618c2.111 0 3.706-1.572 3.706-3.754s-1.595-3.753-3.706-3.753c-2.111 0-3.706 1.572-3.706 3.753 0 2.182 1.595 3.754 3.706 3.754zM67.844 6.228c-.891 0-1.618-.75-1.618-1.619.002-.43.173-.842.476-1.145a1.612 1.612 0 012.283 0c.304.303.475.715.477 1.145 0 .868-.727 1.619-1.618 1.619zm-1.267 13.488V7.987h2.534v11.729h-2.534zm5.466 0V2.59h2.533v17.124h-2.533zM91.021 7.987h2.674l-3.683 11.729h-2.487l-2.44-7.905-2.463 7.905h-2.486L76.453 7.987h2.674l2.276 8.092 2.463-8.092h2.416l2.44 8.092 2.299-8.092zm5.817-1.759c-.892 0-1.619-.75-1.619-1.619.003-.43.174-.842.477-1.145a1.612 1.612 0 012.284 0c.303.303.475.715.477 1.145 0 .868-.727 1.619-1.619 1.619zm-1.266 13.488V7.987h2.533v11.729H95.57zm11.634-12.034c2.628 0 4.504 1.783 4.504 4.833v7.2h-2.533v-6.943c0-1.783-1.032-2.72-2.627-2.72-1.666 0-2.979.985-2.979 3.377v6.287h-2.534V7.987h2.534V9.49c.774-1.22 2.04-1.807 3.635-1.807zm16.515-4.386h2.533v16.42h-2.533v-1.69c-.891 1.244-2.275 1.994-4.105 1.994-3.19 0-5.841-2.697-5.841-6.17 0-3.494 2.651-6.168 5.841-6.168 1.83 0 3.214.75 4.105 1.97V3.296zm-3.707 14.309c2.112 0 3.707-1.572 3.707-3.754s-1.595-3.753-3.707-3.753c-2.111 0-3.706 1.572-3.706 3.753 0 2.182 1.595 3.754 3.706 3.754zm14.732 2.416c-3.542 0-6.193-2.698-6.193-6.17 0-3.494 2.651-6.169 6.193-6.169 2.299 0 4.293 1.196 5.231 3.026l-2.182 1.267c-.516-1.102-1.665-1.806-3.072-1.806-2.065 0-3.636 1.572-3.636 3.682 0 2.111 1.571 3.683 3.636 3.683 1.407 0 2.556-.727 3.119-1.806l2.182 1.243c-.985 1.853-2.979 3.05-5.278 3.05zm9.453-8.797c0 2.135 6.311.844 6.311 5.185 0 2.346-2.041 3.612-4.574 3.612-2.346 0-4.035-1.056-4.786-2.745l2.182-1.266c.375 1.055 1.313 1.689 2.604 1.689 1.126 0 1.993-.376 1.993-1.315 0-2.087-6.31-.914-6.31-5.113 0-2.205 1.9-3.589 4.293-3.589 1.924 0 3.519.892 4.34 2.44l-2.135 1.196c-.422-.915-1.243-1.337-2.205-1.337-.915 0-1.713.399-1.713 1.243zm10.815 0c0 2.135 6.31.844 6.31 5.185 0 2.346-2.041 3.612-4.575 3.612-2.345 0-4.034-1.056-4.785-2.745l2.182-1.266c.375 1.055 1.313 1.689 2.603 1.689 1.126 0 1.995-.376 1.995-1.315 0-2.087-6.31-.914-6.31-5.113 0-2.205 1.899-3.589 4.292-3.589 1.924 0 3.519.892 4.34 2.44l-2.135 1.196c-.422-.915-1.243-1.337-2.205-1.337-.915 0-1.712.399-1.712 1.243z"
-                    ></path>
-                    </svg>
-                </a>
-            </div> -->
-        <div class="flex items-center gap-4">
+        <a title="Home" aria-label="Home" href=/ target="_self" rel="noopener noreferrer"
+            class="flex items-center gap-4 hover:opacity-50">
             <svg class="size-12 fill-[#000] dark:fill-[#409EFE]" version="1.0" xmlns="http://www.w3.org/2000/svg"
-                width="1600" height="1600" viewBox="0 0 1200 1200">
+                width="24" height="24" viewBox="0 0 1200 1200">
                 <path
                     d="M570 32.1c-101.8 6-200.4 39-284.2 95-82.1 54.9-147.5 128-191.9 214.4C59.2 409 39.7 477.7 32.9 556c-1.6 18.4-1.6 65.3-.1 83C42.4 745.4 77 840.6 136.7 924.7c99.6 140.4 254.4 227.4 425.8 239.4 24.3 1.7 75.8.6 98.5-2 114.6-13.3 215.6-56.7 303.2-130.2 17.2-14.5 53.4-50.7 67.2-67.4 57.3-68.9 95.7-144.1 117.1-229.5 6.3-25.4 10.7-50.4 14.2-82 2.5-22.2 2.5-85 0-107-8.2-72.8-25.5-133-55.7-194.5-13.1-26.7-21.7-41.7-36.5-64-65.5-98.7-155.6-172.2-265-216.3C732 41.7 647.1 27.5 570 32.1zM637.1 97c124.2 9.6 236.3 61.8 322.2 149.9C1028.5 318 1074.4 405.2 1094 503c17.4 87 12.3 172-15.5 255.5-14.4 43.2-32.5 80.5-58 119-20.1 30.4-37.3 51.4-64.8 79l-18 18-.8-3c-.4-1.7-2.6-10.9-4.9-20.5-7-29.6-18.8-61.6-32.1-87-23-43.8-72-96.5-114.2-122.6-9-5.6-38.5-20.4-40.6-20.4-2.1 0-1-1.5 3.2-4.6 5.8-4.3 27.6-24.2 36.8-33.6 9.8-10 16.7-19.8 28.1-39.4 10.5-18.2 16-30.1 22.3-48.4 19.6-57.4 15.5-131.6-10.4-185.5-20-41.6-51.4-77.9-89.1-103-69-46-162.3-53-241.1-18-43.7 19.4-83.7 54.2-109.4 95.1-13.4 21.2-22.2 42-28.5 66.8-5.5 21.8-7.2 34.9-7.7 59.6-1.1 48.4 6.4 79.7 28.7 120 10.8 19.6 20.6 33.1 38.8 53.4 15.5 17.3 21.9 23.5 29.5 28.5l6.8 4.4-15.8 8.2c-47.9 24.7-77.2 49.1-112.6 93.8-31.6 39.9-55.2 92.3-64.3 142.4-.9 5.1-2 9.3-2.4 9.3-1.4 0-33.6-33.7-43.9-46-64.1-76.6-103-166.6-115.3-267.1-1.9-16.2-2.2-23.1-2.2-56.9s.3-40.7 2.2-56.9c7.3-59.1 23.1-113.1 48.1-163.9 11.6-23.5 18.7-35.7 33.7-58.2 20.7-31.1 40.9-55.6 67.3-81.3 87.2-84.9 197-134.1 319.1-143 11.2-.8 57.9-.6 70.1.3zm-.9 248.9c25 5.5 45.5 15.4 69.8 33.7 39.3 29.7 61 67.5 67.1 116.8 1.7 14 .6 42.1-2.1 55.1-2.9 13.8-8.3 29.5-13.2 38.4-18.1 33.1-41.3 58.4-69 75.5-45.8 28.2-117.6 30.7-162.9 5.6-26.5-14.8-49.4-34.1-64.5-54.6-15.8-21.3-24.4-41.8-29.6-70.4-2.5-13.9-3-43.8-1-56.5 1.9-11.7 6.6-29.3 10.2-37.7 3.9-9.5 14.2-26.7 23.2-38.8 8.8-11.8 28.7-31.6 39.5-39.3 19.9-14.1 47.1-25.7 68.8-29.3 12.8-2.1 51.3-1.2 63.7 1.5zM630 762.1c30.7 3.4 56.7 11.3 87.5 26.4 43.1 21.1 78.2 51.7 103.8 90.5 8 12.1 19.9 36 25.2 50.4 10.3 28.1 17.5 65.7 17.5 91.6v8.6l-13.2 7.7c-65.5 37.6-137.4 59.6-214.2 65.7-16.6 1.3-56.6 1.3-73.2 0-78.4-6.2-154.8-30.2-219.4-68.8l-11.5-6.9.2-9.9c.4-13.9 2.1-28.7 4.9-43.7C351.1 903.5 389.5 848 455 803.8c17.1-11.6 32.7-19.1 55.5-26.8 44.3-15 79.6-19.4 119.5-14.9zm-299.2 95.1c-3.8 5.8-12.5 22-17.3 32.1-13.8 29.3-23.2 59.8-28 91.4-1.3 8.2-2.1 11-3 10.6-2.2-.8-2.3-2.4-.4-13.7 5.5-32 16.5-64.9 30.9-92.4 5.8-11 17.7-30.2 18.7-30.2.3 0-.1 1-.9 2.2z" />
             </svg>
-            <span>
+            <span translate="no">
                 <h1 class="text-2xl font-semibold capitalize max-sm:text-xl dark:text-[#409EFE]">Centered101</h1>
-                <p class="uppercase max-sm:hidden">programmer & full stack developer</p>
+                <p class="uppercase max-sm:hidden dark:text-[#FFF]">programmer & Software Developer</p>
             </span>
-        </div>
+        </a>
         <div class="flex items-center gap-6">
-            <a title="GitHub repository" aria-label="GitHub repository" href="https://github.com/centered101/">
-                <svg class="fill-[#000] max-sm:hidden dark:fill-[#409EFE]" xmlns="http://www.w3.org/2000/svg" width="24"
+            <a title="GitHub repository" aria-label="GitHub repository" href="https://github.com/centered101/"
+                class="ml-4 hover:opacity-50">
+                <svg class="fill-[#000] max-sm:hidden dark:fill-[#FFF]" xmlns="http://www.w3.org/2000/svg" width="24"
                     height="24" viewBox="2.05 2 19.95 19.46">
                     <path fill-rule="evenodd"
                         d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974c0 4.406 2.857 8.145 6.821 9.465c.499.09.679-.217.679-.481c0-.237-.008-.865-.011-1.696c-2.775.602-3.361-1.338-3.361-1.338c-.452-1.152-1.107-1.459-1.107-1.459c-.905-.619.069-.605.069-.605c1.002.07 1.527 1.028 1.527 1.028c.89 1.524 2.336 1.084 2.902.829c.091-.645.351-1.085.635-1.334c-2.214-.251-4.542-1.107-4.542-4.93c0-1.087.389-1.979 1.024-2.675c-.101-.253-.446-1.268.099-2.64c0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336a9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021c.545 1.372.203 2.387.099 2.64c.64.696 1.024 1.587 1.024 2.675c0 3.833-2.33 4.675-4.552 4.922c.355.308.675.916.675 1.846c0 1.334-.012 2.41-.012 2.737c0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974C22 6.465 17.535 2 12.026 2z"
@@ -67,59 +57,108 @@
             <nav class="flex justify-end items-center">
                 <input hidden type="checkbox" id="sidebar-active" class="peer">
 
-                <label title="menu" for="sidebar-active" class="cursor-pointer">
-                    <svg class="fill-[#000] dark:fill-[#409EFE]" xmlns="http://www.w3.org/2000/svg" height=32
+                <label title="Menu" aria-label="Menu" for="sidebar-active"
+                    class="ease-in-out duration-300 cursor-pointer hover:opacity-50">
+                    <svg class="fill-[#000] dark:fill-[#FFF]" xmlns="http://www.w3.org/2000/svg" height=32
                         viewBox="0 -960 960 960" width=32>
                         <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
                     </svg>
                 </label>
 
                 <div
-                    class="fixed top-0 right-0 h-full w-64 flex flex-col items-start bg-[#FFF] border-l border-[#CCC] translate-x-full peer-checked:translate-x-0 transition-transform ease-in-out duration-300 dark:bg-[#000]">
+                    class="fixed top-0 right-0 h-full w-64 flex flex-col items-start bg-[#FFF] border-l border-[#CCC] translate-x-full peer-checked:translate-x-0 transition-transform ease-in-out duration-300 overflow-x-hidden overflow-y-scroll dark:bg-[#000]">
 
-                    <label for=sidebar-active
-                        class="self-end w-full border-b border-[#CCC] flex justify-end p-6 cursor-pointer sm:pr-8">
-                        <svg class="fill-[#000] dark:fill-[#409EFE]" xmlns="http://www.w3.org/2000/svg" height=32
+                    <label title="Close Menu" aria-label="Close Menu" for=sidebar-active
+                        class="self-end w-full border-b border-[#CCC] flex justify-end p-6 ease-in-out duration-300 cursor-pointer hover:opacity-50 sm:pr-4">
+                        <svg class="fill-[#000] dark:fill-[#FFF]" xmlns="http://www.w3.org/2000/svg" height=32
                             viewBox="0 -960 960 960" width=32>
                             <path
                                 d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                         </svg>
                     </label>
+                    <script>
+                        function scrollToSection(section) {
+                            const sectionElement = document.getElementById(section);
+                            if (sectionElement) {
+                                sectionElement.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
 
-                    <a class="w-full px-8 py-4 font-semibold capitalize border-r-4 hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
-                        href=#home>Home</a>
-                    <a class="w-full px-8 py-4 font-semibold capitalize border-r-4 hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
-                        href="#about">About</a>
-                    <a class="w-full px-8 py-4 font-semibold capitalize border-r-4 hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
-                        href="#skills">skills</a>
-                    <a class="w-full px-8 py-4 font-semibold capitalize border-r-4 hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
-                        href="#experience">experience</a>
-                    <a class="w-full px-8 py-4 font-semibold capitalize border-r-4 hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
-                        href="#projects">Projects</a>
-                    <a class="w-full px-8 py-4 font-semibold capitalize border-r-4 hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
-                        href="#content">Content</a>
-                    <div class="mb-5 m-auto  text-center">
-                        Centered101
-                    </div>
+                        document.addEventListener("DOMContentLoaded", () => {
+                            const sections = document.querySelectorAll("section");
+                            const navLinks = document.querySelectorAll("nav div a[onclick]");
+
+                            const observer = new IntersectionObserver(
+                                (entries) => {
+                                    entries.forEach((entry) => {
+                                        if (entry.isIntersecting) {
+                                            navLinks.forEach((link) => {
+                                                link.classList.remove("pl-2", "border-[#000]", "dark:text-[#409EFE]", "dark:border-[#409EFE]");
+                                                if (link.getAttribute("onclick").includes(entry.target.id)) {
+                                                    link.classList.add("pl-2", "border-[#000]", "dark:text-[#409EFE]", "dark:border-[#409EFE]");
+                                                }
+                                            });
+                                        }
+                                    });
+                                },
+                                { threshold: 0.6 }
+                            );
+
+                            sections.forEach((section) => observer.observe(section));
+                        });
+                    </script>
+
+                    <a title="Home" aria-label="Home"
+                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 cursor-pointer hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
+                        onclick="scrollToSection('home')">Home</a>
+                    <a title="About" aria-label="About"
+                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 cursor-pointer hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
+                        onclick="scrollToSection('about')">About</a>
+                    <a title="Skills" aria-label="Skills"
+                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 cursor-pointer hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
+                        onclick="scrollToSection('skills')">Skills</a>
+                    <a title="Experience" aria-label="Experience"
+                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 cursor-pointer hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
+                        onclick="scrollToSection('experience')">Experience</a>
+                    <a title="Projects" aria-label="Projects"
+                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 cursor-pointer hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
+                        onclick="scrollToSection('projects')">Projects</a>
+                    <a title="Contact" aria-label="Contact"
+                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 cursor-pointer hover:border-[#000] hover:bg-[#EFEFEF] dark:hover:border-[#409EFE]"
+                        onclick="scrollToSection('contact')">Contact</a>
+                    <p class="text-center text-sm truncate first-letter:text-[#409EFE] m-4 mt-auto">
+                        <span title=Centered101 class="text-[#409EFE] underline-offset-1">
+                            <a href=https://github.com/Centered101 />Centered101</a>
+                        </span>— All Rights Reserved.
+                    </p>
                 </div>
             </nav>
         </div>
     </header>
     <main class="min-h-screen">
         <section id="home" class="min-h-screen max-w-9xl flex justify-center items-end mx-auto px-8 select-none">
-            <img class="absolute right-8 top-8 max-md:my-auto md:w-1/2 dark:brightness-100"
-                src="https://watracz.com/assets/images/bg_home.png"
+            <img class="absolute right-8 top-8 max-md:my-auto md:-right-40 lg:w-1/2 lg:right-0 lg:top-0"
+                src="https://watracz.com/assets/images/bg_home.png" draggable="false" oncontextmenu="return false;"
                 onerror="this.onerror=null; this.src='https://project-test-submission.netlify.app/images/profile-portfolio.webp';">
-            <div class="max-w-xl space-y-6 mr-auto mb-24 z-10 sm:mx-auto md:ml-24 md:mb-56">
-                <p class="font-semibold capitalize uppercase">phongphon phompha</p>
-                <h1 class="text-6xl font-black max-sm:text-3xl dark:text-[#409EFE]">Programmer and<br>
-                    Full stack developer</h1>
-                <p class="indent-8">Hi, I'm Phongphon Phompha, I'm a Software Developer based in Lagos, Nigeria. I
-                    specialize in building Frontend and Backend applications. I'm a passionate Tech Enthusiast on a
-                    perpetual quest for knowledge in the vast realm of Computer Science</p>
-                <div class="flex flex-row justify-stact items-center gap-6">
-                    <a class="w-full flex justify-center items-center gap-2 border border-[#000] rounded-xl text-[#000] font-black bg-transparent px-8 py-4 ease-in-out duration-300 group hover:text-[#FFF] hover:bg-[#000] dark:text-[#FFF] dark:border-[#FFF] dark:hover:bg-[#FFF] dark:hover:text-[#000]"
-                        href="#" download>
+            <div class="max-w-xl space-y-6 mr-auto mb-24 z-10 sm:mx-auto md:ml-8 lg:ml-56 lg:mb-56">
+                <p translate="no" class="text-xl font-semibold uppercase">phongphon phompha</p>
+                <h1 style="font-family: 'Roboto Mono', 'Bai Jamjuree', sans-serif;"
+                    class="text-6xl font-black max-sm:text-3xl dark:text-[#FFF]">Programmer and<br>
+                    Software Developer</h1>
+                <span>
+                    <p class="indent-8 text-xl">
+                        I'm a Software Developer and Tech Enthusiast based in Thailand. <br>
+                    </p>
+                    <p class="indent-8 text-xl">
+                        I'm passionate about <strong>mobile app development</strong>, <strong>games</strong>,
+                        <strong>digital marketing</strong>, and <strong>business strategy</strong>. <br>
+                        Let's connect and build something amazing together! 🚀
+                    </p>
+                </span>
+                <div class=" flex flex-row justify-stact items-center gap-6">
+                    <a title="Download CV" aria-label="Download CV"
+                        class="w-full flex justify-center items-center gap-2 border border-[#000] rounded-xl text-[#000] font-black truncate bg-transparent px-8 py-4 ease-in-out duration-300 group hover:text-[#FFF] hover:bg-[#000] dark:text-[#FFF] dark:border-[#FFF] dark:hover:bg-[#FFF] dark:hover:text-[#000]"
+                        href="resume.pdf" download>
                         <span>Download CV</span>
                         <svg class="fill-[#000] group-hover:fill-[#FFF] dark:fill-[#FFF] dark:group-hover:fill-[#000]"
                             xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -127,8 +166,9 @@
                                 d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
                         </svg>
                     </a>
-                    <a class="w-full flex justify-center items-center gap-2 border border-[#000] rounded-xl text-[#FFF] font-black bg-[#000] px-8 py-4 ease-in-out duration-300 group hover:text-[#000] hover:bg-transparent dark:bg-[#FFF] dark:text-[#000] dark:border-[#FFF] dark:hover:text-[#FFF]"
-                        href="#content">
+                    <a title="Contact Me" aria-label="Contact Me"
+                        class="w-full flex justify-center items-center gap-2 border border-[#000] rounded-xl text-[#FFF] font-black truncate bg-[#000] px-8 py-4 ease-in-out duration-300 group hover:text-[#000] hover:bg-transparent dark:bg-[#FFF] dark:text-[#000] dark:border-[#FFF] dark:hover:text-[#FFF]"
+                        onclick="scrollToSection('contact')">
                         <span>Contact Me</span>
                         <svg class="fill-[#FFF] group-hover:fill-[#000] dark:fill-[#000] dark:group-hover:fill-[#FFF]"
                             xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -138,34 +178,29 @@
                     </a>
                 </div>
             </div>
-            <a href="#about" class="animate-bounce absolute bottom-8 rounded-full max-md:hidden">
-                <svg class="fill-[#000] dark:fill-[#409EFE]" xmlns=http://www.w3.org/2000/svg height=32
-                    viewBox="0 -960 960 960" width=32>
-                    <path
-                        d="M480-80q-116 0-198-82t-82-198v-240q0-116 82-198t198-82q116 0 198 82t82 198v240q0 116-82 198T480-80Zm40-520h160q0-72-45.5-127T520-796v196Zm-240 0h160v-196q-69 14-114.5 69T280-600Zm200 440q83 0 141.5-58.5T680-360v-160H280v160q0 83 58.5 141.5T480-160Zm0-360Zm40-80Zm-80 0Zm40 80Z" />
-                </svg>
-            </a>
         </section>
         <section id="about" class="min-h-screen max-w-7xl mx-auto pt-24">
-            <div class=" block">
-                <svg class="stroke-[#000]" width="24" viewBox="0 0 24 24" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M9 17H13M9 13H13M9 9H10M17 18V21M17 15H17.01M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H13M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19M19 9V11.5"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <span>About</span>
-            </div>
+            <h2 class="text-3xl font-black text-center capitalize mb-4">About</h2>
+
         </section>
-        <section id="skills" class="min-h-screen max-w-7xl mx-auto pt-24"></section>
-        <section id="experience" class="min-h-screen max-w-7xl mx-auto pt-24"></section>
-        <section id="projects" class="min-h-screen max-w-7xl mx-auto pt-24"></section>
-        <section id="content" class="min-h-screen max-w-7xl mx-auto pt-24">
-            <h2 class="text-xl font-black text-center mb-4">Contact Us</h2>
+        <section id="skills" class="min-h-screen max-w-7xl mx-auto pt-24">
+            <h2 class="text-3xl font-black text-center capitalize mb-4">Skills</h2>
+
+        </section>
+        <section id="experience" class="min-h-screen max-w-7xl mx-auto pt-24">
+            <h2 class="text-3xl font-black text-center capitalize mb-4">Experience</h2>
+
+        </section>
+        <section id="projects" class="min-h-screen max-w-7xl mx-auto pt-24">
+            <h2 class="text-3xl font-black text-center capitalize mb-4">Projects</h2>
+
+        </section>
+        <section id="contact" class="min-h-screen max-w-7xl mx-auto pt-24">
+            <h2 class="text-3xl font-black text-center capitalize mb-4">Contact</h2>
             <div class="grid grid-cols-2 gap-8 p-8 max-sm:grid-cols-1">
-                <div class="w-full space-y-8 md:max-w-lg">
+                <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
                     <div
-                        class="flex justify-center items-center bg-[#FFF] border border-[#000] rounded-xl flex-col gap-2 p-4 dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF]">
+                        class="col-span-1 flex justify-center items-center flex-col gap-2 bg-[#FFF] border border-[#000] rounded-xl p-4 dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF]">
                         <svg class="fill-[#000] dark:fill-[#409EFE]" xmlns="http://www.w3.org/2000/svg" width="32"
                             height="32" viewBox="3 2.98 18.01 18.04">
                             <path
@@ -173,11 +208,12 @@
                             <circle cx="11.994" cy="11.979" r="3.003" />
                         </svg>
                         <p class="font-semibold capitalize">Instagram</p>
-                        <p>@Centered101</p>
-                        <a href="https://www.instagram.com/Centered101"
-                            class="block w-full bg-[#FFF] text-[#000] font-semibold capitalize border border-[#000] rounded-xl flex justify-center items-center gap-2 group mt-4 py-2 hover:text-[#FFF] hover:bg-[#000] ease-in-out duration-300 group dark:bg-[#FFF] dark:text-[#000] dark:border-[#FFF] dark:hover:text-[#FFF]">
-                            <span>Send a Message</span>
-                            <svg class="fill-[#000] group-hover:fill-[#FFF] dark:fill-[#000] dark:group-hover:fill-[#FFF]"
+                        <p translate="no">@Centered101</p>
+                        <a target="_blank" href="https://www.instagram.com/direct/t/17848003478856472/"
+                            title="Send a Instagram message" aria-label="Send a Instagram message"
+                            class="block w-full bg-[#FFF] text-[#000] font-semibold border border-[#000] rounded-xl flex justify-center items-center gap-2 group mt-4 p-2 hover:text-[#FFF] hover:bg-[#000] ease-in-out duration-300 group dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF] dark:hover:bg-[#FFF] dark:hover:text-[#000]">
+                            <span class="truncate">Send a Message</span>
+                            <svg class="fill-[#000] group-hover:fill-[#FFF] dark:fill-[#FFF] dark:group-hover:fill-[#000]"
                                 xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                                 <path
                                     d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
@@ -185,18 +221,19 @@
                         </a>
                     </div>
                     <div
-                        class="flex justify-center items-center bg-[#FFF] border border-[#000] rounded-xl flex-col gap-2 p-4 dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF]">
+                        class="col-span-1 flex justify-center items-center flex-col gap-2 bg-[#FFF] border border-[#000] rounded-xl p-4 dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF]">
                         <svg class="fill-[#000] dark:fill-[#409EFE]" xmlns="http://www.w3.org/2000/svg" width="32"
                             height="32" viewBox="0 0 24 24">
                             <path
                                 d="M6.94 5a2 2 0 1 1-4-.002a2 2 0 0 1 4 .002M7 8.48H3V21h4zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91z" />
                         </svg>
                         <p class="font-semibold capitalize">Linkedin</p>
-                        <p>@Centered101</p>
-                        <a href="https://www.linkedin.com/in/Centered101"
-                            class="block w-full bg-[#FFF] text-[#000] font-semibold capitalize border border-[#000] rounded-xl flex justify-center items-center gap-2 group mt-4 py-2 hover:text-[#FFF] hover:bg-[#000] ease-in-out duration-300 group dark:bg-[#FFF] dark:text-[#000] dark:border-[#FFF] dark:hover:text-[#FFF]">
-                            <span>Send a Message</span>
-                            <svg class="fill-[#000] group-hover:fill-[#FFF] dark:fill-[#000] dark:group-hover:fill-[#FFF]"
+                        <p translate="no">@Centered101</p>
+                        <a target="_blank" href="https://www.linkedin.com/in/Centered101"
+                            title="Send a LinkedIn message" aria-label="Send a LinkedIn message"
+                            class="block w-full bg-[#FFF] text-[#000] font-semibold border border-[#000] rounded-xl flex justify-center items-center gap-2 group mt-4 p-2 hover:text-[#FFF] hover:bg-[#000] ease-in-out duration-300 group dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF] dark:hover:bg-[#FFF] dark:hover:text-[#000]">
+                            <span class="truncate">Send a Message</span>
+                            <svg class="fill-[#000] group-hover:fill-[#FFF] dark:fill-[#FFF] dark:group-hover:fill-[#000]"
                                 xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                                 <path
                                     d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
@@ -204,7 +241,7 @@
                         </a>
                     </div>
                     <div
-                        class="flex justify-center items-center bg-[#FFF] border border-[#000] rounded-xl flex-col gap-2 p-4 dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF]">
+                        class="md:col-span-2 flex justify-center items-center flex-col gap-2 bg-[#FFF] border border-[#000] rounded-xl p-4 dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF]">
                         <svg class="stroke-[#000] dark:stroke-[#409EFE]" stroke-linejoin="round" stroke-linecap="round"
                             stroke-width="2" fill="none" viewBox="0 0 24 24" height="32" width="32"
                             xmlns="http://www.w3.org/2000/svg">
@@ -212,56 +249,47 @@
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                         </svg>
                         <p class="font-semibold capitalize">Email</p>
-                        <!-- <ul translate="no" class="space-y-2"> -->
-                        <!-- <li> -->
                         <a onclick="nextPage(this)" title="centered101@outlook.com"
-                            class="block w-full bg-[#FFF] text-[#000] font-semibold capitalize border border-[#000] rounded-xl flex justify-center items-center gap-2 group mt-4 py-2 hover:text-[#FFF] hover:bg-[#000] ease-in-out duration-300 group dark:bg-[#FFF] dark:text-[#000] dark:border-[#FFF] dark:hover:text-[#FFF]"
-                            href="mailto:centered101@outlook.com" aria-label="Email centered101 at outlook.com">
-                            <span>Centered101@outlook.com</span>
-                            <svg class="fill-[#000] group-hover:fill-[#FFF] dark:fill-[#000] dark:group-hover:fill-[#FFF]"
+                            aria-label="Email centered101 at outlook.com" translate="no"
+                            class="block w-full bg-[#FFF] text-[#000] font-semibold border border-[#000] rounded-xl flex justify-center items-center gap-2 group mt-4 p-2 hover:text-[#FFF] hover:bg-[#000] ease-in-out duration-300 group dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF] dark:hover:bg-[#FFF] dark:hover:text-[#000]"
+                            href="mailto:centered101@outlook.com">
+                            <span class="truncate">Centered101@outlook.com</span>
+                            <svg class="fill-[#000] group-hover:fill-[#FFF] dark:fill-[#FFF] dark:group-hover:fill-[#000]"
                                 xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                                 <path
                                     d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
                             </svg>
                         </a>
                         <a onclick="nextPage(this)" title="centered101@hotmail.com"
-                            class="block w-full bg-[#FFF] text-[#000] font-semibold capitalize border border-[#000] rounded-xl flex justify-center items-center gap-2 group mt-4 py-2 hover:text-[#FFF] hover:bg-[#000] ease-in-out duration-300 group dark:bg-[#FFF] dark:text-[#000] dark:border-[#FFF] dark:hover:text-[#FFF]"
-                            href="mailto:centered101@hotmail.com" aria-label="Email centered101 at hotmail.com">
-                            <span>Centered101@hotmail.com</span>
-                            <svg class="fill-[#000] group-hover:fill-[#FFF] dark:fill-[#000] dark:group-hover:fill-[#FFF]"
+                            aria-label="Email centered101 at hotmail.com" translate="no"
+                            class="block w-full bg-[#FFF] text-[#000] font-semibold border border-[#000] rounded-xl flex justify-center items-center gap-2 group mt-4 p-2 hover:text-[#FFF] hover:bg-[#000] ease-in-out duration-300 group dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF] dark:hover:bg-[#FFF] dark:hover:text-[#000]"
+                            href="mailto:centered101@hotmail.com">
+                            <span class="truncate">Centered101@hotmail.com</span>
+                            <svg class="fill-[#000] group-hover:fill-[#FFF] dark:fill-[#FFF] dark:group-hover:fill-[#000]"
                                 xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                                 <path
                                     d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
                             </svg>
                         </a>
-                        <!-- </li> -->
-                        <!-- <li> -->
-                        <!-- <a onclick="nextPage(this)" title="centered101@hotmail.com"
-                                    href="mailto:centered101@hotmail.com" aria-label="Email centered101 at hotmail.com">
-                                    <span>Centered101</span><span class="text-[#000]">@</span><span>hotmail</span><span
-                                        class="text-[#000]">.com</span>
-                                </a> -->
-                        <!-- </li> -->
-                        <!-- </ul> -->
                     </div>
                 </div>
-                <form class="space-y-8">
-                    <input
+                <form method="post" class="space-y-8">
+                    <input title="Enter your name" aria-label="Enter your name"
                         class="w-full bg-[#FFF] ring-1 ring-[#000] rounded-xl p-4 ease-in-out duration-300 focus:ring-2 dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF] dark:ring-[#FFF]"
-                        placeholder="Enter your name" id="name" type="text" maxlength="255" />
-                    <input class="w-full bg-[#FFF] ring-1 ring-[#000] rounded-xl p-4 ease-in-out duration-300 focus:ring-2 dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF] dark:ring-[#FFF] disabled:text-[#FF7070] disabled:ring-[#FF7070] invalid:ring-[#FF7070] invalid:text-[#FF7070]
+                        placeholder="Enter your name" id="name" type="text" maxlength="50" />
+                    <input title="Enter your email" aria-label="Enter your email" class="w-full bg-[#FFF] ring-1 ring-[#000] rounded-xl p-4 ease-in-out duration-300 focus:ring-2 dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF] dark:ring-[#FFF] disabled:text-[#FF7070] disabled:ring-[#FF7070] invalid:ring-[#FF7070] invalid:text-[#FF7070]
                         focus:invalid:border-[#FF7070] focus:invalid:ring-[#FF7070]" placeholder="Enter your email"
-                        name="email" id="email" type="email" maxlength="255" />
-                    <textarea
+                        name="email" id="email" type="email" maxlength="320" />
+                    <textarea title="Enter your message" aria-label="Enter your message"
                         class="w-full bg-[#FFF] ring-1 ring-[#000] rounded-xl p-4 ease-in-out duration-300 focus:ring-2 dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF] dark:ring-[#FFF]"
                         placeholder="Enter your message" name="message" id="message" rows="4"
-                        maxlength="255"></textarea>
+                        maxlength="1000"></textarea>
 
-                    <button
-                        class="w-full flex justify-center items-center gap-2 border border-[#000] rounded-xl text-[#FFF] font-black bg-[#000] uppercase px-8 py-4 ease-in-out duration-300 group hover:text-[#000] hover:bg-[#FFF] dark:bg-[#FFF] dark:text-[#000] dark:border-[#FFF] dark:hover:text-[#FFF]"
+                    <button title="Submit contact" aria-label="Submit contact"
+                        class="relative bottom-0 w-full flex justify-center items-center gap-2 border border-[#000] rounded-xl text-[#FFF] font-black bg-[#000] uppercase px-8 py-4 ease-in-out duration-300 group hover:text-[#000] hover:bg-[#FFF] focus:bg-[#FFF] focus:text-[#000] dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF] dark:hover:text-[#000]"
                         type="submit">
-                        <span>Send Message</span>
-                        <svg class="fill-[#FFF] group-hover:fill-[#000] dark:fill-[#000] dark:group-hover:fill-[#FFF]"
+                        <span class="truncate">Send Message</span>
+                        <svg class="fill-[#FFF] group-hover:fill-[#000] group-focus:fill-[#000] dark:fill-[#FFF] dark:group-hover:fill-[#000]"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
                             <path
                                 d="m21.697,8.382L4.566.324C3.396-.243,2.021-.049,1.056.82.087,1.692-.25,3.048.197,4.272c.024.064,4.106,7.734,4.106,7.734,0,0-4.005,7.664-4.028,7.727-.445,1.226-.105,2.58.865,3.45.601.538,1.358.816,2.121.816.47,0,.941-.105,1.379-.321l17.058-8.053c1.421-.667,2.303-2.056,2.302-3.625-.002-1.569-.885-2.956-2.303-3.619ZM3.001,3.184c-.004-.038.007-.084.062-.133.088-.079.157-.047.195-.027.007.004.015.007.021.011l15.874,7.466H6.9L3.001,3.184Zm.336,17.793c-.036.019-.106.053-.193-.026-.056-.05-.066-.098-.062-.136l3.827-7.314h12.266l-15.837,7.477Z" />
@@ -271,20 +299,20 @@
             </div>
         </section>
         <button title="top scroll button" aria-label="top scroll button" id="button-scroll-top"
-            class="sticky bottom-8 ml-auto m-8 flex items-center bg-[#FFF] text-[#000] rounded-full ease-in-out duration-300 group sm:border-t sm:border-l sm:border-b sm:border-[#000]">
+            class="sticky bottom-8 ml-auto m-8 flex items-center bg-[#FFF] text-[#000] rounded-full ease-in-out duration-300 group sm:border-t sm:border-l sm:border-b sm:border-[#000] dark:bg-[#000] dark:text-[#FFF] dark:border-[#FFF]">
             <div class="hidden text-sm font-semibold capitalize mx-6 sm:grid">
                 <span>To Top</span>
-                <span id="deply-value" style='font-family: "Roboto Mono", serif;'></span>
+                <span id="deply-value" style="font-family: 'Roboto Mono', 'Bai Jamjuree', sans-serif;"></span>
             </div>
             <div id="progress"
                 class="size-12 grid place-items-center bg-[#FFF] border border-[#000] rounded-full md:size-14">
                 <div id="progress-value"
                     class="grid place-items-center size-[calc(100%-10px)] bg-[#FFF] border border-[#000] rounded-full">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 27.5"
+                        enable-background="new 0 0 26 22" x="0px" y="0px">
                         <path
-                            d="M6.265,3.015h3L5.194,7.083A1.5,1.5,0,0,0,7.315,9.205L10.5,6.02v16.5a1.5,1.5,0,0,0,3,0V6.02l3.185,3.185a1.5,1.5,0,1,0,2.121-2.122L14.738,3.015h3a1.5,1.5,0,0,0,0-3H6.265a1.5,1.5,0,0,0,0,3Z" />
+                            d="m11.2 10.8v8.9c0 .9.8 1.7 1.7 1.7s1.7-.8 1.7-1.7v-9.1l4.1 4.2c.7.7 1.8.7 2.4 0 .7-.7.7-1.8 0-2.5l-6.9-7c-.7-.7-1.8-.7-2.4 0l-7.1 7.1c-.7.7-.7 1.8 0 2.4.7.7 1.7.7 2.4 0l4.1-4m12.3-10.7c.9 0 1.7.8 1.7 1.7s-.8 1.7-1.7 1.7h-21c-.9 0-1.7-.8-1.7-1.7s.8-1.7 1.7-1.7h21" />
                     </svg>
-
                 </div>
             </div>
         </button>
@@ -303,15 +331,15 @@
             let button = document.getElementById('button-scroll-top');
 
             if (shouldShowButton) {
-                button.style.opacity = '1';
                 button.style.display = 'flex';
+                button.style.opacity = '1';
             } else {
                 button.style.opacity = '0';
                 setTimeout(() => {
                     if (button.style.opacity === '0') {
                         button.style.display = 'none';
                     }
-                }, 1000);
+                }, 300);
             }
 
             // คลิกที่ปุ่มเพื่อเลื่อนกลับไปด้านบน
@@ -328,19 +356,19 @@
         window.onscroll = window.onload = calcScrollValue;
 
     </script>
-    <footer role=complementary class="flex justify-between flex-col h-96 bg-[#000] text-[#FFF] truncate p-8">
+    <footer role=complementary class="flex justify-between flex-col min-h-[50vh] bg-[#000] text-[#FFF] truncate p-8">
         <div class="flex justify-between items-center max-md:items-start gap-8 max-md:flex-col">
             <div class="truncate">
-                <p class="text-3xl capitalize mt-4"><span>centered101</span><span
-                        class="border-4 border-[#409EFE] rounded-full mx-2"></span>
+                <p translate="no" class="flex flex-wrap text-3xl capitalize mt-4 max-md:text-xl">
+                    <span>centered101</span><span class="text-[#409EFE]"> | </span>
                     <span>phongphon phompha.</span>
                 </p>
-                <p>Programmer and Full stack developer</p>
+                <p class="truncate">Programmer and Software Developer</p>
             </div>
             <div class="flex justify-center items-center gap-4">
                 <a title="GitHub" aria-label="GitHub" href="https://github.com/centered101/"
-                    class="size-12 flex justify-center items-center border border-[#000] rounded-xl ease-in-out duration-300 hover:border-[#FFF] group">
-                    <svg class="fill-[#FFF] group-hover:fill-[#409EFE] ease-in-out duration-300"
+                    class="size-12 flex justify-center items-center border border-[#000] rounded-xl ease-in-out duration-300 group hover:border-[#FFF] focus:border-[#FFF]">
+                    <svg class="fill-[#FFF] group-hover:fill-[#409EFE] group-focus:fill-[#409EFE] ease-in-out duration-300"
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="2.05 2 19.95 19.46">
                         <path fill-rule="evenodd"
                             d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974c0 4.406 2.857 8.145 6.821 9.465c.499.09.679-.217.679-.481c0-.237-.008-.865-.011-1.696c-2.775.602-3.361-1.338-3.361-1.338c-.452-1.152-1.107-1.459-1.107-1.459c-.905-.619.069-.605.069-.605c1.002.07 1.527 1.028 1.527 1.028c.89 1.524 2.336 1.084 2.902.829c.091-.645.351-1.085.635-1.334c-2.214-.251-4.542-1.107-4.542-4.93c0-1.087.389-1.979 1.024-2.675c-.101-.253-.446-1.268.099-2.64c0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336a9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021c.545 1.372.203 2.387.099 2.64c.64.696 1.024 1.587 1.024 2.675c0 3.833-2.33 4.675-4.552 4.922c.355.308.675.916.675 1.846c0 1.334-.012 2.41-.012 2.737c0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974C22 6.465 17.535 2 12.026 2z"
@@ -348,8 +376,8 @@
                     </svg>
                 </a>
                 <a title="Instagram" aria-label="Instagram" href="https://www.instagram.com/Centered101/"
-                    class="size-12 flex justify-center items-center border border-[#000] rounded-xl ease-in-out duration-300 hover:border-[#FFF] group">
-                    <svg class="fill-[#FFF] group-hover:fill-[#409EFE] ease-in-out duration-300"
+                    class="size-12 flex justify-center items-center border border-[#000] rounded-xl ease-in-out duration-300 group hover:border-[#FFF] focus:border-[#FFF]">
+                    <svg class="fill-[#FFF] group-hover:fill-[#409EFE] group-focus:fill-[#409EFE] ease-in-out duration-300"
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="3 2.98 18.01 18.04">
                         <path
                             d="M20.947 8.305a6.53 6.53 0 0 0-.419-2.216a4.61 4.61 0 0 0-2.633-2.633a6.606 6.606 0 0 0-2.186-.42c-.962-.043-1.267-.055-3.709-.055s-2.755 0-3.71.055a6.606 6.606 0 0 0-2.185.42a4.607 4.607 0 0 0-2.633 2.633a6.554 6.554 0 0 0-.419 2.185c-.043.963-.056 1.268-.056 3.71s0 2.754.056 3.71c.015.748.156 1.486.419 2.187a4.61 4.61 0 0 0 2.634 2.632a6.584 6.584 0 0 0 2.185.45c.963.043 1.268.056 3.71.056s2.755 0 3.71-.056a6.59 6.59 0 0 0 2.186-.419a4.615 4.615 0 0 0 2.633-2.633c.263-.7.404-1.438.419-2.187c.043-.962.056-1.267.056-3.71c-.002-2.442-.002-2.752-.058-3.709zm-8.953 8.297c-2.554 0-4.623-2.069-4.623-4.623s2.069-4.623 4.623-4.623a4.623 4.623 0 0 1 0 9.246zm4.807-8.339a1.077 1.077 0 0 1-1.078-1.078a1.077 1.077 0 1 1 2.155 0c0 .596-.482 1.078-1.077 1.078z" />
@@ -357,18 +385,19 @@
                     </svg>
                 </a>
                 <a title="Lnkedin" aria-label="Linkedin" href="https://www.linkedin.com/in/Centered101/"
-                    class="size-12 flex justify-center items-center border border-[#000] rounded-xl ease-in-out duration-300 hover:border-[#FFF] group">
+                    class="size-12 flex justify-center items-center border border-[#000] rounded-xl ease-in-out duration-300 group hover:border-[#FFF] focus:border-[#FFF]">
                     <svg mlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="32" height="32">
-                        <path class="fill-[#FFF] group-hover:fill-[#409EFE] ease-in-out duration-300"
+                        <path
+                            class="fill-[#FFF] group-hover:fill-[#409EFE] group-focus:fill-[#409EFE] ease-in-out duration-300"
                             d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z" />
                         <path fill="#000"
                             d="M12 19H17V36H12zM14.485 17h-.028C12.965 17 12 15.888 12 14.499 12 13.08 12.995 12 14.514 12c1.521 0 2.458 1.08 2.486 2.499C17 15.887 16.035 17 14.485 17zM36 36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698-1.501 0-2.313 1.012-2.707 1.99C24.957 25.543 25 26.511 25 27v9h-5V19h5v2.616C25.721 20.5 26.85 19 29.738 19c3.578 0 6.261 2.25 6.261 7.274L36 36 36 36z" />
                     </svg>
                 </a>
                 <a title="Twitter/X" aria-label="Twitter/X" href="https://x.com/Centered101"
-                    class="size-12 flex justify-center items-center border border-[#000] rounded-xl ease-in-out duration-300 hover:border-[#FFF] group">
-                    <svg class="fill-[#FFF] group-hover:fill-[#409EFE] ease-in-out duration-300" stroke="currentColor"
-                        stroke-width="0" viewBox="0 0 512 512" height="24" width="24"
+                    class="size-12 flex justify-center items-center border border-[#000] rounded-xl ease-in-out duration-300 group hover:border-[#FFF] focus:border-[#FFF]">
+                    <svg class="fill-[#FFF] group-hover:fill-[#409EFE] group-focus:fill-[#409EFE] ease-in-out duration-300"
+                        stroke="currentColor" stroke-width="0" viewBox="0 0 512 512" height="24" width="24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" />
@@ -395,38 +424,8 @@
             <area shape="rect" coords="290,172,333,250" alt="Phone" href="phone.htm">
             <area shape="circle" coords="337,300,44" alt="Cup of coffee" href="coffee.htm">
         </map> -->
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            emailjs.init("M6L66rV0qPsAapA2kVCCW"); // ⭐ ใส่ Public Key ที่ได้จาก EmailJS
-        });
-
-        document.querySelector("form").addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const serviceID = "service_sjlqf9w";  // ⭐ ใส่ค่า Service ID
-            const templateID = "template_h1s38dv"; // ⭐ ใส่ค่า Template ID
-
-            const templateParams = {
-                from_name: document.getElementById("name").value,
-                from_email: document.getElementById("email").value,
-                message: document.getElementById("message").value,
-            };
-
-            emailjs.send(serviceID, templateID, templateParams)
-                .then(response => {
-                    alert("✅ Email sent successfully!");
-                    console.log("SUCCESS!", response);
-                })
-                .catch(error => {
-                    alert("❌ Failed to send email. Please try again.");
-                    console.error("FAILED...", error);
-                });
-        });
-
-    </script>
 
 </body>
+<script src="script.js"></script>
 
 </html>
