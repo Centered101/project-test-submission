@@ -4,6 +4,7 @@
 ::selection {
   background-color: #000000B3;
   color: #409EFE;
+  box-decoration-break: clone;
 }
 
 *,
