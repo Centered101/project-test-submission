@@ -58,22 +58,22 @@
                         </svg></label>
                     <script>function scrollToSection(e) { const t = document.getElementById(e); t && t.scrollIntoView({ behavior: "smooth" }) } document.addEventListener("DOMContentLoaded", (() => { const e = document.querySelectorAll("section"), t = document.querySelectorAll("nav div a[onclick]"), o = new IntersectionObserver((e => { e.forEach((e => { e.isIntersecting && t.forEach((t => { t.classList.remove("pl-2", "border-[#000]"), t.getAttribute("onclick").includes(e.target.id) && t.classList.add("pl-2", "border-[#000]") })) })) }), { threshold: .6 }); e.forEach((e => o.observe(e))) }))</script>
                     <a title=Home aria-label=Home
-                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("home")'>Home</a>
                     <a title=About aria-label=About
-                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("about")'>About</a>
                     <a title=Skills aria-label=Skills
-                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("skills")'>Skills</a>
                     <a title=Experience aria-label=Experience
-                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("experience")'>Experience</a>
                     <a title=Projects aria-label=Projects
-                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("projects")'>Projects</a>
                     <a title=Contact aria-label=Contact
-                        class="w-full px-8 py-4 font-semibold capitalize border-r-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("contact")'>Contact</a>
                 </div>
             </nav>
@@ -119,61 +119,333 @@
                 </div>
             </div>
         </section>
-        <section id=about class="min-h-screen max-w-7xl mx-auto pt-24">
+        <section id=about class="max-w-7xl mx-auto pt-24">
             <div title=about aria-label=about onclick='scrollToSection("about")' translate="no"
-                class="flex items-center gap-2 text-3xl font-black uppercase mb-16 px-6 cursor-pointer select-none">
+                class="flex items-center gap-2 text-3xl font-black uppercase mb-16 pl-6 cursor-pointer select-none">
                 <p>about</p>
                 <hr class="w-full border border-[#000] rounded-full">
             </div>
+            <div class="max-w-xl flex flex-col justify-start items-center gap-4 mx-8">
+                <p class="indent-8">
+                    I first became interested in programming when I was in <b>6th grade</b>, inspired by my
+                    friends who played <b>Minecraft</b> together. I wanted to develop <b>Minecraft mods</b> to
+                    enhance our gameplay, but at that time, I had no idea what a <b>programmer</b> was or how
+                    coding even worked.<br>
+                </p>
+                <p class="indent-8">
+                    When I entered <b>7th grade</b>, the <b>COVID-19 I became fascinated with
+                        <b>Cybersecurity</b>—even dreaming of becoming a hacker (at the time, I jokingly wanted to
+                        hack my school’s exam system! 😆).<br>
+                </p>
+                <p class="indent-8"> pandemic</b> forced us into online
+                    learning. It was an incredibly boring period, and
+                    That curiosity led me to start learning <b>programming seriously</b>, and over the years, I
+                    have developed skills in <b>Web Development, Software Development, and Cybersecurity</b>.<br>
+                </p>
+                <p class="indent-8">
+                    Today, my goal is to become a <b>Full-Stack Developer</b> and create <b>valuable digital
+                        platforms</b>, whether they are websites, applications, or systems that improve
+                    people's workflows and efficiency.<br>
+                </p>
+                <p class="text-center">💡 Tech Stack: JavaScript, React, Tailwind CSS, HTML, CSS</p>
+            </div>
         </section>
-        <section id=skills class="min-h-screen max-w-7xl mx-auto pt-24">
+        <section id=skills class="max-w-7xl mx-auto pt-24">
             <div title=skills aria-label=skills onclick='scrollToSection("skills")' translate="no"
-                class="flex items-center gap-2 text-3xl font-black uppercase mb-16 px-6 cursor-pointer select-none">
+                class="flex items-center gap-2 text-3xl font-black uppercase mb-16 pl-6 cursor-pointer select-none">
                 <p>skills</p>
                 <hr class="w-full border border-[#000] rounded-full">
             </div>
+            <div class="map-container">
+                <svg viewBox="0 0 500 500" class="map-background">
+                    <rect style="fill: #f5f0e5" width="500" height="500"></rect>
+                    <path style="fill: #90daee"
+                        d="M0,367.82c5.83-4.39,14.42-10.16,25.59-15.34,4.52-2.09,43.19-19.51,79.55-11.93,36.1,7.52,35.75,32.55,78.41,60.23,46.34,30.06,109.47,41.21,123.32,22.1,11.95-16.49-22.61-41.92-13.66-84.6,4.85-23.1,22.33-50.71,47.73-58.52,42.42-13.05,78.83,39.45,102.84,23.86,15.81-10.26.01-32.87,22.73-74.43,5.8-10.62,11.65-21.15,11.93-36.93.28-15.69-5.63-26.64-7.95-32.39-6.66-16.45-6.21-45.15,28.84-98.55.23,146.23.46,292.46.69,438.69H0v-132.18Z">
+                    </path>
+                </svg>
+                <div class="map-cities">
+                    <div style="--x: 5; --y: 67;" class="map-city">
+                        <div class="map-city__label">
+                            <span data-icon="🏖️" class="map-city__sign">Beach city</span>
+                        </div>
+                    </div>
+                    <div style="--x: 32; --y: 32;" class="map-city">
+                        <div class="map-city__label">
+                            <span data-icon="🌷" class="map-city__sign anim anim-grow">Flower city</span>
+                        </div>
+                    </div>
+                    <div style="--x: 58; --y: 83;" class="map-city">
+                        <div class="map-city__label">
+                            <span data-icon="🏄" class="map-city__sign anim anim-slidein">Surf city</span>
+                        </div>
+                    </div>
+                    <div style="--x: 65; --y: 22;" class="map-city">
+                        <div class="map-city__label">
+                            <span data-icon="🏛️" class="map-city__sign">Capital city</span>
+                        </div>
+                    </div>
+                    <div style="--x: 87; --y: 58;" class="map-city">
+                        <div class="map-city__label">
+                            <span data-icon="🎢" class="map-city__sign">Funland</span>
+                        </div>
+                    </div>
+                    <div style="--x: 94; --y: 38;" class="map-city">
+                        <div class="map-city__label">
+                            <span data-icon="🌊" class="map-city__sign anim anim-slidein">Coast city</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+                /*************/
+                /* Variables */
+                /*************/
+
+                .map-container {
+                    --city-radius: 2rem;
+                    --city-sign-color-back: #409EFE;
+                    --city-sign-color-font: #fff;
+                    --city-pin-size-font: 1.2rem;
+                }
+
+                /**********/
+                /* Styles */
+                /**********/
+
+                /* Container */
+                .map-container {
+                    border-radius: 0.5em;
+                    border: solid 1px #000;
+                    line-height: 1;
+                    min-width: 15rem;
+                    position: relative;
+                    width: 50%;
+                    aspect-ratio: 1;
+                    margin: auto;
+                }
+
+                /* Map - Background */
+                .map-background {
+                    border-radius: inherit;
+                    left: 0;
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                }
+
+                /* Map - Cities */
+                .map-cities {
+                    width: 100%;
+                }
+
+                .map-city {
+                    border-radius: var(--city-radius);
+                    left: calc(var(--x) * 1% - var(--city-radius));
+                    padding: var(--city-radius);
+                    position: absolute;
+                    top: calc(var(--y) * 1% - var(--city-radius));
+                }
+
+                .map-city::after,
+                .map-city::before {
+                    font-size: var(--city-pin-size-font);
+                }
+
+                .map-city::before {
+                    content: "•";
+                    left: calc(-50% + var(--city-radius));
+                    position: absolute;
+                    top: calc(-0.65em + var(--city-radius));
+                    text-align: center;
+                    text-shadow: 0 1px 1px #000;
+                    width: 100%;
+                }
+
+                .map-city::after {
+                    clip-path: inset(-0.5em 0 0 0);
+                    content: "📍";
+                    left: calc(-50% + var(--city-radius));
+                    position: absolute;
+                    top: calc(-1em + var(--city-radius));
+                    text-align: center;
+                    transition: all 300ms ease-out;
+                    width: 100%;
+                    z-index: 10;
+                }
+
+                /* Map - Sign */
+                .map-city__label {
+                    display: none;
+                    left: calc(-5em + 50%);
+                    position: absolute;
+                    text-align: center;
+                    width: 10em;
+                    z-index: 10;
+                }
+
+                .map-city__sign {
+                    align-items: center;
+                    background-color: var(--city-sign-color-back);
+                    border-radius: 0.2rem;
+                    border: 0.15em solid var(--city-sign-color-font);
+                    box-shadow: 0 0 3px #000;
+                    color: var(--city-sign-color-font);
+                    column-gap: 0.3em;
+                    display: flex;
+                    font-weight: 700;
+                    justify-content: center;
+                    margin: 0 auto;
+                    max-width: 100%;
+                    overflow: hidden;
+                    padding: 0.4em 0.6em 0.4em 0.3em;
+                    text-overflow: ellipsis;
+                    text-wrap: nowrap;
+                    width: max-content;
+                }
+
+                .map-city__sign::before {
+                    content: attr(data-icon);
+                }
+
+                /************/
+                /* Tracking */
+                /************/
+
+                /* Map - Cities */
+                .map-city:hover::after {
+                    clip-path: inset(-0.5em 0 0.5em 0);
+                    transform: translateY(0.5em);
+                }
+
+                /* Map - Sign */
+                .map-city:hover .map-city__label {
+                    animation: fadein 300ms forwards ease-out;
+                    display: block;
+                }
+
+                .map-city:hover .map-city__sign.anim::before {
+                    animation-duration: 500ms;
+                    animation-fill-mode: forwards;
+                }
+
+                .map-city:hover .map-city__sign.anim-grow::before {
+                    animation-name: grow;
+                    animation-timing-function: ease-in;
+                }
+
+                .map-city:hover .map-city__sign.anim-slidein::before {
+                    animation-name: slidein;
+                    animation-timing-function: ease-out;
+                }
+
+                /**************/
+                /* Animations */
+                /**************/
+
+                /* Fade in from top */
+                @keyframes fadein {
+                    0% {
+                        opacity: 0;
+                        top: calc(var(--city-radius));
+                    }
+
+                    100% {
+                        opacity: 1;
+                        top: calc(var(--city-radius) + var(--city-pin-size-font) / 2);
+                    }
+                }
+
+                /* Grow from the ground */
+                @keyframes grow {
+                    0% {
+                        transform: translate(0, 200%);
+                    }
+
+                    10% {
+                        transform: translate(5%, 180%);
+                    }
+
+                    20% {
+                        transform: translate(-10%, 160%);
+                    }
+
+                    30% {
+                        transform: translate(15%, 140%);
+                    }
+
+                    40% {
+                        transform: translate(-5%, 120%);
+                    }
+
+                    50% {
+                        transform: translate(10%, 100%);
+                    }
+
+                    60% {
+                        transform: translate(-15%, 80%);
+                    }
+
+                    70% {
+                        transform: translate(5%, 60%);
+                    }
+
+                    80% {
+                        transform: translate(0, 40%);
+                    }
+
+                    90% {
+                        transform: translate(0, 20%);
+                    }
+
+                    100% {
+                        transform: translate(0, 0);
+                    }
+                }
+
+                /* Slide in from left */
+                @keyframes slidein {
+                    0% {
+                        transform: translateX(-200%);
+                    }
+
+                    100% {
+                        transform: translateX(0);
+                    }
+                }
+            </style>
         </section>
-        <section id=experience class="min-h-screen max-w-7xl mx-auto pt-24">
+        <section id=experience class="max-w-7xl mx-auto pt-24">
             <div title=experience aria-label=experience onclick='scrollToSection("experience")' translate="no"
-                class="flex items-center gap-2 text-3xl font-black uppercase mb-16 px-6 cursor-pointer select-none">
+                class="flex items-center gap-2 text-3xl font-black uppercase mb-16 pl-6 cursor-pointer select-none">
                 <p>experience</p>
                 <hr class="w-full border border-[#000] rounded-full">
             </div>
-            <div class="flex flex-col justify-center items-center mx-8">
+            <div class="flex flex-col gap-8 mx-8">
                 <div
-                    class="carousel relative flex flex-col justify-between items-center bg-[#FFF] border border-[#000] rounded-xl pt-4 overflow-hidden">
+                    class="carousel relative flex flex-col justify-between items-center bg-[#FFF] border border-[#000] rounded-xl overflow-hidden">
                     <div
-                        class="carousel-slides flex flex-row font-semibold text-center cursor-ew-resize select-none transition-transform ease-in-out duration-700">
-                        <div class="carousel-slide min-w-full space-y-4">
+                        class="carousel-slides flex flex-row text-xl font-semibold text-center cursor-ew-resize select-none transition-transform ease-in-out duration-700">
+                        <div class="carousel-slide min-w-full bg-[#000] text-[#FFF] pt-4 space-y-4">
                             <p>Web Page Authoring with HTML and CSS</p>
                             <div class="bg-clip-border overflow-hidden">
-                                <div
-                                    class="relative bg-gradient-to-r from-blue-500 via-blue-400 to-indigo-500 opacity-90">
-                                    <img src=https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51611/cvcert_usercert/certificate_51611_1408392-1408392-17403928281066.jpg
-                                        draggable=false class="object-cover">
-                                </div>
+                                <img src=https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51611/cvcert_usercert/certificate_51611_1408392-1408392-17403928281066.jpg
+                                    draggable=false class="object-cover">
                             </div>
                         </div>
-                        <div class="carousel-slide min-w-full space-y-4">
+                        <div class="carousel-slide min-w-full bg-[#000] text-[#FFF] pt-4 space-y-4">
+                            <p>Knowing Computers and Digital Systems</p>
+                            <div class="bg-clip-border overflow-hidden">
+                                <img src=https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51604/cvcert_usercert/certificate_51604_1408392-1408392-17405696369141.jpg
+                                    draggable=false class="object-cover">
+                            </div>
+                        </div>
+                        <!-- <div class="carousel-slide min-w-full bg-[#000] text-[#FFF] pt-4 space-y-4">
                             <p>Web Page Authoring with HTML and CSS</p>
                             <div class="bg-clip-border overflow-hidden">
-                                <div
-                                    class="relative bg-gradient-to-r from-blue-500 via-blue-400 to-indigo-500 opacity-90">
-                                    <img src=https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51611/cvcert_usercert/certificate_51611_1408392-1408392-17403928281066.jpg
-                                        draggable=false class="object-cover">
-                                </div>
+                                <img src=https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51611/cvcert_usercert/certificate_51611_1408392-1408392-17403928281066.jpg
+                                    draggable=false class="object-cover">
                             </div>
-                        </div>
-                        <div class="carousel-slide min-w-full space-y-4">
-                            <p>Web Page Authoring with HTML and CSS</p>
-                            <div class="bg-clip-border overflow-hidden">
-                                <div
-                                    class="relative bg-gradient-to-r from-blue-500 via-blue-400 to-indigo-500 opacity-90">
-                                    <img src=https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51611/cvcert_usercert/certificate_51611_1408392-1408392-17403928281066.jpg
-                                        draggable=false class="object-cover">
-                                </div>
-                            </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="w-full border-t border-[#000] flex justify-between items-center p-4">
                         <!-- Dots -->
@@ -184,21 +456,31 @@
                             <div
                                 class="dot size-4 bg-[#CCC] rounded-full mx-1 cursor-pointer eaes-in-out duration-300 hover:scale-125">
                             </div>
-                            <div
+                            <!-- <div
                                 class="dot size-4 bg-[#CCC] rounded-full mx-1 cursor-pointer eaes-in-out duration-300 hover:scale-125">
-                            </div>
+                            </div> -->
                             <p style="font-family:'Roboto Mono','Bai Jamjuree',sans-serif" class="second select-none">
                             </p>
                         </div>
                         <!-- Arrows -->
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            class="arrow arrow-left order-3 border border-[#000] rounded-full size-8 cursor-pointer eaes-in-out duration-300 hover:scale-125">
-                            <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            class="arrow arrow-right order-1 border border-[#000] rounded-full size-8 cursor-pointer eaes-in-out duration-300 hover:scale-125">
+                            class="arrow arrow-left order-1 border border-[#000] rounded-full size-8 cursor-pointer eaes-in-out duration-300">
                             <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
                         </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            class="arrow arrow-right order-3 border border-[#000] rounded-full size-8 cursor-pointer eaes-in-out duration-300">
+                            <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 grid-rows-3 gap-8">
+                    <div class="border border-[#000] rounded-xl overflow-hidden">
+                        <img src=https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51611/cvcert_usercert/certificate_51611_1408392-1408392-17403928281066.jpg
+                            draggable=false class="object-cover">
+                    </div>
+                    <div class="border border-[#000] rounded-xl overflow-hidden">
+                        <img src=https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51604/cvcert_usercert/certificate_51604_1408392-1408392-17405696369141.jpg
+                            draggable=false class="object-cover">
                     </div>
                 </div>
             </div>
@@ -207,9 +489,9 @@
             </script>
 
         </section>
-        <section id=projects class="min-h-screen max-w-7xl mx-auto pt-24">
+        <section id=projects class="max-w-7xl mx-auto pt-24">
             <div title=projects aria-label=projects onclick='scrollToSection("projects")' translate="no"
-                class="flex items-center gap-2 text-3xl font-black uppercase mb-16 px-6 cursor-pointer select-none">
+                class="flex items-center gap-2 text-3xl font-black uppercase mb-16 pl-6 cursor-pointer select-none">
                 <p>projects</p>
                 <hr class="w-full border border-[#000] rounded-full">
             </div>
@@ -310,9 +592,9 @@
                 </div>
             </div>
         </section>
-        <section id=contact class="min-h-screen max-w-7xl mx-auto pt-24">
+        <section id=contact class="max-w-7xl mx-auto pt-24">
             <div title=contact aria-label=contact onclick='scrollToSection("contact")' translate="no"
-                class="flex items-center gap-2 text-3xl font-black uppercase mb-16 px-6 cursor-pointer select-none">
+                class="flex items-center gap-2 text-3xl font-black uppercase mb-16 pl-6 cursor-pointer select-none">
                 <p>contact</p>
                 <hr class="w-full border border-[#000] rounded-full">
             </div>
