@@ -2,54 +2,69 @@
 <html lang=th>
 <head>
 <title>listing directory/</title>
-<meta http-equiv=content-type content="text/html; charset=utf-8">
-<meta name=keywords content=HTML,CSS,XML,JavaScript,Centered101>
-<meta name=author content="listing directory — Centered101">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta http-equiv=X-UA-Compatible content="IE=edge">
-<meta name=title content="listing directory — Centered101">
-<meta name=description content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:type content=website>
-<meta property=og:url content=https://project-test-submission.netlify.app/ >
-<meta property=og:title content="listing directory — Centered101">
-<meta property=og:description content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:image content=/images/Tes-D.webp>
-<meta property=twitter:card content=summary_large_image>
-<meta property=twitter:url content=https://project-test-submission.netlify.app/ >
-<meta property=twitter:title content="listing directory — Centered101">
-<meta property=twitter:description content="โปรเจคต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=twitter:image content=/images/Tes-D.webp>
-<link rel="shortcut icon" href=/images/Tes-D.webp type=image/x-icon>
-<link rel=preload href=/style/style.css as=style onload='this.rel="stylesheet"'>
 <link rel="stylesheet" href=/style/style-start.css>
 <script src=https://cdn.tailwindcss.com></script>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src=/animation/script.js defer></script>
 </head>
-<body class=directory onload=showURL()>
-<input id=search placeholder=Search autocomplete=off>
+<body class=directory on=showURL()>
+<input id=search placeholder=ค้นหา autocomplete=off>
 <div id=wrapper>
 <h1>
-<a href=/ >
+<a id="url" href=/ >
 <script>document.write(window.location.href)</script>
 </a>
 </h1>
 <ul id=files class=view-tiles>
 <li><a href=/key.html class="icon icon-directory" title=รหัสในการเข้าถึง><span class=name>รหัสในการเข้าถึง</span><span class=size>4559</span><span class=date>2/2/2025 3:43:35 PM</span></a></li>
-<li><a href=/Centered101 class="icon icon-directory" title=Centered101><span class=name>Centered101</span><span class=size></span><span class=date>1/30/2025 7:12:40 PM</span></a></li>
 <li><a href=/animation class="icon icon-directory" title=animation><span class=name>animation</span><span class=size></span><span class=date>1/30/2025 7:12:32 PM</span></a></li>
 <li><a href=/Audio class="icon icon-directory" title=Audio><span class=name>Audio</span><span class=size></span><span class=date>1/30/2025 7:12:33 PM</span></a></li>
+<li><a href="/fonts" class="icon icon-directory" title="fonts"><span class="name">fonts</span><span class="size"></span><span class="date">1/30/2025 7:12:40 PM</span></a></li>
 <li><a href=/images/icon class="icon icon-directory" title=images/icon><span class=name>images/icon</span><span class=size></span><span class=date>2/8/2025 11:22:30 AM</span></a></li>
 <li><a href=/images/img class="icon icon-directory" title=images/img><span class=name>images/img</span><span class=size></span><span class=date>2/8/2025 11:22:30 AM</span></a></li>
 <li><a href=/PROJECTS_ALL class="icon icon-directory" title=PROJECTS_ALL><span class=name>PROJECTS_ALL</span><span class=size></span><span class=date>1/30/2025 7:12:47 PM</span></a></li>
-<li><a href=/%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B9%81%E0%B8%9A%E0%B8%9A-Local-Storage class="icon icon-directory" title=เก็บข้อมูลแบบ-Local-Storage><span class=name>เก็บข้อมูลแบบ-Local-Storage</span><span class=size></span><span class=date>1/30/2025 7:12:49 PM</span></a></li>
+<li><a href=/Centered101 class="icon icon-directory" title=Centered101><span class=name>Centered101</span><span class=size></span><span class=date>1/30/2025 7:12:40 PM</span></a></li>
 <li><a href=/game-yes-or-no class="icon icon-directory" title=game-yes-or-no><span class=name>game-yes-or-no</span><span class=size></span><span class=date>1/30/2025 7:12:40 PM</span></a></li>
+<li><a href=/%E0%B9%80%E0%B8%81%E0%B9%87%E0%B8%9A%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B9%81%E0%B8%9A%E0%B8%9A-Local-Storage class="icon icon-directory" title=เก็บข้อมูลแบบ-Local-Storage><span class=name>เก็บข้อมูลแบบ-Local-Storage</span><span class=size></span><span class=date>1/30/2025 7:12:49 PM</span></a></li>
+<li><a href="/instagram-follower-following" class="icon icon-directory" title="instagram-follower-following"><span class="name">instagram-follower-following</span><span class="size"></span><span class="date">12/26/2024 9:42:43 PM</span></a></li>
+<li><a href="/%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B9%80%E0%B8%9E%E0%B8%93%E0%B8%B5%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B9%84%E0%B8%97%E0%B8%A2%E0%B9%83%E0%B8%99%E0%B9%81%E0%B8%95%E0%B9%88%E0%B8%A5%E0%B8%B0%E0%B8%A0%E0%B8%B2%E0%B8%84" class="icon icon-directory" title="ประเพณีของไทยในแต่ละภาค"><span class="name">ประเพณีของไทยในแต่ละภาค</span><span class="size"></span><span class="date">1/30/2025 7:12:52 PM</span></a></li>
+<li><a href="/%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%AD%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87%20%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B8%84%E0%B9%89%E0%B8%B2%20e-Commerce" class="icon icon-directory" title="ตัวอย่าง ร้านขายสินค้า e-Commerce"><span class="name">ตัวอย่าง ร้านขายสินค้า e-Commerce</span><span class="size"></span><span class="date">1/30/2025 7:12:49 PM</span></a></li>
+<li><a href="/%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99" class="icon icon-directory" title="ตารางเรียน"><span class="name">ตารางเรียน</span><span class="size"></span><span class="date">2/25/2025 11:03:21 PM</span></a></li>
+<li><a href="/test-register-%26-login-database" class="icon icon-directory" title="test-register-&amp;-login-database"><span class="name">test-register-&amp;-login-database</span><span class="size"></span><span class="date">1/30/2025 7:12:49 PM</span></a></li>
+<li><a href="/project-random-color" class="icon icon-directory" title="project-random-color"><span class="name">project-random-color</span><span class="size"></span><span class="date">1/30/2025 7:12:47 PM</span></a></li>
+<li><a href="/birth%20day%20ui%20test" class="icon icon-directory" title="birth day ui test"><span class="name">birth day ui test</span><span class="size"></span><span class="date">1/30/2025 7:12:40 PM</span></a></li>
 <li><a href=/Web-Push-Notification class="icon icon-directory" title=Web-Push-Notification><span class=name>Web-Push-Notification</span><span class=size></span><span class=date></span></a></li>
-<li><a href=/%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99 class="icon icon-directory" title=ตารางเรียน><span class=name>ตารางเรียน</span><span class=size></span><span class=date>1/30/2025 7:12:50 PM</span></a></li>
-<li><a href=test-portfolio class="icon icon-directory" title=test-portfolio><span class=name>test-portfolio</span><span class=size></span><span class=date></span></a></li>
-<li><a href=/404.html class="icon icon icon-html icon-text-html" title=404.html><span class=name>404.html</span><span class=size>42286</span><span class=date>1/30/2025 7:05:08 PM</span></a></li></ul>
+<li><a href="/test-portfolio" class="icon icon-directory" title="test-portfolio"><span class="name">test-portfolio</span><span class="size"></span><span class="date">2/27/2025 8:53:14 PM</span></a></li>
+<li><a href="/New%20folder" class="icon icon-directory" title="New folder"><span class="name">New folder</span><span class="size"></span><span class="date">1/30/2025 7:12:44 PM</span></a></li>
+<li><a href="/404.html" class="icon icon icon-html icon-text-html" title="404.html"><span class="name">404.html</span><span class="size">36327</span><span class="date">2/25/2025 11:03:04 PM</span></a></li>
+<li><a href="/hhhh.html" class="icon icon icon-html icon-text-html" title="hhhh.html"><span class="name">hhhh.html</span><span class="size">438</span><span class="date">3/1/2025 8:42:28 PM</span></a></li>
 </div>
 <script src=/script/version.js></script>
-<script src=/script/script-start.js></script>
+<script src=/script/script-start.min.js></script>
 <script>document.getElementById("version").textContent=appVersionProjectTest</script>
+<script>
+    window.onload = function () {
+    Toastify({
+        text: "👋 ยินดีต้อนรับ! คลิกที่นี่เพื่อดูคู่มือ",
+        duration: 5000,
+        newWindow: true,
+        gravity: "bottom",
+        position: "right",
+        destination: "/docs",
+        style: {
+            position: "fixed",
+            bottom: "32px",
+            right: "32px",
+            background: "#FFF",
+            border: "1px solid #CCC",
+            borderRadius: "12px",
+            paddingBlock: "8px",
+            paddingInline: "16px",
+            cursor: "pointer",
+            zIndex: 30,
+        },
+    }).showToast();
+};
+</script>
 </body>
 </html>

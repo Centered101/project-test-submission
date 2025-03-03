@@ -1,11 +1,121 @@
-function resetWindow(){window.location.reload(!0),document.body.innerHTML=`
-<div class="fixed inset-0 flex flex-col justify-center items-center text-center min-h-screen bg-gradient-to-b from-[#FFFFFF] dark:from-[#000000] to-[#F5F5F5] dark:to-[#111827] text-[#0D0D0D] dark:text-zinc-500">
-<div class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[#409EFE] mx-auto"></div>
-<h2 class="mt-4">Loading...</h2>
-<p>Your adventure is about to begin</p>
-</div>
-`}document.addEventListener("DOMContentLoaded",function(){var e=document.getElementById("progressbar").firstElementChild;e.style.width="0";let t=0,n=setInterval(()=>{t+=1,e.style.width=t+"%",e.parentElement.style.opacity="1",t>=100&&(clearInterval(n),setTimeout(()=>{e.parentElement.style.opacity="0"},500))},25)});const text="Centered101";let i=0,deleting=!1;const speed=150;function typeAndDelete(){deleting?(document.title=text.slice(0,i),i--):(document.title=text.slice(0,i),i++),deleting||i!==text.length?deleting&&0===i&&(deleting=!1):setTimeout(()=>deleting=!0,500),setTimeout(typeAndDelete,150)}function ClickToEnter(){document.body.classList.remove("overflow-hidden"),document.getElementById("click-to-enter").classList.add("hidden"),document.querySelector("main").classList.remove("hidden"),document.getElementById("welcomeSound").play(),document.querySelectorAll(".loads").forEach(function(e){e.classList.add("load")})}typeAndDelete(),window.addEventListener("scroll",function(){var e=window.innerHeight;window.scrollY>e?document.querySelector("nav").classList.add("top-0"):document.querySelector("nav").classList.add("bottom-0")}),document.body.innerHTML+=`
-<div onclick="ClickToEnter()" id="click-to-enter" class="flex justify-center items-center h-screen w-screen cursor-pointer">
-<div class="text-5xl font-black text-[#409EFE] drop-shadow-md">click to enter...</div>
-</div>
-`,document.addEventListener("keypress",function(){ClickToEnter()}),document.addEventListener("DOMContentLoaded",function(){let e=document.querySelector("audio");document.getElementById("playButton");let t=document.querySelectorAll("#welcomeProgress");e.addEventListener("timeupdate",function(){let n=e.currentTime/e.duration;t.forEach(e=>{e.value=n})}),window.togglePlayPause=function(){let t=document.querySelectorAll(".loads");e.paused?(e.play(),t.forEach(function(e){e.classList.add("load")})):(e.pause(),t.forEach(function(e){e.classList.remove("load")}))}}),document.addEventListener("DOMContentLoaded",function(){let e=localStorage.getItem("selectedSection")||"section1";if(document.querySelector(`input[value="${e}"]`).checked=!0,document.getElementById(e).classList.remove("hidden"),document.getElementById(e).classList.add("flex"),"section1"===e){o("/Audio/Music/blue - yung kai.mp3"),document.querySelectorAll("#title").forEach(e=>{e.textContent="blue"}),welcomeSound.volume=.5,welcomeSound.currentTime=0,welcomeSound.play(),document.body.classList.add("BG-images1");let t=document.getElementById("video-background2");t&&(t.style.display="block",localStorage.setItem("videoBackgroundHidden","true"))}if("section2"===e&&(o("/Audio/Music/(Skit).mp3"),document.querySelectorAll("#title").forEach(e=>{e.textContent="(Skit)"}),welcomeSound.volume=.5,welcomeSound.currentTime=18,welcomeSound.play(),welcomeSound.addEventListener("timeupdate",()=>{welcomeSound.currentTime>=69&&(welcomeSound.currentTime=18)}),document.body.classList.add("BG-images2"),document.body.style.backgroundColor="#000000",document.body.classList.add("text-zinc-500"),document.querySelector("nav").classList.add("bg-[#000000]"),document.querySelectorAll("#project img").forEach(e=>{e.classList.add("brightness-50")}),document.getElementById("project").classList.add("bg-gradient-to-b","from-[#000000]","to-[#111827]","text-zinc-500"),document.querySelectorAll(".card").forEach(e=>{e.classList.add("bg-gradient-to-b","from-[#000000]","to-[#111827]","border-[#111827]")})),"section3"===e){o("/Audio/Music/NEW DROP.mp3"),document.querySelectorAll("#title").forEach(e=>{e.textContent="NEW DROP"}),welcomeSound.volume=.5,welcomeSound.currentTime=0,welcomeSound.play(),document.body.classList.add("BG-images3"),document.body.classList.remove("BG-images1");let n=document.getElementById("video-background");function d(e){n&&(n.querySelector("source").src=e,n.load())}n&&(n.style.display="block",localStorage.setItem("videoBackgroundHidden","true"))}function o(e){welcomeSound.pause(),welcomeSound.querySelector("source").src=e,welcomeSound.load(),welcomeSound.currentTime=0}document.querySelector("nav").addEventListener("change",function(e){document.querySelectorAll(".section").forEach(e=>{e.classList.add("hidden")});let t=e.target.value;document.getElementById(t).classList.remove("hidden"),document.getElementById(t).classList.add("flex"),localStorage.setItem("selectedSection",t),"section1"===t&&resetWindow(),"section2"===t&&resetWindow(),"section3"===t&&resetWindow()})});
+// —[ resetWindow ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
+function resetWindow() {
+    window.location.reload(true);
+    document.body.innerHTML = `
+    <div class="fixed inset-0 flex flex-col justify-center items-center text-center min-h-screen bg-gradient-to-b from-[#FFFFFF] dark:from-[#000000] to-[#F5F5F5] dark:to-[#111827] text-[#0D0D0D] dark:text-zinc-500">
+      <div class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[#409EFE] mx-auto"></div>
+      <h2 class="mt-4">Loading...</h2>
+      <p>Your adventure is about to begin</p>
+    </div>
+        `;
+}
+
+// —[ Progress Bar ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
+document.addEventListener("DOMContentLoaded", function () {
+    var progressBar = document.getElementById('progressbar').firstElementChild;
+    progressBar.style.width = "0"; // เริ่มความกว้างที่ 0%
+
+    // ทำการโหลดโดยเพิ่มความกว้างทุกๆ 100ms จนถึง 100%
+    let progress = 0;
+    let interval = setInterval(() => {
+        progress += 1;
+        progressBar.style.width = progress + "%";
+        progressBar.parentElement.style.opacity = "1";
+
+        if (progress >= 100) {
+            clearInterval(interval); // หยุดเมื่อถึง 100%
+            setTimeout(() => {
+                progressBar.parentElement.style.opacity = "0";
+            }, 500); // ซ่อน progress bar เมื่อโหลดเสร็จ
+        }
+    },
+        25); // อัปเดตทุกๆ 25ms
+});
+
+// —[ Title Animation ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
+const text = "Centered101"; // ข้อความที่ต้องการให้พิมพ์
+let i = 0;
+let deleting = false;
+const speed = 150; // ความเร็วในการพิมพ์และลบ
+
+function typeAndDelete() {
+    if (deleting) {
+        document.title = text.slice(0, i); // ลบข้อความ
+        i--; // ลดค่าตัวแปร i
+    } else {
+        document.title = text.slice(0, i); // พิมพ์ข้อความ
+        i++; // เพิ่มค่าตัวแปร i
+    }
+
+    if (!deleting && i === text.length) {
+        setTimeout(() => deleting = true, 500); // เมื่อพิมพ์ครบแล้วให้เริ่มลบ
+    } else if (deleting && i === 0) {
+        deleting = false; // เมื่อลบเสร็จแล้วให้เริ่มพิมพ์ใหม่
+    }
+
+    setTimeout(typeAndDelete, speed); // เรียกฟังก์ชันตัวเองเพื่อพิมพ์และลบไปเรื่อยๆ
+}
+
+typeAndDelete(); // เรียกใช้งานฟังก์ชัน
+
+// —[ click to enter ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
+document.body.innerHTML += `
+<div onclick="ClickToEnter()" id="click-to-enter" class="flex justify-center items-center h-screen cursor-pointer">
+<p class="text-3xl font-black text-[#409EFE] drop-shadow-md">Click to Enter...</p></div>
+`;
+
+function ClickToEnter() {
+    document.body.classList.remove('overflow-hidden');
+    document.getElementById("click-to-enter").classList.add('hidden');
+    document.querySelector("main").classList.remove('hidden');
+    document.getElementById("welcomeSound").play();
+    document.querySelectorAll(".loads").forEach(function (load) {
+        load.classList.add('load');
+    });
+};
+
+document.addEventListener("keypress", function () {
+    ClickToEnter();
+});
+
+// —[ welcomeSound ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
+document.addEventListener("DOMContentLoaded", function () {
+    const welcomeSound = document.getElementById("welcomeSound");
+    const playButton = document.getElementById("playButton");
+    const progressBars = document.querySelectorAll("#welcomeProgress");
+
+    welcomeSound.volume = 0.5;
+    welcomeSound.currentTime = 0;
+    welcomeSound.play();
+
+    // อัปเดตแถบความคืบหน้าเสียง
+    welcomeSound.addEventListener("timeupdate", function () {
+        const progressValue = welcomeSound.currentTime / welcomeSound.duration;
+
+        progressBars.forEach((progressBar) => {
+            progressBar.value = progressValue;
+        });
+    });
+
+    window.togglePlayPause = function () {
+        const loadBars = document.querySelectorAll(".loads");
+
+        if (welcomeSound.paused) {
+            welcomeSound.play();
+            loadBars.forEach(function (load) {
+                load.classList.add('load');
+            });
+        } else {
+            welcomeSound.pause();
+            loadBars.forEach(function (load) {
+                load.classList.remove('load');
+            });
+        }
+    };
+});
+
