@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=th>
 <head>
-<title>listing directory/style/</title>
+<title>listing directory/setting/</title>
 <meta charset=UTF-8>
 <meta http-equiv=X-UA-Compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -26,23 +26,16 @@
 <script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
 <script src=/animation/script.js></script>
 </head>
-<body class=directory on=showURL() draggable=false oncontextmenu=return!1>
-<input id=search placeholder=ค้นหา autocomplete=off>
-<div id=wrapper>
-<h1>
-<a id=url href=/ >
-<script>document.write(window.location.href)</script>
+<body>
+<div class="min-h-screen flex flex-col justify-center items-center gap-8">
+<p> localStorage.removeItem("userConsent");</p>
+<button id=reset-btn title=รีเซ็ต aria-label=รีเซ็ต class="relative border border-[#FF7070] rounded-xl text-[#FFF] font-black truncate bg-[#FF7070] px-8 py-2 z-10 overflow-hidden ease-in-out duration-700 hover:text-[#000] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full before:bg-[#FFF] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">
+<span class=truncate>รีเซ็ต</span>
+</button>
+<a hidden href=/ title=หน้าหลัก aria-label=หน้าหลัก class="relative border border-[#000] rounded-xl text-[#FFF] font-black truncate bg-[#000] px-8 py-2 z-10 overflow-hidden ease-in-out duration-700 hover:text-[#000] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full before:bg-[#FFF] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">
+<span class=truncate>หน้าหลัก</span>
 </a>
-</h1>
-<ul id=files class=view-tiles>
-<li><a href=/ class="icon icon-directory" title=..><span class=name>..</span><span class=size></span><span class=date></span></a></li>
-<li><a href=/style/color.css class="icon icon icon-css icon-text-css" title=color.css><span class=name>color.css</span><span class=size>444</span><span class=date>2/1/2025 10:25:59 PM</span></a></li>
-<li><a href=/style/style-start.css class="icon icon icon-css icon-text-css" title=style-start.css><span class=name>style-start.css</span><span class=size>11677</span><span class=date>2/1/2025 10:26:18 PM</span></a></li>
-<li><a href=/style/style.css class="icon icon icon-css icon-text-css" title=style.css><span class=name>style.css</span><span class=size>659</span><span class=date>2/1/2025 10:27:43 PM</span></a></li></ul>
 </div>
-<script src=/script/version.js></script>
-<script src=/script/script-start.min.js></script>
-<script src=/script/key.js defer></script>
-<script>document.getElementById("version").textContent=appVersionProjectTest</script>
+<script>document.getElementById("reset-btn").addEventListener("click",(function(){localStorage.removeItem("userConsent"),document.querySelector("a").classList.add("flex"),document.getElementById("reset-btn").classList.add("hidden")}))</script>
 </body>
 </html>

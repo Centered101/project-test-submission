@@ -128,74 +128,6 @@ function checkTimeAndToggleDisplay() {
 // ตรวจสอบทุก ๆ วินาที
 setInterval(checkTimeAndToggleDisplay, 1000);
 
-
-// —[ metadata HTML ]———————————————————————————————————————————————————————————————————————————————————————————————————
-
-/// ตั้งค่า meta theme-color
-const metaTagColor = document.createElement("meta");
-metaTagColor.name = "theme-color";
-metaTagColor.content = "#409EFE";
-document.head.appendChild(metaTagColor);
-
-// ฟังก์ชันเพิ่ม meta tag
-const addMetaTag = (attributes) => {
-    const meta = document.createElement("meta");
-    Object.entries(attributes).forEach(([key, value]) => meta.setAttribute(key, value));
-    document.head.appendChild(meta);
-};
-
-// เพิ่ม meta tags
-[
-    { httpEquiv: "content-type", content: "text/html; charset=utf-8" },
-    { httpEquiv: "X-UA-Compatible", content: "IE=edge" },
-    { name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" },
-    { name: "keywords", content: "HTML, CSS, XML, JavaScript, Centered101" },
-    { name: "author", content: "Listing Directory — Centered101" },
-    { name: "description", content: "โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" },
-
-    { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://project-test-submission.netlify.app/" },
-    { property: "og:title", content: "Listing Directory — Centered101" },
-    { property: "og:description", content: "โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" },
-    { property: "og:image", content: "/images/icon.svg" },
-
-    { property: "twitter:card", content: "summary_large_image" },
-    { property: "twitter:url", content: "https://project-test-submission.netlify.app/" },
-    { property: "twitter:title", content: "Listing Directory — Centered101" },
-    { property: "twitter:description", content: "โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ" },
-    { property: "twitter:image", content: "/images/icon.svg" }
-].forEach(addMetaTag);
-
-// ฟังก์ชันเพิ่ม link tag
-const addLinkTag = (attributes) => {
-    const link = document.createElement("link");
-    Object.entries(attributes).forEach(([key, value]) => link.setAttribute(key, value));
-    document.head.appendChild(link);
-};
-
-// เพิ่ม link tags
-[
-    { rel: "shortcut icon", type: "image/x-icon", href: "/images/icon.svg" },
-    { rel: "stylesheet", href: "/style/style-start.css" },
-    { rel: "stylesheet", href: "/style/style.css" }
-].forEach(addLinkTag);
-
-// ฟังก์ชันเพิ่ม script tag
-const addScriptTag = (attributes) => {
-    const script = document.createElement("script");
-    Object.entries(attributes).forEach(([key, value]) => script.setAttribute(key, value));
-    document.body.appendChild(script);
-};
-
-// เพิ่ม script tags
-[
-    { src: "https://cdn.tailwindcss.com" },
-    { src: "/animation/script.js" }
-].forEach(addScriptTag);
-
-document.body.setAttribute("draggable", "false");
-document.body.setAttribute("oncontextmenu", "return false");
-
 // —[ search ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
 function $(id) {
@@ -328,7 +260,7 @@ function showToast(message, bgColor = "#FFF", duration = 1500) {
             borderRadius: "12px",
             paddingBlock: "8px",
             paddingInline: "16px",
-            zIndex: 30,
+            zIndex: 100,
         }
     }).showToast();
 }

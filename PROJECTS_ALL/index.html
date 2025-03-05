@@ -2,20 +2,40 @@
 <html lang=th>
 <head>
 <title>listing directory/PROJECTS_ALL/</title>
-<link rel="stylesheet" href=/style/style-start.css>
+<meta charset=UTF-8>
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name=theme-color content=#409EFE>
+<meta name=keywords content="HTML, CSS, XML, JavaScript, Centered101">
+<meta name=author content="Listing Directory — Centered101">
+<meta name=description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=og:type content=website>
+<meta property=og:url content=https://project-test-submission.netlify.app/ >
+<meta property=og:title content="Listing Directory — Centered101">
+<meta property=og:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=og:image content=/images/icon.svg>
+<meta property=twitter:card content=summary_large_image>
+<meta property=twitter:url content=https://project-test-submission.netlify.app/ >
+<meta property=twitter:title content="Listing Directory — Centered101">
+<meta property=twitter:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=twitter:image content=/images/icon.svg>
+<link rel="shortcut icon" type=image/x-icon href=/images/icon.svg>
+<link rel=stylesheet href=/style/style-start.css>
+<link rel=stylesheet href=/style/style.css>
 <script src=https://cdn.tailwindcss.com></script>
-<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<script src=/animation/script.js defer></script>
+<script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
+<script src=/animation/script.js></script>
 </head>
-<body class=directory on=showURL()>
+<body class=directory on=showURL() draggable=false oncontextmenu=return!1>
 <input id=search placeholder=ค้นหา autocomplete=off>
 <div id=wrapper>
 <h1>
-<a id="url" href=/ >
+<a id=url href=/ >
 <script>document.write(window.location.href)</script>
 </a>
 </h1>
-<ul id=files class=view-tiles><li><a href=/ class="icon icon-directory" title=..><span class=name>..</span><span class=size></span><span class=date></span></a></li>
+<ul id=files class=view-tiles>
+<li><a href=/ class="icon icon-directory" title=..><span class=name>..</span><span class=size></span><span class=date></span></a></li>
 <li><a href=/PROJECTS_ALL/ISus class="icon icon-directory" title=ISus><span class=name>ISus</span><span class=size></span><span class=date>1/30/2025 7:12:47 PM</span></a></li>
 <li><a href=/PROJECTS_ALL/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%AA%E0%B8%B8%E0%B8%81 class="icon icon-directory" title=ความสุก><span class=name>ความสุก</span><span class=size></span><span class=date>1/30/2025 7:12:48 PM</span></a></li>
 <li><a href=/PROJECTS_ALL/IoT%20WiFi%20Blynk%20MQTT.cpp class="icon icon icon-cpp" title="IoT WiFi Blynk MQTT.cpp"><span class=name>IoT WiFi Blynk MQTT.cpp</span><span class=size>575</span><span class=date>11/20/2024 10:26:22 AM</span></a></li>

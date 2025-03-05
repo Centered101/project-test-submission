@@ -39,33 +39,6 @@ body::after {
     opacity: .1
 }
 
-ul li {
-    list-style: none
-}
-
-ul li:hover {
-    cursor: pointer;
-    color: #0d0d0d
-}
-
-ul li .path {
-    padding-left: 5px;
-    font-weight: 700
-}
-
-ul li .line {
-    padding-right: 5px;
-    font-style: italic
-}
-
-ul li:first-child .path {
-    padding-left: 0
-}
-
-p {
-    line-height: 1.5
-}
-
 .directory h1 a {
     color: #409efe;
     font-size: 20px;
@@ -87,21 +60,24 @@ ul#files li a {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    white-space: nowrap
+    white-space: nowrap;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-duration: .3s;
 }
 
 ul#files li a:focus,
 ul#files li a:hover {
-    background: #efefef;
+    background: #efefef !important;
     border: 1px solid #ccc;
-    color: #0d0d0d
+    color: #0d0d0d !important
 }
 
 ul#files li a.highlight {
     color: #FFF;
     background: #409EFE;
-    border-color: #FFF;
-    transition: background 300ms ease-in-out;
+    border-color: #409EFE;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-duration: .7s
 }
 
 input#search {
@@ -116,12 +92,12 @@ input#search {
     padding-inline: 0.5em;
     padding-block: 0.7em;
     transition: ease-in-out 700ms;
+}
 
-    &:hover,
-    &:focus {
-        width: 28rem;
-        transition: ease-in-out 700ms;
-    }
+input#search:hover,
+input#search:focus {
+    width: 28rem;
+    transition: ease-in-out 700ms
 }
 
 #files span {
@@ -186,7 +162,7 @@ ul#files.view-details li.header {
 
 @media (min-width:768px) {
     footer {
-        position: fixed;
+        position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
@@ -224,12 +200,6 @@ ul#files.view-details li.header {
         line-height: 1.8em;
         text-indent: 10px;
         box-shadow: none;
-
-        &:hover,
-        &:focus {
-            width: 100%;
-        }
-
     }
 
     #wrapper {
@@ -271,7 +241,6 @@ ul#files.view-details li.header {
 
     ul#files li a:focus,
     ul#files li a:hover {
-        background-color: #d7d7d7;
         border: 0
     }
 
@@ -288,7 +257,7 @@ ul#files.view-details li.header {
     }
 
     #files .icon .name {
-        text-indent: 41px
+        text-indent: 32px
     }
 }
 
