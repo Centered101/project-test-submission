@@ -1,0 +1,64 @@
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="/animation/script.js"></script>
+<link rel="stylesheet" href="style/style.css">
+
+
+
+<script>
+    const morseCode = {
+        "ก": "--.", "ข": "-.-.", "ค": "-.-", "ง": "--..", "จ": ".---",
+        "ฉ": ".-.-", "ช": "-..-", "ซ": "--.--", "ด": "-..", "ต": "-",
+        "ท": "-...", "น": "-.", "บ": "-...", "ป": ".--.", "พ": ".--",
+        "ฟ": "..-.", "ม": "--", "ย": "-.--", "ร": ".-.", "ล": ".-..",
+        "ว": ".--", "ศ": "---.", "ส": "...", "ห": "....", "อ": "---",
+        "ฮ": "-..-", "ไ": "..-", "ใ": "..--", "เ": ".", "แ": ".-.-",
+        "โ": "---.", "ฤ": ".-..-", " ": "/"
+    };
+
+    async function flashMorse(text) {
+        if (!("mediaDevices" in navigator)) {
+            alert("อุปกรณ์นี้ไม่รองรับการควบคุมไฟฉาย");
+            return;
+        }
+
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+        const track = stream.getVideoTracks()[0];
+        const imageCapture = new ImageCapture(track);
+        const photoCapabilities = await imageCapture.getPhotoCapabilities();
+
+        if (!photoCapabilities.fillLightMode.includes("flash")) {
+            alert("อุปกรณ์นี้ไม่รองรับไฟฉาย");
+            return;
+        }
+
+        function flash(on) {
+            track.applyConstraints({ advanced: [{ torch: on }] });
+        }
+
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        let morseSequence = text.split("").map(char => morseCode[char] || "").join(" ");
+
+        for (let symbol of morseSequence) {
+            if (symbol === ".") {
+                flash(true);
+                await delay(300);
+                flash(false);
+            } else if (symbol === "-") {
+                flash(true);
+                await delay(900);
+                flash(false);
+            } else {
+                await delay(600);
+            }
+            await delay(300);
+        }
+
+        track.stop();
+    }
+
+    flashMorse("คิดถึงคนชื่อเฟย์");
+
+</script>

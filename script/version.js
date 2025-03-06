@@ -1,1 +1,1 @@
-const appVersionProjectTest="2.17.31";
+const appVersionProjectTest="2.18.32";

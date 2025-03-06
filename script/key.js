@@ -1,11 +1,54 @@
 const style = document.createElement("style");
 (style.innerHTML = `        
-.succeed{opacity:0;transform:translatex(100%);transition:opacity 700ms ease-in-out,transform 700ms ease-in-out}
-`),
+<style>
+    .succeed {
+        opacity: 0;
+        transform: translatex(100%);
+        transition: opacity 700ms ease-in-out, transform 700ms ease-in-out
+    }
+</style>`),
     document.head.appendChild(style),
     (document.body.innerHTML += `
-<script src=https:cdn.tailwindcss.com></script><div id=login-form class="fixed bg-[#000] bg-opacity-75 backdrop-blur flex flex-col items-center justify-center gap-8 inset-0 z-40"><div class="animationShow-x content-form w-full max-w-md bg-[#EFEFEF] border border-[#CCC] rounded shadow-lg"><div class="bg-[#DFDFDF] p-2 shadow"><p class="text-center text-lg font-black">คุณจำเป็นต้องมีรหัสผ่านในการเข้าถึงข้อมูลสำคัญ</p></div><div class="space-y-6 p-6"><p>โปรดลงชื่อเข้าใช้เพื่อดำเนินการต่อ</p><div class="flex gap-4 items-center"><input type=password id=passwordInput placeholder=รหัสผ่าน class="flex-grow border border-[#CCC] rounded p-2 focus:outline-none focus:shadow-none"><button id=togglePassword onclick=togglePassword() class="w-32 bg-[#DFDFDF] border border-[#CCC] rounded truncate p-2 active:opacity-75">แสดงรหัสผ่าน</button></div><button id=loginButton class="w-full bg-[#409EFE] text-[#FFF] rounded p-2 active:opacity-75 transition-colors">ล็อกอิน</button></div></div><a href=/ ><button class="animationShow w-40 bg-[#DFDFDF] border border-[#CCC] rounded truncate p-2 active:opacity-75">กลับไป</button></a></div><button hidden id=logout-section onclick=alert_logout() class="-animationShow-x bg-[#FF7070] text-[#FFF] fixed bottom-8 right-8 rounded p-2 opacity-80 transition-opacity ease-in-out duration-300 hover:opacity-90 z-40"><svg xmlns=http://www.w3.org/2000/svg height=24 viewBox="0 -960 960 960" width=24 fill=#0D0D0D><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg></button><div hidden id=alert-logout class="fixed bg-[#000] bg-opacity-75 justify-center items-center inset-0 z-40"><div class="animationShow-x w-full max-w-md bg-[#EFEFEF] border border-[#CCC] rounded shadow-lg"><div class="bg-[#DFDFDF] p-2 shadow"><p class="text-center text-lg font-black">โปรดยืนยันการออกจากระบบของคุณ</p></div><div class="space-y-6 p-6"><p>โปรดยืนยันลงชื่อออก</p><div class="flex gap-4"><button onclick=cancel_logout() class="w-full bg-[#DFDFDF] border border-[#CCC] rounded truncate p-2 active:opacity-75">ยกเลิก</button><button onclick=logout() class="w-full bg-[#FF7070] text-[#FFF] rounded p-2 transition-colors active:opacity-75">ลงชื่อออก</button></div></div></div></div>
-`),
+<div id=login-form
+    class="fixed inset-0 bg-[#000] bg-opacity-75 backdrop-blur flex flex-col justify-center items-center gap-8 p-8 z-40">
+    <div class="animationShow-x w-full max-w-md bg-[#EFEFEF] border border-[#CCC] rounded-xl overflow-hidden">
+        <div class="relative w-full border-b border-[#CCC] p-4">
+            <p class="text-center text-xl font-black">คุณจำเป็นต้องมีรหัสผ่านในการเข้าถึงข้อมูลสำคัญ</p>
+        </div>
+        <div class="space-y-6 p-4">
+            <p>โปรดลงชื่อเข้าใช้เพื่อดำเนินการต่อ</p>
+            <div class="flex justify-between items-center gap-4">
+                <input type=password id=passwordInput placeholder=รหัสผ่าน class="grow border border-[#CCC] rounded-xl p-2 focus:outline-none focus:shadow-none">
+                <button id=togglePassword onclick=togglePassword() class="w-1/3 bg-[#DFDFDF] border border-[#CCC] rounded-xl truncate p-2 active:opacity-75">แสดงรหัสผ่าน</button>
+            </div>
+            <button id=loginButton class="relative w-full flex justify-center items-center border border-[#409EFE] rounded-xl text-[#FFF] font-black truncate bg-[#409EFE] px-8 py-2 z-10 overflow-hidden ease-in-out duration-700 hover:text-[#000] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full before:bg-[#FFF] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">
+                <span>ล็อกอิน</span>
+            </button>
+        </div>
+    </div>
+    <a href=/ ><button
+        class="animationShow bg-[#DFDFDF] border border-[#CCC] rounded-xl truncate px-8 py-2 active:opacity-75">กลับไป</button></a>
+</div>
+<button hidden id=logout-section onclick=alert_logout()
+    class="-animationShow-x bg-[#FF7070] text-[#FFF] fixed bottom-8 right-8 rounded p-2 opacity-80 transition-opacity ease-in-out duration-300 hover:opacity-90 z-40"><svg
+        xmlns=http://www.w3.org/2000/svg height=24 viewBox="0 -960 960 960" width=24 fill=#0D0D0D>
+        <path
+            d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+    </svg></button>
+<div hidden id=alert-logout
+    class="fixed inset-0 bg-[#000] bg-opacity-75 flex-col justify-center items-center gap-8 p-8 z-40">
+    <div class="animationShow-x w-full max-w-md bg-[#EFEFEF] border border-[#CCC] rounded-xl overflow-hidden">
+        <div class="relative w-full border-b border-[#CCC] p-4">
+            <p class="text-center text-xl font-black">โปรดยืนยันการออกจากระบบของคุณ</p>
+        </div>
+        <div class="space-y-6 p-4">
+            <div class="flex gap-4">
+                <button onclick=cancel_logout() class="relative w-full bg-[#DFDFDF] border border-[#CCC] rounded-xl truncate p-2 active:opacity-75">ยกเลิก</button>
+                <button onclick=logout() class="relative w-full flex justify-center items-center border border-[#FF7070] rounded-xl text-[#FFF] font-black truncate bg-[#FF7070] px-8 py-2 z-10 overflow-hidden ease-in-out duration-700 hover:text-[#000] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full before:bg-[#FFF] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">ลงชื่อออก</button>
+            </div>
+        </div>
+    </div>
+</div>`),
 
     document.getElementById("passwordInput").addEventListener("focus", function () {
         document.querySelector(".goBack").classList.add("succeed");
@@ -132,12 +175,10 @@ window.onload = function () {
 
 function alert_logout() {
     document.getElementById('alert-logout').style.display = 'flex';
-    showToast("ยืนยันการออกจากระบบ");
 }
 
 function cancel_logout() {
     document.getElementById('alert-logout').classList.add("succeed");
-    showToast("ยกเลิกการออกจากระบบ");
     setTimeout(function () {
         document.getElementById('alert-logout').classList.remove("succeed");
         document.getElementById('alert-logout').style.display = "none";
@@ -148,7 +189,6 @@ function logout() {
     document.body.classList.add('overflow-hidden');
     document.getElementById('logout-section').style.display = "none";
     document.getElementById('alert-logout').classList.add("succeed");
-    showToast("ออกจากระบบ");
     setTimeout(function () {
         document.getElementById('alert-logout').classList.remove("succeed");
         document.getElementById('alert-logout').style.display = "none";
