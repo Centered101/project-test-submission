@@ -23,7 +23,6 @@ body {
     background-color: #FFF;
     background-repeat: no-repeat;
     color: #0D0D0D;
-    min-height: 100vh
 }
 
 body::after {
@@ -36,6 +35,12 @@ body::after {
     left: 0;
     z-index: -1;
     opacity: .1
+}
+
+.succeed {
+    opacity: 0;
+    transform: translatex(100%);
+    transition: opacity 700ms ease-in-out, transform 700ms ease-in-out
 }
 
 .directory h1 a {
@@ -157,16 +162,6 @@ ul#files.view-details li.header {
 .view-details .size {
     text-align: right;
     direction: rtl
-}
-
-@media (min-width:768px) {
-    footer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        text-align: center
-    }
 }
 
 @media (max-width:768px) {
