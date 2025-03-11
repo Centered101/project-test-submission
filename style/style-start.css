@@ -71,8 +71,8 @@ ul#files li a {
 
 ul#files li a:focus,
 ul#files li a:hover {
-    background: #efefef !important;
-    border: 1px solid #ccc;
+    background: #E3F2FD !important;
+    border: 1px solid #409EFE;
     color: #0d0d0d !important
 }
 
@@ -184,10 +184,6 @@ ul#files.view-details li.header {
         padding: 0 !important
     }
 
-    body::after {
-        opacity: .03125
-    }
-
     input#search {
         position: static;
         width: 100%;
@@ -223,7 +219,7 @@ ul#files.view-details li.header {
     }
 
     ul#files li:nth-child(odd) {
-        background: #efefef
+        background: #F5F5F5
     }
 
     ul#files li a {
@@ -296,4 +292,50 @@ ul#files.view-details li.header {
 
 #files .icon-application-x-sql .name {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAHVSURBVDjLjZPLaiJBFIZNHmJWCeQdMuT1Mi/gYlARBRUkao+abHUhmhgU0QHtARVxJ0bxhvfGa07Of5Iu21yYFPyLrqrz1f+f6rIRkQ3icca6ZF39RxesU1VnAVyuVqvJdrvd73Y7+ky8Tk6n87cVYgVcoXixWNByuVSaTqc0Ho+p1+sJpNvtksvlUhCb3W7/cf/w+BSLxfapVIqSySRlMhnSdZ2GwyHN53OaTCbU7/cFYBgG4RCPx/MKub27+1ur1Xqj0YjW6zWxCyloNBqUSCSkYDab0WAw+BBJeqLFtQpvGoFqAlAEaZomuc0ocAQnnU7nALiJ3uh8whgnttttarVaVCgUpCAUCgnQhMAJ+gG3CsDZa7xh1mw2ZbFSqYgwgsGgbDQhcIWeAHSIoP1pcGeNarUqgFKpJMLw+/0q72azkYhmPAWIRmM6AGbXc7kc5fN5AXi9XgWACwAguLEAojrfsVGv1yV/sVikcrksAIfDIYUQHEAoPgLwT3GdzWYNdBfXh3xwApDP5zsqtkoBwuHwaSAQ+OV2u//F43GKRCLEc5ROpwVoOngvBXj7jU/wwZPPX72DT7RXgDfIT27QEgvfKea9c3m9FsA5IN94zqbw9M9fAEuW+zzj8uLvAAAAAElFTkSuQmCC)
+}
+
+/* —[ docs ]——————————————————————————————————————————————————————————————————————————————————————————————————— */
+
+main.docs section.docs span,
+main.docs section.docs code {
+    border-width: 1px;
+    border-radius: 4px;
+    padding-inline: 2px;
+}
+
+main.docs section.docs code {
+    background-color: #ECECEC;
+    font-family: 'Roboto Mono', 'Bai Jamjuree', sans-serif !important;
+}
+
+main.docs section#code pre {
+    background-color: #FFFFFFB0;
+    overflow-x: auto;
+}
+
+main.docs section#code .hljs-attr,
+main.docs section#code .language_ {
+    color: #df3079;
+}
+
+main.docs section#code .hljs-title,
+main.docs section#code .function_ {
+    color: #f22c3d;
+}
+
+main.docs section#code .hljs-params,
+main.docs section#code .hljs-property {
+    color: #0D0D0D
+}
+
+g main.docs section#code .hljs-comment {
+    color: #a0a1a7;
+}
+
+main.docs section#code .hljs-keyword {
+    color: #2e95d3;
+}
+
+main.docs section#code .hljs-string {
+    color: #00a67d;
 }

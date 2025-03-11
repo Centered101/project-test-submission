@@ -1,423 +1,259 @@
-<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
-<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
-<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
-<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
-<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
-
-<!DOCTYPE html>
-<html lang="th">
-
-<!-- สวัสดี วัยสะรุ้น Hello, World! ครับ/ค่ะ -->
-
+<!doctype html>
+<html lang=th>
 <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
-    <meta name="author" content="instagram-follower-following.js — Centered101" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Primary Meta Tags -->
-    <title>instagram-follower-following.js • Centered101</title>
-    <meta name="title" content="instagram-follower-following.js — Centered101" />
-    <meta name="description" content="instagram-follower-following.js" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://project-test-submission.web.app/ก็บข้อมูลแบบ-Local-Storage/" />
-    <meta property="og:title" content="instagram-follower-following.js — Centered101" />
-    <meta property="og:description" content="instagram-follower-following.js" />
-    <meta property="og:image" content="https://project-test-submission.web.app/images/Tes-D.png" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://project-test-submission.web.app/เก็บข้อมูลแบบ-Local-Storage/" />
-    <meta property="twitter:title" content="instagram-follower-following.js — Centered101" />
-    <meta property="twitter:description" content="instagram-follower-following.js" />
-    <meta property="twitter:image" content="https://project-test-submission.web.app/images/Tes-D.png" />
-
-    <link rel="icon" type="image/png" href="https://project-test-submission.web.app/images/Tes-D.png">
-    <link rel="stylesheet" href="/style/style.css">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/animation/script.js"></script>
-
+<title>listing directory/docs/</title>
+<meta charset=UTF-8>
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name=theme-color content=#409EFE>
+<meta name=keywords content="HTML, CSS, XML, JavaScript, Centered101">
+<meta name=author content="Listing Directory — Centered101">
+<meta name=description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=og:type content=website>
+<meta property=og:url content=https://project-test-submission.netlify.app>
+<meta property=og:title content="Listing Directory — Centered101">
+<meta property=og:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=og:image content=/images/icon.svg>
+<meta property=twitter:card content=summary_large_image>
+<meta property=twitter:url content=https://project-test-submission.netlify.app>
+<meta property=twitter:title content="Listing Directory — Centered101">
+<meta property=twitter:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
+<meta property=twitter:image content=/images/icon.svg>
+<link rel="shortcut icon" type=image/x-icon href=/images/icon.svg>
+<link rel=stylesheet href=/style/style-start.css>
+<link rel=stylesheet href=/style/style.css>
+<script src=https://cdn.tailwindcss.com></script>
+<script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
+<script src=/animation/script.js></script>
 </head>
-<style>
-    * {
-        color: #0D0D0D
-    }
-
-    pre {
-        background-color: #F9F9F9;
-        /* padding: 10px; */
-        /* border-radius: 5px; */
-        overflow-x: auto;
-    }
-
-    code {
-        font-family: monospace;
-    }
-
-    section#docs code {
-        font-size: 1.2rem;
-        background-color: #ECECEC;
-        font-size: 14px;
-        padding: 2px 4px;
-        border-radius: 4px;
-    }
-
-    .hljs-attr,
-    .language_ {
-        color: #df3079;
-    }
-
-    .hljs-title,
-    .function_ {
-        color: #f22c3d;
-    }
-
-    .hljs-params,
-    .hljs-property {
-        color: #0D0D0D
-    }
-
-    .hljs-comment {
-        color: #a0a1a7;
-    }
-
-    .hljs-keyword {
-        color: #2e95d3;
-    }
-
-    .hljs-string {
-        color: #00a67d;
-    }
-</style>
-
-<body class="bg-[#F5F5F5]">
-    <header class="bg-[#EFEFEF] border-y border-[#CCCCCC]">
-        <h1 class="text-2xl text-center p-5">instagram-follower-following</h1>
-    </header>
-    <nav class="bg-[#DFDFDF] sticky top-0 z-50">
-        <ul class="flex justify-center items-center">
-            <li><a class="block py-2 px-4 border border-[#CCCCCC] hover:bg-[#EFEFEF]" href="#docs">docs</a></li>
-            <li><a class="block py-2 px-4 border border-[#CCCCCC] hover:bg-[#EFEFEF]" href="#download">download</a></li>
-            <li><a class="block py-2 px-4 border border-[#CCCCCC] hover:bg-[#EFEFEF]" href="#code">code</a></li>
-        </ul>
-    </nav>
-    <main class="mx-auto max-w-3xl bg-white">
-        <section id="docs" class="pt-16">
-            <div class="p-6">
-                <p class="mb-4">
-                    <code>instagram-follower-following.js</code> เป็นสคริปต์ JavaScript
-                    ที่ช่วยให้คุณดึงข้อมูลผู้ติดตาม
-                    (followers) และผู้ที่คุณติดตาม (following) บน Instagram ได้
-                    <a href="#" class="text-[#2964aa]">GIST</a>
-                </p>
-                <h2 class="text-lg font-bold mb-3">วิธีการใช้งาน:</h2>
-                <ol class="list-decimal list-inside space-y-3">
-                    <li>
-                        <span class="font-medium">เข้าสู่เว็บไซต์ Instagram:</span>
-                        <ul class="list-disc list-inside ml-5">
-                            <li>
-                                เปิดเบราว์เซอร์และเข้าสู่ระบบบัญชี Instagram ของคุณที่
-                                <a href="https://www.instagram.com" class="text-[#2964aa]">https://www.instagram.com</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="font-medium">เปิดเครื่องมือสำหรับนักพัฒนา (Developer Tools):</span>
-                        <ul class="list-disc list-inside ml-5">
-                            <li>สำหรับ Google Chrome: กด <code>F12</code> หรือคลิกขวาและเลือก
-                                "ตรวจสอบ" (Inspect)</li>
-                            <li>สำหรับ Mozilla Firefox: กด <code>F12</code> หรือคลิกขวาและเลือก
-                                "ตรวจสอบองค์ประกอบ"</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="font-medium">ไปที่แท็บคอนโซล (Console):</span>
-                        <ul class="list-disc list-inside ml-5">
-                            <li>ในเครื่องมือสำหรับนักพัฒนา ให้เลือกแท็บ "Console"</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="font-medium">คัดลอกและวางสคริปต์:</span>
-                        <ul class="list-disc list-inside ml-5">
-                            <li>คัดลอกโค้ดจาก <a href="#code" class="text-[#2964aa]">โค้ดนี้</a></li>
-                            <li>วางโค้ดลงในคอนโซล</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="font-medium">เรียกใช้สคริปต์:</span>
-                        <ul class="list-disc list-inside ml-5">
-                            <li>กด <code>Enter</code> เพื่อเรียกใช้สคริปต์</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="font-medium">ป้อนชื่อผู้ใช้ (Username):</span>
-                        <ul class="list-disc list-inside ml-5">
-                            <li>สคริปต์จะขอให้คุณป้อนชื่อผู้ใช้ Instagram ของคุณ</li>
-                            <li>ป้อนชื่อผู้ใช้และกด <code>Enter</code></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="font-medium">รับข้อมูล:</span>
-                        <ul class="list-disc list-inside ml-5">
-                            <li>สคริปต์จะดึงข้อมูลผู้ติดตามและผู้ที่คุณติดตาม</li>
-                            <li>จะแสดงรายชื่อผู้ที่คุณติดตามแต่ไม่ได้ติดตามคุณกลับ
-                                และผู้ที่ติดตามคุณแต่คุณไม่ได้ติดตามกลับ</li>
-                        </ul>
-                    </li>
-                </ol>
-                <h2 class="text-lg font-bold mt-5">หมายเหตุ:</h2>
-                <ul class="list-disc list-inside ml-5 space-y-2">
-                    <li>การใช้สคริปต์นี้อาจละเมิดนโยบายการใช้งานของ Instagram</li>
-                    <li>ควรใช้งานด้วยความระมัดระวังและรับผิดชอบต่อการกระทำของตนเอง</li>
-                    <li>สคริปต์อาจไม่ทำงานหาก Instagram เปลี่ยนโครงสร้างเว็บไซต์</li>
-                </ul>
-                <h2 class="text-lg font-bold mt-5">อ้างอิง:</h2>
-                <ul class="list-disc list-inside ml-5 space-y-2">
-                    <li><a href="https://gist.github.com/abir-taheer/0d3f1313def5eec6b78399c0fb69e4b1"
-                            class="text-[#2964aa]">Gist: instagram-follower-following.js</a></li>
-                </ul>
-                <p class="mt-4 text-gray-600">
-                    โปรดทราบว่าการใช้สคริปต์หรือเครื่องมือที่ไม่ได้รับอนุญาตอาจละเมิด
-                    <a href="https://help.instagram.com/581066165581870/" class="text-[#2964aa]">ข้อกำหนดการใช้งานของ
-                        Instagram</a>
-                    ควรปฏิบัติตามนโยบายแพลตฟอร์มเสมอ
-                </p>
-            </div>
-        </section>
-        <section id="download">
-            <a class="text-[#2964aa] flex items-center gap-1 py-12 p-4" href="./instagram-follower-following.js"
-                download class="cursor-pointer">ดาวน์โหลดไฟล์
-                instagram-follower-following.js
-                &ZeroWidthSpace;
-                <span>
-                    <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 15" fill="none"
-                            class="-mt-0.5 ml-0.5 inline-block text-token-link hover:text-token-link-hover" width="19"
-                            height="15">
-                            <path
-                                d="M4.42 0.75H2.8625H2.75C1.64543 0.75 0.75 1.64543 0.75 2.75V11.65C0.75 12.7546 1.64543 13.65 2.75 13.65H2.8625C2.8625 13.65 2.8625 13.65 2.8625 13.65C2.8625 13.65 4.00751 13.65 4.42 13.65M13.98 13.65H15.5375H15.65C16.7546 13.65 17.65 12.7546 17.65 11.65V2.75C17.65 1.64543 16.7546 0.75 15.65 0.75H15.5375H13.98"
-                                stroke="#2964aa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            </path>
-                            <path
-                                d="M5.55283 4.21963C5.25993 3.92674 4.78506 3.92674 4.49217 4.21963C4.19927 4.51252 4.19927 4.9874 4.49217 5.28029L6.36184 7.14996L4.49217 9.01963C4.19927 9.31252 4.19927 9.7874 4.49217 10.0803C4.78506 10.3732 5.25993 10.3732 5.55283 10.0803L7.95283 7.68029C8.24572 7.3874 8.24572 6.91252 7.95283 6.61963L5.55283 4.21963Z"
-                                fill="#2964aa" stroke="#2964aa" stroke-width="0.2" stroke-linecap="round"
-                                stroke-linejoin="round"></path>
-                            <path
-                                d="M9.77753 8.75003C9.3357 8.75003 8.97753 9.10821 8.97753 9.55003C8.97753 9.99186 9.3357 10.35 9.77753 10.35H13.2775C13.7194 10.35 14.0775 9.99186 14.0775 9.55003C14.0775 9.10821 13.7194 8.75003 13.2775 8.75003H9.77753Z"
-                                fill="#2964aa" stroke="#2964aa" stroke-width="0.1"></path>
-                        </svg>
-                    </button>
-                </span>
-                &ZeroWidthSpace;
-            </a>
-        </section>
-        <section id="code" class="pt-12">
-            <article
-                class="w-full scroll-mb-[var(--thread-trailing-height,150px)] text-token-text-primary focus-visible:outline-2 focus-visible:outline-offset-[-4px]"
-                dir="auto" data-testid="conversation-turn-5" data-scroll-anchor="false">
-                <div class="m-auto text-base py-[18px] px-3 w-full md:px-5 lg:px-4 xl:px-5">
-                    <div
-                        class="mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem]">
-                        <div class="group/conversation-turn relative flex w-full min-w-0 flex-col agent-turn">
-                            <div class="flex-col gap-1 md:gap-3">
-                                <div class="flex max-w-full flex-col flex-grow">
-                                    <div data-message-author-role="assistant"
-                                        data-message-id="6fe3a0d3-5a6f-458d-9118-23007130b50f" dir="auto"
-                                        class="min-h-8 text-message flex w-full flex-col items-end gap-2 whitespace-normal break-words text-start [.text-message+&amp;]:mt-5"
-                                        data-message-model-slug="gpt-4o">
-                                        <div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]">
-                                            <div class="markdown prose w-full break-words dark:prose-invert light">
-                                                <pre class="!overflow-visible"><div class="contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative bg-token-sidebar-surface-primary"><div class="flex items-center text-token-text-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9 bg-token-sidebar-surface-primary dark:bg-token-main-surface-secondary select-none">javascript</div><div class="sticky top-9 md:top-[5.75rem]"><div class="absolute bottom-0 right-2 flex h-9 items-center"><div class="flex items-center rounded bg-token-sidebar-surface-primary px-2 font-sans text-xs text-token-text-secondary dark:bg-token-main-surface-secondary"><span class="" data-state="closed"><button onclick="copyCode()" class="flex gap-1 items-center select-none py-1" aria-label="Copy"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm"><path fill-rule="evenodd" clip-rule="evenodd" d="M7 5C7 3.34315 8.34315 2 10 2H19C20.6569 2 22 3.34315 22 5V14C22 15.6569 20.6569 17 19 17H17V19C17 20.6569 15.6569 22 14 22H5C3.34315 22 2 20.6569 2 19V10C2 8.34315 3.34315 7 5 7H7V5ZM9 7H14C15.6569 7 17 8.34315 17 10V15H19C19.5523 15 20 14.5523 20 14V5C20 4.44772 19.5523 4 19 4H10C9.44772 4 9 4.44772 9 5V7ZM5 9C4.44772 9 4 9.44772 4 10V19C4 19.5523 4.44772 20 5 20H14C14.5523 20 15 19.5523 15 19V10C15 9.44772 14.5523 9 14 9H5Z" fill="currentColor"></path></svg>Copy code</button></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code id="code-to-copy" class="!whitespace-pre hljs language-javascript"><span class="hljs-comment">// ตรวจสอบว่าผู้ใช้กำลังอยู่บนเว็บไซต์ Instagram หรือไม่</span>
-<span class="hljs-keyword">if</span> (<span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">origin</span> !== <span class="hljs-string">"https://www.instagram.com"</span>) {
+<body draggable=false oncontextmenu=return!1>
+<main class="docs space-y-8">
+<section class="docs max-w-3xl space-y-6 mx-auto p-8 pt-24 md:pt-8">
+<h1 class="text-xl font-bold">เอกสารของ instagram-follower-following</h1>
+<h2 class="text-lg font-bold">ภาพรวม</h2>
+<p><b>instagram-follower-following</b> เป็นสคริปต์ JavaScript ที่ช่วยให้คุณดึงข้อมูลผู้ติดตาม (followers) และผู้ที่คุณติดตาม (following) บน Instagram ได้</p>
+<h2 class="text-lg font-bold">วิธีการใช้งาน</h2>
+<ul class="list-inside list-decimal">
+<li>เข้าสู่ <a href=https://www.instagram.com target=_blank class="text-[#409EFE] after:content-['_↗']">Instagram</a> และล็อกอิน</li>
+<li>เปิดเครื่องมือสำหรับนักพัฒนา (Developer Tools):
+<ul class="list-inside list-disc pl-4">
+<li>Google Chrome: กด <code>F12</code> หรือคลิกขวาเลือก "ตรวจสอบ" (Inspect)</li>
+<li>Mozilla Firefox: กด <code>F12</code> หรือคลิกขวาเลือก "ตรวจสอบองค์ประกอบ"</li>
+</ul>
+</li>
+<li>ไปที่แท็บ "Console"</li>
+<li>คัดลอกโค้ดจาก <a href=#code class=text-[#409EFE]>โค้ดนี้</a> แล้ววางลงใน Console</li>
+<li>กด <code>Enter</code> เพื่อเรียกใช้สคริปต์</li>
+<li>ป้อนชื่อผู้ใช้ Instagram ของคุณแล้วกด <code>Enter</code></li>
+<li>รับข้อมูล:
+<ul class="list-inside list-disc pl-4">
+<li>สคริปต์จะแสดงรายชื่อผู้ที่คุณติดตามแต่ไม่ได้ติดตามคุณกลับ</li>
+<li>แสดงรายชื่อผู้ที่ติดตามคุณแต่คุณไม่ได้ติดตามกลับ</li>
+</ul>
+</li>
+</ul>
+<h2 class="text-lg font-bold">หมายเหตุ</h2>
+<ul class="list-inside list-disc">
+<li>การใช้สคริปต์นี้อาจละเมิดนโยบายของ Instagram</li>
+<li>ควรใช้งานด้วยความระมัดระวังและรับผิดชอบ</li>
+<li>สคริปต์อาจไม่ทำงานหาก Instagram เปลี่ยนโครงสร้างเว็บไซต์</li>
+</ul>
+<h2 class="text-lg font-bold">อ้างอิง</h2>
+<ul class="list-inside list-disc">
+<li><a href=https://gist.github.com/abir-taheer/0d3f1313def5eec6b78399c0fb69e4b1 target=_blank class="text-[#409EFE] after:content-['_↗']">Gist: instagram-follower-following.js</a></li>
+</ul>
+<p class=indent-6>โปรดทราบว่าการใช้สคริปต์หรือเครื่องมือที่ไม่ได้รับอนุญาตอาจละเมิด <a href=https://help.instagram.com/581066165581870/ target=_blank class="text-[#409EFE] after:content-['_↗']">ข้อกำหนดการใช้งานของ Instagram</a> ควรปฏิบัติตามนโยบายแพลตฟอร์มเสมอ</p>
+</section>
+<section id=download class="max-w-3xl space-y-6 mx-auto p-8">
+<a href=./instagram-follower-following.js class="flex flex-row justify-start items-center gap-2 text-[#409EFE]" download>
+<span>ดาวน์โหลดไฟล์ instagram-follower-following.js</span>
+<span>
+<button>
+<svg xmlns=http://www.w3.org/2000/svg viewBox="0 0 19 15" fill=none class="-mt-0.5 ml-0.5 inline-block text-token-link hover:text-token-link-hover" width=16 height=16>
+<path d="M4.42 0.75H2.8625H2.75C1.64543 0.75 0.75 1.64543 0.75 2.75V11.65C0.75 12.7546 1.64543 13.65 2.75 13.65H2.8625C2.8625 13.65 2.8625 13.65 2.8625 13.65C2.8625 13.65 4.00751 13.65 4.42 13.65M13.98 13.65H15.5375H15.65C16.7546 13.65 17.65 12.7546 17.65 11.65V2.75C17.65 1.64543 16.7546 0.75 15.65 0.75H15.5375H13.98" stroke=#409EFE stroke-width=1.5 stroke-linecap=round stroke-linejoin=round>
+</path>
+<path d="M5.55283 4.21963C5.25993 3.92674 4.78506 3.92674 4.49217 4.21963C4.19927 4.51252 4.19927 4.9874 4.49217 5.28029L6.36184 7.14996L4.49217 9.01963C4.19927 9.31252 4.19927 9.7874 4.49217 10.0803C4.78506 10.3732 5.25993 10.3732 5.55283 10.0803L7.95283 7.68029C8.24572 7.3874 8.24572 6.91252 7.95283 6.61963L5.55283 4.21963Z" fill=#409EFE stroke=#409EFE stroke-width=0.2 stroke-linecap=round stroke-linejoin=round></path>
+<path d="M9.77753 8.75003C9.3357 8.75003 8.97753 9.10821 8.97753 9.55003C8.97753 9.99186 9.3357 10.35 9.77753 10.35H13.2775C13.7194 10.35 14.0775 9.99186 14.0775 9.55003C14.0775 9.10821 13.7194 8.75003 13.2775 8.75003H9.77753Z" fill=#409EFE stroke=#409EFE stroke-width=0.1></path>
+</svg>
+</button>
+</span>
+</a>
+</section>
+<section id=code class=pt-12>
+<article>
+<div class="m-auto px-8">
+<pre class=!overflow-visible><div class="relative border"><div class="flex flex-row justify-between items-center font-semibold bg-[#ECECEC] border-b select-none px-4 py-2">javascript</div><div class="sticky top-8"><div class="absolute bottom-0 right-2 h-8 flex items-center"><div class="flex flex-row justify-center items-center px-2"><button aria-label=Copy onclick=copyCode() class="flex flex-row justify-center items-center gap-1 py-1"><svg width=16 height=16 viewBox="0 0 24 24" fill=none xmlns=http://www.w3.org/2000/svg class=icon-sm><path fill-rule=evenodd clip-rule=evenodd d="M7 5C7 3.34315 8.34315 2 10 2H19C20.6569 2 22 3.34315 22 5V14C22 15.6569 20.6569 17 19 17H17V19C17 20.6569 15.6569 22 14 22H5C3.34315 22 2 20.6569 2 19V10C2 8.34315 3.34315 7 5 7H7V5ZM9 7H14C15.6569 7 17 8.34315 17 10V15H19C19.5523 15 20 14.5523 20 14V5C20 4.44772 19.5523 4 19 4H10C9.44772 4 9 4.44772 9 5V7ZM5 9C4.44772 9 4 9.44772 4 10V19C4 19.5523 4.44772 20 5 20H14C14.5523 20 15 19.5523 15 19V10C15 9.44772 14.5523 9 14 9H5Z" fill=currentColor></path></svg>Copy code</button></div></div></div><div class="overflow-y-auto p-4" dir=ltr><code id=code-to-copy class="hljs language-javascript"><span class=hljs-comment>// ตรวจสอบว่าผู้ใช้กำลังอยู่บนเว็บไซต์ Instagram หรือไม่</span>
+<span class=hljs-keyword>if</span> (<span class="hljs-variable language_">window</span>.<span class=hljs-property>location</span>.<span class=hljs-property>origin</span> !== <span class=hljs-string>"https://www.instagram.com"</span>) {
     <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">alert</span>(
-      <span class="hljs-string">"เฮ้! คุณต้องอยู่ในเว็บไซต์ Instagram ก่อนที่จะรันโค้ดนี้ ฉันจะพาคุณไปที่นั่นตอนนี้ แต่คุณจะต้องรันโค้ดนี้ในคอนโซลอีกครั้ง"</span>,
+      <span class=hljs-string>"เฮ้! คุณต้องอยู่ในเว็บไซต์ Instagram ก่อนที่จะรันโค้ดนี้ ฉันจะพาคุณไปที่นั่นตอนนี้ แต่คุณจะต้องรันโค้ดนี้ในคอนโซลอีกครั้ง"</span>,
     );
-    <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">href</span> = <span class="hljs-string">"https://www.instagram.com"</span>;
+    <span class="hljs-variable language_">window</span>.<span class=hljs-property>location</span>.<span class=hljs-property>href</span> = <span class=hljs-string>"https://www.instagram.com"</span>;
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">clear</span>();
 }
 
-<span class="hljs-comment">// ตัวเลือกสำหรับการดึงข้อมูลจาก API</span>
-<span class="hljs-keyword">const</span> fetchOptions = {
-    <span class="hljs-attr">credentials</span>: <span class="hljs-string">"include"</span>,
-    <span class="hljs-attr">headers</span>: {
-      <span class="hljs-string">"X-IG-App-ID"</span>: <span class="hljs-string">"936619743392459"</span>, <span class="hljs-comment">// ใส่ App ID ของ Instagram ที่ใช้</span>
+<span class=hljs-comment>// ตัวเลือกสำหรับการดึงข้อมูลจาก API</span>
+<span class=hljs-keyword>const</span> fetchOptions = {
+    <span class=hljs-attr>credentials</span>: <span class=hljs-string>"include"</span>,
+    <span class=hljs-attr>headers</span>: {
+      <span class=hljs-string>"X-IG-App-ID"</span>: <span class=hljs-string>"936619743392459"</span>, <span class=hljs-comment>// ใส่ App ID ของ Instagram ที่ใช้</span>
     },
-    <span class="hljs-attr">method</span>: <span class="hljs-string">"GET"</span>,
+    <span class=hljs-attr>method</span>: <span class=hljs-string>"GET"</span>,
 };
 
-<span class="hljs-comment">// ตัวแปรสำหรับเก็บชื่อผู้ใช้</span>
-<span class="hljs-keyword">let</span> username;
+<span class=hljs-comment>// ตัวแปรสำหรับเก็บชื่อผู้ใช้</span>
+<span class=hljs-keyword>let</span> username;
 
-<span class="hljs-comment">// ฟังก์ชันหน่วงเวลา</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">sleep</span> = (<span class="hljs-params">ms</span>) =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> <span class="hljs-built_in">setTimeout</span>(r, ms));
-<span class="hljs-comment">// ฟังก์ชันสุ่มจำนวนระหว่าง min และ max</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">random</span> = (<span class="hljs-params">min, max</span>) =&gt; <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (max - min)) + min;
+<span class=hljs-comment>// ฟังก์ชันหน่วงเวลา</span>
+<span class=hljs-keyword>const</span> <span class="hljs-title function_">sleep</span> = (<span class=hljs-params>ms</span>) =&gt; <span class=hljs-keyword>new</span> <span class="hljs-title class_">Promise</span>(<span class=hljs-function>(<span class=hljs-params>r</span>) =&gt;</span> <span class=hljs-built_in>setTimeout</span>(r, ms));
+<span class=hljs-comment>// ฟังก์ชันสุ่มจำนวนระหว่าง min และ max</span>
+<span class=hljs-keyword>const</span> <span class="hljs-title function_">random</span> = (<span class=hljs-params>min, max</span>) =&gt; <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (max - min)) + min;
 
-<span class="hljs-comment">// ฟังก์ชันจัดการการแบ่งหน้าและดึงข้อมูลผู้ติดตาม/การติดตาม</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">concatFriendshipsApiResponse</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">
+<span class=hljs-comment>// ฟังก์ชันจัดการการแบ่งหน้าและดึงข้อมูลผู้ติดตาม/การติดตาม</span>
+<span class=hljs-keyword>const</span> <span class="hljs-title function_">concatFriendshipsApiResponse</span> = <span class=hljs-keyword>async</span> (<span class=hljs-params>
     list,
     user_id,
     count,
-    next_max_id = <span class="hljs-string">""</span>,
+    next_max_id = <span class=hljs-string>""</span>,
 </span>) =&gt; {
-    <span class="hljs-comment">// สร้าง URL สำหรับ API request</span>
-    <span class="hljs-keyword">let</span> url = <span class="hljs-string">`https://www.instagram.com/api/v1/friendships/<span class="hljs-subst">${user_id}</span>/<span class="hljs-subst">${list}</span>/?count=<span class="hljs-subst">${count}</span>`</span>;
-    <span class="hljs-keyword">if</span> (next_max_id) {
-        url += <span class="hljs-string">`&amp;max_id=<span class="hljs-subst">${next_max_id}</span>`</span>;
+    <span class=hljs-comment>// สร้าง URL สำหรับ API request</span>
+    <span class=hljs-keyword>let</span> url = <span class=hljs-string>`https://www.instagram.com/api/v1/friendships/<span class=hljs-subst>${user_id}</span>/<span class=hljs-subst>${list}</span>/?count=<span class=hljs-subst>${count}</span>`</span>;
+    <span class=hljs-keyword>if</span> (next_max_id) {
+        url += <span class=hljs-string>`&amp;max_id=<span class=hljs-subst>${next_max_id}</span>`</span>;
     }
 
-    <span class="hljs-comment">// ดึงข้อมูลจาก API</span>
-    <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url, fetchOptions).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> r.<span class="hljs-title function_">json</span>());
+    <span class=hljs-comment>// ดึงข้อมูลจาก API</span>
+    <span class=hljs-keyword>const</span> data = <span class=hljs-keyword>await</span> <span class="hljs-title function_">fetch</span>(url, fetchOptions).<span class="hljs-title function_">then</span>(<span class=hljs-function>(<span class=hljs-params>r</span>) =&gt;</span> r.<span class="hljs-title function_">json</span>());
 
-    <span class="hljs-comment">// ถ้ามีหน้าเพิ่มเติมให้โหลด</span>
-    <span class="hljs-keyword">if</span> (data.<span class="hljs-property">next_max_id</span>) {
-        <span class="hljs-keyword">const</span> timeToSleep = <span class="hljs-title function_">random</span>(<span class="hljs-number">800</span>, <span class="hljs-number">1500</span>);
+    <span class=hljs-comment>// ถ้ามีหน้าเพิ่มเติมให้โหลด</span>
+    <span class=hljs-keyword>if</span> (data.<span class=hljs-property>next_max_id</span>) {
+        <span class=hljs-keyword>const</span> timeToSleep = <span class="hljs-title function_">random</span>(<span class=hljs-number>800</span>, <span class=hljs-number>1500</span>);
         <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(
-          <span class="hljs-string">`Loaded <span class="hljs-subst">${data.users.length}</span> <span class="hljs-subst">${list}</span>. Sleeping <span class="hljs-subst">${timeToSleep}</span>ms to avoid rate limiting`</span>,
+          <span class=hljs-string>`Loaded <span class=hljs-subst>${data.users.length}</span> <span class=hljs-subst>${list}</span>. Sleeping <span class=hljs-subst>${timeToSleep}</span>ms to avoid rate limiting`</span>,
         );
 
-        <span class="hljs-keyword">await</span> <span class="hljs-title function_">sleep</span>(timeToSleep);
+        <span class=hljs-keyword>await</span> <span class="hljs-title function_">sleep</span>(timeToSleep);
 
-        <span class="hljs-comment">// รวมข้อมูลจากหน้าถัดไป</span>
-        <span class="hljs-keyword">return</span> data.<span class="hljs-property">users</span>.<span class="hljs-title function_">concat</span>(
-            <span class="hljs-keyword">await</span> <span class="hljs-title function_">concatFriendshipsApiResponse</span>(
+        <span class=hljs-comment>// รวมข้อมูลจากหน้าถัดไป</span>
+        <span class=hljs-keyword>return</span> data.<span class=hljs-property>users</span>.<span class="hljs-title function_">concat</span>(
+            <span class=hljs-keyword>await</span> <span class="hljs-title function_">concatFriendshipsApiResponse</span>(
                 list,
                 user_id,
                 count,
-                data.<span class="hljs-property">next_max_id</span>,
+                data.<span class=hljs-property>next_max_id</span>,
             ),
         );
     }
 
-    <span class="hljs-keyword">return</span> data.<span class="hljs-property">users</span>;
+    <span class=hljs-keyword>return</span> data.<span class=hljs-property>users</span>;
 };
 
-<span class="hljs-comment">// ฟังก์ชันดึงผู้ติดตาม</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">getFollowers</span> = (<span class="hljs-params">user_id, count = <span class="hljs-number">50</span>, next_max_id = <span class="hljs-string">""</span></span>) =&gt; {
-    <span class="hljs-keyword">return</span> <span class="hljs-title function_">concatFriendshipsApiResponse</span>(<span class="hljs-string">"followers"</span>, user_id, count, next_max_id);
+<span class=hljs-comment>// ฟังก์ชันดึงผู้ติดตาม</span>
+<span class=hljs-keyword>const</span> <span class="hljs-title function_">getFollowers</span> = (<span class=hljs-params>user_id, count = <span class=hljs-number>50</span>, next_max_id = <span class=hljs-string>""</span></span>) =&gt; {
+    <span class=hljs-keyword>return</span> <span class="hljs-title function_">concatFriendshipsApiResponse</span>(<span class=hljs-string>"followers"</span>, user_id, count, next_max_id);
 };
 
-<span class="hljs-comment">// ฟังก์ชันดึงบัญชีที่ติดตาม</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">getFollowing</span> = (<span class="hljs-params">user_id, count = <span class="hljs-number">50</span>, next_max_id = <span class="hljs-string">""</span></span>) =&gt; {
-    <span class="hljs-keyword">return</span> <span class="hljs-title function_">concatFriendshipsApiResponse</span>(<span class="hljs-string">"following"</span>, user_id, count, next_max_id);
+<span class=hljs-comment>// ฟังก์ชันดึงบัญชีที่ติดตาม</span>
+<span class=hljs-keyword>const</span> <span class="hljs-title function_">getFollowing</span> = (<span class=hljs-params>user_id, count = <span class=hljs-number>50</span>, next_max_id = <span class=hljs-string>""</span></span>) =&gt; {
+    <span class=hljs-keyword>return</span> <span class="hljs-title function_">concatFriendshipsApiResponse</span>(<span class=hljs-string>"following"</span>, user_id, count, next_max_id);
 };
 
-<span class="hljs-comment">// ฟังก์ชันดึง ID ของผู้ใช้จากชื่อผู้ใช้</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">getUserId</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">username</span>) =&gt; {
-    <span class="hljs-keyword">let</span> user = username;
-    <span class="hljs-keyword">const</span> lower = user.<span class="hljs-title function_">toLowerCase</span>();
-    <span class="hljs-keyword">const</span> url = <span class="hljs-string">`https://www.instagram.com/api/v1/web/search/topsearch/?context=blended&amp;query=<span class="hljs-subst">${lower}</span>&amp;include_reel=false`</span>;
-    <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url, fetchOptions).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">r</span>) =&gt;</span> r.<span class="hljs-title function_">json</span>());
+<span class=hljs-comment>// ฟังก์ชันดึง ID ของผู้ใช้จากชื่อผู้ใช้</span>
+<span class=hljs-keyword>const</span> <span class="hljs-title function_">getUserId</span> = <span class=hljs-keyword>async</span> (<span class=hljs-params>username</span>) =&gt; {
+    <span class=hljs-keyword>let</span> user = username;
+    <span class=hljs-keyword>const</span> lower = user.<span class="hljs-title function_">toLowerCase</span>();
+    <span class=hljs-keyword>const</span> url = <span class=hljs-string>`https://www.instagram.com/api/v1/web/search/topsearch/?context=blended&amp;query=<span class=hljs-subst>${lower}</span>&amp;include_reel=false`</span>;
+    <span class=hljs-keyword>const</span> data = <span class=hljs-keyword>await</span> <span class="hljs-title function_">fetch</span>(url, fetchOptions).<span class="hljs-title function_">then</span>(<span class=hljs-function>(<span class=hljs-params>r</span>) =&gt;</span> r.<span class="hljs-title function_">json</span>());
 
-    <span class="hljs-keyword">const</span> result = data.<span class="hljs-property">users</span>?.<span class="hljs-title function_">find</span>(
-      <span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> result.<span class="hljs-property">user</span>.<span class="hljs-property">username</span>.<span class="hljs-title function_">toLowerCase</span>() === lower,
+    <span class=hljs-keyword>const</span> result = data.<span class=hljs-property>users</span>?.<span class="hljs-title function_">find</span>(
+      <span class=hljs-function>(<span class=hljs-params>result</span>) =&gt;</span> result.<span class=hljs-property>user</span>.<span class=hljs-property>username</span>.<span class="hljs-title function_">toLowerCase</span>() === lower,
     );
 
-    <span class="hljs-keyword">return</span> result?.<span class="hljs-property">user</span>?.<span class="hljs-property">pk</span> || <span class="hljs-literal">null</span>;
+    <span class=hljs-keyword>return</span> result?.<span class=hljs-property>user</span>?.<span class=hljs-property>pk</span> || <span class=hljs-literal>null</span>;
 };
 
-<span class="hljs-comment">// ฟังก์ชันดึงข้อมูลสถิติการเป็นเพื่อนของผู้ใช้</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">getUserFriendshipStats</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params">username</span>) =&gt; {
-    <span class="hljs-keyword">const</span> user_id = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getUserId</span>(username);
+<span class=hljs-comment>// ฟังก์ชันดึงข้อมูลสถิติการเป็นเพื่อนของผู้ใช้</span>
+<span class=hljs-keyword>const</span> <span class="hljs-title function_">getUserFriendshipStats</span> = <span class=hljs-keyword>async</span> (<span class=hljs-params>username</span>) =&gt; {
+    <span class=hljs-keyword>const</span> user_id = <span class=hljs-keyword>await</span> <span class="hljs-title function_">getUserId</span>(username);
 
-    <span class="hljs-keyword">if</span> (!user_id) {
-      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`ไม่สามารถหาผู้ใช้ที่มีชื่อผู้ใช้ <span class="hljs-subst">${username}</span> ได้`</span>);
+    <span class=hljs-keyword>if</span> (!user_id) {
+      <span class=hljs-keyword>throw</span> <span class=hljs-keyword>new</span> <span class="hljs-title class_">Error</span>(<span class=hljs-string>`ไม่สามารถหาผู้ใช้ที่มีชื่อผู้ใช้ <span class=hljs-subst>${username}</span> ได้`</span>);
     }
 
-    <span class="hljs-comment">// ดึงข้อมูลผู้ติดตามและบัญชีที่ติดตาม</span>
-    <span class="hljs-keyword">const</span> followers = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getFollowers</span>(user_id);
-    <span class="hljs-keyword">const</span> following = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getFollowing</span>(user_id);
+    <span class=hljs-comment>// ดึงข้อมูลผู้ติดตามและบัญชีที่ติดตาม</span>
+    <span class=hljs-keyword>const</span> followers = <span class=hljs-keyword>await</span> <span class="hljs-title function_">getFollowers</span>(user_id);
+    <span class=hljs-keyword>const</span> following = <span class=hljs-keyword>await</span> <span class="hljs-title function_">getFollowing</span>(user_id);
 
-    <span class="hljs-comment">// แปลงข้อมูลเป็นชื่อผู้ใช้แบบตัวพิมพ์เล็ก</span>
-    <span class="hljs-keyword">const</span> followersUsernames = followers.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">follower</span>) =&gt;</span>
-      follower.<span class="hljs-property">username</span>.<span class="hljs-title function_">toLowerCase</span>(),
+    <span class=hljs-comment>// แปลงข้อมูลเป็นชื่อผู้ใช้แบบตัวพิมพ์เล็ก</span>
+    <span class=hljs-keyword>const</span> followersUsernames = followers.<span class="hljs-title function_">map</span>(<span class=hljs-function>(<span class=hljs-params>follower</span>) =&gt;</span>
+      follower.<span class=hljs-property>username</span>.<span class="hljs-title function_">toLowerCase</span>(),
     );
-    <span class="hljs-keyword">const</span> followingUsernames = following.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">followed</span>) =&gt;</span>
-      followed.<span class="hljs-property">username</span>.<span class="hljs-title function_">toLowerCase</span>(),
+    <span class=hljs-keyword>const</span> followingUsernames = following.<span class="hljs-title function_">map</span>(<span class=hljs-function>(<span class=hljs-params>followed</span>) =&gt;</span>
+      followed.<span class=hljs-property>username</span>.<span class="hljs-title function_">toLowerCase</span>(),
     );
 
-    <span class="hljs-keyword">const</span> followerSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(followersUsernames);
-    <span class="hljs-keyword">const</span> followingSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>(followingUsernames);
+    <span class=hljs-keyword>const</span> followerSet = <span class=hljs-keyword>new</span> <span class="hljs-title class_">Set</span>(followersUsernames);
+    <span class=hljs-keyword>const</span> followingSet = <span class=hljs-keyword>new</span> <span class="hljs-title class_">Set</span>(followingUsernames);
 
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Array</span>(<span class="hljs-number">28</span>).<span class="hljs-title function_">fill</span>(<span class="hljs-string">"-"</span>).<span class="hljs-title function_">join</span>(<span class="hljs-string">""</span>));
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Array</span>(<span class=hljs-number>28</span>).<span class="hljs-title function_">fill</span>(<span class=hljs-string>"-"</span>).<span class="hljs-title function_">join</span>(<span class=hljs-string>""</span>));
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(
-      <span class="hljs-string">`ดึงข้อมูล`</span>,
-      followerSet.<span class="hljs-property">size</span>,
-      <span class="hljs-string">"ผู้ติดตามและ"</span>,
-      followingSet.<span class="hljs-property">size</span>,
-      <span class="hljs-string">"การติดตาม."</span>,
+      <span class=hljs-string>`ดึงข้อมูล`</span>,
+      followerSet.<span class=hljs-property>size</span>,
+      <span class=hljs-string>"ผู้ติดตามและ"</span>,
+      followingSet.<span class=hljs-property>size</span>,
+      <span class=hljs-string>"การติดตาม."</span>,
     );
 
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(
-      <span class="hljs-string">`หากสิ่งนี้ดูไม่ถูกต้อง ข้อมูลบางส่วนที่แสดงผลอาจไม่แม่นยำ`</span>,
+      <span class=hljs-string>`หากสิ่งนี้ดูไม่ถูกต้อง ข้อมูลบางส่วนที่แสดงผลอาจไม่แม่นยำ`</span>,
     );
 
-    <span class="hljs-comment">// หาผู้ติดตามที่คุณไม่ติดตามกลับ</span>
-    <span class="hljs-keyword">const</span> <span class="hljs-title class_">PeopleIDontFollowBack</span> = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(followerSet).<span class="hljs-title function_">filter</span>(
-      <span class="hljs-function">(<span class="hljs-params">follower</span>) =&gt;</span> !followingSet.<span class="hljs-title function_">has</span>(follower),
+    <span class=hljs-comment>// หาผู้ติดตามที่คุณไม่ติดตามกลับ</span>
+    <span class=hljs-keyword>const</span> <span class="hljs-title class_">PeopleIDontFollowBack</span> = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(followerSet).<span class="hljs-title function_">filter</span>(
+      <span class=hljs-function>(<span class=hljs-params>follower</span>) =&gt;</span> !followingSet.<span class="hljs-title function_">has</span>(follower),
     );
 
-    <span class="hljs-comment">// หาบัญชีที่ติดตามคุณแต่คุณไม่ติดตามกลับ</span>
-    <span class="hljs-keyword">const</span> <span class="hljs-title class_">PeopleNotFollowingMeBack</span> = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(followingSet).<span class="hljs-title function_">filter</span>(
-      <span class="hljs-function">(<span class="hljs-params">following</span>) =&gt;</span> !followerSet.<span class="hljs-title function_">has</span>(following),
+    <span class=hljs-comment>// หาบัญชีที่ติดตามคุณแต่คุณไม่ติดตามกลับ</span>
+    <span class=hljs-keyword>const</span> <span class="hljs-title class_">PeopleNotFollowifollowerSet.<span class="hljs-title function_">has</span>(following),
     );
 
-    <span class="hljs-keyword">return</span> {
+    <span class=hljs-keyword>return</span> {ngMeBack</span> = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(followingSet).<span class="hljs-title function_">filter</span>(
+      <span class=hljs-function>(<span class=hljs-params>following</span>) =&gt;</span> !
       <span class="hljs-title class_">PeopleIDontFollowBack</span>,
       <span class="hljs-title class_">PeopleNotFollowingMeBack</span>,
     };
   };
 
-<span class="hljs-comment">// ตรวจสอบให้แน่ใจว่าคุณไม่ลบเครื่องหมายคำพูดออก</span>
-<span class="hljs-comment">// แทนที่ "example_username" ด้านล่างด้วยชื่อผู้ใช้ Instagram ของคุณ</span>
-<span class="hljs-comment">//</span>
-username = <span class="hljs-string">"example_username"</span>; <span class="hljs-comment">// 👈👈👈</span>
-<span class="hljs-comment">//</span>
-<span class="hljs-title function_">getUserFriendshipStats</span>(username).<span class="hljs-title function_">then</span>(<span class="hljs-variable language_">console</span>.<span class="hljs-property">log</span>);
+<span class=hljs-comment>// ตรวจสอบให้แน่ใจว่าคุณไม่ลบเครื่องหมายคำพูดออก</span>
+<span class=hljs-comment>// แทนที่ "example_username" ด้านล่างด้วยชื่อผู้ใช้ Instagram ของคุณ</span>
+<span class=hljs-comment>//</span>
+username = <span class=hljs-string>"example_username"</span>; <span class=hljs-comment>// 👈👈👈</span>
+<span class=hljs-comment>//</span>
+<span class="hljs-title function_">getUserFriendshipStats</span>(username).<span class="hljs-title function_">then</span>(<span class="hljs-variable language_">console</span>.<span class=hljs-property>log</span>);
 </code></div></div></pre>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pr-2 lg:pr-0"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </section>
-    </main>
-    <!-- Footer -->
-    <footer class="bg-[#EFEFEF] text-white mt-8">
-        <div class="container mx-auto px-6 py-4">
-            <p class="text-center text-sm">&copy; 2024 Instagram Analyzer. All rights reserved.</p>
-        </div>
-    </footer>
-</body>
-<script src="/script/version.js"></script>
+</div>
+</article>
+</section>
+</main>
+<script src=/script/version.js></script>
+<script src=/script/script-start.min.js></script>
+<script>document.getElementById("version").textContent = appVersionProjectTest</script>
 <script>
-    document.getElementById('version').textContent = appVersionProjectTest;
-</script>
-<script>
-    function copyCode() {
-        // เลือกข้อความที่ต้องการคัดลอก
-        const code = document.getElementById('code-to-copy').innerText;
+function copyCode() {
+    // เลือกข้อความที่ต้องการคัดลอก
+    const code = document.getElementById('code-to-copy').textContent;
 
-        // คัดลอกไปที่คลิปบอร์ด
-        navigator.clipboard
-            .writeText(code)
-            .then(() => {
-                alert('คัดลอกสำเร็จ!');
-            })
-            .catch((err) => {
-                console.error('คัดลอกล้มเหลว:', err);
-            });
-    }
+    // คัดลอกไปที่คลิปบอร์ด
+    navigator.clipboard
+        .writeText(code)
+        .then(() => {
+            showToast("คัดลอกสำเร็จ!");
+        })
+        .catch((err) => {
+            console.error('คัดลอกล้มเหลว:', err);
+            showToast("คัดลอกล้มเหลว!", '#FF7070', '#FFF',);
+        });
+}
 </script>
+</body>
 
 </html>

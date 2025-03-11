@@ -26,6 +26,7 @@
 <script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
 <script src=/animation/script.js></script>
 </head>
+<body draggable=false oncontextmenu=return!1>
 <div id=settings class="fixed inset-0 bg-[#000] bg-opacity-75 flex flex-col justify-center items-center gap-8 p-8 z-40">
 <div class="animationShow relative w-full max-w-xl bg-[#FFF] border border-[#CCC] rounded-xl m-8 overflow-hidden">
 <div class="relative w-full flex flex-row justify-between items-center gap-4 border-b border-[#CCC] p-4">
@@ -148,7 +149,7 @@
     });
     // —[ Toastify ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-function showToast(message, bgColor = "#FFF", duration = 2750) {
+    function showToast(message, bgColor = "#FFF",  color = "#0D0D0D",  duration = 2750) {
     Toastify({
         newWindow: true,
         text: message,
@@ -160,7 +161,7 @@ function showToast(message, bgColor = "#FFF", duration = 2750) {
             bottom: "32px",
             right: "32px",
             background: bgColor,
-            color: "#000",
+            color: color,
             border: "solid 1px #CCC",
             borderRadius: "12px",
             paddingBlock: "8px",

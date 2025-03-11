@@ -459,7 +459,7 @@
                 localStorage.setItem("friends", JSON.stringify(friends)); // อัปเดต Local Storage
                 renderFriends(); // อัปเดตหน้าจอทันที
             } else {
-                alert("ข้อมูลไม่ถูกต้อง!");
+                showToast("ข้อมูลไม่ถูกต้อง!");
             }
         };
 
@@ -489,7 +489,7 @@
                 const birthday = document.getElementById("friend-birthday").value;
 
                 if (!name || !birthday || isNaN(new Date(birthday).getTime())) {
-                    alert("กรุณากรอกข้อมูลให้ถูกต้อง");
+                    showToast("กรุณากรอกข้อมูลให้ถูกต้อง");
                     return;
                 }
 

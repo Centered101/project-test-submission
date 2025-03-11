@@ -93,6 +93,7 @@ function processLogin() {
         password === "project-test-submission.netlify.app" ||
         password === "project-test-submission.netlify.app/"
     ) {
+        passwordInput.value = "";
         localStorage.setItem("userConsent", "🟡 พ่อมึงอะ!");
         showToast("🟡 พ่อมึงอะ!");
         return
@@ -182,7 +183,7 @@ document.getElementById("logout").addEventListener("click", function () {
 
 // —[ Toastify ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-function showToast(message, bgColor = "#FFF", duration = 2750) {
+function showToast(message, bgColor = "#FFF", color = "#0D0D0D", duration = 2750) {
     Toastify({
         newWindow: true,
         text: message,
@@ -194,7 +195,7 @@ function showToast(message, bgColor = "#FFF", duration = 2750) {
             bottom: "32px",
             right: "32px",
             background: bgColor,
-            color: "#000",
+            color: color,
             border: "solid 1px #CCC",
             borderRadius: "12px",
             paddingBlock: "8px",
