@@ -58,22 +58,22 @@
                         </svg></label>
                     <script>function scrollToSection(e) { const t = document.getElementById(e); t && t.scrollIntoView({ behavior: "smooth" }) } document.addEventListener("DOMContentLoaded", (() => { const e = document.querySelectorAll("section"), t = document.querySelectorAll("nav div a[onclick]"), o = new IntersectionObserver((e => { e.forEach((e => { e.isIntersecting && t.forEach((t => { t.classList.remove("pl-2", "border-[#000]"), t.getAttribute("onclick").includes(e.target.id) && t.classList.add("pl-2", "border-[#000]") })) })) }), { threshold: .6 }); e.forEach((e => o.observe(e))) }))</script>
                     <a title=Home aria-label=Home
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300 hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("home")'>Home</a>
                     <a title=About aria-label=About
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300​ hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("about")'>About</a>
                     <a title=Skills aria-label=Skills
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300 hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("skills")'>Skills</a>
                     <a title=Experience aria-label=Experience
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300 hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("experience")'>Experience</a>
                     <a title=Projects aria-label=Projects
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300 hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("projects")'>Projects</a>
                     <a title=Contact aria-label=Contact
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300 hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("contact")'>Contact</a>
                 </div>
             </nav>
@@ -119,7 +119,7 @@
                 </div>
             </div>
         </section>
-        <section id=about class="h-screen max-w-7xl mx-auto pt-24">
+        <section id=about class="min-h-screen max-w-7xl mx-auto pt-24">
             <div title=about aria-label=about onclick='scrollToSection("about")' translate="no"
                 class="flex items-center gap-2 text-3xl font-black uppercase tracking-wider mb-16 pl-6 cursor-pointer select-none">
                 <p>about</p>
@@ -127,7 +127,7 @@
             </div>
             <div class="flex flex-col justify-between items-center gap-8 mx-8 sm:flex-row">
                 <div class="max-w-md object-cover">
-                    <img src=https:/project-test-submission.netlify.app/images/Tes-D.webp>
+                    <img src=https://project-test-submission.netlify.app/images/Tes-D.webp>
                 </div>
                 <div class="max-w-xl flex flex-col justify-start items-center gap-4">
                     <p class="indent-8">
@@ -155,55 +155,57 @@
                 </div>
             </div>
         </section>
-        <section id=skills class="h-screen max-w-7xl mx-auto pt-24">
+        <section id=skills class="min-h-screen max-w-7xl mx-auto pt-24">
             <div title=skills aria-label=skills onclick='scrollToSection("skills")' translate="no"
                 class="flex items-center gap-2 text-3xl font-black uppercase tracking-wider mb-16 pl-6 cursor-pointer select-none">
                 <p>skills</p>
                 <hr class="w-full border border-[#000] rounded-full">
             </div>
-            <div class="max-w-xl bg-[#FFF] border border-[#000] rounded-xl space-y-4 mx-auto p-6">
-                <h2 class="text-xl font-bold">My Skills</h2>
-                <div class="space-y-4">
-                    <div>
-                        <div class="flex justify-between font-medium">
-                            <span>HTML & CSS</span>
-                            <span>85%</span>
+            <div class="mx-8">
+                <div class="max-w-xl bg-[#FFF] border border-[#000] rounded-xl space-y-4 mx-auto p-6">
+                    <h2 class="text-xl font-bold">My Skills</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between font-medium">
+                                <span>HTML & CSS</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full h-2 bg-gray-200 rounded-full">
+                                <div class="h-2 bg-[#000] rounded-full" style="width: 85%;"></div>
+                            </div>
                         </div>
-                        <div class="w-full h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-[#000] rounded-full" style="width: 85%;"></div>
+                        <div>
+                            <div class="flex justify-between font-medium">
+                                <span>JavaScript</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full h-2 bg-gray-200 rounded-full">
+                                <div class="h-2 bg-[#000] rounded-full" style="width: 80%;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between font-medium">
-                            <span>JavaScript</span>
-                            <span>80%</span>
+                        <div>
+                            <div class="flex justify-between font-medium">
+                                <span>React</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="w-full h-2 bg-gray-200 rounded-full">
+                                <div class="h-2 bg-[#000] rounded-full" style="width: 75%;"></div>
+                            </div>
                         </div>
-                        <div class="w-full h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-[#000] rounded-full" style="width: 80%;"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between font-medium">
-                            <span>React</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="w-full h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-[#000] rounded-full" style="width: 75%;"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between font-medium">
-                            <span>Tailwind CSS</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="w-full h-2 bg-gray-200 rounded-full">
-                            <div class="h-2 bg-[#000] rounded-full" style="width: 90%;"></div>
+                        <div>
+                            <div class="flex justify-between font-medium">
+                                <span>Tailwind CSS</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full h-2 bg-gray-200 rounded-full">
+                                <div class="h-2 bg-[#000] rounded-full" style="width: 90%;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section id=experience class="h-screen max-w-7xl mx-auto pt-24">
+        <section id=experience class="min-h-screen max-w-7xl mx-auto pt-24">
             <div title=experience aria-label=experience onclick='scrollToSection("experience")' translate="no"
                 class="flex items-center gap-2 text-3xl font-black uppercase tracking-wider mb-16 pl-6 cursor-pointer select-none">
                 <p>experience</p>
@@ -278,7 +280,7 @@
             </script>
 
         </section>
-        <section id=projects class="h-screen max-w-7xl mx-auto pt-24">
+        <section id=projects class="min-h-screen max-w-7xl mx-auto pt-24">
             <div title=projects aria-label=projects onclick='scrollToSection("projects")' translate="no"
                 class="flex items-center gap-2 text-3xl font-black uppercase tracking-wider mb-16 pl-6 cursor-pointer select-none">
                 <p>projects</p>
@@ -382,7 +384,7 @@
                 </div>
             </div>
         </section>
-        <section id=contact class="h-screen max-w-7xl mx-auto pt-24">
+        <section id=contact class="min-h-screen max-w-7xl mx-auto pt-24">
             <div title=contact aria-label=contact onclick='scrollToSection("contact")' translate="no"
                 class="flex items-center gap-2 text-3xl font-black uppercase tracking-wider mb-16 pl-6 cursor-pointer select-none">
                 <p>contact</p>
