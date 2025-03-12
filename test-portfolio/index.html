@@ -48,7 +48,7 @@
                         <path d=M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z />
                     </svg></label>
                 <div
-                    class="fixed top-0 right-0 h-full w-64 flex flex-col items-start bg-[#FFF] border-l border-[#CCC] translate-x-full peer-checked:translate-x-0 transition-transform ease-in-out duration-300 overflow-x-hidden overflow-y-scroll *:ease-in-out *:duration-300">
+                    class="fixed top-0 right-0 h-full w-64 flex flex-col items-start bg-[#FFF] border-l border-[#CCC] translate-x-full peer-checked:translate-x-0 transition-transform ease-in-out duration-300 overflow-x-hidden overflow-y-scroll">
                     <label title="Close Menu" aria-label="Close Menu" for=sidebar-active
                         class="self-end w-full border-b border-[#CCC] flex justify-end p-4 ease-in-out duration-300 cursor-pointer hover:opacity-50 sm:pr-4">
                         <svg class=fill-[#000] xmlns=http://www.w3.org/2000/svg height=32 viewBox="0 -960 960 960"
@@ -58,22 +58,22 @@
                         </svg></label>
                     <script>function scrollToSection(e) { const t = document.getElementById(e); t && t.scrollIntoView({ behavior: "smooth" }) } document.addEventListener("DOMContentLoaded", (() => { const e = document.querySelectorAll("section"), t = document.querySelectorAll("nav div a[onclick]"), o = new IntersectionObserver((e => { e.forEach((e => { e.isIntersecting && t.forEach((t => { t.classList.remove("pl-2", "border-[#000]"), t.getAttribute("onclick").includes(e.target.id) && t.classList.add("pl-2", "border-[#000]") })) })) }), { threshold: .6 }); e.forEach((e => o.observe(e))) }))</script>
                     <a title=Home aria-label=Home
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300 hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("home")'>Home</a>
                     <a title=About aria-label=About
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300​ hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("about")'>About</a>
                     <a title=Skills aria-label=Skills
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300 hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("skills")'>Skills</a>
                     <a title=Experience aria-label=Experience
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300 hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("experience")'>Experience</a>
                     <a title=Projects aria-label=Projects
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300 hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("projects")'>Projects</a>
                     <a title=Contact aria-label=Contact
-                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer hover:bg-[#EFEFEF]"
+                        class="w-full px-8 py-4 font-semibold capitalize border-l-4 border-[#CCC] pr-4 cursor-pointer ease-in-out duration-300 hover:bg-[#EFEFEF]"
                         onclick='scrollToSection("contact")'>Contact</a>
                 </div>
             </nav>
