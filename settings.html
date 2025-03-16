@@ -28,10 +28,10 @@
 </head>
 <body draggable=false oncontextmenu=return!1>
 <div id=settings class="fixed inset-0 bg-[#000] bg-opacity-75 flex flex-col justify-center items-center gap-8 p-8 z-40">
-<div class="animationShow relative w-full max-w-xl bg-[#FFF] border border-[#CCC] rounded-xl m-8 overflow-hidden">
+<div class="relative w-full max-w-xl bg-[#FFF] border border-[#CCC] rounded-xl m-8 overflow-hidden">
 <div class="relative w-full flex flex-row justify-between items-center gap-4 border-b border-[#CCC] p-4">
 <p class="text-xl font-black">การตั้งค่า</p>
-<button id=close-settings class=cursor-pointer>
+<button id=goBack class=cursor-pointer>
 <svg xmlns=http://www.w3.org/2000/svg height=32 viewBox="0 -960 960 960" width=32 fill=#0d0d0d>
 <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
 </svg>
@@ -127,9 +127,9 @@
         document.getElementById('output').textContent = "ไม่มีของสะสม";
     }
 
-    document.getElementById("close-settings").addEventListener("click", function () {
-        document.getElementById("settings").classList.add("hidden");
+    // —[ Go Black ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
+    document.getElementById("goBack").addEventListener("click", function () {
         if (!document.referrer || document.referrer === window.location.href) {
             window.location.href = "/";
         } else {

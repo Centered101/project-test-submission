@@ -345,6 +345,31 @@
     </div>
     <img class="gif-3" src="3.gif" />
     <img class="gif-4" src="4.gif" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var isLoggedIn = localStorage.getItem("isLoggedIn");
+
+            if (!isLoggedIn || isLoggedIn === "false") {
+                document.body.innerHTML = `
+    <div style=position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center>
+    <ol style=padding:0>
+    <p>กรุณาใส่รหัสเพื่อเข้าถึงระบบ</p>
+    <li>โปรดกดปุ่มด้านล่างเพื่อไปยังหน้ากรอกรหัส</li>
+    <li>ระบบจะนำท่านไปยัง <b>key.html</b></li>
+    <li>กรุณาเลือกและกรอกรหัสที่กำหนด</li>
+    </ol>
+    <button id=redirectBtn style="background-color:#409efe;color:#fff;border:none;padding:12px 24px;border-radius:12px;cursor:pointer">
+    ไปยังหน้ากรอกรหัส
+    </button></div>
+            `;
+
+                document.querySelector("#redirectBtn").addEventListener("click", function () {
+                    window.location.href = "/key.html";
+                });
+            }
+        });
+    </script>
+
 </body>
 
 </html>

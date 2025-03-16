@@ -97,15 +97,21 @@
                         and business strategy.<br>Let's connect and build something amazing together! 🚀</p>
                 </div>
                 <div class="flex flex-row justify-stact items-center gap-6">
-                    <a title="Download CV" aria-label="Download CV"
+                    <button popovertarget="popup"
                         class="relative w-full flex justify-center items-center gap-2 border border-[#000] rounded-xl text-[#000] font-black truncate bg-[#FFF] px-8 py-4 z-10 overflow-hidden ease-in-out duration-700 group hover:text-[#FFF] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-right-full before:hover:right-0 before:rounded-full before:bg-[#000] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700"
-                        href=resume.pdf download>
                         <span class=truncate>Download CV</span>
                         <svg class="fill-[#000] group-hover:fill-[#FFF] ease-in-out duration-700"
                             xmlns=http://www.w3.org/2000/svg height=24 viewBox="0 -960 960 960" width=24>
                             <path
                                 d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z" />
-                        </svg></a>
+                        </svg>
+                    </button>
+                    <div popover id="popup" class="border border-[#000] rounded-xl">
+                        <a title="Download CV" aria-label="Download CV"
+                            class="relative w-full flex justify-center items-center gap-2 border border-[#000] rounded-xl text-[#000] font-black truncate bg-[#FFF] px-8 py-4 z-10 overflow-hidden ease-in-out duration-700"
+                            href=resume.pdf download>
+                            <span class=truncate>Download</span></a>
+                    </div>
                     <button title="Contact Me" aria-label="Contact Me" onclick='scrollToSection("contact")'
                         class="relative w-full flex justify-center items-center gap-2 border border-[#000] rounded-xl text-[#FFF] font-black truncate bg-[#000] px-8 py-4 z-10 overflow-hidden ease-in-out duration-700 group hover:text-[#000] focus:bg-[#FFF] focus:text-[#000] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-[#FFF] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">
                         <span class=truncate>Contact Me</span>

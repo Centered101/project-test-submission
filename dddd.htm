@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>โหลด Script เมื่อกดปุ่ม</title>
+</head>
+
+<body>
+  <div id=go_to_Key
+    style="position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
+    <ul>
+      <p>ต้องการรหัสในการเข้าถึง</p>
+      <li>กดปุ่มด้านล่างเพื่ยไปใส้รหัส</li>
+      <li>ปุ่มจะนำพาไปยังหน้า key.html</li>
+      <li>เลื่อกใส้รหัสดันไดอันนึง</li>
+    </ul>
+    <button
+      style="background-color:#409efe;color:#fff;border:none;padding:12px 24px;border-radius:12px;cursor:pointer">โหลด
+      Script</button>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var isLoggedIn = localStorage.getItem("isLoggedIn");
+
+      if (!isLoggedIn || isLoggedIn === "false") {
+        document.body.innerHTML = `
+<div style=position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center>
+<ol style=padding:0>
+<p>กรุณาใส่รหัสเพื่อเข้าถึงระบบ</p>
+<li>โปรดกดปุ่มด้านล่างเพื่อไปยังหน้ากรอกรหัส</li>
+<li>ระบบจะนำท่านไปยัง <b>key.html</b></li>
+<li>กรุณาเลือกและกรอกรหัสที่กำหนด</li>
+</ol>
+<button id=redirectBtn style="background-color:#409efe;color:#fff;border:none;padding:12px 24px;border-radius:12px;cursor:pointer">
+ไปยังหน้ากรอกรหัส
+</button></div>
+        `;
+
+        document.querySelector("#redirectBtn").addEventListener("click", function () {
+          window.location.href = "/key.html";
+        });
+      }
+    });
+  </script>
+
+
+
+
+</body>
+
+</html>

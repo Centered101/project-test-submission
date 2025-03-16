@@ -3,13 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 ::-moz-selection {
-    background: #000000b3;
-    color: #00cc4f
+    background: #000000B3;
+    color: #00CC4F
 }
 
 ::selection {
-    background: #000000b3;
-    color: #00cc4f
+    background: #000000B3;
+    color: #00CC4F
 }
 
 * {
@@ -33,7 +33,7 @@ body {
 
 a,
 button {
-    cursor: pointer;
+    cursor: pointer
 }
 
 button,
@@ -46,5 +46,13 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-    box-shadow: inset 0 0 5px #0d0d0d
+    box-shadow: inset 0 0 5px #0D0D0D
+}
+
+code {
+    border-width: 1px;
+    border-radius: 4px;
+    padding-inline: 2px;
+    background-color: #ECECEC;
+    font-family: 'Roboto Mono', 'Bai Jamjuree', sans-serif !important;
 }

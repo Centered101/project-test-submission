@@ -40,11 +40,11 @@ document.body.innerHTML +=
 <path class=octo-arm d="M128 109c-15-9-9-19-9-19 3-7 2-11 2-11-1-7 3-2 3-2 4 5 2 11 2 11-3 10 5 15 9 16" style="transform-origin:130px 106px"></path>
 <path class=octo-body d="M115 115s4 2 5 0l14-14c3-2 6-3 8-3-8-11-15-24 2-41 5-5 10-7 16-7 1-2 3-7 12-11 0 0 5 3 7 16 4 2 8 5 12 9s7 8 9 12c14 3 17 7 17 7-4 8-9 11-11 11 0 6-2 11-7 16-16 16-30 10-41 2 0 3-1 7-5 11l-12 11c-1 1 1 5 1 5z">
 </path></svg></a>
-<footer role=complementary class="truncate text-sm p-8 md:p-0 md:pt-24">
+<footer role=complementary class="truncate p-8 md:p-0 md:pt-24">
 <p>${screenSize}</p>
 <p class=truncate>version:&#160;<span id=version></span></p>
 <p class="first-letter:text-[#409EFE] truncate">&copy;&#160;${new Date().getFullYear()}
-<span title=Centered101 class="text-[#409EFE] underline-offset-2 hover:underline">
+<span title=Settings class="text-[#409EFE] underline-offset-2 hover:underline">
 <a href=/settings.html>Centered101</a></span>&#160;—&#160;All&#160;Rights&#160;Reserved.</p>
 </footer>
 `;
@@ -52,11 +52,11 @@ document.body.innerHTML +=
 // —[ Event ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
 document.body.innerHTML += `
-<style>.hanging-decor{position:absolute;top:-16px;left:50%;transform:translateX(-50%);display:flex;gap:32px}.hanging-decor img{width:50px;height:50px;clip-path:polygon(50% 0%,0% 100%,100% 100%);border-radius:8px;animation:swing 5s ease-in-out infinite}@keyframes swing{0%,100%{transform:translateY(0) rotate(-10deg)}50%{transform:translateY(10px) rotate(10deg)}}</style>
-<div style='display: none' id=decor-container class="hanging-decor opacity-80">
-<img src="https://via.placeholder.com/50/FF7070/FFFFFF?text=" alt=Decor>
-<img src="https://via.placeholder.com/50/1Ed760/FFFFFF?text=" alt=Decor>
-<img src="https://via.placeholder.com/50/409EFE/FFFFFF?text=" alt=Decor>
+<style>@keyframes swing{0%,100%{transform:rotate(-10deg) translateY(0)}50%{transform:rotate(10deg) translateY(10px)}}.animate-swing{animation:swing 4s ease-in-out infinite;transform-origin:top center}</style>
+<div hidden id=decor-container class="fixed -top-8 left-1/2 -translate-x-1/2 gap-8 z-40">
+<img src=https://pngimg.com/uploads/christmas_ball/christmas_ball_PNG57.png class="size-16 animate-swing">
+<img src=https://pngimg.com/uploads/christmas_ball/christmas_ball_PNG57.png class="size-16 animate-swing">
+<img src=https://pngimg.com/uploads/christmas_ball/christmas_ball_PNG57.png class="size-16 animate-swing">
 </div>
 `;
 
@@ -73,7 +73,7 @@ function checkTimeAndToggleDisplay() {
 }
 
 // ตรวจสอบทุก ๆ วินาที
-setInterval(checkTimeAndToggleDisplay, 1000);
+setInterval(checkTimeAndToggleDisplay, 25);
 
 // —[ search ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -204,7 +204,7 @@ if (urlElement) {
 
 // —[ Toastify ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-function showToast(message, bgColor = "#FFF",  color = "#0D0D0D",  duration = 2750) {
+function showToast(message, bgColor = "#FFF", color = "#0D0D0D", duration = 2750) {
     Toastify({
         newWindow: true,
         text: message,
@@ -234,4 +234,14 @@ window.addEventListener("offline", () => {
 // ตรวจจับเมื่อกลับมาออนไลน์
 window.addEventListener("online", () => {
     showToast("ดีใจที่คุณกลับมาออนไลน์แล้ว! 😍", '#1ED760', '#FFF', 5000);
+});
+
+// —[ Go Black ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
+document.getElementById("goBack").addEventListener("click", function () {
+    if (!document.referrer || document.referrer === window.location.href) {
+        window.location.href = "/";
+    } else {
+        window.history.back();
+    }
 });
