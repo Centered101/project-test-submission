@@ -1,29 +1,23 @@
 @import url(/style/style.css);
 
-.succeed {
-    opacity: 0;
-    transform: translatex(100%);
-    transition: opacity 700ms ease-in-out, transform 700ms ease-in-out
-}
-
-ul#files,
 ul#files span,
+ul#files,
 ul#files li a {
     overflow: hidden
 }
 
-body.directory::after,
+body::after,
 ul#files {
     height: 100%;
     width: 100%
 }
 
 input#search,
-body.directory {
+body {
     -webkit-font-smoothing: antialiased;
 }
 
-body.directory {
+body {
     padding: 6rem 7rem !important;
     /* 96px 112px */
     font-family: "Bai Jamjuree", sans-serif;
@@ -32,7 +26,7 @@ body.directory {
     color: #0D0D0D;
 }
 
-body.directory::after {
+body::after {
     content: "";
     background-image: url("/images/icon.svg");
     background-size: cover;
@@ -40,12 +34,18 @@ body.directory::after {
     position: fixed;
     top: 0;
     left: 0;
-    opacity: .1;
     z-index: -1;
+    opacity: .1
+}
+
+.succeed {
+    opacity: 0;
+    transform: translatex(100%);
+    transition: opacity 700ms ease-in-out, transform 700ms ease-in-out
 }
 
 body.directory h1 a {
-    color: #409EFE;
+    color: #409efe;
     font-size: 1.25rem;
     /* 20px */
     line-height: 1.75rem;
@@ -56,8 +56,7 @@ body.directory h1 a {
 ul#files li {
     float: left;
     width: 30%;
-    line-height: 1.5rem;
-    /* 24px */
+    line-height: 25px;
     margin: 2px
 }
 
@@ -65,27 +64,25 @@ ul#files li a {
     display: block;
     height: 25px;
     border: 1px solid transparent;
-    -webkit-border-radius: 0.25rem;
-    /* 4px */
-    -moz-border-radius: 0.25rem;
-    /* 4px */
-    border-radius: 0.25rem;
-    /* 4px */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     white-space: nowrap;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     /* ease-in-out */
-    transition-duration: 300ms;
+    transition-duration: 300ms
 }
 
 ul#files li a:focus,
 ul#files li a:hover {
-    background: #409EFE !important;
+    background: #E3F2FD !important;
     border: 1px solid #409EFE;
-    color: #FFF !important
+    color: #0d0d0d !important
 }
 
 ul#files li a.highlight {
-    background: #E3F2FD;
+    color: #FFF;
+    background: #409EFE;
     border-color: #409EFE;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     /* ease-in-out */
@@ -102,25 +99,28 @@ input#search {
     right: 2rem;
     /* 32px */
     background-color: transparent;
-    box-shadow: inset 0 0 0 1px #CCC;
+    box-shadow: inset 0 0 0 1px #409EFE;
     border-radius: 0.75rem;
     /* 12px */
     padding: 0.5em 1em;
-    transition: ease-in-out 700ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    /* ease-in-out */
+    transition-duration: 700ms
 }
 
 input#search:hover,
 input#search:focus {
     width: 20rem;
     /* 320px */
-    transition: ease-in-out 700ms
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    /* ease-in-out */
+    transition-duration: 700ms
 }
 
 ul#files span {
     display: inline-block;
     text-overflow: ellipsis;
-    text-indent: 0.625rem;
-    /* 10px */
+    text-indent: 10px;
 }
 
 ul#files .name {
@@ -128,8 +128,7 @@ ul#files .name {
 }
 
 ul#files .icon .name {
-    text-indent: 1.75rem;
-    /* 28px */
+    text-indent: 28px;
 }
 
 ul.view-tiles .name {
@@ -145,11 +144,11 @@ ul.view-tiles .size {
 @media (max-width:768px) {
 
     input#search,
-    body.directory h1 a {
-        font-size: 1.5rem;
-        /* 24px */
-        line-height: 2rem;
-        /* 32px */
+    .directory h1 a {
+        font-size: 1.25rem;
+        /* 20px */
+        line-height: 1.75rem;
+        /* 28px */
         margin: 0
     }
 
@@ -159,11 +158,11 @@ ul.view-tiles .size {
         text-indent: 0
     }
 
-    body.directory {
-        font-size: 0.875rem;
-        /* 14px */
-        line-height: 1.25rem;
-        /* 20px */
+    body {
+        font-size: 0.75rem;
+        /* 12px */
+        line-height: 1rem;
+        /* 16px */
         padding: 0 !important
     }
 
@@ -191,14 +190,17 @@ ul.view-tiles .size {
     }
 
     ul#files {
-        font-size: 1.5em;
-        border-top: 1px solid #CCC
+        font-size: 1rem;
+        /* 16px */
+        line-height: 1.5rem;
+        /* 24px */
+        border-top-width: 1px;
     }
 
     ul#files li {
         width: auto !important;
         display: block;
-        border-bottom: 1px solid #CCC;
+        border-bottom-width: 1px;
         line-height: 1.2em;
         margin: 0
     }
@@ -221,14 +223,19 @@ ul.view-tiles .size {
     }
 
     ul#files .date,
+    ul#files .header,
     ul#files .size {
-        display: none
+        display: none !important
     }
 
     ul#files .name {
         display: inline-block;
         width: 100%;
         background-position: 0 50%
+    }
+
+    ul#files .icon .name {
+        text-indent: 32px
     }
 }
 

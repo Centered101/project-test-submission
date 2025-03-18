@@ -238,10 +238,12 @@ window.addEventListener("online", () => {
 
 // —[ Go Black ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-document.getElementById("goBack").addEventListener("click", function () {
-    if (!document.referrer || document.referrer === window.location.href) {
-        window.location.href = "/";
-    } else {
-        window.history.back();
-    }
+document.querySelectorAll("[id='goBack']").forEach(button => {
+    button.addEventListener("click", function () {
+        if (!document.referrer || document.referrer === window.location.href) {
+            window.location.href = "/";
+        } else {
+            window.history.back();
+        }
+    });
 });

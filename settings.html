@@ -88,88 +88,101 @@
 </div>
 </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const generalRadio = document.getElementById('general');
-        const collectionRadio = document.getElementById('collection');
-        const generalContent = document.getElementById('general-content');
-        const collectionContent = document.getElementById('collection-content');
-        const home = document.getElementById('home');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const generalRadio = document.getElementById('general');
+            const collectionRadio = document.getElementById('collection');
+            const generalContent = document.getElementById('general-content');
+            const collectionContent = document.getElementById('collection-content');
+            const home = document.getElementById('home');
 
-        generalContent.style.display = 'block';
+            generalContent.style.display = 'block';
 
-        generalRadio.addEventListener('change', function () {
-            if (this.checked) {
-                generalContent.style.display = 'block';
-                collectionContent.style.display = 'none';
-            }
+            generalRadio.addEventListener('change', function () {
+                if (this.checked) {
+                    generalContent.style.display = 'block';
+                    collectionContent.style.display = 'none';
+                }
+            });
+
+            // เมื่อคลิกที่ "ของสะสม"
+            collectionRadio.addEventListener('change', function () {
+                if (this.checked) {
+                    generalContent.style.display = 'none';
+                    collectionContent.style.display = 'block';
+                }
+            });
+
+            home.addEventListener('change', function () {
+                if (this.checked) {
+                    window.location.href = '/';
+                }
+            });
         });
 
-        // เมื่อคลิกที่ "ของสะสม"
-        collectionRadio.addEventListener('change', function () {
-            if (this.checked) {
-                generalContent.style.display = 'none';
-                collectionContent.style.display = 'block';
-            }
-        });
-
-        home.addEventListener('change', function () {
-            if (this.checked) {
-                window.location.href = '/';
-            }
-        });
-    });
-
-    const userConsent = localStorage.getItem("userConsent");
-    if (userConsent) {
-        document.getElementById('output').textContent = userConsent;
-    } else {
-        document.getElementById('output').textContent = "ไม่มีของสะสม";
-    }
-
-    // —[ Go Black ]———————————————————————————————————————————————————————————————————————————————————————————————————
-
-    document.getElementById("goBack").addEventListener("click", function () {
-        if (!document.referrer || document.referrer === window.location.href) {
-            window.location.href = "/";
+        const userConsent = localStorage.getItem("userConsent");
+        if (userConsent) {
+            document.getElementById('output').textContent = userConsent;
         } else {
-            window.history.back();
+            document.getElementById('output').textContent = "ไม่มีของสะสม";
         }
-    });
 
-    document.getElementById("remove-btn").addEventListener("click", function () {
-        localStorage.removeItem("userConsent");
-        localStorage.removeItem("isLoggedIn");
-        window.location.reload();
-        showToast("ลบคุกกี้และข้อมูลเว็บไซต์");
-    });
-    document.getElementById("logout-btn").addEventListener("click", function () {
-        localStorage.removeItem("isLoggedIn");
-        showToast("ลงชื่อออกจากระบบ");
-    });
-    // —[ Toastify ]———————————————————————————————————————————————————————————————————————————————————————————————————
+        // —[ Go Black ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-    function showToast(message, bgColor = "#FFF",  color = "#0D0D0D",  duration = 2750) {
-    Toastify({
-        newWindow: true,
-        text: message,
-        duration: duration,
-        gravity: "bottom",
-        position: "right",
-        style: {
-            position: "fixed",
-            bottom: "32px",
-            right: "32px",
-            background: bgColor,
-            color: color,
-            border: "solid 1px #CCC",
-            borderRadius: "12px",
-            paddingBlock: "8px",
-            paddingInline: "16px",
-            zIndex: 100,
+        document.querySelectorAll("[id='goBack']").forEach(button => {
+            button.addEventListener("click", function () {
+                if (!document.referrer || document.referrer === window.location.href) {
+                    window.location.href = "/";
+                } else {
+                    window.history.back();
+                }
+            });
+        });
+
+        document.getElementById("remove-btn").addEventListener("click", function () {
+            localStorage.clear();
+            sessionStorage.clear();
+
+            // ลบ Cookies ทั้งหมด
+            document.cookie.split(";").forEach((cookie) => {
+                document.cookie = cookie
+                    .replace(/^ +/, "")
+                    .replace(/=.*/, "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname);
+            });
+
+            showToast("ข้อมูลทั้งหมดถูกลบแล้ว!");
+            setTimeout(() => window.location.reload(), 1500);
+        });
+
+        document.getElementById("logout-btn").addEventListener("click", function () {
+            localStorage.removeItem("isLoggedIn");
+            showToast("ลงชื่อออกจากระบบ");
+        });
+
+        // —[ Toastify ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
+        function showToast(message, bgColor = "#FFF", color = "#0D0D0D", duration = 2750) {
+            Toastify({
+                newWindow: true,
+                text: message,
+                duration: duration,
+                gravity: "bottom",
+                position: "right",
+                style: {
+                    position: "fixed",
+                    bottom: "32px",
+                    right: "32px",
+                    background: bgColor,
+                    color: color,
+                    border: "solid 1px #CCC",
+                    borderRadius: "12px",
+                    paddingBlock: "8px",
+                    paddingInline: "16px",
+                    zIndex: 100,
+                }
+            }).showToast();
         }
-    }).showToast();
-}
-</script>
+    </script>
 </body>
+
 </html>
