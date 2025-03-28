@@ -38,16 +38,16 @@
                 <div class="w-full flex flex-wrap justify-start items-center gap-y-4">
                     <h class="basis-full text-xl flex items-center gap-2 px-2 md:text-3xl" id="profile-name">
                     </h>
-                    <label for="repo"
-                        class="max-w-sm flex-1 flex flex-col-reverse gap-2 p-2 cursor-pointer active:bg-[#E3F2FD] ease-in-out duration-300">
+                    <label title="Repositories" for="repo"
+                        class="max-w-sm flex-1 flex flex-col-reverse gap-2 p-2 cursor-pointer active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] ease-in-out duration-300">
                         Repositories<span id="repo-count"></span>
                     </label>
-                    <label for="followers"
-                        class="max-w-sm flex-1 flex flex-col-reverse gap-2 p-2 cursor-pointer active:bg-[#E3F2FD] ease-in-out duration-300">
+                    <label title="followers" for="followers"
+                        class="max-w-sm flex-1 flex flex-col-reverse gap-2 p-2 cursor-pointer active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] ease-in-out duration-300">
                         Followers<span id="followers-count"></span>
                     </label>
-                    <label for="following"
-                        class="max-w-sm flex-1 flex flex-col-reverse gap-2 p-2 cursor-pointer active:bg-[#E3F2FD] ease-in-out duration-300">
+                    <label title="following" for="following"
+                        class="max-w-sm flex-1 flex flex-col-reverse gap-2 p-2 cursor-pointer active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] ease-in-out duration-300">
                         Following<span id="following-count"></span>
                     </label>
                 </div>
@@ -56,7 +56,7 @@
             <div class="flex flex-col justify-start gap-4 px-6 md:flex-row md:items-center">
                 <div class="flex-1">
                     <p id="profile-location"></p>
-                    <p id="profile-bio" class="w-2/"></p>
+                    <p id="profile-bio" class="w-2/3 font-normal"></p>
                 </div>
 
                 <div class="flex-1 flex flex-row items-center gap-2">
@@ -160,53 +160,66 @@
         // ดึงรายชื่อ Repo
         fetchData(`https://api.github.com/users/${username}/repos`, repos => {
             const repoList = document.getElementById("repo-list");
+
             repoList.innerHTML = repos.map(repo =>
                 `
 <li>
-    <a title='${repo.name} - ${repo.language || ""}' href="${repo.html_url}" class="flex flex-col gap-2 border rounded hover:bg-[#E3F2FD] border-[#409EFE] p-4">
+    <a title='${repo.name}${repo.language ? " - " + repo.language : ""}' 
+       href="${repo.html_url}" 
+       class="flex flex-col gap-2 border border-[#409EFE] rounded p-4 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+       
         <span class="flex items-center gap-2">
             <img src="${repo.owner.avatar_url}" width="24" class="border rounded-full">
             <span class="text-sm font-normal truncate">${repo.owner.login}</span>
         </span>
+        
         <span class="truncate">${repo.name}</span>
-        <span class="text-sm font-normal truncate">${repo.language || "•"}</span>
+        
+        <span class="text-sm font-normal truncate">${repo.language || `&#160;`}</span>
     </a>
-</li>`
+</li>
+`
             ).join("");
         });
-
 
         // ดึงรายชื่อผู้ติดตาม
         fetchData(`https://api.github.com/users/${username}/followers`, followers => {
             document.getElementById("followers-list").innerHTML = followers.map(follower =>
                 `
-<li class="flex justify-between items-center gap-2 rounded font-normal px-4 py-2 active:bg-[#E3F2FD]">
-    <a title="${follower.login}" href="${follower.html_url}" class="flex items-center gap-2">
-        <img src="${follower.avatar_url}" width="32" class="flex-1 border rounded-full">
-        <span>${follower.login}</span>
-    </a>
-    <a title="Follow" aria-label="Follow" href="${follower.html_url}"
-        class="relative max-w-32 flex-1 flex justify-center items-center gap-2 bg-[#409EFE] border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 hover:bg-transparent hover:border-[#000] hover:text-[#0D0D0D]">
-        <span class="truncate">Follow</span>
-    </a>
-</li>`
+<li>
+  <a title="${follower.login}" href="${follower.html_url}" class="flex justify-between items-center gap-2 rounded font-normal px-4 py-2 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+    <p class="flex items-center gap-2">
+      <img src="${follower.avatar_url}" width="32" class="flex-1 border rounded-full">
+      <span>${follower.login}</span>
+    </p>
+    <p title="Follow ${follower.login}" aria-label="Follow" class="relative max-w-32 flex-1 flex justify-center items-center gap-2 bg-[#409EFE] border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 hover:bg-transparent hover:border-[#000] hover:text-[#0D0D0D]">
+
+      <span class="truncate">Follow</span>
+
+    </p>
+  </a>
+</li>
+`
             ).join("");
         });
 
         // ดึงรายชื่อที่กำลังติดตาม
         fetchData(`https://api.github.com/users/${username}/following`, following => {
-            document.getElementById("following-list").innerHTML = following.map(user =>
+            document.getElementById("following-list").innerHTML = following.map(following =>
                 `
-<li class="flex justify-between items-center gap-2 rounded font-normal px-4 py-2 active:bg-[#E3F2FD]">
-    <a title="${user.login}" href="${user.html_url}" class="flex items-center gap-2">
-        <img src="${user.avatar_url}" width="32" class="flex-1 border rounded-full">
-        <span>${user.login}</span>
-    </a>
-    <a title="Follow" aria-label="Follow" href="${user.html_url}"
-        class="relative max-w-32 flex-1 flex justify-center items-center gap-2 bg-[#409EFE] border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 hover:bg-transparent hover:border-[#000] hover:text-[#0D0D0D]">
-        <span class="truncate">Follow</span>
-    </a>
-</li>`
+<li>
+  <a title="${following.login}" href="${following.html_url}" class="flex justify-between items-center gap-2 rounded font-normal px-4 py-2 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+    <p class="flex items-center gap-2">
+      <img src="${following.avatar_url}" width="32" class="flex-1 border rounded-full">
+      <span>${following.login}</span>
+    </p>
+    <p title="Follow ${following.login}" aria-label="Follow" 
+       class="relative max-w-32 flex-1 flex justify-center items-center gap-2 bg-[#409EFE] border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 hover:bg-transparent hover:border-[#000] hover:text-[#0D0D0D]">
+      <span class="truncate">Follow</span>
+    </p>
+  </a>
+</li>
+`
             ).join("");
         });
 
@@ -222,12 +235,12 @@
             radios.forEach(radio => {
                 radio.addEventListener("change", (event) => {
                     document.querySelectorAll("label svg").forEach(svg => {
-                        svg.style.fill = ""; // รีเซ็ตค่า fill
+                        svg.style.fill = "";
                     });
 
                     const selectedLabel = document.querySelector(`label[for="${event.target.id}"] svg`);
                     if (selectedLabel) {
-                        selectedLabel.style.fill = "#409EFE"; // กำหนดสี fill ตามต้องการ
+                        selectedLabel.style.fill = "#409EFE";
                     }
                 });
             });
@@ -247,7 +260,7 @@
             listItem.innerHTML = `
                 <a title="${name}" href="${link}" class="group overflow-hidden">
                     <img draggable="false" oncontextmenu="return false;" data-nimg="1" 
-                    class="block w-full h-56 object-cover brightness-100 group-hover:brightness-75 ease-out duration-300"
+                    class="block w-full h-56 object-cover brightness-100 max-w-sm:group-active:brightness-75 md:group-hover:brightness-75 ease-out duration-300"
                         src="${img || defaultImage}">
                     <div translate="no" class="flex flex-col space-y-2 p-6">
                         <p class="text-[#409EFE] truncate capitalize">${name}</p>
