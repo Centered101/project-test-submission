@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>GitHub Profile - Centered101</title>
+    <title>GitHub Profile</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -13,13 +13,13 @@
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://project-test-submission.netlify.app">
-    <meta property="og:title" content="GitHub Profile - Centered101">
+    <meta property="og:title" content="GitHub Profile">
     <meta property="og:description" content="GitHub Profile">
     <meta property="og:image" content="/images/Tes-D.webp">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://project-test-submission.netlify.app">
-    <meta property="twitter:title" content="GitHub Profile - Centered101">
+    <meta property="twitter:title" content="GitHub Profile">
     <meta property="twitter:description" content="GitHub Profile">
     <meta property="twitter:image" content="/images/Tes-D.webp">
 
@@ -28,17 +28,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="min-h-sceen font-black select-none" draggable="false" oncontextmenu="return false">
-    <main class=" mx-auto space-y-12 mb-8">
+<body class="font-black select-none" draggable="false" oncontextmenu="return false">
+    <main class="mx-auto">
         <!-- โปรไฟล์ GitHub -->
-        <section class="space-y-4">
+        <section class="space-y-4 pb-12">
             <div class="w-full flex items-center justify-center gap-4 pt-12 px-6">
-                <img id="profile-img" class="size-24 rounded-full md:size-56 md:rounded-0" draggable="false"
-                    oncontextmenu="return false">
+                <img id="profile-img" class="size-36 rounded-full md:size-56 md:rounded-0" draggable="false"
+                    oncontextmenu="return false" src="/images/icon.svg">
                 <div class="w-full flex flex-wrap justify-start items-center gap-y-4">
-                    <h class="basis-full text-xl flex items-center gap-2 px-2 md:text-3xl" id="profile-name">
-                    </h>
-                    <label title="Repositories" for="repo"
+                    <h1 id="profile-name" class="basis-full text-xl md:text-3xl"></h1>
+                    <label title="repositories" for="repo"
                         class="max-w-sm flex-1 flex flex-col-reverse gap-2 p-2 cursor-pointer active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] ease-in-out duration-300">
                         Repositories<span id="repo-count"></span>
                     </label>
@@ -73,13 +72,13 @@
             </div>
         </section>
 
-        <section id="deploy" class="w-full flex flex-wrap place-content-around items-center gap-4 border-t">
+        <section id="deploy" class="w-full flex flex-wrap place-content-around items-center border-t">
 
             <input hidden id="projects" class="peer/projects" type="radio" name="status" checked />
-            <label for="projects"
-                class="truncate border-t peer-checked/projects:border-[#409EFE] flex items-center gap-2 p-2 cursor-pointer ease-in-out duration-300">
+            <label hidden title="projects" for="projects"
+                class="truncate border-t peer-checked/projects:border-[#409EFE] flex items-center gap-2 pb-6 p-2 cursor-pointer ease-in-out duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1"
-                    width="16" data-view-component="true" class="w-[1em] h-[1em]">
+                    width="16" data-view-component="true" class="size-[1em] ease-in-out duration-300">
                     <path
                         d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z" />
                 </svg>
@@ -87,9 +86,9 @@
 
             <!-- Repository -->
             <input hidden id="repo" class="peer/repo" type="radio" name="status" />
-            <label for="repo"
-                class="truncate border-t peer-checked/repo:border-[#409EFE] flex items-center gap-2 p-2 cursor-pointer ease-in-out duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="w-[1em] h-[1em]">
+            <label hidden title="repositories" for="repo"
+                class="truncate border-t peer-checked/repo:border-[#409EFE] flex items-center gap-2 pb-6 p-2 cursor-pointer ease-in-out duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em] ease-in-out duration-300">
                     <path
                         d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z" />
                 </svg>
@@ -97,9 +96,9 @@
 
             <!-- Followers -->
             <input hidden id="followers" class="peer/followers" type="radio" name="status" />
-            <label hidden for="followers"
-                class="truncate border-t peer-checked/followers:border-[#409EFE] items-center gap-2 p-2 cursor-pointer ease-in-out duration-300 md:flex">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="w-[1em] h-[1em]">
+            <label hidden title="followers" for="followers"
+                class="truncate border-t peer-checked/followers:border-[#409EFE] items-center gap-2 pb-6 p-2 cursor-pointer ease-in-out duration-300 md:flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em] ease-in-out duration-300">
                     <path
                         d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z" />
                 </svg>
@@ -107,11 +106,11 @@
 
             <!-- Following -->
             <input hidden id="following" class="peer/following" type="radio" name="status" />
-            <label hidden for="following"
-                class="truncate border-t peer-checked/following:border-[#409EFE] items-center gap-2 p-2 cursor-pointer ease-in-out duration-300 md:flex">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="w-[1em] h-[1em]">
+            <label hidden title="following" for="following"
+                class="truncate border-t peer-checked/following:border-[#409EFE] items-center gap-2 pb-6 p-2 cursor-pointer ease-in-out duration-300 md:flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em] ease-in-out duration-300">
                     <path
-                        d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z" />
+                        d="M7.9 8.548h-.001a5.528 5.528 0 0 1 3.1 4.659.75.75 0 1 1-1.498.086A4.01 4.01 0 0 0 5.5 9.5a4.01 4.01 0 0 0-4.001 3.793.75.75 0 1 1-1.498-.085 5.527 5.527 0 0 1 3.1-4.66 3.5 3.5 0 1 1 4.799 0ZM13.25 0a.75.75 0 0 1 .75.75V2h1.25a.75.75 0 0 1 0 1.5H14v1.25a.75.75 0 0 1-1.5 0V3.5h-1.25a.75.75 0 0 1 0-1.5h1.25V.75a.75.75 0 0 1 .75-.75ZM5.5 4a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 4Z" />
                 </svg>
             </label>
 
@@ -131,10 +130,49 @@
             <ul hidden id="following-list" class="w-full gap-2 truncate px-0 peer-checked/following:grid"></ul>
 
         </section>
+        <footer
+            class="flex flex-col justify-center text-center font-normal border-t space-y-4 p-6 md:w-full md:text-start">
+            <div>
+                <h1 class="text-xl text-[#409EFE] font-black">GitHub API Usage</h1>
+                <p>Check how many API Requests remain</p>
+            </div>
+
+            <div
+                class="flex flex-col justify-between gap-4 md:flex-row md:items-center md:max-w-xl *:flex-1 *:border *:rounded-xl *:p-4">
+                <div class="bg-[#F5F5F5]">
+                    <p>🚀 Remaining: <span id="rate-remaining" class="text-[#409EFE]">-</span> / 60 requests</p>
+                    <p class="text-sm">Reset time: <span id="rate-reset">-</span></p>
+                </div>
+
+                <div id="alert-box" class="hidden bg-[#FF7070] text-[#FFF]">
+                    ⚠️ Low API requests remaining! Please wait!
+                </div>
+            </div>
+        </footer>
     </main>
 
     <script>
+        // Fetch Rate Limit data
+        fetch("https://api.github.com/rate_limit")
+            .then(response => response.json())
+            .then(data => {
+                const remaining = data.rate.remaining;
+                const resetTime = new Date(data.rate.reset * 1000).toLocaleTimeString();
+
+                document.getElementById("rate-remaining").innerText = remaining;
+                document.getElementById("rate-reset").innerText = resetTime;
+
+                // Show alert if remaining requests are less than 10
+                if (remaining < 10) {
+                    document.getElementById("alert-box").classList.remove("hidden");
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching API data:", error);
+            });
+
         const username = "Centered101";
+        document.title = `GitHub Profile - ${username}`;
 
         async function fetchData(url, callback) {
             try {
@@ -148,13 +186,13 @@
 
         // ดึงข้อมูลโปรไฟล์
         fetchData(`https://api.github.com/users/${username}`, data => {
-            document.getElementById("profile-img").src = data.avatar_url || "/images/img/noitems.svg";
-            document.getElementById("profile-name").innerHTML = data.login + `<svg class="w-[1em] h-[1em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#409EFE"><path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z"/></svg>`;
-            document.getElementById("profile-location").innerText = data.location || '';
-            document.getElementById("profile-bio").innerText = data.bio || '';
-            document.getElementById("repo-count").innerText = data.public_repos || 0;
-            document.getElementById("followers-count").innerText = data.followers || 0;
-            document.getElementById("following-count").innerText = data.following || 0;
+            document.getElementById("profile-img").src = data.avatar_url || "/images/icon.svg";
+            document.getElementById("profile-name").innerHTML = data.login || "Developer";
+            document.getElementById("profile-location").innerText = data.location || "Location";
+            document.getElementById("profile-bio").innerText = data.bio || "Bio";
+            document.getElementById("repo-count").innerText = data.public_repos || "+999B";
+            document.getElementById("followers-count").innerText = data.followers || "+999B";
+            document.getElementById("following-count").innerText = data.following || "+999B";
         });
 
         // ดึงรายชื่อ Repo
@@ -173,7 +211,7 @@
             <span class="text-sm font-normal truncate">${repo.owner.login}</span>
         </span>
         
-        <span class="truncate">${repo.name}</span>
+        <span class="text-[#409EFE] truncate">${repo.name}</span>
         
         <span class="text-sm font-normal truncate">${repo.language || `&#160;`}</span>
     </a>
@@ -246,24 +284,24 @@
             });
         });
 
-        const urls = [
+        const project = [
             { name: "portfolio-centered101", link: "https://portfolio-centered101.netlify.app/", img: "" },
             { name: "project-test-submission", link: "https://project-test-submission.netlify.app/", img: "" },
-            { name: "asia-LB", link: "https://asia-lb.web.app/", img: "" }
+            { name: "asia-lb", link: "https://asia-lb.web.app/", img: "" }
         ];
 
         const defaultImage = "/images/img/noitems.svg"; // 📌 รูปเริ่มต้น
         const projectsList = document.getElementById('projects-list');
 
-        urls.forEach(({ name, link, img }) => {
+        project.forEach(({ name, link, img }) => {
             const listItem = document.createElement('li');
             listItem.innerHTML = `
                 <a title="${name}" href="${link}" class="group overflow-hidden">
                     <img draggable="false" oncontextmenu="return false;" data-nimg="1" 
-                    class="block w-full h-56 object-cover brightness-100 max-w-sm:group-active:brightness-75 md:group-hover:brightness-75 ease-out duration-300"
+                    class="block w-full h-56 object-cover brightness-100 group-active:brightness-75 md:group-hover:brightness-75 ease-out duration-300"
                         src="${img || defaultImage}">
-                    <div translate="no" class="flex flex-col space-y-2 p-6">
-                        <p class="text-[#409EFE] truncate capitalize">${name}</p>
+                    <div translate="no" class="flex flex-col bg-[#F5F5F5] space-y-2 p-6">
+                        <p class="text-[#409EFE] truncate uppercase">${name}</p>
                         <p class="truncate font-normal">${link}</p>
                     </div>
                 </a>
@@ -293,7 +331,7 @@
 
                 // ปิดการใช้งาน element ที่ต้องการ
                 document.getElementById('deploy')?.classList.add('animate-pulse');
-                document.querySelectorAll('a, img, label').forEach(el => {
+                document.querySelectorAll('a, img, label, footer').forEach(el => {
                     el.classList.add('animate-pulse', 'pointer-events-none', 'opacity-50');
                 });
 
@@ -305,14 +343,14 @@
                     el.disabled = true;
                 });
 
-                if (progress >= 100) {
+                if (progress >= 5) {
                     clearInterval(interval);
                     setTimeout(() => {
                         progressContainer.style.opacity = "0"; // ซ่อน progress bar
 
                         // เปิดใช้งาน element กลับคืน
                         document.getElementById('deploy')?.classList.remove('animate-pulse');
-                        document.querySelectorAll('a, img, label').forEach(el => {
+                        document.querySelectorAll('a, img, label, footer').forEach(el => {
                             el.classList.remove('animate-pulse', 'pointer-events-none', 'opacity-50');
                         });
 
