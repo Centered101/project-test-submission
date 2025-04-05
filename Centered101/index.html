@@ -32,11 +32,11 @@
     <main class="mx-auto">
         <!-- โปรไฟล์ GitHub -->
         <section class="space-y-4 pb-12">
-            <div class="w-full flex items-center justify-center gap-4 pt-12 px-6">
-                <img id="profile-img" class="size-36 rounded-full md:size-56 md:rounded-0" draggable="false"
+            <div class="w-full flex items-center justify-center gap-4 pt-12 px-6 md:gap-8">
+                <img id="profile-img" class="size-24 rounded-full md:size-56 md:rounded-0" draggable="false"
                     oncontextmenu="return false" src="/images/icon.svg">
                 <div class="w-full flex flex-wrap justify-start items-center gap-y-4">
-                    <h1 id="profile-name" class="basis-full text-xl md:text-3xl"></h1>
+                    <h1 id="profile-name" translate="no" class="basis-full text-xl md:text-3xl"></h1>
                     <label title="repositories" for="repo"
                         class="max-w-sm flex-1 flex flex-col-reverse gap-2 p-2 cursor-pointer active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] ease-in-out duration-300">
                         Repositories<span id="repo-count"></span>
@@ -190,9 +190,9 @@
             document.getElementById("profile-name").innerHTML = data.login || "Developer";
             document.getElementById("profile-location").innerText = data.location || "Location";
             document.getElementById("profile-bio").innerText = data.bio || "Bio";
-            document.getElementById("repo-count").innerText = data.public_repos || "+999B";
-            document.getElementById("followers-count").innerText = data.followers || "+999B";
-            document.getElementById("following-count").innerText = data.following || "+999B";
+            document.getElementById("repo-count").innerText = data.public_repos || "0";
+            document.getElementById("followers-count").innerText = data.followers || "0";
+            document.getElementById("following-count").innerText = data.following || "0";
         });
 
         // ดึงรายชื่อ Repo
@@ -202,7 +202,7 @@
             repoList.innerHTML = repos.map(repo =>
                 `
 <li>
-    <a title='${repo.name}${repo.language ? " - " + repo.language : ""}' 
+    <a translate="no" title='${repo.name}${repo.language ? " - " + repo.language : ""}' 
        href="${repo.html_url}" 
        class="flex flex-col gap-2 border border-[#409EFE] rounded p-4 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
        
@@ -226,7 +226,7 @@
                 `
 <li>
   <a title="${follower.login}" href="${follower.html_url}" class="flex justify-between items-center gap-2 rounded font-normal px-4 py-2 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
-    <p class="flex items-center gap-2">
+    <p translate="no" class="flex items-center gap-2">
       <img src="${follower.avatar_url}" width="32" class="flex-1 border rounded-full">
       <span>${follower.login}</span>
     </p>
@@ -247,7 +247,7 @@
                 `
 <li>
   <a title="${following.login}" href="${following.html_url}" class="flex justify-between items-center gap-2 rounded font-normal px-4 py-2 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
-    <p class="flex items-center gap-2">
+    <p translate="no" class="flex items-center gap-2">
       <img src="${following.avatar_url}" width="32" class="flex-1 border rounded-full">
       <span>${following.login}</span>
     </p>
