@@ -2,52 +2,133 @@
 <html lang="th">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>โหลด Script เมื่อกดปุ่ม</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เครื่องสร้าง QR Code WiFi ออนไลน์ฟรี</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
 </head>
 
-<body>
-  <div id=go_to_Key
-    style="position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
-    <ul>
-      <p>ต้องการรหัสในการเข้าถึง</p>
-      <li>กดปุ่มด้านล่างเพื่ยไปใส้รหัส</li>
-      <li>ปุ่มจะนำพาไปยังหน้า key.html</li>
-      <li>เลื่อกใส้รหัสดันไดอันนึง</li>
-    </ul>
-    <button
-      style="background-color:#409efe;color:#fff;border:none;padding:12px 24px;border-radius:12px;cursor:pointer">โหลด
-      Script</button>
-  </div>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var isLoggedIn = localStorage.getItem("isLoggedIn");
+<body class="bg-gray-100 font-sans">
+    <div class="max-w-3xl mx-auto p-4 sm:p-6 lg:p-8">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h1 class="text-3xl font-bold text-center text-[#409EFE] mb-8">เครื่องสร้าง QR Code WiFi ฟรี</h1>
 
-      if (!isLoggedIn || isLoggedIn === "false") {
-        document.body.innerHTML = `
-<div style=position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center>
-<ol style=padding:0>
-<p>กรุณาใส่รหัสเพื่อเข้าถึงระบบ</p>
-<li>โปรดกดปุ่มด้านล่างเพื่อไปยังหน้ากรอกรหัส</li>
-<li>ระบบจะนำท่านไปยัง <b>key.html</b></li>
-<li>กรุณาเลือกและกรอกรหัสที่กำหนด</li>
-</ol>
-<button id=redirectBtn style="background-color:#409efe;color:#fff;border:none;padding:12px 24px;border-radius:12px;cursor:pointer">
-ไปยังหน้ากรอกรหัส
-</button></div>
-        `;
+            <div class="mb-4">
+                <label for="ssid" class="block text-gray-700 font-bold mb-2">ชื่อเครือข่าย WiFi (SSID):</label>
+                <input type="text" id="ssid" placeholder="กรอกชื่อเครือข่าย WiFi ของคุณ"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
 
-        document.querySelector("#redirectBtn").addEventListener("click", function () {
-          window.location.href = "/key.html";
-        });
-      }
-    });
-  </script>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 font-bold mb-2">รหัสผ่าน WiFi:</label>
+                <input type="text" id="password" placeholder="กรอกรหัสผ่าน WiFi ของคุณ"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
 
+            <div class="mb-4">
+                <label for="encryption" class="block text-gray-700 font-bold mb-2">ประเภทการเข้ารหัส:</label>
+                <select id="encryption"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="WPA">WPA/WPA2/WPA3</option>
+                    <option value="WEP">WEP</option>
+                    <option value="nopass">ไม่มีรหัสผ่าน</option>
+                </select>
+            </div>
 
+            <div class="mb-6">
+                <label for="hidden" class="block text-gray-700 font-bold mb-2">ซ่อนเครือข่าย:</label>
+                <select id="hidden"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="false">ไม่</option>
+                    <option value="true">ใช่</option>
+                </select>
+            </div>
 
+            <button onclick="generateQRCode()"
+                class="w-full max-w-xs mx-auto block bg-[#409EFE] hover:bg-blue-700 focus:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150">
+                สร้าง QR Code
+            </button>
 
+            <div id="result" class="mt-8">
+                <h2 class="text-xl font-bold text-center mb-2">QR Code ของคุณ</h2>
+                <p class="text-center text-gray-600 mb-4">สแกน QR Code นี้ด้วยกล้องโทรศัพท์หรือแอปกล้องเพื่อเชื่อมต่อกับ
+                    WiFi โดยอัตโนมัติ</p>
+                <div id="qrcode" class="flex justify-center"></div>
+                <button id="downloadBtn" onclick="downloadQRCode()"
+                    class="mt-6 w-full max-w-xs mx-auto block bg-green-600 hover:bg-green-700 focus:bg-green-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-150">
+                    ดาวน์โหลด QR Code
+                </button>
+            </div>
+        </div>
+
+        <footer class="text-center text-gray-500 text-sm">
+            <p>© 2025 เครื่องสร้าง QR Code WiFi ฟรี | สร้าง QR Code สำหรับเชื่อมต่อ WiFi ได้ง่ายๆ ไม่ต้องติดตั้งแอป</p>
+        </footer>
+    </div>
+
+    <script>
+        // สร้าง QR Code
+        function generateQRCode() {
+            const ssid = document.getElementById('ssid').value;
+            const password = document.getElementById('password').value;
+            const encryption = document.getElementById('encryption').value;
+            const hidden = document.getElementById('hidden').value;
+
+            if (!ssid) {
+                alert('กรุณากรอกชื่อเครือข่าย WiFi');
+                return;
+            }
+
+            // สร้างข้อมูล WiFi ในรูปแบบ MECARD
+            let wifiString = `WIFI:S:${ssid};`;
+
+            if (encryption !== 'nopass') {
+                if (!password && encryption !== 'nopass') {
+                    alert('กรุณากรอกรหัสผ่าน WiFi');
+                    return;
+                }
+                wifiString += `P:${password};`;
+            }
+
+            wifiString += `T:${encryption};`;
+
+            if (hidden === 'true') {
+                wifiString += 'H:true;';
+            }
+
+            wifiString += ';';
+
+            // ล้าง QR Code เดิม (ถ้ามี)
+            document.getElementById('qrcode').innerHTML = '';
+
+            // สร้าง QR Code ใหม่
+            new QRCode(document.getElementById('qrcode'), {
+                text: wifiString,
+                width: 256,
+                height: 256,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            // แสดงผลลัพธ์
+            document.getElementById('result').classList.remove('hidden');
+        }
+
+        // ฟังก์ชันดาวน์โหลด QR Code
+        function downloadQRCode() {
+            const canvas = document.querySelector('#qrcode canvas');
+            if (canvas) {
+                const ssid = document.getElementById('ssid').value;
+                const link = document.createElement('a');
+                link.download = `wifi-qr-${ssid}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
+        }
+    </script>
 </body>
 
 </html>
