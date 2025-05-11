@@ -11,15 +11,14 @@ fetch("https://api.github.com/rate_limit")
 
         // ถ้าจำนวนครั้งที่เหลือน้อยกว่า 10 ให้แสดงกล่องแจ้งเตือน
         if (remaining < 10) {
+            showToast(`⚠️ Low API requests remaining! Please wait!`, '#FF7070', '#FFF');
         }
 
         // ถ้าจำนวนครั้งที่เหลือเป็น 0 ให้แสดงกล่องแจ้งเตือนใหม่ (แทนที่เนื้อหาเดิมใน #deploy)
         if (remaining === 0) {
-            showToast(`⚠️ You have reached the API limit! Please wait until ${resetTime}.`, '#FF7070', '#FFF');
-
             $("#deploy").append(`
         <div class="bg-[#FF7070] text-[#FFF] border rounded-xl m-2 md:m-8 p-4">
-            ⚠️ Low API requests remaining! Please wait!
+            ⚠️ You have reached the API limit! Please wait until ${resetTime}.
         </div>`);
         }
     })
@@ -40,23 +39,23 @@ fetch(`https://api.github.com/users/${username}`)
         const link = document.createElement("link");
         link.rel = "shortcut icon";
         link.type = "image/x-icon";
-        link.href = data.avatar_url;
+        link.href = data.avatar_url || "https:/project-test-submission.netlify.app/images/icon.svg";
         document.head.appendChild(link);
 
         // เพิ่ม meta og:image
         const ogImage = document.createElement("meta");
         ogImage.setAttribute("property", "og:image");
-        ogImage.setAttribute("content", data.avatar_url);
+        ogImage.setAttribute("content", data.avatar_url || "https:/project-test-submission.netlify.app/images/icon.svg");
         document.head.appendChild(ogImage);
 
         // เพิ่ม meta twitter:image
         const twitterImage = document.createElement("meta");
         twitterImage.setAttribute("property", "twitter:image");
-        twitterImage.setAttribute("content", data.avatar_url);
+        twitterImage.setAttribute("content", data.avatar_url || "https:/project-test-submission.netlify.app/images/icon.svg");
         document.head.appendChild(twitterImage);
     })
     .catch(error => {
-        console.error("ไม่สามารถโหลดข้อมูล GitHub ได้:", error);
+        console.error("Unable to load GitHub data.:", error);
     });
 
 // ฟังก์ชันดึงข้อมูลจาก URL แล้วเรียก callback พร้อมข้อมูลที่ได้
@@ -119,9 +118,7 @@ fetchData(`https://api.github.com/users/${username}/followers`, followers => {
       <span>${follower.login}</span>
     </p>
     <p title="Follow ${follower.login}" aria-label="Follow" class="relative max-w-32 flex-1 flex justify-center items-center gap-2 bg-[#409EFE] border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 hover:bg-transparent hover:border-[#000] hover:text-[#0D0D0D]">
-
-      <span class="truncate">Follow</span>
-
+      <span class="truncate uppercase">Follow</span>
     </p>
   </a>
 </li>
@@ -141,7 +138,7 @@ fetchData(`https://api.github.com/users/${username}/following`, following => {
     </p>
     <p title="Follow ${following.login}" aria-label="Follow" 
        class="relative max-w-32 flex-1 flex justify-center items-center gap-2 bg-[#409EFE] border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 hover:bg-transparent hover:border-[#000] hover:text-[#0D0D0D]">
-      <span class="truncate">Follow</span>
+      <span class="truncate uppercase">Follow</span>
     </p>
   </a>
 </li>
