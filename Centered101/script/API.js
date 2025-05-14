@@ -17,9 +17,9 @@ fetch("https://api.github.com/rate_limit")
         // ถ้าจำนวนครั้งที่เหลือเป็น 0 ให้แสดงกล่องแจ้งเตือนใหม่ (แทนที่เนื้อหาเดิมใน #deploy)
         if (remaining === 0) {
             $("#deploy").append(`
-        <div class="bg-[#FF7070] text-[#FFF] border rounded-xl m-2 md:m-8 p-4">
-            ⚠️ You have reached the API limit! Please wait until ${resetTime}.
-        </div>`);
+<div class="bg-[#FF7070] shadow-inne text-[#FFF] text-sm border rounded-xl m-2 md:m-8 p-4">
+    <span>⚠️ You have reached the API limit! Please wait until ${resetTime}.</span>
+</div>`);
         }
     })
     .catch(error => {
@@ -29,7 +29,7 @@ fetch("https://api.github.com/rate_limit")
 
 // ตั้งค่าชื่อหน้าต่างเว็บเป็นชื่อ GitHub Profile
 const username = "Centered101";
-document.title = `GitHub Profile - ${username}`;
+document.title = `GitHub API Profile - ${username}`;
 
 // ดึงข้อมูลผู้ใช้จาก GitHub
 fetch(`https://api.github.com/users/${username}`)
@@ -70,16 +70,46 @@ async function fetchData(url, callback) {
     }
 }
 
-
 // ดึงข้อมูลโปรไฟล์
-fetchData(`https://api.github.com/users/${username}`, data => {
-    document.getElementById("profile-img").src = data.avatar_url;
-    document.getElementById("profile-name").innerHTML = data.login || "Developer";
-    document.getElementById("profile-location").innerText = data.location || "-";
-    document.getElementById("profile-bio").innerText = data.bio || "-";
-    document.getElementById("repo-count").innerText = data.public_repos || "0";
-    document.getElementById("followers-count").innerText = data.followers || "0";
-    document.getElementById("following-count").innerText = data.following || "0";
+fetchData(`https://api.github.com/users/${username}`, function (data) {
+    $('#profile-img').attr('src', data.avatar_url);
+    $('#profile-name').html(data.login || "Developer");
+    $('#profile-location').text(data.location);
+    $('#profile-bio').text(data.bio);
+
+    $('#repo-count').text(data.public_repos || "0");
+    $('#followers-count').text(data.followers || "0");
+    $('#following-count').text(data.following || "0");
+
+    // แสดง/ซ่อน location
+    // Location
+    if (data.location) {
+        $('#profile-location')
+            .addClass('block')
+            .removeClass('hidden')
+            .html(`
+<svg xmlns="http://www.w3.org/2000/svg" style="width: 16px;" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-location">
+    <path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z"/>
+</svg>
+                ${data.location}
+            `);
+    } else {
+        $('#profile-location').addClass('hidden').removeClass('block');
+    }
+
+    // แสดง/ซ่อน bio
+    if (data.bio) {
+        $('#profile-bio').addClass('block').removeClass('hidden');
+    } else {
+        $('#profile-bio').addClass('hidden').removeClass('block');
+    }
+
+    // ซ่อน profile-about ถ้า location และ bio ไม่มี
+    if (!data.location && !data.bio) {
+        $('#profile-about').addClass('hidden').removeClass('block');
+    } else {
+        $('#profile-about').addClass('block').removeClass('hidden');
+    }
 });
 
 // ดึงรายชื่อ Repo
@@ -89,17 +119,12 @@ fetchData(`https://api.github.com/users/${username}/repos`, repos => {
     repoList.innerHTML = repos.map(repo =>
         `
 <li>
-    <a translate="no" title='${repo.name}${repo.language ? " - " + repo.language : ""}' 
-       href="${repo.html_url}" 
-       class="flex flex-col gap-2 border border-[#409EFE] rounded p-4 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
-       
+    <a translate="no" title='${repo.name}${repo.language ? " - " + repo.language : ""}' href="${repo.html_url}" class="flex flex-col gap-2 border border-[#409EFE] rounded p-4 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
         <span class="flex items-center gap-2">
             <img src="${repo.owner.avatar_url}" width="24" class="border rounded-full">
             <span class="text-sm font-normal truncate">${repo.owner.login}</span>
         </span>
-        
         <span class="text-[#409EFE] truncate">${repo.name}</span>
-        
         <span class="text-sm font-normal truncate">${repo.language || `&#160;`}</span>
     </a>
 </li>
@@ -112,15 +137,15 @@ fetchData(`https://api.github.com/users/${username}/followers`, followers => {
     document.getElementById("followers-list").innerHTML = followers.map(follower =>
         `
 <li>
-  <a title="${follower.login}" href="${follower.html_url}" class="flex justify-between items-center gap-2 rounded font-normal p-2 md:px-8 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
-    <p translate="no" class="flex items-center gap-2">
-      <img src="${follower.avatar_url}" width="32" class="flex-1 border rounded-full">
-      <span>${follower.login}</span>
-    </p>
-    <p title="Follow ${follower.login}" aria-label="Follow" class="relative max-w-32 flex-1 flex justify-center items-center gap-2 bg-[#409EFE] border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 hover:bg-transparent hover:border-[#000] hover:text-[#0D0D0D]">
-      <span class="truncate uppercase">Follow</span>
-    </p>
-  </a>
+    <a title="${follower.login}" href="${follower.html_url}" class="flex justify-between items-center gap-2 rounded font-normal p-2 md:px-8 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+        <p translate="no" class="flex items-center gap-2">
+            <img src="${follower.avatar_url}" width="32" class="flex-1 border rounded-full">
+            <span>${follower.login}</span>
+        </p>
+        <svg xmlns=http://www.w3.org/2000/svg height=16 viewBox="0 -960 960 960" width=16>
+            <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
+        </svg>
+    </a>
 </li>
 `
     ).join("");
@@ -131,16 +156,15 @@ fetchData(`https://api.github.com/users/${username}/following`, following => {
     document.getElementById("following-list").innerHTML = following.map(following =>
         `
 <li>
-  <a title="${following.login}" href="${following.html_url}" class="flex justify-between items-center gap-2 rounded font-normal p-2 md:px-8 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
-    <p translate="no" class="flex items-center gap-2">
-      <img src="${following.avatar_url}" width="32" class="flex-1 border rounded-full">
-      <span>${following.login}</span>
-    </p>
-    <p title="Follow ${following.login}" aria-label="Follow" 
-       class="relative max-w-32 flex-1 flex justify-center items-center gap-2 bg-[#409EFE] border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 hover:bg-transparent hover:border-[#000] hover:text-[#0D0D0D]">
-      <span class="truncate uppercase">Follow</span>
-    </p>
-  </a>
+    <a title="${following.login}" href="${following.html_url}" class="flex justify-between items-center gap-2 rounded font-normal p-2 md:px-8 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+        <p translate="no" class="flex items-center gap-2">
+            <img src="${following.avatar_url}" width="32" class="flex-1 border rounded-full">
+            <span>${following.login}</span>
+        </p>
+        <svg xmlns=http://www.w3.org/2000/svg height=16 viewBox="0 -960 960 960" width=16>
+            <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
+        </svg>
+    </a>
 </li>
 `
     ).join("");

@@ -2,29 +2,29 @@
 <html lang="en">
 
 <head>
-    <title>GitHub Profile</title>
+    <title>GitHub API Profile</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="theme-color" content="#409EFE">
     <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
     <meta name="author" content="Centered101">
-    <meta name="description" content="GitHub Profile">
+    <meta name="description" content="GitHub API Profile">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://project-test-submission.netlify.app">
-    <meta property="og:title" content="GitHub Profile">
-    <meta property="og:description" content="GitHub Profile">
+    <meta property="og:title" content="GitHub API Profile">
+    <meta property="og:description" content="GitHub API Profile">
     <meta property="og:image" content="">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://project-test-submission.netlify.app">
-    <meta property="twitter:title" content="GitHub Profile">
-    <meta property="twitter:description" content="GitHub Profile">
+    <meta property="twitter:title" content="GitHub API Profile">
+    <meta property="twitter:description" content="GitHub API Profile">
     <meta property="twitter:image" content="">
 
     <link rel="shortcut icon" type="image/x-icon" href="">
-    <link rel="stylesheet" href="/style/style.css">
+    <link rel="stylesheet" href="https://project-test-submission.netlify.app/style/style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src=https://cdn.tailwindcss.com></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -43,7 +43,7 @@
     }
 </style>
 
-<body class="flex flex-row font-semibold text-sm sm:text-basse md:text-xl select-none !*:slashed-zero" draggable="false"
+<body class="flex flex-row font-semibold text-sm sm:text-base md:text-xl select-none !*:slashed-zero" draggable="false"
     oncontextmenu="return false">
 
     <div id="preloader"
@@ -52,14 +52,47 @@
         <h2>Loading...</h2>
         <p>Your adventure is about to begin</p>
     </div>
+    <!-- สวิตช์เมนู -->
+    <input type="checkbox" id="sidebar-active" class="hidden peer">
+    <label for="sidebar-active"
+        class="peer-checked:hidden fixed top-2 right-2 md:hidden block border rounded p-1 cursor-pointer hover:bg-[#F5F5F5] ease-in-out duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+    </label>
+    <label hidden for="sidebar-active"
+        class="peer-checked:block fixed top-2 right-2 md:hidden border rounded p-1 cursor-pointer hover:bg-[#F5F5F5] ease-in-out duration-300">
+        <svg class="size-6" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+            <path
+                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+        </svg>
+    </label>
 
-    <div id="nav" hidden class="md:flex h-screen max-h-screen flex-1 sticky top-0 left-0 w-full bg-[#F5F5F5] border-r">
-        <ul class="w-full pt-8 *:uppercase">
+    <!-- เมนูด้านข้าง -->
+    <nav id="nav"
+        class="fixed top-0 left-0 w-1/2 md:w-1/4 h-screen bg-[#F5F5F5] border-r z-40 overflow-y-auto transition-transform duration-300 ease-in-out transform -translate-x-full peer-checked:translate-x-0 md:translate-x-0">
+        <p class="border-b uppercase p-2 md:p-8">Menu GitHub API Profile</p>
+        <!-- ส่วนแสดงสถานะ GitHub API -->
+        <div
+            class="w-full bg-[#F5F5F5] border-b flex flex-col justify-center text-sm text-start font-normal space-y-4 p-2 md:p-8">
+            <div>
+                <h1 class="uppercase font-semibold text-base">GitHub API Usage</h1>
+                <p>Check how many API Requests remain</p>
+            </div>
+
+            <div class="bg-[#FFF] rounded-xl p-4 shadow-inne">
+                <p>🚀 Remaining: <span id="rate-remaining" class="text-blue-500">-</span> / 60 requests</p>
+                <p>Reset time: <span id="rate-reset">-</span></p>
+            </div>
+        </div>
+        <!-- รายการเมนู -->
+        <ul class="w-full *:uppercas">
 
             <!-- projects -->
             <li>
                 <label title="projects" for="projects"
-                    class="truncate flex items-center gap-2 p-2 px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+                    class="truncate flex items-center gap-2 p-2 md:px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" height="16" viewBox="0 0 16 16"
                         version="1.1" width="16" data-view-component="true" class="size-[1em] ease-in-out duration-300">
                         <path
@@ -72,7 +105,7 @@
             <!-- Repository -->
             <li>
                 <label title="repositories" for="repo"
-                    class="truncate flex items-center gap-2 p-2 px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+                    class="truncate flex items-center gap-2 p-2 md:px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                         class="size-[1em] ease-in-out duration-300">
                         <path
@@ -85,7 +118,7 @@
             <!-- Followers -->
             <li>
                 <label title="followers" for="followers"
-                    class="truncate flex items-center gap-2 p-2 px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+                    class="truncate flex items-center gap-2 p-2 md:px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                         class="size-[1em] ease-in-out duration-300">
                         <path
@@ -98,7 +131,7 @@
             <!-- Following -->
             <li>
                 <label title="following" for="following"
-                    class="truncate flex items-center gap-2 p-2 px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+                    class="truncate flex items-center gap-2 p-2 md:px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                         class="size-[1em] ease-in-out duration-300">
                         <path
@@ -108,75 +141,57 @@
                 </label>
             </li>
         </ul>
-        <div
-            class="absolute bottom-0 bg-[#F5F5F5] border-t flex flex-col justify-center text-center font-normal space-y-4 p-2 md:p-8 md:w-full md:text-start">
-            <div>
-                <h1 class="uppercase font-semibold text-base sm:text-xl">GitHub API Usage</h1>
-                <p>Check how many API Requests remain</p>
-            </div>
+    </nav>
 
-            <div class="flex flex-col justify-between gap-2 md:gap-4 md:max-w-xl *:flex-1 *:border *:rounded-xl *:p-4">
-                <div class="bg-[#FEFEFE] shadow-inner">
-                    <p>🚀 Remaining: <span id="rate-remaining" class="text-[#409EFE]">-</span> / 60 requests</p>
-                    <p>Reset time: <span id="rate-reset">-</span></p>
-                </div>
-
-                <div id="alert-box" class="hidden bg-[#FF7070] text-[#FFF]">
-                    ⚠️ Low API requests remaining! Please wait!
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <main class="max-w-7xl w-full ml-auto">
+    <main class="w-full md:w-3/4 md:ml-auto">
         <!-- โปรไฟล์ GitHub -->
         <section class="space-y-2 md:space-y-8 py-12 sm:py-8">
-            <div class="w-full flex items-center justify-center px-2 md:px-8 md:gap-8">
+            <div class="w-full flex items-center justify-center px-2 space-x-2 md:px-8 md:gap-8">
                 <img id="profile-img" class="size-20 sm:size-24 md:size-56" draggable="false"
                     oncontextmenu="return false" src="https://project-test-submission.netlify.app/images/icon.svg"
                     onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
                 <div class="w-full flex flex-wrap justify-start items-center md:gap-y-4">
-                    <code id="profile-name" translate="no"
-                        class="basis-full text-base sm:text-xl md:text-3xl px-2"></code>
+                    <p id="profile-name" translate="no" class="basis-full text-base sm:text-xl md:text-3xl px-2">API not
+                        connected</p>
                     <label title="repositories" for="repo"
                         class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] ease-in-out duration-300">
-                        Repo<span id="repo-count"></span>
+                        Repository<span id="repo-count">0</span>
                     </label>
                     <label title="followers" for="followers"
                         class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] ease-in-out duration-300">
-                        Followers<span id="followers-count"></span>
+                        Followers<span id="followers-count">0</span>
                     </label>
                     <label title="following" for="following"
                         class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] ease-in-out duration-300">
-                        Following<span id="following-count"></span>
+                        Following<span id="following-count">0</span>
                     </label>
                 </div>
             </div>
 
-            <div class="flex flex-col justify-start gap-4 md:gap-8 px-2 md:px-8 md:flex- md:items-">
-                <div class="flex-1 space-y-2">
-                    <p id="profile-location"></p>
-                    <p id="profile-bio" class="w-2/3"></p>
+            <div class="flex flex-col justify-start gap-4 md:gap-8 px-2 md:px-8">
+                <div hidden id="profile-about" class="flex-1 space-y-2 *:flex *:flex-row *:items-center *:gap-1">
+                    <p hidden id="profile-location"></p>
+                    <p hidden id="profile-bio" class="w-2/3"></p>
                 </div>
                 <div class="basis-full flex-1 flex flex-row items-center gap-2 md:max-w-sm *:uppercase">
-                    <a title="Follow" aria-label="Follow"
+                    <a title="Follow" aria-label="Follow" id="followBtn"
                         href="https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fcentered101%2F"
-                        class="relative w-full flex justify-center items-center gap-2 bg-[#409EFE] border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 hover:bg-transparent hover:border-[#000] hover:text-[#0D0D0D]">
-                        <span class=truncate>Follow</span>
+                        class="relative w-full flex justify-center items-center gap-2 bg-[#409EFE] border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 active:bg-[#E3F2FD]">
+                        <span id="followText">Follow</span>
                     </a>
                     <a title="Message" aria-label="Message" href=https://instagram.com/direct/t/17848003478856472/
-                        class="relative w-full flex justify-center items-center gap-2 border border-[#000] rounded-lg truncate px-2 py-1 overflow-hidden ease-in-out duration-300 hover:bg-transparent">
+                        class="relative w-full flex justify-center items-center gap-2 border border-[#000] rounded-lg truncate px-2 py-1 overflow-hidden ease-in-out duration-300 active:bg-[#E3F2FD] hover:bg-transparent">
                         <span class=truncate>Message</span>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section id="deploy" class="w-full flex flex-wrap justify-around items-center divide-x-2">
+        <section id="deploy" class="w-full flex flex-wrap justify-around items-center">
 
             <input hidden id="projects" class="peer/projects" type="radio" name="status" checked />
             <label hidden title="projects" for="projects"
-                class="w-1/2 md:w-1/4 border-y peer-checked/projects:border-b-[#409EFE] flex items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300">
+                class="w-1/2 md:w-1/4 border-y border-r peer-checked/projects:border-b-[#409EFE] flex items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1"
                     width="16" data-view-component="true" class="size-[1em] ease-in-out duration-300">
                     <path
@@ -187,7 +202,7 @@
             <!-- Repository -->
             <input hidden id="repo" class="peer/repo" type="radio" name="status" />
             <label hidden title="repositories" for="repo"
-                class="w-1/2 md:w-1/4 border-y peer-checked/repo:border-b-[#409EFE] flex items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300">
+                class="w-1/2 md:w-1/4 border-y border-r peer-checked/repo:border-b-[#409EFE] flex items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em] ease-in-out duration-300">
                     <path
                         d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z" />
@@ -197,7 +212,7 @@
             <!-- Followers -->
             <input hidden id="followers" class="peer/followers" type="radio" name="status" />
             <label hidden title="followers" for="followers"
-                class="w-1/4 border-y peer-checked/followers:border-b-[#409EFE] items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300 md:flex">
+                class="w-1/4 border-y border-r peer-checked/followers:border-b-[#409EFE] items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] md:flex">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em] ease-in-out duration-300">
                     <path
                         d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z" />
@@ -207,7 +222,7 @@
             <!-- Following -->
             <input hidden id="following" class="peer/following" type="radio" name="status" />
             <label hidden title="following" for="following"
-                class="w-1/4 border-y peer-checked/following:border-b-[#409EFE] items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300 md:flex">
+                class="w-1/4 border-y border-r peer-checked/following:border-b-[#409EFE] items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] md:flex">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em] ease-in-out duration-300">
                     <path
                         d="M7.9 8.548h-.001a5.528 5.528 0 0 1 3.1 4.659.75.75 0 1 1-1.498.086A4.01 4.01 0 0 0 5.5 9.5a4.01 4.01 0 0 0-4.001 3.793.75.75 0 1 1-1.498-.085 5.527 5.527 0 0 1 3.1-4.66 3.5 3.5 0 1 1 4.799 0ZM13.25 0a.75.75 0 0 1 .75.75V2h1.25a.75.75 0 0 1 0 1.5H14v1.25a.75.75 0 0 1-1.5 0V3.5h-1.25a.75.75 0 0 1 0-1.5h1.25V.75a.75.75 0 0 1 .75-.75ZM5.5 4a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 4Z" />
@@ -224,10 +239,10 @@
             </ul>
 
             <!-- รายชื่อผู้ติดตาม -->
-            <ul hidden id="followers-list" class="w-full gap- truncate px-0 py-8 peer-checked/followers:grid"></ul>
+            <ul hidden id="followers-list" class="w-full gap- truncate px-0 pb-8 peer-checked/followers:grid"></ul>
 
             <!-- รายชื่อที่กำลังติดตาม -->
-            <ul hidden id="following-list" class="w-full gap- truncate px-0 py-8 peer-checked/following:grid"></ul>
+            <ul hidden id="following-list" class="w-full gap- truncate px-0 pb-8 peer-checked/following:grid"></ul>
 
         </section>
     </main>

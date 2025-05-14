@@ -65,11 +65,71 @@ $(document).ready(function () {
     });
 });
 
+
+// —[ updateFollowState ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
+$(document).ready(function () {
+    const $followBtn = $('#followBtn');
+    const $followText = $('#followText');
+    const $__followers = $('#followers-count');
+
+    let isFollowing = localStorage.getItem('isFollowing') === 'true';
+
+    function updateFollowState() {
+        const currentCount = parseInt($__followers.text(), 10) || 0;
+
+        if (isFollowing) {
+            $followText.text('Unfollow');
+            $followText.attr('title', 'Unfollow');
+            $followBtn
+                .removeClass('bg-[#409EFE] border-[#409EFE] text-[#FFF]')
+                .addClass('bg-transparent border-[#000] text-[#0D0D0D]');
+        } else {
+            $followText.text('Follow');
+            $followText.attr('title', 'Follow');
+            $followBtn
+                .removeClass('bg-transparent border-[#000] text-[#0D0D0D]')
+                .addClass('bg-[#409EFE] border-[#409EFE] text-[#FFF]');
+        }
+
+        // ป้องกันค่าติดลบ
+        if (currentCount < 0) {
+            $__followers.text(0);
+        }
+    }
+
+    updateFollowState();
+
+    $followBtn.on('click', function (e) {
+        let currentCount = parseInt($__followers.text(), 10) || 0;
+
+        if (isFollowing) {
+            currentCount = Math.max(0, currentCount - 1); // ไม่ให้ติดลบ
+        } else {
+            currentCount += 1;
+        }
+
+        $__followers.text(currentCount);
+
+        isFollowing = !isFollowing;
+        localStorage.setItem('isFollowing', isFollowing);
+
+        updateFollowState();
+
+        if (!isFollowing) {
+            e.preventDefault();
+        } else {
+            window.location.href = $followBtn.attr('href');
+        }
+    });
+
+});
+
 // —[ projects ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
 const project = [
     { name: "portfolio-centered101", link: "https://portfolio-centered101.netlify.app/", img: "" },
-    { name: "project-test-submission", link: "https://project-test-submission.netlify.app/", img: "" },
+    { name: "project-test-submission", link: "https://project-test-submission.netlify.app/", img: "../images/project-test-submission.png" },
     { name: "asia-lb", link: "https://asia-lb.web.app/", img: "./images/asia-bl.png" }
 ];
 
@@ -79,19 +139,13 @@ const projectsList = document.getElementById('projects-list');
 project.forEach(({ name, link, img }) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
-                <a title="${name}" href="${link}" class="flex flex-col justify-center items-center bg-[#000] w-full h-full max-w-[1080px] max-h-[1350px] overflow-hidden group">
-                    <img draggable="false" oncontextmenu="return false;" data-nimg="1" 
-                    class="block object-cover ease-out duration-300"
-                        src="${img || defaultImage}">
-
-                </a>
-            `;
+<a title="${name}" href="${link}" class="flex flex-col justify-center items-center bg-[#000] w-full h-full max-w-[1080px] max-h-[1350px] overflow-hidden group">
+    <img draggable="false" oncontextmenu="return false;" data-nimg="1" class="block object-cover ease-out duration-300"
+        src="${img || defaultImage}"
+        onerror="this.src='https://project-test-submission.netlify.app/images/img/noitems.svg'">
+</a>`;
     projectsList.appendChild(listItem);
 });
-// <div translate="no" class="flex flex-col bg-[#F5F5F5] space-y-2 px-2 py-4">
-//     <p class="text-[#409EFE] truncate uppercase">${name}</p>
-//     <p class="truncate font-normal">${link}</p>
-// </div>
 
 // —[ Toastify ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -100,11 +154,11 @@ function showToast(message, bgColor = "#FFF", color = "#0D0D0D", duration = 2750
         newWindow: true,
         text: message,
         duration: duration,
-        gravity: "top",
-        position: "left",
+        gravity: "bottom",
+        position: "right",
         style: {
             position: "fixed",
-            left: "16px",
+            right: "16px",
             background: bgColor,
             color: color,
             borderWidth: "1px",
@@ -116,12 +170,12 @@ function showToast(message, bgColor = "#FFF", color = "#0D0D0D", duration = 2750
     }).showToast();
 }
 
-// ตรวจจับเมื่อออฟไลน์
-window.addEventListener("offline", () => {
-    showToast("⚠️ ให้ตายเถอะ! คุณออฟไลน์ไปแล้ว 😐", '#FF7070', '#FFF', 5000);
+// Detect when offline
+$(window).on("offline", function () {
+    showToast("⚠️ Oh no! You are offline 😐", '#FF7070', '#FFF', 5000);
 });
 
-// ตรวจจับเมื่อกลับมาออนไลน์
-window.addEventListener("online", () => {
-    showToast("ดีใจที่คุณกลับมาออนไลน์แล้ว! 😍", '#1ED760', '#FFF', 5000);
+// Detect when back online
+$(window).on("online", function () {
+    showToast("Glad you're back online! 😍", '#1ED760', '#FFF', 5000);
 });
