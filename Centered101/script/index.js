@@ -129,7 +129,7 @@ $(document).ready(function () {
 
 const project = [
     { name: "portfolio-centered101", link: "https://portfolio-centered101.netlify.app/", img: "" },
-    { name: "project-test-submission", link: "https://project-test-submission.netlify.app/", img: "../images/project-test-submission.png" },
+    { name: "project-test-submission", link: "https://project-test-submission.netlify.app/", img: "./images/project-test-submission.png" },
     { name: "asia-lb", link: "https://asia-lb.web.app/", img: "./images/asia-bl.png" }
 ];
 
