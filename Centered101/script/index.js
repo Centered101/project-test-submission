@@ -41,30 +41,20 @@ $(document).ready(function () {
 
     // ตั้งค่าเริ่มต้นให้กับ label[for="projects"]
     $('label[for="projects"] svg').css('fill', '#409EFE');
-    $('#nav label[for="projects"]').css({
-        'color': '#409EFE',
-        'background-color': '#E3F2FD'
-    });
+    $('#nav label[for="projects"]').addClass('sky-glow text-[#409EFE]');
 
     radios.on('change', function () {
         const targetId = $(this).attr('id');
 
         // รีเซ็ต fill และพื้นหลังของ label ทั้งหมดภายใน #nav
         $('label svg').css('fill', '');
-        $('#nav label').css({
-            'color': '',
-            'background-color': ''
-        });
+        $('#nav label').removeClass('sky-glow text-[#409EFE]');
 
         // กำหนด fill และ background สำหรับ label ที่เลือก
         $(`label[for="${targetId}"] svg`).css('fill', '#409EFE');
-        $(`#nav label[for="${targetId}"]`).css({
-            'color': '#409EFE',
-            'background-color': '#E3F2FD'
-        });
+        $(`#nav label[for="${targetId}"]`).addClass('sky-glow text-[#409EFE]');
     });
 });
-
 
 // —[ updateFollowState ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -83,12 +73,12 @@ $(document).ready(function () {
             $followText.attr('title', 'Unfollow');
             $followBtn
                 .removeClass('bg-[#409EFE] border-[#409EFE] text-[#FFF]')
-                .addClass('bg-transparent border-[#000] text-[#0D0D0D]');
+                .addClass('bg-transparent border-[#414143]');
         } else {
             $followText.text('Follow');
             $followText.attr('title', 'Follow');
             $followBtn
-                .removeClass('bg-transparent border-[#000] text-[#0D0D0D]')
+                .removeClass('bg-transparent border-[#414143]')
                 .addClass('bg-[#409EFE] border-[#409EFE] text-[#FFF]');
         }
 
@@ -139,7 +129,7 @@ const projectsList = document.getElementById('projects-list');
 project.forEach(({ name, link, img }) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
-<a title="${name}" href="${link}" class="flex flex-col justify-center items-center bg-[#000] w-full h-full max-w-[1080px] max-h-[1350px] overflow-hidden group">
+<a title="${name}" href="${link}" target="_blank" class="flex flex-col justify-center items-center bg-[#FFFFFF] w-full h-full max-w-[1080px] max-h-[1350px] overflow-hidden ease-in-out duration-300 group">
     <img draggable="false" oncontextmenu="return false;" data-nimg="1" class="block object-cover ease-out duration-300"
         src="${img || defaultImage}"
         onerror="this.src='https://project-test-submission.netlify.app/images/img/noitems.svg'">
@@ -149,7 +139,16 @@ project.forEach(({ name, link, img }) => {
 
 // —[ Toastify ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-function showToast(message, bgColor = "#FFF", color = "#0D0D0D", duration = 2750) {
+function showToast(message, bgColor = "#FFF", color = "#0D0D0D", borderColor = "#EFEFEF", duration = 2750) {
+    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    // ปรับสีให้เหมาะกับ Dark Mode อัตโนมัติ ถ้าไม่ได้ส่ง bgColor หรือ color มาเอง
+    if (bgColor === "#FFF" && color === "#0D0D0D" && isDarkMode) {
+        bgColor = "#121212"; // พื้นหลังใน dark
+        color = "#DCDCDC";   // ตัวหนังสือขาว
+        borderColor = "#414143";
+    }
+
     Toastify({
         newWindow: true,
         text: message,
@@ -161,6 +160,7 @@ function showToast(message, bgColor = "#FFF", color = "#0D0D0D", duration = 2750
             right: "16px",
             background: bgColor,
             color: color,
+            borderColor: borderColor,
             borderWidth: "1px",
             borderRadius: "12px",
             paddingBlock: "16px",
