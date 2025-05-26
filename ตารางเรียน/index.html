@@ -1,137 +1,231 @@
 <!doctype html>
-<html lang=th>
+<html lang="th">
+
 <head>
-<title>Class Schedule • Centered101</title>
-<meta name=theme-color content=#409EFE>
-<meta http-equiv=content-type content="text/html; charset=utf-8">
-<meta name=keywords content=HTML,CSS,XML,JavaScript,Centered101>
-<meta name=author content="Class Schedule — Centered101">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta http-equiv=X-UA-Compatible content="IE=edge">
-<meta name=title content="Class Schedule">
-<meta name=description content="Class Schedule — Centered101">
-<meta property=og:type content=website>
-<meta property=og:url content=https://project-test-submission.netlify.app/ >
-<meta property=og:title content="Class Schedule">
-<meta property=og:description content="Class Schedule — Centered101">
-<meta property=og:image content=/images/Tes-D.webp>
-<meta property=twitter:card content=summary_large_image>
-<meta property=twitter:url content=https://project-test-submission.netlify.app/ >
-<meta property=twitter:title content="Class Schedule">
-<meta property=twitter:description content="Class Schedule — Centered101">
-<meta property=twitter:image content=/images/Tes-D.webp>
-<link rel="shortcut icon" type=image/x-icon href=/images/Tes-D.webp>
-<link rel=stylesheet href=/style/style.css>
-<script src=https://cdn.tailwindcss.com></script>
-<script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
-<script src=/animation/script.js></script>
+    <title>Class Schedule</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#409EFE">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
+    <meta name="author" content="Centered101">
+    <meta name="description" content="Class Schedule">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://project-test-submission.netlify.app">
+    <meta property="og:title" content="Class Schedule">
+    <meta property="og:description" content="Class Schedule">
+    <meta property="og:image" content="https:/project-test-submission.netlify.app/images/icon.svg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://project-test-submission.netlify.app">
+    <meta property="twitter:title" content="Class Schedule">
+    <meta property="twitter:description" content="Class Schedule">
+    <meta property="twitter:image" content="https:/project-test-submission.netlify.app/images/icon.svg">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https:/project-test-submission.netlify.app/images/icon.svg">
+    <link rel="stylesheet" href="https://project-test-submission.netlify.app/style/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
-<style>.succeed{opacity:0;transform:translatex(100%);transition:opacity .7s ease-in-out,transform .7s ease-in-out}</style>
-<body class="text-[#0D0D0D] bg-gradient-to-b from-[#FFF] to-[#F5F5F5] bg-[length:200%_200%] bg-center md:grid sm:grid-cols-2">
-<script>let isNameHidden=!0;function toggleName(){isNameHidden?(document.getElementById("images").src="https://rms.lbtech.ac.th/rms2012/files/importpicstd/01/66201020151.jpg",document.getElementById("images").classList.add("w-52"),document.getElementById("images").classList.add("bg-[#F5F5F5]"),document.getElementById("images").classList.add("shadow-lg"),document.getElementById("firstName").textContent="พงศ์พล",document.getElementById("lastName").textContent="พรมผา",document.getElementById("id").textContent="3130"):(document.getElementById("images").src="/images/icon.svg",document.getElementById("images").classList.remove("w-52"),document.getElementById("images").classList.remove("bg-[#F5F5F5]"),document.getElementById("images").classList.remove("shadow-lg"),document.getElementById("firstName").textContent="*****",document.getElementById("lastName").textContent="*****",document.getElementById("id").textContent="*****"),isNameHidden=!isNameHidden}</script>
-<section class="md:sticky inset-0 text-sm sm:text-base flex justify-center items-center h-[100vh] select-none overflow-hidden" style=background-image:url(/images/img/BG-Programming.webp)>
-<div onclick=toggleName() class="animationShow-x w-96 h-min m-8 bg-gradient-to-br from-[#F5F5F5] to-[#F9F9F9] bg-[length:200%_200%] bg-center border border-[#000] rounded-lg shadow-xl cursor-pointer">
-<div class="flex flex-col justify-center items-center gap-8 p-5">
-<h1 class="sm:text-xl font-bold mt-2">บัตรประจำตัวนักศึกษาออนไลน์</h1>
-<img id=images class="h-60 object-cover object-bottom select-none rounded ease-in-out duration-300" src=/images/icon-edit.svg draggable=false oncontextmenu=return!1 alt=โปรไฟล์>
-</div>
-<div class="flex flex-col justify-center items-center pl-5">
-<div role=region tabindex=0 class=w-full>
-<table class="table-auto w-full text-left">
-<tbody>
-<tr>
-<td class="font-bold p-1">ชื่อ</td>
-<td class=p-2 id=firstName>*****</td>
-</tr>
-<tr>
-<td class="font-bold p-2">นามสกุล</td>
-<td class=p-2 id=lastName>*****</td>
-</tr>
-<tr>
-<td class="font-bold p-2">เลขประจำตัว</td>
-<td class=p-2 id=id>*****</td>
-</tr>
-<tr>
-<td class="font-bold p-2">สาขาวิชา</td>
-<td class=p-2>เทคโนโลยีธุรกิจดิจิทัล</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="flex justify-end items-center p-5">
-<img class="w-20 select-none fill-[#F9F9F9]" src=qr-code.svg draggable=false oncontextmenu=return!1 alt=3130>
-</div>
-</div>
-</section>
-<section class="pt-24 border-t-4 border-[#000] md:border-t-0 md:border-l-4 overflow-hidden">
-<div class="font-black text-xl text-center">
-<h1 class="animationShow-y text-3xl font-black mb-24 mx-8">ตารางเรียน ปวช. คอมพิวเตอร์ธุรกิจ
-</h1>
-<h1 class="animationShow-y m-8 mt-24">ปวช. 1, 2024</h1>
-<div class="animationShow-y grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-8 mx-8">
-<a href=./class-schedule-1-1.html class="w-full h-52 hover:shadow-none flex justify-center items-center bg-red-200 border-4 border-[#000] rounded-lg hover:brightness-75 hover:scale-105 ease-out duration-300">
-<h1>ภาคเรียนที่ 1</h1>
-</a>
-<a href=./class-schedule-1-2.html class="w-full h-52 hover:shadow-none flex justify-center items-center bg-green-200 border-4 border-[#000] rounded-lg hover:brightness-75 hover:scale-105 ease-out duration-300">
-<h1>ภาคเรียนที่ 2</h1>
-</a>
-</div>
-<h1 class="animationShow-y m-8 mt-24">ปวช. 2, 2025</h1>
-<div class="animationShow-y grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-8 mx-8">
-<a href=# class="w-full h-52 hover:shadow-none flex justify-center items-center bg-blue-200 border-4 border-[#000] rounded-lg hover:brightness-75 hover:scale-105 ease-out duration-300">
-<h1>ภาคเรียนที่ 1</h1>
-</a>
-<a href=# class="w-full h-52 hover:shadow-none flex justify-center items-center bg-yellow-200 border-4 border-[#000] rounded-lg hover:brightness-75 hover:scale-105 ease-out duration-300">
-<h1>ภาคเรียนที่ 2</h1>
-</a>
-</div>
-<h1 class="animationShow-y m-8 mt-24">ปวช. 3, 2026</h1>
-<div class="animationShow-y grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-8 mx-8">
-<a href=# class="w-full h-52 hover:shadow-none flex justify-center items-center bg-orange-200 border-4 border-[#000] rounded-lg hover:brightness-75 hover:scale-105 ease-out duration-300">
-<h1>ภาคเรียนที่ 1</h1>
-</a>
-<a href=# class="w-full h-52 hover:shadow-none flex justify-center items-center bg-lime-200 border-4 border-[#000] rounded-lg hover:brightness-75 hover:scale-105 ease-out duration-300">
-<h1>ภาคเรียนที่ 2</h1>
-</a>
-</div>
-</div>
-<footer class=pt-24>
-<p class="text-center truncate first-letter:text-[#409EFE] my-12">
-<script>document.write("©&#160;"+(new Date).getFullYear())</script>
-<span title=Centered101 class="text-[#409EFE] underline-offset-2 hover:underline">
-<a href=https://github.com/Centered101>Centered101</a></span>&#160;—&#160;All&#160;Rights&#160;Reserved.
-</p>
-</footer>
-</section>
-<script src="/script/key.js"></script>
-<script>
-    function nextPage(link) {
-        // ปิดการใช้งานลิงก์
-        link.style.opacity = '0.5'; // ทำให้ลิงก์ดูจางลง
-        link.style.cursor = 'default'; // เปลี่ยน cursor ให้เป็นค่า default (ไม่แสดงมือเมื่อ hover)
-        link.style.pointerEvents = 'none'; // ปิดการทำงานของลิงก์ ไม่ให้สามารถคลิกได้
-        setTimeout(function () {
-            link.style.opacity = '1';
-            link.style.cursor = 'pointer';
-            link.style.pointerEvents = 'auto';
-        }, 3000);
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+    :root {
+        --bg-color: #FFF;
+        --white-smoker: #F5F5F5;
+        --border: #E5E7EB;
+        --text-color: #0D0D0D;
+        --sky-glow: #E3F2FD;
     }
 
-    // เลือกทุกแท็ก <a> ใน div ที่มีคลาส 'animationShow-y'
-    const links = document.querySelectorAll('a');
+    #preloader.loaded {
+        visibility: hidden;
+    }
 
-    links.forEach(link => {
-        // ตรวจสอบว่า href ของแท็ก <a> ว่างหรือไม่
-        if (!link.getAttribute('href') || link.getAttribute('href') === '#') {
-            // ถ้า href ว่าง ให้ปิดการใช้งานการคลิก
-            link.classList.add('cursor-default');
-            link.classList.add('opacity-25');
-            link.onclick = (event) => {
-                event.preventDefault(); // ป้องกันการทำงานของลิงค์
-            };
+    *,
+    html {
+        scrollbar-color: #409EFE var(--bg-color);
+    }
+
+    body {
+        font-family: "Bai Jamjuree", sans-serif;
+        background-color: var(--bg-color) !important;
+        color: var(--text-color) !important;
+        fill: var(--text-color) !important;
+        transition: background-color 300ms, color 300ms;
+    }
+
+    .border-b,
+    .border-t,
+    .border-r,
+    .border-l,
+    .border-y,
+    .border-x,
+    .border {
+        border-color: var(--border) !important;
+    }
+
+    .active\:bg-\[\#F5F5F5\]:active {
+        background-color: var(--white-smoker) !important;
+    }
+
+    .active\:bg-\[\#E3F2FD\]:active {
+        background-color: var(--sky-glow) !important;
+    }
+
+    @media (min-width: 768px) {
+
+        .md\:hover\:bg-\[\#E3F2FD\]:hover,
+        .hover\:bg-\[\#E3F2FD\]:hover {
+            background-color: var(--sky-glow) !important;
         }
-    });
-</script>
+    }
+
+    .bg-img {
+        font-family: "Kanit", sans-serif;
+        background-image: url("https://project-test-submission.netlify.app/images/img/BG-Programming.webp");
+        background-size: cover;
+        background-position: center;
+        position: fixed;
+        inset: 0;
+    }
+</style>
+
+<body class="font-semibold text-sm sm:text-base md:text-xl !*:slashed-zero">
+    <script>
+        let isNameHidden = true;
+
+        function toggleName() {
+            const firstName = document.getElementById("firstName");
+            const lastName = document.getElementById("lastName");
+            const studentId = document.getElementById("id");
+
+            if (isNameHidden) {
+                firstName.textContent = "พงศ์พล";
+                lastName.textContent = "พรมผา";
+                studentId.textContent = "3130";
+            } else {
+                firstName.textContent = lastName.textContent = studentId.textContent = "—";
+            }
+
+            isNameHidden = !isNameHidden;
+        }
+    </script>
+
+    <main class="main-container md:grid grid-cols-2">
+        <section
+            class="bg-img h-screen static md:sticky top-0 flex justify-center items-center px-2 select-none overflow-hidden">
+            <div onclick="toggleName()" data-aos="fade-right"
+                class="w-96 bg-[color:var(--white-smoker)] bg-center border border-[color:var(--border)] rounded-lg shadow-xl cursor-pointer">
+                <div class="flex flex-col justify-center items-center gap-4 p-4">
+                    <h1 class="sm:text-xl font-extrabold mt-2">บัตรประจำตัวนักศึกษาออนไลน์</h1>
+                    <img id="images" class="size-56 rounded object-cover ease-in-out duration-300 select-none"
+                        src="https://project-test-submission.netlify.app/images/icon.svg" draggable="false"
+                        oncontextmenu="return false" alt="โปรไฟล์">
+                </div>
+
+                <div class="flex flex-col justify-center items-center px-4">
+                    <div role="region" tabindex="0" class="w-full">
+                        <table class="table-auto w-full text-left">
+                            <tbody>
+                                <tr>
+                                    <td class="font-extrabold p-1">ชื่อ</td>
+                                    <td class="p-2" id="firstName">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-extrabold p-2">นามสกุล</td>
+                                    <td class="p-2" id="lastName">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-extrabold p-2">เลขประจำตัว</td>
+                                    <td class="p-2" id="id">—</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-extrabold p-2">สาขาวิชา</td>
+                                    <td class="p-2">เทคโนโลยีธุรกิจดิจิทัล</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="flex justify-end items-center p-4">
+                    <img class="size-20 select-none" src="/qr-code.svg" draggable="false" oncontextmenu="return false"
+                        alt="QR Code">
+                </div>
+            </div>
+        </section>
+        <section class="min-h-screen border-t-4 border-[#414143] md:border-t-0 md:border-l-4 overflow-hidden">
+            <p class="text-center text-xl font-extrabold py-24">ตารางเรียน ปวช. คอมพิวเตอร์ธุรกิจ</p>
+            <div id="class" class="grid sm:grid-cols-2 md:grid-cols-2 gap-8 sm:gap-2 md:gap-8 p-2 pb-24 md:p-8">
+                <!-- ที่นี่จะถูกเพิ่ม element ภายหลังด้วย jQuery -->
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(function () {
+            const classListData = [
+                { name: "2024", link: "" },
+                { name: "ชวช.1 ภาคเรียนที่ 1", link: "/class-schedule-1-1.html", addClass: "bg-red-200" },
+                { name: "ชวช.1 ภาคเรียนที่ 2", link: "/class-schedule-1-2.html", addClass: "bg-green-200" },
+                { name: "2025", link: "" },
+                { name: "ปวช.2 ภาคเรียนที่ 1", link: "/class-schedule-2-1.html", addClass: "bg-blue-200" },
+                { name: "ชวช.2 ภาคเรียนที่ 2", link: "#", addClass: "bg-yellow-200" },
+                { name: "2026", link: "" },
+                { name: "ปวช.3 ภาคเรียนที่ 1", link: "#", addClass: "bg-orange-200" },
+                { name: "ชวช.3 ภา​คเรียนที่ 2", link: "#", addClass: "bg-lime-200" },
+            ];
+
+            const $classList = $('#class');
+            const baseClasses = 'max-w-md border !border-[#414143] rounded-lg flex flex-col justify-center items-center overflow-hidden ease-in-out duration-300 group mx-auto p-4 py-16 hover:scale-y-125 ';
+
+            $.each(classListData, function (_, { name, link, addClass = '' }) {
+                // ตรวจสอบว่า name เป็นตัวเลข 4 หลัก (ปี) หรือไม่
+                const isYear = /^\d{4}$/.test(name);
+                // ถ้าเป็นปี ใช้คลาส col-span-full พร้อม styling เด่น
+                const spanClass = isYear
+                    ? 'col-span-full text-xl font-extrabold border-0 py-8 !opacity-100'
+                    : addClass;
+
+                const $div = $(`
+      <div class="${isYear ? 'col-span-full' : ''}" data-aos="fade-up">
+        <a
+          title="${name}"
+          href="${link}"
+          target="_top"
+          class="${baseClasses} ${spanClass}"
+        >
+          <span class="text-center" style="color: var(--text-color);">${name}</span>
+        </a>
+      </div>
+    `);
+
+                $classList.append($div);
+            });
+
+            // ปิดลิงก์ถ้าไม่มี href หรือเป็น "#"
+            $classList.find('a').each(function () {
+                const href = $(this).attr('href');
+                if (!href || href === '#') {
+                    $(this)
+                        .addClass('cursor-default opacity-25 hover:opacity-25')
+                        .on('click', e => e.preventDefault());
+                }
+            });
+        });
+    </script>
+
+    <script>
+        AOS.init();
+    </script>
 </body>
+
 </html>
