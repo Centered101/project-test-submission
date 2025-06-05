@@ -13,7 +13,6 @@ function highlightTodayAndTime() {
     };
 
     const timeSlots = document.querySelectorAll("thead th");
-    const dayRows = document.querySelectorAll("tbody tr");
 
     // วันหยุด
     if (dayOfWeek === 0 || dayOfWeek === 6) {
@@ -40,13 +39,12 @@ function highlightTodayAndTime() {
 
     const currentTimeInMinutes = currentHour * 60 + currentMinute;
 
-    // ไฮไลท์กิจกรรมหน้าเสาธง
-    const flagCeremonyCell = document.querySelector("tbody tr:first-child td:nth-child(2)");
-
     timePeriods.forEach((period, index) => {
         if (currentTimeInMinutes >= period.start && currentTimeInMinutes < period.end) {
             if (timeSlots[index + 1]) {
-                timeSlots[index + 0].style.color = '#409EFE';
+                timeSlots[index + 1].style.backgroundColor = '#EFEFEF';
+                timeSlots[index + 0].style.backgroundColor = '#409EFE';
+                timeSlots[index + 0].style.color = '#FFF';
             }
         }
     });
@@ -55,8 +53,7 @@ function highlightTodayAndTime() {
 // เรียกใช้ฟังก์ชันเมื่อโหลดหน้าเว็บ
 window.onload = highlightTodayAndTime;
 
-// อัปเดตทุก 1 นาที
-setInterval(highlightTodayAndTime, 1);
+setInterval(highlightTodayAndTime, 1000);
 
 document.querySelectorAll('.table_component th, .table_component td').forEach(cell => {
     // สร้าง element สำหรับป๊อปอัพ
@@ -64,39 +61,60 @@ document.querySelectorAll('.table_component th, .table_component td').forEach(ce
     popup.className = 'popup';
     popup.style.position = 'absolute';
     popup.style.display = 'none';
-    popup.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-    popup.style.color = 'white';
-    popup.style.padding = '6px';
-    popup.style.borderRadius = '0 6px 6px 6px';
+    popup.style.backgroundColor = '#409EFE';
+    popup.style.color = '#FFF';
+    popup.style.borderWidth = "1px";
+    popup.style.borderRadius = "4px";
+    popup.style.padding = '8px';
     popup.style.pointerEvents = 'none'; // ป้องกันการรบกวนการโต้ตอบ
-    popup.style.maxWidth = '200px'; // จำกัดความกว้างสูงสุดของป๊อปอัพ
-    popup.style.wordWrap = 'break-word'; // ทำให้คำที่ยาวเกินไปถูกตัดห่อคำ
+    popup.style.maxWidth = '200px';
+    popup.style.wordWrap = 'break-word';
     document.body.appendChild(popup);
 
-    // ฟังก์ชันแสดงป๊อปอัพเมื่อโฮเวอร์หรือแตะ
+    // ฟังก์ชันคำนวณตำแหน่ง
+    function setPopupPosition(x, y) {
+        const popupWidth = popup.offsetWidth || 200; // เผื่อยังไม่แสดง
+        const popupHeight = popup.offsetHeight || 40;
+        const padding = 10;
+
+        // ตรวจว่าขวาเกินไหม
+        if (x + popupWidth + padding > window.innerWidth) {
+            x = x - popupWidth - padding;
+        } else {
+            x = x + padding;
+        }
+
+        // ตรวจว่าล่างเกินไหม
+        if (y + popupHeight + padding > window.innerHeight) {
+            y = y - popupHeight - padding;
+        } else {
+            y = y + padding;
+        }
+
+        popup.style.left = x + 'px';
+        popup.style.top = y + 'px';
+    }
+
     cell.addEventListener('mouseover', function (event) {
         popup.textContent = this.innerText;
         popup.style.display = 'block';
-        popup.style.left = event.pageX + 'px';
-        popup.style.top = event.pageY + 'px';
+        setPopupPosition(event.pageX, event.pageY);
     });
 
     cell.addEventListener('mousemove', function (event) {
-        popup.style.left = event.pageX + 'px';
-        popup.style.top = event.pageY + 'px';
+        setPopupPosition(event.pageX, event.pageY);
     });
 
     cell.addEventListener('mouseout', function () {
         popup.style.display = 'none';
     });
 
-    // ฟังก์ชันแสดงป๊อปอัพเมื่อแตะ (สำหรับอุปกรณ์สัมผัส)
+    // รองรับมือถือ touch
     cell.addEventListener('touchstart', function (event) {
         popup.textContent = this.innerText;
         popup.style.display = 'block';
-        let touch = event.touches[0];
-        popup.style.left = touch.pageX + 'px';
-        popup.style.top = touch.pageY + 'px';
+        const touch = event.touches[0];
+        setPopupPosition(touch.pageX, touch.pageY);
     });
 
     cell.addEventListener('touchend', function () {

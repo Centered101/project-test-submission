@@ -1,11 +1,7 @@
 @import url(https://project-test-submission.netlify.app/style/style.css);
 
-html {
-  scrollbar-color: #409EFE #FFF;
-}
-
 body {
-  animation: opacity 1500ms ease-in-out;
+  animation: opacity 700ms ease-in-out;
   overflow: hidden;
   min-height: 100vh;
 }
@@ -20,7 +16,7 @@ div.table_component table {
 }
 
 div.table_component th {
-  background-color: #EFEFEF;
+  /* background-color: #EFEFEF; */
 }
 
 th,

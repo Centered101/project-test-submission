@@ -69,16 +69,19 @@
         border-color: var(--border) !important;
     }
 
+    .active,
     .active\:bg-\[\#F5F5F5\]:active {
         background-color: var(--white-smoker) !important;
     }
 
+    .active,
     .active\:bg-\[\#E3F2FD\]:active {
         background-color: var(--sky-glow) !important;
     }
 
     @media (min-width: 768px) {
 
+        .hover:hover,
         .md\:hover\:bg-\[\#E3F2FD\]:hover,
         .hover\:bg-\[\#E3F2FD\]:hover {
             background-color: var(--sky-glow) !important;
@@ -87,11 +90,17 @@
 
     .bg-img {
         font-family: "Kanit", sans-serif;
+    }
+
+    .bg-img::after {
+        content: '';
         background-image: url("https://project-test-submission.netlify.app/images/img/BG-Programming.webp");
         background-size: cover;
         background-position: center;
-        position: fixed;
+        position: absolute;
         inset: 0;
+        opacity: .1;
+        z-index: -50;
     }
 </style>
 
@@ -116,10 +125,10 @@
         }
     </script>
 
-    <main class="main-container md:grid grid-cols-2">
+    <main class="md:grid grid-cols-2">
         <section
-            class="bg-img h-screen static md:sticky top-0 flex justify-center items-center px-2 select-none overflow-hidden">
-            <div onclick="toggleName()" data-aos="fade-right"
+            class="bg-img h-screen static md:sticky top-0 flex justify-center items-center p-8 select-none overflow-hidden">
+            <div onclick="toggleName()" data-aos="fade-right" data-aos-duration="700"
                 class="w-96 bg-[color:var(--white-smoker)] bg-center border border-[color:var(--border)] rounded-lg shadow-xl cursor-pointer">
                 <div class="flex flex-col justify-center items-center gap-4 p-4">
                     <h1 class="sm:text-xl font-extrabold mt-2">บัตรประจำตัวนักศึกษาออนไลน์</h1>
@@ -159,8 +168,10 @@
                 </div>
             </div>
         </section>
-        <section class="min-h-screen border-t-4 border-[#414143] md:border-t-0 md:border-l-4 overflow-hidden">
-            <p class="text-center text-xl font-extrabold py-24">ตารางเรียน ปวช. คอมพิวเตอร์ธุรกิจ</p>
+        <section
+            class="min-h-screen bg-[color:var(--bg-color)] border-t-4 border-[#414143] md:border-t-0 md:border-l-4 overflow-hidden">
+            <p data-aos="fade-left" data-aos-duration="700" class="text-center text-xl font-extrabold py-24">ตารางเรียน
+                ปวช. คอมพิวเตอร์ธุรกิจ</p>
             <div id="class" class="grid sm:grid-cols-2 md:grid-cols-2 gap-8 sm:gap-2 md:gap-8 p-2 pb-24 md:p-8">
                 <!-- ที่นี่จะถูกเพิ่ม element ภายหลังด้วย jQuery -->
             </div>
@@ -173,30 +184,30 @@
     <script>
         $(function () {
             const classListData = [
-                { name: "2024", link: "" },
-                { name: "ชวช.1 ภาคเรียนที่ 1", link: "class-schedule-1-1.html", addClass: "bg-red-200" },
-                { name: "ชวช.1 ภาคเรียนที่ 2", link: "class-schedule-1-2.html", addClass: "bg-green-200" },
-                { name: "2025", link: "" },
-                { name: "ปวช.2 ภาคเรียนที่ 1", link: "class-schedule-2-1.html", addClass: "bg-blue-200" },
-                { name: "ชวช.2 ภาคเรียนที่ 2", link: "#", addClass: "bg-yellow-200" },
-                { name: "2026", link: "" },
-                { name: "ปวช.3 ภาคเรียนที่ 1", link: "#", addClass: "bg-orange-200" },
-                { name: "ชวช.3 ภา​คเรียนที่ 2", link: "#", addClass: "bg-lime-200" },
+                { name: "2024", link: "", attributes: 'data-aos="fade-up"' },
+                { name: "ชวช. 1 ภาคเรียนที่ 1", link: "class-schedule-1-1.html", addClass: "bg-red-200", attributes: 'data-aos="fade-left"' },
+                { name: "ชวช. 1 ภาคเรียนที่ 2", link: "class-schedule-1-2.html", addClass: "bg-green-200", attributes: 'data-aos="fade-left"' },
+                { name: "2025", link: "", attributes: 'data-aos="fade-up"' },
+                { name: "ปวช.2 ภาคเรียนที่ 1", link: "class-schedule-2-1.html", addClass: "bg-blue-200", attributes: 'data-aos="fade-left"' },
+                { name: "ชวช. 2 ภาคเรียนที่ 2", link: "#", addClass: "bg-yellow-200", attributes: 'data-aos="fade-left"' },
+                { name: "2026", link: "", attributes: 'data-aos="fade-up"' },
+                { name: "ปวช.3 ภาคเรียนที่ 1", link: "#", addClass: "bg-orange-200", attributes: 'data-aos="fade-left"' },
+                { name: "ชวช. 3 ภา​คเรียนที่ 2", link: "#", addClass: "bg-lime-200", attributes: 'data-aos="fade-left"' },
             ];
 
             const $classList = $('#class');
-            const baseClasses = 'max-w-md border !border-[#414143] rounded-lg flex flex-col justify-center items-center overflow-hidden ease-in-out duration-300 group mx-auto p-4 py-16 hover:scale-y-125 ';
+            const baseClasses = 'max-w-md border rounded-lg flex flex-col justify-center items-center overflow-hidden ease-in-out duration-300 group mx-auto p-4 py-16 hover:bg-[color:var(--sky-glow)]';
 
-            $.each(classListData, function (_, { name, link, addClass = '' }) {
+            $.each(classListData, function (_, { name, link, addClass, attributes = '' }) {
                 // ตรวจสอบว่า name เป็นตัวเลข 4 หลัก (ปี) หรือไม่
                 const isYear = /^\d{4}$/.test(name);
                 // ถ้าเป็นปี ใช้คลาส col-span-full พร้อม styling เด่น
                 const spanClass = isYear
-                    ? 'col-span-full text-xl font-extrabold border-0 py-8 !opacity-100'
+                    ? 'col-span-full text-xl font-extrabold border-0 py-8 !opacity-100 hover:!bg-transparent'
                     : addClass;
 
                 const $div = $(`
-      <div class="${isYear ? 'col-span-full' : ''}" data-aos="fade-up">
+      <div class="${isYear ? 'col-span-full' : ''}" ${attributes} data-aos-duration="700">
         <a
           title="${name}"
           href="${link}"
@@ -216,7 +227,7 @@
                 const href = $(this).attr('href');
                 if (!href || href === '#') {
                     $(this)
-                        .addClass('cursor-default opacity-25 hover:opacity-25')
+                        .addClass('cursor-default opacity-25 hover:!bg-transparent')
                         .on('click', e => e.preventDefault());
                 }
             });
