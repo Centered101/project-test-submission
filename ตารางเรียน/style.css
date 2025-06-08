@@ -1,4 +1,4 @@
-@import url(https://project-test-submission.netlify.app/style/style.css);
+    @import url(https://project-test-submission.netlify.app/style/style.css);
 
 body {
   animation: opacity 700ms ease-in-out;
@@ -16,12 +16,12 @@ div.table_component table {
 }
 
 div.table_component th {
-  /* background-color: #EFEFEF; */
+  background-color: #E5E7EB;
 }
 
 th,
 td {
-  border: 1px solid #E5E7EB;
+  border-width: 1px;
   cursor: default;
   transition: all 300ms;
 }

@@ -22,11 +22,12 @@ function highlightTodayAndTime() {
 
     // ไฮไลท์วันปัจจุบัน
     if (days[dayOfWeek]) {
-        days[dayOfWeek].style.backgroundColor = '#409EFE';
+        days[dayOfWeek].classList.add('bg-blue-300');
     }
 
     // ตรวจสอบช่วงเวลา
     const timePeriods = [
+        { start: 6 * 60, end: 7 * 60 + 50 },
         { start: 7 * 60 + 50, end: 8 * 60 + 15 },
         { start: 8 * 60 + 15, end: 9 * 60 + 15 },
         { start: 9 * 60 + 15, end: 10 * 60 + 15 },
@@ -42,9 +43,8 @@ function highlightTodayAndTime() {
     timePeriods.forEach((period, index) => {
         if (currentTimeInMinutes >= period.start && currentTimeInMinutes < period.end) {
             if (timeSlots[index + 1]) {
-                timeSlots[index + 1].style.backgroundColor = '#EFEFEF';
-                timeSlots[index + 0].style.backgroundColor = '#409EFE';
                 timeSlots[index + 0].style.color = '#FFF';
+                timeSlots[index + 0].style.backgroundColor = '#409EFE';
             }
         }
     });

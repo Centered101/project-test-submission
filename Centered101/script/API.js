@@ -11,7 +11,7 @@ fetch("https://api.github.com/rate_limit")
 
         // ถ้าจำนวนครั้งที่เหลือน้อยกว่า 10 ให้แสดงกล่องแจ้งเตือน
         if (remaining < 10) {
-            showToast(`⚠️ Low API requests remaining! Please wait!`, '#FF7070','#FFF', '#DCDCDC');
+            showToast(`⚠️ Low API requests remaining! Please wait!`, '#FF7070','#FFF1', '#DCDCDC');
         }
 
         // ถ้าจำนวนครั้งที่เหลือเป็น 0 ให้แสดงกล่องแจ้งเตือนใหม่
@@ -128,7 +128,7 @@ fetchData(`https://api.github.com/users/${username}/repos`, repos => {
             <img src="${repo.owner.avatar_url}" class="size-6 border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
             <span class="text-sm font-normal truncate">${repo.owner.login}</span>
         </span>
-        <span class="text-[#409EFE] truncate">${repo.name}</span>
+        <span class="text-sm text-[#409EFE] truncate">${repo.name}</span>
         <span class="text-sm font-normal truncate">${repo.language || `&#160;`}</span>
     </a>
 </li>
