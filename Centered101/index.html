@@ -49,7 +49,9 @@
         background-color: var(--bg-color) !important;
         color: var(--text-color) !important;
         fill: var(--text-color) !important;
-        transition: background-color 300ms, color 300ms;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
     }
 
     .border-b,
@@ -165,8 +167,7 @@
     });
 </script>
 
-<body
-    class="flex flex-row font-semibold text-sm sm:text-base md:text-xl select-none bg-[#FFF] *:!transition-colors *:!slashed-zero"
+<body class="flex flex-row font-semibold text-sm sm:text-base md:text-xl select-none bg-[#FFF] *:!slashed-zero"
     draggable="false" oncontextmenu="return false">
 
     <div id="preloader"
@@ -308,11 +309,12 @@
                 <div class="basis-full flex-1 flex flex-row items-center gap-2 md:max-w-sm *:uppercase">
                     <a title="Follow" aria-label="Follow" id="followBtn"
                         href="https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fcentered101%2F"
-                        class="relative w-full flex justify-center items-center gap-2 bg-[#409EFE] !border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 active:bg-[#E3F2FD]">
+                        class="relative w-1/2 flex justify-center items-center gap-2 bg-[#409EFE] !border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 active:bg-[#E3F2FD]">
                         <span id="followText">Follow</span>
                     </a>
-                    <a title="Message" aria-label="Message" href=https://instagram.com/direct/t/17848003478856472/
-                        class="relative w-full flex justify-center items-center gap-2 !border border-[#414143] rounded-lg truncate px-2 py-1 overflow-hidden ease-in-out duration-300 active:bg-[#E3F2FD] hover:bg-transparent">
+                    <a hidden title="Message" aria-label="Message"
+                        href=https://instagram.com/direct/t/17848003478856472/
+                        class="relative w-1/2 justify-center items-center gap-2 !border border-[#414143] rounded-lg truncate px-2 py-1 overflow-hidden ease-in-out duration-300 active:bg-[#E3F2FD] hover:bg-transparent">
                         <span class=truncate>Message</span>
                     </a>
                 </div>
@@ -367,7 +369,7 @@
 
             <!-- รายชื่อ Repository -->
             <ul hidden id="repo-list"
-                class="w-full grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-2 md:gap-4 truncate px-2 pt-4 pb-8 md:px-4 peer-checked/repo:grid">
+                class="w-full grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2 md:gap-4 truncate px-2 pt-4 pb-8 md:px-4 peer-checked/repo:grid">
                 <span class="mx-auto my-6">Repository : API not connected</span>
             </ul>
 

@@ -128,7 +128,7 @@ fetchData(`https://api.github.com/users/${username}/repos`, repos => {
             <img src="${repo.owner.avatar_url}" class="size-6 border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
             <span class="text-sm font-normal truncate">${repo.owner.login}</span>
         </span>
-        <span class="text-sm text-[#409EFE] truncate">${repo.name}</span>
+        <span class="text-[#409EFE] truncate">${repo.name}</span>
         <span class="text-sm font-normal truncate">${repo.language || `&#160;`}</span>
     </a>
 </li>
