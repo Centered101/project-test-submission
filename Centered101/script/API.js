@@ -43,19 +43,19 @@ fetch(`https://api.github.com/users/${username}`)
         const link = document.createElement("link");
         link.rel = "shortcut icon";
         link.type = "image/x-icon";
-        link.href = data.avatar_url || "https:/project-test-submission.netlify.app/images/icon.svg";
+        link.href = data.avatar_url || "https://project-test-submission.netlify.app/images/icon.svg";
         document.head.appendChild(link);
 
         // เพิ่ม meta og:image
         const ogImage = document.createElement("meta");
         ogImage.setAttribute("property", "og:image");
-        ogImage.setAttribute("content", data.avatar_url || "https:/project-test-submission.netlify.app/images/icon.svg");
+        ogImage.setAttribute("content", data.avatar_url || "https://project-test-submission.netlify.app/images/icon.svg");
         document.head.appendChild(ogImage);
 
         // เพิ่ม meta twitter:image
         const twitterImage = document.createElement("meta");
         twitterImage.setAttribute("property", "twitter:image");
-        twitterImage.setAttribute("content", data.avatar_url || "https:/project-test-submission.netlify.app/images/icon.svg");
+        twitterImage.setAttribute("content", data.avatar_url || "https://project-test-submission.netlify.app/images/icon.svg");
         document.head.appendChild(twitterImage);
     })
     .catch(error => {
