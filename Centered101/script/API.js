@@ -76,7 +76,7 @@ async function fetchData(url, callback) {
 
 // ดึงข้อมูลโปรไฟล์
 fetchData(`https://api.github.com/users/${username}`, function (data) {
-    $('#profile-img').attr('src', data.avatar_url);
+    $('#profile-img').attr('src', data.avatar_url || "https://project-test-submission.netlify.app/images/icon.svg");
     $('#profile-name').html(data.login || "Developer");
     $('#profile-location').text(data.location);
     $('#profile-bio').text(data.bio);
