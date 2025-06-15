@@ -11,7 +11,7 @@ fetch("https://api.github.com/rate_limit")
 
         // ถ้าจำนวนครั้งที่เหลือน้อยกว่า 10 ให้แสดงกล่องแจ้งเตือน
         if (remaining < 10) {
-            showToast(`⚠️ Low API requests remaining! Please wait!`, '#FF7070','#FFF1', '#DCDCDC');
+            showToast(`⚠️ Low API requests remaining! Please wait!`, '#FF7070','#FFF', '#DCDCDC');
         }
 
         // ถ้าจำนวนครั้งที่เหลือเป็น 0 ให้แสดงกล่องแจ้งเตือนใหม่
@@ -123,7 +123,7 @@ fetchData(`https://api.github.com/users/${username}/repos`, repos => {
     repoList.innerHTML = repos.map(repo =>
         `
 <li>
-    <a translate="no" title='${repo.name}${repo.language ? " ——  " + repo.language : ""}' href="${repo.html_url}" class="flex flex-col gap-2 border border-[#409EFE] rounded p-4 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+    <a translate="no" title='${repo.name}${repo.language ? " ——  " + repo.language : ""}' href="${repo.html_url}" target="_blank" class="flex flex-col gap-2 border border-[#409EFE] rounded p-4 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
         <span class="flex items-center gap-2">
             <img src="${repo.owner.avatar_url}" class="size-6 border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
             <span class="text-sm font-normal truncate">${repo.owner.login}</span>
@@ -141,7 +141,7 @@ fetchData(`https://api.github.com/users/${username}/followers`, followers => {
     document.getElementById("followers-list").innerHTML = followers.map(follower =>
         `
 <li>
-    <a title="${follower.login}" href="${follower.html_url}" class="flex justify-between items-center gap-2 font-normal p-2 md:px-8 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+    <a title="${follower.login}" href="${follower.html_url}" target="_blank" class="flex justify-between items-center gap-2 font-normal p-2 md:px-4 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
         <p translate="no" class="flex items-center gap-2">
             <img src="${follower.avatar_url}" class="size-8 flex-1 bg-[#F5F5F5] border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
             <span>${follower.login}</span>
@@ -160,7 +160,7 @@ fetchData(`https://api.github.com/users/${username}/following`, following => {
     document.getElementById("following-list").innerHTML = following.map(following =>
         `
 <li>
-    <a title="${following.login}" href="${following.html_url}" class="flex justify-between items-center gap-2 font-normal p-2 md:px-8 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+    <a title="${following.login}" href="${following.html_url}" target="_blank" class="flex justify-between items-center gap-2 font-normal p-2 md:px-4 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
         <p translate="no" class="flex items-center gap-2">
             <img src="${following.avatar_url}" class="size-8 flex-1 bg-[#F5F5F5] border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
             <span>${following.login}</span>

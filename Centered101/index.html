@@ -136,39 +136,9 @@
         }
     }
 </style>
-<script>
-    // —[ theme ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-    $(function () {
-        const $html = $('html');
-        const $select = $('#theme-switcher');
-
-        // โหลดค่าเดิมจาก localStorage (ถ้ามี)
-        const saved = localStorage.getItem('theme') || 'system';
-        $select.val(saved);
-        applyTheme(saved);
-
-        // เปลี่ยนธีมเมื่อเลือกใหม่
-        $select.on('change', function () {
-            const value = $(this).val();
-            localStorage.setItem('theme', value);
-            applyTheme(value);
-        });
-
-        function applyTheme(value) {
-            $html.removeClass('theme-light theme-dark');
-            if (value === 'light') {
-                $html.addClass('theme-light');
-            } else if (value === 'dark') {
-                $html.addClass('theme-dark');
-            }
-            // ถ้า system ไม่ต้องใส่ class ใด ๆ
-        }
-    });
-</script>
-
-<body class="flex flex-row font-semibold text-sm sm:text-base select-none bg-[#FFF] *:!slashed-zero"
-    draggable="false" oncontextmenu="return false">
+<body class="flex flex-row font-semibold text-sm sm:text-base select-none bg-[#FFF] *:!slashed-zero" draggable="false"
+    oncontextmenu="return false">
 
     <div id="preloader"
         class="!fixed inset-0 flex flex-col justify-center items-center bg-[#FFF] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
@@ -181,9 +151,9 @@
     <!-- เมนูด้านข้าง -->
     <nav id="nav"
         class="fixed top-0 left-0 w-2/3 sm:w-1/2 md:w-1/4 h-screen bg-[#F5F5F5] border-r z-40 overflow-y-auto transition-transform duration-300 ease-in-out transform -translate-x-full peer-checked:translate-x-0 md:translate-x-0">
-        <p class="border-b uppercase p-2 md:p-8">Menu GitHub API Profile</p>
+        <p class="border-b uppercase p-2 md:px-4 md:py-8">Menu GitHub API Profile</p>
         <!-- Dropdown เปลี่ยนธีม -->
-        <div title="select theme" class="w-full text-sm font-normal space-y-2 mx-auto px-2 pt-2 md:px-8">
+        <div title="select theme" class="w-full text-sm font-normal space-y-2 mx-auto px-2 pt-2 md:px-4">
             <label for="theme-switcher" class="block">
                 Select Theme
             </label>
@@ -196,7 +166,7 @@
         </div>
         <!-- ส่วนแสดงสถานะ GitHub API -->
         <div
-            class="w-full bg-[#F5F5F5] border-b flex flex-col justify-center gap-2 md:gap-4 text-sm text-start font-normal p-2 md:p-8">
+            class="w-full bg-[#F5F5F5] border-b flex flex-col justify-center gap-2 md:gap-4 text-sm text-start font-normal p-2 md:p-4">
             <div class="mb-2">
                 <h1 class="uppercase font-semibold text-base">GitHub API Usage</h1>
                 <p>Check how many API Requests remain</p>
@@ -214,7 +184,7 @@
             <!-- projects -->
             <li>
                 <label title="projects" for="projects"
-                    class="truncate flex items-center gap-2 p-2 md:px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" height="16" viewBox="0 0 16 16"
                         version="1.1" width="16" data-view-component="true" class="size-[1em] ease-in-out duration-300">
                         <path
@@ -227,7 +197,7 @@
             <!-- Repository -->
             <li>
                 <label title="repositories" for="repo"
-                    class="truncate flex items-center gap-2 p-2 md:px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                         class="size-[1em] ease-in-out duration-300">
                         <path
@@ -240,7 +210,7 @@
             <!-- Followers -->
             <li>
                 <label title="followers" for="followers"
-                    class="truncate flex items-center gap-2 p-2 md:px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                         class="size-[1em] ease-in-out duration-300">
                         <path
@@ -253,7 +223,7 @@
             <!-- Following -->
             <li>
                 <label title="following" for="following"
-                    class="truncate flex items-center gap-2 p-2 md:px-8 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                         class="size-[1em] ease-in-out duration-300">
                         <path
@@ -267,7 +237,7 @@
 
     <main class="w-full md:w-3/4 md:ml-auto">
         <section class="flex justify-between items-center ">
-            <p class="uppercase p-2 md:p-8">GitHub API Profile</p>
+            <p class="uppercase p-2 md:px-4 md:py-8">GitHub API Profile</p>
             <label title="menu" for="sidebar-active"
                 class="md:hidden block border rounded m-2 cursor-pointer active:bg-[#F5F5F5] ease-in-out duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -279,7 +249,7 @@
         </section>
         <!-- โปรไฟล์ GitHub -->
         <section class="space-y-2 md:space-y-8 py-12 sm:py-8">
-            <div class="w-full flex items-center justify-start px-2 space-x-2 md:px-8 md:gap-8">
+            <div class="w-full flex items-center justify-start px-2 space-x-2 md:px-4 md:gap-4">
                 <img id="profile-img" class="size-20 sm:size-24 md:size-56" draggable="false"
                     oncontextmenu="return false" src="https://project-test-submission.netlify.app/images/icon.svg"
                     onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
@@ -301,7 +271,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col justify-start gap-4 md:gap-8 px-2 md:px-8">
+            <div class="flex flex-col justify-start gap-4 md:gap-8 px-2 md:px-4">
                 <div hidden id="profile-about" class="flex-1 space-y-2 *:flex *:flex-row *:items-center *:gap-1">
                     <p hidden id="profile-location"></p>
                     <p hidden id="profile-bio" class="w-2/3"></p>
@@ -364,12 +334,13 @@
             </label>
 
             <!-- projects -->
-            <ul hidden id="projects-list" class="w-full grid-cols-3 gap-0 truncate px-0 peer-checked/projects:grid">
+            <ul hidden id="projects-list"
+                class="w-full grid-cols-3 gap-1 truncate px-0 py-2 peer-checked/projects:grid">
             </ul>
 
             <!-- รายชื่อ Repository -->
             <ul hidden id="repo-list"
-                class="w-full grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2 md:gap-4 truncate px-2 pt-4 pb-8 md:px-4 peer-checked/repo:grid">
+                class="w-full grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2 md:gap-4 truncate px-2 pt-2 pb-8 md:px-4 md:pt-4 peer-checked/repo:grid">
                 <span class="mx-auto my-6">Repository : API not connected</span>
             </ul>
 

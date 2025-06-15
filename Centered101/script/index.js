@@ -1,38 +1,44 @@
-// —[ Progress Bar ]———————————————————————————————————————————————————————————————————————————————————————————————————
+// —[ preloader ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
 $('#preloader').addClass('fixed inset-0 h-screen w-screen overflow-y-scroll touch-none');
 
 $(window).on('load', function () {
     $('#preloader').addClass('loaded');
     $('#preloader').removeClass('fixed inset-0 h-screen w-screen overflow-y-scroll touch-none');
-
-    // เพิ่ม Progress Bar เข้าไปใน <body> ด้วย jQuery
-    $('body').append(`
-<div id="progressbar" role="progressbar" aria-hidden="true" class="fixed inset-x-0 top-0 left-0 h-1 opacity-0 z-50">
-  <div id="progressbar-fill" class="w-0 h-full bg-[#84D4FA] transition-all duration-300 ease-in-out"></div>
-</div>
-`);
-
-    let progress = 0;
-    $('#progressbar-fill').css('width', '0%');
-    $('#progressbar').css('opacity', '1');
-
-    const interval = setInterval(function () {
-        progress += 1;
-        $('#progressbar-fill').css('width', progress + '%');
-
-        if (progress >= 5) {
-            clearInterval(interval);
-
-            setTimeout(function () {
-                $('#progressbar').css('opacity', '0');
-            }, 500);
-        }
-    }, 25);
 });
 // ฟังก์ชันปิดการใช้งานลิงก์
 function disableLink(event) {
     event.preventDefault();
 }
+
+// —[ theme ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
+$(function () {
+    const $html = $('html');
+    const $select = $('#theme-switcher');
+
+    // โหลดค่าเดิมจาก localStorage (ถ้ามี)
+    const saved = localStorage.getItem('theme') || 'system';
+    $select.val(saved);
+    applyTheme(saved);
+
+    // เปลี่ยนธีมเมื่อเลือกใหม่
+    $select.on('change', function () {
+        const value = $(this).val();
+        localStorage.setItem('theme', value);
+        applyTheme(value);
+    });
+
+    function applyTheme(value) {
+        $html.removeClass('theme-light theme-dark');
+        if (value === 'light') {
+            $html.addClass('theme-light');
+        } else if (value === 'dark') {
+            $html.addClass('theme-dark');
+        }
+        // ถ้า system ไม่ต้องใส่ class ใด ๆ
+    }
+});
 
 // —[ defaultSvg ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -146,7 +152,6 @@ function showToast(message, bgColor = "#FFF", color = "#0D0D0D", borderColor = "
     if (bgColor === "#FFF" && color === "#0D0D0D" && isDarkMode) {
         bgColor = "#121212"; // พื้นหลังใน dark
         color = "#DCDCDC";   // ตัวหนังสือขาว
-        borderColor = "#414143";
     }
 
     Toastify({
@@ -161,9 +166,11 @@ function showToast(message, bgColor = "#FFF", color = "#0D0D0D", borderColor = "
             background: bgColor,
             color: color,
             borderColor: borderColor,
+            fontSize: "0.75rem", /* 12px */
+            lineHeight: "1rem", /* 16px */
             borderWidth: "1px",
             borderRadius: "12px",
-            paddingBlock: "16px",
+            paddingBlock: "8px",
             paddingInline: "32px",
             zIndex: 100,
         }
