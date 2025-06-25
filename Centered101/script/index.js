@@ -78,14 +78,14 @@ $(document).ready(function () {
             $followText.text('Unfollow');
             $followText.attr('title', 'Unfollow');
             $followBtn
-                .removeClass('bg-[#409EFE] border-[#409EFE] text-[#FFF]')
-                .addClass('bg-transparent border-[#414143]');
+                .removeClass('bg-[#409EFE] text-[#FFF]')
+                .addClass('bg-transparent');
         } else {
             $followText.text('Follow');
             $followText.attr('title', 'Follow');
             $followBtn
-                .removeClass('bg-transparent border-[#414143]')
-                .addClass('bg-[#409EFE] border-[#409EFE] text-[#FFF]');
+                .removeClass('bg-transparent')
+                .addClass('bg-[#409EFE] text-[#FFF]');
         }
 
         // ป้องกันค่าติดลบ
@@ -135,7 +135,7 @@ const projectsList = document.getElementById('projects-list');
 project.forEach(({ name, link, img }) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
-<a title="${name}" href="${link}" target="_blank" class="flex flex-col justify-center items-center bg-[#FFFFFF] w-full h-full max-w-[1080px] max-h-[1350px] overflow-hidden ease-in-out duration-300 group">
+<a title="${name}" href="${link}" target="_blank" class="flex flex-col justify-center items-center bg-[#FFFFFF] w-full h-full max-w-[1080px] max-h-[1350px] overflow-hidden active:brightness-75 group">
     <img draggable="false" oncontextmenu="return false;" data-nimg="1" class="block object-cover ease-out duration-300"
         src="${img || defaultImage}"
         onerror="this.src='https://project-test-submission.netlify.app/images/img/noitems.svg'">

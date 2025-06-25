@@ -40,7 +40,7 @@
 
     *,
     html {
-        scrollbar-color: #409EFE var(--bg-color);
+        scrollbar-color: var(--main-color) var(--bg-color);
     }
 
     /* ตั้งค่าดีฟอลต์ด้วย CSS Variables */
@@ -52,6 +52,11 @@
         transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 300ms;
+        overflow: hidden scroll;
+    }
+
+    :root {
+        --main-color: #409EFE;
     }
 
     .border-b,
@@ -137,42 +142,51 @@
     }
 </style>
 
-<body class="flex flex-row font-semibold text-sm sm:text-base select-none bg-[#FFF] *:!slashed-zero" draggable="false"
-    oncontextmenu="return false">
+<body class="flex flex-row font-semibold text-sm sm:text-base select-none bg-[color:var(--bg-color)] *:!slashed-zero"
+    draggable="false" oncontextmenu="return false">
 
     <div id="preloader"
-        class="!fixed inset-0 flex flex-col justify-center items-center bg-[#FFF] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
-        <span class="w-16 h-16 border-8 border-y-transparent rounded-full animate-spin border-[#409EFE] mx-auto"></span>
+        class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
+        <span
+            class="w-16 h-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
         <h2>Loading...</h2>
         <p>Your adventure is about to begin</p>
     </div>
-    <!-- สวิตช์เมนู -->
-    <input hidden type="checkbox" id="sidebar-active" class="peer">
     <!-- เมนูด้านข้าง -->
     <nav id="nav"
-        class="fixed top-0 left-0 w-2/3 sm:w-1/2 md:w-1/4 h-screen bg-[#F5F5F5] border-r z-40 overflow-y-auto transition-transform duration-300 ease-in-out transform -translate-x-full peer-checked:translate-x-0 md:translate-x-0">
+        class="fixed top-0 left-0 h-screen w-2/3 sm:w-1/2 md:w-1/3 lg:w-1/4 bg-[color:var(--white-smoker)] border-r md:block -translate-x-full md:translate-x-0 transform transition-transform duration-300 z-40">
+
         <p class="border-b uppercase p-2 md:px-4 md:py-8">Menu GitHub API Profile</p>
         <!-- Dropdown เปลี่ยนธีม -->
-        <div title="select theme" class="w-full text-sm font-normal space-y-2 mx-auto px-2 pt-2 md:px-4">
+        <div title="select theme" class="w-full mx-auto space-y-2 px-2 md:px-4 pt-2">
             <label for="theme-switcher" class="block">
-                Select Theme
+                Theme Selection
             </label>
-            <select id="theme-switcher"
-                class="w-full bg-[color:var(--bg-color)] border rounded p-2 shadow-inne ease-in-out duration-300 cursor-pointer">
-                <option value="system">System</option>
-                <option value="dark">Dark</option>
-                <option value="light">Light</option>
-            </select>
+            <div class="relative">
+                <select id="theme-switcher"
+                    class="w-full appearance-none bg-[color:var(--bg-color)] border rounded-xl shadow-inner px-4 py-2 pr-10 cursor-pointer focus:ring focus:ring-[color:var(--main-color)]">
+                    <option value="system">System</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+                <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none px-2">
+                    <svg class="size-5 text-[color:var(--text-color)]" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+            </div>
         </div>
+
         <!-- ส่วนแสดงสถานะ GitHub API -->
         <div
-            class="w-full bg-[#F5F5F5] border-b flex flex-col justify-center gap-2 md:gap-4 text-sm text-start font-normal p-2 md:p-4">
+            class="w-full bg-[color:var(--white-smoker)] border-b flex flex-col justify-center gap-2 md:gap-4 text-sm text-start font-normal p-2 md:p-4">
             <div class="mb-2">
                 <h1 class="uppercase font-semibold text-base">GitHub API Usage</h1>
                 <p>Check how many API Requests remain</p>
             </div>
 
-            <div class="bg-[#FFF] rounded-xl p-2 md:p-4 shadow-inne">
+            <div class="bg-[color:var(--bg-color)] rounded-xl p-2 md:p-4 shadow-inner">
                 <p>🚀 Remaining: <span id="rate-remaining" class="text-blue-500">-</span> / 60 requests</p>
                 <p>Reset time: <span id="rate-reset">-</span></p>
             </div>
@@ -184,9 +198,9 @@
             <!-- projects -->
             <li>
                 <label title="projects" for="projects"
-                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)]">
                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" height="16" viewBox="0 0 16 16"
-                        version="1.1" width="16" data-view-component="true" class="size-[1em] ease-in-out duration-300">
+                        version="1.1" width="16" data-view-component="true" class="size-[1em]">
                         <path
                             d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z" />
                     </svg>
@@ -197,9 +211,8 @@
             <!-- Repository -->
             <li>
                 <label title="repositories" for="repo"
-                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
-                        class="size-[1em] ease-in-out duration-300">
+                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em]">
                         <path
                             d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z" />
                     </svg>
@@ -210,9 +223,8 @@
             <!-- Followers -->
             <li>
                 <label title="followers" for="followers"
-                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
-                        class="size-[1em] ease-in-out duration-300">
+                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em]">
                         <path
                             d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z" />
                     </svg>
@@ -223,9 +235,8 @@
             <!-- Following -->
             <li>
                 <label title="following" for="following"
-                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
-                        class="size-[1em] ease-in-out duration-300">
+                    class="truncate flex items-center gap-2 p-2 md:px-4 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em]">
                         <path
                             d="M7.9 8.548h-.001a5.528 5.528 0 0 1 3.1 4.659.75.75 0 1 1-1.498.086A4.01 4.01 0 0 0 5.5 9.5a4.01 4.01 0 0 0-4.001 3.793.75.75 0 1 1-1.498-.085 5.527 5.527 0 0 1 3.1-4.66 3.5 3.5 0 1 1 4.799 0ZM13.25 0a.75.75 0 0 1 .75.75V2h1.25a.75.75 0 0 1 0 1.5H14v1.25a.75.75 0 0 1-1.5 0V3.5h-1.25a.75.75 0 0 1 0-1.5h1.25V.75a.75.75 0 0 1 .75-.75ZM5.5 4a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 4Z" />
                     </svg>
@@ -234,38 +245,43 @@
             </li>
         </ul>
     </nav>
+    <!-- Overlay (แสดงเฉพาะจอเล็กตอนเปิดเมนู) -->
+    <div id="overlay"
+        class="hidden md:hidden fixed inset-0 bg-black bg-opacity-40 transition-opacity duration-300 z-30"></div>
 
-    <main class="w-full md:w-3/4 md:ml-auto">
+    <main class="min-h-screen w-full md:w-2/3 lg:w-3/4 ml-auto">
         <section class="flex justify-between items-center ">
             <p class="uppercase p-2 md:px-4 md:py-8">GitHub API Profile</p>
-            <label title="menu" for="sidebar-active"
-                class="md:hidden block border rounded m-2 cursor-pointer active:bg-[#F5F5F5] ease-in-out duration-300">
+            <!-- Toggle Button -->
+            <button id="sidebarToggle" title="menu"
+                class="md:hidden block border rounded m-2 cursor-pointer active:bg-[color:var(--white-smoker)] ease-in-out duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
-            </label>
+            </button>
         </section>
         <!-- โปรไฟล์ GitHub -->
         <section class="space-y-2 md:space-y-8 py-12 sm:py-8">
             <div class="w-full flex items-center justify-start px-2 space-x-2 md:px-4 md:gap-4">
-                <img id="profile-img" class="size-20 sm:size-24 md:size-56" draggable="false"
-                    oncontextmenu="return false" src="https://project-test-submission.netlify.app/images/icon.svg"
+                <img id="profile-img" onclick="location.reload()" class="size-20 sm:size-24 md:size-56 cursor-pointer"
+                    draggable="false" oncontextmenu="return false"
+                    src="https://project-test-submission.netlify.app/images/icon.svg"
                     onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
                 <div class="w-full max-w-md flex flex-wrap justify-start items-center md:gap-y-4">
                     <p id="profile-name" translate="no" class="basis-full text-base sm:text-xl md:text-3xl px-2">
                         API not connected</p>
                     <label title="repositories" for="repo"
-                        class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] ease-in-out duration-300">
+                        class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)] ease-in-out duration-300">
                         Repository<span id="repo-count">0</span>
                     </label>
                     <label title="followers" for="followers"
-                        class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] ease-in-out duration-300">
+                        class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)] ease-in-out duration-300">
                         Followers<span id="followers-count">0</span>
                     </label>
                     <label title="following" for="following"
-                        class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] ease-in-out duration-300">
+                        class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)] ease-in-out duration-300">
                         Following<span id="following-count">0</span>
                     </label>
                 </div>
@@ -276,15 +292,14 @@
                     <p hidden id="profile-location"></p>
                     <p hidden id="profile-bio" class="w-2/3"></p>
                 </div>
-                <div class="basis-full flex-1 flex flex-row items-center gap-2 md:max-w-sm *:uppercase">
+                <div class="basis-full flex-1 flex flex-row items-center gap-2 max-w-sm md:max-w-full *:uppercase">
                     <a title="Follow" aria-label="Follow" id="followBtn"
                         href="https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fcentered101%2F"
-                        class="relative w-1/2 flex justify-center items-center gap-2 bg-[#409EFE] !border border-[#409EFE] rounded-lg text-[#FFF] truncate px-2 py-1 overflow-hidden ease-in-out duration-300 active:bg-[#E3F2FD]">
+                        class="relative w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--main-color)] border rounded-lg truncate px-2 py-1 overflow-hidden active:bg-[color:var(--sky-glow)]">
                         <span id="followText">Follow</span>
                     </a>
-                    <a hidden title="Message" aria-label="Message"
-                        href=https://instagram.com/direct/t/17848003478856472/
-                        class="relative w-1/2 justify-center items-center gap-2 !border border-[#414143] rounded-lg truncate px-2 py-1 overflow-hidden ease-in-out duration-300 active:bg-[#E3F2FD] hover:bg-transparent">
+                    <a title="Message" aria-label="Message" href=https://instagram.com/direct/t/17848003478856472/
+                        class="relative w-1/2 md:max-w-56 flex justify-center items-center gap-2 !border border-[color:var(--border)] rounded-lg truncate px-2 py-1 overflow-hidden active:bg-[color:var(--sky-glow)] hover:bg-transparent">
                         <span class=truncate>Message</span>
                     </a>
                 </div>
@@ -295,9 +310,9 @@
 
             <input hidden id="projects" class="peer/projects" type="radio" name="status" checked />
             <label hidden title="projects" for="projects"
-                class="w-1/2 md:w-1/4 border-y border-r flex items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+                class="w-1/2 md:w-1/4 border-y border-r flex items-center gap-2 justify-center p-2 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)]">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1"
-                    width="16" data-view-component="true" class="size-[1em] ease-in-out duration-300">
+                    width="16" data-view-component="true" class="size-[1em]">
                     <path
                         d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z" />
                 </svg>
@@ -306,8 +321,8 @@
             <!-- Repository -->
             <input hidden id="repo" class="peer/repo" type="radio" name="status" />
             <label hidden title="repositories" for="repo"
-                class="w-1/2 md:w-1/4 border-y md:border-r flex items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em] ease-in-out duration-300">
+                class="w-1/2 md:w-1/4 border-y border-r flex items-center gap-2 justify-center p-2 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em]">
                     <path
                         d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z" />
                 </svg>
@@ -316,8 +331,8 @@
             <!-- Followers -->
             <input hidden id="followers" class="peer/followers" type="radio" name="status" />
             <label hidden title="followers" for="followers"
-                class="w-1/4 border-y border-r items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] md:flex">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em] ease-in-out duration-300">
+                class="w-1/4 border-y border-r items-center gap-2 justify-center p-2 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)] md:flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em]">
                     <path
                         d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z" />
                 </svg>
@@ -326,8 +341,8 @@
             <!-- Following -->
             <input hidden id="following" class="peer/following" type="radio" name="status" />
             <label hidden title="following" for="following"
-                class="w-1/4 border-y items-center gap-2 justify-center p-2 cursor-pointer ease-in-out duration-300 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD] md:flex">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em] ease-in-out duration-300">
+                class="w-1/4 border-y border-r items-center gap-2 justify-center p-2 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)] md:flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em]">
                     <path
                         d="M7.9 8.548h-.001a5.528 5.528 0 0 1 3.1 4.659.75.75 0 1 1-1.498.086A4.01 4.01 0 0 0 5.5 9.5a4.01 4.01 0 0 0-4.001 3.793.75.75 0 1 1-1.498-.085 5.527 5.527 0 0 1 3.1-4.66 3.5 3.5 0 1 1 4.799 0ZM13.25 0a.75.75 0 0 1 .75.75V2h1.25a.75.75 0 0 1 0 1.5H14v1.25a.75.75 0 0 1-1.5 0V3.5h-1.25a.75.75 0 0 1 0-1.5h1.25V.75a.75.75 0 0 1 .75-.75ZM5.5 4a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 4Z" />
                 </svg>
@@ -340,24 +355,58 @@
 
             <!-- รายชื่อ Repository -->
             <ul hidden id="repo-list"
-                class="w-full grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2 md:gap-4 truncate px-2 pt-2 pb-8 md:px-4 md:pt-4 peer-checked/repo:grid">
-                <span class="mx-auto my-6">Repository : API not connected</span>
+                class="w-full grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-2 md:gap-4 truncate px-2 pt-2 pb-8 md:px-4 md:pt-4 peer-checked/repo:grid">
+                <span class="mx-auto mt-6 mb-4 md:mt-4">Repository : API not connected</span>
             </ul>
 
             <!-- รายชื่อผู้ติดตาม -->
             <ul hidden id="followers-list" class="w-full truncate px-0 pb-8 peer-checked/followers:grid"><span
-                    class="mx-auto my-8">Followers : API not connected</span>
+                    class="mx-auto mt-8 mb-4">Followers : API not connected</span>
             </ul>
 
             <!-- รายชื่อที่กำลังติดตาม -->
             <ul hidden id="following-list" class="w-full truncate px-0 pb-8 peer-checked/following:grid"><span
-                    class="mx-auto my-8">Following : API not connected</span>
+                    class="mx-auto mt-8 mb-4">Following : API not connected</span>
             </ul>
-
         </section>
     </main>
     <script src="./script/index.js"></script>
     <script src="./script/API.js"></script>
+    <script>
+        const navSidebar = document.getElementById("nav");
+        const overlay = document.getElementById("overlay");
+        const toggleBtn = document.getElementById("sidebarToggle");
+
+        let sidebarOpen = false;
+
+        function openSidebar() {
+            navSidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+            sidebarOpen = true;
+        }
+
+        function closeSidebar() {
+            navSidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+            sidebarOpen = false;
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            sidebarOpen ? closeSidebar() : openSidebar();
+        });
+
+        overlay.addEventListener("click", closeSidebar);
+
+        // ปรับให้แน่ใจว่ากลับสภาพตามขนาดจอเมื่อ resize
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 768) {
+                navSidebar.classList.remove("-translate-x-full");
+                overlay.classList.add("hidden");
+            } else if (!sidebarOpen) {
+                navSidebar.classList.add("-translate-x-full");
+            }
+        });
+    </script>
 </body>
 
 </html>

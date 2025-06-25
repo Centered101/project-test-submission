@@ -1,372 +1,340 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="th">
 <head>
-    <title>นับถอยหลังวันเกิด</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta name="theme-color" content="#409EFE">
-    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
-    <meta name="author" content="Centered101">
-    <meta name="description" content="นับถอยหลังวันเกิด">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://project-test-submission.netlify.app">
-    <meta property="og:title" content="นับถอยหลังวันเกิด">
-    <meta property="og:description" content="นับถอยหลังวันเกิด">
-    <meta property="og:image" content="https:/project-test-submission.netlify.app/images/icon.svg">
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://project-test-submission.netlify.app">
-    <meta property="twitter:title" content="นับถอยหลังวันเกิด">
-    <meta property="twitter:description" content="นับถอยหลังวันเกิด">
-    <meta property="twitter:image" content="https:/project-test-submission.netlify.app/images/icon.svg">
-
-    <link rel="shortcut icon" type="image/x-icon" href="">
-    <link rel="stylesheet" href="https://project-test-submission.netlify.app/style/style.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src=https://cdn.tailwindcss.com></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <meta charset="UTF-8" />
+  <title>นับถอยหลังวันเกิด</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
-
 <body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen py-10 px-4">
-    <!-- Header -->
-    <div class="max-w-4xl mx-auto mb-8">
-        <div class="flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-blue-700">🎉 นับถอยหลังวันเกิด</h1>
-            <div id="user-info" class="hidden">
-                <div class="flex items-center space-x-4">
-                    <img id="user-photo" class="w-10 h-10 rounded-full" />
-                    <span id="user-name" class="text-gray-700 font-medium"></span>
-                    <button id="logout-btn"
-                        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors">
-                        ออกจากระบบ
-                    </button>
-                </div>
-            </div>
+  <!-- Header -->
+  <div class="max-w-4xl mx-auto mb-8">
+    <div class="flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-blue-700">🎉 นับถอยหลังวันเกิด</h1>
+      <div id="user-info" class="hidden">
+        <div class="flex items-center space-x-4">
+          <img id="user-photo" class="w-10 h-10 rounded-full" />
+          <span id="user-name" class="text-gray-700 font-medium"></span>
+          <button id="logout-btn" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors">
+            ออกจากระบบ
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Login Section -->
-    <div id="login-section" class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8 text-center">
-        <div class="mb-6">
-            <div class="text-6xl mb-4">🎂</div>
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">ยินดีต้อนรับ!</h2>
-            <p class="text-gray-600">เข้าสู่ระบบเพื่อดูการนับถอยหลังวันเกิด</p>
-        </div>
-
-        <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID" data-context="signin" data-ux_mode="popup"
-            data-callback="handleCredentialResponse" data-auto_prompt="false">
-        </div>
-
-        <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
-            data-text="signin_with" data-size="large" data-logo_alignment="left" data-width="300">
-        </div>
-
-        <!-- Manual Login Button (fallback) -->
-        <div class="mt-4">
-            <button id="manual-login"
-                class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center mx-auto space-x-2">
-                <svg class="w-5 h-5" viewBox="0 0 24 24">
-                    <path fill="currentColor"
-                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-                    <path fill="currentColor"
-                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-                    <path fill="currentColor"
-                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
-                    <path fill="currentColor"
-                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-                </svg>
-                <span>เข้าสู่ระบบด้วย Google ผู้ใช้ทดสอบ</span>
-            </button>
-        </div>
+  <!-- Login Section -->
+  <div id="login-section" class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-8 text-center">
+    <div class="mb-6">
+      <div class="text-6xl mb-4">🎂</div>
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">ยินดีต้อนรับ!</h2>
+      <p class="text-gray-600">เข้าสู่ระบบเพื่อดูการนับถอยหลังวันเกิด</p>
     </div>
-
-    <!-- Main Content -->
-    <div id="main-content" class="hidden">
-        <div id="loading" class="text-center text-gray-600 mb-4">กำลังโหลดข้อมูล...</div>
-        <div id="birthday-list" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"></div>
+    
+    <div id="g_id_onload"
+         data-client_id="YOUR_GOOGLE_CLIENT_ID"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false">
     </div>
+    
+    <div class="g_id_signin"
+         data-type="standard"
+         data-shape="rectangular"
+         data-theme="outline"
+         data-text="signin_with"
+         data-size="large"
+         data-logo_alignment="left"
+         data-width="300">
+    </div>
+    
+    <!-- Manual Login Button (fallback) -->
+    <div class="mt-4">
+      <button id="manual-login" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center mx-auto space-x-2">
+        <svg class="w-5 h-5" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        <span>เข้าสู่ระบบด้วย Google</span>
+      </button>
+    </div>
+  </div>
 
-    <!-- Add Birthday Modal -->
-    <div id="add-birthday-modal"
-        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-xl p-6 w-full max-w-md mx-4">
-            <h3 class="text-xl font-bold mb-4">เพิ่มวันเกิดใหม่</h3>
-            <form id="add-birthday-form" method="post"
-                action="https://script.google.com/macros/s/AKfycbzikhVO1ewSBPoyBhdkpi5ATCMWquxAgsq8wOsWBy5CvfiuFW2zIluObUwJZI3zqZYMJQ/exec">
-                <div id="form-message" class="mb-4 p-3 rounded-lg hidden"></div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">ชื่อ</label>
-                    <input type="text" name="name" id="new-name"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required>
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">วันเกิด</label>
-                    <input type="date" name="birthdate" id="new-birthdate"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        required>
-                </div>
-                <div class="flex space-x-3">
-                    <button type="submit" id="submit-btn"
-                        class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                        <span class="submit-text">เพิ่ม</span>
-                        <span class="loading-text hidden">กำลังบันทึก...</span>
-                    </button>
-                    <button type="button" id="cancel-add"
-                        class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 rounded-lg transition-colors">ยกเลิก</button>
-                </div>
-            </form>
+  <!-- Main Content -->
+  <div id="main-content" class="hidden">
+    <div id="loading" class="text-center text-gray-600 mb-4">กำลังโหลดข้อมูล...</div>
+    <div id="birthday-list" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"></div>
+  </div>
+
+  <!-- Add Birthday Modal -->
+  <div id="add-birthday-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-xl p-6 w-full max-w-md mx-4">
+      <h3 class="text-xl font-bold mb-4">เพิ่มวันเกิดใหม่</h3>
+      <form id="add-birthday-form" method="post" action="https://script.google.com/macros/s/AKfycbzikhVO1ewSBPoyBhdkpi5ATCMWquxAgsq8wOsWBy5CvfiuFW2zIluObUwJZI3zqZYMJQ/exec">
+        <div id="form-message" class="mb-4 p-3 rounded-lg hidden"></div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-2">ชื่อ</label>
+          <input type="text" name="name" id="new-name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
         </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-2">วันเกิด</label>
+          <input type="date" name="birthdate" id="new-birthdate" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+        <div class="flex space-x-3">
+          <button type="submit" id="submit-btn" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+            <span class="submit-text">เพิ่ม</span>
+            <span class="loading-text hidden">กำลังบันทึก...</span>
+          </button>
+          <button type="button" id="cancel-add" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 rounded-lg transition-colors">ยกเลิก</button>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <!-- Floating Add Button -->
-    <button id="add-birthday-btn"
-        class="hidden fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-2xl transition-all hover:scale-110">
-        +
-    </button>
+  <!-- Floating Add Button -->
+  <button id="add-birthday-btn" class="hidden fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-2xl transition-all hover:scale-110">
+    +
+  </button>
 
-    <script>
-        // Configuration
-        const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID'; // ใส่ Client ID ของคุณที่นี่
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRQcUun_5lZMmiwEDKWfcFyvRPivRDMeEyeb5AgpMN1Kqij6picMH7VfNDnfNl4xYpQ3Oal0UfJ_Ai6/pub?gid=0&single=true&output=csv';
+  <script>
+    // Configuration
+    const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID'; // ใส่ Client ID ของคุณที่นี่
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRQcUun_5lZMmiwEDKWfcFyvRPivRDMeEyeb5AgpMN1Kqij6picMH7VfNDnfNl4xYpQ3Oal0UfJ_Ai6/pub?gid=0&single=true&output=csv';
 
-        // Global variables
-        let currentUser = null;
-        let birthdays = [];
+    // Global variables
+    let currentUser = null;
+    let birthdays = [];
 
-        // Google Sign-In callback
-        function handleCredentialResponse(response) {
-            const credential = response.credential;
-            const payload = JSON.parse(atob(credential.split('.')[1]));
+    // Google Sign-In callback
+    function handleCredentialResponse(response) {
+      const credential = response.credential;
+      const payload = JSON.parse(atob(credential.split('.')[1]));
+      
+      currentUser = {
+        id: payload.sub,
+        name: payload.name,
+        email: payload.email,
+        picture: payload.picture
+      };
+      
+      showMainContent();
+    }
 
-            currentUser = {
-                id: payload.sub,
-                name: payload.name,
-                email: payload.email,
-                picture: payload.picture
-            };
+    // Show main content after login
+    function showMainContent() {
+      document.getElementById('login-section').classList.add('hidden');
+      document.getElementById('main-content').classList.remove('hidden');
+      document.getElementById('user-info').classList.remove('hidden');
+      document.getElementById('add-birthday-btn').classList.remove('hidden');
+      
+      // Update user info
+      document.getElementById('user-name').textContent = currentUser.name;
+      document.getElementById('user-photo').src = currentUser.picture;
+      
+      // Load birthdays
+      init();
+    }
 
-            showMainContent();
+    // Logout function
+    function logout() {
+      currentUser = null;
+      document.getElementById('login-section').classList.remove('hidden');
+      document.getElementById('main-content').classList.add('hidden');
+      document.getElementById('user-info').classList.add('hidden');
+      document.getElementById('add-birthday-btn').classList.add('hidden');
+      
+      // Clear content
+      document.getElementById('birthday-list').innerHTML = '';
+      document.getElementById('loading').style.display = 'block';
+      document.getElementById('loading').textContent = 'กำลังโหลดข้อมูล...';
+    }
+
+    // Manual login (fallback)
+    function manualLogin() {
+      // Simulate login for demo purposes
+      currentUser = {
+        id: 'demo_user',
+        name: 'ผู้ใช้ทดสอบ',
+        email: 'demo@example.com',
+        picture: 'https://project-test-submission.netlify.app/images/icon.svg/'
+      };
+      showMainContent();
+    }
+
+    // CSV parsing function
+    function parseCSV(csvText) {
+      const lines = [];
+      let currentLine = '';
+      let inQuotes = false;
+      
+      for (let i = 0; i < csvText.length; i++) {
+        const char = csvText[i];
+        
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === '\n' && !inQuotes) {
+          if (currentLine.trim()) {
+            lines.push(currentLine.trim());
+          }
+          currentLine = '';
+        } else {
+          currentLine += char;
+        }
+      }
+      
+      if (currentLine.trim()) {
+        lines.push(currentLine.trim());
+      }
+      
+      return lines.map(line => {
+        const fields = [];
+        let currentField = '';
+        let inQuotes = false;
+        
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          
+          if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            fields.push(currentField.replace(/"/g, '').trim());
+            currentField = '';
+          } else {
+            currentField += char;
+          }
+        }
+        
+        fields.push(currentField.replace(/"/g, '').trim());
+        return fields;
+      });
+    }
+
+    // Fetch birthdays from Google Sheets
+    async function fetchBirthdays() {
+      try {
+        console.log('กำลังดึงข้อมูลจาก Google Sheets...');
+        const res = await fetch(sheetUrl);
+        const csv = await res.text();
+        console.log('ข้อมูล CSV ที่ได้รับ:', csv.substring(0, 200) + '...');
+        
+        const rows = parseCSV(csv);
+        console.log('แถวที่แยกได้:', rows);
+        
+        if (rows.length < 2) {
+          throw new Error('ไม่พบข้อมูลในสเปรดชีต');
         }
 
-        // Show main content after login
-        function showMainContent() {
-            document.getElementById('login-section').classList.add('hidden');
-            document.getElementById('main-content').classList.remove('hidden');
-            document.getElementById('user-info').classList.remove('hidden');
-            document.getElementById('add-birthday-btn').classList.remove('hidden');
+        const headers = rows[0];
+        console.log('Headers:', headers);
+        
+        const nameIdx = headers.findIndex(h => 
+          h.toLowerCase().includes('name') || 
+          h.toLowerCase().includes('ชื่อ') ||
+          h.toLowerCase().includes('นาม')
+        );
+        
+        const birthIdx = headers.findIndex(h => 
+          h.toLowerCase().includes('birth') || 
+          h.toLowerCase().includes('เกิด') ||
+          h.toLowerCase().includes('วันเกิด')
+        );
 
-            // Update user info
-            document.getElementById('user-name').textContent = currentUser.name;
-            document.getElementById('user-photo').src = currentUser.picture;
+        console.log(`Name column index: ${nameIdx}, Birth column index: ${birthIdx}`);
 
-            // Load birthdays
-            init();
+        if (nameIdx === -1 || birthIdx === -1) {
+          // ถ้าไม่พบ columns ให้ใช้ข้อมูลตัวอย่าง
+          console.log('ไม่พบ columns ที่ต้องการ ใช้ข้อมูลตัวอย่าง');
+          return getSampleBirthdays();
         }
 
-        // Logout function
-        function logout() {
-            currentUser = null;
-            document.getElementById('login-section').classList.remove('hidden');
-            document.getElementById('main-content').classList.add('hidden');
-            document.getElementById('user-info').classList.add('hidden');
-            document.getElementById('add-birthday-btn').classList.add('hidden');
+        const fetchedBirthdays = rows.slice(1).map((row, index) => {
+          const name = row[nameIdx]?.trim();
+          const birthdate = row[birthIdx]?.trim();
+          
+          console.log(`Row ${index}: Name="${name}", Birthdate="${birthdate}"`);
+          
+          return { name, birthdate };
+        }).filter(item => item.name && item.birthdate);
 
-            // Clear content
-            document.getElementById('birthday-list').innerHTML = '';
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('loading').textContent = 'กำลังโหลดข้อมูล...';
+        console.log('ข้อมูลวันเกิดที่ได้:', fetchedBirthdays);
+        return fetchedBirthdays.length > 0 ? fetchedBirthdays : getSampleBirthdays();
+        
+      } catch (error) {
+        console.error('Error fetching birthdays:', error);
+        return getSampleBirthdays();
+      }
+    }
+
+    // Get sample birthdays if Google Sheets fails
+    function getSampleBirthdays() {
+      const today = new Date();
+      const nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+      const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 15);
+      
+      return [
+        {
+          name: 'สมชาย ใจดี',
+          birthdate: `${nextWeek.getDate().toString().padStart(2, '0')}/${(nextWeek.getMonth() + 1).toString().padStart(2, '0')}/${nextWeek.getFullYear() - 25}`
+        },
+        {
+          name: 'สุดา สวยงาม',
+          birthdate: `${nextMonth.getDate().toString().padStart(2, '0')}/${(nextMonth.getMonth() + 1).toString().padStart(2, '0')}/${nextMonth.getFullYear() - 30}`
+        },
+        {
+          name: 'ทดสอบ วันนี้',
+          birthdate: `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getFullYear() - 20}`
+        }
+      ];
+    }
+
+    function getNextBirthday(day, month) {
+      const now = new Date();
+      const thisYear = now.getFullYear();
+      let target = new Date(thisYear, month - 1, day);
+      if (now > target) {
+        target = new Date(thisYear + 1, month - 1, day);
+      }
+      return target;
+    }
+
+    function parseBirthdate(birthdate) {
+      let day, month, year;
+      
+      if (birthdate.includes('/')) {
+        const parts = birthdate.split('/');
+        if (parts[0].length === 4) {
+          [year, month, day] = parts.map(Number);
+        } else {
+          [day, month, year] = parts.map(Number);
+        }
+      } else if (birthdate.includes('-')) {
+        const parts = birthdate.split('-');
+        if (parts[0].length === 4) {
+          [year, month, day] = parts.map(Number);
+        } else {
+          [day, month, year] = parts.map(Number);
+        }
+      }
+      
+      return { day, month, year };
+    }
+
+    function createCountdownCard({ name, birthdate }) {
+      try {
+        const { day, month, year } = parseBirthdate(birthdate);
+        
+        if (!day || !month || day < 1 || day > 31 || month < 1 || month > 12) {
+          console.error(`รูปแบบวันที่ไม่ถูกต้อง: ${birthdate}`);
+          return null;
         }
 
-        // Manual login (fallback)
-        function manualLogin() {
-            // Simulate login for demo purposes
-            currentUser = {
-                id: 'demo_user',
-                name: 'ผู้ใช้ทดสอบ',
-                email: 'demo@example.com',
-                picture: 'https://project-test-submission.netlify.app/images/icon.svg',
-            };
-            showMainContent();
-        }
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-xl shadow-md p-6 text-center space-y-2 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1";
 
-        // CSV parsing function
-        function parseCSV(csvText) {
-            const lines = [];
-            let currentLine = '';
-            let inQuotes = false;
-
-            for (let i = 0; i < csvText.length; i++) {
-                const char = csvText[i];
-
-                if (char === '"') {
-                    inQuotes = !inQuotes;
-                } else if (char === '\n' && !inQuotes) {
-                    if (currentLine.trim()) {
-                        lines.push(currentLine.trim());
-                    }
-                    currentLine = '';
-                } else {
-                    currentLine += char;
-                }
-            }
-
-            if (currentLine.trim()) {
-                lines.push(currentLine.trim());
-            }
-
-            return lines.map(line => {
-                const fields = [];
-                let currentField = '';
-                let inQuotes = false;
-
-                for (let i = 0; i < line.length; i++) {
-                    const char = line[i];
-
-                    if (char === '"') {
-                        inQuotes = !inQuotes;
-                    } else if (char === ',' && !inQuotes) {
-                        fields.push(currentField.replace(/"/g, '').trim());
-                        currentField = '';
-                    } else {
-                        currentField += char;
-                    }
-                }
-
-                fields.push(currentField.replace(/"/g, '').trim());
-                return fields;
-            });
-        }
-
-        // Fetch birthdays from Google Sheets
-        async function fetchBirthdays() {
-            try {
-                console.log('กำลังดึงข้อมูลจาก Google Sheets...');
-                const res = await fetch(sheetUrl);
-                const csv = await res.text();
-                console.log('ข้อมูล CSV ที่ได้รับ:', csv.substring(0, 200) + '...');
-
-                const rows = parseCSV(csv);
-                console.log('แถวที่แยกได้:', rows);
-
-                if (rows.length < 2) {
-                    throw new Error('ไม่พบข้อมูลในสเปรดชีต');
-                }
-
-                const headers = rows[0];
-                console.log('Headers:', headers);
-
-                const nameIdx = headers.findIndex(h =>
-                    h.toLowerCase().includes('name') ||
-                    h.toLowerCase().includes('ชื่อ') ||
-                    h.toLowerCase().includes('นาม')
-                );
-
-                const birthIdx = headers.findIndex(h =>
-                    h.toLowerCase().includes('birth') ||
-                    h.toLowerCase().includes('เกิด') ||
-                    h.toLowerCase().includes('วันเกิด')
-                );
-
-                console.log(`Name column index: ${nameIdx}, Birth column index: ${birthIdx}`);
-
-                if (nameIdx === -1 || birthIdx === -1) {
-                    // ถ้าไม่พบ columns ให้ใช้ข้อมูลตัวอย่าง
-                    console.log('ไม่พบ columns ที่ต้องการ ใช้ข้อมูลตัวอย่าง');
-                    return getSampleBirthdays();
-                }
-
-                const fetchedBirthdays = rows.slice(1).map((row, index) => {
-                    const name = row[nameIdx]?.trim();
-                    const birthdate = row[birthIdx]?.trim();
-
-                    console.log(`Row ${index}: Name="${name}", Birthdate="${birthdate}"`);
-
-                    return { name, birthdate };
-                }).filter(item => item.name && item.birthdate);
-
-                console.log('ข้อมูลวันเกิดที่ได้:', fetchedBirthdays);
-                return fetchedBirthdays.length > 0 ? fetchedBirthdays : getSampleBirthdays();
-
-            } catch (error) {
-                console.error('Error fetching birthdays:', error);
-                return getSampleBirthdays();
-            }
-        }
-
-        // Get sample birthdays if Google Sheets fails
-        function getSampleBirthdays() {
-            const today = new Date();
-            const nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
-            const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 15);
-
-            return [
-                {
-                    name: 'สมชาย ใจดี',
-                    birthdate: `${nextWeek.getDate().toString().padStart(2, '0')}/${(nextWeek.getMonth() + 1).toString().padStart(2, '0')}/${nextWeek.getFullYear() - 25}`
-                },
-                {
-                    name: 'สุดา สวยงาม',
-                    birthdate: `${nextMonth.getDate().toString().padStart(2, '0')}/${(nextMonth.getMonth() + 1).toString().padStart(2, '0')}/${nextMonth.getFullYear() - 30}`
-                },
-                {
-                    name: 'ทดสอบ วันนี้',
-                    birthdate: `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getFullYear() - 20}`
-                }
-            ];
-        }
-
-        function getNextBirthday(day, month) {
-            const now = new Date();
-            const thisYear = now.getFullYear();
-            let target = new Date(thisYear, month - 1, day);
-            if (now > target) {
-                target = new Date(thisYear + 1, month - 1, day);
-            }
-            return target;
-        }
-
-        function parseBirthdate(birthdate) {
-            let day, month, year;
-
-            if (birthdate.includes('/')) {
-                const parts = birthdate.split('/');
-                if (parts[0].length === 4) {
-                    [year, month, day] = parts.map(Number);
-                } else {
-                    [day, month, year] = parts.map(Number);
-                }
-            } else if (birthdate.includes('-')) {
-                const parts = birthdate.split('-');
-                if (parts[0].length === 4) {
-                    [year, month, day] = parts.map(Number);
-                } else {
-                    [day, month, year] = parts.map(Number);
-                }
-            }
-
-            return { day, month, year };
-        }
-
-        function createCountdownCard({ name, birthdate }) {
-            try {
-                const { day, month, year } = parseBirthdate(birthdate);
-
-                if (!day || !month || day < 1 || day > 31 || month < 1 || month > 12) {
-                    console.error(`รูปแบบวันที่ไม่ถูกต้อง: ${birthdate}`);
-                    return null;
-                }
-
-                const card = document.createElement("div");
-                card.className = "bg-white rounded-xl shadow-md p-6 text-center space-y-2 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1";
-
-                card.innerHTML = `
+        card.innerHTML = `
           <h2 class="text-xl font-semibold text-blue-600">${name}</h2>
           <p class="text-sm text-gray-600">วันเกิด: ${birthdate}</p>
           <div class="text-lg font-mono space-y-1">
@@ -378,184 +346,183 @@
           <div class="age text-sm text-gray-500 mt-2"></div>
         `;
 
-                function updateCountdown() {
-                    const now = new Date();
-                    const target = getNextBirthday(day, month);
-                    const diff = target - now;
+        function updateCountdown() {
+          const now = new Date();
+          const target = getNextBirthday(day, month);
+          const diff = target - now;
 
-                    if (diff <= 0) {
-                        card.innerHTML = `
+          if (diff <= 0) {
+            card.innerHTML = `
               <h2 class="text-xl font-semibold text-blue-600">${name}</h2>
               <p class="text-sm text-gray-600">วันเกิด: ${birthdate}</p>
               <div class="text-2xl font-bold text-pink-500 animate-bounce">🎉 วันเกิดวันนี้! 🎂</div>
             `;
-                        return;
-                    }
+            return;
+          }
 
-                    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                    const m = Math.floor((diff / (1000 * 60)) % 60);
-                    const s = Math.floor((diff / 1000) % 60);
+          const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const m = Math.floor((diff / (1000 * 60)) % 60);
+          const s = Math.floor((diff / 1000) % 60);
 
-                    card.querySelector('.days').textContent = d;
-                    card.querySelector('.hours').textContent = h;
-                    card.querySelector('.minutes').textContent = m;
-                    card.querySelector('.seconds').textContent = s;
+          card.querySelector('.days').textContent = d;
+          card.querySelector('.hours').textContent = h;
+          card.querySelector('.minutes').textContent = m;
+          card.querySelector('.seconds').textContent = s;
 
-                    if (year) {
-                        const currentAge = now.getFullYear() - year;
-                        const nextAge = target.getFullYear() - year;
-                        card.querySelector('.age').textContent = `อายุปัจจุบัน: ${currentAge} ปี → ${nextAge} ปี`;
-                    }
-                }
-
-                const intervalId = setInterval(updateCountdown, 1000);
-                updateCountdown();
-
-                return card;
-            } catch (error) {
-                console.error(`Error creating card for ${name}:`, error);
-                return null;
-            }
+          if (year) {
+            const currentAge = now.getFullYear() - year;
+            const nextAge = target.getFullYear() - year;
+            card.querySelector('.age').textContent = `อายุปัจจุบัน: ${currentAge} ปี → ${nextAge} ปี`;
+          }
         }
 
-        // Show form message
-        function showFormMessage(message, isError = false) {
-            const messageDiv = document.getElementById('form-message');
-            messageDiv.textContent = message;
-            messageDiv.className = `mb-4 p-3 rounded-lg ${isError ? 'bg-red-100 text-red-700 border border-red-300' : 'bg-green-100 text-green-700 border border-green-300'}`;
-            messageDiv.classList.remove('hidden');
+        const intervalId = setInterval(updateCountdown, 1000);
+        updateCountdown();
 
-            setTimeout(() => {
-                messageDiv.classList.add('hidden');
-            }, 5000);
-        }
+        return card;
+      } catch (error) {
+        console.error(`Error creating card for ${name}:`, error);
+        return null;
+      }
+    }
 
-        // Submit form to Google Apps Script
-        async function submitToGoogleScript(formData) {
-            const submitBtn = document.getElementById('submit-btn');
-            const submitText = submitBtn.querySelector('.submit-text');
-            const loadingText = submitBtn.querySelector('.loading-text');
+    // Show form message
+    function showFormMessage(message, isError = false) {
+      const messageDiv = document.getElementById('form-message');
+      messageDiv.textContent = message;
+      messageDiv.className = `mb-4 p-3 rounded-lg ${isError ? 'bg-red-100 text-red-700 border border-red-300' : 'bg-green-100 text-green-700 border border-green-300'}`;
+      messageDiv.classList.remove('hidden');
+      
+      setTimeout(() => {
+        messageDiv.classList.add('hidden');
+      }, 5000);
+    }
 
-            // Show loading state
-            submitBtn.disabled = true;
-            submitText.classList.add('hidden');
-            loadingText.classList.remove('hidden');
-
-            try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbzikhVO1ewSBPoyBhdkpi5ATCMWquxAgsq8wOsWBy5CvfiuFW2zIluObUwJZI3zqZYMJQ/exec', {
-                    method: 'POST',
-                    mode: 'no-cors', // Required for Google Apps Script
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams(formData)
-                });
-
-                // Since we're using no-cors, we can't read the response
-                // Assume success if no error was thrown
-                showFormMessage('บันทึกข้อมูลเรียบร้อยแล้ว!');
-
-                // Add to local display immediately
-                addBirthdayToDisplay(formData.get('name'), formData.get('birthdate'));
-
-                // Close modal and reset form
-                setTimeout(() => {
-                    document.getElementById('add-birthday-modal').classList.add('hidden');
-                    document.getElementById('add-birthday-form').reset();
-                }, 1500);
-
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                showFormMessage('เกิดข้อผิดพลาดในการบันทึกข้อมูล', true);
-            } finally {
-                // Reset button state
-                submitBtn.disabled = false;
-                submitText.classList.remove('hidden');
-                loadingText.classList.add('hidden');
-            }
-        }
-
-        // Add new birthday to display
-        function addBirthdayToDisplay(name, birthdate) {
-            const formattedDate = new Date(birthdate).toLocaleDateString('th-TH', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
-            }).replace(/\//g, '/');
-
-            const newBirthday = { name, birthdate: formattedDate };
-            birthdays.push(newBirthday);
-
-            const card = createCountdownCard(newBirthday);
-            if (card) {
-                document.getElementById('birthday-list').appendChild(card);
-            }
-        }
-
-        async function init() {
-            birthdays = await fetchBirthdays();
-            const container = document.getElementById("birthday-list");
-            const loading = document.getElementById("loading");
-
-            if (birthdays.length === 0) {
-                loading.innerHTML = '<div class="text-red-600">ไม่พบข้อมูลวันเกิด</div>';
-                return;
-            }
-
-            loading.style.display = 'none';
-
-            birthdays.forEach(b => {
-                const card = createCountdownCard(b);
-                if (card) {
-                    container.appendChild(card);
-                }
-            });
-
-            if (container.children.length === 0) {
-                container.innerHTML = '<div class="text-center col-span-full text-gray-600">ไม่สามารถสร้างการ์ดวันเกิดได้</div>';
-            }
-        }
-
-        // Event listeners
-        document.addEventListener('DOMContentLoaded', function () {
-            // Logout button
-            document.getElementById('logout-btn').addEventListener('click', logout);
-
-            // Manual login button (fallback)
-            document.getElementById('manual-login').addEventListener('click', manualLogin);
-
-            // Add birthday button
-            document.getElementById('add-birthday-btn').addEventListener('click', function () {
-                document.getElementById('add-birthday-modal').classList.remove('hidden');
-            });
-
-            // Cancel add birthday
-            document.getElementById('cancel-add').addEventListener('click', function () {
-                document.getElementById('add-birthday-modal').classList.add('hidden');
-                document.getElementById('add-birthday-form').reset();
-            });
-
-            // Add birthday form
-            document.getElementById('add-birthday-form').addEventListener('submit', async function (e) {
-                e.preventDefault();
-
-                const formData = new FormData(this);
-                const name = formData.get('name');
-                const birthdate = formData.get('birthdate');
-
-                if (name && birthdate) {
-                    // Add user info to form data
-                    if (currentUser) {
-                        formData.append('user_email', currentUser.email);
-                        formData.append('user_name', currentUser.name);
-                    }
-
-                    await submitToGoogleScript(formData);
-                }
-            });
+    // Submit form to Google Apps Script
+    async function submitToGoogleScript(formData) {
+      const submitBtn = document.getElementById('submit-btn');
+      const submitText = submitBtn.querySelector('.submit-text');
+      const loadingText = submitBtn.querySelector('.loading-text');
+      
+      // Show loading state
+      submitBtn.disabled = true;
+      submitText.classList.add('hidden');
+      loadingText.classList.remove('hidden');
+      
+      try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzikhVO1ewSBPoyBhdkpi5ATCMWquxAgsq8wOsWBy5CvfiuFW2zIluObUwJZI3zqZYMJQ/exec', {
+          method: 'POST',
+          mode: 'no-cors', // Required for Google Apps Script
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams(formData)
         });
-    </script>
-</body>
+        
+        // Since we're using no-cors, we can't read the response
+        // Assume success if no error was thrown
+        showFormMessage('บันทึกข้อมูลเรียบร้อยแล้ว!');
+        
+        // Add to local display immediately
+        addBirthdayToDisplay(formData.get('name'), formData.get('birthdate'));
+        
+        // Close modal and reset form
+        setTimeout(() => {
+          document.getElementById('add-birthday-modal').classList.add('hidden');
+          document.getElementById('add-birthday-form').reset();
+        }, 1500);
+        
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        showFormMessage('เกิดข้อผิดพลาดในการบันทึกข้อมูล', true);
+      } finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        submitText.classList.remove('hidden');
+        loadingText.classList.add('hidden');
+      }
+    }
 
+    // Add new birthday to display
+    function addBirthdayToDisplay(name, birthdate) {
+      const formattedDate = new Date(birthdate).toLocaleDateString('th-TH', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      }).replace(/\//g, '/');
+      
+      const newBirthday = { name, birthdate: formattedDate };
+      birthdays.push(newBirthday);
+      
+      const card = createCountdownCard(newBirthday);
+      if (card) {
+        document.getElementById('birthday-list').appendChild(card);
+      }
+    }
+
+    async function init() {
+      birthdays = await fetchBirthdays();
+      const container = document.getElementById("birthday-list");
+      const loading = document.getElementById("loading");
+
+      if (birthdays.length === 0) {
+        loading.innerHTML = '<div class="text-red-600">ไม่พบข้อมูลวันเกิด</div>';
+        return;
+      }
+
+      loading.style.display = 'none';
+
+      birthdays.forEach(b => {
+        const card = createCountdownCard(b);
+        if (card) {
+          container.appendChild(card);
+        }
+      });
+
+      if (container.children.length === 0) {
+        container.innerHTML = '<div class="text-center col-span-full text-gray-600">ไม่สามารถสร้างการ์ดวันเกิดได้</div>';
+      }
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      // Logout button
+      document.getElementById('logout-btn').addEventListener('click', logout);
+      
+      // Manual login button (fallback)
+      document.getElementById('manual-login').addEventListener('click', manualLogin);
+      
+      // Add birthday button
+      document.getElementById('add-birthday-btn').addEventListener('click', function() {
+        document.getElementById('add-birthday-modal').classList.remove('hidden');
+      });
+      
+      // Cancel add birthday
+      document.getElementById('cancel-add').addEventListener('click', function() {
+        document.getElementById('add-birthday-modal').classList.add('hidden');
+        document.getElementById('add-birthday-form').reset();
+      });
+      
+      // Add birthday form
+      document.getElementById('add-birthday-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const name = formData.get('name');
+        const birthdate = formData.get('birthdate');
+        
+        if (name && birthdate) {
+          // Add user info to form data
+          if (currentUser) {
+            formData.append('user_email', currentUser.email);
+            formData.append('user_name', currentUser.name);
+          }
+          
+          await submitToGoogleScript(formData);
+        }
+      });
+    });
+  </script>
+</body>
 </html>
