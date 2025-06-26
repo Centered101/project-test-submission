@@ -15,13 +15,13 @@
     <meta property="og:url" content="https://project-test-submission.netlify.app">
     <meta property="og:title" content="GitHub API Profile">
     <meta property="og:description" content="GitHub API Profile">
-    <meta property="og:image" content="https:/project-test-submission.netlify.app/images/icon.svg">
+    <meta property="og:image" content="https://project-test-submission.netlify.app/images/icon.svg">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://project-test-submission.netlify.app">
     <meta property="twitter:title" content="GitHub API Profile">
     <meta property="twitter:description" content="GitHub API Profile">
-    <meta property="twitter:image" content="https:/project-test-submission.netlify.app/images/icon.svg">
+    <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
 
     <link rel="shortcut icon" type="image/x-icon" href="">
     <link rel="stylesheet" href="https://project-test-submission.netlify.app/style/style.css">
@@ -101,6 +101,7 @@
         --border: #414143;
         --text-color: #DCDCDC;
         --sky-glow: #1B2830;
+        --ff: 75%;
     }
 
     /* โหมด System (media query) */
@@ -111,10 +112,15 @@
             --border: #414143;
             --text-color: #DCDCDC;
             --sky-glow: #1B2830;
+            --ff: 75%;
         }
 
         .sky-glow {
             background-color: var(--sky-glow);
+        }
+
+        ul#projects-list li a {
+            filter: brightness(var(--ff));
         }
     }
 
@@ -125,6 +131,7 @@
         --white-smoker: #F5F5F5;
         --text-color: #0D0D0D;
         --sky-glow: #E3F2FD;
+        --ff: 100%;
     }
 
     @media (prefers-color-scheme: light) {
@@ -134,10 +141,15 @@
             --white-smoker: #F5F5F5;
             --text-color: #0D0D0D;
             --sky-glow: #E3F2FD;
+            --ff: 100%;
         }
 
         .sky-glow {
             background-color: var(--sky-glow);
+        }
+
+        ul#projects-list li a {
+            filter: brightness(var(--ff));
         }
     }
 </style>
@@ -158,13 +170,13 @@
 
         <p class="border-b uppercase p-2 md:px-4 md:py-8">Menu GitHub API Profile</p>
         <!-- Dropdown เปลี่ยนธีม -->
-        <div title="select theme" class="w-full mx-auto space-y-2 px-2 md:px-4 pt-2">
+        <div title="select theme" class="w-full mx-auto space-y-2 p-2 px-2 md:px-4">
             <label for="theme-switcher" class="block">
                 Theme Selection
             </label>
             <div class="relative">
                 <select id="theme-switcher"
-                    class="w-full appearance-none bg-[color:var(--bg-color)] border rounded-xl shadow-inner px-4 py-2 pr-10 cursor-pointer focus:ring focus:ring-[color:var(--main-color)]">
+                    class="w-full appearance-none bg-[color:var(--bg-color)] rounded-xl shadow-inner px-4 py-2 pr-10 cursor-pointer focus:ring-1 focus:ring-[color:var(--main-color)]">
                     <option value="system">System</option>
                     <option value="dark">Dark</option>
                     <option value="light">Light</option>
@@ -180,15 +192,13 @@
 
         <!-- ส่วนแสดงสถานะ GitHub API -->
         <div
-            class="w-full bg-[color:var(--white-smoker)] border-b flex flex-col justify-center gap-2 md:gap-4 text-sm text-start font-normal p-2 md:p-4">
+            class="w-full bg-[color:var(--white-smoker)] border-b flex flex-col justify-center gap-2 md:gap-4 text-sm text-start font-normal px-2 py-2 md:px-4 md:pb-4">
             <div class="mb-2">
                 <h1 class="uppercase font-semibold text-base">GitHub API Usage</h1>
                 <p>Check how many API Requests remain</p>
             </div>
-
-            <div class="bg-[color:var(--bg-color)] rounded-xl p-2 md:p-4 shadow-inner">
-                <p>🚀 Remaining: <span id="rate-remaining" class="text-blue-500">-</span> / 60 requests</p>
-                <p>Reset time: <span id="rate-reset">-</span></p>
+            <div id="rateStatus" class="bg-[color:var(--bg-color)] rounded-xl p-2 md:p-4 shadow-inner">
+                <p>Loading rate limit...</p>
             </div>
             <div hidden id="warningMessage"></div>
         </div>
@@ -246,8 +256,7 @@
         </ul>
     </nav>
     <!-- Overlay (แสดงเฉพาะจอเล็กตอนเปิดเมนู) -->
-    <div id="overlay"
-        class="hidden md:hidden fixed inset-0 bg-black bg-opacity-40 transition-opacity duration-300 z-30"></div>
+    <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-25 z-30"></div>
 
     <main class="min-h-screen w-full md:w-2/3 lg:w-3/4 ml-auto">
         <section class="flex justify-between items-center ">
@@ -263,7 +272,7 @@
             </button>
         </section>
         <!-- โปรไฟล์ GitHub -->
-        <section class="space-y-2 md:space-y-8 py-12 sm:py-8">
+        <section class="space-y-4 md:space-y-8 py-12 sm:py-8">
             <div class="w-full flex items-center justify-start px-2 space-x-2 md:px-4 md:gap-4">
                 <img id="profile-img" onclick="location.reload()" class="size-20 sm:size-24 md:size-56 cursor-pointer"
                     draggable="false" oncontextmenu="return false"
@@ -292,7 +301,7 @@
                     <p hidden id="profile-location"></p>
                     <p hidden id="profile-bio" class="w-2/3"></p>
                 </div>
-                <div class="basis-full flex-1 flex flex-row items-center gap-2 max-w-sm md:max-w-full *:uppercase">
+                <div class="basis-full flex-1 flex flex-row items-center gap-2 w-full md:max-w-full *:uppercase">
                     <a title="Follow" aria-label="Follow" id="followBtn"
                         href="https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fcentered101%2F"
                         class="relative w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--main-color)] border rounded-lg truncate px-2 py-1 overflow-hidden active:bg-[color:var(--sky-glow)]">

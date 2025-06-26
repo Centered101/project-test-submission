@@ -1,35 +1,32 @@
-// ดึงข้อมูล Rate Limit จาก GitHub API
 fetch("https://api.github.com/rate_limit")
-    .then(response => response.json()) // แปลงข้อมูล response ให้เป็น JSON
+    .then(response => response.json())
     .then(data => {
-        const remaining = data.rate.remaining; // จำนวนครั้งที่สามารถเรียก API ได้ที่เหลือ
-        const resetTime = new Date(data.rate.reset * 1000).toLocaleTimeString(); // เวลาที่โควต้าจะรีเซ็ต (แปลง timestamp เป็นเวลาอ่านง่าย)
+        const remaining = data.rate.remaining;
+        const resetTime = new Date(data.rate.reset * 1000).toLocaleTimeString();
 
-        // แสดงข้อมูลจำนวนครั้งที่เหลือ และเวลารีเซ็ตใน element ที่กำหนด
-        document.getElementById("rate-remaining").innerText = remaining;
-        document.getElementById("rate-reset").innerText = resetTime;
+        const $rateStatus = $("#rateStatus");
 
-        // ถ้าจำนวนครั้งที่เหลือน้อยกว่า 10 ให้แสดงกล่องแจ้งเตือน
-        $(window).on('load', function () {
-            if (remaining < 10) {
-                showToast(`⚠️ Low API requests remaining! Please wait!`, '#FF7070', '#FFF', '#DCDCDC');
-            }
-        });
+        // แสดงข้อมูล remaining + reset ใน #rateStatus
+        $rateStatus.html(`
+            <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="text-[#409EFE]">${remaining}</span> / 60 requests</p>
+            <p>Reset time: <span>${resetTime}</span></p>
+        `);
 
-        // ถ้าจำนวนครั้งที่เหลือเป็น 0 ให้แสดงกล่องแจ้งเตือนใหม่
-        const warningMessage = (margin) => `
-<div class="bg-[#FF7070] shadow-inne text-[color:var(--text-color)] text-sm text-wrap border rounded-xl ${margin} p-2">
-    <span>⚠️ You have reached the API limit! Please wait until ${resetTime}.</span>
-</div>`;
+        $("#rate-reset").text(resetTime); // ถ้ามี element นี้ไว้ใช้อย่างอื่นก็ยังคงอยู่ได้
+
+        // แจ้งเตือนเมื่อหมด
+        const warningMessage = (margin = "") => `
+            <div class="bg-[#FF7070] shadow-inne text-[color:var(--text-color)] text-sm text-wrap border rounded-xl ${margin} p-2">
+                <span>⚠️ You have reached the API limit! Please wait until ${resetTime}.</span>
+            </div>`;
 
         if (remaining === 0) {
             $("#warningMessage").html(warningMessage()).addClass("block");
             $("#repo-list").html(warningMessage("text-center m-0"));
-            $("#followers-list, #following-list").html(warningMessage("text-center m-2 md:m-4"));
+            $("#followers-list, #following-list").html(warningMessage("text-center m-2 md:m-4 !mb-0"));
         }
     })
     .catch(error => {
-        // กรณีเกิดข้อผิดพลาดในการเรียก API
         console.error("Error fetching API data:", error);
     });
 
@@ -126,7 +123,7 @@ fetchData(`https://api.github.com/users/${username}/repos`, repos => {
         `
 <li>
     <a translate="no" title='${repo.name}${repo.language ? " ——  " + repo.language : ""}' href="${repo.html_url}" target="_blank" class="flex flex-col gap-2 border border-[#409EFE] rounded p-2 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
-        <span class="flex items-center gap-2">
+        <span class="flex items-center gap-1">
             <img src="${repo.owner.avatar_url}" class="size-6 border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
             <span class="text-sm font-normal truncate">${repo.owner.login}</span>
         </span>

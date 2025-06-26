@@ -135,54 +135,10 @@ const projectsList = document.getElementById('projects-list');
 project.forEach(({ name, link, img }) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
-<a title="${name}" href="${link}" target="_blank" class="flex flex-col justify-center items-center bg-[#FFFFFF] w-full h-full max-w-[1080px] max-h-[1350px] overflow-hidden active:brightness-75 group">
+<a title="${name}" href="${link}" target="_blank" class="flex flex-col justify-center items-center bg-[#FFFFFF] w-full h-full max-w-[1080px] max-h-[1350px] overflow-hidden active:!brightness-90 group">
     <img draggable="false" oncontextmenu="return false;" data-nimg="1" class="block object-cover ease-out duration-300"
         src="${img || defaultImage}"
         onerror="this.src='https://project-test-submission.netlify.app/images/img/noitems.svg'">
 </a>`;
     projectsList.appendChild(listItem);
-});
-
-// —[ Toastify ]———————————————————————————————————————————————————————————————————————————————————————————————————
-
-function showToast(message, bgColor = "#FFF", color = "#0D0D0D", borderColor = "#EFEFEF", duration = 2750) {
-    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    // ปรับสีให้เหมาะกับ Dark Mode อัตโนมัติ ถ้าไม่ได้ส่ง bgColor หรือ color มาเอง
-    if (bgColor === "#FFF" && color === "#0D0D0D" && isDarkMode) {
-        bgColor = "#121212"; // พื้นหลังใน dark
-        color = "#DCDCDC";   // ตัวหนังสือขาว
-    }
-
-    Toastify({
-        newWindow: true,
-        text: message,
-        duration: duration,
-        gravity: "bottom",
-        position: "right",
-        style: {
-            position: "fixed",
-            right: "16px",
-            background: bgColor,
-            color: color,
-            borderColor: borderColor,
-            fontSize: "0.75rem", /* 12px */
-            lineHeight: "1rem", /* 16px */
-            borderWidth: "1px",
-            borderRadius: "12px",
-            paddingBlock: "8px",
-            paddingInline: "32px",
-            zIndex: 100,
-        }
-    }).showToast();
-}
-
-// Detect when offline
-$(window).on("offline", function () {
-    showToast("⚠️ Oh no! You are offline 😐", '#FF7070', '#FFF', 5000);
-});
-
-// Detect when back online
-$(window).on("online", function () {
-    showToast("Glad you're back online! 😍", '#1ED760', '#FFF', 5000);
 });
