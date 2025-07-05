@@ -3,31 +3,43 @@ fetch("https://api.github.com/rate_limit")
     .then(data => {
         const remaining = data.rate.remaining;
         const resetTime = new Date(data.rate.reset * 1000).toLocaleTimeString();
+        const $rateStatus = $("#rateStatus").removeClass("animate-pulse");
 
-        const $rateStatus = $("#rateStatus");
+        const warningMessage = (margin = "") => `
+            <div class="bg-[color:var(--white-smoker)] shadow-inne shadow-inner text-[color:var(--text-color)] text-sm text-wrap border rounded-xl ${margin} p-2">
+                <span class="flex items-center justify-center gap-2">
+                    <svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                    You have reached the API limit! Please wait until ${resetTime}.
+                 </span>
+            </div>`;
 
-        // แสดงข้อมูล remaining + reset ใน #rateStatus
-        $rateStatus.html(`
+        $(window).on('load', function () {
+            if (remaining <= 10) {
+                showNotification('Low API requests remaining! Please wait!');
+            }
+        });
+
+        if (remaining === 0) {
+            $("#repo-list").html(warningMessage("text-center m-0"));
+            $("#followers-list, #following-list").html(warningMessage("text-center m-2 md:m-4 !mb-0"));
+            $rateStatus.html(`
+            <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="text-[#409EFE]">${remaining}</span> / 60 requests</p>
+            <p class="flex items-center gap-2"><svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+            <span>You have reached the API limit! Please wait until ${resetTime}</span></p>
+            `);
+        } else {
+            $rateStatus.html(`
             <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="text-[#409EFE]">${remaining}</span> / 60 requests</p>
             <p>Reset time: <span>${resetTime}</span></p>
-        `);
+            `);
+        }
 
         $("#rate-reset").text(resetTime); // ถ้ามี element นี้ไว้ใช้อย่างอื่นก็ยังคงอยู่ได้
 
-        // แจ้งเตือนเมื่อหมด
-        const warningMessage = (margin = "") => `
-            <div class="bg-[#FF7070] shadow-inne text-[color:var(--text-color)] text-sm text-wrap border rounded-xl ${margin} p-2">
-                <span>⚠️ You have reached the API limit! Please wait until ${resetTime}.</span>
-            </div>`;
-
-        if (remaining === 0) {
-            $("#warningMessage").html(warningMessage()).addClass("block");
-            $("#repo-list").html(warningMessage("text-center m-0"));
-            $("#followers-list, #following-list").html(warningMessage("text-center m-2 md:m-4 !mb-0"));
-        }
     })
     .catch(error => {
         console.error("Error fetching API data:", error);
+        showNotification('Error fetching API data', 'error');
     });
 
 // ตั้งค่าชื่อหน้าต่างเว็บเป็นชื่อ GitHub Profile
@@ -59,6 +71,7 @@ fetch(`https://api.github.com/users/${username}`)
     })
     .catch(error => {
         console.error("Unable to load GitHub data.:", error);
+        showNotification('Unable to load GitHub data.', 'error');
     });
 
 // ฟังก์ชันดึงข้อมูลจาก URL แล้วเรียก callback พร้อมข้อมูลที่ได้
