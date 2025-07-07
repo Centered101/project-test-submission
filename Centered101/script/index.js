@@ -331,55 +331,72 @@ project.forEach(({ name, link, img }) => {
     projectsList.appendChild(listItem);
 });
 
-const selector = `ul li label, section div label, #deploy label, #fullscreen button, #repo-list li a, #followers-list li a, #following-list li a, #projects-list a`;
+// สร้าง popup element reuse ตัวเดียว
+const $popup = $('<div class="popup"></div>')
+    .addClass('absolute hidden max-w-sm bg-[color:var(--white-smoker)] !text-[color:var(--text-color)] border rounded-xl z-50 p-2 text-sm text-black shadow')
+    .css({ pointerEvents: 'none' })
+    .appendTo('body');
 
-$(selector).each(function () {
-    // ทำอะไรกับแต่ละ element ที่ match selector
+// ฟังก์ชันตั้งตำแหน่ง
+function setPopupPosition(x, y) {
+    const popupWidth = $popup.outerWidth() || 200;
+    const popupHeight = $popup.outerHeight() || 40;
+    const padding = 10;
 
-    const $cell = $(this);
-
-    // สร้าง popup element
-    const $popup = $('<div class="popup"></div>')
-        .addClass('absolute hidden max-w-sm bg-[color:var(--white-smoker)] !text-[color:var(--text-color)] border rounded-xl z-50 p-2 text-sm text-black shadow')
-        .css({
-            pointerEvents: 'none',
-        })
-        .appendTo('body');
-
-    // คำนวณตำแหน่ง
-    function setPopupPosition(x, y) {
-        const popupWidth = $popup.outerWidth() || 200;
-        const popupHeight = $popup.outerHeight() || 40;
-        const padding = 10;
-
-        if (x + popupWidth + padding > $(window).width()) {
-            x = x - popupWidth - padding;
-        } else {
-            x = x + padding;
-        }
-
-        if (y + popupHeight + padding > $(window).height()) {
-            y = y - popupHeight - padding;
-        } else {
-            y = y + padding;
-        }
-
-        $popup.css({ left: x + 'px', top: y + 'px' });
+    if (x + popupWidth + padding > $(window).width()) {
+        x = x - popupWidth - padding;
+    } else {
+        x = x + padding;
     }
 
-    // desktop: hover
-    $cell.on('mouseenter', function (e) {
-        const title = $(this).attr('title');
-        $popup.text(title).stop(true, true).fadeIn(150);
-        setPopupPosition(e.pageX, e.pageY);
-    });
+    if (y + popupHeight + padding > $(window).height()) {
+        y = y - popupHeight - padding;
+    } else {
+        y = y + padding;
+    }
 
-    $cell.on('mousemove', function (e) {
-        setPopupPosition(e.pageX, e.pageY);
-    });
+    $popup.css({ left: x + 'px', top: y + 'px' });
+}
 
-    $cell.on('mouseleave', function () {
-        $popup.stop(true, true).fadeOut(100);
-    });
+// ผูก event ให้ selector ทั้งหมด (รวมทุกพื้นที่)
+$(document).on('mouseenter', `
+  ul li label, 
+  section div label, 
+  #deploy label, 
+  #fullscreen button, 
+  #repo-list li a, 
+  #followers-list li a, 
+  #following-list li a, 
+  #projects-list li a
+`, function (e) {
+    const title = $(this).attr('title');
+    if (!title) return;
+    $popup.text(title).stop(true, true).fadeIn(150);
+    setPopupPosition(e.pageX, e.pageY);
+});
 
+$(document).on('mousemove', `
+  ul li label, 
+  section div label, 
+  #deploy label, 
+  #fullscreen button, 
+  #repo-list li a, 
+  #followers-list li a, 
+  #following-list li a, 
+  #projects-list li a
+`, function (e) {
+    setPopupPosition(e.pageX, e.pageY);
+});
+
+$(document).on('mouseleave', `
+  ul li label, 
+  section div label, 
+  #deploy label, 
+  #fullscreen button, 
+  #repo-list li a, 
+  #followers-list li a, 
+  #following-list li a, 
+  #projects-list li a
+`, function () {
+    $popup.stop(true, true).fadeOut(100);
 });
