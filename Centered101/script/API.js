@@ -135,7 +135,7 @@ fetchData(`https://api.github.com/users/${username}/repos`, repos => {
     repoList.innerHTML = repos.map(repo =>
         `
 <li>
-    <a translate="no" title='${repo.name}${repo.language ? " ——  " + repo.language : ""}' href="${repo.html_url}" target="_blank" class="flex flex-col gap-2 border border-[#409EFE] rounded p-2 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+    <a translate="no" title='${repo.name}${repo.language ? "ㅤ" + repo.language : ""}' href="${repo.html_url}" target="_blank" class="flex flex-col gap-2 border border-[#409EFE] rounded p-2 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
         <span class="flex items-center gap-1">
             <img src="${repo.owner.avatar_url}" class="size-6 border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
             <span class="text-sm font-normal truncate">${repo.owner.login}</span>

@@ -171,7 +171,7 @@
 
 <body class="flex flex-row font-semibold text-sm sm:text-base select-none bg-[color:var(--bg-color)] *:!slashed-zero"
     draggable="false" oncontextmenu="return false">
-
+    <!-- preloader -->
     <div id="preloader"
         class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
         <span
@@ -179,9 +179,60 @@
         <h2>Loading</h2>
         <p>Your adventure is about to begin</p>
     </div>
+    <!-- Overlay (แสดงเฉพาะจอเล็กตอนเปิดเมนู) -->
+    <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-25 z-30"></div>
+    <!-- Fullscreen Viewer -->
+    <div id="fullscreen"
+        class="fade-in !w-full fixed inset-0 hidden flex-col items-center justify-center gap-8 bg-[color:var(--bg-color)] touch-none z-50"
+        onclick="closeFullscreen()">
+
+        <div class="relative max-w-[90vw] max-h-[70vh] flex items-center justify-center">
+            <img id="fullscreenImage"
+                class="max-w-full max-h-full bg-[color:var(--white-smoker)] border rounded-full md:rounded-none shadow-inner cursor-pointer transition-[border-radius] duration-300 ease-in-out"
+                alt="large profile picture" onclick="toggleImageShape(event)" draggable="false"
+                oncontextmenu="return false"
+                onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'" />
+            <div id="qrContainer"
+                class="hidden flex flex-col items-center justify-center bg-white p-4 border rounded-xl overflow-hidden">
+                <div id="loadingSpinner" class="flex flex-col items-center justify-center">
+                    <span
+                        class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[#409EFE] mx-auto"></span>
+                </div>
+                <img id="qrImage" src="" alt="QR Code" class="max-w-[90vw] max-h-[70vh] hidden p-4" draggable="false"
+                    oncontextmenu="return false" />
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center gap-4 z-40 *:flex *:items-center *:justify-center *:bg-[color:var(--white-smoker)] *:rounded-full *:shadow-inner *:p-4 *:transition-all *:duration-300"
+            onclick="event.stopPropagation()">
+
+            <button title="share" onclick="share()" class="active:scale-90"">
+                            <svg xmlns=" http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+                fill="#currentColor">
+                <path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z" />
+                </svg>
+            </button>
+
+            <button title="copy link" onclick="copyLink()" id="copyBtn" class="active:scale-90">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+                    fill="currentColor">
+                    <path
+                        d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z" />
+                </svg>
+            </button>
+
+            <button title="QR Code" onclick="generateQRCode()" class="active:scale-90">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+                    fill="currentColor">
+                    <path
+                        d="M80-680v-200h200v80H160v120H80Zm0 600v-200h80v120h120v80H80Zm600 0v-80h120v-120h80v200H680Zm120-600v-120H680v-80h200v200h-80ZM700-260h60v60h-60v-60Zm0-120h60v60h-60v-60Zm-60 60h60v60h-60v-60Zm-60 60h60v60h-60v-60Zm-60-60h60v60h-60v-60Zm120-120h60v60h-60v-60Zm-60 60h60v60h-60v-60Zm-60-60h60v60h-60v-60Zm240-320v240H520v-240h240ZM440-440v240H200v-240h240Zm0-320v240H200v-240h240Zm-60 500v-120H260v120h120Zm0-320v-120H260v120h120Zm320 0v-120H580v120h120Z" />
+                </svg>
+            </button>
+        </div>
+    </div>
     <!-- เมนูด้านข้าง -->
     <nav id="nav"
-        class="fixed top-0 left-0 h-screen w-2/3 sm:w-1/2 md:w-1/3 lg:w-1/4 bg-[color:var(--white-smoker)] border-r md:block -translate-x-full md:translate-x-0 transform transition-transform duration-300 z-40">
+        class="fixed top-0 left-0 h-screen w-2/3 sm:w-1/2 md:w-1/3 lg:w-1/4 bg-[color:var(--white-smoker)] border-r md:block -translate-x-full md:translate-x-0 transform transition-transform duration-300 z-40 overflow-x-auto">
 
         <p class="border-b uppercase p-2 md:px-4 md:py-8">Menu GitHub API Profile</p>
         <!-- Dropdown เปลี่ยนธีม -->
@@ -191,7 +242,7 @@
             </label>
             <div class="relative">
                 <select id="theme-switcher"
-                    class="w-full appearance-none bg-[color:var(--bg-color)] rounded-xl shadow-inner px-4 py-2 pr-10 cursor-pointer focus:ring-1 focus:ring-[color:var(--main-color)]">
+                    class="w-full appearance-none bg-[color:var(--bg-color)] rounded-xl shadow-inner px-4 py-2 pr-10 cursor-pointer">
                     <option value="system">System</option>
                     <option value="dark">Dark</option>
                     <option value="light">Light</option>
@@ -268,12 +319,15 @@
                 </label>
             </li>
         </ul>
+        <div class="aspect-[16/9] w-full !border-y border-[#000] overflow-hidden">
+            <video autoplay loop playsinline controls class="w-full h-full object-cover">
+                <source src="./Baby_come_back.mp4" type="video/mp4">
+            </video>
+        </div>
     </nav>
-    <!-- Overlay (แสดงเฉพาะจอเล็กตอนเปิดเมนู) -->
-    <div id="overlay" class="hidden fixed inset-0 bg-black bg-opacity-25 z-30"></div>
 
     <main class="min-h-screen w-full md:w-2/3 lg:w-3/4 ml-auto">
-        <section class="flex justify-between items-center ">
+        <section class="flex justify-between items-center">
             <p class="uppercase p-2 md:px-4 md:py-8">GitHub API Profile</p>
             <!-- Toggle Button -->
             <button id="sidebarToggle" title="menu"
@@ -287,62 +341,12 @@
         </section>
         <!-- โปรไฟล์ GitHub -->
         <section class="space-y-4 md:space-y-8 py-12 sm:py-8">
-            <div class="w-full flex items-center justify-start space-x-2 px-2 md:px-4">
+            <div class="w-full flex items-center justify-start space-x-2 md:space-x-4 px-2 md:px-4">
                 <!-- รูปโปรไฟล์ -->
                 <img id="profile-img" class="size-24 md:size-56 rounded-full md:rounded-none cursor-pointer"
                     draggable="false" oncontextmenu="return false"
                     src="https://project-test-submission.netlify.app/images/icon.svg"
                     onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
-
-                <!-- Fullscreen Viewer -->
-                <div id="fullscreen"
-                    class="fade-in fixed inset-0 hidden flex-col items-center justify-center gap-8 bg-[color:var(--bg-color)] bg-opacity-80 backdrop-blur-md touch-none z-50"
-                    onclick="closeFullscreen()">
-
-                    <div class="relative max-w-[90vw] max-h-[70vh] flex items-center justify-center">
-                        <img id="fullscreenImage"
-                            class="max-w-full max-h-full bg-[color:var(--white-smoker)] border rounded-full md:rounded-none shadow-inner ease-in-out duration-300"
-                            alt="large profile picture" onclick="toggleImageShape(event)" draggable="false"
-                            oncontextmenu="return false" />
-                        <div id="qrContainer"
-                            class="hidden flex flex-col items-center justify-center bg-white p-4 border rounded-xl overflow-hidden">
-                            <div id="loadingSpinner" class="flex flex-col items-center justify-center">
-                                <span
-                                    class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[#409EFE] mx-auto"></span>
-                            </div>
-                            <img id="qrImage" src="" alt="QR Code" class="max-w-[90vw] max-h-[70vh] hidden p-4" />
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-center gap-4 z-40 *:flex *:items-center *:justify-center *:bg-[color:var(--white-smoker)] *:rounded-full *:shadow-inner *:p-4 *:transition-all *:duration-300"
-                        onclick="event.stopPropagation()">
-
-                        <button title="share" onclick="share()" class="active:scale-90"">
-                            <svg xmlns=" http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
-                            fill="#currentColor">
-                            <path
-                                d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z" />
-                            </svg>
-                        </button>
-
-                        <button title="copy link" onclick="copyLink()" id="copyBtn" class="active:scale-90">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
-                                fill="currentColor">
-                                <path
-                                    d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z" />
-                            </svg>
-                        </button>
-
-                        <button title="QR Code" onclick="generateQRCode()" class="active:scale-90">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
-                                fill="currentColor">
-                                <path
-                                    d="M80-680v-200h200v80H160v120H80Zm0 600v-200h80v120h120v80H80Zm600 0v-80h120v-120h80v200H680Zm120-600v-120H680v-80h200v200h-80ZM700-260h60v60h-60v-60Zm0-120h60v60h-60v-60Zm-60 60h60v60h-60v-60Zm-60 60h60v60h-60v-60Zm-60-60h60v60h-60v-60Zm120-120h60v60h-60v-60Zm-60 60h60v60h-60v-60Zm-60-60h60v60h-60v-60Zm240-320v240H520v-240h240ZM440-440v240H200v-240h240Zm0-320v240H200v-240h240Zm-60 500v-120H260v120h120Zm0-320v-120H260v120h120Zm320 0v-120H580v120h120Z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
                 <div class="w-full max-w-md flex flex-wrap justify-start items-center md:gap-y-4">
                     <p id="profile-name" translate="no" class="basis-full text-base sm:text-xl md:text-3xl px-2">
                         API not connected</p>
@@ -367,8 +371,11 @@
                     <p hidden id="profile-bio" class="w-2/3"></p>
                 </div>
                 <div class="basis-full flex-1 flex flex-row items-center gap-2 w-full md:max-w-full *:uppercase">
-                    <a title="Follow" aria-label="Follow" id="followBtn" href='https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fcentered101%2F'"
-                        class="relative w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--main-color)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--sky-glow)]">
+                    <a title="Follow" aria-label="Follow" id="followBtn"
+                        href='https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fcentered101%2F'"
+                        class=" relative w-1/2 md:max-w-56 flex justify-center items-center gap-2
+                        bg-[color:var(--main-color)] border rounded-lg truncate p-2 overflow-hidden
+                        active:bg-[color:var(--sky-glow)]">
                         <span id="followText">Follow</span>
                     </a>
                     <button title="Message" aria-label="Message"
