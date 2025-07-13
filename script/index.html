@@ -1,48 +1,57 @@
 <!doctype html>
 <html lang=th>
+
 <head>
-<title>listing directory/script/</title>
-<meta charset=UTF-8>
-<meta http-equiv=X-UA-Compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name=theme-color content=#409EFE>
-<meta name=keywords content="HTML, CSS, XML, JavaScript, Centered101">
-<meta name=author content="Listing Directory — Centered101">
-<meta name=description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:type content=website>
-<meta property=og:url content=https://project-test-submission.netlify.app/ >
-<meta property=og:title content="Listing Directory — Centered101">
-<meta property=og:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:image content=/images/icon.svg>
-<meta property=twitter:card content=summary_large_image>
-<meta property=twitter:url content=https://project-test-submission.netlify.app/ >
-<meta property=twitter:title content="Listing Directory — Centered101">
-<meta property=twitter:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=twitter:image content=/images/icon.svg>
-<link rel="shortcut icon" type=image/x-icon href=/images/icon.svg>
-<link rel=stylesheet href=/style/style-start.css>
-<link rel=stylesheet href=/style/style.css>
-<script src=https://cdn.tailwindcss.com></script>
-<script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
-<script src=/animation/script.js></script>
+    <title>listing directory/script/</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#409EFE">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
+    <meta name="author" content="Centered101">
+    <meta name="description" content="project-test-submission — listing directory">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://project-test-submission.netlify.app">
+    <meta property="og:title" content="listing directory">
+    <meta property="og:description" content="project-test-submission — listing directory">
+    <meta property="og:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://project-test-submission.netlify.app">
+    <meta property="twitter:title" content="listing directory">
+    <meta property="twitter:description" content="project-test-submission — listing directory">
+    <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://project-test-submission.netlify.app/images/icon.svg">
+    <link rel="stylesheet" href="/style/style-start.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src=https://cdn.tailwindcss.com></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
+
 <body class=directory on=showURL() draggable=false oncontextmenu=return!1>
-<input id=search placeholder=ค้นหา autocomplete=off>
-<div id=wrapper>
-<h1>
-<a id=url href=/ >
-<script>document.write(window.location.href)</script>
-</a>
-</h1>
-<ul id=files class=view-tiles>
-<li><a href=/ class="icon icon-directory" title=..><span class=name>..</span><span class=size></span><span class=date></span></a></li>
-<li><a href=/script/key.js class="icon icon icon-js icon-application-javascript" title=key.js><span class=name>key.js</span><span class=size>11177</span><span class=date>2/1/2025 10:24:28 PM</span></a></li>
-<li><a href=/script/script-start.js class="icon icon icon-js icon-application-javascript" title=script-start.js><span class=name>script-start.js</span><span class=size>7690</span><span class=date>2/1/2025 10:21:07 PM</span></a></li>
-<li><a href=/script/version.js class="icon icon icon-js icon-application-javascript" title=version.js><span class=name>version.js</span><span class=size>104</span><span class=date>2/1/2025 10:28:59 PM</span></a></li></ul>
-</div>
-<script src=/script/version.js></script>
-<script src=/script/script-start.min.js></script>
-<script src=/script/key.js defer></script>
-<script>document.getElementById("version").textContent=appVersionProjectTest</script>
+    <div id=preloader
+        class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
+        <span
+            class="w-16 h-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
+        <h2>Loading</h2>
+        <p>Your adventure is about to begin</p>
+    </div>
+    <input id=search placeholder=ค้นหา autocomplete=off>
+    <div id=wrapper>
+        <h1>
+            <a id=url href= />
+            <script>document.write(window.location.href)</script>
+            </a>
+        </h1>
+        <ul id=files class=view-tiles></ul>
+    </div>
+    <script src=/script/main.js></script>
+    <script>
+        const files = [
+            { path: ".." },
+            { path: "/script/script-start.js" },
+        ];
+    </script>
 </body>
-</html>

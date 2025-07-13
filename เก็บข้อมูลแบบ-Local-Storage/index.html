@@ -1,92 +1,109 @@
 <!doctype html>
 <html lang=th>
+
 <head>
-<title>Document การเก็บข้อมูลแบบ-Local-Storage</title>
-<meta charset=UTF-8>
-<meta http-equiv=X-UA-Compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name=theme-color content=#409EFE>
-<meta name=keywords content="HTML, CSS, XML, JavaScript, Centered101">
-<meta name=author content="Listing Directory — Centered101">
-<meta name=description content="Document การเก็บข้อมูลแบบ-Local-Storage">
-<meta property=og:type content=website>
-<meta property=og:url content=https://project-test-submission.netlify.app>
-<meta property=og:title content="Listing Directory — Centered101">
-<meta property=og:description content="Document การเก็บข้อมูลแบบ-Local-Storage">
-<meta property=og:image content=/images/icon.svg>
-<meta property=twitter:card content=summary_large_image>
-<meta property=twitter:url content=https://project-test-submission.netlify.app>
-<meta property=twitter:title content="Listing Directory — Centered101">
-<meta property=twitter:description content="Document การเก็บข้อมูลแบบ-Local-Storage">
-<meta property=twitter:image content=/images/icon.svg>
-<link rel="shortcut icon" type=image/x-icon href=/images/icon.svg>
-<link rel=stylesheet href=/style/style-start.css>
-<link rel=stylesheet href=/style/style.css>
-<script src=https://cdn.tailwindcss.com></script>
-<script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
-<script src=/animation/script.js></script>
+    <title>Document การเก็บข้อมูลแบบ-Local-Storage</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#409EFE">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
+    <meta name="author" content="Centered101">
+    <meta name="description" content="Document Project-Test-Submission">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://project-test-submission.netlify.app">
+    <meta property="og:title" content="listing directory">
+    <meta property="og:description" content="Document Project-Test-Submission">
+    <meta property="og:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://project-test-submission.netlify.app">
+    <meta property="twitter:title" content="listing directory">
+    <meta property="twitter:description" content="Document Project-Test-Submission">
+    <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://project-test-submission.netlify.app/images/icon.svg">
+    <link rel="stylesheet" href="/style/style-start.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src=https://cdn.tailwindcss.com></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
+
 <body draggable=false oncontextmenu=return!1>
-<main class="docs space-y-8">
-<section class="docs max-w-3xl space-y-6 mx-auto p-8 pt-24 md:pt-8">
-<h1 class="text-xl font-bold">เอกสารของ การเก็บข้อมูลแบบ-Local-Storage</h1>
-<h2 class="text-lg font-bold">ภาพรวม</h2>
-<p><b>Local Storage</b> คือพื้นที่เก็บข้อมูลในเบราว์เซอร์ที่ช่วยให้เว็บแอปพลิเคชันสามารถจัดเก็บข้อมูลผู้ใช้ได้ในรูปแบบ
-<code>Key-Value</code> โดยข้อมูลที่เก็บจะไม่ถูกลบแม้ผู้ใช้จะปิดเบราว์เซอร์หรือรีสตาร์ทเครื่อง เหมาะสำหรับการเก็บข้อมูลชั่วคราว เช่น การตั้งค่าผู้ใช้ หรือสถานะบางอย่างของแอปพลิเคชัน</p>
-<h2 class="text-lg font-bold">คุณสมบัติ</h2>
-<ul class="list-inside list-decimal">
-<li><b>เก็บข้อมูลแบบ Key-Value</b>: ข้อมูลถูกจัดเก็บในคู่ <code>key</code> และ <code>value</code></li>
-<li><b>ไม่มีวันหมดอายุ</b>: ข้อมูลจะอยู่จนกว่าผู้ใช้หรือโปรแกรมจะลบออก</li>
-<li><b>พื้นที่จัดเก็บ</b>: จำกัดพื้นที่ประมาณ 5MB ต่อโดเมน</li>
-<li><b>เหมาะสำหรับข้อมูลไม่สำคัญ</b>: เช่น การตั้งค่าธีมหรือสถานะผู้ใช้</li>
-<li><b>ไม่ปลอดภัยสำหรับข้อมูลสำคัญ</b>: เพราะสามารถเข้าถึงได้ง่ายผ่านเครื่องมือเบราว์เซอร์</li>
-</ul>
-<h2 class="text-lg font-bold">ข้อดี</h2>
-<ul class="list-inside list-disc">
-<li>ใช้งานง่ายด้วย JavaScript</li>
-<li>ทำงานได้เร็ว เพราะไม่ต้องเรียกใช้เซิร์ฟเวอร์​</li>
-<li>เหมาะสำหรับเก็บข้อมูลที่ไม่สำคัญ เช่น การตั้งค่าผู้ใช้ หรือสถานะชั่วคราว</li>
-</ul>
-<h2 class="text-lg font-bold">ข้อเสีย</h2>
-<ul class="list-inside list-disc">
-<li>เก็บข้อมูลได้จำกัด</li>
-<li>ข้อมูลไม่ปลอดภัยสำหรับการใช้งานสำคัญ</li>
-<li>ต้องการโดเมนเดียวกัน (Same-origin policy)</li>
-</ul>
-<div>
-<p class=indent-6><b>Local Storage</b> เหมาะสำหรับเว็บที่ต้องการจัดเก็บข้อมูลผู้ใช้แบบพื้นฐานและต้องการลดการพึ่งพาเซิร์ฟเวอร์! 😊</p>
-<p class=indent-6><b>Local Storage</b> คือพื้นที่เก็บข้อมูลของเว็บเบราว์เซอร์ที่ช่วยให้เว็บแอปพลิเคชันสามารถจัดเก็บข้อมูลได้บนอุปกรณ์ของผู้ใช้แบบถาวร โดยไม่ต้องใช้ฐานข้อมูลหรือเซิร์ฟเวอร์ในบางกรณี ข้อมูลที่เก็บไว้ใน Local Storage จะยังคงอยู่แม้ปิดเบราว์เซอร์หรือรีสตาร์ทเครื่อง (ยกเว้นผู้ใช้ลบข้อมูลด้วยตนเอง)</p>
-</div>
-</section>
-<section id=project class="max-w-3xl space-y-6 mx-auto p-8">
-<h2 class="text-lg font-bold">โปรเจกต์ที่คุณจะต้องลองสำรวจ</h2>
-<div class=grid-cols-3>
-<table class="w-full border border-collapse">
-<tr class=border-b>
-<td class="font-semibold border-r px-4 py-2">โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด</td>
-<td>
-<a title=โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด href=./birthday_countdown.html class="relative w-full flex justify-center items-center text-[#FFF] font-black truncate bg-[#409EFE] px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[#409EFE] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[#FFF] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700"><span class=truncate>การสาธิตสด</span></a>
-</td>
-</tr>
-<tr class=border-b>
-<td class="font-semibold border-r px-4 py-2">จัดการตารางงานของคุณ</td>
-<td>
-<a title=จัดการตารางงานของคุณ href=./manage_work.html class="relative w-full flex justify-center items-center text-[#FFF] font-black truncate bg-[#409EFE] px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[#409EFE] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[#FFF] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700"><span class=truncate>การสาธิตสด</span></a>
-</td>
-</tr>
-<tr>
-<td class="font-semibold border-r px-4 py-2">แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ 50/30/20 Rule
-</td>
-<td>
-<a title="แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ 50/30/20 Rule" href=./wallet_management.html class="relative w-full flex justify-center items-center text-[#FFF] font-black truncate bg-[#409EFE] px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[#409EFE] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[#FFF] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700"><span class=truncate>การสาธิตสด</span></a>
-</td>
-</tr>
-</table>
-</div>
-</section>
-</main>
-<script src=/script/version.js></script>
-<script src=/script/script-start.min.js></script>
-<script>document.getElementById("version").textContent=appVersionProjectTest</script>
+    <div id=preloader
+        class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase md:text-xl space-y-4 z-50 select-none visible touch-none">
+        <span
+            class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
+        <h2>Loading</h2>
+        <p>Your adventure is about to begin</p>
+    </div>
+    <main class="docs">
+        <section class="docs">
+            <h1>เอกสารของ การเก็บข้อมูลแบบ-Local-Storage</h1>
+            <h2>ภาพรวม</h2>
+            <p><b>Local Storage</b>
+                คือพื้นที่เก็บข้อมูลในเบราว์เซอร์ที่ช่วยให้เว็บแอปพลิเคชันสามารถจัดเก็บข้อมูลผู้ใช้ได้ในรูปแบบ
+                <code>Key-Value</code> โดยข้อมูลที่เก็บจะไม่ถูกลบแม้ผู้ใช้จะปิดเบราว์เซอร์หรือรีสตาร์ทเครื่อง
+                เหมาะสำหรับการเก็บข้อมูลชั่วคราว เช่น การตั้งค่าผู้ใช้ หรือสถานะบางอย่างของแอปพลิเคชัน
+            </p>
+            <h2>คุณสมบัติ</h2>
+            <ul class="list-decimal">
+                <li><b>เก็บข้อมูลแบบ Key-Value</b>: ข้อมูลถูกจัดเก็บในคู่ <code>key</code> และ <code>value</code></li>
+                <li><b>ไม่มีวันหมดอายุ</b>: ข้อมูลจะอยู่จนกว่าผู้ใช้หรือโปรแกรมจะลบออก</li>
+                <li><b>พื้นที่จัดเก็บ</b>: จำกัดพื้นที่ประมาณ 5MB ต่อโดเมน</li>
+                <li><b>เหมาะสำหรับข้อมูลไม่สำคัญ</b>: เช่น การตั้งค่าธีมหรือสถานะผู้ใช้</li>
+                <li><b>ไม่ปลอดภัยสำหรับข้อมูลสำคัญ</b>: เพราะสามารถเข้าถึงได้ง่ายผ่านเครื่องมือเบราว์เซอร์</li>
+            </ul>
+            <h2>ข้อดี</h2>
+            <ul class="list-disc">
+                <li>ใช้งานง่ายด้วย JavaScript</li>
+                <li>ทำงานได้เร็ว เพราะไม่ต้องเรียกใช้เซิร์ฟเวอร์​</li>
+                <li>เหมาะสำหรับเก็บข้อมูลที่ไม่สำคัญ เช่น การตั้งค่าผู้ใช้ หรือสถานะชั่วคราว</li>
+            </ul>
+            <h2>ข้อเสีย</h2>
+            <ul class="list-disc">
+                <li>เก็บข้อมูลได้จำกัด</li>
+                <li>ข้อมูลไม่ปลอดภัยสำหรับการใช้งานสำคัญ</li>
+                <li>ต้องการโดเมนเดียวกัน (Same-origin policy)</li>
+            </ul>
+            <div>
+                <p class=indent-6><b>Local Storage</b>
+                    เหมาะสำหรับเว็บที่ต้องการจัดเก็บข้อมูลผู้ใช้แบบพื้นฐานและต้องการลดการพึ่งพาเซิร์ฟเวอร์! 😊</p>
+                <p class=indent-6><b>Local Storage</b>
+                    คือพื้นที่เก็บข้อมูลของเว็บเบราว์เซอร์ที่ช่วยให้เว็บแอปพลิเคชันสามารถจัดเก็บข้อมูลได้บนอุปกรณ์ของผู้ใช้แบบถาวร
+                    โดยไม่ต้องใช้ฐานข้อมูลหรือเซิร์ฟเวอร์ในบางกรณี ข้อมูลที่เก็บไว้ใน Local Storage
+                    จะยังคงอยู่แม้ปิดเบราว์เซอร์หรือรีสตาร์ทเครื่อง (ยกเว้นผู้ใช้ลบข้อมูลด้วยตนเอง)</p>
+            </div>
+            <h2>โปรเจกต์ที่คุณจะต้องลองสำรวจ</h2>
+            <table class="w-full border border-collapse">
+                <tr class="border-b">
+                    <td class="truncate border-r px-4 py-2">โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด</td>
+                    <td>
+                        <a title=โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด href=./birthday_countdown.html
+                            class="relative w-full flex justify-center items-center truncate px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[color:var(--main-color)] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--sky-glow)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">การสาธิตสด</a>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="truncate border-r px-4 py-2">จัดการตารางงานของคุณ</td>
+                    <td>
+                        <a title=จัดการตารางงานของคุณ href=./manage_work.html
+                            class="relative w-full flex justify-center items-center truncate px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[color:var(--main-color)] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--sky-glow)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">การสาธิตสด</a>
+                    </td>
+                </tr>
+                <tr class="border-b">
+                    <td class="truncate border-r px-4 py-2">แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ 50/30/20 Rule
+                    </td>
+                    <td>
+                        <a title="แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ 50/30/20 Rule" href=./wallet_management.html
+                            class="relative w-full flex justify-center items-center truncate px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[color:var(--main-color)] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--sky-glow)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">การสาธิตสด</a>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    <script src="/script/main.js"></script>
 </body>
+
 </html>

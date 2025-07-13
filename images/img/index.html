@@ -1,54 +1,73 @@
 <!doctype html>
 <html lang=th>
+
 <head>
-<title>listing directory/images/img/</title>
-<meta charset=UTF-8>
-<meta http-equiv=X-UA-Compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name=theme-color content=#409EFE>
-<meta name=keywords content="HTML, CSS, XML, JavaScript, Centered101">
-<meta name=author content="Listing Directory — Centered101">
-<meta name=description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:type content=website>
-<meta property=og:url content=https://project-test-submission.netlify.app/ >
-<meta property=og:title content="Listing Directory — Centered101">
-<meta property=og:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:image content=/images/icon.svg>
-<meta property=twitter:card content=summary_large_image>
-<meta property=twitter:url content=https://project-test-submission.netlify.app/ >
-<meta property=twitter:title content="Listing Directory — Centered101">
-<meta property=twitter:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=twitter:image content=/images/icon.svg>
-<link rel="shortcut icon" type=image/x-icon href=/images/icon.svg>
-<link rel=stylesheet href=/style/style-start.css>
-<link rel=stylesheet href=/style/style.css>
-<script src=https://cdn.tailwindcss.com></script>
-<script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
-<script src=/animation/script.js></script>
+    <title>listing directory/images/img/</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#409EFE">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
+    <meta name="author" content="Centered101">
+    <meta name="description" content="project-test-submission — listing directory">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://project-test-submission.netlify.app">
+    <meta property="og:title" content="listing directory">
+    <meta property="og:description" content="project-test-submission — listing directory">
+    <meta property="og:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://project-test-submission.netlify.app">
+    <meta property="twitter:title" content="listing directory">
+    <meta property="twitter:description" content="project-test-submission — listing directory">
+    <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://project-test-submission.netlify.app/images/icon.svg">
+    <link rel="stylesheet" href="/style/style-start.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src=https://cdn.tailwindcss.com></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
+
 <body class=directory on=showURL() draggable=false oncontextmenu=return!1>
-<input id=search placeholder=ค้นหา autocomplete=off>
-<div id=wrapper>
-<h1>
-<a id=url href=/ >
-<script>document.write(window.location.href)</script>
-</a>
-</h1>
-<ul id=files class=view-tiles><li>
-<a href=/images class="icon icon-directory" title=..><span class=name>..</span><span class=size></span><span class=date></span></a></li>
-<li><a href=/images/img/-mvn510.webp class="icon icon icon-webp icon-image" title=-mvn510.webp><span class=name>-mvn510.webp</span><span class=size>77432</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/img/%E2%8D%A4%E2%83%9D%20Center.webp class="icon icon icon-webp icon-image" title="⍤⃝ Center.webp"><span class=name>⍤⃝ Center.webp</span><span class=size>4106</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/img/AdobeStock_starship.svg class="icon icon icon-svg icon-image-svg+xml" title=AdobeStock_starship.svg><span class=name>AdobeStock_starship.svg</span><span class=size>6488</span><span class=date>3/12/2025 1:06:24 AM</span></a></li>
-<li><a href=/images/img/BG-Programming.webp class="icon icon icon-webp icon-image" title=BG-Programming.webp><span class=name>BG-Programming.webp</span><span class=size>176290</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/img/IMG_20230216_152750.jpg class="icon icon icon-jpg icon-image" title=IMG_20230216_152750.jpg><span class=name>IMG_20230216_152750.jpg</span><span class=size>2304171</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/img/logo3.png class="icon icon icon-png icon-image" title=logo3.png><span class=name>logo3.png</span><span class=size>10446</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/img/noitems.svg class="icon icon icon-svg icon-image-svg+xml" title=noitems.svg><span class=name>noitems.svg</span><span class=size>4044</span><span class=date>2/25/2025 6:41:06 PM</span></a></li>
-<li><a href=/images/img/placeholder.svg class="icon icon icon-svg icon-image-svg+xml" title=placeholder.svg><span class=name>placeholder.svg</span><span class=size>3326</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/img/%E0%B8%84%E0%B8%99.webp class="icon icon icon-webp icon-image" title=คน.webp><span class=name>คน.webp</span><span class=size>646</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/img/%E3%85%A4%E2%80%8B.png class="icon icon icon-png icon-image" title=ㅤ​.png><span class=name>ㅤ​.png</span><span class=size>818</span><span class=date>2/25/2025 11:03:21 PM</span></a></li></ul>
-</div>
-<script src=/script/version.js></script>
-<script src=/script/script-start.min.js></script>
-<script>document.getElementById("version").textContent=appVersionProjectTest</script>
+    <div id=preloader
+        class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
+        <span
+            class="w-16 h-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
+        <h2>Loading</h2>
+        <p>Your adventure is about to begin</p>
+    </div>
+    <input id=search placeholder=ค้นหา autocomplete=off>
+    <div id=wrapper>
+        <h1>
+            <a id=url href= />
+            <script>document.write(window.location.href)</script>
+            </a>
+        </h1>
+        <ul id=files class=view-tiles></ul>
+    </div>
+    <script src=/script/main.js></script>
+    <script>
+        const files = [
+            { path: ".." },
+            { path: "/images/img/-mvn510.webp" },
+            { path: "/images/img/AdobeStock_starship.svg" },
+            { path: "/images/img/BG-Programming.webp" },
+            { path: "/images/img/IMG_20230216_152750.jpg" },
+            { path: "/images/img/logo3.png" },
+            { path: "/images/img/noitems.svg" },
+            { path: "/images/img/placeholder.svg" },
+            { path: "/images/img/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGFyaWEtaGlkZGVuPSJ0cnVlIiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiIHZlcnNpb249IjEuMSIgd2lkdGg9IjE2I (1).svg" },
+            { path: "/images/img/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGFyaWEtaGlkZGVuPSJ0cnVlIiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiIHZlcnNpb249IjEuMSIgd2lkdGg9IjE2I.svg" },
+            { path: "/images/img/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGFyaWEtaGlkZGVuPSJ0cnVlIiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiIHZlcnNpb249IjEuMSIgd2lkdGg9IjE2IiBkY.svg" },
+            { path: "/images/img/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGFyaWEtaGlkZGVuPSJ0cnVlIiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiIHZlcnNpb249IjEuMSIgd2lkdGg9IjE2IiBkYXRhLXZp.svg" },
+            { path: "/images/img/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGFyaWEtbGFiZWw9InN0YXIiIHJvbGU9ImltZyIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiB2ZXJzaW9uPSIxLjEiIHdpZ.svg" },
+            { path: "/images/img/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJvY3RpY29uIG9jdGljb24tbG9jYXRpb24iIHZpZXdCb3g9IjAgMCAxNiAxNiIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMTYiI.svg" },
+            { path: "/images/img/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHRleHQ9Im11dGVkIiBhcmlhLWhpZGRlbj0idHJ1ZSIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDE2IDE2IiB2ZXJzaW9uPSIxLjEiI.svg" },
+            { path: "/images/img/คน.webp" },
+            { path: "/images/img/⍤⃝ Center.webp" },
+            { path: "/images/img/ㅤ​.png" },
+        ];
+    </script>
 </body>
-</html>

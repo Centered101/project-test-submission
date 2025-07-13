@@ -1,20 +1,34 @@
+window.onload = function () {
+    const aosCSS = document.createElement('link');
+    aosCSS.rel = 'stylesheet';
+    aosCSS.href = 'https://unpkg.com/aos@2.3.1/dist/aos.css';
+    document.head.appendChild(aosCSS);
+
+    const aosScript = document.createElement('script');
+    aosScript.src = "https://unpkg.com/aos@2.3.1/dist/aos.js";
+    aosScript.onload = () => {
+        AOS.init(); // เริ่มใช้งาน AOS หลังจากโหลดเสร็จ
+    };
+    document.head.appendChild(aosScript);
+};
+
 (document.body.innerHTML += `
-<div hidden id=login-form class="fixed inset-0 bg-[#000] bg-opacity-75 backdrop-blur flex-col justify-center items-center gap-8 p-8 z-40">
-<div class="animationShow-x w-full max-w-md bg-[#EFEFEF] border border-[#CCC] rounded-xl overflow-hidden">
-<div class="relative w-full border-b border-[#CCC] p-4">
-<p class="text-center text-xl font-black">คุณจำเป็นต้องมีรหัสผ่านในการเข้าถึงข้อมูลสำคัญ</p>
+<div hidden id=login-form class="fixed inset-0 bg-[#000] bg-opacity-75 backdrop-blur flex-col justify-center items-center gap-8 p-2 z-40">
+<div data-aos="fade-right" class=" w-full max-w-md bg-[#EFEFEF] border rounded-xl overflow-hidden">
+<div class="relative w-full border-b px-2 py-4">
+<p class="text-center md:text-xl font-bold">คุณจำเป็นต้องมีรหัสผ่านในการเข้าถึงข้อมูลสำคัญ</p>
 </div>
 <div class="flex flex-wrap justify-between items-center gap-4 p-4">
-<input type=password id=passwordInput placeholder=รหัสผ่าน class="grow border border-[#CCC] rounded-xl p-2 focus:outline-none focus:shadow-none">
-<button id=togglePassword class="flex-1 bg-[#DFDFDF] border border-[#CCC] rounded-xl truncate px-8 py-2 active:opacity-75">แสดง</button>
-<button id=login_btn class="relative w-full flex justify-center items-center border border-[#409EFE] rounded-xl text-[#FFF] font-black truncate bg-[#409EFE] px-8 py-2 ease-in-out duration-300 z-40 active:opacity-75">
+<input type=password id=passwordInput placeholder=รหัสผ่าน class="grow border rounded-xl p-2 focus:outline-none focus:shadow-none">
+<button id=togglePassword class="flex-1 bg-[#DFDFDF] border rounded-xl truncate px-8 py-2 active:opacity-75">แสดง</button>
+<button id=login_btn class="relative w-full flex justify-center items-center border border-[#409EFE] rounded-xl text-[#FFF] font-semibold truncate bg-[#409EFE] px-8 py-2 ease-in-out duration-300 z-40 active:opacity-75">
 <span>ล็อกอิน</span>
 </button>
 </div>
 </div>
-<button id=goBack class="animationShow fixed bottom-8 left-8 bg-[#DFDFDF] border border-[#CCC] rounded-xl truncate px-8 py-2 ease-in-out duration-300 z-40 active:opacity-75">กลับไป</button>
+<button id=goBack data-aos="fade-right" class="animationShow fixed bottom-8 left-8 bg-[#DFDFDF] border rounded-xl truncate px-8 py-2 ease-in-out duration-300 z-40 active:opacity-75">กลับไป</button>
 </div>
-<button hidden id=logout class="-animationShow-x fixed bottom-8 right-8 bg-[#FF7070] text-[#FFF] fill-[#FFF] border border-[#CCC] rounded-xl truncate p-2 opacity-75 hover:opacity-100 ease-in-out duration-300 z-40 active:opacity-75">
+<button hidden id=logout data-aos="fade-left" class="fixed bottom-8 right-8 bg-[#FF7070] text-[#FFF] fill-[#FFF] border rounded-xl truncate p-2 opacity-75 hover:opacity-100 ease-in-out duration-300 z-40 active:opacity-75">
 <svg xmlns=http://www.w3.org/2000/svg height=16 viewBox="0 -960 960 960" width=16><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
 </button>`);
 
@@ -184,17 +198,11 @@ document.addEventListener("DOMContentLoaded", function () {
     var isFailed = localStorage.getItem("isLoggedInNot");
 
     if (isFailed === "failed") {
-        document.getElementById('login-form').innerHTML = `
-<div class="fixed inset-0 flex flex-col justify-center items-center gap-8 p-8 z-40 select-none cursor-not-allowed">
-<div class="animationShow-x w-full max-w-md bg-[#EFEFEF] border border-[#CCC] rounded-xl overflow-hidden">
-<div class="relative w-full border-b border-[#CCC] p-4">
-<p class="text-center text-xl font-black text-[#FF4040]">บัญชีถูกล็อก!</p>
-</div>
-<div class="flex flex-col justify-center items-center gap-4 p-4">
+        document.body.innerHTML = `
+<div class="min-h-screen flex flex-col justify-center items-center gap-2">
+<p class="md:text-xl font-bold text-[#FF4040]">บัญชีถูกล็อก!</p>
 <p class=truncate>คุณใส่รหัสผ่านผิดเกินจำนวนครั้งที่กำหนด</p>
-<a href=https://www.instagram.com/direct/t/17848003478856472/  class="text-[#409EFE] font-semibold underline-offset-2 hover:underline">โปรดติดต่อผู้พัฒนา</a>
-</div></div>
-<a href=/ class="animationShow fixed bottom-8 left-8 bg-[#DFDFDF] border border-[#CCC] rounded-xl truncate px-8 py-2 ease-in-out duration-300 z-40 active:opacity-75">กลับไป</a>
+<a href=https://www.instagram.com/direct/t/17848003478856472/  class="text-[#409EFE] font-semibold underline underline-offset-2 hover:underline-0">โปรดติดต่อผู้พัฒนา</a>
 </div>`;
     }
 });

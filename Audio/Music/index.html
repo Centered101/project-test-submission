@@ -1,79 +1,90 @@
 <!doctype html>
 <html lang=th>
+
 <head>
-<title>listing directoryAudio/Music/</title>
-<meta charset=UTF-8>
-<meta http-equiv=X-UA-Compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name=theme-color content=#409EFE>
-<meta name=keywords content="HTML, CSS, XML, JavaScript, Centered101">
-<meta name=author content="Listing Directory — Centered101">
-<meta name=description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:type content=website>
-<meta property=og:url content=https://project-test-submission.netlify.app/ >
-<meta property=og:title content="Listing Directory — Centered101">
-<meta property=og:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:image content=/images/icon.svg>
-<meta property=twitter:card content=summary_large_image>
-<meta property=twitter:url content=https://project-test-submission.netlify.app/ >
-<meta property=twitter:title content="Listing Directory — Centered101">
-<meta property=twitter:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=twitter:image content=/images/icon.svg>
-<link rel="shortcut icon" type=image/x-icon href=/images/icon.svg>
-<link rel=stylesheet href=/style/style-start.css>
-<link rel=stylesheet href=/style/style.css>
-<script src=https://cdn.tailwindcss.com></script>
-<script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
-<script src=/animation/script.js></script>
+    <title>listing directory/audio/music/</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#409EFE">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
+    <meta name="author" content="Centered101">
+    <meta name="description" content="project-test-submission — listing directory">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://project-test-submission.netlify.app">
+    <meta property="og:title" content="listing directory">
+    <meta property="og:description" content="project-test-submission — listing directory">
+    <meta property="og:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://project-test-submission.netlify.app">
+    <meta property="twitter:title" content="listing directory">
+    <meta property="twitter:description" content="project-test-submission — listing directory">
+    <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://project-test-submission.netlify.app/images/icon.svg">
+    <link rel="stylesheet" href="/style/style-start.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src=https://cdn.tailwindcss.com></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
+
 <body class=directory on=showURL() draggable=false oncontextmenu=return!1>
-<input id=search placeholder=ค้นหา autocomplete=off>
-<div id=wrapper>
-<h1>
-<a id=url href=/ >
-<script>document.write(window.location.href)</script>
-</a>
-</h1>
-<ul id=files class=view-tiles>
-<li><a href=/Audio class="icon icon-directory" title=..><span class=name>..</span><span class=size></span><span class=date></span></a></li>
-<li><a href=/Audio/Music/(Skit).mp3 class="icon icon icon-mp3 icon-default" title=(Skit).mp3><span class=name>(Skit).mp3</span><span class=size>3055777</span><span class=date>12/19/2024 12:20:50 PM</span></a></li>
-<li><a href=/Audio/Music/8%20Letters%20-%20R3HAB%20Remix.mp3 class="icon icon icon-mp3 icon-default" title="8 Letters - R3HAB Remix.mp3"><span class=name>8 Letters - R3HAB Remix.mp3</span><span class=size>5480644</span><span class=date>12/11/2024 5:59:30 AM</span></a></li>
-<li><a href=/Audio/Music/Alone.mp3 class="icon icon icon-mp3 icon-default" title=Alone.mp3><span class=name>Alone.mp3</span><span class=size>11068128</span><span class=date>12/11/2024 6:00:08 AM</span></a></li>
-<li><a href=/Audio/Music/bg-music.mp3 class="icon icon icon-mp3 icon-default" title=bg-music.mp3><span class=name>bg-music.mp3</span><span class=size>11244926</span><span class=date>12/23/2024 7:59:24 PM</span></a></li>
-<li><a href=/Audio/Music/blue%20-%20yung%20kai.mp3 class="icon icon icon-mp3 icon-default" title="blue - yung kai.mp3"><span class=name>blue - yung kai.mp3</span><span class=size>8713205</span><span class=date>1/23/2025 1:48:06 AM</span></a></li>
-<li><a href=/Audio/Music/Christmas%20Chill.mp3 class="icon icon icon-mp3 icon-default" title="Christmas Chill.mp3"><span class=name>Christmas Chill.mp3</span><span class=size>4264999</span><span class=date>12/25/2024 9:31:40 PM</span></a></li>
-<li><a href=/Audio/Music/DAY%20ONE.mp3 class="icon icon icon-mp3 icon-default" title="DAY ONE.mp3"><span class=name>DAY ONE.mp3</span><span class=size>10970198</span><span class=date>12/11/2024 6:01:34 AM</span></a></li>
-<li><a href=/Audio/Music/Earned%20It%20(Fifty%20Shades%20Of%20Grey).mp3 class="icon icon icon-mp3 icon-default" title="Earned It (Fifty Shades Of Grey).mp3"><span class=name>Earned It (Fifty Shades Of Grey).mp3</span><span class=size>11218167</span><span class=date>1/27/2025 2:07:49 AM</span></a></li>
-<li><a href=/Audio/Music/ecstacy%20(slowed).mp3 class="icon icon icon-mp3 icon-default" title="ecstacy (slowed).mp3"><span class=name>ecstacy (slowed).mp3</span><span class=size>4854634</span><span class=date>12/11/2024 6:02:04 AM</span></a></li>
-<li><a href=/Audio/Music/I%20Miss%20You.mp3 class="icon icon icon-mp3 icon-default" title="I Miss You.mp3"><span class=name>I Miss You.mp3</span><span class=size>9950577</span><span class=date>12/11/2024 6:02:50 AM</span></a></li>
-<li><a href=/Audio/Music/Interstellar%20on%20Piano.mp3 class="icon icon icon-mp3 icon-default" title="Interstellar on Piano.mp3"><span class=name>Interstellar on Piano.mp3</span><span class=size>5730922</span><span class=date>12/11/2024 6:03:22 AM</span></a></li>
-<li><a href=/Audio/Music/jedagjedug.mp3 class="icon icon icon-mp3 icon-default" title=jedagjedug.mp3><span class=name>jedagjedug.mp3</span><span class=size>2</span><span class=date>1/30/2025 7:17:28 PM</span></a></li>
-<li><a href=/Audio/Music/Let%20Me%20Love%20You.mp3 class="icon icon icon-mp3 icon-default" title="Let Me Love You.mp3"><span class=name>Let Me Love You.mp3</span><span class=size>8368248</span><span class=date>1/3/2025 11:14:45 PM</span></a></li>
-<li><a href=/Audio/Music/MR%20TELEPHONE.mp3 class="icon icon icon-mp3 icon-default" title="MR TELEPHONE.mp3"><span class=name>MR TELEPHONE.mp3</span><span class=size>9314045</span><span class=date>12/11/2024 6:04:18 AM</span></a></li>
-<li><a href=/Audio/Music/NEW%20DROP.mp3 class="icon icon icon-mp3 icon-default" title="NEW DROP.mp3"><span class=name>NEW DROP.mp3</span><span class=size>8829963</span><span class=date>1/7/2025 7:24:13 PM</span></a></li>
-<li><a href=/Audio/Music/Sound%20Cogil%20Sok%20Elit.mp3 class="icon icon icon-mp3 icon-default" title="Sound Cogil Sok Elit.mp3"><span class=name>Sound Cogil Sok Elit.mp3</span><span class=size>3548316</span><span class=date>1/4/2025 12:09:37 AM</span></a></li>
-<li><a href=/Audio/Music/Sound%20Cogil%20Sok%20Elit.wav class="icon icon icon-wav icon-default" title="Sound Cogil Sok Elit.wav"><span class=name>Sound Cogil Sok Elit.wav</span><span class=size>37984086</span><span class=date>1/7/2025 7:55:45 PM</span></a></li>
-<li><a href=/Audio/Music/Spaceflight%20Simulator%20Soundtrack.mp3 class="icon icon icon-mp3 icon-default" title="Spaceflight Simulator Soundtrack.mp3"><span class=name>Spaceflight Simulator Soundtrack.mp3</span><span class=size>6099998</span><span class=date>12/23/2024 8:08:00 PM</span></a></li>
-<li><a href=/Audio/Music/Starboy.mp3 class="icon icon icon-mp3 icon-default" title=Starboy.mp3><span class=name>Starboy.mp3</span><span class=size>9397027</span><span class=date>1/3/2025 11:10:21 PM</span></a></li>
-<li><a href=/Audio/Music/THIS%20YEAR%20(%E0%B8%9B%E0%B8%B5%E0%B8%99%E0%B8%B5%E0%B9%89).mp3 class="icon icon icon-mp3 icon-default" title="THIS YEAR (ปีนี้).mp3"><span class=name>THIS YEAR (ปีนี้).mp3</span><span class=size>9552693</span><span class=date>12/11/2024 6:05:30 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B8%81%E0%B8%A5%E0%B8%B4%E0%B9%88%E0%B8%99%E0%B8%94%E0%B8%AD%E0%B8%81%E0%B9%84%E0%B8%A1%E0%B9%89.mp3 class="icon icon icon-mp3 icon-default" title=กลิ่นดอกไม้.mp3><span class=name>กลิ่นดอกไม้.mp3</span><span class=size>9434858</span><span class=date>12/11/2024 6:06:00 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B8%81%E0%B8%AD%E0%B8%94%E0%B8%81%E0%B8%B1%E0%B8%99.mp3 class="icon icon icon-mp3 icon-default" title=กอดกัน.mp3><span class=name>กอดกัน.mp3</span><span class=size>12120096</span><span class=date>12/11/2024 6:06:36 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B9%80%E0%B8%88%E0%B9%89%E0%B8%B2%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%88.mp3 class="icon icon icon-mp3 icon-default" title=เจ้าของที่.mp3><span class=name>เจ้าของที่.mp3</span><span class=size>9776989</span><span class=date>12/11/2024 6:07:08 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B9%81%E0%B8%88%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%94%E0%B8%AD%E0%B8%81%E0%B9%84%E0%B8%A1%E0%B9%89.mp3 class="icon icon icon-mp3 icon-default" title=แจกันดอกไม้.mp3><span class=name>แจกันดอกไม้.mp3</span><span class=size>11262464</span><span class=date>12/11/2024 6:07:54 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B8%8A%E0%B8%AD%E0%B8%9A%E0%B8%9E%E0%B8%B5%E0%B9%88%E0%B8%84%E0%B8%99%E0%B8%99%E0%B8%B5%E0%B9%89.mp3 class="icon icon icon-mp3 icon-default" title=ชอบพี่คนนี้.mp3><span class=name>ชอบพี่คนนี้.mp3</span><span class=size>8150193</span><span class=date>12/11/2024 6:08:00 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B9%83%E0%B8%88%E0%B8%89%E0%B8%B1%E0%B8%99.mp3 class="icon icon icon-mp3 icon-default" title=เชื่อใจฉัน.mp3><span class=name>เชื่อใจฉัน.mp3</span><span class=size>9810749</span><span class=date>12/11/2024 6:08:34 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B8%95%E0%B9%88%E0%B8%AD%E0%B8%A2%E0%B9%83%E0%B8%AB%E0%B9%89.mp3 class="icon icon icon-mp3 icon-default" title=ต่อยให้.mp3><span class=name>ต่อยให้.mp3</span><span class=size>11620728</span><span class=date>12/11/2024 6:09:02 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A5%E0%B8%B0%E0%B8%84%E0%B8%A3%E0%B9%80%E0%B8%AD%E0%B8%81.mp3 class="icon icon icon-mp3 icon-default" title=ตัวละครเอก.mp3><span class=name>ตัวละครเอก.mp3</span><span class=size>8526922</span><span class=date>12/26/2024 9:36:14 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B8%96%E0%B9%89%E0%B8%B2%E0%B8%95%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%AA%E0%B8%B5%E0%B8%A2%E0%B9%80%E0%B8%98%E0%B8%AD%E0%B9%84%E0%B8%9B.mp3 class="icon icon icon-mp3 icon-default" title=ถ้าต้องเสียเธอไป.mp3><span class=name>ถ้าต้องเสียเธอไป.mp3</span><span class=size>9934368</span><span class=date>12/11/2024 6:09:08 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B8%99%E0%B8%B2%E0%B8%99%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7%E0%B8%99%E0%B8%B0.mp3 class="icon icon icon-mp3 icon-default" title=นานแล้วนะ.mp3><span class=name>นานแล้วนะ.mp3</span><span class=size>9722692</span><span class=date>12/11/2024 6:10:08 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%84%E0%B8%87%E0%B9%80%E0%B8%AB%E0%B8%87%E0%B8%B2%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B9%84%E0%B8%A3%E0%B9%89%E0%B9%80%E0%B8%98%E0%B8%AD.mp3 class="icon icon icon-mp3 icon-default" title=ฟ้าคงเหงาเมื่อไร้เธอ.mp3><span class=name>ฟ้าคงเหงาเมื่อไร้เธอ.mp3</span><span class=size>9695905</span><span class=date>12/11/2024 6:10:16 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B8%A2%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%A7%E0%B8%B1%E0%B8%87%E0%B8%94%E0%B8%B5%E0%B8%AD%E0%B8%A2%E0%B8%B9%E0%B9%88%E0%B9%80%E0%B8%AA%E0%B8%A1%E0%B8%AD.mp3 class="icon icon icon-mp3 icon-default" title=ยังหวังดีอยู่เสมอ.mp3><span class=name>ยังหวังดีอยู่เสมอ.mp3</span><span class=size>8326219</span><span class=date>12/11/2024 6:11:10 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B9%82%E0%B8%A5%E0%B8%A1%E0%B8%B5%E0%B9%82%E0%B8%AD.mp3 class="icon icon icon-mp3 icon-default" title=โลมีโอ.mp3><span class=name>โลมีโอ.mp3</span><span class=size>13418865</span><span class=date>12/11/2024 6:13:48 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B9%80%E0%B8%81%E0%B8%B4%E0%B8%94%E0%B8%89%E0%B8%B1%E0%B8%99%E0%B8%9B%E0%B8%B5%E0%B8%99%E0%B8%B5%E0%B9%89%20(HBD%20to%20me).mp3 class="icon icon icon-mp3 icon-default" title="วันเกิดฉันปีนี้ (HBD to me).mp3"><span class=name>วันเกิดฉันปีนี้ (HBD to me).mp3</span><span class=size>10234505</span><span class=date>12/11/2024 6:14:04 AM</span></a></li>
-<li><a href=/Audio/Music/%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%95%E0%B8%B2%E0%B8%A2....mp3 class="icon icon icon-mp3 icon-default" title=ให้ตาย....mp3><span class=name>ให้ตาย....mp3</span><span class=size>9061178</span><span class=date>12/11/2024 6:14:08 AM</span></a></li></ul>
-</div>
-<script src=/script/version.js></script>
-<script src=/script/script-start.min.js></script>
-<script>document.getElementById("version").textContent=appVersionProjectTest</script>
+    <div id=preloader
+        class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
+        <span
+            class="w-16 h-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
+        <h2>Loading</h2>
+        <p>Your adventure is about to begin</p>
+    </div>
+    <input id=search placeholder=ค้นหา autocomplete=off>
+    <div id=wrapper>
+        <h1>
+            <a id=url href= />
+            <script>document.write(window.location.href)</script>
+            </a>
+        </h1>
+        <ul id=files class=view-tiles></ul>
+    </div>
+    <script src=/script/main.js></script>
+    <script>
+        const files = [
+            { path: ".." },
+            { path: "/Audio/Music/(Skit).mp3" },
+            { path: "/Audio/Music/8 Letters - R3HAB Remix.mp3" },
+            { path: "/Audio/Music/Alone.mp3" },
+            { path: "/Audio/Music/bg-music.mp3" },
+            { path: "/Audio/Music/blue - yung kai.mp3" },
+            { path: "/Audio/Music/Christmas Chill.mp3" },
+            { path: "/Audio/Music/DAY ONE.mp3" },
+            { path: "/Audio/Music/Earned It (Fifty Shades Of Grey).mp3" },
+            { path: "/Audio/Music/ecstacy (slowed).mp3" },
+            { path: "/Audio/Music/I Miss You.mp3" },
+            { path: "/Audio/Music/Interstellar on Piano.mp3" },
+            { path: "/Audio/Music/jedagjedug.mp3" },
+            { path: "/Audio/Music/Let Me Love You.mp3" },
+            { path: "/Audio/Music/MR TELEPHONE.mp3" },
+            { path: "/Audio/Music/NEW DROP.mp3" },
+            { path: "/Audio/Music/Sound Cogil Sok Elit.mp3" },
+            { path: "/Audio/Music/Spaceflight Simulator Soundtrack.mp3" },
+            { path: "/Audio/Music/Starboy.mp3" },
+            { path: "/Audio/Music/THIS YEAR (ปีนี้).mp3" },
+            { path: "/Audio/Music/กลิ่นดอกไม้.mp3" },
+            { path: "/Audio/Music/กอดกัน.mp3" },
+            { path: "/Audio/Music/ชอบพี่คนนี้.mp3" },
+            { path: "/Audio/Music/ตัวละครเอก.mp3" },
+            { path: "/Audio/Music/ต่อยให้.mp3" },
+            { path: "/Audio/Music/ถ้าต้องเสียเธอไป.mp3" },
+            { path: "/Audio/Music/นานแล้วนะ.mp3" },
+            { path: "/Audio/Music/ฟ้าคงเหงาเมื่อไร้เธอ.mp3" },
+            { path: "/Audio/Music/ยังหวังดีอยู่เสมอ.mp3" },
+            { path: "/Audio/Music/วันเกิดฉันปีนี้ (HBD to me).mp3" },
+            { path: "/Audio/Music/เจ้าของที่.mp3" },
+            { path: "/Audio/Music/เชื่อใจฉัน.mp3" },
+            { path: "/Audio/Music/แจกันดอกไม้.mp3" },
+            { path: "/Audio/Music/โลมีโอ.mp3" },
+            { path: "/Audio/Music/ให้ตาย....mp3" },
+        ];
+    </script>
 </body>
-</html>

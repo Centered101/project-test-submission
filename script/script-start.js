@@ -1,79 +1,11 @@
-// —[ Progress Bar ]———————————————————————————————————————————————————————————————————————————————————————————————————
+// —[ preloader ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-document.body.innerHTML +=
-    `
-<div id=progressbar role=progressbar aria-hidden=true class="fixed inset-x-0 top-0 left-0 h-1 opacity-0 z-50">
-<div class="w-0 h-full bg-gradient-to-r from-[#84D4FA] to-[#409EFE] transition-all duration-1000 ease-in-out"></div></div>
-`;
+$('#preloader').addClass('fixed touch-none visible');
 
-// Progress Bar
-
-document.addEventListener("DOMContentLoaded", function () {
-    var progressBar = document.getElementById('progressbar').firstElementChild;
-    progressBar.style.width = "0";
-
-    let progress = 0;
-    let interval = setInterval(() => {
-        progress += 1;
-        progressBar.style.width = progress + "%";
-        progressBar.parentElement.style.opacity = "1";
-
-        if (progress >= 100) {
-            clearInterval(interval);
-            setTimeout(() => {
-                progressBar.parentElement.style.opacity = "0";
-            }, 500);
-        }
-    }, 25);
+$(window).on(function () {
+    $('#preloader').addClass('invisible');
+    $('#preloader').removeClass('fixed touch-none visible');
 });
-
-// —[ footer ]———————————————————————————————————————————————————————————————————————————————————————————————————
-
-const screenSize = `screen&#160;size:&#160;${window.innerWidth}W&#160;⨉&#160;${window.innerHeight}H`;
-
-// document.querySelector("footer").innerHTML +=
-document.body.innerHTML +=
-    `
-<a title="View source on GitHub" aria-label="View source on GitHub" rel=noopener href=https://github.com/centered101/ target=_blank class="fixed top-0 left-0 opacity-80 -rotate-90 transition-opacity duration-300 ease-in-out z-10 max-md:hidden hover:opacity-90">
-<svg xmlns=http://www.w3.org/2000/svg width=55 height=55 viewBox="0 0 250 250" fill=#121212 data-v-14a7b7ba="">
-<path d="M0 0l115 115h15l12 27 108 108V0z" fill=#D7D7D7></path>
-<path class=octo-arm d="M128 109c-15-9-9-19-9-19 3-7 2-11 2-11-1-7 3-2 3-2 4 5 2 11 2 11-3 10 5 15 9 16" style="transform-origin:130px 106px"></path>
-<path class=octo-body d="M115 115s4 2 5 0l14-14c3-2 6-3 8-3-8-11-15-24 2-41 5-5 10-7 16-7 1-2 3-7 12-11 0 0 5 3 7 16 4 2 8 5 12 9s7 8 9 12c14 3 17 7 17 7-4 8-9 11-11 11 0 6-2 11-7 16-16 16-30 10-41 2 0 3-1 7-5 11l-12 11c-1 1 1 5 1 5z">
-</path></svg></a>
-<footer role=complementary class="truncate p-8 md:p-0 md:pt-24">
-<p>${screenSize}</p>
-<p class=truncate>version:&#160;<span id=version></span></p>
-<p class="first-letter:text-[#409EFE] truncate">&copy;&#160;${new Date().getFullYear()}
-<span title=Settings class="text-[#409EFE] underline-offset-2 hover:underline">
-<a href=/settings.html>Centered101</a></span>&#160;—&#160;All&#160;Rights&#160;Reserved.</p>
-</footer>
-`;
-
-// —[ Event ]———————————————————————————————————————————————————————————————————————————————————————————————————
-
-document.body.innerHTML += `
-<style>@keyframes swing{0%,100%{transform:rotate(-10deg) translateY(0)}50%{transform:rotate(10deg) translateY(10px)}}.animate-swing{animation:swing 4s ease-in-out infinite;transform-origin:top center}</style>
-<div hidden id=decor-container class="fixed -top-8 left-1/2 -translate-x-1/2 gap-8 z-40">
-<img src=https://pngimg.com/uploads/christmas_ball/christmas_ball_PNG57.png class="size-16 animate-swing">
-<img src=https://pngimg.com/uploads/christmas_ball/christmas_ball_PNG57.png class="size-16 animate-swing">
-<img src=https://pngimg.com/uploads/christmas_ball/christmas_ball_PNG57.png class="size-16 animate-swing">
-</div>
-`;
-
-function checkTimeAndToggleDisplay() {
-    const now = new Date();
-    const month = now.getMonth();
-
-    // แสดงเฉพาะเดือนธันวาคม (11)
-    if (month === 11) {
-        document.getElementById('decor-container').style.display = 'flex';
-    } else {
-        document.getElementById('decor-container').style.display = 'none';
-    }
-}
-
-// ตรวจสอบทุก ๆ วินาที
-setInterval(checkTimeAndToggleDisplay, 25);
 
 // —[ search ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -141,28 +73,6 @@ function search() {
 $(window).on('content loaded', function () {
     $('search').on('keyup', search);
 });
-
-// —[ dark theme ]———————————————————————————————————————————————————————————————————————————————————————————————————
-
-// // ฟังก์ชันเพื่อตรวจสอบโหมดของผู้ใช้งาน
-// function applyTheme(theme) {
-//     if (theme === 'dark') {
-//         document.documentElement.setAttribute('data-theme', 'dark');
-//     } else {
-//         document.documentElement.setAttribute('data-theme', 'light');
-//     }
-// }
-
-// // ตรวจสอบการตั้งค่าโหมดสีของผู้ใช้งาน
-// const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-// // ตั้งค่าโหมดตามการตั้งค่าของผู้ใช้งาน
-// applyTheme(userPrefersDark.matches ? 'dark' : 'light');
-
-// // ฟังค์ชันที่รับการเปลี่ยนแปลงเมื่อผู้ใช้เปลี่ยนการตั้งค่าโหมดสีในระบบ
-// userPrefersDark.addEventListener('change', (event) => {
-//     applyTheme(event.matches ? 'dark' : 'light');
-// });
 
 // —[ copyText ]———————————————————————————————————————————————————————————————————————————————————————————————————
 

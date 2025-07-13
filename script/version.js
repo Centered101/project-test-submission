@@ -1,1 +1,0 @@
-const appVersionProjectTest="2.23.39 ";

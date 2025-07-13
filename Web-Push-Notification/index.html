@@ -5,22 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🔔 Web Push Notification</title>
-    <link rel="shortcut icon" href="/images/icon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="https://project-test-submission.netlify.app/images/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://project-test-submission.netlify.app/style/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 </head>
 
-<body class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="p-6 bg-white shadow-lg rounded-xl text-center">
-        <h1 class="text-2xl font-bold mb-4">🔔 Web Push Notification</h1>
-        <button id="requestPermission" class="px-4 py-2 bg-[#409EFE] text-white rounded-lg mb-3">
-            ขออนุญาตแจ้งเตือน
-        </button>
-        <button id="testNotification" class="px-4 py-2 bg-[#00CC4F] text-white rounded-lg">
-            ทดสอบแจ้งเตือน
-        </button>
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-white">
+    <div class="p-8 bg-white shadow-2xl rounded-2xl text-center space-y-6 max-w-md w-full border border-gray-200">
+        <h1 class="text-3xl font-extrabold text-blue-600 flex items-center justify-center gap-2">
+            🔔 Web Push Notification
+        </h1>
+        <div class="w-full bg-gray-100 border border-dashed border-gray-300 rounded-xl overflow-hidden p-4">
+            <img class="w-56 mx-auto duration-300"
+                src="https://project-test-submission.netlify.app/images/icon.svg" alt="Notification Icon">
+        </div>
+        <div class="flex items-center justify-center gap-4">
+            <button id="requestPermission"
+                class="px-5 py-2.5 border rounded-xl transition font-semibold">
+                ขออนุญาตแจ้งเตือน
+            </button>
+            <button id="testNotification"
+                class="px-5 py-2.5 border rounded-xl transition font-semibold">
+                ทดสอบแจ้งเตือน
+            </button>
+        </div>
     </div>
 
     <script>
@@ -56,7 +67,7 @@
                 navigator.serviceWorker.ready.then(registration => {
                     registration.showNotification("🔔 การแจ้งเตือนทดสอบ", {
                         body: "นี่คือตัวอย่างข้อความแจ้งเตือน 🚀\n✅ คุณได้อนุญาตให้แจ้งเตือนแล้ว!",
-                        icon: "https://cdn-icons-png.flaticon.com/512/1047/1047711.png"
+                        icon: "https://project-test-submission.netlify.app/images/Test-Dหนึ่งวันครับ.webp"
                     });
                 });
             } else {
@@ -76,7 +87,7 @@
                 navigator.serviceWorker.ready.then(registration => {
                     registration.showNotification("🔔 การแจ้งเตือนทดสอบ", {
                         body: "นี่คือตัวอย่างข้อความแจ้งเตือน 🚀",
-                        icon: "/images/icon.svg"
+                        icon: "https://project-test-submission.netlify.app/images/icon.svg"
                     });
                 });
             } else {

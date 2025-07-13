@@ -1,58 +1,70 @@
 <!doctype html>
 <html lang=th>
+
 <head>
-<title>listing directory/images/Video/</title>
-<meta charset=UTF-8>
-<meta http-equiv=X-UA-Compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name=theme-color content=#409EFE>
-<meta name=keywords content="HTML, CSS, XML, JavaScript, Centered101">
-<meta name=author content="Listing Directory — Centered101">
-<meta name=description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:type content=website>
-<meta property=og:url content=https://project-test-submission.netlify.app/ >
-<meta property=og:title content="Listing Directory — Centered101">
-<meta property=og:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:image content=/images/icon.svg>
-<meta property=twitter:card content=summary_large_image>
-<meta property=twitter:url content=https://project-test-submission.netlify.app/ >
-<meta property=twitter:title content="Listing Directory — Centered101">
-<meta property=twitter:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=twitter:image content=/images/icon.svg>
-<link rel="shortcut icon" type=image/x-icon href=/images/icon.svg>
-<link rel=stylesheet href=/style/style-start.css>
-<link rel=stylesheet href=/style/style.css>
-<script src=https://cdn.tailwindcss.com></script>
-<script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
-<script src=/animation/script.js></script>
+    <title>listing directory/images/video/</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#409EFE">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
+    <meta name="author" content="Centered101">
+    <meta name="description" content="project-test-submission — listing directory">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://project-test-submission.netlify.app">
+    <meta property="og:title" content="listing directory">
+    <meta property="og:description" content="project-test-submission — listing directory">
+    <meta property="og:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://project-test-submission.netlify.app">
+    <meta property="twitter:title" content="listing directory">
+    <meta property="twitter:description" content="project-test-submission — listing directory">
+    <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://project-test-submission.netlify.app/images/icon.svg">
+    <link rel="stylesheet" href="/style/style-start.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src=https://cdn.tailwindcss.com></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
+
 <body class=directory on=showURL() draggable=false oncontextmenu=return!1>
-<input id=search placeholder=ค้นหา autocomplete=off>
-<div id=wrapper>
-<h1>
-<a id=url href=/ >
-<script>document.write(window.location.href)</script>
-</a>
-</h1>
-<ul id=files class=view-tiles><li><a href=/images class="icon icon-directory" title=..><span class=name>..</span><span class=size></span><span class=date></span></a></li>
-<li><a href=/images/Video/blue.mp4 class="icon icon icon-mp4 icon-video" title=blue.mp4><span class=name>blue.mp4</span><span class=size>17707023</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/omg.mp4 class="icon icon icon-mp4 icon-video" title=omg.mp4><span class=name>omg.mp4</span><span class=size>792953</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/received_1012298906795171.mp4 class="icon icon icon-mp4 icon-video" title=received_1012298906795171.mp4><span class=name>received_1012298906795171.mp4</span><span class=size>471511</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/received_1186758352044363.mp4 class="icon icon icon-mp4 icon-video" title=received_1186758352044363.mp4><span class=name>received_1186758352044363.mp4</span><span class=size>1540998</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/received_1452407168844541.mp4 class="icon icon icon-mp4 icon-video" title=received_1452407168844541.mp4><span class=name>received_1452407168844541.mp4</span><span class=size>5343378</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/received_294752109630565.mp4 class="icon icon icon-mp4 icon-video" title=received_294752109630565.mp4><span class=name>received_294752109630565.mp4</span><span class=size>1677828</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/received_598961872173982.mp4 class="icon icon icon-mp4 icon-video" title=received_598961872173982.mp4><span class=name>received_598961872173982.mp4</span><span class=size>997919</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/received_708095814325536.mp4 class="icon icon icon-mp4 icon-video" title=received_708095814325536.mp4><span class=name>received_708095814325536.mp4</span><span class=size>2747752</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/received_715272820289874.mp4 class="icon icon icon-mp4 icon-video" title=received_715272820289874.mp4><span class=name>received_715272820289874.mp4</span><span class=size>664078</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/received_794780852432133.mp4 class="icon icon icon-mp4 icon-video" title=received_794780852432133.mp4><span class=name>received_794780852432133.mp4</span><span class=size>6528177</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/received_884807512962964.mp4 class="icon icon icon-mp4 icon-video" title=received_884807512962964.mp4><span class=name>received_884807512962964.mp4</span><span class=size>733486</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/received_884834609417538.mp4 class="icon icon icon-mp4 icon-video" title=received_884834609417538.mp4><span class=name>received_884834609417538.mp4</span><span class=size>1529047</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/received_933182987871218.mp4 class="icon icon icon-mp4 icon-video" title=received_933182987871218.mp4><span class=name>received_933182987871218.mp4</span><span class=size>1810298</span><span class=date>2/25/2025 11:03:20 PM</span></a></li>
-<li><a href=/images/Video/%E0%B9%80%E0%B8%8B%E0%B9%87%E0%B8%97%E0%B8%9C%E0%B8%A1%E0%B9%84%E0%B8%9B%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%AD%E0%B8%A2.mp4 class="icon icon icon-mp4 icon-video" title=เซ็ทผมไปหน่อย.mp4><span class=name>เซ็ทผมไปหน่อย.mp4</span><span class=size>2366284</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-</ul></div>
-<script src=/script/version.js></script>
-<script src=/script/script-start.min.js></script>
-<script src=/script/key.js defer></script>
-<script>document.getElementById("version").textContent=appVersionProjectTest</script>
+    <div id=preloader
+        class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
+        <span
+            class="w-16 h-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
+        <h2>Loading</h2>
+        <p>Your adventure is about to begin</p>
+    </div>
+    <input id=search placeholder=ค้นหา autocomplete=off>
+    <div id=wrapper>
+        <h1>
+            <a id=url href= />
+            <script>document.write(window.location.href)</script>
+            </a>
+        </h1>
+        <ul id=files class=view-tiles></ul>
+    </div>
+    <script src=/script/main.js></script>
+    <script>
+        const files = [
+            { path: ".." },
+            { path: "/images/Video/blue.mp4" },
+            { path: "/images/Video/omg.mp4" },
+            { path: "/images/Video/received_1012298906795171.mp4" },
+            { path: "/images/Video/received_1186758352044363.mp4" },
+            { path: "/images/Video/received_1452407168844541.mp4" },
+            { path: "/images/Video/received_294752109630565.mp4" },
+            { path: "/images/Video/received_598961872173982.mp4" },
+            { path: "/images/Video/received_708095814325536.mp4" },
+            { path: "/images/Video/received_715272820289874.mp4" },
+            { path: "/images/Video/received_794780852432133.mp4" },
+            { path: "/images/Video/received_884807512962964.mp4" },
+            { path: "/images/Video/received_884834609417538.mp4" },
+            { path: "/images/Video/received_933182987871218.mp4" },
+            { path: "/images/Video/เซ็ทผมไปหน่อย.mp4" },
+        ];
+    </script>
 </body>
-</html>

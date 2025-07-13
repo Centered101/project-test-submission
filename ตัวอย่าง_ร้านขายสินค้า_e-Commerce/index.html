@@ -1,0 +1,966 @@
+
+<!-- ########  ########  ###   ##  ########  ########  #######   ########  #######   ##  ########  ## -->
+<!-- ##        ##        ## #  ##     ##     ##        ##    ##  ##        ##    ##  ##  ##    ##  ## -->
+<!-- ##        ######    ##  # ##     ##     ######    #######   ######    ##    ##  ##  ##    ##  ## -->
+<!-- ##        ##        ##   ###     ##     ##        ##   ##   ##        ##    ##  ##  ##    ##  ## -->
+<!-- ########  ########  ##    ##     ##     ########  ##    ##  ########  #######   ##  ########  ## -->
+
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta name="theme-color" content="#FF7070">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,Centered101" />
+    <meta name="author" content="Centered101" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>ร้านขายสินค้า • Centered101</title>
+    <meta name="title" content="ร้านขายสินค้า — Centered101" />
+    <meta name="description" content="ตัวอย่าง ร้านขายสินค้า e-Commerce" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://project-test-submission.netlify.app/ตัวอย่าง ร้านขายสินค้า e-Commerce/" />
+    <meta property="og:title" content="ร้านขายสินค้า — Centered101" />
+    <meta property="og:description" content="ตัวอย่าง ร้านขายสินค้า e-Commerce" />
+    <meta property="og:image" content="https://project-test-submission.netlify.app/images/Tes-D.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://project-test-submission.netlify.app/ตัวอย่าง ร้านขายสินค้า e-Commerce/" />
+    <meta property="twitter:title" content="ร้านขายสินค้า — Centered101" />
+    <meta property="twitter:description" content="ตัวอย่าง ร้านขายสินค้า e-Commerce" />
+    <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/Tes-D.png" />
+
+    <link rel="icon" type="image/png" href="https://project-test-submission.netlify.app/images/Tes-D.png">
+
+    <script src="/animation/script.js"></script>
+
+</head>
+
+<body>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+        /* Code for Firefox */
+        ::-moz-selection {
+            background: #000000B3;
+            color: #FF7070;
+        }
+
+        ::selection {
+            background: #000000B3;
+            color: #FF7070;
+        }
+
+        html {
+            scrollbar-color: #FF7070 #D7D7D7;
+            scrollbar-width: thin;
+            scroll-behavior: smooth;
+        }
+
+        div.progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0.5rem;
+            opacity: 0;
+            z-index: 50;
+        }
+
+        @media (min-width: 1024px) {
+            .progress-bar {
+                height: 1rem;
+            }
+        }
+
+        div.progress-bar-inner {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, #FF7070, #FE4040);
+            transition: all 1s ease-in-out;
+        }
+
+        div#loader {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 50;
+        }
+
+        div#loader div.spinner {
+            width: 7rem;
+            height: 7rem;
+            border: 8px solid #D7D7D7;
+            border-top-color: #FE4040;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            box-sizing: border-box;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        img {
+            user-select: none;
+        }
+
+        body {
+            font-family: " Roboto", sans-serif;
+            background-color: #FFFFFF;
+            color: #000000;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 35px;
+            backdrop-filter: blur(12px);
+            user-select: none;
+            z-index: 40;
+        }
+
+        header div.branding {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        header div.branding a {
+            color: #000000;
+            padding: 5px;
+            font-size: 1.25rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        header div.branding a i {
+            font-family: "Montserrat", sans-serif;
+            margin-right: 0.5rem;
+            color: #FF7070;
+        }
+
+        section,
+        footer {
+            padding-top: 98px;
+        }
+
+        section#home {
+            padding-top: 0;
+            min-height: 100vh;
+        }
+
+        section#home video {
+            background-color: #000000;
+            pointer-events: none;
+            box-shadow: 20px 20px 60px #BEBEBE, -20px -20px 60px #FFFFFF;
+        }
+
+        section#home div.container h1,
+        section#home div.container h3 {
+            font-size: 32px;
+            line-height: 1;
+            margin: 20px;
+        }
+
+        @media (max-width: 768px) {
+            section#home {
+                padding-top: 35px;
+            }
+        }
+
+        @media (min-width: 768px) {
+
+            div.nav {
+                display: flex;
+                flex-direction: column;
+            }
+
+            div.nav nav ul {
+                display: flex;
+                justify-content: end;
+            }
+
+            div.nav nav ul a li {
+                width: 80;
+            }
+        }
+
+        div.nav {
+            position: sticky;
+            top: 33px;
+            background-color: #FFFFFF;
+            border-block: solid #000000 2px;
+            display: flex;
+            align-items: center;
+            z-index: 40;
+            overflow: auto;
+        }
+
+        div.nav div {
+            flex: 1;
+        }
+
+        div.nav div input[type="text"] {
+            width: 100%;
+            min-width: 150px;
+            padding: 8px 12px;
+            border: 0;
+        }
+
+        div.nav nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: end;
+            gap: 5px;
+            margin-block: 5px;
+            padding-inline: 5px;
+        }
+
+        div.nav nav ul a li {
+            padding: 5px 10px;
+            width: 70px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            border: solid #000000 1px;
+            transition: color 0.3s ease, all.3s ease;
+        }
+
+        div.nav nav ul a {
+            font-size:
+                12px;
+            color: #000000;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            transition: color 0.3s ease, all.3s ease;
+        }
+
+        div.nav nav ul a:active>li {
+            color: #FF7070;
+            background-color: #000000;
+        }
+
+        section#products div.container div.product-grid {
+            display: grid;
+            /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        @media (max-width: 768px) {
+            section#products div.container div.product-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        section#products div.container div.product-grid div.product-item {
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        section#products div.container div.product-grid div.product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        section#products div.container div.product-grid div.product-item div {
+            padding: 5px 10px;
+            padding-bottom: 20px;
+        }
+
+        section#products div.container div.product-grid div.product-item div p.name {
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        section#products div.container div.product-grid div.product-item div p.price {
+            font-weight: 900;
+            font-size: 12px;
+            line-height: 1;
+        }
+
+        section#products div.container div.product-grid div.product-item div span.reduced {
+            text-decoration: line-through;
+            text-decoration-color: #000000;
+            color: #FF7070;
+            margin-left: 5px;
+        }
+
+        section#products div.container div.product-grid div.product-item div span.reduced::before,
+        section#products div.container div.product-grid div.product-item div p.price::before {
+            content: '฿';
+        }
+
+        section#contact {
+            display: grid;
+            border-bottom: solid #000000 2px;
+        }
+
+        section#contact h2 {
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            font-weight: bold;
+            font-size: x-large;
+            margin-inline: 20px;
+        }
+
+        section#contact form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            flex-direction: column;
+            padding-top: 20px;
+            gap: 40px;
+            border: none;
+            border-right: solid #000000 2px;
+            border-top: 2px solid #000000;
+            border-top-right-radius: 8px;
+        }
+
+        section#contact form div {
+            position: relative;
+        }
+
+        section#contact form div textarea {
+            min-height: 50px;
+        }
+
+        section#contact form div input[type="text"],
+        section#contact form div textarea {
+            font-size: 12px;
+            width: 100%;
+            min-width: 250px;
+            max-width: 250px;
+            max-height: 250px;
+            padding: 10px;
+            border: none;
+            color: #000000;
+            font-size: 12px;
+            background: transparent;
+            border-left: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+            transition: 0.1s;
+            border-bottom-left-radius: 8px;
+        }
+
+        section#contact form div span {
+            margin-top: 5px;
+            position: absolute;
+            left: 0;
+            transform: translateY(-4px);
+            margin-left: 10px;
+            padding: 10px;
+            pointer-events: none;
+            font-size: 12px;
+            color: #000000;
+            text-transform: uppercase;
+            transition: 0.5s;
+            letter-spacing: 3px;
+            border-radius: 8px;
+        }
+
+        section#contact form div input[type="text"]:valid~span,
+        section#contact form div input[type="text"]:focus~span,
+        section#contact form div textarea:valid~span,
+        section#contact form div textarea:focus~span {
+            transform: translateX(140px) translateY(-15px);
+            font-size: 12px;
+            padding: 5px 10px;
+            background: #000000;
+            letter-spacing: 0.2em;
+            color: #FFFFFF;
+            border: 2px;
+        }
+
+        section#contact form div input[type="text"]:valid,
+        section#contact form div input[type="text"]:focus,
+        section#contact form div textarea:valid,
+        section#contact form div textarea:focus {
+            border: 2px solid #000000;
+            border-radius: 8px;
+        }
+
+        section#contact form button[type="submit"] {
+            height: 45px;
+            width: 250px;
+            border-radius: 5px;
+            border: 2px solid #000000;
+            cursor: pointer;
+            background-color: transparent;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            transition: 0.5s;
+        }
+
+        section#contact form button[type="submit"]:hover {
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+
+        section#contact div.container {
+            background-image: url('/images/profile-portfolio.png');
+            background-color: #000000;
+            height: 100%;
+            width: 100%;
+        }
+
+        footer {
+            color: #343A40;
+            padding: 98px 20px 20px 20px;
+            line-height: 1.6;
+        }
+
+        footer h3 {
+            color: #FF7070;
+            font-size: larger;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 5px;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer ul,
+        footer ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        footer ul li,
+        footer ol li {
+            margin-bottom: 5px;
+        }
+
+        footer ul li a,
+        footer ol li a {
+            text-decoration: none;
+            color: #FF7070;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover,
+        footer ol li a:hover {
+            color: #FE4040;
+            opacity: .75;
+        }
+
+        footer strong {
+            font-weight: bold;
+            color: #343A40;
+        }
+
+        footer a:hover {
+            color: #FE4040;
+        }
+
+        footer .social-icons {
+            margin-top: 15px;
+        }
+
+        footer .social-icons a {
+            margin-right: 10px;
+            font-size: 12px;
+        }
+
+        footer p:last-child {
+            font-size: 12px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        span.highlight {
+            color: #FF7070;
+            background-color: #000000B3;
+        }
+    </style>
+
+    <body class="animationShow">
+        <audio id="welcomeSound">
+            <source src="/Audio/Music/กลิ่นดอกไม้.mp3" type="audio/mp3">
+        </audio>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const audio = document.getElementById("welcomeSound");
+                audio.volume = .2;
+                audio.play();
+            });
+        </script>
+        <script>
+            document.write('<div id="progressbar" role="progressbar" aria-hidden="true" class="progress-bar"><div class="progress-bar-inner"></div></div>');
+            document.addEventListener("DOMContentLoaded", function () {
+                var progressBar = document.getElementById('progressbar').firstElementChild;
+                progressBar.style.width = "0";
+
+                let progress = 0;
+                let interval = setInterval(() => {
+                    progress += 1;
+                    progressBar.style.width = progress + "%";
+                    progressBar.parentElement.style.opacity = "1";
+
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            progressBar.parentElement.style.opacity = "0";
+                        }, 500);
+                    }
+                }, 25);
+            });
+        </script>
+        <div id="loader">
+            <div class="spinner"></div>
+        </div>
+        <header translate="no" class="animationShow-x">
+            <div class="branding">
+                <script>
+                    function resetWindow() {
+                        document.body.style.backgroundColor = "#FF7070";
+                        document.querySelector("header").style.display = "none";
+                        document.querySelector("div.nav").style.display = "none";
+                        document.querySelector("footer").style.display = "none";
+                        document.querySelectorAll("section").forEach(function (section) {
+                            section.style.display = "none";
+                        });
+                        document.getElementById("loader").style.display = "flex";
+
+                        setTimeout(() => {
+                            window.location.href = "index.html";
+                        }, 3000);
+                    }
+                    document.write('<a href="./index.html" title="Reload this page" onclick="resetWindow()"><i>s<small>&</small>c</i>shop.9center</a>');
+                </script>
+            </div>
+        </header>
+        <!-- Home Section -->
+        <section id="home">
+            <video width="100%" autoplay muted loop playsinline>
+                <source
+                    src="https://acc-media-assets.s3.ap-southeast-1.amazonaws.com/hm_th/vmd/2024-ns/banners/wk45/6000-16x9-women-startpage-wk45.mp4"
+                    type="video/mp4">
+                <source
+                    src="https://acc-media-assets.s3.ap-southeast-1.amazonaws.com/hm_th/vmd/2024-ns/banners/wk45/6000-16x9-women-startpage-wk45.mp4"
+                    type="video/ogg">
+            </video>
+            <div class="container animationShow-x">
+                <h1><i>s<small>&</small>c</i>.com</h1>
+                <h1 class="title">New season picks - up to 30% off</h1>
+            </div>
+        </section>
+        <div class="nav animationShow-x">
+            <div class="animationShow-y"><input id="search" type="text" placeholder="Search" autocomplete="off" /></div>
+            <nav>
+                <ul>
+                    <a href="#home">
+                        <li title="home" class="animationShow-y">home</li>
+                    </a>
+                    <a href="#products">
+                        <li title="product" class="animationShow-y">product</li>
+                    </a>
+                    <a href="#contact">
+                        <li title="conttact" class="animationShow-y">conttact</li>
+                    </a>
+                    <a href="#about">
+                        <li title="about" class="animationShow-y">about</li>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+        <!-- Product Section -->
+        <section id="products">
+            <div class="container">
+                <div class="product-grid">
+                    <!-- Product Item 1 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/ebcbccd2ee3168dbb59299d81bcd3f0e942f6d24_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="products 1">
+                        <div>
+                            <p class="name animationShow-x">Cigarette trousers</p>
+                            <p class="price animationShow-y">799</p>
+                        </div>
+                    </div>
+                    <!-- Product Item 2 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/e4e42807af656d7fbffd99fd5d3ea4f8017ed71e_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="products 2">
+                        <div>
+                            <p class="name animationShow-x">Ankle-length trousers</p>
+                            <p class="price animationShow-y">699<span class="reduced">999</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 3 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/919c0942bc48970dc183cb499e214d7d2e3b0ac9_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="products 3">
+                        <div>
+                            <p class="name animationShow-x">Tapered tailored trousers</p>
+                            <p class="price animationShow-y">699<span class="reduced">999</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 4 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/af11241d60f6797bf4917e650331dea0fe288cb1_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="products 4">
+                        <div>
+                            <p class="name animationShow-x">Balloon-sleeved blouse</p>
+                            <p class="price animationShow-y">699<span class="reduced">999</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 5 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/e89a362346653d789f359dae752e6692e120d254_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="products 5">
+                        <div>
+                            <p class="name animationShow-x">Oversized crêpe blouse</p>
+                            <p class="price animationShow-y">559<span class="reduced">799</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 6 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/2cf7097803cd4c3762b2dec9dcfb6d049dd735ec_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="products 6">
+                        <div>
+                            <p class="name animationShow-x">Ankle-length cigarette trousers</p>
+                            <p class="price animationShow-y">1,099</p>
+                        </div>
+                    </div>
+                    <!-- Product Item 7 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/7fcb3052f322a2c77daf942fc3a34d3f40c18392_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="products 7">
+                        <div>
+                            <p class="name animationShow-x">Ankle-length cigarette trousers</p>
+                            <p class="price animationShow-y">769<span class="reduced">1,099</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 8 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/6d70906ed49789a91e1290075939b5ec52aefbf6_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="products 8">
+                        <div>
+                            <p class="name animationShow-x">Napped slit-front skirt</p>
+                            <p class="price animationShow-y">769<span class="reduced">1,099</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 9 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/4303d3b12efd258ec16a27aef1c60401aa4c9fbe_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 9">
+                        <div>
+                            <p class="name animationShow-x">Balloon-sleeved blouse</p>
+                            <p class="price animationShow-y">629<span class="reduced">899</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 10 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/8b1b7fbff255e06aa803d434725096ba5ff1c4ca_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 10">
+                        <div>
+                            <p class="name animationShow-x">Wide trousers</p>
+                            <p class="price animationShow-y">979<span class="reduced">1,399</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 11 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/c783884d8720f0163c108f83ed4be8d8d280b8e8_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 11">
+                        <div>
+                            <p class="name animationShow-x">Tapered tailored trousers</p>
+                            <p class="price animationShow-y">699<span class="reduced">999</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 12 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/a13126d48d0360981661876258f5b3f5b8c7bd78_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 12">
+                        <div>
+                            <p class="name animationShow-x">Crease-leg trousers</p>
+                            <p class="price animationShow-y">1,399</p>
+                        </div>
+                    </div>
+                    <!-- Product Item 13 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/2c4f813960e3311af3ccc0665893961c3c5937fc_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 13">
+                        <div>
+                            <p class="name animationShow-x">Tailored shorts</p>
+                            <p class="price animationShow-y">699<span class="reduced">999</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 14 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/e8a63da20c35a406b81fef5926da0981f261e3fc_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 14">
+                        <div>
+                            <p class="name animationShow-x">Wide twill trousers</p>
+                            <p class="price animationShow-y">799</p>
+                        </div>
+                    </div>
+                    <!-- Product Item 15 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/f2c3abcd3d98933154bdaa3567be76ac8c3f0989_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 15">
+                        <div>
+                            <p class="name animationShow-x">Tapered trousers</p>
+                            <p class="price animationShow-y">1,399</p>
+                        </div>
+                    </div>
+                    <!-- Product Item 16 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/9528cbcdd4c4bb51a66c514eea90767fc64b8dc2_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 16">
+                        <div>
+                            <p class="name animationShow-x">Cropped cargo shirt</p>
+                            <p class="price animationShow-y">419<span class="reduced">599</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 17 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/1057cf3acab19ded4b1ddbfe80748b45f86eaf7d_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 17">
+                        <div>
+                            <p class="name animationShow-x">Jacquard-weave bow-back dress</p>
+                            <p class="price animationShow-y">1,099</p>
+                        </div>
+                    </div>
+                    <!-- Product Item 18 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/18f98d99e8d4d482b2e6a50266ec24fc3cf9482b_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 18">
+                        <div>
+                            <p class="name animationShow-x">Flounced chiffon blouse</p>
+                            <p class="price animationShow-y">559<span class="reduced">799</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 19 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/a14c084ca931ac0cd92c631df74c8d794752af19_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 19">
+                        <div>
+                            <p class="name animationShow-x">Wide drawstring trousers</p>
+                            <p class="price animationShow-y">999</p>
+                        </div>
+                    </div>
+                    <!-- Product Item 20 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/f7dde272bb0ee80d34f0bf72ee18616e04d15518_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 20">
+                        <div>
+                            <p class="name animationShow-x">Voluminous maxi skirt</p>
+                            <p class="price animationShow-y">979<span class="reduced">1,399</span></p>
+                        </div>
+                    </div>
+                    <!-- Product Item 21 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/57cc90881c937bd7f0242e3b42768b3444802257_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 21">
+                        <div>
+                            <p class="name animationShow-x">Wide trousers</p>
+                            <p class="price animationShow-y">1,099</p>
+                        </div>
+                    </div>
+                    <!-- Product Item 22 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/92242532efd41619fe63a587be0e6885d71a1d18_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 22">
+                        <div>
+                            <p class="name animationShow-x">Ribbed asymmetric dress</p>
+                            <p class="price animationShow-y">799</p>
+                        </div>
+                    </div>
+                    <!-- Product Item 23 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/18ad1c59bfb03a21e44cda3a72a3ba65da47a91d_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 23">
+                        <div>
+                            <p class="name animationShow-x">Embellished mini skirt</p>
+                            <p class="price animationShow-y">799</p>
+                        </div>
+                    </div>
+                    <!-- Product Item 24 -->
+                    <div class="product-item">
+                        <img src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/675563965bcd9e6fc472456753108b2e158a798c_xxl-1.jpg"
+                            draggable="false" oncontextmenu="return false;" alt="product 24">
+                        <div>
+                            <p class="name animationShow-x">Tie-belt felted coat</p>
+                            <p class="price animationShow-y">1,609<span class="reduced">2,299</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="animationShow-x">contact</h2>
+            <form class="animationShow-y">
+                <div>
+                    <input class="animationShow-x" id="name" name="name" type="text" required="required">
+                    <span>Your name</span>
+                </div>
+                <div>
+                    <input class="animationShow-x" id="email" name="email" type="text" required="required">
+                    <span>email</span>
+                </div>
+                <div>
+                    <textarea class="animationShow-x" id="message" name="message" required></textarea>
+                    <span>message</span>
+                </div>
+                <button type="submit">send</button>
+            </form>
+            <div class="container">
+            </div>
+        </section>
+        <footer id="about">
+            <h3 class="animationShow-x">About Us</h3>
+            <p class="animationShow-y">C&S CENTER.SHOP is an e-commerce platform offering a wide range of products and
+                services tailored to
+                meet the needs of modern customers. We are committed to enhancing the online shopping experience
+                with
+                convenience, speed, and security while delivering personalized and attentive service.</p>
+            <h3 class="animationShow-x">Mission</h3>
+            <ul>
+                <li class="animationShow-y">Deliver high-quality products at reasonable prices.</li>
+                <li class="animationShow-y">Ensure a seamless and secure ordering and delivery process.</li>
+                <li class="animationShow-y">Provide an exceptional customer experience.</li>
+            </ul>
+            <h3 class="animationShow-x">Key Highlights</h3>
+            <ul>
+                <li class="animationShow-y"><strong>Wide Product Selection: </strong>Covering various categories,
+                    including clothing,
+                    electronics, home essentials, and more.</li>
+                <li class="animationShow-y"><strong>Secure Payment Systems: </strong>Supporting multiple safe and
+                    reliable
+                    payment methods.
+                </li>
+                <li class="animationShow-y"><strong>Fast Delivery: </strong>Partnering with top logistics providers to
+                    ensure on-time
+                    delivery.</li>
+                <li class="animationShow-y"><strong>Dedicated Customer Service: </strong>Ready to assist and provide
+                    guidance 24/7.</li>
+            </ul>
+            <h3 class="animationShow-x">Our Services</h3>
+            <ol>
+                <li class="animationShow-y">
+                    <strogn>Online Shopping: </strogn>Browse and purchase products through a user-friendly platform.
+                </li>
+                <li class="animationShow-y">
+                    <strogn>Exclusive Promotions: </strogn>Special discounts and offers for members.
+                </li>
+                <li class="animationShow-y">
+                    <strogn>Loyalty Program: </strogn>Earn points to redeem discounts or rewards.
+                </li>
+            </ol>
+            <h3 class="animationShow-x">Our Team</h3>
+            <p class="animationShow-y">C&S CENTER.SHOP was founded by a passionate team dedicated to technology and
+                online commerce. With a
+                vision to create a platform that caters to all users' needs, we strive for continuous improvement
+                and innovation.</p>
+            <h3 class="animationShow-x">Contact Us</h3>
+            <ul>
+                <li class="animationShow-y">Website: <a href="www.cscenter.shop">www.cscenter.shop</a></li>
+                <li class="animationShow-y">Email: <a href="contact@cscenter.shop">contact@cscenter.shop</a></li>
+                <li class="animationShow-y">Phone: +66 99 876 5432</li>
+                <li class="animationShow-y">Social Media: Facebook, Instagram, Twitter (@cscenter.shop)</li>
+            </ul>
+            <p class="animationShow-x"><strong>C&S CENTER.SHOP </strong>– Your trusted partner in every shopping
+                journey
+                🌟</p>
+        </footer>
+
+    </body>
+    <script>
+        const searchInput = document.getElementById('search');
+        const productItems = document.querySelectorAll('.product-item');
+
+        searchInput.addEventListener('input', function () {
+            // ลบตัวอักษรพิเศษจากคำค้นหา
+            const query = searchInput.value.toLowerCase().replace(/[^a-zA-Z0-9ก-๙\s]/g, '');
+
+            productItems.forEach(item => {
+                const nameElement = item.querySelector('.name');
+                const priceElement = item.querySelector('.price');
+                const productName = nameElement.textContent;
+                const productPrice = priceElement.textContent;
+
+                // ลบ HTML ไฮไลต์เดิมก่อน
+                nameElement.innerHTML = productName;
+                priceElement.innerHTML = productPrice;
+
+                // ลบตัวอักษรพิเศษจากชื่อสินค้าและราคา
+                const cleanProductName = productName.toLowerCase().replace(/[^a-zA-Z0-9ก-๙\s]/g, '');
+                const cleanProductPrice = productPrice.toLowerCase().replace(/[^a-zA-Z0-9ก-๙\s]/g, '');
+
+                // ตรวจสอบว่าคำค้นหาตรงกับชื่อหรือราคา
+                const nameMatches = cleanProductName.includes(query);
+                const priceMatches = cleanProductPrice.includes(query);
+
+                if (query && (nameMatches || priceMatches)) {
+                    // ไฮไลต์คำค้นหาในชื่อสินค้า
+                    if (nameMatches) {
+                        const regex = new RegExp(`(${query})`, 'gi');
+                        nameElement.innerHTML = productName.replace(regex, '<span class="highlight">$1</span>');
+                    }
+
+                    // ไฮไลต์คำค้นหาในราคา
+                    if (priceMatches) {
+                        const regex = new RegExp(`(${query})`, 'gi');
+                        priceElement.innerHTML = productPrice.replace(regex, '<span class="highlight">$1</span>');
+                    }
+
+                    item.style.display = 'block'; // แสดงสินค้า
+                } else if (!query) {
+                    item.style.display = 'block'; // แสดงสินค้าทั้งหมดหากไม่มีคำค้นหา
+                } else {
+                    item.style.display = 'none'; // ซ่อนสินค้า
+                }
+            });
+        });
+    </script>
+
+</html>

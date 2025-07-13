@@ -1,67 +1,76 @@
 <!doctype html>
 <html lang=th>
+
 <head>
-<title>listing directory/images/</title>
-<meta charset=UTF-8>
-<meta http-equiv=X-UA-Compatible content="IE=edge">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name=theme-color content=#409EFE>
-<meta name=keywords content="HTML, CSS, XML, JavaScript, Centered101">
-<meta name=author content="Listing Directory — Centered101">
-<meta name=description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:type content=website>
-<meta property=og:url content=https://project-test-submission.netlify.app/ >
-<meta property=og:title content="Listing Directory — Centered101">
-<meta property=og:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=og:image content=/images/icon.svg>
-<meta property=twitter:card content=summary_large_image>
-<meta property=twitter:url content=https://project-test-submission.netlify.app/ >
-<meta property=twitter:title content="Listing Directory — Centered101">
-<meta property=twitter:description content="โปรเจกต์ต่างๆ ที่ผมสร้าง ส่งให้คุณตรวจ">
-<meta property=twitter:image content=/images/icon.svg>
-<link rel="shortcut icon" type=image/x-icon href=/images/icon.svg>
-<link rel=stylesheet href=/style/style-start.css>
-<link rel=stylesheet href=/style/style.css>
-<script src=https://cdn.tailwindcss.com></script>
-<script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
-<script src=/animation/script.js></script>
+    <title>listing directory/images/</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#409EFE">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
+    <meta name="author" content="Centered101">
+    <meta name="description" content="project-test-submission — listing directory">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://project-test-submission.netlify.app">
+    <meta property="og:title" content="listing directory">
+    <meta property="og:description" content="project-test-submission — listing directory">
+    <meta property="og:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://project-test-submission.netlify.app">
+    <meta property="twitter:title" content="listing directory">
+    <meta property="twitter:description" content="project-test-submission — listing directory">
+    <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://project-test-submission.netlify.app/images/icon.svg">
+    <link rel="stylesheet" href="/style/style-start.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src=https://cdn.tailwindcss.com></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
+
 <body class=directory on=showURL() draggable=false oncontextmenu=return!1>
-<input id=search placeholder=ค้นหา autocomplete=off>
-<div id=wrapper>
-<h1>
-<a id=url href=/ >
-<script>document.write(window.location.href)</script>
-</a>
-</h1>
-<ul id=files class=view-tiles><li>
-<a href=/ class="icon icon-directory" title=..><span class=name>..</span><span class=size></span><span class=date></span></a></li>
-<li><a href=/images/img class="icon icon-directory" title=img><span class=name>img</span><span class=size></span><span class=date>3/14/2025 8:31:44 PM</span></a></li>
-<li><a href=/images/Video class="icon icon-directory" title=Video><span class=name>Video</span><span class=size></span><span class=date>3/7/2025 12:34:05 PM</span></a></li>
-<li><a href=/images/66201020151.webp class="icon icon icon-webp icon-image" title=66201020151.webp><span class=name>66201020151.webp</span><span class=size>16854</span><span class=date>2/25/2025 11:03:19 PM</span></a></li>
-<li><a href=/images/curser.png class="icon icon icon-png icon-image" title=curser.png><span class=name>curser.png</span><span class=size>2107</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/icon.ico class="icon icon icon-ico icon-image" title=icon.ico><span class=name>icon.ico</span><span class=size>75835</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/icon.png class="icon icon icon-png icon-image" title=icon.png><span class=name>icon.png</span><span class=size>75835</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/icon.svg class="icon icon icon-svg icon-image-svg+xml" title=icon.svg><span class=name>icon.svg</span><span class=size>2543</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/L.webp class="icon icon icon-webp icon-image" title=L.webp><span class=name>L.webp</span><span class=size>19034</span><span class=date>2/25/2025 11:03:19 PM</span></a></li>
-<li><a href=/images/M.webp class="icon icon icon-webp icon-image" title=M.webp><span class=name>M.webp</span><span class=size>20500</span><span class=date>2/25/2025 11:03:19 PM</span></a></li>
-<li><a href=/images/profile-portfolio-.webp class="icon icon icon-webp icon-image" title=profile-portfolio-.webp><span class=name>profile-portfolio-.webp</span><span class=size>21382</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/profile-portfolio.webp class="icon icon icon-webp icon-image" title=profile-portfolio.webp><span class=name>profile-portfolio.webp</span><span class=size>29728</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/Tes-D.webp class="icon icon icon-webp icon-image" title=Tes-D.webp><span class=name>Tes-D.webp</span><span class=size>64698</span><span class=date>2/25/2025 11:03:19 PM</span></a></li>
-<li><a href=/images/Tes-Dee.webp class="icon icon icon-webp icon-image" title=Tes-Dee.webp><span class=name>Tes-Dee.webp</span><span class=size>52322</span><span class=date>2/25/2025 11:03:19 PM</span></a></li>
-<li><a href=/images/Tes-Dee%E0%B8%AB%E0%B8%99%E0%B8%B6%E0%B9%88%E0%B8%87%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A.webp class="icon icon icon-webp icon-image" title=Tes-Deeหนึ่งวันครับ.webp><span class=name>Tes-Deeหนึ่งวันครับ.webp</span><span class=size>1310740</span><span class=date>2/25/2025 11:03:19 PM</span></a></li>
-<li><a href=/images/Test-D%E0%B8%AB%E0%B8%99%E0%B8%B6%E0%B9%88%E0%B8%87%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A.webp class="icon icon icon-webp icon-image" title=Test-Dหนึ่งวันครับ.webp><span class=name>Test-Dหนึ่งวันครับ.webp</span><span class=size>233794</span><span class=date>2/25/2025 11:03:19 PM</span></a></li>
-<li><a href=/images/%E0%B8%84%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%A1%E0%B8%9C%E0%B8%87.webp class="icon icon icon-webp icon-image" title=คนหล่อนมผง.webp><span class=name>คนหล่อนมผง.webp</span><span class=size>40844</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/%E0%B8%87%E0%B9%88%E0%B8%A7%E0%B8%87%E0%B8%99%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%A7%E0%B8%A5%E0%B8%B2%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99.webp class="icon icon icon-webp icon-image" title=ง่วงนอนเวลาเรียน.webp><span class=name>ง่วงนอนเวลาเรียน.webp</span><span class=size>247066</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/%E0%B9%80%E0%B8%87%E0%B8%B2%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B9%80%E0%B8%AB%E0%B8%87%E0%B8%B2.webp class="icon icon icon-webp icon-image" title=เงาความเหงา.webp><span class=name>เงาความเหงา.webp</span><span class=size>7546</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/%E0%B9%80%E0%B8%87%E0%B8%B2%E0%B9%81%E0%B8%AB%E0%B9%88%E0%B8%87%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B9%80%E0%B8%AB%E0%B8%87%E0%B8%B2.webp class="icon icon icon-webp icon-image" title=เงาแห่งความเหงา.webp><span class=name>เงาแห่งความเหงา.webp</span><span class=size>31036</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/%E0%B9%80%E0%B8%94%E0%B9%87%E0%B8%81%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A.webp class="icon icon icon-webp icon-image" title=เด็กเรียนครับ.webp><span class=name>เด็กเรียนครับ.webp</span><span class=size>511358</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/%E0%B8%A5%E0%B8%B4%E0%B8%87.webp class="icon icon icon-webp icon-image" title=ลิง.webp><span class=name>ลิง.webp</span><span class=size>274300</span><span class=date>2/25/2025 11:03:21 PM</span></a></li>
-<li><a href=/images/%E0%B8%AB%E0%B8%99%E0%B8%B8%E0%B9%88%E0%B8%A1%E0%B9%80%E0%B8%97%E0%B8%84%E0%B8%99%E0%B8%B4%E0%B8%84%E0%B8%A5%E0%B8%9E%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5.webp class="icon icon icon-webp icon-image" title=หนุ่มเทคนิคลพบุรี.webp><span class=name>หนุ่มเทคนิคลพบุรี.webp</span><span class=size>123554</span><span class=date>2/25/2025 11:03:21 PM</span></a></li></ul>
-</div>
-<script src=/script/version.js></script>
-<script src=/script/script-start.min.js></script>
-<script src=/script/key.js defer></script>
-<script>document.getElementById("version").textContent=appVersionProjectTest</script>
+    <div id=preloader
+        class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
+        <span
+            class="w-16 h-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
+        <h2>Loading</h2>
+        <p>Your adventure is about to begin</p>
+    </div>
+    <input id=search placeholder=ค้นหา autocomplete=off>
+    <div id=wrapper>
+        <h1>
+            <a id=url href= />
+            <script>document.write(window.location.href)</script>
+            </a>
+        </h1>
+        <ul id=files class=view-tiles></ul>
+    </div>
+    <script src=/script/main.js></script>
+    <script>
+        const files = [
+            { path: ".." },
+            { path: "/images/img" },
+            { path: "/images/Video" },
+            { path: "/images/66201020151.webp" },
+            { path: "/images/curser.png" },
+            { path: "/images/icon.ico" },
+            { path: "/images/icon.png" },
+            { path: "/images/icon.svg" },
+            { path: "/images/L.webp" },
+            { path: "/images/M.webp" },
+            { path: "/images/profile-portfolio-.webp" },
+            { path: "/images/profile-portfolio.webp" },
+            { path: "/images/Tes-D.webp" },
+            { path: "/images/Tes-Dee.webp" },
+            { path: "/images/Tes-Deeหนึ่งวันครับ.webp" },
+            { path: "/images/Test-Dหนึ่งวันครับ.webp" },
+            { path: "/images/คนหล่อนมผง.webp" },
+            { path: "/images/ง่วงนอนเวลาเรียน.webp" },
+            { path: "/images/ลิง.webp" },
+            { path: "/images/หนุ่มเทคนิคลพบุรี.webp" },
+            { path: "/images/เด็กเรียนครับ.webp" },
+        ];
+    </script>
 </body>
-</html>
