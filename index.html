@@ -50,6 +50,9 @@
     </div>
     <script src=/script/main.js></script>
     <script>
+        $(window).on('load', function () {
+            showNotification('ดูรายละเอียดเพิ่มเติม', 'info', '/docs/');
+        })
         const files = [
             { path: "/Audio" },
             { path: "/fonts" },

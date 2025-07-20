@@ -68,9 +68,18 @@ fetch(`https://api.github.com/users/${username}`)
         twitterImage.setAttribute("property", "twitter:image");
         twitterImage.setAttribute("content", data.avatar_url || "https://project-test-submission.netlify.app/images/icon.svg");
         document.head.appendChild(twitterImage);
+
+        // เพิ่มปุ่ม follow
+        $('#github-follow-button-wrapper').append(`
+            <a title="Follow" aria-label="Follow" id="followBtn"
+                href='https://github.com/${username}' target="_blank"
+                class="relative w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--sky-glow)]">
+                <span id="followText">Follow</span>
+            </a>
+        `);
     })
     .catch(error => {
-        console.error("Unable to load GitHub data.:", error);
+        console.error("Unable to load GitHub data:", error);
         showNotification('Unable to load GitHub data.', 'error');
     });
 
@@ -83,6 +92,7 @@ async function fetchData(url, callback) {
     } catch (error) {
         // กรณีเกิดข้อผิดพลาดในการ fetch
         console.error("Error fetching data:", error);
+        showNotification(`Error fetching data: ${error}`, 'error');
     }
 }
 
@@ -90,8 +100,8 @@ async function fetchData(url, callback) {
 fetchData(`https://api.github.com/users/${username}`, function (data) {
     $('#profile-img').attr('src', data.avatar_url || "https://project-test-submission.netlify.app/images/icon.svg");
     $('#profile-name').html(data.login || "Developer");
-    $('#profile-location').text(data.location);
-    $('#profile-bio').text(data.bio);
+    $('#github-profile-location').text(data.location);
+    $('#github-profile-bio').text(data.bio);
 
     $('#repo-count').text(data.public_repos || "0");
     $('#followers-count').text(data.followers || "0");
@@ -100,31 +110,31 @@ fetchData(`https://api.github.com/users/${username}`, function (data) {
     // แสดง/ซ่อน location
     // Location
     if (data.location) {
-        $('#profile-location')
+        $('#github-profile-location')
             .addClass('block')
             .removeClass('hidden')
             .html(`
-<svg xmlns="http://www.w3.org/2000/svg" style="width: 16px;" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-location">
+<svg xmlns="http://www.w3.org/2000/svg" class="size-[1em]" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-location">
     <path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z"/>
 </svg>
                 ${data.location}
             `);
     } else {
-        $('#profile-location').addClass('hidden').removeClass('block');
+        $('#github-profile-location').addClass('hidden').removeClass('block');
     }
 
     // แสดง/ซ่อน bio
     if (data.bio) {
-        $('#profile-bio').addClass('block').removeClass('hidden');
+        $('#github-profile-bio').addClass('block').removeClass('hidden');
     } else {
-        $('#profile-bio').addClass('hidden').removeClass('block');
+        $('#github-profile-bio').addClass('hidden').removeClass('block');
     }
 
-    // ซ่อน profile-about ถ้า location และ bio ไม่มี
+    // ซ่อน github-profile-details ถ้า location และ bio ไม่มี
     if (!data.location && !data.bio) {
-        $('#profile-about').addClass('hidden').removeClass('block');
+        $('#github-profile-details').addClass('hidden').removeClass('block');
     } else {
-        $('#profile-about').addClass('block').removeClass('hidden');
+        $('#github-profile-details').addClass('block').removeClass('hidden');
     }
 });
 

@@ -13,7 +13,7 @@ function disableLink(event) {
 
 // Detect when offline
 $(window).on("offline", function () {
-    showNotification("⚠️ Oh no! You are offline 😐", 'error');
+    showNotification("Oh no! You are offline 😐", 'info');
 });
 
 // Detect when back online
@@ -21,29 +21,153 @@ $(window).on("online", function () {
     showNotification("Glad you're back online! 😍", 'success');
 });
 
-function showNotification(message, type = 'info') {
+// ตัวแปรสำหรับจัดการ notification queue
+let notificationQueue = [];
+let notificationContainer = null;
+
+function showNotification(message, type = 'info', link = null) {
+    // สร้าง container ถ้ายังไม่มี
+    if (!notificationContainer) {
+        notificationContainer = $('<div class="fixed bottom-4 right-4 z-50 space-y-2"></div>');
+        $('body').append(notificationContainer);
+    }
+
     const notification = $(`
-                <div class="fixed bottom-4 right-4 z-50 max-w-sm bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-4 py-2 transition-all duration-300">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            ${type === 'success' ?
+        <div class="notification-item max-w-sm bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-4 py-2 transition-all duration-300 transform translate-x-full select-none ${!link ? 'cursor-pointer' : ''}">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    ${type === 'success' ?
             '<svg class="size-6 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>' :
-            '<svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>'
+            type === 'error' ?
+                '<svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>' :
+                '<svg class="size-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>'
         }
-                        </div>
-                        <div class="ml-2">
-                            <p class="text-sm">${message}</p>
-                        </div>
-                    </div>
                 </div>
-            `);
+                <div class="ml-2 flex-1">
+                    ${link ?
+            `<a href="${link}" class="text-sm text-[color:var(--main-color)] hover:opacity-50 underline" rel="noopener noreferrer">${message}</a>` :
+            `<p class="text-sm">${message}</p>`
+        }
+                </div>
+            </div>
+        </div>
+    `);
 
-    $('body').append(notification);
+    // เพิ่ม notification ใน container
+    notificationContainer.append(notification);
 
+    // Animation เข้า
     setTimeout(() => {
-        notification.fadeOut(300, () => notification.remove());
-    }, 3000);
+        notification.removeClass('translate-x-full');
+    }, 10);
+
+    // ตัวแปรสำหรับจัดการ timer
+    let timeoutId;
+    let isHovered = false;
+    let isFocused = false;
+
+    // ฟังก์ชันเริ่ม timer
+    function startTimer() {
+        if (!isHovered && !isFocused) {
+            timeoutId = setTimeout(() => {
+                closeNotification();
+            }, 5000);
+        }
+    }
+
+    // ฟังก์ชันหยุด timer
+    function stopTimer() {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+        }
+    }
+
+    // ฟังก์ชันปิด notification
+    function closeNotification() {
+        notification.addClass('translate-x-full opacity-0');
+        setTimeout(() => {
+            notification.remove();
+            // ลบ notification ออกจาก queue
+            const index = notificationQueue.indexOf(notification);
+            if (index > -1) {
+                notificationQueue.splice(index, 1);
+            }
+            // ลบ container ถ้าไม่มี notification แล้ว
+            if (notificationQueue.length === 0) {
+                notificationContainer.remove();
+                notificationContainer = null;
+            }
+        }, 300);
+    }
+
+    // Event listeners สำหรับ hover และ focus
+    notification.on('mouseenter', function () {
+        isHovered = true;
+        stopTimer();
+    });
+
+    notification.on('mouseleave', function () {
+        isHovered = false;
+        startTimer();
+    });
+
+    notification.on('focusin', function () {
+        isFocused = true;
+        stopTimer();
+    });
+
+    notification.on('focusout', function () {
+        isFocused = false;
+        startTimer();
+    });
+
+    // ถ้าไม่มีลิงก์ ให้คลิกเพื่อปิดได้
+    if (!link) {
+        notification.on('click', function () {
+            closeNotification();
+        });
+    }
+
+    // เพิ่ม notification ใน queue
+    notificationQueue.push(notification);
+
+    // เริ่ม timer
+    startTimer();
+
+    // จำกัดจำนวน notification ไม่เกิน 5 ตัว
+    if (notificationQueue.length > 5) {
+        const oldestNotification = notificationQueue[0];
+        oldestNotification.addClass('translate-x-full opacity-0');
+        setTimeout(() => {
+            oldestNotification.remove();
+            notificationQueue.shift();
+        }, 300);
+    }
 }
+
+// ฟังก์ชันปิด notification ทั้งหมด
+function clearAllNotifications() {
+    notificationQueue.forEach(notification => {
+        notification.addClass('translate-x-full opacity-0');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    });
+    notificationQueue = [];
+    setTimeout(() => {
+        if (notificationContainer) {
+            notificationContainer.remove();
+            notificationContainer = null;
+        }
+    }, 300);
+}
+
+// ตัวอย่างการใช้งาน:
+// showNotification('บันทึกข้อมูลสำเร็จ', 'success'); // ไม่มีลิงก์ - คลิกเพื่อปิด
+// showNotification('ดูรายละเอียดเพิ่มเติม', 'info', 'https://example.com'); // มีลิงก์ - คลิกเพื่อเปิดลิงก์
+// showNotification('เกิดข้อผิดพลาด', 'error'); // ไม่มีลิงก์ - คลิกเพื่อปิด
+// clearAllNotifications(); // ปิดการแจ้งเตือนทั้งหมด
 
 // —[ profile ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -250,71 +374,12 @@ $(document).ready(function () {
     });
 });
 
-// —[ updateFollowState ]———————————————————————————————————————————————————————————————————————————————————————————————————
-
-$(document).ready(function () {
-    const $followBtn = $('#followBtn');
-    const $followText = $('#followText');
-    const $__followers = $('#followers-count');
-
-    let isFollowing = localStorage.getItem('isFollowing') === 'true';
-
-    function updateFollowState() {
-        const currentCount = parseInt($__followers.text(), 10) || 0;
-
-        if (isFollowing) {
-            $followText.text('Unfollow');
-            $followText.attr('title', 'Unfollow');
-            $followBtn
-                .removeClass('bg-[#409EFE] text-[#FFF]')
-                .addClass('bg-transparent');
-        } else {
-            $followText.text('Follow');
-            $followText.attr('title', 'Follow');
-            $followBtn
-                .removeClass('bg-transparent')
-                .addClass('bg-[#409EFE] text-[#FFF]');
-        }
-
-        // ป้องกันค่าติดลบ
-        if (currentCount < 0) {
-            $__followers.text(0);
-        }
-    }
-
-    updateFollowState();
-
-    $followBtn.on('click', function (e) {
-        let currentCount = parseInt($__followers.text(), 10) || 0;
-
-        if (isFollowing) {
-            currentCount = Math.max(0, currentCount - 1); // ไม่ให้ติดลบ
-        } else {
-            currentCount += 1;
-        }
-
-        $__followers.text(currentCount);
-
-        isFollowing = !isFollowing;
-        localStorage.setItem('isFollowing', isFollowing);
-
-        updateFollowState();
-
-        if (!isFollowing) {
-            e.preventDefault();
-        } else {
-            window.location.href = $followBtn.attr('href');
-        }
-    });
-
-});
-
 // —[ projects ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
 const project = [
     { name: "portfolio-centered101", link: "https://portfolio-centered101.netlify.app/", img: "" },
     { name: "project-test-submission", link: "https://project-test-submission.netlify.app/", img: "./images/project-test-submission.png" },
-    { name: "asia-lb", link: "https://asia-lb.web.app/", img: "./images/asia-bl.png" }
+    { name: "asia-lb", link: "https://asia-lb.web.app/", img: "./images/asia-bl.png" },
 ];
 
 const defaultImage = "https://project-test-submission.netlify.app/images/img/noitems.svg"; // 📌 รูปเริ่มต้น
@@ -323,8 +388,8 @@ const projectsList = document.getElementById('projects-list');
 project.forEach(({ name, link, img }) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
-<a title="${name}" href="${link}" target="_blank" class="flex flex-col justify-center items-center bg-[#FFFFFF] w-full h-full max-w-[1080px] max-h-[1350px] overflow-hidden active:!brightness-90 group">
-    <img draggable="false" oncontextmenu="return false;" data-nimg="1" class="block object-cover ease-out duration-300"
+<a title="${name}" href="${link}" target="_blank" class="flex flex-col justify-center items-center w-full h-full overflow-hidden active:!brightness-90 group">
+    <img draggable="false" oncontextmenu="return false;" data-nimg="1" class="block h-full w-full object-cover object-center ease-out duration-300"
         src="${img || defaultImage}"
         onerror="this.src='https://project-test-submission.netlify.app/images/img/noitems.svg'">
 </a>`;

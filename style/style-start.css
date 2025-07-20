@@ -43,14 +43,6 @@ body::after {
     border-color: var(--border) !important;
 }
 
-@media (min-width: 768px) {
-
-    .md\:hover\:bg-\[\#E3F2FD\]:hover,
-    .hover\:bg-\[\#E3F2FD\]:hover {
-        background-color: var(--sky-glow) !important;
-    }
-}
-
 /* โหมด System (media query) */
 @media (prefers-color-scheme: dark) {
     :root:not(.theme-light):not(.theme-dark) {
@@ -59,11 +51,6 @@ body::after {
         --border: #414143;
         --text-color: #DCDCDC;
         --sky-glow: #1B2830;
-        --ff: 75%;
-    }
-
-    .sky-glow {
-        background-color: var(--sky-glow);
     }
 }
 
@@ -74,11 +61,6 @@ body::after {
         --white-smoker: #F5F5F5;
         --text-color: #0D0D0D;
         --sky-glow: #E3F2FD;
-        --ff: 100%;
-    }
-
-    .sky-glow {
-        background-color: var(--sky-glow);
     }
 }
 
@@ -121,7 +103,7 @@ ul#files li a {
 body::after,
 ul#files {
     height: 100%;
-    width: 100%
+    width: 100%;
 }
 
 input#search,
@@ -132,6 +114,7 @@ body {
 body.directory {
     padding: 6rem 7rem;
     /* 96px 112px */
+    user-select: none;
 }
 
 input#search {
@@ -173,12 +156,14 @@ body.directory div#wrapper h1 a#url {
 ul#files li {
     float: left;
     width: 30%;
-    line-height: 35px;
+    line-height: 3.5rem;
+    /* 56px */
 }
 
 ul#files li a {
     display: block;
-    height: 35px;
+    height: 3.5rem;
+    /* 56px */
     border: 1px solid transparent;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -205,16 +190,18 @@ ul#files span {
 }
 
 ul#files .name {
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 
 ul#files [class^="icon-"] .name {
-    text-indent: 28px;
+    text-indent: 2.25rem;
+    /* 40px */
 }
 
 ul.view-tiles .name {
     width: 100%;
-    background-position: 4px 50%
+    background-position: 0.5rem 50%;
+    /* 8px */
 }
 
 ul.view-tiles .date,
