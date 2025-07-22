@@ -45,7 +45,7 @@ function showNotification(message, type = 'info', link = null) {
                 </div>
                 <div class="ml-2 flex-1">
                     ${link ?
-            `<a href="${link}" class="text-sm text-[color:var(--main-color)] hover:opacity-50 underline" rel="noopener noreferrer">${message}</a>` :
+            `<a href="${link}" class="text-sm text-[color:var(--main-color)] hover:opacity-50 hover:underline" rel="noopener noreferrer">${message}</a>` :
             `<p class="text-sm">${message}</p>`
         }
                 </div>
@@ -205,21 +205,19 @@ $(document).ready(function () {
         '': 'icon-directory'
     };
 
-    $.each(files, function (_, { path }) {
+    $.each(files, function (_, { path, name }) {
         const cleanName = path.split('/').pop();
+        const fileName = name || cleanName;
 
-        // ดึงนามสกุลไฟล์
         const ext = cleanName.includes('.') ? cleanName.split('.').pop().toLowerCase() : '';
-
-        // เช็กว่า extension มีในแมปไหม
         const classToUse = extensionClassMap[ext] || defaultClassName;
 
         $('<li></li>')
             .append(`
-                <a href="${path}" class="${classToUse}" title="${cleanName}">
-                    <span class="name">${cleanName}</span>
-                </a>
-            `)
+            <a href="${path}" class="${classToUse}" title="${cleanName}">
+                <span class="name">${fileName}</span>
+            </a>
+        `)
             .appendTo('#files');
     });
 

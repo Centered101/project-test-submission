@@ -73,7 +73,7 @@ fetch(`https://api.github.com/users/${username}`)
         $('#github-follow-button-wrapper').append(`
             <a title="Follow" aria-label="Follow" id="followBtn"
                 href='https://github.com/${username}' target="_blank"
-                class="relative w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--sky-glow)]">
+                class="relative w-full sm:w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--sky-glow)]">
                 <span id="followText">Follow</span>
             </a>
         `);

@@ -24,7 +24,7 @@
     <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
 
     <link rel="shortcut icon" type="image/x-icon" href="https://project-test-submission.netlify.app/images/icon.svg">
-    <link rel="stylesheet" href="/style/style-start.css">
+    <link rel="stylesheet" href="/style/main.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src=https://cdn.tailwindcss.com></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -77,30 +77,14 @@
                     จะยังคงอยู่แม้ปิดเบราว์เซอร์หรือรีสตาร์ทเครื่อง (ยกเว้นผู้ใช้ลบข้อมูลด้วยตนเอง)</p>
             </div>
             <h2>โปรเจกต์ที่คุณจะต้องลองสำรวจ</h2>
-            <table class="w-full border border-collapse">
-                <tr class="border-b">
-                    <td class="truncate border-r px-4 py-2">โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด</td>
-                    <td>
-                        <a title=โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด href=./birthday_countdown.html
-                            class="relative w-full flex justify-center items-center truncate px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[color:var(--main-color)] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--sky-glow)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">การสาธิตสด</a>
-                    </td>
-                </tr>
-                <tr class="border-b">
-                    <td class="truncate border-r px-4 py-2">จัดการตารางงานของคุณ</td>
-                    <td>
-                        <a title=จัดการตารางงานของคุณ href=./manage_work.html
-                            class="relative w-full flex justify-center items-center truncate px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[color:var(--main-color)] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--sky-glow)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">การสาธิตสด</a>
-                    </td>
-                </tr>
-                <tr class="border-b">
-                    <td class="truncate border-r px-4 py-2">แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ 50/30/20 Rule
-                    </td>
-                    <td>
-                        <a title="แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ 50/30/20 Rule" href=./wallet_management.html
-                            class="relative w-full flex justify-center items-center truncate px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[color:var(--main-color)] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--sky-glow)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">การสาธิตสด</a>
-                    </td>
-                </tr>
-            </table>
+            <ul class="list-disc">
+                <li><a title="โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด"
+                        href="/PROJECTS_ALL/birthday_countdown.html">โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด<a></li>
+                <li><a title="จัดการตารางงานของคุณ" href="/PROJECTS_ALL/manage_work.html">จัดการตารางงานของคุณ<a></li>
+                <li><a title="แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ 50/30/20 Rule"
+                        href="/PROJECTS_ALL/wallet_management.html">แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ
+                        50/30/20 Rule<a></li>
+            </ul>
         </section>
     </main>
     <script src="/script/main.js"></script>

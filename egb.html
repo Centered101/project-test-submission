@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Color & Hashtag Detector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-text {
+            font-size: 16px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #409EFE;
+        }
+
+        .color-preview {
+            background-color: var(--color);
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+            display: inline-block;
+            margin: 0 3px;
+            font-size: 13px;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .color-preview.light-color {
+            color: #000;
+            text-shadow: none;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .hashtag-mention {
+            color: #409EFE;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .hashtag-mention:hover {
+            color: #2d7dd6;
+            cursor: pointer;
+        }
+
+        .hashtag-mention.mention {
+            color: #e91e63;
+        }
+
+        .hashtag-mention.mention:hover {
+            color: #c2185b;
+        }
+
+        h1 {
+            color: #409EFE;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .stats {
+            background: #f1f8e9;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #558b2f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎨 Enhanced Color & Hashtag Detector</h1>
+
+        <div class="info">
+            <strong>ฟีเจอร์:</strong> ตรวจจับรหัสสี, hashtags (#tag), และ mentions (@user) โดยอัตโนมัติ
+        </div>
+
+        <div class="stats" id="stats">
+            กำลังสแกนหน้าเว็บ...
+        </div>
+
+        <div class="demo-text">
+            ธีมหลักเป็นสีเงิน-ขาว (#409EFE, #FFFFFF) พร้อมแฮชแท็ก #webdev #javascript
+        </div>
+
+        <div class="demo-text">
+            สีที่ใช้บ่อย: #FF5722, #4CAF50, #FFC107 และ mention @developer @designer
+        </div>
+
+        <div class="demo-text">
+            รูปแบบสั้น: #F00, #0F0, #00F พร้อม #ui-design #css-tricks
+        </div>
+
+        <div class="demo-text">
+            การใช้งานจริง: สี #2196F3 สำหรับ primary button, #FFF สำหรับ background
+            โดย @team-lead แนะนำให้ใช้ #Material-Design
+        </div>
+
+        <div class="demo-text">
+            Social media style: ตัวอย่าง @john_doe กับ #thai-web-dev และสี #E91E63
+        </div>
+        <input type="text" value="#">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        let stats = {
+            colors: 0,
+            hashtags: 0,
+            mentions: 0
+        };
+
+        function detectAndHighlightColors() {
+            const colorRegex = /#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/g;
+
+            function isLightColor(hex) {
+                let r, g, b;
+                if (hex.length === 4) {
+                    r = parseInt(hex[1] + hex[1], 16);
+                    g = parseInt(hex[2] + hex[2], 16);
+                    b = parseInt(hex[3] + hex[3], 16);
+                } else {
+                    r = parseInt(hex.slice(1, 3), 16);
+                    g = parseInt(hex.slice(3, 5), 16);
+                    b = parseInt(hex.slice(5, 7), 16);
+                }
+                const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+                return luminance > 0.5;
+            }
+
+            function processTextNode($element) {
+                const tag = $element.prop("tagName");
+                if (tag === 'SCRIPT' || tag === 'STYLE' ||
+                    $element.hasClass('color-preview') ||
+                    $element.hasClass('hashtag-mention')) return;
+
+                const childNodes = $element.contents();
+
+                if (childNodes.length === 1 && childNodes[0].nodeType === 3) {
+                    const originalText = $element.text();
+                    if (colorRegex.test(originalText)) {
+                        colorRegex.lastIndex = 0;
+                        const coloredText = originalText.replace(colorRegex, (match) => {
+                            stats.colors++;
+                            const isLight = isLightColor(match);
+                            const lightClass = isLight ? ' light-color' : '';
+                            return `<span class="color-preview${lightClass}" style="--color: ${match};" title="Color: ${match}">${match}</span>`;
+                        });
+                        $element.html(coloredText);
+                    }
+                } else {
+                    childNodes.each(function () {
+                        if (this.nodeType === 1 && !$(this).hasClass("color-preview")) {
+                            processTextNode($(this));
+                        }
+                    });
+                }
+            }
+
+            processTextNode($('body'));
+        }
+
+        function highlightHashtagsAndMentions() {
+            // ปรับปรุง regex ให้รองรับ unicode และ dash
+            const hashtagRegex = /(#[\w\u0E00-\u0E7F\-]+)/g;
+            const mentionRegex = /(@[\w\u0E00-\u0E7F\-_.]+)/g;
+
+            function processElement($el) {
+                const tag = $el.prop("tagName");
+                if (tag === 'SCRIPT' || tag === 'STYLE' ||
+                    $el.hasClass('hashtag-mention') ||
+                    $el.hasClass('color-preview')) return;
+
+                const children = $el.contents();
+                children.each(function () {
+                    if (this.nodeType === 3) {
+                        let text = this.nodeValue;
+                        let hasChanges = false;
+
+                        // ประมวลผล hashtags
+                        if (hashtagRegex.test(text)) {
+                            hashtagRegex.lastIndex = 0;
+                            text = text.replace(hashtagRegex, match => {
+                                stats.hashtags++;
+                                hasChanges = true;
+                                return `<span class="hashtag-mention" title="Hashtag: ${match}">${match}</span>`;
+                            });
+                        }
+
+                        // ประมวลผล mentions
+                        if (mentionRegex.test(text)) {
+                            mentionRegex.lastIndex = 0;
+                            text = text.replace(mentionRegex, match => {
+                                stats.mentions++;
+                                hasChanges = true;
+                                return `<span class="hashtag-mention mention" title="Mention: ${match}">${match}</span>`;
+                            });
+                        }
+
+                        if (hasChanges) {
+                            $(this).replaceWith(text);
+                        }
+                    } else if (this.nodeType === 1 &&
+                        !$(this).hasClass("hashtag-mention") &&
+                        !$(this).hasClass("color-preview")) {
+                        processElement($(this));
+                    }
+                });
+            }
+
+            processElement($('body'));
+        }
+
+        function updateStats() {
+            $('#stats').html(`
+                🎨 พบรหัสสี: <strong>${stats.colors}</strong> รายการ | 
+                📱 Hashtags: <strong>${stats.hashtags}</strong> รายการ | 
+                👤 Mentions: <strong>${stats.mentions}</strong> รายการ
+            `);
+        }
+
+        // รันทั้งสองฟังก์ชันเมื่อ DOM โหลดแล้ว
+        $(document).ready(function () {
+            // รีเซ็ตสถิติ
+            stats = { colors: 0, hashtags: 0, mentions: 0 };
+
+            // ประมวลผล
+            detectAndHighlightColors();
+            highlightHashtagsAndMentions();
+
+            // อัปเดตสถิติ
+            updateStats();
+        });
+    </script>
+</body>
+
+</html>

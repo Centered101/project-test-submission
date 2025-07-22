@@ -24,7 +24,7 @@
     <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
 
     <link rel="shortcut icon" type="image/x-icon" href="https://project-test-submission.netlify.app/images/icon.svg">
-    <link rel="stylesheet" href="/style/style-start.css">
+    <link rel="stylesheet" href="/style/main.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src=https://cdn.tailwindcss.com></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -51,8 +51,14 @@
     <script src=/script/main.js></script>
     <script>
         $(window).on('load', function () {
-            showNotification('ดูรายละเอียดเพิ่มเติม', 'info', '/docs/');
-        })
+            const notificationKey = 'notification_shown_once';
+
+            if (!localStorage.getItem(notificationKey)) {
+                showNotification('ดูรายละเอียดเพิ่มเติม', 'info', '/docs/');
+                localStorage.setItem(notificationKey, 'true'); // บันทึกว่าแสดงไปแล้ว
+            }
+        });
+
         const files = [
             { path: "/Audio" },
             { path: "/fonts" },
@@ -60,16 +66,16 @@
             { path: "/script" },
             { path: "/style" },
             { path: "/docs" },
-            { path: "/PROJECTS_ALL" },
+            { path: "/local-storage-app", name: "การเก็บข้อมูลแบบ_local-storage" },
+            { path: "/instagram-follower-following" },
             { path: "/Centered101" },
-            { path: "/game-yes-or-no" },
-            { path: "/เก็บข้อมูลแบบ-Local-Storage" },
-            // { path: "/instagram-follower-following" },
-            { path: "/ประเพณีของไทยในแต่ละภาค" },
-            { path: "/ตัวอย่าง_ร้านขายสินค้า_e-Commerce" },
-            { path: "/ตารางเรียน" },
+            { path: "/PROJECTS_ALL" },
+            { path: "/game-yes-or-no", name: "ส่งจับคุณ" },
+            { path: "/thai-traditions", name: "ประเพณีของไทยในแต่ละภาค" },
+            { path: "/ecommerce-store", name: "ตัวอย่างรานค้า_E-Commerce" },
+            { path: "/class-schedule", name: "ตารางเรียน" },
             { path: "/project-random-color" },
-            { path: "/Web-Push-Notification" },
+            { path: "/Web-Push-Notification", name: "ทดสอบการแจ้งเตือน" },
             { path: "/test-portfolio" },
             { path: "/404.html" },
         ];
