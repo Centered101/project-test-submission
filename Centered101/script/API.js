@@ -132,9 +132,9 @@ fetchData(`https://api.github.com/users/${username}`, function (data) {
 
     // ซ่อน github-profile-details ถ้า location และ bio ไม่มี
     if (!data.location && !data.bio) {
-        $('#github-profile-details').addClass('hidden').removeClass('block');
+        $('#github-profile-details').addClass('hidden').removeClass('flex');
     } else {
-        $('#github-profile-details').addClass('block').removeClass('hidden');
+        $('#github-profile-details').addClass('flex').removeClass('hidden');
     }
 });
 
@@ -168,7 +168,7 @@ fetchData(`https://api.github.com/users/${username}/followers`, followers => {
             <img src="${follower.avatar_url}" class="size-8 flex-1 bg-[#F5F5F5] border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
             <span>${follower.login}</span>
         </p>
-        <svg xmlns=http://www.w3.org/2000/svg height=16 viewBox="0 -960 960 960" width=16>
+        <svg xmlns=http://www.w3.org/2000/svg height=16 viewBox="0 -960 960 960" width=16 class="size-[1em]">
             <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
         </svg>
     </a>
@@ -187,7 +187,7 @@ fetchData(`https://api.github.com/users/${username}/following`, following => {
             <img src="${following.avatar_url}" class="size-8 flex-1 bg-[#F5F5F5] border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
             <span>${following.login}</span>
         </p>
-        <svg xmlns=http://www.w3.org/2000/svg height=16 viewBox="0 -960 960 960" width=16>
+        <svg xmlns=http://www.w3.org/2000/svg height=16 viewBox="0 -960 960 960" width=16 class="size-[1em]">
             <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
         </svg>
     </a>

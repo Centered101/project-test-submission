@@ -37,10 +37,10 @@ function showNotification(message, type = 'info', link = null) {
             <div class="flex items-center">
                 <div class="flex-shrink-0">
                     ${type === 'success' ?
-            '<svg class="size-6 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>' :
+            '<svg class="size-[1em] text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>' :
             type === 'error' ?
-                '<svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>' :
-                '<svg class="size-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>'
+                '<svg class="size-[1em] text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>' :
+                '<svg class="size-[1em] text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>'
         }
                 </div>
                 <div class="ml-2 flex-1">
@@ -206,53 +206,75 @@ function toggleImageShape(event) {
 }
 
 function share() {
+    const share = $("#share");
+    share.prop("disabled", true);
+
     if (navigator.share) {
         navigator.share({
-            title: 'Github API Profile',
+            title: `Github API Profile`,
             text: 'See my profile here.',
             url: URLShare
         }).catch(err => {
             console.error("Share failed:", err);
             fallbackShare();
+        }).finally(() => {
+            setTimeout(() => share.prop("disabled", false), 3000);
         });
     } else {
         fallbackShare();
-        showNotification('Unable to share link', 'error');
+        showNotification('Unable to share via system, fallback used.', 'info');
+        setTimeout(() => share.prop("disabled", false), 3000);
     }
 }
 
 function fallbackShare() {
-    // สร้าง modal สำหรับแชร์
     const shareText = `See my profile at: ${URLShare}`;
+
     if (navigator.clipboard) {
         navigator.clipboard.writeText(shareText).then(() => {
-            showNotification('Link copied successfully!', 'success');
+            showNotification('Link copied to clipboard (fallback)', 'success');
+        }).catch(() => {
+            showNotification('Unable to copy link', 'error');
+            prompt('Copy this link:', shareText);
         });
     } else {
+        // เบราว์เซอร์เก่าจริง ๆ
         prompt('Copy this link:', shareText);
     }
 }
 
 function copyLink() {
-    const btn = $("#copyBtn");
+    const copyLink = $("#copyLink");
+
+    // ปิดการกดซ้ำ
+    copyLink.prop("disabled", true);
 
     if (navigator.clipboard) {
         navigator.clipboard.writeText(URLShare).then(() => {
             // เปลี่ยนไอคอนเป็น checkmark
-            btn.html('<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"/></svg>');
+            copyLink.html(`
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
+                    <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"/>
+                </svg>
+            `);
 
             showNotification('Link copied successfully!', 'success');
 
-            // เปลี่ยนกลับเป็นไอคอนเดิมหลัง 2 วินาที
+            // รีเซ็ตหลัง 5 วิ
             setTimeout(() => {
-                btn.html('<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>');
+                copyLink.html(`
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
+                        <path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/>
+                    </svg>
+                `);
+                copyLink.prop("disabled", false); // เปิดให้กดได้อีกครั้ง
             }, 5000);
         }).catch(err => {
             console.error('cannot be copied:', err);
             showNotification('Unable to copy link', 'error');
+            copyLink.prop("disabled", false); // คืนปุ่มในกรณีผิดพลาด
         });
     } else {
-        // Fallback สำหรับเบราว์เซอร์เก่า
         const textArea = document.createElement('textarea');
         textArea.value = URLShare;
         document.body.appendChild(textArea);
@@ -264,6 +286,9 @@ function copyLink() {
             showNotification('Unable to copy link', 'error');
         }
         document.body.removeChild(textArea);
+        setTimeout(() => {
+            copyLink.prop("disabled", false);
+        }, 5000);
     }
 }
 
