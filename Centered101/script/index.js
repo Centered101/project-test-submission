@@ -33,7 +33,7 @@ function showNotification(message, type = 'info', link = null) {
     }
 
     const notification = $(`
-        <div class="notification-item max-w-sm bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-4 py-2 transition-all duration-300 transform translate-x-full select-none ${!link ? 'cursor-pointer' : ''}">
+        <div class="notification-item max-w-sm bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-2 py-2 transition-all duration-300 transform translate-x-full select-none ${!link ? 'cursor-pointer' : ''}">
             <div class="flex items-center">
                 <div class="flex-shrink-0">
                     ${type === 'success' ?
