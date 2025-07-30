@@ -94,7 +94,6 @@
         --border: #414143;
         --text-color: #DCDCDC;
         --sky-glow: #1B2830;
-        --ff: 75%;
     }
 
     /* โหมด System (media query) */
@@ -111,10 +110,6 @@
         .sky-glow {
             background-color: var(--sky-glow);
         }
-
-        ul#projects-list li a {
-            filter: brightness(var(--ff));
-        }
     }
 
     /* โหมด Light */
@@ -124,7 +119,6 @@
         --white-smoker: #F5F5F5;
         --text-color: #0D0D0D;
         --sky-glow: #E3F2FD;
-        --ff: 100%;
     }
 
     @media (prefers-color-scheme: light) {
@@ -134,15 +128,10 @@
             --white-smoker: #F5F5F5;
             --text-color: #0D0D0D;
             --sky-glow: #E3F2FD;
-            --ff: 100%;
         }
 
         .sky-glow {
             background-color: var(--sky-glow);
-        }
-
-        ul#projects-list li a {
-            filter: brightness(var(--ff));
         }
     }
 
@@ -161,9 +150,20 @@
             transform: scale(1);
         }
     }
+
+    .bg-img::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url(https://cdn.pixabay.com/photo/2024/06/30/10/28/sky-8862862_1280.png);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.1;
+        z-index: -10;
+    }
 </style>
 
-<body class="flex flex-row font-semibold text-base select-none bg-[color:var(--bg-color)] *:!slashed-zero"
+<body class="flex flex-row font-semibold text-sm md:text-base select-none bg-[color:var(--bg-color)] *:!slashed-zero"
     draggable="false" oncontextmenu="return false">
     <!-- preloader -->
     <div id="preloader"
@@ -329,8 +329,20 @@
                 </svg>
             </button>
         </section>
+        <!-- Intro Screen -->
+        <div id="intro-screen"
+            class="fixed inset-0 flex justify-center items-center bg-[color:var(--bg-color)] bg-opacity-75 text-xl transition cursor-pointer z-40">
+            <span>Click to Enter</span>
+        </div>
+
         <!-- โปรไฟล์ GitHub -->
-        <section class="flex flex-col gap-4 md:gap-8 py-12 sm:py-8">
+        <section class="bg-img relative flex flex-col gap-4 md:gap-8 py-12 sm:py-8 z-0 overflow-hidden">
+
+            <!-- Video Background with Sound -->
+            <video id="bg-video" autoplay loop playsinline class="absolute inset-0 w-full h-full object-cover z-[-1]">
+                <source src="https://r2.guns.lol/156ee014-9f2c-43d7-a12b-e10b6738c1c2.mp4" type="video/webm">
+            </video>
+
             <div class="w-full flex flex-row items-center justify-start space-x-2 p-2 md:px-4">
                 <!-- รูปโปรไฟล์ -->
                 <img id="profile-img" class="size-24 md:size-56 rounded-full md:rounded-none cursor-pointer"
@@ -365,6 +377,18 @@
                 </div>
             </div>
         </section>
+
+        <script>
+            const intro = document.getElementById('intro-screen');
+            const video = document.getElementById('bg-video');
+
+            intro.addEventListener('click', () => {
+                intro.style.display = 'none';
+                video.muted = false;
+                video.volume = 0.5;
+                video.play();
+            });
+        </script>
 
         <section id="deploy" class="w-full flex flex-wrap justify-around items-center">
 
@@ -409,8 +433,7 @@
             </label>
 
             <!-- projects -->
-            <ul hidden id="projects-list"
-                class="w-full grid-cols-3 gap-1 truncate px-0 py-2 peer-checked/projects:grid">
+            <ul hidden id="projects-list" class="w-full grid-cols-3 truncate px-0 py-2 peer-checked/projects:grid">
             </ul>
 
             <!-- รายชื่อ Repository -->
@@ -432,41 +455,6 @@
     </main>
     <script src="./script/index.js"></script>
     <script src="./script/API.js"></script>
-    <script>
-        const navSidebar = document.getElementById("nav");
-        const overlay = document.getElementById("overlay");
-        const toggleBtn = document.getElementById("sidebarToggle");
-
-        let sidebarOpen = false;
-
-        function openSidebar() {
-            navSidebar.classList.remove("-translate-x-full");
-            overlay.classList.remove("hidden");
-            sidebarOpen = true;
-        }
-
-        function closeSidebar() {
-            navSidebar.classList.add("-translate-x-full");
-            overlay.classList.add("hidden");
-            sidebarOpen = false;
-        }
-
-        toggleBtn.addEventListener("click", () => {
-            sidebarOpen ? closeSidebar() : openSidebar();
-        });
-
-        overlay.addEventListener("click", closeSidebar);
-
-        // ปรับให้แน่ใจว่ากลับสภาพตามขนาดจอเมื่อ resize
-        window.addEventListener("resize", () => {
-            if (window.innerWidth >= 768) {
-                navSidebar.classList.remove("-translate-x-full");
-                overlay.classList.add("hidden");
-            } else if (!sidebarOpen) {
-                navSidebar.classList.add("-translate-x-full");
-            }
-        });
-    </script>
 </body>
 
 </html>

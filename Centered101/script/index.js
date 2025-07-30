@@ -11,6 +11,8 @@ function disableLink(event) {
     event.preventDefault();
 }
 
+// dkic0h'g9npo---------------------------
+
 // Detect when offline
 $(window).on("offline", function () {
     showNotification("Oh no! You are offline 😐", 'info');
@@ -399,12 +401,49 @@ $(document).ready(function () {
     });
 });
 
+// —[ navSidebar ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
+const navSidebar = document.getElementById("nav");
+const overlay = document.getElementById("overlay");
+const toggleBtn = document.getElementById("sidebarToggle");
+
+let sidebarOpen = false;
+
+function openSidebar() {
+    navSidebar.classList.remove("-translate-x-full");
+    overlay.classList.remove("hidden");
+    sidebarOpen = true;
+}
+
+function closeSidebar() {
+    navSidebar.classList.add("-translate-x-full");
+    overlay.classList.add("hidden");
+    sidebarOpen = false;
+}
+
+toggleBtn.addEventListener("click", () => {
+    sidebarOpen ? closeSidebar() : openSidebar();
+});
+
+overlay.addEventListener("click", closeSidebar);
+
+// ปรับให้แน่ใจว่ากลับสภาพตามขนาดจอเมื่อ resize
+window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+        navSidebar.classList.remove("-translate-x-full");
+        overlay.classList.add("hidden");
+    } else if (!sidebarOpen) {
+        navSidebar.classList.add("-translate-x-full");
+    }
+});
+
 // —[ projects ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
 const project = [
     { name: "portfolio-centered101", link: "https://portfolio-centered101.netlify.app/", img: "" },
     { name: "project-test-submission", link: "https://project-test-submission.netlify.app/", img: "./images/project-test-submission.png" },
     { name: "asia-lb", link: "https://asia-lb.web.app/", img: "./images/asia-bl.png" },
+    { name: "center-dot-shop", link: "https://center-dot-shop.netlify.app/", img: "./images/center-dot-shop.svg" },
 ];
 
 const defaultImage = "https://project-test-submission.netlify.app/images/img/noitems.svg"; // 📌 รูปเริ่มต้น
