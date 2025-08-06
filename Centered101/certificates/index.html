@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!DOCTYPE html>
+    <meta name="description" content="Centered101 Certificates - รวมผลงานใบประกาศที่เคยได้รับ">
+    <meta name="keywords" content="Centered101, Certificates, Portfolio, Web Development, HTML, CSS, JavaScript,">
+    <meta name="author" content="Centered101">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>ใบประกาศนียบัตร - Centered101</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://project-test-submission.netlify.app/style/style.css">
+    <link rel="shortcut icon" href="https://project-test-submission.netlify.app/images/icon.svg" type="image/x-icon">
+</head>
+<style>
+    html {
+        scrollbar-color: #000 #FFF;
+        scrollbar-width: thin;
+        scroll-behavior: smooth
+    }
+</style>
+
+<body class="bg-[#FFF] text-black min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-[#000] text-white text-center space-y-8 py-8">
+        <h1 class="text-4xl font-bold">Centered101 Certificates</h1>
+        <p>รวมผลงานใบประกาศที่เคยได้รับ</p>
+    </header>
+
+    <section
+        class="max-w-6xl mx-auto px-4 pt-8 pb-12 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left border-b border-black">
+        <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
+            alt="นาย พงศ์พล พรมผา" class="w-32 h-32 rounded-full object-cover border-2 border-gray-300" />
+
+        <div>
+            <h2 class="text-3xl font-bold mb-2">นาย พงศ์พล พรมผา</h2>
+            <p class="text-gray-700 text-base leading-relaxed">
+                สวัสดีครับ ผมชื่อเซ็นเตอร์ เป็นนักเรียนระดับ ปวช.2/2 สาขาเทคโนโลยีธุรกิจดิจิทัล
+            </p>
+            <p class="text-gray-700 text-base leading-relaxed">
+                สนใจด้านพัฒนาเว็บไซต์ แอปพลิเคชัน และเทคโนโลยีใหม่ ๆ
+                ที่เกี่ยวกับธุรกิจดิจิทัล รวมถึงการลงทุน หุ้น
+                และอสังหาริมทรัพย์ </p>
+            <p class="text-gray-700 text-base leading-relaxed">
+                ปัจจุบันกำลังฝึกฝนทักษะด้าน JavaScript, Tailwind CSS และ React
+                เพื่อเตรียมตัวเข้าสู่วงการสายเทคและมีอิสรภาพทางการเงินในอนาคต
+            </p>
+        </div>
+    </section>
+
+    <!-- Certificates Grid -->
+    <section class="max-w-6xl mx-auto px-4 pb-24 pt-8">
+        <div id="certificates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            <!-- JS render ตรงนี้ -->
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div onclick="closeImageModal()" id="image-modal"
+        class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+        <div class="bg-white overflow-hidden shadow-2xl max-w-3xl w-full">
+            <div class="relative">
+                <img id="modal-image" src="" alt="" class="w-full max-h-[80vh] object-contain bg-black"
+                    onerror="this.src='https://project-test-submission.netlify.app/images/img/noitems.svg'">
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+        const certificates = [
+            {
+                name: "การสร้างเว็บด้วย HTML และ CSS",
+                issuer: "Online Course Platform",
+                date: "2025-02-24",
+                description: "พื้นฐานการทำงานของเว็บ: อินเทอร์เน็ตและเว็บ, โปรแกรมเว็บบราวเซอร์, ขั้นตอนการสื่อสารข้อมูลในการร้องขอหน้าเว็บ; การแทนโครงสร้างของหน้าเว็บด้วยต้นไม้ดอม; มาตรฐานที่ใช้ในการแสดงและมีปฏิสัมพันธ์กับหน้าเว็บ; ภาษาเอชทีเอ็มแอล: ไวยากรณ์ของภาษาเอชทีเอ็มแอล, ความหมายขององค์ประกอบเอชทีเอ็มแอลชนิดต่าง ๆ และวิธีการใช้งาน; ภาษาซีเอสเอส: การกำหนดลักษณะการแสดงผลให้แก่หน้าเว็บด้วยซีเอสเอส, ไวยากรณ์ของภาษาซีเอสเอส, การเลือกองค์ประกอบเอชทีเอ็มแอลด้วยตัวเลือกในภาษาซีเอสเอส, สมบัติการแสดงผลและค่าการแสดงผล; ตัวอย่างการเขียนหน้าเว็บด้วยภาษาเอชทีเอ็มแอลและภาษาซีเอสเอส; คำแนะนำในการเรียนรู้เพิ่มเติมเกี่ยวกับการพัฒนาเว็บ",
+                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51611/cvcert_usercert/certificate_51611_1408392-1408392-17403928281066.jpg"
+            },
+            {
+                name: "รู้จักคอมพิวเตอร์และระบบดิจิทัล",
+                issuer: "Online Course Platform",
+                date: "2025-02-26",
+                description: "วิวัฒนาการและความเป็นมาของระบบคอมพิวเตอร์ การแทนข้อมูลในระบบคอมพิวเตอร์ ระบบเลขฐานสอง วงจรดิจิทัล ฮาร์ดแวร์ในระบบคอมพิวเตอร์ สถาปัตยกรรมคอมพิวเตอร์เบื้องต้น ซอฟต์แวร์ในระบบคอมพิวเตอร์",
+                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51604/cvcert_usercert/certificate_51604_1408392-1408392-17405696369141.jpg"
+            },
+            {
+                name: "พื้นฐานเครือข่ายคอมพิวเตอร์และอินเทอร์เน็ต",
+                issuer: "Online Course Platform",
+                date: "2025-2-27",
+                description: "ประวัติความเป็นมาของระบบอินเทอร์เน็ต; อินเทอร์เน็ตในประเทศไทย; โพรโทคอลในระบบเครือข่าย; ชุดโพรโทคอลอินเทอร์เน็ต; ฮาร์ดแวร์ในการเชื่อมต่ออินเทอร์เน็ต; บริการในระบบอินเทอร์เน็ต",
+                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51605/cvcert_usercert/certificate_51605_1408392-1408392-17406466510282.jpg"
+            },
+            {
+                name: "รู้จักอินเทอร์เน็ตของทุกสรรพสิ่ง",
+                issuer: "Online Course Platform",
+                date: "2025-02-28",
+                description: "แนะนำเทคโนโลยีด้านอินเทอร์เน็ตของทุกสรรพสิ่ง (IoT) ความหมาย ความเป็นมา และการประยุกต์ใช้งานในปัจจุบัน องค์ประกอบด้านเทคโนโลยีได้แก่ ระบบการบริหารจัดการข้อมูล ระบบอุปกรณ์และการตรวจวัดค่า (Sensors) ระบบการส่งข้อมูล ระบบการจัดเก็บข้อมูล ระบบการวิเคราะห์ และระบบนำเสนอข้อมูล กระบวนการตัดสินใจโดยใช้ข้อมูลในทางธุรกิจและอุตสาหกรรม",
+                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51606/cvcert_usercert/certificate_51606_1408392-1408392-17407035787689.jpg"
+            },
+            {
+                name: "การพัฒนา Full-stack เว็บแอปพลิเคชัน",
+                issuer: "Online Course Platform",
+                date: "2025-08-05",
+                description: "รายวิชา การพัฒนา Full-stack เว็บแอปพลิเคชัน ครอบคลุมเนื้อหาเกี่ยวกับการพัฒนาเว็บแอปพลิเคชันโดยใช้ภาษา Javascript และใช้ React ในการสร้างหน้าต่างผู้ใช้ (User Interface) และใช้ Node.js และ Express.js ในการพัฒนาเว็บแอปพลิเคชันในรูปแบบ Server-Side และเชื่อมต่อฐานข้อมูลด้วย MongoDB กับ Mongoose นอกจากนี้ รายวิชาครอบคลุมไปถึงความปลอดภัยของเว็บแอปพลิเคชั่น ได้แก่ การใช้ระบบยืนยันตัวตน (Authentication) และ กลไกในการยืนยันตัวตน (Authorization Mechanisms) เมื่อเรียนเสร็จสิ้น ผู้เรียนจะได้เรียนรู้การพัฒนาเว็บแอปพลิเคชันด้วยภาษา Javascript",
+                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51618/cvcert_usercert/certificate_51618_1408392-1408392-17544126803709.jpg"
+            },
+            {
+                name: "รู้จักปัญญาประดิษฐ์ และการเรียนรู้ของเครื่อง",
+                issuer: "Online Course Platform",
+                date: "2025-08-06",
+                description: "ความหมายของปัญญาประดิษฐ์ เครื่องมือที่จำเป็นสำหรับการทำงานด้านปัญญาประดิษฐ์ การประยุกต์ใช้ปัญญาประดิษฐ์ การเรียนรู้ของเครื่อง การประเมินผลของโมเดลการเรียนรู้ของเครื่อง เครื่องมือที่จำเป็นสำหรับการเรียนรู้ของเครื่อง",
+                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51607/cvcert_usercert/certificate_51607_1408392-1408392-17544641286631.jpg"
+            },
+            {
+                name: "Introducing Generative AI in Academic Research for Students",
+                issuer: "Online Course Platform",
+                date: "2025-08-06",
+                description: "เพื่อให้ผู้เรียนมีความรู้ความเข้าใจเกี่ยวกับการใช้เครื่องมือ Generative AI ได้อย่างเหมาะสม",
+                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2024_2/66537/cvcert_usercert/certificate_66537_1408392-1408392-17544890199530.jpg"
+            },
+        ];
+        function renderCertificates() {
+            const grid = document.getElementById('certificates-grid');
+
+            const sorted = [...certificates].sort((a, b) => new Date(b.date) - new Date(a.date));
+            // ↑ เรียงจากวันที่ใหม่สุด → เก่าสุด
+
+            if (certificates.length === 0) {
+                grid.innerHTML = `
+          <div class="col-span-full text-center py-12">
+            <i class="fas fa-certificate text-6xl text-[#000] mb-4"></i>
+            <p class="text-x">ยังไม่มีใบประกาศ</p>
+          </div>
+        `;
+                return;
+            }
+            grid.innerHTML = sorted.map(cert => `
+        <div title="${cert.name}" class="bg-[#F5F5F5] border border-gray-200 overflow-hidden shadow transition">
+          <img src="${cert.image}" alt="${cert.name}" 
+               class="w-full h-56 object-cover cursor-pointer"
+               onclick="viewImage('${cert.image}', '${cert.name}')"
+               onerror="this.src='https://project-test-submission.netlify.app/images/img/noitems.svg'">
+          <div class="max-h-sm p-4">
+            <h3 class="text-lg font-semibold mb-1 line-clamp-1">${cert.name}</h3>
+            <p class="text-sm text-gray-600">${cert.issuer}</p>
+            <p class="text-sm text-gray-500 mt-2 mb-2">
+              <i class="fas fa-calendar-alt mr-1"></i>
+              ${new Date(cert.date).toLocaleDateString('th-TH', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })}
+            </p>
+            <p class="text-sm text-gray-700 line-clamp-2">${cert.description}</p>
+          </div>
+        </div>
+      `).join('');
+        }
+
+        function viewImage(imageSrc, altText) {
+            document.getElementById('modal-image').src = imageSrc;
+            document.getElementById('modal-image').alt = altText;
+            document.getElementById('image-modal').classList.remove('hidden');
+        }
+
+        function closeImageModal() {
+            document.getElementById('image-modal').classList.add('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCertificates);
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeImageModal();
+        });
+    </script>
+</body>
+
+</html>
