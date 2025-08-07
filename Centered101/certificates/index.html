@@ -2,76 +2,78 @@
 <html lang="th">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!DOCTYPE html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Centered101 Certificates - รวมผลงานใบประกาศที่เคยได้รับ">
-    <meta name="keywords" content="Centered101, Certificates, Portfolio, Web Development, HTML, CSS, JavaScript,">
+    <meta name="keywords" content="Centered101, Certificates, Portfolio, Web Development, HTML, CSS, JavaScript">
     <meta name="author" content="Centered101">
+    <title>ใบประกาศนียบัตร - Centered101</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <title>ใบประกาศนียบัตร - Centered101</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://project-test-submission.netlify.app/style/style.css">
     <link rel="shortcut icon" href="https://project-test-submission.netlify.app/images/icon.svg" type="image/x-icon">
-</head>
-<style>
-    html {
-        scrollbar-color: #000 #FFF;
-        scrollbar-width: thin;
-        scroll-behavior: smooth
-    }
-</style>
 
-<body class="bg-[#FFF] text-black min-h-screen">
+    <style>
+        *,
+        html {
+            scrollbar-color: #000 #FFF;
+            scrollbar-width: thin;
+            scroll-behavior: smooth;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black min-h-screen">
 
     <!-- Header -->
-    <header class="bg-[#000] text-white text-center space-y-8 py-8">
+    <header class="bg-black text-white text-center space-y-8 py-8">
         <h1 class="text-4xl font-bold">Centered101 Certificates</h1>
         <p>รวมผลงานใบประกาศที่เคยได้รับ</p>
     </header>
 
+    <!-- About Section -->
     <section
-        class="max-w-6xl mx-auto px-4 pt-8 pb-12 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left border-b border-black">
-        <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
+        class="max-w-7xl mx-auto px-4 pt-8 pb-12 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left border-b border-black">
+        <img onclick="viewImage('https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png')"
+            src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
             alt="นาย พงศ์พล พรมผา" class="w-32 h-32 rounded-full object-cover border-2 border-gray-300" />
-
         <div>
             <h2 class="text-3xl font-bold mb-2">นาย พงศ์พล พรมผา</h2>
-            <p class="text-gray-700 text-base leading-relaxed">
-                สวัสดีครับ ผมชื่อเซ็นเตอร์ เป็นนักเรียนระดับ ปวช.2/2 สาขาเทคโนโลยีธุรกิจดิจิทัล
+            <p class="text-gray-800 text-base leading-relaxed">
+                สวัสดีครับ ผมชื่อเซ็นเตอร์ ปัจจุบันกำลังศึกษาอยู่ในระดับชั้น ปวช.2/2 สาขาเทคโนโลยีธุรกิจดิจิทัล
+                ที่วิทยาลัยเทคโนโลยีเอเชียลพบุรี
             </p>
-            <p class="text-gray-700 text-base leading-relaxed">
-                สนใจด้านพัฒนาเว็บไซต์ แอปพลิเคชัน และเทคโนโลยีใหม่ ๆ
-                ที่เกี่ยวกับธุรกิจดิจิทัล รวมถึงการลงทุน หุ้น
-                และอสังหาริมทรัพย์ </p>
-            <p class="text-gray-700 text-base leading-relaxed">
-                ปัจจุบันกำลังฝึกฝนทักษะด้าน JavaScript, Tailwind CSS และ React
-                เพื่อเตรียมตัวเข้าสู่วงการสายเทคและมีอิสรภาพทางการเงินในอนาคต
+            <p class="text-gray-800 text-base leading-relaxed mt-2">
+                ผมมีความสนใจด้านการพัฒนาเว็บไซต์และแอปพลิเคชัน โดยเน้นการใช้เทคโนโลยีสมัยใหม่ เช่น JavaScript, React และ
+                Tailwind CSS
+            </p>
+            <p class="text-gray-800 text-base leading-relaxed mt-2">
+                นอกจากด้านเทคโนโลยีแล้ว ผมยังหลงใหลในเรื่องของการลงทุน หุ้น และอสังหาริมทรัพย์
+                โดยมีเป้าหมายในการสร้างอิสรภาพทางการเงินและเป็นเจ้าของธุรกิจของตัวเองในอนาคต
             </p>
         </div>
     </section>
 
-    <!-- Certificates Grid -->
-    <section class="max-w-6xl mx-auto px-4 pb-24 pt-8">
+
+    <!-- Certificates Section -->
+    <section class="max-w-7xl mx-auto px-4 pb-24 pt-8">
         <div id="certificates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-            <!-- JS render ตรงนี้ -->
+            <!-- Certificates will be populated by JavaScript -->
         </div>
     </section>
 
-    <!-- Modal -->
+    <!-- Image Modal -->
     <div onclick="closeImageModal()" id="image-modal"
         class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
         <div class="bg-white overflow-hidden shadow-2xl max-w-3xl w-full">
-            <div class="relative">
+            <div class="relative bg-[#F5F5F5] border-4 border-[#000] p-4">
                 <img id="modal-image" src="" alt="" class="w-full max-h-[80vh] object-contain bg-black"
                     onerror="this.src='https://project-test-submission.netlify.app/images/img/noitems.svg'">
             </div>
         </div>
     </div>
 
-    <!-- Script -->
     <script>
         const certificates = [
             {
@@ -91,7 +93,7 @@
             {
                 name: "พื้นฐานเครือข่ายคอมพิวเตอร์และอินเทอร์เน็ต",
                 issuer: "Online Course Platform",
-                date: "2025-2-27",
+                date: "2025-02-27",
                 description: "ประวัติความเป็นมาของระบบอินเทอร์เน็ต; อินเทอร์เน็ตในประเทศไทย; โพรโทคอลในระบบเครือข่าย; ชุดโพรโทคอลอินเทอร์เน็ต; ฮาร์ดแวร์ในการเชื่อมต่ออินเทอร์เน็ต; บริการในระบบอินเทอร์เน็ต",
                 image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51605/cvcert_usercert/certificate_51605_1408392-1408392-17406466510282.jpg"
             },
@@ -122,44 +124,48 @@
                 date: "2025-08-06",
                 description: "เพื่อให้ผู้เรียนมีความรู้ความเข้าใจเกี่ยวกับการใช้เครื่องมือ Generative AI ได้อย่างเหมาะสม",
                 image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2024_2/66537/cvcert_usercert/certificate_66537_1408392-1408392-17544890199530.jpg"
-            },
+            }
         ];
+
         function renderCertificates() {
             const grid = document.getElementById('certificates-grid');
 
+            // Sort certificates by date (newest first)
             const sorted = [...certificates].sort((a, b) => new Date(b.date) - new Date(a.date));
-            // ↑ เรียงจากวันที่ใหม่สุด → เก่าสุด
 
             if (certificates.length === 0) {
                 grid.innerHTML = `
-          <div class="col-span-full text-center py-12">
-            <i class="fas fa-certificate text-6xl text-[#000] mb-4"></i>
-            <p class="text-x">ยังไม่มีใบประกาศ</p>
-          </div>
-        `;
+                    <div class="col-span-full text-center py-12">
+                        <i class="fas fa-certificate text-6xl text-black mb-4"></i>
+                        <p class="text-xl">ยังไม่มีใบประกาศ</p>
+                    </div>
+                `;
                 return;
             }
+
             grid.innerHTML = sorted.map(cert => `
-        <div title="${cert.name}" class="bg-[#F5F5F5] border border-gray-200 overflow-hidden shadow transition">
-          <img src="${cert.image}" alt="${cert.name}" 
-               class="w-full h-56 object-cover cursor-pointer"
-               onclick="viewImage('${cert.image}', '${cert.name}')"
-               onerror="this.src='https://project-test-submission.netlify.app/images/img/noitems.svg'">
-          <div class="max-h-sm p-4">
-            <h3 class="text-lg font-semibold mb-1 line-clamp-1">${cert.name}</h3>
-            <p class="text-sm text-gray-600">${cert.issuer}</p>
-            <p class="text-sm text-gray-500 mt-2 mb-2">
-              <i class="fas fa-calendar-alt mr-1"></i>
-              ${new Date(cert.date).toLocaleDateString('th-TH', {
+                <div onclick="viewImage('${cert.image}', '${cert.name}')" title="${cert.name}" class="bg-[#F5F5F5] border overflow-hidden shadow cursor-pointer">
+                    <div class="relative overflow-hidden">
+                        <img src="${cert.image}" 
+                             alt="${cert.name}" 
+                             class="w-full h-68 object-cover"
+                             onerror="this.src='https://project-test-submission.netlify.app/images/img/noitems.svg'">
+                    </div>
+                    <div class="max-h-sm p-4">
+                        <h3 class="text-lg font-semibold mb-1 line-clamp-1">${cert.name}</h3>
+                        <p class="text-sm text-gray-600">${cert.issuer}</p>
+                        <p class="text-sm text-gray-500 mt-2 mb-2">
+                            <i class="fas fa-calendar-alt mr-1"></i>
+                            ${new Date(cert.date).toLocaleDateString('th-TH', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
             })}
-            </p>
-            <p class="text-sm text-gray-700 line-clamp-2">${cert.description}</p>
-          </div>
-        </div>
-      `).join('');
+                        </p>
+                        <p class="text-sm text-gray-700 line-clamp-2">${cert.description}</p>
+                    </div>
+                </div>
+            `).join('');
         }
 
         function viewImage(imageSrc, altText) {

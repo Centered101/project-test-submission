@@ -26,6 +26,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="">
     <link rel="stylesheet" href="https://project-test-submission.netlify.app/style/style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
     <script src=https://cdn.tailwindcss.com></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -149,17 +151,6 @@
             opacity: 1;
             transform: scale(1);
         }
-    }
-
-    .bg-img::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image: url(https://cdn.pixabay.com/photo/2024/06/30/10/28/sky-8862862_1280.png);
-        background-size: cover;
-        background-position: center;
-        opacity: 0.1;
-        z-index: -10;
     }
 </style>
 
@@ -331,17 +322,19 @@
         </section>
         <!-- Intro Screen -->
         <div id="intro-screen"
-            class="fixed inset-0 flex justify-center items-center bg-[color:var(--bg-color)] bg-opacity-75 text-xl transition cursor-pointer z-40">
+            class="fixed inset-0 flex justify-center items-center bg-[color:var(--bg-color)] bg-opacity-75 text-4xl transition cursor-pointer z-40">
             <span>Click to Enter</span>
         </div>
 
         <!-- โปรไฟล์ GitHub -->
         <section class="relative flex flex-col gap-4 md:gap-8 py-12 sm:py-8 z-0 overflow-hidden">
 
-            <!-- Video Background with Sound -->
-            <video id="bg-video" loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-50 z-[-1]">
-                <source src="https://r2.guns.lol/156ee014-9f2c-43d7-a12b-e10b6738c1c2.mp4" type="video/webm">
-            </video>
+            <!-- Video Wrapper -->
+            <div class="absolute inset-0 w-full h-full overflow-hidden z-[-1]">
+                <video id="bg-video" loop playsinline muted class="w-full h-full object-cover object- opacity-25">
+                    <source src="https://r2.guns.lol/156ee014-9f2c-43d7-a12b-e10b6738c1c2.mp4" type="video/webm">
+                </video>
+            </div>
 
             <script>
                 const intro = document.getElementById('intro-screen');
@@ -383,8 +376,10 @@
                 <div class="flex-1 flex flex-col gap-2 *:flex *:flex-row *:items-center *:gap-1">
                     <p hidden id="github-profile-location" class="w-2/3"></p>
                     <p hidden id="github-profile-bio" class="w-2/3"></p>
-                    <a href="./certificates/index.html">
-                        <p class="w-2/3 text-[color:var(--main-color)]">Certificates</p>
+                    <a href="./certificates/index.html"
+                        class="w-2/3 flex items-center gap-1 text-[color:var(--main-color)]">
+                        <i class="fa-solid fa-link"></i>
+                        <p>Certificates</p>
                     </a>
                 </div>
                 <div id="github-follow-button-wrapper"
@@ -436,7 +431,7 @@
             </label>
 
             <!-- projects -->
-            <ul hidden id="projects-list" class="w-full grid-cols-3 truncate px-0 py-2 peer-checked/projects:grid">
+            <ul hidden id="projects-list" class="w-full grid-cols-3 truncate p-0 peer-checked/projects:grid">
             </ul>
 
             <!-- รายชื่อ Repository -->
