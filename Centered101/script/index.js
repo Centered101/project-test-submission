@@ -6,12 +6,13 @@ $(window).on('load', function () {
     $('#preloader').addClass('invisible');
     $('#preloader').removeClass('fixed inset-0 h-screen w-screen overflow-y-scroll touch-none');
 });
+
 // ฟังก์ชันปิดการใช้งานลิงก์
 function disableLink(event) {
     event.preventDefault();
 }
 
-// dkic0h'g9npo---------------------------
+// —[ Notifications ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
 // Detect when offline
 $(window).on("offline", function () {
@@ -23,11 +24,265 @@ $(window).on("online", function () {
     showNotification("Glad you're back online! 😍", 'success');
 });
 
-// ตัวแปรสำหรับจัดการ notification queue
+// ตัวแปรสำหรับจัดการ notification queue และ history
 let notificationQueue = [];
 let notificationContainer = null;
+let notificationHistory = [];
+let isHistoryPanelOpen = false;
+
+// ฟังก์ชันเพิ่มข้อมูลลง history
+function addToHistory(message, type, link = null, timestamp = null) {
+    const historyItem = {
+        id: Date.now() + Math.random(), // สร้าง unique id
+        message: message,
+        type: type,
+        link: link,
+        timestamp: timestamp || new Date().toISOString(),
+        isRead: false
+    };
+
+    notificationHistory.unshift(historyItem); // เพิ่มที่ตำแหน่งแรก (ล่าสุด)
+
+    // จำกัดจำนวน history ไม่เกิน 100 รายการ
+    if (notificationHistory.length > 100) {
+        notificationHistory = notificationHistory.slice(0, 100);
+    }
+
+    // บันทึกลง localStorage
+    saveHistoryToStorage();
+
+    // อัปเดต badge ใน history button
+    updateHistoryBadge();
+
+    return historyItem;
+}
+
+// ฟังก์ชันบันทึก history ลง localStorage
+function saveHistoryToStorage() {
+    try {
+        localStorage.setItem('notificationHistory', JSON.stringify(notificationHistory));
+    } catch (error) {
+        console.warn('Cannot save notification history to localStorage:', error);
+    }
+}
+
+// ฟังก์ชันโหลด history จาก localStorage
+function loadHistoryFromStorage() {
+    try {
+        const saved = localStorage.getItem('notificationHistory');
+        if (saved) {
+            notificationHistory = JSON.parse(saved);
+            updateHistoryBadge();
+        }
+    } catch (error) {
+        console.warn('Cannot load notification history from localStorage:', error);
+        notificationHistory = [];
+    }
+}
+
+// ฟังก์ชันนับจำนวนข้อความที่ยังไม่ได้อ่าน
+function getUnreadCount() {
+    return notificationHistory.filter(item => !item.isRead).length;
+}
+
+// ฟังก์ชันอัปเดต badge ใน history button
+function updateHistoryBadge() {
+    const unreadCount = getUnreadCount();
+    const badge = $('#notification-history-badge');
+
+    if (unreadCount > 0) {
+        if (badge.length === 0) {
+            const badgeHtml = `<span id="notification-history-badge" class="size-4 absolute -top-2 -right-2 flex items-center justify-center bg-red-500 text-white text-xs rounded-full">${unreadCount > 99 ? '99+' : unreadCount}</span>`;
+            $('#notification-history-btn').append(badgeHtml);
+        } else {
+            badge.text(unreadCount > 99 ? '99+' : unreadCount);
+        }
+    } else {
+        badge.remove();
+    }
+}
+
+// ฟังก์ชันสร้างปุ่ม history (เรียกใช้เมื่อ window load)
+$(window).on('load', function () {
+    if ($('#notification-history-btn').length === 0) {
+        const historyButton = $(`
+            <button id="notification-history-btn" type="button" class="fade-in cursor-pointer relative">
+                <i class="fa-regular fa-bell"></i>
+            </button>
+        `);
+
+        $('#notification-history-content').append(historyButton);
+
+        // เพิ่ม event listener
+        historyButton.on('click', toggleHistoryPanel);
+
+        updateHistoryBadge();
+    }
+});
+
+// ฟังก์ชันแสดง/ซ่อน history panel
+function toggleHistoryPanel() {
+    if (isHistoryPanelOpen) {
+        closeHistoryPanel();
+    } else {
+        openHistoryPanel();
+    }
+}
+
+function openHistoryPanel() {
+    isHistoryPanelOpen = true;
+
+    // ทำเครื่องหมายทั้งหมดว่าอ่านแล้ว
+    notificationHistory.forEach(item => item.isRead = true);
+    saveHistoryToStorage();
+    updateHistoryBadge();
+
+    const panel = $(`
+        <div id="notification-history-panel" class="fixed inset-0 bg-black bg-opacity-25 z-30">
+            <div class="fade-in h-full w-full max-w-md fixed right-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl">
+                <div class="flex items-center justify-between border-b shadow">
+                    <h3 class="uppercase p-4 md:py-8">Notification history</h3>
+                    <div class="flex items-center space-x-2">
+                        <button id="clear-history-btn" class="border border-red-500 rounded text-red-500 hover:text-red-700 text-sm m-2 md:m-6 p-2">Delete all</button>
+                        <button id="clear-confirm-btn" class="border border-red-500 rounded text-red-500 hover:text-red-700 text-sm m-2 md:m-6 p-2 hidden">Confirm</button>
+                    </div>
+                </div>
+                <div id="history-content" class="p-4 h-full overflow-y-auto pb-20">
+                    ${renderHistoryItems()}
+                </div>
+            </div>
+        </div>
+    `);
+
+    $('body').append(panel);
+
+    // ปิด panel
+    $('#close-history-panel, #notification-history-panel').on('click', function (e) {
+        if (e.target === this) {
+            closeHistoryPanel();
+        }
+    });
+
+    // ปุ่ม "Delete all"
+    $('#clear-history-btn').on('click', function () {
+        // ซ่อนปุ่ม delete, แสดง confirm
+        $(this).addClass('hidden');
+        $('#clear-confirm-btn').removeClass('hidden');
+    });
+
+    // ปุ่ม "Confirm"
+    $('#clear-confirm-btn').on('click', function () {
+        clearHistory(); // ลบประวัติ
+        $('#history-content').html(renderHistoryItems());
+
+        // แสดงปุ่ม delete กลับ, ซ่อน confirm
+        $('#clear-history-btn').removeClass('hidden');
+        $('#clear-confirm-btn').addClass('hidden');
+    });
+}
+
+// ฟังก์ชันปิด history panel
+function closeHistoryPanel() {
+    isHistoryPanelOpen = false;
+    $('#notification-history-panel').addClass("translate-x-full");
+    $('#notification-history-panel').remove();
+}
+
+// ฟังก์ชันแสดงรายการ history
+function renderHistoryItems() {
+    if (notificationHistory.length === 0) {
+        return '<div class="text-center text-[color:var(--text-color)] py-8">No notification history</div>';
+    }
+
+    return notificationHistory.map(item => {
+        const date = new Date(item.timestamp);
+        const timeStr = date.toLocaleString('th-TH');
+        const typeIcon = getTypeIcon(item.type);
+
+        return `
+            <div class="bg-[color:var(--bg-color)] border rounded-lg shadow-inner mb-2 p-2 ${!item.isRead ? 'border-l-4 border-blue-500' : ''}">
+                <div class="flex items-start space-x-2">
+                    <div class="flex-shrink-0 mt-1">
+                        ${typeIcon}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        ${item.link ?
+                `<a href="${item.link}" class="text-sm text-[color:var(--main-color)] hover:opacity-50 underline break-words" target="_blank" rel="noopener noreferrer">${item.message}</a>` :
+                `<p class="text-sm break-words">${item.message}</p>`
+            }
+                        <p class="text-xs text-gray-500 mt-1">${timeStr}</p>
+                    </div>
+                    <button class="delete-history-item flex-shrink-0 hover:text-red-500" data-id="${item.id}">
+                        <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ฟังก์ชันลบรายการ history ทีละรายการ
+$(document).on('click', '.delete-history-item', function () {
+    const itemId = $(this).data('id');
+    notificationHistory = notificationHistory.filter(item => item.id !== itemId);
+    saveHistoryToStorage();
+    updateHistoryBadge();
+
+    // อัปเดตเนื้อหาใน panel ถ้าเปิดอยู่
+    if (isHistoryPanelOpen) {
+        $('#history-content').html(renderHistoryItems());
+    }
+});
+
+function addNotification(item) {
+    // เพิ่มแจ้งเตือนใหม่ลง array
+    notificationHistory.unshift(item); // ใส่ไว้บนสุด
+    saveHistoryToStorage();
+    updateHistoryBadge();
+
+    // ถ้า panel เปิดอยู่ → อัปเดตเนื้อหา
+    if (isHistoryPanelOpen) {
+        $('#history-content').html(renderHistoryItems());
+    }
+}
+
+// ฟังก์ชันได้ icon ตามประเภท
+function getTypeIcon(type) {
+    switch (type) {
+        case 'success':
+            return '<svg class="size-[1em] text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>';
+        case 'error':
+            return '<svg class="size-[1em] text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>';
+        default:
+            return '<svg class="size-[1em] text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>';
+    }
+}
+
+// ฟังก์ชันลบ history ทั้งหมด
+function clearHistory() {
+    notificationHistory = [];
+    saveHistoryToStorage();
+    updateHistoryBadge();
+}
+
+// ฟังก์ชันดึงข้อมูล history (สำหรับใช้งานภายนอก)
+function getNotificationHistory(limit = null) {
+    return limit ? notificationHistory.slice(0, limit) : [...notificationHistory];
+}
+
+// ฟังก์ชันค้นหา history
+function searchHistory(query) {
+    return notificationHistory.filter(item =>
+        item.message.toLowerCase().includes(query.toLowerCase())
+    );
+}
 
 function showNotification(message, type = 'info', link = null) {
+    // เพิ่มลง history ก่อน
+    addToHistory(message, type, link);
+
     // สร้าง container ถ้ายังไม่มี
     if (!notificationContainer) {
         notificationContainer = $('<div class="fixed bottom-4 right-4 z-50 space-y-2"></div>');
@@ -48,7 +303,7 @@ function showNotification(message, type = 'info', link = null) {
                 <div class="ml-2 flex-1">
                     ${link ?
             `<a href="${link}" class="text-sm text-[color:var(--main-color)] hover:opacity-50 underline" rel="noopener noreferrer">${message}</a>` :
-            `<p class="text-sm">${message}</p>`
+            `<p class="text-sm break-words">${message}</p>`
         }
                 </div>
             </div>
@@ -165,11 +420,20 @@ function clearAllNotifications() {
     }, 300);
 }
 
+// โหลด history เมื่อเริ่มต้น
+$(document).ready(function () {
+    loadHistoryFromStorage();
+});
+
 // ตัวอย่างการใช้งาน:
-// showNotification('บันทึกข้อมูลสำเร็จ', 'success'); // ไม่มีลิงก์ - คลิกเพื่อปิด
-// showNotification('ดูรายละเอียดเพิ่มเติม', 'info', 'https://example.com'); // มีลิงก์ - คลิกเพื่อเปิดลิงก์
-// showNotification('เกิดข้อผิดพลาด', 'error'); // ไม่มีลิงก์ - คลิกเพื่อปิด
+// showNotification('บันทึกข้อมูลสำเร็จ', 'success'); 
+// showNotification('ดูรายละเอียดเพิ่มเติม', 'info', 'https://example.com'); 
+// showNotification('เกิดข้อผิดพลาด', 'error'); 
 // clearAllNotifications(); // ปิดการแจ้งเตือนทั้งหมด
+// clearHistory(); // ลบประวัติทั้งหมด
+// getNotificationHistory(); // ดึงข้อมูลประวัติทั้งหมด
+// getNotificationHistory(10); // ดึงข้อมูล 10 รายการล่าสุด
+// searchHistory('ออนไลน์'); // ค้นหาในประวัติ
 
 // —[ profile ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
