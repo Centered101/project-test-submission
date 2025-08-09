@@ -1,0 +1,121 @@
+@import url(https://project-test-submission.netlify.app/style/style.css);
+
+*,
+html {
+    scrollbar-color: var(--main-color) var(--bg-color);
+}
+
+/* ตั้งค่าดีฟอลต์ด้วย CSS Variables */
+body {
+    font-family: "Bai Jamjuree", sans-serif;
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    fill: var(--text-color) !important;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+    overflow: hidden scroll;
+}
+
+:root {
+    --main-color: #409EFE;
+}
+
+.border-b,
+.border-t,
+.border-r,
+.border-l,
+.border-y,
+.border-x,
+.border {
+    border-color: var(--border) !important;
+}
+
+.bg-\[\#F5F5F5\] {
+    background-color: var(--white-smoker) !important;
+}
+
+.bg-\[\#FFF\] {
+    background-color: var(--bg-color) !important;
+}
+
+.active\:bg-\[\#F5F5F5\]:active {
+    background-color: var(--white-smoker) !important;
+}
+
+
+.active\:bg-\[\#E3F2FD\]:active {
+    background-color: var(--sky-glow) !important;
+}
+
+@media (min-width: 768px) {
+
+    .md\:hover\:bg-\[\#E3F2FD\]:hover,
+    .hover\:bg-\[\#E3F2FD\]:hover {
+        background-color: var(--sky-glow) !important;
+    }
+}
+
+/* โหมด Dark */
+.theme-dark {
+    --bg-color: #121212;
+    --white-smoker: #222222;
+    --border: #414143;
+    --text-color: #DCDCDC;
+    --sky-glow: #1B2830;
+}
+
+/* โหมด System (media query) */
+@media (prefers-color-scheme: dark) {
+    :root:not(.theme-light):not(.theme-dark) {
+        --bg-color: #121212;
+        --white-smoker: #222222;
+        --border: #414143;
+        --text-color: #DCDCDC;
+        --sky-glow: #1B2830;
+        --ff: 75%;
+    }
+
+    .sky-glow {
+        background-color: var(--sky-glow);
+    }
+}
+
+/* โหมด Light */
+.theme-light {
+    --bg-color: #FFF;
+    --border: #E5E7EB;
+    --white-smoker: #F5F5F5;
+    --text-color: #0D0D0D;
+    --sky-glow: #E3F2FD;
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not(.theme-light):not(.theme-dark) {
+        --bg-color: #FFF;
+        --border: #E5E7EB;
+        --white-smoker: #F5F5F5;
+        --text-color: #0D0D0D;
+        --sky-glow: #E3F2FD;
+    }
+
+    .sky-glow {
+        background-color: var(--sky-glow);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 300ms ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
