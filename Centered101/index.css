@@ -73,7 +73,6 @@ body {
         --border: #414143;
         --text-color: #DCDCDC;
         --sky-glow: #1B2830;
-        --ff: 75%;
     }
 
     .sky-glow {
@@ -105,7 +104,7 @@ body {
 }
 
 .fade-in {
-    animation: fadeIn 300ms ease-in-out forwards;
+    animation: fadeIn 700ms ease-in-out forwards;
 }
 
 @keyframes fadeIn {

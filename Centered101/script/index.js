@@ -3,6 +3,7 @@
 $('#preloader').addClass('fixed inset-0 h-screen w-screen overflow-y-scroll touch-none');
 
 $(window).on('load', function () {
+    // ซ่อน preloader
     $('#preloader').addClass('invisible');
     $('#preloader').removeClass('fixed inset-0 h-screen w-screen overflow-y-scroll touch-none');
 });
@@ -710,7 +711,7 @@ const project = [
     { name: "center-dot-shop", link: "https://center-dot-shop.netlify.app/", img: "./images/center-dot-shop.svg" },
 ];
 
-const defaultImage = "https://project-test-submission.netlify.app/images/img/noitems.svg"; // 📌 รูปเริ่มต้น
+const noimages = "https://project-test-submission.netlify.app/images/img/placeholder.svg";
 const projectsList = document.getElementById('projects-list');
 
 project.forEach(({ name, link, img }) => {
@@ -718,8 +719,8 @@ project.forEach(({ name, link, img }) => {
     listItem.innerHTML = `
 <a title="${name}" href="${link}" target="_blank" class="flex flex-col justify-center items-center w-full h-full overflow-hidden active:!brightness-90 group">
     <img draggable="false" oncontextmenu="return false;" data-nimg="1" class="block h-full w-full object-cover object-center ease-out duration-300"
-        src="${img || defaultImage}"
-        onerror="this.src='https://project-test-submission.netlify.app/images/img/noitems.svg'">
+        src="${img || noimages}"
+        onerror="this.src='https://project-test-submission.netlify.app/images/img/placeholder.svg'">
 </a>`;
     projectsList.appendChild(listItem);
 });
