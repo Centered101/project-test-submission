@@ -251,7 +251,7 @@ project.forEach(({ name, link, img }) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
 <a title="${name}" href="${link}" target="_blank" class="flex flex-col justify-center items-center w-full h-full overflow-hidden active:!brightness-90 group">
-    <img draggable="false" oncontextmenu="return false;" data-nimg="1" class="block h-full w-full object-cover object-center ease-out duration-300"
+    <img data-nimg="1" class="block h-full w-full object-cover object-center ease-out duration-300"
         src="${img || noimages}"
         onerror="this.src='https://project-test-submission.netlify.app/images/img/placeholder.svg'">
 </a>`;
