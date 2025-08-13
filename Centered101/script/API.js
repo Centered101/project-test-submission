@@ -45,6 +45,7 @@ fetch("https://api.github.com/rate_limit")
 // ตั้งค่าชื่อหน้าต่างเว็บเป็นชื่อ GitHub Profile
 const username = "Centered101";
 document.title = `GitHub API Profile - ${username}`;
+$('#nav-profile-name').html(`GitHub API Profile ${username}'s`);
 
 // ดึงข้อมูลผู้ใช้จาก GitHub
 fetch(`https://api.github.com/users/${username}`)

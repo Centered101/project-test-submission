@@ -33,58 +33,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
-<style>
-    /* iOS Scroll Fix */
-    body {
-        -webkit-overflow-scrolling: touch;
-        overflow-scrolling: touch;
-    }
-
-    /* iOS Input Fix */
-    input,
-    select,
-    textarea {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border-radius: 8px;
-    }
-
-    /* iOS Button Fix */
-    button {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border-radius: 8px;
-    }
-
-    /* iOS Modal Fix */
-    .modal-open {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    /* iOS Image Loading Fix */
-    img {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-
-    /* Filter highlight */
-    .filter-highlight {
-        background-color: #fef08a;
-        padding: 1px 2px;
-        border-radius: 2px;
-    }
-</style>
-
 <body class="bg-[color:var(--bg-color)] min-h-screen">
     <!-- preloader -->
     <div id="preloader"
@@ -175,7 +123,7 @@
 
     <!-- Image Modal -->
     <div onclick="closeImageModal()" id="image-modal"
-        class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-40">
+        class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-40 touch-none">
 
         <!-- Close text -->
         <span
@@ -266,6 +214,14 @@
                 date: "2025-08-10",
                 description: "ChatGPT ช่วยทำวิจัยได้ไม่ต้องเหนื่อยแทบตาย (ในทุกขั้นตอน) จะเป็นการนำเสนอเนื้อหาเกี่ยวกับการใช้ ChatGPT เป็นตัวช่วยในการเขียนงานวิจัย ไม่ว่าจะเป็นการเลือกหัวข้องานวิจัย ขอบเขตงานวิจัย การช่วยทำแบบสอบถาม การหาแหล่งข้อมูล การวิเคราะห์ข้อมูล รวมถึงบทบาทของ ChatGPT ในเชิงจริยธรรม เพื่อให้ผู้เรียนได้ทราบว่า ChatGPT สามารถเป็นตัวช่วยทำวิจัยได้จริงหรือไม่",
                 image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2022_2/36997/cvcert_usercert/certificate_36997_1408392-1408392-17547638823717.jpg",
+            },
+            {
+                id: "10",
+                name: "ความปลอดภัยทางไซเบอร์สำหรับทุกคน",
+                issuer: "Online Course Platform",
+                date: "2025-08-13",
+                description: "คอร์สนี้ถูกออกแบบขึ้นเพื่อให้ผู้เรียนเริ่มต้นได้เรียนรู้ความสำคัญ ของความปลอดภัยทางไซเบอร์ ภัยคุกคามทางไซเบอร์ทั่วไป และเคล็ดลับการปฏิบัติในการปกป้องข้อมูลส่วนบุคคลและองค์กร ผู้เรียนจะได้เรียนรู้เกี่ยวกับการจัดการรหัสผ่าน การอัปเดตซอฟต์แวร์ การสำรองและการกู้คืน การตรวจสอบสิทธิ์แบบสองปัจจัย และการเข้ารหัสข้อมูลเพื่อรักษาข้อมูลให้ปลอดภัย หลักสูตรนี้ยังครอบคลุมแนวทางปฏิบัติที่ดีที่สุดสำหรับการท่องเว็บอย่างปลอดภัย ความปลอดภัยของโซเชียลมีเดีย ความปลอดภัยของอีเมล และความปลอดภัยของอุปกรณ์พกพา",
+                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51609/cvcert_usercert/certificate_51609_1408392-1408392-17550877540770.jpg",
             },
         ];
 

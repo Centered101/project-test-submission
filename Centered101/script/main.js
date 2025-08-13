@@ -238,9 +238,9 @@ window.addEventListener("resize", () => {
 // —[ projects ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
 const project = [
-    { name: "portfolio-centered101", link: "https://portfolio-centered101.netlify.app/", img: "" },
-    { name: "project-test-submission", link: "https://project-test-submission.netlify.app/", img: "./images/project-test-submission.png" },
-    { name: "asia-lb", link: "https://asia-lb.web.app/", img: "./images/asia-bl.png" },
+    { name: "portfolio-centered101", link: "https://portfolio-centered101.netlify.app/", img: "./images/portfolio.svg" },
+    { name: "project-test-submission", link: "https://project-test-submission.netlify.app/", img: "./images/project-test-submission.svg" },
+    { name: "asia-lb", link: "https://asia-lb.web.app/", img: "./images/asia-lb.svg" },
     { name: "center-dot-shop", link: "https://center-dot-shop.netlify.app/", img: "./images/center-dot-shop.svg" },
 ];
 
@@ -250,10 +250,14 @@ const projectsList = document.getElementById('projects-list');
 project.forEach(({ name, link, img }) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
-<a title="${name}" href="${link}" target="_blank" class="flex flex-col justify-center items-center w-full h-full overflow-hidden active:!brightness-90 group">
-    <img draggable="false" oncontextmenu="return false;" data-nimg="1" class="block h-full w-full object-cover object-center ease-out duration-300"
-        src="${img || noimages}"
-        onerror="this.src='https://project-test-submission.netlify.app/images/img/placeholder.svg'">
+<a title="${name}" href="${link}" target="_blank" 
+   class="flex flex-col justify-center items-center w-full h-full overflow-hidden active:!brightness-90 group"> 
+    <div class="w-full aspect-[4/5] overflow-hidden">
+        <img oncontextmenu="return false;" data-nimg="1" 
+            class="block h-full w-full object-cover object-center ease-out duration-300"
+            src="${img || noimages}"
+            onerror="this.src='${noimages}'">
+    </div>
 </a>`;
     projectsList.appendChild(listItem);
 });

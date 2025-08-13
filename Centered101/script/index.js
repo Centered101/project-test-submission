@@ -93,7 +93,7 @@ function updateHistoryBadge() {
 
     if (unreadCount > 0) {
         if (badge.length === 0) {
-            const badgeHtml = `<span id="notification-history-badge" class="size-4 absolute -top-2 -right-2 flex items-center justify-center bg-red-500 text-white text-xs rounded-full">${unreadCount > 99 ? '99+' : unreadCount}</span>`;
+            const badgeHtml = `<span id="notification-history-badge" class="size-4 absolute top-4 md:top-8 left-1/2 flex items-center justify-center bg-red-500 text-white text-xs rounded-full">${unreadCount > 99 ? '99+' : unreadCount}</span>`;
             $('#notification-history-btn').append(badgeHtml);
         } else {
             badge.text(unreadCount > 99 ? '99+' : unreadCount);
@@ -107,7 +107,7 @@ function updateHistoryBadge() {
 $(window).on('load', function () {
     if ($('#notification-history-btn').length === 0) {
         const historyButton = $(`
-            <button id="notification-history-btn" type="button" class="fade-in cursor-pointer relative">
+            <button id="notification-history-btn" type="button" class="fade-in relative cursor-pointer p-4 md:p-8">
                 <i class="fa-regular fa-bell"></i>
             </button>
         `);
@@ -140,12 +140,11 @@ function openHistoryPanel() {
 
     const panel = $(`
         <div id="notification-history-panel" class="fixed inset-0 bg-black bg-opacity-25 z-30">
-            <div class="fade-in h-full w-full max-w-md fixed right-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl">
-                <div class="flex items-center justify-between border-b shadow">
+            <div class="fade-in h-full w-5/6 sm:w-full max-w-sm fixed right-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl">
+                <div class="flex items-center justify-between border-b">
                     <h3 class="uppercase p-4 md:py-8">Notification history</h3>
                     <div class="flex items-center space-x-2">
-                        <button id="clear-history-btn" class="border border-red-500 rounded text-red-500 hover:text-red-700 text-sm m-2 md:m-6 p-2">Delete all</button>
-                        <button id="clear-confirm-btn" class="border border-red-500 rounded text-red-500 hover:text-red-700 text-sm m-2 md:m-6 p-2 hidden">Confirm</button>
+                        <button id="clear-history-btn" class="fade-in text-red-500 text-sm p-4 md:p-8 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
                 <div id="history-content" class="p-4 h-full overflow-y-auto pb-20">
@@ -166,19 +165,9 @@ function openHistoryPanel() {
 
     // ปุ่ม "Delete all"
     $('#clear-history-btn').on('click', function () {
-        // ซ่อนปุ่ม delete, แสดง confirm
-        $(this).addClass('hidden');
-        $('#clear-confirm-btn').removeClass('hidden');
-    });
-
-    // ปุ่ม "Confirm"
-    $('#clear-confirm-btn').on('click', function () {
+        // $(this).addClass('hidden');
         clearHistory(); // ลบประวัติ
         $('#history-content').html(renderHistoryItems());
-
-        // แสดงปุ่ม delete กลับ, ซ่อน confirm
-        $('#clear-history-btn').removeClass('hidden');
-        $('#clear-confirm-btn').addClass('hidden');
     });
 }
 
