@@ -103,11 +103,20 @@ function updateHistoryBadge() {
     }
 }
 
+// อัปเดตตอนโหลดหน้า
+updateHistoryBadge();
+saveHistoryToStorage();
+
+// อัปเดตทุก 5 วิ เป็น
+
+setInterval(updateHistoryBadge, 5000);
+setInterval(saveHistoryToStorage, 5000);
+
 // ฟังก์ชันสร้างปุ่ม history (เรียกใช้เมื่อ window load)
 $(window).on('load', function () {
     if ($('#notification-history-btn').length === 0) {
         const historyButton = $(`
-            <button id="notification-history-btn" type="button" class="fade-in relative cursor-pointer p-4 md:p-8">
+            <button id="notification-history-btn" title="notification" type="button" class="fade-in relative cursor-pointer p-4 md:p-8">
                 <i class="fa-regular fa-bell"></i>
             </button>
         `);
@@ -140,11 +149,11 @@ function openHistoryPanel() {
 
     const panel = $(`
         <div id="notification-history-panel" class="fixed inset-0 bg-black bg-opacity-25 z-30">
-            <div class="fade-in h-full w-5/6 sm:w-full max-w-sm fixed right-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl">
+            <div class="fade-in h-full w-5/6 sm:w-full max-w-md fixed right-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl">
                 <div class="flex items-center justify-between border-b">
                     <h3 class="uppercase p-4 md:py-8">Notification history</h3>
                     <div class="flex items-center space-x-2">
-                        <button id="clear-history-btn" class="fade-in text-red-500 text-sm p-4 md:p-8 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                        <button id="clear-history-btn" title="delete all" class="fade-in text-red-500 text-sm p-4 md:p-8 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
                 <div id="history-content" class="p-4 h-full overflow-y-auto pb-20">
@@ -165,7 +174,6 @@ function openHistoryPanel() {
 
     // ปุ่ม "Delete all"
     $('#clear-history-btn').on('click', function () {
-        // $(this).addClass('hidden');
         clearHistory(); // ลบประวัติ
         $('#history-content').html(renderHistoryItems());
     });
