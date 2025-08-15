@@ -214,15 +214,24 @@
             </div>
 
             <script>
-                const intro = document.getElementById('intro-screen');
-                const video = document.getElementById('bg-video');
+    const intro = document.getElementById('intro-screen');
+    const video = document.getElementById('bg-video');
 
-                intro.addEventListener('click', () => {
-                    intro.style.display = 'none';
-                    video.muted = false;
-                    video.volume = 0.5;
-                    video.play();
-                });
+    function startVideo() {
+        intro.classList.add('fade-out');
+        video.muted = false;
+        video.volume = 0.5;
+        video.play();
+        setTimeout(() => {
+            intro.style.display = 'none';
+        }, 500);
+    }
+
+    // คลิกที่ intro
+    intro.addEventListener('click', startVideo);
+
+    // กดปุ่มอะไรก็ได้
+    document.addEventListener('keydown', startVideo);
             </script>
 
             <div class="w-full flex flex-row items-center justify-start space-x-2 p-2 md:px-4">
