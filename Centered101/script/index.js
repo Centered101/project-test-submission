@@ -93,7 +93,7 @@ function updateHistoryBadge() {
 
     if (unreadCount > 0) {
         if (badge.length === 0) {
-            const badgeHtml = `<span id="notification-history-badge" class="size-4 absolute top-4 md:top-8 left-1/2 flex items-center justify-center bg-red-500 text-white text-xs rounded-full">${unreadCount > 99 ? '99+' : unreadCount}</span>`;
+            const badgeHtml = `<span id="notification-history-badge" class="size-4 absolute -top-2 -left-2 flex items-center justify-center bg-red-500 text-white text-xs rounded-full">${unreadCount > 99 ? '99+' : unreadCount}</span>`;
             $('#notification-history-btn').append(badgeHtml);
         } else {
             badge.text(unreadCount > 99 ? '99+' : unreadCount);
@@ -116,7 +116,7 @@ setInterval(saveHistoryToStorage, 5000);
 $(window).on('load', function () {
     if ($('#notification-history-btn').length === 0) {
         const historyButton = $(`
-            <button id="notification-history-btn" title="notification" type="button" class="fade-in relative cursor-pointer p-4 md:p-8">
+            <button id="notification-history-btn" title="notification" type="button" class="fade-in relative bg-[color:var(--bg-color)] rounded shadow-inner m-3 px-2 py-1 cursor-pointer md:mx-4 md:my-5 md:px-4 md:py-3 active:bg-[color:var(--sky-glow)]">
                 <i class="fa-regular fa-bell"></i>
             </button>
         `);
@@ -153,7 +153,7 @@ function openHistoryPanel() {
                 <div class="flex items-center justify-between border-b">
                     <h3 class="uppercase p-4 md:py-8">Notification history</h3>
                     <div class="flex items-center space-x-2">
-                        <button id="clear-history-btn" title="delete all" class="fade-in text-red-500 text-sm p-4 md:p-8 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                        <button id="clear-history-btn" title="delete all" class="fade-in relative bg-[color:var(--bg-color)] text-red-500 rounded shadow-inner m-3 px-2 py-1 cursor-pointer md:mx-4 md:my-5 md:px-4 md:py-3 hover:text-red-700 active:bg-[color:var(--sky-glow)]"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
                 <div id="history-content" class="p-4 h-full overflow-y-auto pb-20">
@@ -182,7 +182,6 @@ function openHistoryPanel() {
 // ฟังก์ชันปิด history panel
 function closeHistoryPanel() {
     isHistoryPanelOpen = false;
-    $('#notification-history-panel').addClass("translate-x-full");
     $('#notification-history-panel').remove();
 }
 
@@ -301,7 +300,7 @@ function showNotification(message, type = 'info', link = null) {
                 <div class="ml-2 flex-1">
                     ${link ?
             `<a href="${link}" class="text-sm text-[color:var(--main-color)] hover:opacity-50 underline" rel="noopener noreferrer">${message}</a>` :
-            `<p class="text-sm break-words">${message}</p>`
+            `<p class="text-sm break-words line-clamp-1">${message}</p>`
         }
                 </div>
             </div>

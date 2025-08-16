@@ -183,25 +183,24 @@ $(document).ready(function () {
     const radios = $('input[name="status"]');
 
     // ตั้งค่าเริ่มต้นให้กับ label[for="projects"]
-    $('label[for="projects"] svg').css('fill', '#409EFE');
-    $('#nav label[for="projects"]').addClass('sky-glow text-[#409EFE]');
+    $('label[for="projects"] svg').addClass('fill-[color:var(--main-color)]');
+    $('nav label[for="projects"]').addClass('bg-[color:var(--sky-glow)] text-[color:var(--main-color)]');
 
     radios.on('change', function () {
         const targetId = $(this).attr('id');
 
-        // รีเซ็ต fill และพื้นหลังของ label ทั้งหมดภายใน #nav
-        $('label svg').css('fill', '');
-        $('#nav label').removeClass('sky-glow text-[#409EFE]');
+        // รีเซ็ต fill และพื้นหลังของ label ทั้งหมดภายใน nav
+        $('label svg').removeClass('fill-[color:var(--main-color)]');
+        $('nav label').removeClass('bg-[color:var(--sky-glow)] text-[color:var(--main-color)]');
 
-        // กำหนด fill และ background สำหรับ label ที่เลือก
-        $(`label[for="${targetId}"] svg`).css('fill', '#409EFE');
-        $(`#nav label[for="${targetId}"]`).addClass('sky-glow text-[#409EFE]');
+        $(`label[for="${targetId}"] svg`).addClass('fill-[color:var(--main-color)]');
+        $(`nav label[for="${targetId}"]`).addClass('bg-[color:var(--sky-glow)] text-[color:var(--main-color)]');
     });
 });
 
 // —[ navSidebar ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-const navSidebar = document.getElementById("nav");
+const navSidebar = document.querySelector("nav");
 const overlay = document.getElementById("overlay");
 const toggleBtn = document.getElementById("sidebarToggle");
 
@@ -225,16 +224,6 @@ toggleBtn.addEventListener("click", () => {
 
 overlay.addEventListener("click", closeSidebar);
 
-// ปรับให้แน่ใจว่ากลับสภาพตามขนาดจอเมื่อ resize
-window.addEventListener("resize", () => {
-    if (window.innerWidth >= 768) {
-        navSidebar.classList.remove("-translate-x-full");
-        overlay.classList.add("hidden");
-    } else if (!sidebarOpen) {
-        navSidebar.classList.add("-translate-x-full");
-    }
-});
-
 // —[ projects ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
 const project = [
@@ -247,9 +236,12 @@ const project = [
 const noimages = "https://project-test-submission.netlify.app/images/img/placeholder.svg";
 const projectsList = document.getElementById('projects-list');
 
-project.forEach(({ name, link, img }) => {
-    const listItem = document.createElement('li');
-    listItem.innerHTML = `
+// สมมติ username มาจาก global variable
+
+// if (username === "Centered101") {
+    project.forEach(({ name, link, img }) => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
 <a title="${name}" href="${link}" target="_blank" 
    class="flex flex-col justify-center items-center w-full h-full overflow-hidden active:!brightness-90 group"> 
     <div class="w-full aspect-[4/5] overflow-hidden">
@@ -259,5 +251,38 @@ project.forEach(({ name, link, img }) => {
             onerror="this.src='${noimages}'">
     </div>
 </a>`;
-    projectsList.appendChild(listItem);
-});
+        projectsList.appendChild(listItem);
+    });
+// } else {
+//     const notFoundItem = document.createElement('li');
+//     notFoundItem.textContent = "Project not found";
+//     projectsList.appendChild(notFoundItem);
+// }
+
+
+// if (username === "Centered101") {
+    $('#bg-video').removeClass('hidden');
+// }
+
+const intro = document.getElementById('intro-screen');
+const video = document.getElementById('bg-video');
+
+function startVideo() {
+    intro.classList.add('fade-out');
+    video.muted = false;
+    video.volume = 0.5;
+
+    video.play().catch(err => {
+        console.log("Video play blocked:", err);
+    });
+
+    setTimeout(() => {
+        intro.style.display = 'none';
+    }, 500);
+}
+
+// คลิกที่ intro
+intro.addEventListener('click', startVideo);
+
+// กดปุ่มอะไรก็ได้
+document.addEventListener('keydown', startVideo);

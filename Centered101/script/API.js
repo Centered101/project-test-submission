@@ -1,8 +1,10 @@
+let lowApiNotified = false;
+
 function updateRateLimit() {
     fetch("https://api.github.com/rate_limit")
         .then(response => response.json())
         .then(data => {
-            const remaining = data.rate.remaining;
+            var remaining = data.rate.remaining;
             const resetTime = new Date(data.rate.reset * 1000).toLocaleTimeString();
             const $rateStatus = $("#rateStatus").removeClass("animate-pulse");
 
@@ -14,27 +16,33 @@ function updateRateLimit() {
                      </span>
                 </div>`;
 
-            if (remaining <= 10) {
-                showNotification('Low API requests remaining! Please wait!');
+            // ฟังก์ชันเช็ค remaining
+            function checkRemaining(remaining) {
+                if (remaining <= 10 && !lowApiNotified) {
+                    showNotification('Low API requests remaining! Please wait!');
+                    lowApiNotified = true; // แจ้งแล้ว
+                } else if (remaining > 10) {
+                    lowApiNotified = false; // reset flag ถ้า quota กลับมา
+                }
             }
+
+            // เรียกเช็คทุกครั้ง
+            checkRemaining(remaining);
 
             if (remaining === 0) {
                 $("#repo-list").html(warningMessage("text-center m-0"));
                 $("#followers-list, #following-list").html(warningMessage("text-center m-2 md:m-4 !mb-0"));
                 $rateStatus.html(`
-                <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="fade-in text-[#409EFE]">${remaining}</span> / 60 requests</p>
+                <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="fade-in text-[color:var(--main-color)]">${remaining}</span> / 60 requests</p>
                 <p class="flex items-center gap-2"><svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
                 <span>You have reached the API limit! Please wait until ${resetTime}</span></p>
                 `);
             } else {
                 $rateStatus.html(`
-                <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="text-[#409EFE]">${remaining}</span> / 60 requests</p>
+                <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="text-[color:var(--main-color)]">${remaining}</span> / 60 requests</p>
                 <p>Reset time: <span>${resetTime}</span></p>
                 `);
             }
-
-            $("#rate-reset").text(resetTime);
-
         })
         .catch(error => {
             console.error("Error fetching API data:", error);
@@ -45,12 +53,11 @@ function updateRateLimit() {
 // โหลดครั้งแรก
 updateRateLimit();
 
-// อัปเดตทุก 10 วินาที
-setInterval(updateRateLimit, 5000);
+setInterval(updateRateLimit, 10000);
 
 // ตั้งค่าชื่อหน้าต่างเว็บเป็นชื่อ GitHub Profile
 const username = "Centered101";
-document.title = `GitHub API Profile - ${username}`;
+document.title = `GitHub Profile ${username}`;
 $('#nav-profile-name').html(`GitHub API Profile ${username}'s`);
 
 // ดึงข้อมูลผู้ใช้จาก GitHub
@@ -78,11 +85,14 @@ fetch(`https://api.github.com/users/${username}`)
 
         // เพิ่มปุ่ม follow
         $('#github-follow-button-wrapper').append(`
-            <a title="Follow" aria-label="Follow" id="followBtn"
-                href='https://github.com/${username}' target="_blank"
+            <a title="Follow ${username}" aria-label="Follow ${username}" href='https://github.com/${username}' target="_blank"
                 class="relative w-full sm:w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--sky-glow)]">
-                <span id="followText">Follow</span>
+                <span>Follow</span>
             </a>
+            <button onclick="share()" title="share profile ${username}" aria-label="share profile ${username}"
+                class="relative w-full sm:w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--sky-glow)]">
+                <span>Share profile</span>
+            </button>
         `);
     })
     .catch(error => {
@@ -106,7 +116,7 @@ async function fetchData(url, callback) {
 // ดึงข้อมูลโปรไฟล์
 fetchData(`https://api.github.com/users/${username}`, function (data) {
     $('#profile-img').attr('src', data.avatar_url || "https://project-test-submission.netlify.app/images/icon.svg");
-    $('#profile-name').html(data.login || "Developer");
+    $('#profile-name').html(`${data.name || 'Developer @' + username}`);
     $('#github-profile-location').text(data.location);
     $('#github-profile-bio').text(data.bio);
 
@@ -121,11 +131,9 @@ fetchData(`https://api.github.com/users/${username}`, function (data) {
             .addClass('block')
             .removeClass('hidden')
             .html(`
-<svg xmlns="http://www.w3.org/2000/svg" class="size-[1em]" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-location">
-    <path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z"/>
-</svg>
-                ${data.location}
-            `);
+    <svg svg xmlns = "http://www.w3.org/2000/svg" class= "size-[1em]" aria - hidden="true" height = "16" viewBox = "0 0 16 16" version = "1.1" width = "16" data - view - component="true" class= "octicon octicon-location" >
+    <path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z" />
+</svg > ${data.location}`);
     } else {
         $('#github-profile-location').addClass('hidden').removeClass('block');
     }
@@ -152,12 +160,12 @@ fetchData(`https://api.github.com/users/${username}/repos`, repos => {
     repoList.innerHTML = repos.map(repo =>
         `
 <li>
-    <a translate="no" title='${repo.name}${repo.language ? "ㅤ" + repo.language : ""}' href="${repo.html_url}" target="_blank" class="flex flex-col gap-2 border border-[#409EFE] rounded p-2 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
+    <a translate="no" title='${repo.name}${repo.language ? "ㅤ" + repo.language : ""}' href="${repo.html_url}" target="_blank" class="flex flex-col gap-2 border border-[color:var(--main-color)] rounded p-2 active:bg-[#E3F2FD] md:hover:bg-[#E3F2FD]">
         <span class="flex items-center gap-1">
             <img src="${repo.owner.avatar_url}" class="size-6 border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
             <span class="text-sm font-normal truncate">${repo.owner.login}</span>
         </span>
-        <span class="text-[#409EFE] truncate">${repo.name}</span>
+        <span class="text-[color:var(--main-color)] truncate">${repo.name}</span>
         <span class="text-sm font-normal truncate">${repo.language || `&#160;`}</span>
     </a>
 </li>

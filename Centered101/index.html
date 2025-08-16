@@ -36,13 +36,13 @@
 <body class="flex flex-row font-semibold text-sm md:text-base select-none bg-[color:var(--bg-color)] *:!slashed-zero"
     draggable="false" oncontextmenu="return false">
     <!-- preloader -->
-    <!-- <div id="preloader"
+    <div id="preloader"
         class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
         <span
             class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
         <h2>Loading</h2>
         <p>Your adventure is about to begin</p>
-    </div> -->
+    </div>
     <!-- Intro Screen -->
     <div id="intro-screen"
         class="fixed inset-0 flex justify-center items-center bg-[color:var(--bg-color)] text-4xl transition cursor-pointer z-40">
@@ -65,7 +65,7 @@
                 class="hidden flex flex-col items-center justify-center bg-white p-4 border rounded-xl overflow-hidden">
                 <div id="loadingSpinner" class="flex flex-col items-center justify-center">
                     <span
-                        class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[#409EFE] mx-auto"></span>
+                        class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
                 </div>
                 <img id="qrImage" src="" alt="QR Code" class="max-w-[90vw] max-h-[70vh] hidden p-4" draggable="false"
                     oncontextmenu="return false" />
@@ -101,11 +101,11 @@
         </div>
     </div>
     <!-- เมนูด้านข้าง -->
-    <nav id="nav"
+    <nav
         class="fixed top-0 left-0 h-screen w-5/6 md:w-1/3 lg:w-1/4 bg-[color:var(--white-smoker)] border-r md:block -translate-x-full md:translate-x-0 transform transition-transform duration-300 z-30 overflow-x-auto">
 
         <div class="flex items-center justify-between border-b">
-            <p class="uppercase p-4 md:py-8">Menu GitHub API Profile</p>
+            <p class="uppercase line-clamp-1 p-4 md:py-8">Menu GitHub API Profile</p>
             <div id="notification-history-content"></div>
         </div>
         <!-- Dropdown เปลี่ยนธีม -->
@@ -158,7 +158,7 @@
 
             <!-- Repository -->
             <li>
-                <label title="Repository" for="repo"
+                <label title="repository" for="repo"
                     class="truncate flex items-center gap-4 p-2 px-4 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em]">
                         <path
@@ -195,10 +195,11 @@
     </nav>
 
     <main class="min-h-screen w-full md:w-2/3 lg:w-3/4 ml-auto">
-        <section class="flex justify-between items-center border-b">
-            <p id="nav-profile-name" class="uppercase p-4 md:py-8">GitHub API Profile</p>
+        <section class="flex justify-between items-center bg-[color:var(--white-smoker)] border-b">
+            <p class="uppercase p-4 md:py-8">GitHub API Profile</p>
             <!-- Toggle Button -->
-            <button id="sidebarToggle" title="menu" class="fade-in md:hidden block p-4 cursor-pointer">
+            <button id="sidebarToggle" title="menu"
+                class="fade-in md:hidden relative bg-[color:var(--bg-color)] rounded shadow-inner m-3 px-2 py-1 cursor-pointer md:mx-4 md:my-5 md:px-4 md:py-3 active:bg-[color:var(--sky-glow)]">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </section>
@@ -208,33 +209,23 @@
 
             <!-- Video Wrapper -->
             <div class="absolute inset-0 w-full h-full overflow-hidden z-[-1]">
-                <video id="bg-video" loop playsinline muted class="w-full h-full object-cover object-center opacity-25">
+                <video id="bg-video" loop playsinline muted
+                    class="hidden w-full h-full object-cover object-center opacity-25">
                     <source src="https://r2.guns.lol/156ee014-9f2c-43d7-a12b-e10b6738c1c2.mp4" type="video/webm">
                 </video>
             </div>
 
-            <script>
-                const intro = document.getElementById('intro-screen');
-                const video = document.getElementById('bg-video');
-
-                intro.addEventListener('click', () => {
-                    intro.style.display = 'none';
-                    video.muted = false;
-                    video.volume = 0.5;
-                    video.play();
-                });
-            </script>
-
             <div class="w-full flex flex-row items-center justify-start space-x-2 p-2 md:px-4">
                 <!-- รูปโปรไฟล์ -->
-                <img id="profile-img" class="size-24 md:size-56 rounded-full md:rounded-none cursor-pointer"
+                <img id="profile-img"
+                    class="size-24 md:size-56 !fill-[color:var(--main-color)] rounded-full md:rounded-none cursor-pointer"
                     draggable="false" oncontextmenu="return false"
                     src="https://project-test-submission.netlify.app/images/icon.svg"
                     onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
                 <div class="w-full max-w-md flex flex-wrap justify-start items-center md:gap-y-4 *:text-sm">
-                    <p id="profile-name" translate="no" class="basis-full !text-xl md:text-3xl px-2">
+                    <p id="profile-name" translate="no" class="basis-full !text-xl md:!text-3xl px-2">
                         API not connected</p>
-                    <label title="Repository" for="repo"
+                    <label title="repository" for="repo"
                         class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)] ease-in-out duration-300">
                         Repository<span id="repo-count">0</span>
                     </label>
@@ -249,19 +240,19 @@
                 </div>
             </div>
 
-            <div id="github-profile-details" class="hidden flex-col justify-start gap-4 md:gap-8 px-4">
-                <div class="flex-1 flex flex-col gap-2 *:flex *:flex-row *:items-center *:gap-1">
+            <div class="flex flex-col justify-start !gap-4 md:gap-8 px-4">
+                <div id="github-profile-details"
+                    class="flex-1 hidden flex-col gap-2 *:flex *:flex-row *:items-center *:gap-1">
                     <p hidden id="github-profile-location" class="w-2/3"></p>
                     <p hidden id="github-profile-bio" class="w-2/3"></p>
-                    <a target="_blank" href="/centered101/certificates.html"
-                        class="w-2/3 flex items-center gap-1 text-[color:var(--main-color)]">
+                    <a class='max-w-min flex items-center gap-1 text-[color:var(--main-color)]'
+                        href='/centered101/certificates' target='_blank'>
                         <i class="fa-solid fa-link"></i>
                         <p>Certificates</p>
                     </a>
                 </div>
                 <div id="github-follow-button-wrapper"
-                    class="basis-full flex-1 flex flex-row items-center gap-2 w-full md:max-w-full *:uppercase">
-                </div>
+                    class="basis-full flex-1 flex flex-row items-center gap-2 w-full md:max-w-full *:uppercase"></div>
             </div>
         </section>
 
@@ -279,7 +270,7 @@
 
             <!-- Repository -->
             <input hidden id="repo" class="peer/repo" type="radio" name="status" />
-            <label hidden title="Repository" for="repo"
+            <label hidden title="repository" for="repo"
                 class="fade-in size-6 w-1/2 md:w-1/4 border-y md:border-r flex items-center gap-2 justify-center p-4 cursor-pointer active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)]">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="size-[1em]">
                     <path
@@ -308,24 +299,18 @@
             </label>
 
             <!-- projects -->
-            <ul hidden id="projects-list" class="w-full grid-cols-3 truncate p-0 pb-8 peer-checked/projects:grid">
-            </ul>
+            <ul hidden id="projects-list" class="w-full grid-cols-3 truncate p-0 pb-8 peer-checked/projects:grid"></ul>
 
             <!-- รายชื่อ Repository -->
             <ul hidden id="repo-list"
                 class="w-full grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-2 md:gap-4 truncate px-2 pt-2 pb-8 md:px-4 md:pt-4 peer-checked/repo:grid">
-                <span class="mx-auto mt-6 mb-4 md:mt-4">Repository : API not connected</span>
             </ul>
 
             <!-- รายชื่อผู้ติดตาม -->
-            <ul hidden id="followers-list" class="w-full truncate px-0 pb-8 peer-checked/followers:grid"><span
-                    class="mx-auto mt-8 mb-4">Followers : API not connected</span>
-            </ul>
+            <ul hidden id="followers-list" class="w-full truncate px-0 pb-8 peer-checked/followers:grid"></ul>
 
             <!-- รายชื่อที่กำลังติดตาม -->
-            <ul hidden id="following-list" class="w-full truncate px-0 pb-8 peer-checked/following:grid"><span
-                    class="mx-auto mt-8 mb-4">Following : API not connected</span>
-            </ul>
+            <ul hidden id="following-list" class="w-full truncate px-0 pb-8 peer-checked/following:grid"></ul>
         </section>
     </main>
     <script src="./script/index.js"></script>

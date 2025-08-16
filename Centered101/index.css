@@ -18,7 +18,7 @@ body {
 }
 
 :root {
-    --main-color: #409EFE;
+    --main-color: #1ED760;
 }
 
 .border-b,
@@ -74,10 +74,6 @@ body {
         --text-color: #DCDCDC;
         --sky-glow: #1B2830;
     }
-
-    .sky-glow {
-        background-color: var(--sky-glow);
-    }
 }
 
 /* โหมด Light */
@@ -96,10 +92,6 @@ body {
         --white-smoker: #F5F5F5;
         --text-color: #0D0D0D;
         --sky-glow: #E3F2FD;
-    }
-
-    .sky-glow {
-        background-color: var(--sky-glow);
     }
 }
 
@@ -123,24 +115,6 @@ body {
 body {
     -webkit-overflow-scrolling: touch;
     overflow-scrolling: touch;
-}
-
-/* iOS Input Fix */
-input,
-select,
-textarea {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 8px;
-}
-
-/* iOS Button Fix */
-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 8px;
 }
 
 /* iOS Modal Fix */
