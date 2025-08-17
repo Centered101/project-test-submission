@@ -57,7 +57,7 @@
                 alt="นาย พงศ์พล พรมผา" class="size-8 md:size-16 rounded-full object-cover" draggable="false"
                 oncontextmenu="return false" />
         </button>
-        <h2 class="text-lg sm:text-xl md:text-3xl text-pretty font-bold">
+        <h2 class="text-lg sm:text-xl md:text-3xl text-pretty font-bold !line-clamp-1">
             <span>นาย พงศ์พล พรมผา</span>
             <span class="text-gray-400 text-base">(Master phongphon Phompha)</span>
         </h2>
@@ -123,7 +123,7 @@
                 <div
                     class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto mb-4">
                 </div>
-                <p class="text-lg text-gray-500">กำลังโหลดข้อมูล...</p>
+                <p>กำลังโหลดข้อมูล</p>
             </div>
         </div>
     </section>
@@ -328,7 +328,7 @@
                     const displayDate = formatDateThai(cert.date);
 
                     html += `
-                <div data-aos="fade-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div data-aos="fade-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border rounded-lg shadow-sm duration-300">
                     <button onclick="viewImage('${imageUrl}', '${cert.name.replace(/'/g, "\\'")}')" 
                             class="relative overflow-hidden w-full text-left rounded-t-lg group">
                         <img src="${imageUrl}" 
@@ -404,6 +404,7 @@
             easing: 'ease-in-out',
         });
     </script>
+    <script src="./script/index.js"></script>
 </body>
 
 </html>
