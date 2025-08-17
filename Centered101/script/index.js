@@ -105,12 +105,6 @@ function updateHistoryBadge() {
 
 // อัปเดตตอนโหลดหน้า
 updateHistoryBadge();
-saveHistoryToStorage();
-
-// อัปเดตทุก 5 วิ เป็น
-
-setInterval(updateHistoryBadge, 5000);
-setInterval(saveHistoryToStorage, 5000);
 
 // ฟังก์ชันสร้างปุ่ม history (เรียกใช้เมื่อ window load)
 $(window).on('load', function () {
@@ -174,9 +168,20 @@ function openHistoryPanel() {
 
     // ปุ่ม "Delete all"
     $('#clear-history-btn').on('click', function () {
-        clearHistory(); // ลบประวัติ
-        $('#history-content').html(renderHistoryItems());
+        const $items = $('#history-content').children();
+
+        if ($items.length === 0) return;
+
+        // เพิ่ม animation ออกไปทางขวา
+        $items.addClass('animate-slide-out');
+
+        // รอ animation เสร็จแล้วค่อยลบจริง
+        setTimeout(() => {
+            clearHistory(); // ลบประวัติ
+            $('#history-content').html(renderHistoryItems());
+        }, 300); // เวลาเดียวกับ duration ของ animation
     });
+
 }
 
 // ฟังก์ชันปิด history panel
@@ -188,7 +193,7 @@ function closeHistoryPanel() {
 // ฟังก์ชันแสดงรายการ history
 function renderHistoryItems() {
     if (notificationHistory.length === 0) {
-        return '<div class="text-center text-[color:var(--text-color)] py-8">No notification history</div>';
+        return '<div class="!translate-x-0 text-center text-[color:var(--text-color)] py-8">No notification history</div>';
     }
 
     return notificationHistory.map(item => {
@@ -197,7 +202,7 @@ function renderHistoryItems() {
         const typeIcon = getTypeIcon(item.type);
 
         return `
-            <div class="bg-[color:var(--bg-color)] border rounded-lg shadow-inner mb-2 p-2 ${!item.isRead ? 'border-l-4 border-blue-500' : ''}">
+            <div class="history-item bg-[color:var(--bg-color)] border rounded-lg shadow-inner mb-2 p-2 ${!item.isRead ? 'border-l-2 !border-l-[color:var(--main-color)]' : ''}">
                 <div class="flex items-start space-x-2">
                     <div class="flex-shrink-0 mt-1">
                         ${typeIcon}
@@ -220,17 +225,22 @@ function renderHistoryItems() {
     }).join('');
 }
 
-// ฟังก์ชันลบรายการ history ทีละรายการ
+// ฟังก์ชันลบรายการ history
 $(document).on('click', '.delete-history-item', function () {
     const itemId = $(this).data('id');
-    notificationHistory = notificationHistory.filter(item => item.id !== itemId);
-    saveHistoryToStorage();
-    updateHistoryBadge();
+    const $item = $(this).closest('.history-item');
 
-    // อัปเดตเนื้อหาใน panel ถ้าเปิดอยู่
-    if (isHistoryPanelOpen) {
-        $('#history-content').html(renderHistoryItems());
-    }
+    $item.addClass('animate-slide-out');
+
+    setTimeout(() => {
+        notificationHistory = notificationHistory.filter(item => item.id !== itemId);
+        saveHistoryToStorage();
+        updateHistoryBadge();
+
+        if (isHistoryPanelOpen) {
+            $('#history-content').html(renderHistoryItems());
+        }
+    }, 300);
 });
 
 function addNotification(item) {
@@ -244,6 +254,8 @@ function addNotification(item) {
         $('#history-content').html(renderHistoryItems());
     }
 }
+
+setInterval(renderHistoryItems, 1000);
 
 // ฟังก์ชันได้ icon ตามประเภท
 function getTypeIcon(type) {
@@ -287,7 +299,7 @@ function showNotification(message, type = 'info', link = null) {
     }
 
     const notification = $(`
-        <div class="notification-item max-w-sm bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-2 py-2 transition-all duration-300 transform translate-x-full select-none ${!link ? 'cursor-pointer' : ''}">
+        <div class="notification-item max-w-sm min-w-min bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-2 py-2 transition-all duration-300 transform translate-x-full select-none ${!link ? 'cursor-pointer' : ''}">
             <div class="flex items-center">
                 <div class="flex-shrink-0">
                     ${type === 'success' ?

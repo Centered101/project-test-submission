@@ -34,13 +34,6 @@
 </head>
 
 <body class="bg-[color:var(--bg-color)] min-h-screen">
-    <!-- preloader -->
-    <div id="preloader"
-        class="!fixed inset-0 flex flex-col justify-center items-center bg-black bg-opacity-25 text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
-        <span
-            class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
-    </div>
-
     <!-- Header -->
     <header class="max-w-6xl mx-auto bg-[color:var(--main-color)] text-white text-center shadow-lg py-8">
         <h1 class="text-4xl font-bold">ใบประกาศนียบัตร</h1>
@@ -56,10 +49,9 @@
                 alt="นาย พงศ์พล พรมผา" class="size-8 md:size-16 rounded-full object-cover" draggable="false"
                 oncontextmenu="return false" />
         </button>
-        <h2 class="text-lg sm:text-xl md:text-3xl font-bold">
-            <span class="text-pretty">
-                นาย พงศ์พล พรมผา (Master phongphon Phompha)
-            </span>
+        <h2 class="text-lg sm:text-xl md:text-3xl text-pretty font-bold">
+            <span>นาย พงศ์พล พรมผา</span>
+            <span class="text-gray-400 text-base">(Master phongphon Phompha)</span>
         </h2>
     </section>
 
@@ -88,7 +80,7 @@
                         <label class="block text-sm font-medium text-gray-400 mb-2">ปี</label>
                         <select id="year-filter"
                             class="w-full px-4 py-2  bg-[color:var(--bg-color)] border rounded-lg focus:ring-2 focus:ring-[color:var(--main-color)] focus:border-transparent">
-                            <option value="">ทุกปี</option>
+                            <option class="fade-in" value="">ทุกปี</option>
                         </select>
                     </div>
                     <!-- issuer Filter -->
@@ -96,7 +88,7 @@
                         <label class="block text-sm font-medium text-gray-400 mb-2">ผู้ออก</label>
                         <select id="issuer-filter"
                             class="w-full px-4 py-2  bg-[color:var(--bg-color)] border rounded-lg focus:ring-2 focus:ring-[color:var(--main-color)] focus:border-transparent">
-                            <option value="">ทั้งหมด</option>
+                            <option class="fade-in" value="">ทั้งหมด</option>
                         </select>
                     </div>
                 </div>
@@ -104,7 +96,7 @@
 
             <div class="flex flex-wrap gap-3 mt-4 pt-4 border-t">
                 <button id="clear-filters"
-                    class="bg-[color:var(--bg-color)] rounded-lg text-sm px-4 py-2 transition-colors duration-200 flex items-center">
+                    class="bg-[color:var(--bg-color)] rounded-lg text-sm px-4 py-2 transition-colors duration-200 flex items-center hover:bg-gray-100">
                     <i class="fas fa-times mr-1"></i>
                     ล้างตัวกรอง
                 </button>
@@ -117,7 +109,13 @@
     <!-- Certificates Section -->
     <section class="max-w-6xl mx-auto px-4 pb-24">
         <div id="certificates-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <!-- Certificates will be populated by JavaScript -->
+            <!-- Loading placeholder -->
+            <div class="col-span-full text-center py-24">
+                <div
+                    class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto mb-4">
+                </div>
+                <p class="text-lg text-gray-500">กำลังโหลดข้อมูล...</p>
+            </div>
         </div>
     </section>
 
@@ -139,216 +137,325 @@
             </div>
         </div>
     </div>
-    <script src="./script/index.js"></script>
+
     <script>
-        // Certificate data
-        const certificates = [
-            {
-                id: "1",
-                name: "การสร้างเว็บด้วย HTML และ CSS",
-                issuer: "Online Course Platform",
-                date: "2025-02-24",
-                description: "พื้นฐานการทำงานของเว็บ: อินเทอร์เน็ตและเว็บ, โปรแกรมเว็บบราวเซอร์, ขั้นตอนการสื่อสารข้อมูลในการร้องขอหน้าเว็บ; การแทนโครงสร้างของหน้าเว็บด้วยต้นไม้ดอม; มาตรฐานที่ใช้ในการแสดงและมีปฏิสัมพันธ์กับหน้าเว็บ; ภาษาเอชทีเอ็มแอล: ไวยากรณ์ของภาษาเอชทีเอ็มแอล, ความหมายขององค์ประกอบเอชทีเอ็มแอลชนิดต่าง ๆ และวิธีการใช้งาน; ภาษาซีเอสเอส: การกำหนดลักษณะการแสดงผลให้แก่หน้าเว็บด้วยซีเอสเอส, ไวยากรณ์ของภาษาซีเอสเอส, การเลือกองค์ประกอบเอชทีเอ็มแอลด้วยตัวเลือกในภาษาซีเอสเอส, สมบัติการแสดงผลและค่าการแสดงผล; ตัวอย่างการเขียนหน้าเว็บด้วยภาษาเอชทีเอ็มแอลและภาษาซีเอสเอส; คำแนะนำในการเรียนรู้เพิ่มเติมเกี่ยวกับการพัฒนาเว็บ",
-                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51611/cvcert_usercert/certificate_51611_1408392-1408392-17403928281066.jpg",
-            },
-            {
-                id: "2",
-                name: "รู้จักคอมพิวเตอร์และระบบดิจิทัล",
-                issuer: "Online Course Platform",
-                date: "2025-02-26",
-                description: "วิวัฒนาการและความเป็นมาของระบบคอมพิวเตอร์ การแทนข้อมูลในระบบคอมพิวเตอร์ ระบบเลขฐานสอง วงจรดิจิทัล ฮาร์ดแวร์ในระบบคอมพิวเตอร์ สถาปัตยกรรมคอมพิวเตอร์เบื้องต้น ซอฟต์แวร์ในระบบคอมพิวเตอร์",
-                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51604/cvcert_usercert/certificate_51604_1408392-1408392-17405696369141.jpg",
-            },
-            {
-                id: "3",
-                name: "พื้นฐานเครือข่ายคอมพิวเตอร์และอินเทอร์เน็ต",
-                issuer: "Online Course Platform",
-                date: "2025-02-27",
-                description: "ประวัติความเป็นมาของระบบอินเทอร์เน็ต; อินเทอร์เน็ตในประเทศไทย; โพรโทคอลในระบบเครือข่าย; ชุดโพรโทคอลอินเทอร์เน็ต; ฮาร์ดแวร์ในการเชื่อมต่ออินเทอร์เน็ต; บริการในระบบอินเทอร์เน็ต",
-                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51605/cvcert_usercert/certificate_51605_1408392-1408392-17406466510282.jpg",
-            },
-            {
-                id: "4",
-                name: "รู้จักอินเทอร์เน็ตของทุกสรรพสิ่ง",
-                issuer: "Online Course Platform",
-                date: "2025-02-28",
-                description: "แนะนำเทคโนโลยีด้านอินเทอร์เน็ตของทุกสรรพสิ่ง (IoT) ความหมาย ความเป็นมา และการประยุกต์ใช้งานในปัจจุบัน องค์ประกอบด้านเทคโนโลยีได้แก่ ระบบการบริหารจัดการข้อมูล ระบบอุปกรณ์และการตรวจวัดค่า (Sensors) ระบบการส่งข้อมูล ระบบการจัดเก็บข้อมูล ระบบการวิเคราะห์ และระบบนำเสนอข้อมูล กระบวนการตัดสินใจโดยใช้ข้อมูลในทางธุรกิจและอุตสาหกรรม",
-                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51606/cvcert_usercert/certificate_51606_1408392-1408392-17407035787689.jpg",
-            },
-            {
-                id: "5",
-                name: "การพัฒนา Full-stack เว็บแอปพลิเคชัน",
-                issuer: "Online Course Platform",
-                date: "2025-08-05",
-                description: "รายวิชา การพัฒนา Full-stack เว็บแอปพลิเคชัน ครอบคลุมเนื้อหาเกี่ยวกับการพัฒนาเว็บแอปพลิเคชันโดยใช้ภาษา Javascript และใช้ React ในการสร้างหน้าต่างผู้ใช้ (User Interface) และใช้ Node.js และ Express.js ในการพัฒนาเว็บแอปพลิเคชันในรูปแบบ Server-Side และเชื่อมต่อฐานข้อมูลด้วย MongoDB กับ Mongoose นอกจากนี้ รายวิชาครอบคลุมไปถึงความปลอดภัยของเว็บแอปพลิเคชั่น ได้แก่ การใช้ระบบยืนยันตัวตน (Authentication) และ กลไกในการยืนยันตัวตน (Authorization Mechanisms) เมื่อเรียนเสร็จสิ้น ผู้เรียนจะได้เรียนรู้การพัฒนาเว็บแอปพลิเคชันด้วยภาษา Javascript",
-                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51618/cvcert_usercert/certificate_51618_1408392-1408392-17544126803709.jpg",
-            },
-            {
-                id: "6",
-                name: "รู้จักปัญญาประดิษฐ์ และการเรียนรู้ของเครื่อง",
-                issuer: "Online Course Platform",
-                date: "2025-08-06",
-                description: "ความหมายของปัญญาประดิษฐ์ เครื่องมือที่จำเป็นสำหรับการทำงานด้านปัญญาประดิษฐ์ การประยุกต์ใช้ปัญญาประดิษฐ์ การเรียนรู้ของเครื่อง การประเมินผลของโมเดลการเรียนรู้ของเครื่อง เครื่องมือที่จำเป็นสำหรับการเรียนรู้ของเครื่อง",
-                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51607/cvcert_usercert/certificate_51607_1408392-1408392-17544641286631.jpg",
-            },
-            {
-                id: "7",
-                name: "Introducing Generative AI in Academic Research for Students",
-                issuer: "Online Course Platform",
-                date: "2025-08-06",
-                description: "เพื่อให้ผู้เรียนมีความรู้ความเข้าใจเกี่ยวกับการใช้เครื่องมือ Generative AI ได้อย่างเหมาะสม",
-                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2024_2/66537/cvcert_usercert/certificate_66537_1408392-1408392-17544890199530.jpg",
-            },
-            {
-                id: "8",
-                name: "การแก้ปัญหาในชีวิตประจำวันด้วยแนวคิดเชิงคำนวณ (Computational Thinking)",
-                issuer: "Online Course Platform",
-                date: "2025-08-10",
-                description: "เริ่มต้นได้เรียนรู้การแยกส่วนประกอบและการย่อยปัญหา (Decomposition) การหารูปแบบ (Pattern Recognition) การคิดเชิงนามธรรม (Abstraction) และขั้นตอนวิธี (Algorithm) เพื่อให้ผู้เรียนสามารถแก้ไขปัญหาอย่างเป็นระเบียบ และมีขั้นตอนการแก้ไขปัญหาตั้งแต่ต้นจนจบได้อย่างถูกต้องและชัดเจน",
-                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51966/cvcert_usercert/certificate_51966_1408392-1408392-17547597023651.jpg",
-            },
-            {
-                id: "9",
-                name: "ChatGPT ช่วยทำวิจัยได้ไม่ต้องเหนื่อยแทบตาย",
-                issuer: "Online Course Platform",
-                date: "2025-08-10",
-                description: "ChatGPT ช่วยทำวิจัยได้ไม่ต้องเหนื่อยแทบตาย (ในทุกขั้นตอน) จะเป็นการนำเสนอเนื้อหาเกี่ยวกับการใช้ ChatGPT เป็นตัวช่วยในการเขียนงานวิจัย ไม่ว่าจะเป็นการเลือกหัวข้องานวิจัย ขอบเขตงานวิจัย การช่วยทำแบบสอบถาม การหาแหล่งข้อมูล การวิเคราะห์ข้อมูล รวมถึงบทบาทของ ChatGPT ในเชิงจริยธรรม เพื่อให้ผู้เรียนได้ทราบว่า ChatGPT สามารถเป็นตัวช่วยทำวิจัยได้จริงหรือไม่",
-                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2022_2/36997/cvcert_usercert/certificate_36997_1408392-1408392-17547638823717.jpg",
-            },
-            {
-                id: "10",
-                name: "ความปลอดภัยทางไซเบอร์สำหรับทุกคน",
-                issuer: "Online Course Platform",
-                date: "2025-08-13",
-                description: "คอร์สนี้ถูกออกแบบขึ้นเพื่อให้ผู้เรียนเริ่มต้นได้เรียนรู้ความสำคัญ ของความปลอดภัยทางไซเบอร์ ภัยคุกคามทางไซเบอร์ทั่วไป และเคล็ดลับการปฏิบัติในการปกป้องข้อมูลส่วนบุคคลและองค์กร ผู้เรียนจะได้เรียนรู้เกี่ยวกับการจัดการรหัสผ่าน การอัปเดตซอฟต์แวร์ การสำรองและการกู้คืน การตรวจสอบสิทธิ์แบบสองปัจจัย และการเข้ารหัสข้อมูลเพื่อรักษาข้อมูลให้ปลอดภัย หลักสูตรนี้ยังครอบคลุมแนวทางปฏิบัติที่ดีที่สุดสำหรับการท่องเว็บอย่างปลอดภัย ความปลอดภัยของโซเชียลมีเดีย ความปลอดภัยของอีเมล และความปลอดภัยของอุปกรณ์พกพา",
-                image: "https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/system_course_files/2023_2/51609/cvcert_usercert/certificate_51609_1408392-1408392-17550877540770.jpg",
-            },
-        ];
+        // Global variables
+        let certificates = [];
+        let isLoading = false;
 
-        const noimages = "https://project-test-submission.netlify.app/images/img/placeholder.svg";
-
-        $(document).ready(function () {
-            const $yearFilter = $('#year-filter');
-            const $issuerFilter = $('#issuer-filter');
-            const $searchInput = $('#search-input');
-            const $resultsCount = $('#results-count');
-            const $grid = $('#certificates-grid');
-
-            // เติมค่า option ปี
-            const years = [...new Set(certificates.map(c => c.date.split('-')[0]))].sort();
-            years.forEach(year => {
-                $yearFilter.append(`<option value="${year}">${year}</option>`);
-            });
-
-            // เติมค่า option ผู้ออก
-            const issuers = [...new Set(certificates.map(c => c.issuer))].sort();
-            issuers.forEach(issuer => {
-                $issuerFilter.append(`<option value="${issuer}">${issuer}</option>`);
-            });
-
-            // ฟังก์ชัน filter + render
-            function filterCertificates() {
-                const searchTerm = $searchInput.val().toLowerCase();
-                const selectedYear = $yearFilter.val();
-                const selectedIssuer = $issuerFilter.val();
-                const filtered = certificates
-                    .filter(c => {
-                        const matchName = c.name.toLowerCase().includes(searchTerm);
-                        const matchYear = selectedYear ? c.date.startsWith(selectedYear) : true;
-                        const matchIssuer = selectedIssuer ? c.issuer === selectedIssuer : true;
-                        return matchName && matchYear && matchIssuer;
-                    })
-                    .sort((a, b) => {
-                        const dateDiff = new Date(b.date) - new Date(a.date);
-                        if (dateDiff !== 0) return dateDiff;
-                        // ถ้าวันที่ตรงกัน ให้เรียงตาม id หรือฟิลด์อื่นที่บอกความใหม่ของผลงาน
-                        return b.id - a.id; // เปลี่ยนเป็นฟิลด์ที่เหมาะสม
-                    });
-
-                renderCertificates(filtered, searchTerm);
-                $('#results-count').html(
-                    `<span data-aos="fade-up-right"><i class="fas fa-certificate mr-1"></i>แสดง ${filtered.length} จาก ${certificates.length} ใบประกาศ</span>`
-                );
-            }
-
-            function renderCertificates(data, searchTerm) {
-                if (!data.length) {
-                    $grid.html(`
-                    <div data-aos="fade-up" class="col-span-full text-center py-24">
-                        <i class="fas fa-certificate text-6xl mb-4"></i>
-                        <p class="text-xl text-gray-400">ไม่พบใบประกาศ</p>
-                    </div>
-                `);
-                    return;
-                }
-
-                let html = '';
-                data.forEach(cert => {
-                    html += `
-                <div data-aos="fade-up" class="relative bg-[color:var(--white-smoker)] border rounded-lg">
-                    <button onclick="viewImage('${cert.image && cert.image !== '-' ? cert.image : noimages}', '${cert.name}')" 
-                            class="relative overflow-hidden w-full text-left group">
-                        <img src="${cert.image && cert.image ? cert.image : noimages}" 
-                             alt="${cert.name}" 
-                             class="w-full h-56 bg-[color:var(--bg-color)] object-cover group-hover:scale-105 transition-transform duration-300"
-                             loading="lazy"
-                             draggable="false" oncontextmenu="return false">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-700 flex items-center justify-center group-hover:bg-opacity-25">
-                            <div class="size-16 flex items-center justify-center bg-[color:var(--white-smoker)] text-[color:var(--main-color)] text-2xl rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100">
-                                <i class="fas fa-search-plus"></i>
-                            </div>
-                        </div>
-                    </button>
-                    <div class="p-4 space-y-2">
-                        <h3 class="text-lg font-semibold line-clamp-2 leading-tight">${highlightText(cert.name, searchTerm)}</h3>
-                        <p class="text-sm text-gray-500 flex items-center"><i class="fas fa-building mr-2"></i>${cert.issuer}</p>
-                        <p class="text-sm text-gray-500 flex items-center"><i class="fas fa-calendar-alt mr-2"></i>
-                            ${new Date(cert.date).toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' })}
-                        </p>
-                        <p class="text-sm text-gray-600 line-clamp-3">${highlightText(cert.description, searchTerm)}</p>
-                        <span class="absolute -top-3 -right-2 bg-[color:var(--main-color)] text-white text-xs rounded-full px-2 py-1 font-medium shadow-md">${cert.id}</span>
-                    </div>
-                </div>`;
-                });
-                $grid.html(html);
-            }
-
-            // ไฮไลต์ข้อความค้นหา
-            function highlightText(text, term) {
-                if (!term) return text || '';
-                const regex = new RegExp(`(${term})`, 'gi');
-                return (text || '').replace(regex, '<mark>$1</mark>');
-            }
-
-            // Event
-            $searchInput.on('input', filterCertificates);
-            $yearFilter.on('change', filterCertificates);
-            $issuerFilter.on('change', filterCertificates);
-
-            $('#clear-filters').on('click', function () {
-                $searchInput.val('');
-                $yearFilter.val('');
-                $issuerFilter.val('');
-                filterCertificates();
-            });
-
-            // โหลดครั้งแรก
-            filterCertificates();
+        // ซ่อน preloader
+        $(document).ready(() => {
+            loadCertificatesData();
         });
 
-        // modal image functions
+        // Helper function to format Thai date
+        function formatDateThai(dateStr) {
+            if (!dateStr) return '';
+            try {
+                const date = new Date(dateStr);
+                if (isNaN(date.getTime())) return dateStr; // Return original if invalid date
+
+                const thaiMonths = [
+                    'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.',
+                    'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'
+                ];
+
+                const day = date.getDate();
+                const month = thaiMonths[date.getMonth()];
+                const year = date.getFullYear() + 543; // Convert to Buddhist Era
+
+                return `${day} ${month} ${year}`;
+            } catch (error) {
+                console.warn('Date formatting error:', error);
+                return dateStr;
+            }
+        }
+
+        // Helper function to sanitize HTML
+        function sanitizeHTML(str) {
+            if (!str) return '';
+            const temp = document.createElement('div');
+            temp.textContent = str;
+            return temp.innerHTML;
+        }
+
+        // Load certificates data from Google Sheets
+        function loadCertificatesData() {
+            if (isLoading) return;
+            isLoading = true;
+
+            const sheetId = "17ppLfag2cZb1_-dPeRKqdoaDpFyHjU6vykr9DEOwS1c";
+            const sheetName = "Sheet1";
+            const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?sheet=${sheetName}`;
+            const noimages = "https://project-test-submission.netlify.app/images/img/placeholder.svg";
+
+            fetch(url)
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                    }
+                    return res.text();
+                })
+                .then(text => {
+                    try {
+                        // Parse Google Sheets response
+                        const jsonStr = text.substring(47).slice(0, -2);
+                        const json = JSON.parse(jsonStr);
+
+                        if (!json.table || !json.table.rows) {
+                            throw new Error('Invalid data structure from Google Sheets');
+                        }
+
+                        const rows = json.table.rows;
+
+                        certificates = rows.map((row, index) => ({
+                            id: row.c[0]?.v ?? index + 1,
+                            name: sanitizeHTML(row.c[1]?.v ?? ""),
+                            issuer: sanitizeHTML(row.c[2]?.v ?? ""),
+                            date: row.c[3]?.v ?? "",
+                            description: sanitizeHTML(row.c[4]?.v ?? ""),
+                            image: row.c[5]?.v ?? noimages
+                        })).filter(cert => cert.name.trim()); // กรองเฉพาะที่มีชื่อหลักสูตร
+
+                        // เก็บ global
+                        window.certificates = certificates;
+
+                        // Initialize certificates display
+                        initCertificates(certificates);
+
+                    } catch (parseError) {
+                        console.error("Error parsing sheet data:", parseError);
+                        showNotification("เกิดข้อผิดพลาดในการประมวลผลข้อมูล", 'error');
+                    }
+                })
+                .catch(err => {
+                    console.error("Error fetching sheet:", err);
+                    showNotification("เกิดข้อผิดพลาดในการโหลดข้อมูล กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต", 'error');
+                })
+                .finally(() => {
+                    isLoading = false;
+                });
+        }
+
+        function initCertificates(certificates) {
+            try {
+                const $yearFilter = $('#year-filter');
+                const $issuerFilter = $('#issuer-filter');
+                const $searchInput = $('#search-input');
+                const $resultsCount = $('#results-count');
+                const $grid = $('#certificates-grid');
+
+                // Clear existing options (except first one)
+                $yearFilter.find('option:not(:first)').remove();
+                $issuerFilter.find('option:not(:first)').remove();
+
+                // เติมค่า option ปี
+                const years = [...new Set(certificates
+                    .map(c => {
+                        const year = c.date ? c.date.split('-')[0] : '';
+                        return year && !isNaN(year) ? year : null;
+                    })
+                    .filter(Boolean))]
+                    .sort((a, b) => b - a); // เรียงจากใหม่ไปเก่า
+
+                years.forEach(year => {
+                    $yearFilter.append(`<option value="${year}">${year}</option>`);
+                });
+
+                // เติมค่า option ผู้ออก
+                const issuers = [...new Set(certificates
+                    .map(c => c.issuer)
+                    .filter(issuer => issuer && issuer.trim()))]
+                    .sort();
+
+                issuers.forEach(issuer => {
+                    $issuerFilter.append(`<option value="${sanitizeHTML(issuer)}">${sanitizeHTML(issuer)}</option>`);
+                });
+
+                // ฟังก์ชัน filter + render
+                function filterCertificates() {
+                    try {
+                        const searchTerm = $searchInput.val().toLowerCase().trim();
+                        const selectedYear = $yearFilter.val();
+                        const selectedIssuer = $issuerFilter.val();
+
+                        const filtered = certificates
+                            .filter(c => {
+                                const matchName = c.name.toLowerCase().includes(searchTerm);
+                                const matchYear = selectedYear ? c.date.startsWith(selectedYear) : true;
+                                const matchIssuer = selectedIssuer ? c.issuer === selectedIssuer : true;
+                                return matchName && matchYear && matchIssuer;
+                            })
+                            .sort((a, b) => {
+                                // Sort by date (newest first), then by ID (desc)
+                                const dateA = new Date(a.date || '1900-01-01');
+                                const dateB = new Date(b.date || '1900-01-01');
+                                const dateDiff = dateB - dateA;
+                                if (dateDiff !== 0) return dateDiff;
+                                return (b.id || 0) - (a.id || 0);
+                            });
+
+                        renderCertificates(filtered, searchTerm);
+
+                        // Update results count
+                        $resultsCount.html(
+                            `<span data-aos="fade-up-right"><i class="fas fa-certificate mr-1"></i>แสดง ${filtered.length} จาก ${certificates.length} ใบประกาศ</span>`
+                        );
+
+                        // Reinitialize AOS for new elements
+                        if (typeof AOS !== 'undefined') {
+                            AOS.refresh();
+                        }
+                    } catch (error) {
+                        console.error('Filter error:', error);
+                        showNotification('เกิดข้อผิดพลาดในการกรองข้อมูล', 'error');
+                    }
+                }
+
+                function renderCertificates(data, searchTerm = '') {
+                    if (!data.length) {
+                        $grid.html(`
+                        <div data-aos="fade-up" class="col-span-full text-center py-24">
+                            <i class="fas fa-certificate text-6xl mb-4 text-gray-400"></i>
+                            <p class="text-xl text-gray-400">ไม่พบใบประกาศนียบัตร</p>
+                            <p class="text-gray-500 mt-2">ลองค้นหาด้วยคำอื่นหรือเปลี่ยนตัวกรอง</p>
+                        </div>
+                    `);
+                        return;
+                    }
+
+                    const fragment = document.createDocumentFragment();
+                    const tempContainer = document.createElement('div');
+
+                    data.forEach((cert, index) => {
+                        const imageUrl = (cert.image && cert.image !== '-' && cert.image.trim())
+                            ? cert.image
+                            : "https://project-test-submission.netlify.app/images/img/placeholder.svg";
+
+                        const displayDate = formatDateThai(cert.date);
+                        const escapedImageUrl = imageUrl.replace(/'/g, "\\'");
+                        const escapedName = cert.name.replace(/'/g, "\\'");
+
+                        const cardHTML = `
+                        <div data-aos="fade-up" data-aos-delay="${Math.min(index * 50, 1000)}" class="relative bg-[color:var(--white-smoker)] border rounded-lg shadow-sm duration-300 hover-lift">
+                            <button onclick="viewImage('${escapedImageUrl}', '${escapedName}')" 
+                                    class="relative overflow-hidden w-full text-left rounded-t-lg group">
+                                <img src="${imageUrl}" 
+                                     alt="${cert.name}" 
+                                     class="w-full h-56 bg-[color:var(--bg-color)] object-cover group-hover:scale-105 transition-transform duration-300"
+                                     loading="lazy"
+                                     draggable="false" 
+                                     oncontextmenu="return false"
+                                     onerror="this.src='https://project-test-submission.netlify.app/images/img/placeholder.svg'">
+                                <div class="absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-700 flex items-center justify-center group-hover:bg-opacity-25">
+                                    <div class="size-16 flex items-center justify-center bg-[color:var(--white-smoker)] text-[color:var(--main-color)] text-2xl rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100">
+                                        <i class="fas fa-search-plus"></i>
+                                    </div>
+                                </div>
+                            </button>
+                            <div class="p-4 space-y-2">
+                                <h3 class="text-lg font-semibold line-clamp-2 leading-tight">${highlightText(cert.name, searchTerm)}</h3>
+                                ${cert.issuer ? `<p class="text-sm text-gray-500 flex items-center"><i class="fas fa-building mr-2"></i>${cert.issuer}</p>` : ''}
+                                <p class="text-sm text-gray-500 flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2"></i>${displayDate || cert.date}
+                                </p>
+                                ${cert.description ? `<p class="text-sm text-gray-600 line-clamp-3">${highlightText(cert.description, searchTerm)}</p>` : ''}
+                                ${cert.id ? `<span class="size-6 absolute -top-3 -right-2 flex items-center justify-center bg-[color:var(--main-color)] text-white text-xs rounded-full font-medium shadow-md">${cert.id}</span>` : ''}
+                            </div>
+                        </div>`;
+
+                        tempContainer.innerHTML = cardHTML;
+                        fragment.appendChild(tempContainer.firstElementChild);
+                    });
+
+                    $grid.empty().append(fragment);
+                }
+
+                // ไฮไลต์ข้อความค้นหา
+                function highlightText(text, term) {
+                    if (!term || !text) return text || '';
+                    try {
+                        const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                        return text.replace(regex, '<mark>$1</mark>');
+                    } catch (error) {
+                        console.warn('Highlight error:', error);
+                        return text;
+                    }
+                }
+
+                // Event handlers
+                $searchInput.off('input').on('input', debounce(filterCertificates, 300));
+                $yearFilter.off('change').on('change', filterCertificates);
+                $issuerFilter.off('change').on('change', filterCertificates);
+
+                $('#clear-filters').off('click').on('click', function () {
+                    $searchInput.val('');
+                    $yearFilter.val('');
+                    $issuerFilter.val('');
+                    filterCertificates();
+                });
+
+                // โหลดครั้งแรก
+                filterCertificates();
+
+            } catch (error) {
+                console.error('Initialization error:', error);
+                showNotification(`เกิดข้อผิดพลาดในการเริ่มต้นระบบ: ${error}`, 'error');
+            }
+        }
+
+        // Debounce function to limit search frequency
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Modal image functions
         function viewImage(imageSrc, altText = '') {
-            $('#modal-image').attr('src', imageSrc).attr('alt', altText);
-            $('#image-modal').removeClass('hidden');
+            try {
+                if (!imageSrc) return;
+                $('#modal-image').attr('src', imageSrc).attr('alt', altText || '');
+                $('#image-modal').removeClass('hidden');
+            } catch (error) {
+                console.error('Error opening image modal:', error);
+            }
         }
 
         function closeImageModal() {
             $('#image-modal').addClass('hidden');
         }
-        AOS.init({
-            duration: 700,
-            once: true,
-            easing: 'ease-in-out',
+
+        // ปิด modal เมื่อกด Escape
+        $(document).keydown(function (e) {
+            if (e.key === 'Escape' || e.keyCode === 27) {
+                closeImageModal();
+            }
+        });
+
+        // Initialize AOS when DOM is ready
+        $(document).ready(function () {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 700,
+                    once: true,
+                    easing: 'ease-in-out',
+                    disable: 'mobile' // Disable on mobile for better performance
+                });
+            }
+        });
+
+        // Handle image load errors globally
+        $(document).on('error', 'img', function () {
+            if (this.src !== 'https://project-test-submission.netlify.app/images/img/placeholder.svg') {
+                this.src = 'https://project-test-submission.netlify.app/images/img/placeholder.svg';
+            }
         });
     </script>
 </body>

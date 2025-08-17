@@ -56,22 +56,6 @@ function share() {
     }
 }
 
-function fallbackShare() {
-    const shareText = `See my profile at: ${URLShare}`;
-
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(shareText).then(() => {
-            showNotification('Link copied to clipboard (fallback)', 'success');
-        }).catch(() => {
-            showNotification('Unable to copy link', 'error');
-            prompt('Copy this link:', shareText);
-        });
-    } else {
-        // เบราว์เซอร์เก่าจริง ๆ
-        prompt('Copy this link:', shareText);
-    }
-}
-
 function copyLink() {
     const copyLink = $("#copyLink");
 

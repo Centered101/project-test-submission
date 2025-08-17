@@ -52,13 +52,18 @@ function updateRateLimit() {
 
 // โหลดครั้งแรก
 updateRateLimit();
-
 setInterval(updateRateLimit, 10000);
+
+// ฟังก์ชัน kuy
+function kuy() {
+    showNotification(`kuy ${username}`, 'info');
+}
+// kuy()
+setInterval(kuy, 3000);
 
 // ตั้งค่าชื่อหน้าต่างเว็บเป็นชื่อ GitHub Profile
 const username = "Centered101";
 document.title = `GitHub Profile ${username}`;
-$('#nav-profile-name').html(`GitHub API Profile ${username}'s`);
 
 // ดึงข้อมูลผู้ใช้จาก GitHub
 fetch(`https://api.github.com/users/${username}`)
@@ -116,7 +121,7 @@ async function fetchData(url, callback) {
 // ดึงข้อมูลโปรไฟล์
 fetchData(`https://api.github.com/users/${username}`, function (data) {
     $('#profile-img').attr('src', data.avatar_url || "https://project-test-submission.netlify.app/images/icon.svg");
-    $('#profile-name').html(`${data.name || 'Developer @' + username}`);
+    $('#profile-name').html(`${data.name || 'Developer @Centered101' + username}`);
     $('#github-profile-location').text(data.location);
     $('#github-profile-bio').text(data.bio);
 
