@@ -54,13 +54,6 @@ function updateRateLimit() {
 updateRateLimit();
 setInterval(updateRateLimit, 10000);
 
-// ฟังก์ชัน kuy
-function kuy() {
-    showNotification(`kuy ${username}`, 'info');
-}
-// kuy()
-setInterval(kuy, 3000);
-
 // ตั้งค่าชื่อหน้าต่างเว็บเป็นชื่อ GitHub Profile
 const username = "Centered101";
 document.title = `GitHub Profile ${username}`;
