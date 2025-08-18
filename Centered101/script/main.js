@@ -222,10 +222,9 @@ const projectsList = document.getElementById('projects-list');
 
 // สมมติ username มาจาก global variable
 
-// if (username === "Centered101") {
-    project.forEach(({ name, link, img }) => {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `
+project.forEach(({ name, link, img }) => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
 <a title="${name}" href="${link}" target="_blank" 
    class="flex flex-col justify-center items-center w-full h-full overflow-hidden active:!brightness-90 group"> 
     <div class="w-full aspect-[4/5] overflow-hidden">
@@ -235,21 +234,15 @@ const projectsList = document.getElementById('projects-list');
             onerror="this.src='${noimages}'">
     </div>
 </a>`;
-        projectsList.appendChild(listItem);
-    });
-// } else {
-//     const notFoundItem = document.createElement('li');
-//     notFoundItem.textContent = "Project not found";
-//     projectsList.appendChild(notFoundItem);
-// }
+    projectsList.appendChild(listItem);
+});
 
+// —[ intro ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-// if (username === "Centered101") {
-    $('#bg-video').removeClass('hidden');
-// }
-
+// เริ่มต้นวิดีโอเมื่อคลิกที่ intro หรือกดปุ่มใดๆ
 const intro = document.getElementById('intro-screen');
 const video = document.getElementById('bg-video');
+$('#bg-video').removeClass('hidden');
 
 function startVideo() {
     intro.classList.add('fade-out');
