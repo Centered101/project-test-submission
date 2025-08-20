@@ -222,10 +222,9 @@ const projectsList = document.getElementById('projects-list');
 
 // สมมติ username มาจาก global variable
 
-// if (username === "Centered101") {
-    project.forEach(({ name, link, img }) => {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `
+project.forEach(({ name, link, img }) => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
 <a title="${name}" href="${link}" target="_blank" 
    class="flex flex-col justify-center items-center w-full h-full overflow-hidden active:!brightness-90 group"> 
     <div class="w-full aspect-[4/5] overflow-hidden">
@@ -235,38 +234,5 @@ const projectsList = document.getElementById('projects-list');
             onerror="this.src='${noimages}'">
     </div>
 </a>`;
-        projectsList.appendChild(listItem);
-    });
-// } else {
-//     const notFoundItem = document.createElement('li');
-//     notFoundItem.textContent = "Project not found";
-//     projectsList.appendChild(notFoundItem);
-// }
-
-
-// if (username === "Centered101") {
-    $('#bg-video').removeClass('hidden');
-// }
-
-const intro = document.getElementById('intro-screen');
-const video = document.getElementById('bg-video');
-
-function startVideo() {
-    intro.classList.add('fade-out');
-    video.muted = false;
-    video.volume = 0.5;
-
-    video.play().catch(err => {
-        console.log("Video play blocked:", err);
-    });
-
-    setTimeout(() => {
-        intro.style.display = 'none';
-    }, 500);
-}
-
-// คลิกที่ intro
-intro.addEventListener('click', startVideo);
-
-// กดปุ่มอะไรก็ได้
-document.addEventListener('keydown', startVideo);
+    projectsList.appendChild(listItem);
+});

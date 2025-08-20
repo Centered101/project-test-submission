@@ -43,11 +43,6 @@
         <h2>Loading</h2>
         <p>Your adventure is about to begin</p>
     </div>
-    <!-- Intro Screen -->
-    <div id="intro-screen"
-        class="fixed inset-0 flex justify-center items-center bg-[color:var(--bg-color)] text-4xl transition cursor-pointer z-40">
-        <span>Click to Enter</span>
-    </div>
     <!-- Overlay (แสดงเฉพาะจอเล็กตอนเปิดเมนู) -->
     <div id="overlay" class="fade-in fixed inset-0 hidden bg-black bg-opacity-25 z-30"></div>
     <!-- Fullscreen Viewer -->
@@ -207,14 +202,6 @@
         <!-- โปรไฟล์ GitHub -->
         <section class="relative flex flex-col gap-4 md:gap-8 py-12 sm:py-8 z-0 overflow-hidden">
 
-            <!-- Video Wrapper -->
-            <div class="absolute inset-0 w-full h-full overflow-hidden z-[-1]">
-                <video id="bg-video" loop playsinline muted
-                    class="hidden w-full h-full object-cover object-center opacity-5">
-                    <source src="https://r2.guns.lol/156ee014-9f2c-43d7-a12b-e10b6738c1c2.mp4" type="video/webm">
-                </video>
-            </div>
-
             <div class="w-full flex flex-row items-center justify-start space-x-2 p-2 md:px-4">
                 <!-- รูปโปรไฟล์ -->
                 <img id="profile-img"
@@ -241,8 +228,7 @@
             </div>
 
             <div class="flex flex-col justify-start !gap-4 md:gap-8 px-4">
-                <div id="github-profile-details"
-                    class="flex-1 hidden flex-col gap-2 *:flex *:flex-row *:items-center *:gap-1">
+                <div class="flex-1 flex flex-col gap-2 *:flex *:flex-row *:items-center *:gap-1">
                     <p hidden id="github-profile-location" class="w-2/3"></p>
                     <p hidden id="github-profile-bio" class="w-2/3"></p>
                     <a class='max-w-min flex items-center gap-1 text-[color:var(--main-color)]'

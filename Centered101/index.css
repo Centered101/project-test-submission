@@ -1,8 +1,12 @@
 @import url(https://project-test-submission.netlify.app/style/style.css);
 
+:root {
+    --main-color: #409EFE;
+}
+
 *,
 html {
-    scrollbar-color: var(--main-color) var(--bg-color);
+    scrollbar-color: var(--main-color) transparent;
 }
 
 /* ตั้งค่าดีฟอลต์ด้วย CSS Variables */
@@ -17,10 +21,6 @@ body {
     overflow: hidden scroll;
 }
 
-:root {
-    --main-color: #409EFE;
-}
-
 .border-b,
 .border-t,
 .border-r,
@@ -29,31 +29,6 @@ body {
 .border-x,
 .border {
     border-color: var(--border) !important;
-}
-
-.bg-\[\#F5F5F5\] {
-    background-color: var(--white-smoker) !important;
-}
-
-.bg-\[\#FFF\] {
-    background-color: var(--bg-color) !important;
-}
-
-.active\:bg-\[\#F5F5F5\]:active {
-    background-color: var(--white-smoker) !important;
-}
-
-
-.active\:bg-\[\#E3F2FD\]:active {
-    background-color: var(--sky-glow) !important;
-}
-
-@media (min-width: 768px) {
-
-    .md\:hover\:bg-\[\#E3F2FD\]:hover,
-    .hover\:bg-\[\#E3F2FD\]:hover {
-        background-color: var(--sky-glow) !important;
-    }
 }
 
 /* โหมด Dark */
