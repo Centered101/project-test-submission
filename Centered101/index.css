@@ -86,6 +86,15 @@ body {
     }
 }
 
+#intro-screen {
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+}
+
+#intro-screen.fade-out {
+    opacity: 0;
+}
+
 /* iOS Scroll Fix */
 body {
     -webkit-overflow-scrolling: touch;

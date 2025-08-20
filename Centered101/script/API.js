@@ -69,7 +69,7 @@ setInterval(updateRateLimit, 10000);
  * การตั้งค่าข้อมูลพื้นฐานของหน้าเว็บ
  */
 // ตั้งชื่อผู้ใช้ GitHub ที่ต้องการแสดงข้อมูล
-const username = "cen";
+const username = "Centered101";
 // ตั้งชื่อหน้าต่างเว็บ
 document.title = `GitHub Profile ${username}`;
 
