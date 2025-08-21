@@ -77,7 +77,7 @@
                     <label class="block text-sm font-medium text-gray-400 mb-2">ชื่อหลักสูตร</label>
                     <div class="relative">
                         <input type="text" id="search-input" placeholder="ค้นหาชื่อหลักสูตร..."
-                            class="w-full px-4 py-2 pl-10 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--main-color)] focus:border-transparent">
+                            class="bg-stripes-gray w-full px-4 py-2 pl-10 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--main-color)] focus:border-transparent">
                         <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-400 mb-2">ผู้ออก</label>
                         <select id="issuer-filter"
-                            class="w-full px-4 py-2 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--main-color)] focus:border-transparent">
+                            class="bg-stripes-gray w-full px-4 py-2 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--main-color)] focus:border-transparent">
                             <option class="fade-in" value="">ทั้งหมด</option>
                         </select>
                     </div>
@@ -104,13 +104,13 @@
 
             <div class="flex flex-wrap gap-3 mt-4 pt-4 border-t">
                 <button id="clear-filters"
-                    class="flex items-center bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2 active:bg-[color:var(--sky-glow)]">
+                    class="bg-stripes-gray flex items-center bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2 active:bg-[color:var(--sky-glow)]">
                     <i class="fas fa-times mr-1"></i>
                     ล้างตัวกรอง
                 </button>
 
                 <div id="results-count"
-                    class="bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2"></div>
+                    class="bg-stripes-gray bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2"></div>
             </div>
         </div>
     </section>
@@ -140,7 +140,7 @@
 
         <!-- Image container -->
         <div class="fade-in max-w-3xl border rounded-lg shadow-2xl mx-4 overflow-hidden">
-            <div class="relative bg-[color:var(--bg-color)] p-4">
+            <div class="bg-stripes-gray relative bg-[color:var(--bg-color)] p-4">
                 <img id="modal-image" src="" alt="" class="w-full max-h-[80vh] object-contain" draggable="false"
                     oncontextmenu="return false">
             </div>
@@ -152,7 +152,6 @@
             $('#preloader').fadeOut(500);
         });
     </script>
-
     <script>
         const sheetId = "17ppLfag2cZb1_-dPeRKqdoaDpFyHjU6vykr9DEOwS1c";
         const sheetName = "Sheet1"; // ถ้าเปลี่ยนชื่อชีท ต้องแก้นี้
@@ -330,10 +329,10 @@
                     html += `
                 <div data-aos="fade-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border rounded-lg shadow-sm duration-300">
                     <button onclick="viewImage('${imageUrl}', '${cert.name.replace(/'/g, "\\'")}')" 
-                            class="relative overflow-hidden w-full text-left rounded-t-lg group">
+                            class="relative overflow-hidden w-full text-left border-b rounded-t-lg group">
                         <img src="${imageUrl}" 
                              alt="${cert.name}" 
-                             class="w-full h-56 bg-[color:var(--bg-color)] object-cover group-hover:scale-105 transition-transform duration-300"
+                             class="bg-stripes-gray w-full h-56 bg-[color:var(--bg-color)] object-contain object- group-hover:scale-105 transition-transform duration-300"
                              loading="lazy"
                              draggable="false" 
                              oncontextmenu="return false"

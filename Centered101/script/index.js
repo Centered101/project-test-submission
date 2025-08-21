@@ -1,11 +1,11 @@
 // —[ preloader ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-$('#preloader').addClass('fixed inset-0 h-screen w-screen overflow-y-scroll touch-none');
+// $('#preloader').addClass('fixed inset-0 h-screen w-screen touch-none');
 
 $(window).on('load', function () {
     // ซ่อน preloader
     $('#preloader').addClass('invisible');
-    $('#preloader').removeClass('fixed inset-0 h-screen w-screen overflow-y-scroll touch-none');
+    // $('#preloader').removeClass('fixed inset-0 h-screen w-screen touch-none');
 });
 
 // ฟังก์ชันปิดการใช้งานลิงก์
@@ -150,7 +150,7 @@ function openHistoryPanel() {
                         <button id="clear-history-btn" title="delete all" class="fade-in relative bg-[color:var(--bg-color)] text-red-500 rounded shadow-inner m-3 px-2 py-1 cursor-pointer md:mx-4 md:my-5 md:px-4 md:py-3 hover:text-red-700 active:bg-[color:var(--sky-glow)]"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
-                <div id="history-content" class="p-4 h-full overflow-y-autopb-20">
+                <div id="history-content" class="p-4 h-full overflow-y-scroll pb-20">
                     ${renderHistoryItems()}
                 </div>
             </div>

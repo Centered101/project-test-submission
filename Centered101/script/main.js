@@ -210,17 +210,17 @@ overlay.addEventListener("click", closeSidebar);
 
 // —[ projects ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
+const src = "./images/poster/"
+
 const project = [
-    { name: "portfolio-centered101", link: "https://portfolio-centered101.netlify.app/", img: "./images/portfolio.svg" },
-    { name: "project-test-submission", link: "https://project-test-submission.netlify.app/", img: "./images/project-test-submission.svg" },
-    { name: "asia-lb", link: "https://asia-lb.web.app/", img: "./images/asia-lb.svg" },
-    { name: "center-dot-shop", link: "https://center-dot-shop.netlify.app/", img: "./images/center-dot-shop.svg" },
+    { name: "portfolio-centered101", link: "https://portfolio-centered101.netlify.app/", img: `${src}portfolio.svg` },
+    { name: "project-test-submission", link: "https://project-test-submission.netlify.app/", img: `${src}project-test-submission.png` },
+    { name: "asia-lb", link: "https://asia-lb.web.app/", img: `${src}asia-lb.png` },
+    { name: "center-dot-shop", link: "https://center-dot-shop.netlify.app/", img: `${src}center-dot-shop.svg` },
 ];
 
 const noimages = "https://project-test-submission.netlify.app/images/img/placeholder.svg";
 const projectsList = document.getElementById('projects-list');
-
-// สมมติ username มาจาก global variable
 
 project.forEach(({ name, link, img }) => {
     const listItem = document.createElement('li');

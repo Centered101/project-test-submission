@@ -19,6 +19,8 @@ body {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
     overflow: hidden scroll;
+    background-image: radial-gradient(var(--border) 0.5px, var(--bg-color) 0.5px);
+    background-size: 10px 10px;
 }
 
 .border-b,
@@ -134,4 +136,9 @@ textarea {
 
 .animate-slide-out {
     animation: slideOut 0.3s forwards;
+}
+
+.bg-stripes-gray {
+    background-size: 8px 8px;
+    background-image: repeating-linear-gradient(135deg, var(--border) 0, var(--border) 1px, var(--bg-color) 0, var(--bg-color) 50%);
 }

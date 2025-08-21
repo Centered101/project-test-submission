@@ -30,7 +30,7 @@ function updateRateLimit() {
                     showNotification('Low API requests remaining! Please wait!');
                     lowApiNotified = true; // ตั้งค่าให้แจ้งเตือนแล้ว
                 } else if (remaining > 10) {
-                    lowApiNotified = false; // รีเซ็ตสถานะการแจ้งเตือนเมื่อ quota กลับมา
+                    lowApiNotified = false; // รีเซ็ตสถานะการแจ้งเตือนเมื่อ quota กลับมา 
                 }
             }
 
@@ -60,10 +60,7 @@ function updateRateLimit() {
         });
 }
 
-// เรียกใช้ฟังก์ชัน updateRateLimit ครั้งแรกเมื่อโหลดหน้า
 updateRateLimit();
-// ตั้งให้เรียกใช้ฟังก์ชัน updateRateLimit ทุก 10 วินาที
-setInterval(updateRateLimit, 10000);
 
 /**
  * การตั้งค่าข้อมูลพื้นฐานของหน้าเว็บ
@@ -145,10 +142,10 @@ async function fetchData(url, callback) {
 fetchData(`https://api.github.com/users/${username}`, function (data) {
     // ตั้งค่ารูปโปรไฟล์
     $('#profile-img').attr('src', data.avatar_url || "https://project-test-submission.netlify.app/images/icon.svg");
-    
+
     // ตั้งค่าชื่อ (แก้ไข: เอา + ออกแล้วใช้ || แทน)
     $('#profile-name').html(data.name || 'Developer');
-    
+
     // ตั้งค่าข้อมูลสถิติ
     $('#repo-count').text(data.public_repos || "0");
     $('#followers-count').text(data.followers || "0");
