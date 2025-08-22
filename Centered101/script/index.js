@@ -1,11 +1,9 @@
 // —[ preloader ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-// $('#preloader').addClass('fixed inset-0 h-screen w-screen touch-none');
 
 $(window).on('load', function () {
     // ซ่อน preloader
     $('#preloader').addClass('invisible');
-    // $('#preloader').removeClass('fixed inset-0 h-screen w-screen touch-none');
 });
 
 // ฟังก์ชันปิดการใช้งานลิงก์

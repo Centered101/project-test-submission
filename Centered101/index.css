@@ -19,7 +19,7 @@ body {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
     overflow: hidden scroll;
-    background-image: radial-gradient(var(--border) 0.5px, var(--bg-color) 0.5px);
+    background-image: radial-gradient(var(--border) 1px, var(--bg-color) 1px);
     background-size: 10px 10px;
 }
 

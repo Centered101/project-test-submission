@@ -3,6 +3,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
+:root {
+    --primary-color: #409EFE;
+    --secondary-color: #;
+    --accent-color: #;
+    --warning-color: #;
+    --error-color: #FF7070;
+    --success-color: #1ED760;
+}
+
+
+.border-b,
+.border-t,
+.border-r,
+.border-l,
+.border-y,
+.border-x,
+.border {
+    border-color: var(--border) !important;
+}
+
+/* โหมด Dark */
+.theme-dark {
+    --bg: #121212;
+    --white-smoker: #222222;
+    --border: #414143;
+    --text-color: #DCDCDC;
+    --sky-glow: #1B2830;
+}
+
+/* โหมด System (media query) */
+@media (prefers-color-scheme: dark) {
+    :root:not(.theme-light):not(.theme-dark) {
+        --bg: #121212;
+        --white-smoker: #222222;
+        --border: #414143;
+        --text-color: #DCDCDC;
+        --sky-glow: #1B2830;
+    }
+}
+
+/* โหมด Light */
+.theme-light {
+    --bg: #FFF;
+    --border: #E5E7EB;
+    --white-smoker: #F5F5F5;
+    --text-color: #0D0D0D;
+    --sky-glow: #E3F2FD;
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not(.theme-light):not(.theme-dark) {
+        --bg: #FFF;
+        --border: #E5E7EB;
+        --white-smoker: #F5F5F5;
+        --text-color: #0D0D0D;
+        --sky-glow: #E3F2FD;
+    }
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 ::-moz-selection {
     background: #000000B3;
     color: #00CC4F
@@ -21,7 +89,7 @@
 
 *,
 html {
-    scrollbar-color: #409EFE #FFF;
+    scrollbar-color: var(--primary-color) transparent;
     scrollbar-width: thin;
     scroll-behavior: smooth
 }
@@ -30,6 +98,25 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Bai Jamjuree', sans-serif
+}
+
+/* iOS Image Loading Fix */
+img {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* iOS Input Fix */
+input,
+select,
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 a,
