@@ -38,21 +38,19 @@
     <div id="preloader"
         class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
         <span
-            class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
+            class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto"></span>
         <h2>Loading</h2>
         <p>Your adventure is about to begin</p>
     </div>
     <!-- Header -->
-    <header class="max-w-6xl mx-auto bg-[color:var(--main-color)] text-white text-center shadow-lg py-8">
+    <header class="max-w-6xl mx-auto bg-[color:var(--primary-color)] text-white text-center shadow-lg py-8">
         <h1 class="text-4xl font-bold">ใบประกาศนียบัตร</h1>
     </header>
 
     <!-- About Section -->
     <section
         class="max-w-6xl sticky top-0 flex flex-row items-center gap-2 md:gap-4 bg-[color:var(--white-smoker)] border rounded-b-xl shadow-lg mx-auto p-4 z-10">
-        <button
-            onclick="viewImage('https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png')"
-            class="shrink-0 touch-manipulation">
+        <button class="shrink-0 touch-manipulation">
             <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
                 alt="นาย พงศ์พล พรมผา" class="size-8 md:size-16 rounded-full object-cover" draggable="false"
                 oncontextmenu="return false" />
@@ -67,27 +65,27 @@
     <section data-aos="fade-down" class="max-w-6xl mx-auto px-4 py-6">
         <div class="bg-[color:var(--white-smoker)] border shadow-sm rounded-xl space-y-4 p-6">
             <h3 class="text-lg font-semibold flex items-center">
-                <i class="fas fa-search mr-2 text-[color:var(--main-color)]"></i>
+                <i class="fas fa-search mr-2 text-[color:var(--primary-color)]"></i>
                 ค้นหาใบประกาศนียบัตร
             </h3>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- Search Input -->
-                <div class="md:col-span-2">
+                <div>
                     <label class="block text-sm font-medium text-gray-400 mb-2">ชื่อหลักสูตร</label>
                     <div class="relative">
                         <input type="text" id="search-input" placeholder="ค้นหาชื่อหลักสูตร..."
-                            class="bg-stripes-gray w-full px-4 py-2 pl-10 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--main-color)] focus:border-transparent">
+                            class="w-full px-4 py-2 pl-10 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--primary-color)] focus:border-transparent">
                         <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-4">
+                <div class="grid grid-cols-2 gap-4">
                     <!-- Year Filter -->
-                    <div hidden>
+                    <div>
                         <label class="block text-sm font-medium text-gray-400 mb-2">ปี</label>
                         <select id="year-filter"
-                            class="w-full px-4 py-2 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--main-color)] focus:border-transparent">
+                            class="w-full px-4 py-2 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--primary-color)] focus:border-transparent">
                             <option class="fade-in" value="">ทุกปี</option>
                         </select>
                     </div>
@@ -95,7 +93,7 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-400 mb-2">ผู้ออก</label>
                         <select id="issuer-filter"
-                            class="bg-stripes-gray w-full px-4 py-2 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--main-color)] focus:border-transparent">
+                            class="w-full px-4 py-2 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--primary-color)] focus:border-transparent">
                             <option class="fade-in" value="">ทั้งหมด</option>
                         </select>
                     </div>
@@ -104,27 +102,28 @@
 
             <div class="flex flex-wrap gap-3 mt-4 pt-4 border-t">
                 <button id="clear-filters"
-                    class="bg-stripes-gray flex items-center bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2 active:bg-[color:var(--sky-glow)]">
+                    class="flex items-center bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2 active:bg-[color:var(--accent-color)]">
                     <i class="fas fa-times mr-1"></i>
                     ล้างตัวกรอง
                 </button>
 
                 <div id="results-count"
-                    class="bg-stripes-gray bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2">
+                    class="bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Certificates Section -->
-    <section class="max-w-6xl mx-auto px-4 pb-24">
+    <section class="max-w-6xl mx-auto p-4">
         <div id="certificates-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <!-- Loading placeholder -->
-            <div class="col-span-full text-center py-24">
+            <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
                 <div
-                    class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto mb-4">
+                    class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto mb-4">
                 </div>
-                <p>กำลังโหลดข้อมูล</p>
+                <p class="text-xl">กำลังโหลดข้อมูล</p>
+                <p class="text-gray-400">กำลังโหลดข้อมูลจาก Google Sheets</p>
             </div>
         </div>
     </section>
@@ -147,54 +146,71 @@
             </div>
         </div>
     </div>
+    <footer class="max-w-6xl mx-auto bg-[color:var(--white-smoker)] text-center border shadow-lg p-4">
+        <p>Developed by <a class="text-[color:var(--primary-color)]" href="/Centered101/" target="_blank"
+                rel="noopener noreferrer">Centered101</a>
+        </p>
+    </footer>
     <script>
-        // ซ่อน preloader
-        $(document).ready(() => {
-            $('#preloader').fadeOut(500);
-        });
-    </script>
-    <script>
+        // ======================================
+        // ตั้งค่าเริ่มต้น Google Sheets
+        // ======================================
         const sheetId = "17ppLfag2cZb1_-dPeRKqdoaDpFyHjU6vykr9DEOwS1c";
         const sheetName = "Sheet1"; // ถ้าเปลี่ยนชื่อชีท ต้องแก้นี้
         const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?sheet=${sheetName}`;
         const noimages = "https://project-test-submission.netlify.app/images/img/placeholder.svg";
 
+        // ======================================
+        // ดึงข้อมูลจาก Google Sheets
+        // ======================================
         fetch(url)
             .then(res => res.text())
             .then(text => {
+                // แปลง response จาก Google Sheets API เป็น JSON
                 const json = JSON.parse(text.substr(47).slice(0, -2));
                 const rows = json.table.rows;
 
+                // แปลงข้อมูลจาก rows เป็น object array
                 const certificates = rows.map((row, index) => ({
-                    id: row.c[0]?.v ?? index + 1,
-                    name: row.c[1]?.v ?? "",
-                    issuer: row.c[2]?.v ?? "",
-                    date: row.c[3]?.v ?? "",
-                    description: row.c[4]?.v ?? "",
-                    image: row.c[5]?.v ?? ""
+                    id: row.c[0]?.v ?? index + 1,        // คอลัมน์ที่ 1: ID
+                    name: row.c[1]?.v ?? "",             // คอลัมน์ที่ 2: ชื่อใบประกาศ
+                    issuer: row.c[2]?.v ?? "",           // คอลัมน์ที่ 3: ผู้ออกใบประกาศ
+                    date: row.c[3]?.v ?? "",             // คอลัมน์ที่ 4: วันที่
+                    description: row.c[4]?.v ?? "",      // คอลัมน์ที่ 5: รายละเอียด
+                    image: row.c[5]?.v ?? ""             // คอลัมน์ที่ 6: URL รูปภาพ
                 })).filter(cert => cert.name); // กรองเฉพาะที่มีชื่อหลักสูตร
 
-                // เก็บ global
+                // เก็บ global สำหรับใช้ในฟังก์ชันอื่น
                 window.certificates = certificates;
 
                 // เรียก init หลังจาก document ready
                 $(document).ready(() => initCertificates(certificates));
             })
             .catch(err => {
+                // แสดงข้อผิดพลาดเมื่อดึงข้อมูลไม่สำเร็จ
                 console.error("Error fetching sheet:", err);
+                showNotification(`ข้อผิดพลาดในการดึงแผ่นงาน`, 'error');
                 $('#certificates-grid').html(`
-                    <div class="col-span-full text-center py-24">
-                        <i class="fas fa-exclamation-triangle text-6xl mb-4 text-red-500"></i>
-                        <p class="text-xl text-red-500">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>
-                        <p class="text-gray-500 mt-2">กรุณาลองใหม่อีกครั้ง</p>
-                    </div>
-                `);
+            <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
+                <i class="fas fa-exclamation-triangle text-6xl mb-4 text-red-500"></i>
+                <p class="text-xl text-red-500">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>
+                <p class="text-gray-400">กรุณาลองใหม่อีกครั้ง</p>
+            </div>
+        `);
             });
 
+        // ======================================
+        // ฟังก์ชันแปลงรูปแบบวันที่
+        // ======================================
+        /**
+         * แปลง string วันที่ให้เป็น Date object
+         * รองรับหลายรูปแบบ: YYYY-MM-DD, DD/MM/YYYY, DD-MM-YYYY, YYYY/MM/DD, YYYY
+         * @param {string} dateString - วันที่ในรูปแบบ string
+         * @returns {Date} - Date object
+         */
         function parseDate(dateString) {
             if (!dateString) return new Date(0); // กำหนดวันที่เริ่มต้นสำหรับข้อมูลที่ไม่มีวันที่
 
-            // ลองแปลงรูปแบบต่างๆ
             let date;
 
             // รูปแบบ YYYY-MM-DD
@@ -234,6 +250,11 @@
             return date;
         }
 
+        /**
+         * แปลงวันที่เป็นรูปแบบไทย
+         * @param {string} dateString - วันที่ในรูปแบบ string
+         * @returns {string} - วันที่ในรูปแบบไทย
+         */
         function formatDateThai(dateString) {
             if (!dateString) return 'ไม่ระบุวันที่';
 
@@ -251,41 +272,67 @@
             }
         }
 
+        // ======================================
+        // ฟังก์ชันหลักสำหรับจัดการใบประกาศ
+        // ======================================
+        /**
+         * เริ่มต้นระบบแสดงใบประกาศนียบัตร
+         * @param {Array} certificates - array ของข้อมูลใบประกาศ
+         */
         function initCertificates(certificates) {
+            // เก็บ reference ของ DOM elements
             const $yearFilter = $('#year-filter');
             const $issuerFilter = $('#issuer-filter');
             const $searchInput = $('#search-input');
             const $resultsCount = $('#results-count');
             const $grid = $('#certificates-grid');
 
-            // เติมค่า option ปี
+            // ======================================
+            // สร้าง dropdown options สำหรับปี
+            // ======================================
             const years = [...new Set(certificates.map(c => {
                 const date = parseDate(c.date);
-                return date.getFullYear();
-            }))].filter(year => year > 1900).sort((a, b) => b - a); // เรียงจากใหม่ไปเก่า
+                const buddhistYear = date.getFullYear() + 543; // แปลง ค.ศ. เป็น พ.ศ.
+                return buddhistYear;
+            }))].filter(year => year > 2443).sort((a, b) => b - a); // 2443 = 1900 + 543, เรียงจากใหม่ไปเก่า
 
             years.forEach(year => {
-                $yearFilter.append(`<option value="${year}">${year}</option>`);
+                $yearFilter.append(`<option value="${year - 543}">${year}</option>`); // เก็บค่า ค.ศ. แต่แสดง พ.ศ.
             });
 
-            // เติมค่า option ผู้ออก
+            // ======================================
+            // สร้าง dropdown options สำหรับผู้ออกใบประกาศ
+            // ======================================
             const issuers = [...new Set(certificates.map(c => c.issuer))].filter(issuer => issuer).sort();
             issuers.forEach(issuer => {
                 $issuerFilter.append(`<option value="${issuer}">${issuer}</option>`);
             });
 
-            // ฟังก์ชัน filter + render
+            // ======================================
+            // ฟังก์ชันกรองและแสดงผลใบประกาศ
+            // ======================================
+            /**
+             * กรองใบประกาศตามเงื่อนไขที่เลือกและแสดงผล
+             */
             function filterCertificates() {
+                // รับค่าจาก input fields
                 const searchTerm = $searchInput.val().toLowerCase();
                 const selectedYear = $yearFilter.val();
                 const selectedIssuer = $issuerFilter.val();
 
+                // กรองข้อมูลตามเงื่อนไข
                 const filtered = certificates
                     .filter(c => {
+                        // ค้นหาในชื่อหลักสูตรและรายละเอียด
                         const matchName = c.name.toLowerCase().includes(searchTerm);
                         const matchDescription = c.description.toLowerCase().includes(searchTerm);
+
+                        // กรองตามปี
                         const matchYear = selectedYear ? parseDate(c.date).getFullYear().toString() === selectedYear : true;
+
+                        // กรองตามผู้ออกใบประกาศ
                         const matchIssuer = selectedIssuer ? c.issuer === selectedIssuer : true;
+
                         return (matchName || matchDescription) && matchYear && matchIssuer;
                     })
                     .sort((a, b) => {
@@ -300,8 +347,10 @@
                         return (b.id || 0) - (a.id || 0);
                     });
 
+                // แสดงผลใบประกาศ
                 renderCertificates(filtered, searchTerm);
 
+                // แสดงจำนวนผลลัพธ์
                 $('#results-count').html(
                     `<span data-aos="fade-up-right"><i class="fas fa-certificate mr-1"></i>แสดง ${filtered.length} จาก ${certificates.length} ใบประกาศ</span>`
                 );
@@ -310,66 +359,100 @@
                 AOS.refresh();
             }
 
+            // ======================================
+            // ฟังก์ชันแสดงผลใบประกาศ
+            // ======================================
+            /**
+             * สร้าง HTML สำหรับแสดงใบประกาศ
+             * @param {Array} data - array ของใบประกาศที่กรองแล้ว
+             * @param {string} searchTerm - คำค้นหาสำหรับ highlight
+             */
             function renderCertificates(data, searchTerm) {
+                // ถ้าไม่มีข้อมูล แสดงข้อความว่างเปล่า
                 if (!data.length) {
                     $grid.html(`
-                    <div data-aos="fade-up" class="col-span-full text-center py-24">
-                        <i class="fas fa-certificate text-6xl mb-4 text-gray-400"></i>
-                        <p class="text-xl text-gray-400">ไม่พบใบประกาศนียบัตร</p>
-                        <p class="text-gray-500 mt-2">ลองค้นหาด้วยคำอื่นหรือเปลี่ยนตัวกรอง</p>
-                    </div>
-                `);
+            <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
+                <i class="fas fa-certificate text-6xl mb-4 text-gray-400"></i>
+                <p class="text-xl">ไม่พบใบประกาศนียบัตร</p>
+                <p class="text-gray-400">ลองค้นหาด้วยคำอื่นหรือเปลี่ยนตัวกรอง</p>
+            </div>
+        `);
                     return;
                 }
 
                 let html = '';
                 data.forEach((cert, index) => {
                     const imageUrl = cert.image && cert.image !== '-' ? cert.image : noimages;
+                    const isNoImage = imageUrl === noimages;
                     const displayDate = formatDateThai(cert.date);
 
                     html += `
-                <div data-aos="fade-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border rounded-lg shadow-sm duration-300">
-                    <button onclick="viewImage('${imageUrl}', '${cert.name.replace(/'/g, "\\'")}')" 
-                            class="relative overflow-hidden w-full text-left border-b rounded-t-lg group">
-                        <img src="${imageUrl}" 
-                             alt="${cert.name}" 
-                             class="bg-stripes-gray w-full h-56 bg-[color:var(--bg-color)] object-contain object- group-hover:scale-105 transition-transform duration-300"
-                             loading="lazy"
-                             draggable="false" 
-                             oncontextmenu="return false"
-                             onerror="this.src='${noimages}'">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-700 flex items-center justify-center group-hover:bg-opacity-25">
-                            <div class="size-16 flex items-center justify-center bg-[color:var(--white-smoker)] text-[color:var(--main-color)] text-2xl rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100">
-                                <i class="fas fa-search-plus"></i>
-                            </div>
+        <div data-aos="fade-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border rounded-lg shadow-sm duration-300">
+            ${isNoImage ?
+                            // ถ้าเป็น placeholder image ไม่ให้คลิกได้
+                            `<div class="relative overflow-hidden w-full border-b rounded-t-lg">
+                    <img src="${imageUrl}" 
+                         alt="${cert.name}" 
+                         class="bg-stripes-gray w-full h-80 sm:h-64 md:h-60 bg-[color:var(--bg-color)] object-cover"
+                         loading="lazy"
+                         draggable="false" 
+                         oncontextmenu="return false">
+                </div>`
+                            :
+                            // ถ้าเป็นรูปจริงให้คลิกดูแบบเต็มจอได้
+                            `<button onclick="viewImage('${imageUrl}', '${cert.name.replace(/'/g, "\\'")}')" 
+                        class="relative overflow-hidden w-full text-left border-b rounded-t-lg group">
+                    <img src="${imageUrl}" 
+                         alt="${cert.name}" 
+                         class="bg-stripes-gray w-full h-80 sm:h-64 md:h-60 bg-[color:var(--bg-color)] object-contain group-hover:scale-105 transition-transform duration-300"
+                         loading="lazy"
+                         draggable="false" 
+                         oncontextmenu="return false">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-700 flex items-center justify-center group-hover:bg-opacity-25">
+                        <div class="size-16 flex items-center justify-center bg-[color:var(--white-smoker)] text-[color:var(--primary-color)] text-2xl rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100">
+                            <i class="fas fa-search-plus"></i>
                         </div>
-                    </button>
-                    <div class="p-4 space-y-2">
-                        <h3 class="text-lg font-semibold line-clamp-2 leading-tight">${highlightText(cert.name, searchTerm)}</h3>
-                        ${cert.issuer ? `<p class="text-sm text-gray-500 flex items-center"><i class="fas fa-building mr-2"></i>${cert.issuer}</p>` : ''}
-                        <p class="text-sm text-gray-500 flex items-center">
-                            <i class="fas fa-calendar-alt mr-2"></i>${cert.date}
-                        </p>
-                        ${cert.description ? `<p class="text-sm text-gray-600 line-clamp-3">${highlightText(cert.description, searchTerm)}</p>` : ''}
-                        ${cert.id ? `<span class="size-6 absolute -top-3 -right-2 flex items-center justify-center bg-[color:var(--main-color)] text-white text-xs rounded-full font-medium shadow-md">${cert.id}</span>` : ''}
                     </div>
-                </div>`;
+                </button>`
+                        }
+            <div title="${cert.name}" class="p-4 space-y-2">
+                <h3 class="text-lg font-semibold line-clamp-2 leading-tight">${highlightText(cert.name, searchTerm)}</h3>
+                ${cert.issuer ? `<p class="text-sm text-gray-500 flex items-center"><i class="fas fa-building mr-2"></i>${cert.issuer}</p>` : ''}
+                <p class="text-sm text-gray-500 flex items-center">
+                    <i class="fas fa-calendar-alt mr-2"></i>${displayDate}
+                </p>
+                ${cert.description ? `<p class="text-sm text-gray-600 line-clamp-3">${highlightText(cert.description, searchTerm)}</p>` : ''}
+                ${cert.id ? `<span class="size-6 absolute -top-3 -right-2 flex items-center justify-center bg-[color:var(--primary-color)] text-white text-xs rounded-full font-medium shadow-md">${cert.id}</span>` : ''}
+            </div>
+        </div>`;
                 });
                 $grid.html(html);
             }
 
-            // ไฮไลต์ข้อความค้นหา
+            // ======================================
+            // ฟังก์ชันไฮไลต์คำค้นหา
+            // ======================================
+            /**
+             * เพิ่ม highlight ให้กับคำค้นหาในข้อความ
+             * @param {string} text - ข้อความต้นฉบับ
+             * @param {string} term - คำค้นหา
+             * @returns {string} - ข้อความที่มี highlight
+             */
             function highlightText(text, term) {
                 if (!term || !text) return text || '';
+                // ใช้ regex เพื่อหาคำที่ตรงกัน (ไม่สนใจตัวพิมพ์เล็กใหญ่)
                 const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
                 return text.replace(regex, '<mark>$1</mark>');
             }
 
-            // Events
-            $searchInput.on('input', filterCertificates);
-            $yearFilter.on('change', filterCertificates);
-            $issuerFilter.on('change', filterCertificates);
+            // ======================================
+            // Event Listeners
+            // ======================================
+            $searchInput.on('input', filterCertificates);      // ค้นหาแบบ real-time
+            $yearFilter.on('change', filterCertificates);      // กรองตามปี
+            $issuerFilter.on('change', filterCertificates);    // กรองตามผู้ออกใบประกาศ
 
+            // ปุ่มล้างตัวกรอง
             $('#clear-filters').on('click', function () {
                 $searchInput.val('');
                 $yearFilter.val('');
@@ -377,20 +460,33 @@
                 filterCertificates();
             });
 
-            // โหลดครั้งแรก
+            // โหลดครั้งแรก - แสดงใบประกาศทั้งหมด
             filterCertificates();
         }
 
-        // modal image functions
+        // ======================================
+        // ฟังก์ชันจัดการ Modal รูปภาพ
+        // ======================================
+        /**
+         * เปิด modal แสดงรูปภาพแบบเต็มจอ
+         * @param {string} imageSrc - URL ของรูปภาพ
+         * @param {string} altText - ข้อความ alt สำหรับรูปภาพ
+         */
         function viewImage(imageSrc, altText = '') {
             $('#modal-image').attr('src', imageSrc).attr('alt', altText);
             $('#image-modal').removeClass('hidden');
         }
 
+        /**
+         * ปิด modal รูปภาพ
+         */
         function closeImageModal() {
             $('#image-modal').addClass('hidden');
         }
 
+        // ======================================
+        // Event Listeners สำหรับ Modal
+        // ======================================
         // ปิด modal เมื่อกด Escape
         $(document).keydown(function (e) {
             if (e.key === 'Escape') {
@@ -398,10 +494,20 @@
             }
         });
 
+        // ======================================
+        // เริ่มต้น AOS Animation Library
+        // ======================================
         AOS.init({
-            duration: 700,
-            once: true,
-            easing: 'ease-in-out',
+            duration: 700,        // ระยะเวลาแอนิเมชัน
+            once: true,          // เล่นแอนิเมชันครั้งเดียว
+            // easing: 'ease-in-out' // รูปแบบการเคลื่อนไหว
+        });
+
+        // ======================================
+        // ซ่อน Preloader เมื่อ Document Ready
+        // ======================================
+        $(document).ready(() => {
+            $('#preloader').fadeOut(500);
         });
     </script>
     <script src="./script/index.js"></script>

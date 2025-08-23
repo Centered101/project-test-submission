@@ -42,14 +42,14 @@ function updateRateLimit() {
                 $("#repo-list").html(warningMessage("text-center m-0"));
                 $("#followers-list, #following-list").html(warningMessage("text-center m-2 md:m-4 !mb-0"));
                 $rateStatus.html(`
-                <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="fade-in text-[color:var(--main-color)]">${remaining}</span> / 60 requests</p>
+                <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="fade-in text-[color:var(--primary-color)]">${remaining}</span> / 60 requests</p>
                 <p class="flex items-center gap-2"><svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
                 <span>You have reached the API limit! Please wait until ${resetTime}</span></p>
                 `);
             } else {
                 // แสดงสถานะ rate limit ปกติ
                 $rateStatus.html(`
-                <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="text-[color:var(--main-color)]">${remaining}</span> / 60 requests</p>
+                <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="text-[color:var(--primary-color)]">${remaining}</span> / 60 requests</p>
                 <p>Reset time: <span>${resetTime}</span></p>
                 `);
             }
@@ -102,11 +102,11 @@ fetch(`https://api.github.com/users/${username}`)
         // สร้างปุ่ม Follow และ Share profile
         $('#github-follow-button-wrapper').append(`
             <a title="Follow ${username}" aria-label="Follow ${username}" href='https://github.com/${username}' target="_blank"
-                class="relative w-full sm:w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--sky-glow)]">
+                class="relative w-full sm:w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--accent-color)]">
                 <span>Follow</span>
             </a>
             <button onclick="share()" title="share profile ${username}" aria-label="share profile ${username}"
-                class="relative w-full sm:w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--sky-glow)]">
+                class="relative w-full sm:w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--accent-color)]">
                 <span>Share profile</span>
             </button>
         `);
@@ -170,13 +170,6 @@ fetchData(`https://api.github.com/users/${username}`, function (data) {
     } else {
         $('#github-profile-bio').addClass('hidden').removeClass('block');
     }
-
-    // ซ่อน github-profile-details ถ้าไม่มี location และ bio
-    // if (!data.location && !data.bio) {
-    //     $('#github-profile-details').addClass('hidden').removeClass('flex');
-    // } else {
-    //     $('#github-profile-details').addClass('flex').removeClass('hidden');
-    // }
 });
 
 /**
@@ -189,12 +182,12 @@ fetchData(`https://api.github.com/users/${username}/repos`, repos => {
 
     repoList.innerHTML = repos.map(repo =>
         `<li>
-            <a translate="no" title='${repo.name}${repo.language ? " • " + repo.language : ""}' href="${repo.html_url}" target="_blank" class="flex flex-col gap-2 bg-[color:var(--bg-color)] border border-[color:var(--main-color)] rounded shadow-inner p-2 active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)]">
+            <a translate="no" title='${repo.name}${repo.language ? " • " + repo.language : ""}' href="${repo.html_url}" target="_blank" class="flex flex-col gap-2 bg-[color:var(--bg-color)] border border-[color:var(--primary-color)] rounded shadow-inner p-2 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)]">
                 <span class="flex items-center gap-1">
                     <img src="${repo.owner.avatar_url}" class="size-6 border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
                     <span class="text-sm font-normal truncate">${repo.owner.login}</span>
                 </span>
-                <span class="text-[color:var(--main-color)] truncate">${repo.name}</span>
+                <span class="text-[color:var(--primary-color)] truncate">${repo.name}</span>
                 <span class="text-sm font-normal truncate">${repo.language || '&nbsp;'}</span>
             </a>
         </li>`
@@ -209,7 +202,7 @@ fetchData(`https://api.github.com/users/${username}/repos`, repos => {
 fetchData(`https://api.github.com/users/${username}/followers`, followers => {
     document.getElementById("followers-list").innerHTML = followers.map(follower =>
         `<li>
-            <a title="${follower.login}" href="${follower.html_url}" target="_blank" class="flex justify-between items-center gap-2 font-normal p-2 md:px-4 active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)] group">
+            <a title="${follower.login}" href="${follower.html_url}" target="_blank" class="flex justify-between items-center gap-2 font-normal p-2 md:px-4 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)] group">
                 <p translate="no" class="flex items-center gap-2">
                     <img src="${follower.avatar_url}" class="size-8 flex-1 bg-[color:var(--white-smoker)] border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
                     <span>${follower.login}</span>
@@ -230,7 +223,7 @@ fetchData(`https://api.github.com/users/${username}/followers`, followers => {
 fetchData(`https://api.github.com/users/${username}/following`, following => {
     document.getElementById("following-list").innerHTML = following.map(following =>
         `<li>
-            <a title="${following.login}" href="${following.html_url}" target="_blank" class="flex justify-between items-center gap-2 font-normal p-2 md:px-4 active:bg-[color:var(--sky-glow)] md:hover:bg-[color:var(--sky-glow)] group">
+            <a title="${following.login}" href="${following.html_url}" target="_blank" class="flex justify-between items-center gap-2 font-normal p-2 md:px-4 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)] group">
                 <p translate="no" class="flex items-center gap-2">
                     <img src="${following.avatar_url}" class="size-8 flex-1 bg-[color:var(--white-smoker)] border rounded-full" onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
                     <span>${following.login}</span>

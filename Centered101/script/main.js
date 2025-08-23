@@ -167,18 +167,18 @@ $(document).ready(function () {
     const radios = $('input[name="status"]');
 
     // ตั้งค่าเริ่มต้นให้กับ label[for="projects"]
-    $('label[for="projects"] svg').addClass('fill-[color:var(--main-color)]');
-    $('nav label[for="projects"]').addClass('bg-[color:var(--sky-glow)] text-[color:var(--main-color)]');
+    $('label[for="projects"] svg').addClass('fill-[color:var(--primary-color)]');
+    $('nav label[for="projects"]').addClass('bg-[color:var(--accent-color)] text-[color:var(--primary-color)]');
 
     radios.on('change', function () {
         const targetId = $(this).attr('id');
 
         // รีเซ็ต fill และพื้นหลังของ label ทั้งหมดภายใน nav
-        $('label svg').removeClass('fill-[color:var(--main-color)]');
-        $('nav label').removeClass('bg-[color:var(--sky-glow)] text-[color:var(--main-color)]');
+        $('label svg').removeClass('fill-[color:var(--primary-color)]');
+        $('nav label').removeClass('bg-[color:var(--accent-color)] text-[color:var(--primary-color)]');
 
-        $(`label[for="${targetId}"] svg`).addClass('fill-[color:var(--main-color)]');
-        $(`nav label[for="${targetId}"]`).addClass('bg-[color:var(--sky-glow)] text-[color:var(--main-color)]');
+        $(`label[for="${targetId}"] svg`).addClass('fill-[color:var(--primary-color)]');
+        $(`nav label[for="${targetId}"]`).addClass('bg-[color:var(--accent-color)] text-[color:var(--primary-color)]');
     });
 });
 

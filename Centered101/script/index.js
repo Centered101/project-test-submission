@@ -108,7 +108,7 @@ updateHistoryBadge();
 $(window).on('load', function () {
     if ($('#notification-history-btn').length === 0) {
         const historyButton = $(`
-            <button id="notification-history-btn" title="notification" type="button" class="fade-in relative bg-[color:var(--bg-color)] rounded shadow-inner m-3 px-2 py-1 cursor-pointer md:mx-4 md:my-5 md:px-4 md:py-3 active:bg-[color:var(--sky-glow)]">
+            <button id="notification-history-btn" title="notification" type="button" class="fade-in relative bg-[color:var(--bg-color)] rounded shadow-inner m-3 px-2 py-1 cursor-pointer md:mx-4 md:my-5 md:px-4 md:py-3 active:bg-[color:var(--accent-color)]">
                 <i class="fa-regular fa-bell"></i>
             </button>
         `);
@@ -145,7 +145,7 @@ function openHistoryPanel() {
                 <div class="flex items-center justify-between border-b">
                     <h3 class="uppercase p-4 md:py-8">Notification history</h3>
                     <div class="flex items-center space-x-2">
-                        <button id="clear-history-btn" title="delete all" class="fade-in relative bg-[color:var(--bg-color)] text-red-500 rounded shadow-inner m-3 px-2 py-1 cursor-pointer md:mx-4 md:my-5 md:px-4 md:py-3 hover:text-red-700 active:bg-[color:var(--sky-glow)]"><i class="fa-solid fa-trash"></i></button>
+                        <button id="clear-history-btn" title="delete all" class="fade-in relative bg-[color:var(--bg-color)] text-red-500 rounded shadow-inner m-3 px-2 py-1 cursor-pointer md:mx-4 md:my-5 md:px-4 md:py-3 hover:text-red-700 active:bg-[color:var(--accent-color)]"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
                 <div id="history-content" class="p-4 h-full overflow-y-scroll pb-20">
@@ -200,14 +200,14 @@ function renderHistoryItems() {
         const typeIcon = getTypeIcon(item.type);
 
         return `
-            <div class="history-item bg-[color:var(--bg-color)] border rounded-lg shadow-inner mb-2 p-2 ${!item.isRead ? 'border-l-2 !border-l-[color:var(--main-color)]' : ''}">
+            <div class="history-item bg-[color:var(--bg-color)] border rounded-lg shadow-inner mb-2 p-2 ${!item.isRead ? 'border-l-2 !border-l-[color:var(--primary-color)]' : ''}">
                 <div class="flex items-start space-x-2">
                     <div class="flex-shrink-0 mt-1">
                         ${typeIcon}
                     </div>
                     <div class="flex-1 min-w-0">
                         ${item.link ?
-                `<a href="${item.link}" class="text-sm text-[color:var(--main-color)] hover:opacity-50 underline break-words" target="_blank" rel="noopener noreferrer">${item.message}</a>` :
+                `<a href="${item.link}" class="text-sm text-[color:var(--primary-color)] hover:opacity-50 underline break-words" target="_blank" rel="noopener noreferrer">${item.message}</a>` :
                 `<p class="text-sm break-words">${item.message}</p>`
             }
                         <p class="text-xs text-gray-500 mt-1">${timeStr}</p>
@@ -309,7 +309,7 @@ function showNotification(message, type = 'info', link = null) {
                 </div>
                 <div class="ml-2 flex-1">
                     ${link ?
-            `<a href="${link}" class="text-sm text-[color:var(--main-color)] hover:opacity-50 underline" rel="noopener noreferrer">${message}</a>` :
+            `<a href="${link}" class="text-sm text-[color:var(--primary-color)] hover:opacity-50 underline" rel="noopener noreferrer">${message}</a>` :
             `<p class="text-sm break-words line-clamp-1">${message}</p>`
         }
                 </div>

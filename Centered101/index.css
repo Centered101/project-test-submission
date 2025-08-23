@@ -1,12 +1,12 @@
 @import url(https://project-test-submission.netlify.app/style/style.css);
 
 :root {
-    --main-color: #409EFE;
+    --primary-color: #409EFE;
 }
 
 *,
 html {
-    scrollbar-color: var(--main-color) transparent;
+    scrollbar-color: var(--primary-color) transparent;
 }
 
 /* ตั้งค่าดีฟอลต์ด้วย CSS Variables */
@@ -19,8 +19,9 @@ body {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
     overflow: hidden scroll;
-    background-image: radial-gradient(var(--border) 1px, var(--bg-color) 1px);
-    background-size: 10px 10px;
+    background-image: radial-gradient(var(--border) 0.5px, transparent 0.5px), radial-gradient(var(--border) 0.5px, var(--bg-color) 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
 }
 
 .border-b,
@@ -37,9 +38,9 @@ body {
 .theme-dark {
     --bg-color: #121212;
     --white-smoker: #222222;
-    --border: #414143;
+    --accent-color: #1B2830;
     --text-color: #DCDCDC;
-    --sky-glow: #1B2830;
+    --border: #414143;
 }
 
 /* โหมด System (media query) */
@@ -47,28 +48,28 @@ body {
     :root:not(.theme-light):not(.theme-dark) {
         --bg-color: #121212;
         --white-smoker: #222222;
-        --border: #414143;
+        --accent-color: #1B2830;
         --text-color: #DCDCDC;
-        --sky-glow: #1B2830;
+        --border: #414143;
     }
 }
 
 /* โหมด Light */
 .theme-light {
     --bg-color: #FFF;
-    --border: #E5E7EB;
     --white-smoker: #F5F5F5;
+    --accent-color: #E3F2FD;
     --text-color: #0D0D0D;
-    --sky-glow: #E3F2FD;
+    --border: #E5E7EB;
 }
 
 @media (prefers-color-scheme: light) {
     :root:not(.theme-light):not(.theme-dark) {
         --bg-color: #FFF;
-        --border: #E5E7EB;
         --white-smoker: #F5F5F5;
+        --accent-color: #E3F2FD;
         --text-color: #0D0D0D;
-        --sky-glow: #E3F2FD;
+        --border: #E5E7EB;
     }
 }
 
@@ -136,6 +137,11 @@ textarea {
 
 .animate-slide-out {
     animation: slideOut 0.3s forwards;
+}
+
+.bg-stripes {
+    background-image: radial-gradient(var(--border) 1px, var(--bg-color) 1px);
+    background-size: 10px 10px;
 }
 
 .bg-stripes-gray {
