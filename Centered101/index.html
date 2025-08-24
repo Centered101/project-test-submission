@@ -227,8 +227,9 @@
                 </div>
             </div>
 
-            <div class="flex flex-col justify-start !gap-4 md:gap-8 px-4">
-                <div class="flex-1 flex flex-col gap-2 *:flex *:flex-row *:items-center *:gap-1">
+            <div class="flex flex-col justify-start !gap-6 md:gap-8 px-4">
+                <div id="github-profile-details"
+                    class="flex-1 flex flex-col gap-2 *:flex *:flex-row *:items-center *:gap-1">
                     <p hidden id="github-profile-location" class="w-2/3"></p>
                     <p hidden id="github-profile-bio" class="w-2/3"></p>
                     <a class='max-w-min flex items-center gap-1 text-[color:var(--primary-color)]'
@@ -286,33 +287,33 @@
             </label>
 
             <!-- projects -->
-            <ul hidden id="projects-list"
-                class="w-full grid-cols-3 truncate p-0 pb-8 md:p-0 peer-checked/projects:grid"></ul>
+            <ul hidden id="projects-list" class="w-full grid-cols-3 truncate peer-checked/projects:grid"></ul>
 
             <!-- รายชื่อ Repository -->
             <ul hidden id="repo-list"
-                class="w-full grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-2 md:gap-4 truncate p-2 pb-8 md:p md:p-4 peer-checked/repo:grid">
+                class="w-full grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-2 md:gap-4 truncate p-2 md:p-4 peer-checked/repo:grid">
             </ul>
 
             <!-- รายชื่อผู้ติดตาม -->
-            <ul hidden id="followers-list" class="w-full truncate px-0 pb-8 md:p-0 peer-checked/followers:grid">
+            <ul hidden id="followers-list" class="w-full truncate peer-checked/followers:grid">
             </ul>
 
             <!-- รายชื่อที่กำลังติดตาม -->
-            <ul hidden id="following-list" class="w-full truncate px-0 pb-8 md:p-0 peer-checked/following:grid">
+            <ul hidden id="following-list" class="w-full truncate peer-checked/following:grid">
             </ul>
         </section>
         <footer class="w-full text- bg-[color:var(--white-smoker)] border-t p-4">
             <p>Developed by <a class="text-[color:var(--primary-color)]" href="/Centered101/" target="_blank"
                     rel="noopener noreferrer">Centered101</a></p>
-            <p>Source code on <a class="text-[color:var(--primary-color)]" href="https://github.com/centered101/project-test-submission" target="_blank"
+            <p>Source code on <a class="text-[color:var(--primary-color)]"
+                    href="https://github.com/centered101/project-test-submission" target="_blank"
                     rel="noopener noreferrer">GitHub</a></p>
-            <p>Profile picture placeholder by <a class="text-[color:var(--primary-color)]" href="/Centered101/" target="_blank"
-                    rel="noopener noreferrer">Centered101</a></p>
+            <p>Profile picture placeholder by <a class="text-[color:var(--primary-color)]" href="/Centered101/"
+                    target="_blank" rel="noopener noreferrer">Centered101</a></p>
             <p>© 2024 Centered101. All rights reserved.</p>
         </footer>
     </main>
-    <script src="./script/index.js"></script>
+    <script src="/script/index.js"></script>
     <script src="./script/main.js"></script>
     <script src="./script/API.js"></script>
 </body>

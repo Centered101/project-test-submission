@@ -31,11 +31,11 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
-<body draggable=false oncontextmenu=return!1>
-  <div id=preloader
+<body draggable="false" oncontextmenu="return!1">
+  <div id="preloader"
     class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase md:text-xl space-y-4 z-50 select-none visible touch-none">
     <span
-      class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
+      class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto"></span>
     <h2>Loading</h2>
     <p>Your adventure is about to begin</p>
   </div>
@@ -48,7 +48,7 @@
       <h2>วิธีการใช้งาน</h2>
       <ul class="list-decimal">
         <li>เข้าสู่ <a href=https://www.instagram.com target=_blank
-            class="text-[#409EFE] after:content-['_↗']">Instagram</a> และล็อกอิน</li>
+            class="text-[color:var(--primary-color)] after:content-['_↗']">Instagram</a> และล็อกอิน</li>
         <li>เปิดเครื่องมือสำหรับนักพัฒนา (Developer Tools):
           <ul class="list-disc">
             <li>Google Chrome: กด <code>F12</code> หรือคลิกขวาเลือก "ตรวจสอบ" (Inspect)</li>
@@ -56,7 +56,7 @@
           </ul>
         </li>
         <li>ไปที่แท็บ "Console"</li>
-        <li>คัดลอกโค้ดจาก <a href=#code class=text-[#409EFE]>โค้ดนี้</a> แล้ววางลงใน Console</li>
+        <li>คัดลอกโค้ดจาก <a href=#code class=text-[color:var(--primary-color)]>โค้ดนี้</a> แล้ววางลงใน Console</li>
         <li>กด <code>Enter</code> เพื่อเรียกใช้สคริปต์</li>
         <li>ป้อนชื่อผู้ใช้ Instagram ของคุณแล้วกด <code>Enter</code></li>
         <li>รับข้อมูล:
@@ -75,16 +75,17 @@
       <h2>อ้างอิง</h2>
       <ul class="list-inside list-disc">
         <li><a href=https://gist.github.com/abir-taheer/0d3f1313def5eec6b78399c0fb69e4b1 target=_blank
-            class="text-[#409EFE] after:content-['_↗']">Gist: instagram-follower-following.js</a></li>
+            class="text-[color:var(--primary-color)] after:content-['_↗']">Gist: instagram-follower-following.js</a>
+        </li>
       </ul>
       <p class=indent-6>โปรดทราบว่าการใช้สคริปต์หรือเครื่องมือที่ไม่ได้รับอนุญาตอาจละเมิด <a
           href=https://help.instagram.com/581066165581870/ target=_blank
-          class="text-[#409EFE] after:content-['_↗']">ข้อกำหนดการใช้งานของ Instagram</a>
+          class="text-[color:var(--primary-color)] after:content-['_↗']">ข้อกำหนดการใช้งานของ Instagram</a>
         ควรปฏิบัติตามนโยบายแพลตฟอร์มเสมอ</p>
     </section>
     <section id=download class="max-w-3xl space-y-6 mx-auto">
-      <a href=./instagram-follower-following.js class="flex flex-row justify-start items-center gap-2 text-[#409EFE]"
-        download>
+      <a href=./instagram-follower-following.js
+        class="flex flex-row justify-start items-center gap-2 text-[color:var(--primary-color)]" download>
         <span>ดาวน์โหลดไฟล์ instagram-follower-following.js</span>
         <span>
           <button>
@@ -109,152 +110,7 @@
       <script src="https://gist.github.com/abir-taheer/0d3f1313def5eec6b78399c0fb69e4b1.js"></script>
     </section>
   </main>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  <script src="/script/index.js"></script>
   <script src="/script/main.js"></script>
 </body>
 

@@ -31,24 +31,26 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
-<body class=directory on=showURL() draggable=false oncontextmenu=return!1>
-    <div id=preloader
+<body class="directory" on="showURL()" draggable="false" oncontextmenu="return!1">
+    <div id="preloader"
         class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
         <span
-            class="w-16 h-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
+            class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto"></span>
         <h2>Loading</h2>
         <p>Your adventure is about to begin</p>
     </div>
-    <input id=search placeholder=ค้นหา autocomplete=off>
-    <div id=wrapper>
+    <input id="search" placeholder="ค้นหา" autocomplete="off">
+    <div id="wrapper">
         <h1>
-            <a id=url href= />
+            <a id="url" href= />
             <script>document.write(window.location.href)</script>
             </a>
         </h1>
-        <ul id=files class=view-tiles></ul>
+        <ul id="files" class="view-tiles"></ul>
+        <p class="text-sm">พัฒนาโดย <a href="/centered101/" class="">@Centered101</a></p>
     </div>
-    <script src=/script/main.js></script>
+    <script src="/script/index.js"></script>
+    <script src="/script/main.js"></script>
     <script>
         $(window).on('load', function () {
             const notificationKey = 'notification_shown_once';
@@ -66,15 +68,15 @@
             { path: "/script" },
             { path: "/style" },
             { path: "/docs" },
+            { path: "/contact", status: "" },
             { path: "/local-storage-app", name: "การเก็บข้อมูลแบบ_local-storage" },
             { path: "/instagram-follower-following" },
-            { path: "/Centered101" },
+            { path: "/centered101", name: "Centered101" },
             { path: "/PROJECTS_ALL" },
-            { path: "/game-yes-or-no", name: "ส่งจับคุณ" },
+            { path: "/game-yes-or-no", name: "ส่งจีบคุณ" },
             { path: "/thai-traditions", name: "ประเพณีของไทยในแต่ละภาค" },
             { path: "/ecommerce-store", name: "ตัวอย่างรานค้า_E-Commerce" },
             { path: "/class-schedule", name: "ตารางเรียน" },
-            { path: "/project-random-color" },
             { path: "/Web-Push-Notification", name: "ทดสอบการแจ้งเตือน" },
             { path: "/test-portfolio" },
             { path: "/404.html" },

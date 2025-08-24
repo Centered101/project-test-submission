@@ -1,24 +1,94 @@
 @import url(/style/style.css);
-@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);
-@import url(https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap);
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
-*,
-html {
-    scrollbar-color: var(--main-color) var(--bg-color);
+:root {
+    --primary-color: #409EFE;
+    /* สีหลักของเว็บไซต์ */
+    --secondary-color: #84D4FA;
+    /* สีรอง */
+    /* --accent-color: #E3F2FD; */
+    /* สีเน้น (ใช้กับปุ่มหรือไฮไลต์บางจุด) */
+    --success: #00CC4F;
+    /* สีเขียวสำเร็จ เช่น ปุ่มยืนยัน */
+    --accent-success: #1ED760;
+    /* สีเขียวสำหรับการแจ้งเตือนสำเร็จ */
+    --error: #FE4040;
+    /* สีแดงสำหรับข้อความผิดพลาด */
+    --accent-error: #FF7070;
+    /* สีแดงสำหรับการแจ้งเตือนผิดพลาด */
+    --warning: #FFB84D;
+    /* สีเหลืองสำหรับข้อความเตือน */
+    --accent-warning: #FFCF71;
+    /* สีเหลืองสำหรับการแจ้งเตือนเตือน */
+    --info: #59B7FF;
+    /* สีน้ำเงินสำหรับข้อความข้อมูล */
+    --accent-info: #8FD2FF;
+    /* สีน้ำเงินสำหรับการแจ้งเตือนข้อมูล */
+}
+
+/* โหมด System (media query) */
+@media (prefers-color-scheme: dark) {
+    :root:not(.theme-light):not(.theme-dark) {
+        --bg-color: #121212;
+        --white-smoker: #222222;
+        --border: #414143;
+        --text-color: #DCDCDC;
+        --accent-color: #1B2830;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not(.theme-light):not(.theme-dark) {
+        --bg-color: #FFFFFF;
+        --border: #E5E7EB;
+        --white-smoker: #F5F5F5;
+        --text-color: #0D0D0D;
+        --accent-color: #E3F2FD;
+    }
+}
+
+/* โหมด Dark */
+.theme-dark {
+    --bg-color: #121212;
+    --border: #414143;
+    --white-smoker: #222222;
+    --text-color: #DCDCDC;
+    --accent-color: #1B2830;
+}
+
+/* โหมด Light */
+.theme-light {
+    --bg-color: #FFFFFF;
+    --border: #E5E7EB;
+    --white-smoker: #F5F5F5;
+    --text-color: #0D0D0D;
+    --accent-color: #E3F2FD;
 }
 
 /* ตั้งค่าดีฟอลต์ด้วย CSS Variables */
 body {
     min-height: 100vh;
     font-family: "Bai Jamjuree", sans-serif;
-    background-color: var(--bg-color) !important;
+    background-color: var(--bg-color);
     background-repeat: no-repeat;
-    color: var(--text-color) !important;
-    fill: var(--text-color) !important;
+    color: var(--text-color);
+    fill: var(--text-color);
     overflow: hidden scroll;
-    user-select: none;
+}
+
+html {
+    cursor:
+        url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='28' fill='none'%3E%3Cg clip-path='url(%23a)'%3E%3Cmask id='b' width='24' height='28' x='0' y='0' maskUnits='userSpaceOnUse' style='mask-type:luminance'%3E%3Cpath fill='%23fff' d='M24 .8H0v26.4h24z'/%3E%3C/mask%3E%3Cg fill-rule='evenodd' clip-rule='evenodd' mask='url(%23b)'%3E%3Cpath fill='%23000' d='M23.79 14.481 2.145.86.22 2.755l6.542 24.051 1.925-1.897 2.566-3.798 4.865 5.725 3.34-2.565 1.926-1.897-3.988-4.813 4.467-1.183z'/%3E%3Cpath fill='%23fff' d='m11.183 19.846-3.095 4.58-.928.915L1.08 2.982l1.174-1.156 20.314 12.786-1.102 1.086-5.417 1.434 4.3 5.19-1.4 1.378-2.717 2.086z'/%3E%3Cpath fill='%23fff' d='M8.953 23.316 3.248 2.342l18.889 11.89-6.864 1.817 5.152 6.22-2.28 1.751-5.386-6.336z'/%3E%3Cpath fill='%23000' d='m12.697 16.574 5.545 6.526 1.223-.939-5.375-6.489 6.394-1.693L4.35 3.824l4.868 17.899zm5.347 8.364-5.224-6.147-4.132 6.118L2.145.858 23.79 14.48l-7.334 1.942 4.929 5.95z'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='%23fff' d='M0 .8h24v26.4H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E") 4 5,
+        auto;
+}
+
+a,
+button,
+.cursor-pointer,
+.hashtag-mention:hover,
+.hashtag-mention.mention:hover {
+    cursor:
+        url("https://openhouse.bu.ac.th/_nuxt/pointer.BKIYlM-n.svg") 4 5,
+        auto !important;
 }
 
 body::after {
@@ -33,10 +103,6 @@ body::after {
     opacity: .05
 }
 
-:root {
-    --main-color: #409EFE;
-}
-
 .border-b,
 .border-t,
 .border-r,
@@ -47,31 +113,10 @@ body::after {
     border-color: var(--border) !important;
 }
 
-/* โหมด System (media query) */
-@media (prefers-color-scheme: dark) {
-    :root:not(.theme-light):not(.theme-dark) {
-        --bg-color: #121212;
-        --white-smoker: #222222;
-        --border: #414143;
-        --text-color: #DCDCDC;
-        --sky-glow: #1B2830;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    :root:not(.theme-light):not(.theme-dark) {
-        --bg-color: #FFF;
-        --border: #E5E7EB;
-        --white-smoker: #F5F5F5;
-        --text-color: #0D0D0D;
-        --sky-glow: #E3F2FD;
-    }
-}
-
 .color-preview {
     display: inline-block;
     background-color: var(--color);
-    color: #fff;
+    color: #FFF;
     border-width: 1px;
     border-radius: 4px;
     padding-inline: 2px;
@@ -84,7 +129,7 @@ body::after {
 
 .hashtag-mention.mention,
 .hashtag-mention {
-    color: var(--main-color);
+    color: var(--primary-color);
     transition: color;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     /* ease-in-out */
@@ -93,10 +138,9 @@ body::after {
 
 .hashtag-mention.mention:hover,
 .hashtag-mention:hover {
-    color: #2d7dd6;
+    color: var(--accent-color);
     cursor: pointer;
 }
-
 
 ul#files span,
 ul#files,
@@ -118,7 +162,6 @@ body {
 body.directory {
     padding: 6rem 7rem;
     /* 96px 112px */
-    user-select: none;
 }
 
 input#search {
@@ -131,7 +174,7 @@ input#search {
     right: 2rem;
     /* 32px */
     background-color: transparent;
-    box-shadow: inset 0 0 0 1px var(--main-color);
+    box-shadow: inset 0 0 0 1px var(--primary-color);
     border-radius: 0.75rem;
     /* 12px */
     padding: 0.5em 1em;
@@ -148,7 +191,7 @@ body.directory div#wrapper {
 }
 
 body.directory div#wrapper h1 a#url {
-    color: var(--main-color);
+    color: var(--primary-color);
     font-size: 1.25rem;
     /* 20px */
     line-height: 1.75rem;
@@ -162,6 +205,7 @@ ul#files li {
     width: 30%;
     line-height: 3.5rem;
     /* 56px */
+    user-select: none;
 }
 
 ul#files li a {
@@ -179,9 +223,8 @@ ul#files li a {
 }
 
 ul#files li a.highlight {
-    color: #FFF;
-    background: var(--main-color);
-    border-color: var(--main-color);
+    background: var(--secondary-color);
+    border-color: var(--primary-color);
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     /* ease-in-out */
     transition-duration: 300ms
@@ -217,8 +260,9 @@ ul.view-tiles .size {
 
     ul#files li a:hover,
     ul#files li a:focus {
-        background: var(--sky-glow) !important;
-        border: 1px solid var(--main-color);
+        background: var(--accent-color) !important;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
     }
 
     input#search:hover,
@@ -241,8 +285,13 @@ ul.view-tiles .size {
         padding: 0 !important;
     }
 
+    body.directory div#wrapper p.text-sm {
+        padding: 1rem 0.75rem;
+        /* 16px 12px */
+    }
+
     input#search,
-    body.directory h1 a {
+    body.directory div#wrapper h1 a#url {
         font-size: 1.25rem;
         /* 20px */
         line-height: 1.75rem;
@@ -264,11 +313,11 @@ ul.view-tiles .size {
         gap: 0;
     }
 
-    body.directory h1 a#url {
+    body.directory div#wrapper h1 a#url {
         display: block;
         /* line-height: 1rem; */
-        color: #FFF !important;
-        background: var(--main-color);
+        color: var(--text-color) !important;
+        background: var(--primary-color);
         padding: 0.75rem;
         /* 12px */
         overflow-x: auto
@@ -307,8 +356,8 @@ ul.view-tiles .size {
     }
 
     ul#files li a:active {
-        background: var(--sky-glow) !important;
-        color: var(--main-color);
+        background: var(--accent-color) !important;
+        color: var(--primary-color);
         border: 0;
     }
 
@@ -423,7 +472,7 @@ main.docs h2 {
 }
 
 main.docs a {
-    color: var(--main-color)
+    color: var(--primary-color)
 }
 
 main.docs a:hover {
@@ -435,7 +484,7 @@ main.docs ul {
 }
 
 main.docs section.docs code {
-    background-color: var(--sky-glow);
+    background-color: var(--accent-color);
     font-family: 'Roboto Mono', 'monospace' !important;
     border-radius: 4px;
     padding-inline: 2px;

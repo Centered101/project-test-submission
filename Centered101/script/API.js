@@ -40,7 +40,7 @@ function updateRateLimit() {
             // แสดงข้อความเตือนเมื่อ API limit หมด
             if (remaining === 0) {
                 $("#repo-list").html(warningMessage("text-center m-0"));
-                $("#followers-list, #following-list").html(warningMessage("text-center m-2 md:m-4 !mb-0"));
+                $("#followers-list, #following-list").html(warningMessage("text-center m-2 md:m-4"));
                 $rateStatus.html(`
                 <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="fade-in text-[color:var(--primary-color)]">${remaining}</span> / 60 requests</p>
                 <p class="flex items-center gap-2"><svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
@@ -129,7 +129,6 @@ async function fetchData(url, callback) {
     } catch (error) {
         // จัดการข้อผิดพลาดในการ fetch
         console.error("Error fetching data:", error);
-        showNotification(`Error fetching data: ${error}`, 'error');
     }
 }
 
@@ -154,21 +153,28 @@ fetchData(`https://api.github.com/users/${username}`, function (data) {
     // จัดการการแสดง location
     if (data.location) {
         $('#github-profile-location')
-            .addClass('block')
+            .addClass('flex')
             .removeClass('hidden')
             .html(`
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-[1em]" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true">
                     <path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z" />
                 </svg> ${data.location}`);
     } else {
-        $('#github-profile-location').addClass('hidden').removeClass('block');
+        $('#github-profile-location').addClass('hidden').removeClass('flex');
     }
 
     // จัดการการแสดง bio
     if (data.bio) {
-        $('#github-profile-bio').addClass('block').removeClass('hidden').text(data.bio);
+        $('#github-profile-bio').addClass('flex').removeClass('hidden').text(data.bio);
     } else {
-        $('#github-profile-bio').addClass('hidden').removeClass('block');
+        $('#github-profile-bio').addClass('hidden').removeClass('flex');
+    }
+
+    // ซ่อน github-profile-details ถ้าไม่มี location และ bio
+    if (!data.location && !data.bio) {
+        $('#github-profile-details').addClass('hidden').removeClass('flex');
+    } else {
+        $('#github-profile-details').addClass('flex').removeClass('hidden');
     }
 });
 

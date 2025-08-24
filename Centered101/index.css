@@ -1,4 +1,4 @@
-@import url(https://project-test-submission.netlify.app/style/style.css);
+@import url(/style/style.css);
 
 :root {
     --primary-color: #409EFE;
@@ -19,7 +19,7 @@ body {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
     overflow: hidden scroll;
-    background-image: radial-gradient(var(--border) 0.5px, transparent 0.5px), radial-gradient(var(--border) 0.5px, var(--bg-color) 0.5px);
+    background-image: radial-gradient(var(--border) 1px, transparent 1px), radial-gradient(var(--border) 1px, var(--bg-color) 1px);
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
 }
@@ -98,31 +98,6 @@ body {
     opacity: 0;
 }
 
-/* iOS Scroll Fix */
-body {
-    -webkit-overflow-scrolling: touch;
-    overflow-scrolling: touch;
-}
-
-/* iOS Image Loading Fix */
-img {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* iOS Input Fix */
-input,
-select,
-textarea {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
 @keyframes slideOut {
     from {
         transform: translateX(0);
@@ -137,11 +112,6 @@ textarea {
 
 .animate-slide-out {
     animation: slideOut 0.3s forwards;
-}
-
-.bg-stripes {
-    background-image: radial-gradient(var(--border) 1px, var(--bg-color) 1px);
-    background-size: 10px 10px;
 }
 
 .bg-stripes-gray {

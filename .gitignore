@@ -1,0 +1,16 @@
+# OS-specific
+desktop.ini
+
+# Optional npm/yarn/pnpm caches
+.npm/
+.yarn/
+.pnpm-store/
+
+# Coverage reports
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+
+test

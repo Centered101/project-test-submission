@@ -5,61 +5,6 @@
 
 :root {
     --primary-color: #409EFE;
-    --secondary-color: #;
-    --accent-color: #;
-    --warning-color: #;
-    --error-color: #FF7070;
-    --success-color: #1ED760;
-}
-
-
-.border-b,
-.border-t,
-.border-r,
-.border-l,
-.border-y,
-.border-x,
-.border {
-    border-color: var(--border) !important;
-}
-
-/* โหมด Dark */
-.theme-dark {
-    --bg: #121212;
-    --white-smoker: #222222;
-    --border: #414143;
-    --text-color: #DCDCDC;
-    --sky-glow: #1B2830;
-}
-
-/* โหมด System (media query) */
-@media (prefers-color-scheme: dark) {
-    :root:not(.theme-light):not(.theme-dark) {
-        --bg: #121212;
-        --white-smoker: #222222;
-        --border: #414143;
-        --text-color: #DCDCDC;
-        --sky-glow: #1B2830;
-    }
-}
-
-/* โหมด Light */
-.theme-light {
-    --bg: #FFF;
-    --border: #E5E7EB;
-    --white-smoker: #F5F5F5;
-    --text-color: #0D0D0D;
-    --sky-glow: #E3F2FD;
-}
-
-@media (prefers-color-scheme: light) {
-    :root:not(.theme-light):not(.theme-dark) {
-        --bg: #FFF;
-        --border: #E5E7EB;
-        --white-smoker: #F5F5F5;
-        --text-color: #0D0D0D;
-        --sky-glow: #E3F2FD;
-    }
 }
 
 ::-webkit-scrollbar-thumb {
@@ -100,23 +45,15 @@ body {
     font-family: 'Bai Jamjuree', sans-serif
 }
 
-/* iOS Image Loading Fix */
-img {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* iOS Input Fix */
 input,
 select,
 textarea {
     -webkit-appearance: none;
+    /* สำหรับ Chrome, Safari (WebKit) */
     -moz-appearance: none;
+    /* สำหรับ Firefox (Gecko) */
     appearance: none;
+    /* มาตรฐาน (ทุก browser ที่รองรับ) */
 }
 
 a,
@@ -127,14 +64,25 @@ button {
 button,
 img,
 input {
-    user-select: none
+    -webkit-touch-callout: none;
+    /* ป้องกันเมนูเวลาแตะค้างบน iOS Safari */
+    -webkit-user-select: none;
+    /* ป้องกัน select บน Chrome/Safari */
+    -khtml-user-select: none;
+    /* เก่ามาก ใช้กับ Konqueror */
+    -moz-user-select: none;
+    /* ป้องกัน select บน Firefox */
+    -ms-user-select: none;
+    /* ป้องกัน select บน IE/Edge เก่า */
+    user-select: none;
+    /* มาตรฐาน ป้องกัน select ได้เกือบทุก browser */
 }
 
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-    box-shadow: inset 0 0 5px #0D0D0D
+    box-shadow: inset 0 0 5px var(--primary-color);
 }
 
 code.code {
@@ -142,7 +90,6 @@ code.code {
     border-radius: 4px;
     padding-inline: 2px;
     background-color: #ECECEC;
-    /* font-family: '', 'Bai Jamjuree', sans-serif !important; */
 }
 
 code,

@@ -30,24 +30,26 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
-<body class=directory on=showURL() draggable=false oncontextmenu=return!1>
-    <div id=preloader
-        class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50.svg select-none visible touch-none">
+<body class="directory" on="showURL()" draggable="false" oncontextmenu="return!1">
+    <div id="preloader"
+        class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
         <span
-            class="w-16 h-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--main-color)] mx-auto"></span>
+            class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto"></span>
         <h2>Loading</h2>
         <p>Your adventure is about to begin</p>
     </div>
-    <input id=search placeholder=ค้นหา autocomplete=off>
-    <div id=wrapper>
+    <input id="search" placeholder="ค้นหา" autocomplete="off">
+    <div id="wrapper">
         <h1>
-            <a id=url href= />
+            <a id="url" href= />
             <script>document.write(window.location.href)</script>
             </a>
         </h1>
-        <ul id=files class=view-tiles></ul>
+        <ul id="files" class="view-tiles"></ul>
+        <p class="text-sm">พัฒนาโดย <a href="/centered101/" class="">@Centered101</a></p>
     </div>
-    <script src=/script/main.js></script>
+    <script src="/script/index.js"></script>
+    <script src="/script/main.js"></script>
     <script>
         const files = [
             { path: ".." },
