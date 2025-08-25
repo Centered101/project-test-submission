@@ -54,12 +54,11 @@
             onclick="viewImage('https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png')"
             class="shrink-0 touch-manipulation">
             <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
-                alt="นาย พงศ์พล พรมผา" class="size-8 md:size-16 rounded-full object-cover" draggable="false"
+                alt="พงศ์พล พรมผา" class="size-8 md:size-16 rounded-full object-cover" draggable="false"
                 oncontextmenu="return false" />
         </button>
         <h2 class="text-lg sm:text-xl md:text-3xl text-pretty font-bold !line-clamp-1">
-            <span>นาย พงศ์พล พรมผา</span>
-            <span class="text-gray-400 text-base">(Master phongphon Phompha)</span>
+            <span>พงศ์พล พรมผา</span>
         </h2>
     </section>
 
@@ -290,13 +289,13 @@
                             :
                             `<button onclick="viewImage('${imageUrl}', '${cert.name.replace(/'/g, "\\'")}')" class="relative overflow-hidden w-full text-left border-b rounded-t-lg group">
                                 <img src="${imageUrl}" alt="${cert.name}" 
-                                    class="bg-stripes-gray w-full h-80 sm:h-72 md:h-64 bg-[color:var(--bg-color)] object-contain group-hover:scale-105 transition-transform duration-300"
+                                    class="bg-stripes-gray w-full h-80 sm:h-72 md:h-64 bg-[color:var(--bg-color)] object-contain transition-transform duration-300 group-hover:scale-105 group-focus:scale-105"
                                     loading="lazy" draggable="false" oncontextmenu="return false">
-                                <div class="absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-700 flex items-center justify-center group-hover:bg-opacity-25">
-                                    <div class="size-16 flex items-center justify-center bg-[color:var(--white-smoker)] text-[color:var(--primary-color)] text-2xl rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100">
+                                <div class="absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-700 flex items-center justify-center group-hover:bg-opacity-25 group-focus:bg-opacity-25">
+                                    <div class="size-16 flex items-center justify-center bg-[color:var(--white-smoker)] text-[color:var(--primary-color)] text-2xl rounded-full opacity-0 transition-opacity duration-700 group-hover:opacity-100 group-focus:opacity-100">
                                         <i class="fas fa-search-plus"></i>
                                     </div>
-                                    <div class="absolute bottom-4 flex items-center justify-center gap-2 bg-[color:var(--white-smoker)] opacity-0 border rounded px-2 py-1 text-sm select-none transition-opacity duration-700 group-hover:opacity-100">
+                                    <div class="absolute bottom-4 flex items-center justify-center gap-2 bg-[color:var(--white-smoker)] opacity-0 border rounded px-2 py-1 text-sm select-none transition-opacity duration-700 group-hover:opacity-100 group-focus:opacity-100">
                                         <i class="fa-solid fa-expand"></i>
                                         <p>แตะเพื่อดูภาพขนาดเต็ม</p>
                                     </div>

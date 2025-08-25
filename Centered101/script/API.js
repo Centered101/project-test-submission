@@ -1,4 +1,4 @@
-// ตัวแปรสำหรับเก็บสถานะการแจ้งเตือน API ต่ำ
+// เก็บสถานะว่ามีการแจ้งเตือนแล้วหรือยัง
 let lowApiNotified = false;
 
 /**
@@ -11,7 +11,7 @@ function updateRateLimit() {
     fetch("https://api.github.com/rate_limit")
         .then(response => response.json())
         .then(data => {
-            var remaining = data.rate.remaining;
+            const remaining = data.rate.remaining;
             const resetTime = new Date(data.rate.reset * 1000).toLocaleTimeString();
             const $rateStatus = $("#rateStatus").removeClass("animate-pulse");
 
@@ -19,22 +19,24 @@ function updateRateLimit() {
             const warningMessage = (margin = "") => `
                 <div class="bg-[color:var(--white-smoker)] shadow-inner text-[color:var(--text-color)] text-sm text-wrap border rounded-xl ${margin} p-2">
                     <span class="flex items-center justify-center gap-2">
-                        <svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                        <svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
                         You have reached the API limit! Please wait until ${resetTime}.
-                     </span>
+                    </span>
                 </div>`;
 
             // ฟังก์ชันตรวจสอบจำนวนคำขอที่เหลือและแจ้งเตือน
             function checkRemaining(remaining) {
-                if (remaining <= 10 && !lowApiNotified) {
+                if (remaining <= 10 && remaining > 0 && !lowApiNotified) {
                     showNotification('Low API requests remaining! Please wait!');
-                    lowApiNotified = true; // ตั้งค่าให้แจ้งเตือนแล้ว
+                    lowApiNotified = true; // กันการแจ้งซ้ำ
                 } else if (remaining > 10) {
-                    lowApiNotified = false; // รีเซ็ตสถานะการแจ้งเตือนเมื่อ quota กลับมา 
+                    lowApiNotified = false; // reset flag เมื่อโควตากลับมามากกว่า 10
                 }
             }
 
-            // เรียกใช้ฟังก์ชันตรวจสอบ
+            // ตรวจสอบจำนวนการเรียก API
             checkRemaining(remaining);
 
             // แสดงข้อความเตือนเมื่อ API limit หมด
@@ -42,15 +44,19 @@ function updateRateLimit() {
                 $("#repo-list").html(warningMessage("text-center m-0"));
                 $("#followers-list, #following-list").html(warningMessage("text-center m-2 md:m-4"));
                 $rateStatus.html(`
-                <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="fade-in text-[color:var(--primary-color)]">${remaining}</span> / 60 requests</p>
-                <p class="flex items-center gap-2"><svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
-                <span>You have reached the API limit! Please wait until ${resetTime}</span></p>
+                    <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="fade-in text-[color:var(--primary-color)]">${remaining}</span> / 60 requests</p>
+                    <p class="flex items-center gap-2">
+                        <svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>You have reached the API limit! Please wait until ${resetTime}</span>
+                    </p>
                 `);
             } else {
                 // แสดงสถานะ rate limit ปกติ
                 $rateStatus.html(`
-                <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="text-[color:var(--primary-color)]">${remaining}</span> / 60 requests</p>
-                <p>Reset time: <span>${resetTime}</span></p>
+                    <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="text-[color:var(--primary-color)]">${remaining}</span> / 60 requests</p>
+                    <p>Reset time: <span>${resetTime}</span></p>
                 `);
             }
         })

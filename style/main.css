@@ -76,9 +76,7 @@ body {
 }
 
 html {
-    cursor:
-        url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='28' fill='none'%3E%3Cg clip-path='url(%23a)'%3E%3Cmask id='b' width='24' height='28' x='0' y='0' maskUnits='userSpaceOnUse' style='mask-type:luminance'%3E%3Cpath fill='%23fff' d='M24 .8H0v26.4h24z'/%3E%3C/mask%3E%3Cg fill-rule='evenodd' clip-rule='evenodd' mask='url(%23b)'%3E%3Cpath fill='%23000' d='M23.79 14.481 2.145.86.22 2.755l6.542 24.051 1.925-1.897 2.566-3.798 4.865 5.725 3.34-2.565 1.926-1.897-3.988-4.813 4.467-1.183z'/%3E%3Cpath fill='%23fff' d='m11.183 19.846-3.095 4.58-.928.915L1.08 2.982l1.174-1.156 20.314 12.786-1.102 1.086-5.417 1.434 4.3 5.19-1.4 1.378-2.717 2.086z'/%3E%3Cpath fill='%23fff' d='M8.953 23.316 3.248 2.342l18.889 11.89-6.864 1.817 5.152 6.22-2.28 1.751-5.386-6.336z'/%3E%3Cpath fill='%23000' d='m12.697 16.574 5.545 6.526 1.223-.939-5.375-6.489 6.394-1.693L4.35 3.824l4.868 17.899zm5.347 8.364-5.224-6.147-4.132 6.118L2.145.858 23.79 14.48l-7.334 1.942 4.929 5.95z'/%3E%3C/g%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='%23fff' d='M0 .8h24v26.4H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E") 4 5,
-        auto;
+    cursor: url(https://sweezy-cursors.com/wp-content/uploads/cursor/old-roblox/old-roblox-cursor-32x32.png), auto !important
 }
 
 a,
@@ -86,9 +84,7 @@ button,
 .cursor-pointer,
 .hashtag-mention:hover,
 .hashtag-mention.mention:hover {
-    cursor:
-        url("https://openhouse.bu.ac.th/_nuxt/pointer.BKIYlM-n.svg") 4 5,
-        auto !important;
+    cursor: url(https://sweezy-cursors.com/wp-content/uploads/cursor/old-roblox/old-roblox-pointer-32x32.png), pointer !important;
 }
 
 body::after {
@@ -134,12 +130,6 @@ body::after {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     /* ease-in-out */
     transition-duration: 300ms
-}
-
-.hashtag-mention.mention:hover,
-.hashtag-mention:hover {
-    color: var(--accent-color);
-    cursor: pointer;
 }
 
 ul#files span,
@@ -316,7 +306,7 @@ ul.view-tiles .size {
     body.directory div#wrapper h1 a#url {
         display: block;
         /* line-height: 1rem; */
-        color: var(--text-color) !important;
+        color: #FFFFFF !important;
         background: var(--primary-color);
         padding: 0.75rem;
         /* 12px */
@@ -484,7 +474,7 @@ main.docs ul {
 }
 
 main.docs section.docs code {
-    background-color: var(--accent-color);
+    background-color: var(--white-smoker);
     font-family: 'Roboto Mono', 'monospace' !important;
     border-radius: 4px;
     padding-inline: 2px;

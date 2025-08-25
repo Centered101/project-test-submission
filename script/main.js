@@ -1,13 +1,4 @@
 
-// ปิด contextmenu ทั้งหมด
-document.addEventListener("contextmenu", function (e) {
-    // เช็คว่าคลิกที่ #files หรือเปล่า
-    if (e.target.closest("#files")) {
-        return true; // อนุญาต
-    }
-    e.preventDefault(); // ที่อื่นไม่ให้คลิกขวา
-});
-
 // —[  ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
 $(document).ready(function () {
@@ -59,7 +50,7 @@ $(document).ready(function () {
         </a>
     `);
 
-        if (status) {
+        if (status == 0) {
             $li.find('a')
                 .addClass('opacity-50 pointer-events-none cursor-not-allowed')
                 .on('click', function (e) {
