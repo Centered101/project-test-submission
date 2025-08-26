@@ -1,7 +1,11 @@
 @import url(/style/style.css);
+@import url(/style/main.css);
 
 :root {
     --primary-color: #409EFE;
+    --text-400: #9CA3AF;
+    --text-500: #6B7280;
+    --text-600: #4B5563;
 }
 
 *,
@@ -22,6 +26,21 @@ body {
     background-image: radial-gradient(var(--border) 1px, transparent 1px), radial-gradient(var(--border) 1px, var(--bg-color) 1px);
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
+}
+
+html,
+select {
+    cursor: url(https://sweezy-cursors.com/wp-content/uploads/cursor/old-roblox/old-roblox-cursor-32x32.png), auto !important
+}
+
+a,
+button,
+select,
+option,
+.cursor-pointer,
+.hashtag-mention:hover,
+.hashtag-mention.mention:hover {
+    cursor: url(https://sweezy-cursors.com/wp-content/uploads/cursor/old-roblox/old-roblox-pointer-32x32.png), pointer !important;
 }
 
 .border-b,
@@ -73,6 +92,20 @@ body {
     }
 }
 
+mark,
+.hashtag-mention.mention,
+.hashtag-mention {
+    color: var(--primary-color);
+    transition: color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    /* ease-in-out */
+    transition-duration: 300ms
+}
+
+mark {
+    color: #FFFFFF;
+}
+
 .fade-in {
     animation: fadeIn 300ms ease-in-out forwards;
 }
@@ -94,6 +127,10 @@ body {
     transition: opacity 300ms ease-in-out;
 }
 
+.animate-slide-out {
+    animation: slideOut 0.3s forwards;
+}
+
 #intro-screen.fade-out {
     opacity: 0;
 }
@@ -108,10 +145,6 @@ body {
         transform: translateX(100%);
         opacity: 0;
     }
-}
-
-.animate-slide-out {
-    animation: slideOut 0.3s forwards;
 }
 
 .bg-stripes-gray {

@@ -23,6 +23,9 @@
     /* สีน้ำเงินสำหรับข้อความข้อมูล */
     --accent-info: #8FD2FF;
     /* สีน้ำเงินสำหรับการแจ้งเตือนข้อมูล */
+    --text-400: #9CA3AF;
+    --text-500: #6B7280;
+    --text-600: #4B5563;
 }
 
 /* โหมด System (media query) */
@@ -65,7 +68,7 @@
 }
 
 /* ตั้งค่าดีฟอลต์ด้วย CSS Variables */
-body {
+body.directory {
     min-height: 100vh;
     font-family: "Bai Jamjuree", sans-serif;
     background-color: var(--bg-color);
@@ -75,19 +78,7 @@ body {
     overflow: hidden scroll;
 }
 
-html {
-    cursor: url(https://sweezy-cursors.com/wp-content/uploads/cursor/old-roblox/old-roblox-cursor-32x32.png), auto !important
-}
-
-a,
-button,
-.cursor-pointer,
-.hashtag-mention:hover,
-.hashtag-mention.mention:hover {
-    cursor: url(https://sweezy-cursors.com/wp-content/uploads/cursor/old-roblox/old-roblox-pointer-32x32.png), pointer !important;
-}
-
-body::after {
+body.directory::after {
     content: "";
     background-image: url("/images/icon.svg");
     background-size: cover;
@@ -97,6 +88,19 @@ body::after {
     left: 0;
     z-index: -1;
     opacity: .05
+}
+
+html,
+select {
+    cursor: url(https://sweezy-cursors.com/wp-content/uploads/cursor/old-roblox/old-roblox-cursor-32x32.png), auto !important
+}
+
+a,
+button,
+.cursor-pointer,
+.hashtag-mention:hover,
+.hashtag-mention.mention:hover {
+    cursor: url(https://sweezy-cursors.com/wp-content/uploads/cursor/old-roblox/old-roblox-pointer-32x32.png), pointer !important;
 }
 
 .border-b,
@@ -123,6 +127,7 @@ body::after {
     color: #0D0D0D;
 }
 
+mark,
 .hashtag-mention.mention,
 .hashtag-mention {
     color: var(--primary-color);
@@ -130,6 +135,10 @@ body::after {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     /* ease-in-out */
     transition-duration: 300ms
+}
+
+mark {
+    color: #FFFFFF;
 }
 
 ul#files span,
@@ -145,7 +154,7 @@ ul#files {
 }
 
 input#search,
-body {
+body.directory {
     -webkit-font-smoothing: antialiased;
 }
 
@@ -267,7 +276,7 @@ ul.view-tiles .size {
 
 @media (max-width:768px) {
 
-    body {
+    body.directory {
         font-size: 0.75rem;
         /* 12px */
         line-height: 1rem;
