@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang=th>
+<!DOCTYPE html>
+<html lang="th">
 
 <head>
     <title>การเก็บข้อมูลแบบ-Local-Storage</title>
@@ -15,15 +15,15 @@
     <meta property="og:url" content="https://project-test-submission.netlify.app">
     <meta property="og:title" content="listing directory/การเก็บข้อมูลแบบ-Local-Storage">
     <meta property="og:description" content="Document การเก็บข้อมูลแบบ-Local-Storage">
-    <meta property="og:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+    <meta property="og:image" content="/images/icon.svg">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://project-test-submission.netlify.app">
     <meta property="twitter:title" content="listing directory/การเก็บข้อมูลแบบ-Local-Storage">
     <meta property="twitter:description" content="Document การเก็บข้อมูลแบบ-Local-Storage">
-    <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+    <meta property="twitter:image" content="/images/icon.svg">
 
-    <link rel="shortcut icon" type="image/x-icon" href="https://project-test-submission.netlify.app/images/icon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/icon.svg">
     <link rel="stylesheet" href="/style/main.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src=https://cdn.tailwindcss.com></script>
@@ -31,17 +31,18 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
-<body draggable="false" oncontextmenu="return!1">
+<body class="docs" draggable="false" oncontextmenu="return!1">
     <div id="preloader"
         class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase md:text-xl space-y-4 z-50 select-none visible touch-none">
         <span
-            class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto"></span>
-        <h2>Loading</h2>
-        <p>Your adventure is about to begin</p>
+            class="animate-spin size-16 border-8 border-y-transparent rounded-full border-[color:var(--primary-color)] mx-auto"></span>
+        <h2>กำลังโหลด</h2>
+        <p>การผจญภัยของคุณกำลังจะเริ่มต้น</p>
     </div>
     <main class="docs">
-        <section class="docs">
+        <section id="docs">
             <h1>เอกสารของ การเก็บข้อมูลแบบ-Local-Storage</h1>
+            <small>อัพเดทข้อมูล 2025-08-28</small>
             <h2>ภาพรวม</h2>
             <p><b>Local Storage</b>
                 คือพื้นที่เก็บข้อมูลในเบราว์เซอร์ที่ช่วยให้เว็บแอปพลิเคชันสามารถจัดเก็บข้อมูลผู้ใช้ได้ในรูปแบบ
@@ -69,22 +70,37 @@
                 <li>ต้องการโดเมนเดียวกัน (Same-origin policy)</li>
             </ul>
             <div>
-                <p class=indent-6><b>Local Storage</b>
+                <p class=indent-4><b>Local Storage</b>
                     เหมาะสำหรับเว็บที่ต้องการจัดเก็บข้อมูลผู้ใช้แบบพื้นฐานและต้องการลดการพึ่งพาเซิร์ฟเวอร์! 😊</p>
-                <p class=indent-6><b>Local Storage</b>
+                <p class=indent-4><b>Local Storage</b>
                     คือพื้นที่เก็บข้อมูลของเว็บเบราว์เซอร์ที่ช่วยให้เว็บแอปพลิเคชันสามารถจัดเก็บข้อมูลได้บนอุปกรณ์ของผู้ใช้แบบถาวร
                     โดยไม่ต้องใช้ฐานข้อมูลหรือเซิร์ฟเวอร์ในบางกรณี ข้อมูลที่เก็บไว้ใน Local Storage
                     จะยังคงอยู่แม้ปิดเบราว์เซอร์หรือรีสตาร์ทเครื่อง (ยกเว้นผู้ใช้ลบข้อมูลด้วยตนเอง)</p>
             </div>
             <h2>โปรเจกต์ที่คุณจะต้องลองสำรวจ</h2>
-            <ul class="list-disc">
-                <li><a title="โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด"
-                        href="/PROJECTS_ALL/birthday_countdown.html">โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด<a></li>
-                <li><a title="จัดการตารางงานของคุณ" href="/PROJECTS_ALL/manage_work.html">จัดการตารางงานของคุณ<a></li>
-                <li><a title="แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ 50/30/20 Rule"
-                        href="/PROJECTS_ALL/wallet_management.html">แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ
-                        50/30/20 Rule<a></li>
-            </ul>
+            <table class="w-full border border-collapse">
+                <tr class=border-b>
+                    <td>
+                        <a title="โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด"
+                            href="/PROJECTS_ALL/birthday_countdown.html"
+                            class="relative w-full flex items-center truncate p-2 z-10 overflow-hidden isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">โปรเจกต์ที่ช่วยให้คุณนับถอยหลังสู่วันเกิด<a>
+                    </td>
+                </tr>
+                <tr class=border-b>
+                    <td>
+                        <a title="จัดการตารางงานของคุณ" href="/PROJECTS_ALL/manage_work.html"
+                            class="relative w-full flex items-center truncate p-2 z-10 overflow-hidden isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">จัดการตารางงานของคุณ<a>
+                    </td>
+                </tr>
+                <tr class=border-b>
+                    <td>
+                        <a title="แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ 50/30/20 Rule"
+                            href="/PROJECTS_ALL/wallet_management.html"
+                            class="relative w-full flex items-center truncate p-2 z-10 overflow-hidden isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">แนวคิดการแบ่งสัดส่วนการใช้เงินแบบ
+                            50/30/20 Rule<a>
+                    </td>
+                </tr>
+            </table>
         </section>
     </main>
     <script src="/script/index.js"></script>

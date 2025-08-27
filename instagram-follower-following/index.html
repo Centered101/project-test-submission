@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang=th>
+<!DOCTYPE html>
+<html lang="th">
 
 <head>
   <title>instagram-follower-following</title>
@@ -15,15 +15,15 @@
   <meta property="og:url" content="https://project-test-submission.netlify.app">
   <meta property="og:title" content="listing directory/instagram-follower-following">
   <meta property="og:description" content="Document instagram-follower-following">
-  <meta property="og:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+  <meta property="og:image" content="/images/icon.svg">
 
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://project-test-submission.netlify.app">
   <meta property="twitter:title" content="listing directory/instagram-follower-following">
   <meta property="twitter:description" content="Document instagram-follower-following">
-  <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+  <meta property="twitter:image" content="/images/icon.svg">
 
-  <link rel="shortcut icon" type="image/x-icon" href="https://project-test-submission.netlify.app/images/icon.svg">
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.svg">
   <link rel="stylesheet" href="/style/main.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src=https://cdn.tailwindcss.com></script>
@@ -31,17 +31,18 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
-<body draggable="false" oncontextmenu="return!1">
+<body class="docs" draggable="false" oncontextmenu="return!1">
   <div id="preloader"
     class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase md:text-xl space-y-4 z-50 select-none visible touch-none">
     <span
-      class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto"></span>
-    <h2>Loading</h2>
-    <p>Your adventure is about to begin</p>
+      class="animate-spin size-16 border-8 border-y-transparent rounded-full border-[color:var(--primary-color)] mx-auto"></span>
+    <h2>กำลังโหลด</h2>
+    <p>การผจญภัยของคุณกำลังจะเริ่มต้น</p>
   </div>
   <main class="docs">
-    <section class="docs">
+    <section id="docs">
       <h1>เอกสารของ instagram-follower-following</h1>
+      <small>อัพเดทข้อมูล 2025-08-28</small>
       <h2>ภาพรวม</h2>
       <p><b>instagram-follower-following</b> เป็นสคริปต์ JavaScript ที่ช่วยให้คุณดึงข้อมูลผู้ติดตาม (followers)
         และผู้ที่คุณติดตาม (following) บน Instagram ได้</p>
@@ -50,7 +51,7 @@
         <li>เข้าสู่ <a href=https://www.instagram.com target=_blank
             class="text-[color:var(--primary-color)] after:content-['_↗']">Instagram</a> และล็อกอิน</li>
         <li>เปิดเครื่องมือสำหรับนักพัฒนา (Developer Tools):
-          <ul class="list-disc">
+          <ul class="list-disc pl-4">
             <li>Google Chrome: กด <code>F12</code> หรือคลิกขวาเลือก "ตรวจสอบ" (Inspect)</li>
             <li>Mozilla Firefox: กด <code>F12</code> หรือคลิกขวาเลือก "ตรวจสอบองค์ประกอบ"</li>
           </ul>
@@ -78,24 +79,24 @@
             class="text-[color:var(--primary-color)] after:content-['_↗']">Gist: instagram-follower-following.js</a>
         </li>
       </ul>
-      <p class=indent-6>โปรดทราบว่าการใช้สคริปต์หรือเครื่องมือที่ไม่ได้รับอนุญาตอาจละเมิด <a
+      <p class=indent-4>โปรดทราบว่าการใช้สคริปต์หรือเครื่องมือที่ไม่ได้รับอนุญาตอาจละเมิด <a
           href=https://help.instagram.com/581066165581870/ target=_blank
           class="text-[color:var(--primary-color)] after:content-['_↗']">ข้อกำหนดการใช้งานของ Instagram</a>
         ควรปฏิบัติตามนโยบายแพลตฟอร์มเสมอ</p>
     </section>
-    <section id=download class="max-w-3xl space-y-6 mx-auto">
+    <section id=download class="space-y-6">
       <a href=./instagram-follower-following.js
         class="flex flex-row items-center justify-start gap-2 text-[color:var(--primary-color)]" download>
         <span>ดาวน์โหลดไฟล์ instagram-follower-following.js</span>
-        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="octicon octicon-terminal fill-[color:var(--primary-color)]"
-          viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible"
-          style="vertical-align: text-bottom;">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
+          class="octicon octicon-terminal fill-[color:var(--primary-color)]" viewBox="0 0 16 16" width="16" height="16"
+          fill="currentColor" display="inline-block" overflow="visible" style="vertical-align: text-bottom;">
           <path
             d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7.25 8a.749.749 0 0 1-.22.53l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L5.44 8 3.72 6.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.25 2.25c.141.14.22.331.22.53Zm1.5 1.5h3a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5Z" />
         </svg>
       </a>
     </section>
-    <section>
+    <section id="view-source">
       <script src="https://gist.github.com/abir-taheer/0d3f1313def5eec6b78399c0fb69e4b1.js"></script>
     </section>
   </main>

@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang=th>
+<!DOCTYPE html>
+<html lang="th">
 
 <head>
     <title>Project-Test-Submission</title>
@@ -15,15 +15,15 @@
     <meta property="og:url" content="https://project-test-submission.netlify.app">
     <meta property="og:title" content="listing directory/Document">
     <meta property="og:description" content="Document Project-Test-Submission">
-    <meta property="og:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+    <meta property="og:image" content="/images/icon.svg">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://project-test-submission.netlify.app">
     <meta property="twitter:title" content="listing directory/Document">
     <meta property="twitter:description" content="Document Project-Test-Submission">
-    <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+    <meta property="twitter:image" content="/images/icon.svg">
 
-    <link rel="shortcut icon" type="image/x-icon" href="https://project-test-submission.netlify.app/images/icon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/icon.svg">
     <link rel="stylesheet" href="/style/main.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src=https://cdn.tailwindcss.com></script>
@@ -31,24 +31,30 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
-<body draggable="false" oncontextmenu="return!1">
+<body class="docs" draggable="false" oncontextmenu="return!1">
     <div id="preloader"
         class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase md:text-xl space-y-4 z-50 select-none visible touch-none">
         <span
-            class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto"></span>
-        <h2>Loading</h2>
-        <p>Your adventure is about to begin</p>
+            class="animate-spin size-16 border-8 border-y-transparent rounded-full border-[color:var(--primary-color)] mx-auto"></span>
+        <h2>กำลังโหลด</h2>
+        <p>การผจญภัยของคุณกำลังจะเริ่มต้น</p>
     </div>
     <main class="docs">
-        <section class="docs">
+        <section id="docs">
             <h1>เอกสารของ Project-Test-Submission</h1>
+            <small>อัพเดทข้อมูล 2025-08-28</small>
             <h2>ภาพรวม</h2>
-            <p><b>Project-Test-Submission</b> เป็นแพลตฟอร์มที่จัดทำขึ้นเพื่อรวบรวมโปรเจกต์ที่ผู้พัฒนาได้สร้างสรรค์หรือศึกษาวิจัยไว้ โดยมีรูปแบบเป็น <b>ไดเรกทอรีรายการ (Directory Listing)</b> ช่วยให้ผู้เข้าชมสามารถค้นหาและเข้าถึงข้อมูลโค้ดของแต่ละโปรเจกต์ได้อย่างสะดวกและเป็นระบบ</p>
+            <p><b>Project-Test-Submission</b>
+                เป็นแพลตฟอร์มที่จัดทำขึ้นเพื่อรวบรวมโปรเจกต์ที่ผู้พัฒนาได้สร้างสรรค์หรือศึกษาวิจัยไว้ โดยมีรูปแบบเป็น
+                <b>ไดเรกทอรีรายการ (Directory Listing)</b>
+                ช่วยให้ผู้เข้าชมสามารถค้นหาและเข้าถึงข้อมูลโค้ดของแต่ละโปรเจกต์ได้อย่างสะดวกและเป็นระบบ
+            </p>
             <h2>คุณสมบัติ</h2>
             <ul class="list-disc">
                 <li><b>แสดงโปรเจกต์ในรูปแบบรายการ:</b> แสดงโปรเจกต์ทั้งหมดพร้อมรายละเอียดและลิงก์สำหรับเข้าชม</li>
                 <li><b>ระบบค้นหาและกรองข้อมูล:</b> รองรับการค้นหาโปรเจกต์เพื่อให้เข้าถึงสิ่งที่ต้องการได้รวดเร็ว</li>
-                <li><b>รองรับการใช้งานทุกอุปกรณ์:</b> ออกแบบด้วย Tailwind CSS เพื่อให้แสดงผลได้อย่างเหมาะสมทั้งบนมือถือ แท็บเล็ต และคอมพิวเตอร์</li>
+                <li><b>รองรับการใช้งานทุกอุปกรณ์:</b> ออกแบบด้วย Tailwind CSS เพื่อให้แสดงผลได้อย่างเหมาะสมทั้งบนมือถือ
+                    แท็บเล็ต และคอมพิวเตอร์</li>
                 <li><b>ธีมหลัก</b>: ใช้โทนสีน้ำเงิน-ขาว <span>#409EFE และ #FFFFFF</span></li>
                 <li><b>โครงสร้าง URL ที่เหมาะสมกับ SEO</b>: ช่วยเพิ่มประสิทธิภาพในการค้นหาผ่านเครื่องมือค้นหา</li>
             </ul>
@@ -81,35 +87,35 @@
                     <td class="border-r px-4 py-2">เว็บไซต์</td>
                     <td>
                         <a title=เว็บไซต์ href=/contact/
-                            class="relative w-full flex items-center truncate px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[color:var(--primary-color)] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">project-test-submission/contact/</a>
+                            class="relative w-full flex items-center truncate p-2 z-10 overflow-hidden isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">project-test-submission/contact/</a>
                     </td>
                 </tr>
                 <tr class=border-b>
                     <td class="border-r px-4 py-2">อีเมล</td>
                     <td>
                         <a title=อีเมล href=mailto:centered101@outlook.com
-                            class="relative w-full flex items-center truncate px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[color:var(--primary-color)] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">centered101@outlook.com</a>
+                            class="relative w-full flex items-center truncate p-2 z-10 overflow-hidden isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">centered101@outlook.com</a>
                     </td>
                 </tr>
                 <tr class=border-b>
                     <td class="border-r px-4 py-2">GitHub</td>
                     <td>
                         <a title=GitHub href=https://github.com/centered101/
-                            class="relative w-full flex items-center truncate px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[color:var(--primary-color)] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">centered101</a>
+                            class="relative w-full flex items-center truncate p-2 z-10 overflow-hidden isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">centered101</a>
                     </td>
                 </tr>
                 <tr class=border-b>
                     <td class="border-r px-4 py-2">Discord</td>
                     <td>
                         <a title=Discord href=https://discordapp.com/users/955850603962183690
-                            class="relative w-full flex items-center truncate px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[color:var(--primary-color)] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">centered101</a>
+                            class="relative w-full flex items-center truncate p-2 z-10 overflow-hidden isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">centered101</a>
                     </td>
                 </tr>
                 <tr class=border-b>
                     <td class="border-r px-4 py-2">Instagram</td>
                     <td>
                         <a title=Instagram href=https://www.instagram.com/direct/t/17848003478856472/
-                            class="relative w-full flex items-center truncate px-4 py-2 z-10 overflow-hidden select-none ease-in-out duration-700 hover:text-[color:var(--primary-color)] isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">centered101</a>
+                            class="relative w-full flex items-center truncate p-2 z-10 overflow-hidden isolation-auto before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:right-full before:hover:right-0 before:bg-[color:var(--accent-color)] before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700">centered101</a>
                     </td>
                 </tr>
             </table>

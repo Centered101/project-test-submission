@@ -15,13 +15,13 @@
     <meta property="og:url" content="https://project-test-submission.netlify.app">
     <meta property="og:title" content="GitHub API Profile">
     <meta property="og:description" content="GitHub API Profile">
-    <meta property="og:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+    <meta property="og:image" content="/images/icon.svg">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://project-test-submission.netlify.app">
     <meta property="twitter:title" content="GitHub API Profile">
     <meta property="twitter:description" content="GitHub API Profile">
-    <meta property="twitter:image" content="https://project-test-submission.netlify.app/images/icon.svg">
+    <meta property="twitter:image" content="/images/icon.svg">
 
     <link rel="shortcut icon" type="image/x-icon" href="">
     <link rel="stylesheet" href="./index.css">
@@ -55,7 +55,7 @@
                 class="size-full max-w-full max-h-full bg-[color:var(--white-smoker)] border rounded-full md:rounded-none shadow-inner cursor-pointer duration-300 ease-in-out"
                 alt="large profile picture" onclick="toggleImageShape(event)" draggable="false"
                 oncontextmenu="return false"
-                onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'" />
+                onerror="this.src='/images/icon.svg'" />
             <div id="qrContainer"
                 class="hidden flex flex-col items-center justify-center bg-white p-4 border rounded-xl overflow-hidden">
                 <div id="loadingSpinner" class="flex flex-col items-center justify-center">
@@ -207,8 +207,8 @@
                 <img id="profile-img"
                     class="size-24 md:size-56 !fill-[color:var(--primary-color)] rounded-full md:rounded-none cursor-pointer"
                     draggable="false" oncontextmenu="return false"
-                    src="https://project-test-submission.netlify.app/images/icon.svg"
-                    onerror="this.src='https://project-test-submission.netlify.app/images/icon.svg'">
+                    src="/images/icon.svg"
+                    onerror="this.src='/images/icon.svg'">
                 <div class="w-full max-w-xl flex flex-wrap justify-start items-center md:gap-y-4 *:text-sm">
                     <p id="profile-name" translate="no" class="basis-full !text-xl md:!text-3xl px-2">
                         API not connected</p>
