@@ -166,22 +166,49 @@ mark {
 
 .fade-in {
     animation: fadeIn 300ms ease-in-out forwards;
-    /* เรียกใช้ keyframes fadeIn ใช้เวลา 300ms, easing แบบ ease-in-out และคงค่า final state (forwards) */
 }
 
 @keyframes fadeIn {
     0% {
         opacity: 0;
-        /* เริ่มต้นโปร่งใส */
         transform: scale(0.98);
-        /* ขนาดเล็กลงนิดนึง */
     }
 
     100% {
         opacity: 1;
-        /* ค่อยๆ โผล่มาเต็ม */
         transform: scale(1);
-        /* กลับมาเป็นขนาดปกติ */
+    }
+}
+
+.fade-out {
+    animation: fadeOut 300ms ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+}
+
+.animate-slide-out {
+    animation: slideOut 300ms forwards;
+}
+
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
     }
 }
 
