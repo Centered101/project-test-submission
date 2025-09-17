@@ -210,14 +210,14 @@ overlay.addEventListener("click", closeSidebar);
 
 // —[ projects ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
-const src = "./images/poster/"
-const https = "https://"
+const base = "./images/poster/"
 
 const project = [
-    { name: "portfolio-centered101", link: `${https}portfolio-centered101.netlify.app/`, img: `${src}portfolio.svg` },
-    { name: "project-test-submission", link: `/`, img: `${src}project-test-submission.png` },
-    { name: "asia-lb", link: `${https}asia-lb.web.app/`, img: `${src}asia-lb.png` },
-    { name: "center-dot-shop", link: `${https}center-dot-shop.netlify.app/`, img: `${src}center-dot-shop.svg` },
+    { name: "portfolio-centered101", link: "https://portfolio-centered101.netlify.app/", img: `${base}portfolio.svg` },
+    { name: "project-test-submission", link: "/", img: `${base}project-test-submission.png` },
+    { name: "asia-lb", link: "https://asia-lb.web.app/", img: `${base}asia-lb.png` },
+    { name: "center-dot-shop", link: "https://center-dot-shop.netlify.app/", img: `${base}center-dot-shop.svg` },
+    { name: "roblox-games-Kru-Wai", link: "https://www.roblox.com/games/76640670602072/Kru-Wai", img: `https://t3.rbxcdn.com/180DAY-58d59bfe7584647d43085d18c3e9d679` },
 ];
 
 const noimages = "https://project-test-submission.netlify.app/images/img/placeholder.svg";

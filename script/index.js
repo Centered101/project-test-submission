@@ -295,20 +295,22 @@ function showNotification(message, type = 'info', link = null) {
     }
 
     const notification = $(`
-        <div class="notification-item max-w-sm min-w-min bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-2 py-2 transition-all duration-300 transform translate-x-full select-none ${!link ? 'cursor-pointer' : ''}">
-            <div class="flex items-center">
+        <div class="notification-item max-w-sm min-w-min bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-2 py-1 sm:px-3 sm:py-2 transition-all duration-300 transform translate-x-full select-none ${!link ? 'cursor-pointer' : ''}">
+            <div class="flex items-center gap-2">
                 <div class="flex-shrink-0">
-                    ${type === 'success' ?
+        ${type === 'success' ?
             '<svg class="size-[1em] text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>' :
             type === 'error' ?
                 '<svg class="size-[1em] text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>' :
-                '<svg class="size-[1em] text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>'
+                type === 'info' ?
+                    '<svg class="size-[1em] text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>' :
+                    '<svg class="size-[1em] text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>'
         }
                 </div>
-                <div class="ml-2 flex-1">
-                    ${link ?
-            `<a href="${link}" class="text-sm text-[color:var(--primary-color)] hover:opacity-50 underline" rel="noopener noreferrer">${message}</a>` :
-            `<p class="text-sm break-words line-clamp-1">${message}</p>`
+                <div class="flex-1">
+        ${link ?
+            `<a href="${link}" target="_blank" class="btn-text text-sm text-[color:var(--primary-color)] font-normal" rel="noopener noreferrer">${message}</a>` :
+            `<p class="text-sm font-normal break-words line-clamp-1">${message}</p>`
         }
                 </div>
             </div>

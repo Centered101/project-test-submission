@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>GitHub Profile API</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#409EFE">
+  <meta name="keywords" content="GitHub, API, Profile, Developer Tools">
+  <meta name="author" content="GitHub API Tool">
+  <meta name="description" content="Search and view GitHub user profiles with detailed information">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GitHub Profile API">
+  <meta property="og:description" content="Search and view GitHub user profiles with detailed information">
+
+  <link rel="shortcut icon" type="image/x-icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23409EFE'><path d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    /* Custom theme color (GitHub-like) */
+    :root {
+      --primary-color: #409EFE;
+      --secondary-color: #24292f;
+      --border-color: #d1d9e0;
+    }
+
+    .profile-card {
+      transition: all 0.3s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .loading {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .github-icon {
+      fill: currentColor;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(35, 134, 54, 0.1);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gray-50 text-gray-800">
+  <!-- Top Navigation -->
+  <header class="bg-white shadow-sm sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="#" class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-md bg-[color:var(--secondary-color)] flex items-center justify-center text-white">
+            <svg class="w-6 h-6 github-icon" viewBox="0 0 24 24">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+          </div>
+          <span class="font-semibold text-lg">GitHub Profile API</span>
+        </a>
+        <nav id="mobile-menu" class="hidden md:flex gap-6 items-center">
+          <a href="#search" class="hover:text-[color:var(--primary-color)]">Search</a>
+          <a href="#about" class="hover:text-[color:var(--primary-color)]">About</a>
+          <a href="https://docs.github.com/en/rest" target="_blank" class="hover:text-[color:var(--primary-color)]">API
+            Docs</a>
+          <a href="https://github.com" target="_blank"
+            class="px-4 py-2 rounded-md border border-[color:var(--primary-color)] text-[color:var(--primary-color)] hover:bg-[color:var(--primary-color)] hover:text-white transition-colors">GitHub</a>
+        </nav>
+        <button id="menu-btn" class="md:hidden p-2 rounded-md focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Hero Section -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      <div class="lg:col-span-2">
+        <div class="rounded-2xl bg-white p-8 shadow-lg">
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight text-[color:var(--secondary-color)]">
+            Explore GitHub Profiles
+            <span class="text-[color:var(--primary-color)]">Instantly</span>
+          </h1>
+          <p class="mt-4 text-gray-600 text-lg">
+            Search and discover GitHub users, view their profiles, repositories, and contribution statistics in a
+            beautiful interface.
+          </p>
+
+          <!-- Search Form -->
+          <div id="search" class="mt-8">
+            <div class="flex flex-col sm:flex-row gap-3">
+              <input type="text" id="username-input" placeholder="Enter GitHub username (e.g., octocat)"
+                class="search-input flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition-all" />
+              <button id="search-btn"
+                class="px-6 py-3 bg-[color:var(--primary-color)] text-white font-medium rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <span class="search-text">Search Profile</span>
+                <span class="loading-text hidden">Searching...</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Features Grid -->
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-[color:var(--primary-color)]" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+                  </path>
+                </svg>
+                <h3 class="font-semibold">Real-time Data</h3>
+              </div>
+              <p class="mt-2 text-sm text-gray-600">Get live information directly from GitHub's API.</p>
+            </div>
+            <div class="p-4 border border-gray-200 rounded-lg bg-gray-50">
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-[color:var(--primary-color)]" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                  </path>
+                </svg>
+                <h3 class="font-semibold">Detailed Stats</h3>
+              </div>
+              <p class="mt-2 text-sm text-gray-600">View repos, followers, and contribution data.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Results -->
+        <div id="profile-results" class="mt-8 hidden">
+          <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class="p-6 border-b border-gray-200">
+              <h2 class="text-xl font-semibold text-[color:var(--secondary-color)]">Profile Information</h2>
+            </div>
+            <div id="profile-content" class="p-6">
+              <!-- Profile content will be inserted here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="mt-8 hidden">
+          <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16c-.77.833.192 2.5 1.732 2.5z">
+                </path>
+              </svg>
+              <p class="text-red-700 font-medium" id="error-text">User not found!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Sidebar -->
+      <aside class="hidden lg:block">
+        <div class="sticky top-24 bg-white p-6 rounded-2xl shadow-lg">
+          <h5 class="font-semibold text-[color:var(--secondary-color)]">Popular Users</h5>
+          <ul class="mt-4 space-y-3 text-sm">
+            <li>
+              <button class="username-link text-[color:var(--primary-color)] hover:underline" data-username="torvalds">
+                torvalds - Linux creator
+              </button>
+            </li>
+            <li>
+              <button class="username-link text-[color:var(--primary-color)] hover:underline" data-username="octocat">
+                octocat - GitHub mascot
+              </button>
+            </li>
+            <li>
+              <button class="username-link text-[color:var(--primary-color)] hover:underline" data-username="gaearon">
+                gaearon - React core team
+              </button>
+            </li>
+            <li>
+              <button class="username-link text-[color:var(--primary-color)] hover:underline"
+                data-username="sindresorhus">
+                sindresorhus - Open source
+              </button>
+            </li>
+          </ul>
+
+          <div class="mt-8">
+            <h6 class="font-semibold text-[color:var(--secondary-color)] mb-3">API Info</h6>
+            <div class="text-xs text-gray-500 space-y-2">
+              <p>• Rate limit: 60 requests/hour</p>
+              <p>• Data source: GitHub API v4</p>
+              <p>• Real-time updates</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="mt-16 bg-white rounded-2xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-[color:var(--secondary-color)] mb-4">About GitHub Profile API</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <p class="text-gray-600 mb-4">
+            This tool allows you to search and explore GitHub user profiles with detailed information including
+            repositories, followers, following, and contribution statistics.
+          </p>
+          <p class="text-gray-600">
+            Built with GitHub's REST API to provide real-time data about any public GitHub user profile.
+          </p>
+        </div>
+        <div class="bg-gray-50 rounded-lg p-4">
+          <h3 class="font-semibold mb-2">Features:</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>• Search any GitHub user</li>
+            <li>• View profile statistics</li>
+            <li>• Repository information</li>
+            <li>• Follower/Following counts</li>
+            <li>• Account creation date</li>
+            <li>• Location and bio information</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-16 bg-[color:var(--secondary-color)] text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center">
+        <p class="text-sm">
+          © 2024 GitHub Profile API Tool - Built with GitHub REST API
+        </p>
+        <div class="mt-4">
+          <a href="https://github.com" target="_blank" class="text-gray-300 hover:text-white mx-2">GitHub</a>
+          <a href="https://docs.github.com/en/rest" target="_blank" class="text-gray-300 hover:text-white mx-2">API
+            Docs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu functionality
+    $("#menu-btn").on("click", function () {
+      $("#mobile-menu").slideToggle(200).addClass("flex");
+    });
+
+    // GitHub API functionality
+    const API_BASE = 'https://api.github.com';
+
+    // Search functionality
+    $('#search-btn').on('click', function () {
+      const username = $('#username-input').val().trim();
+      if (username) {
+        searchUser(username);
+      }
+    });
+
+    $('#username-input').on('keypress', function (e) {
+      if (e.which === 13) { // Enter key
+        const username = $(this).val().trim();
+        if (username) {
+          searchUser(username);
+        }
+      }
+    });
+
+    // Popular user links
+    $('.username-link').on('click', function () {
+      const username = $(this).data('username');
+      $('#username-input').val(username);
+      searchUser(username);
+    });
+
+    // Search user function
+    async function searchUser(username) {
+      // Show loading state
+      $('#search-btn').prop('disabled', true);
+      $('.search-text').addClass('hidden');
+      $('.loading-text').removeClass('hidden');
+      $('#profile-results').addClass('hidden');
+      $('#error-message').addClass('hidden');
+
+      try {
+        const response = await fetch(`${API_BASE}/users/${username}`);
+
+        if (!response.ok) {
+          throw new Error('User not found');
+        }
+
+        const userData = await response.json();
+        displayProfile(userData);
+
+      } catch (error) {
+        showError(error.message);
+      } finally {
+        // Hide loading state
+        $('#search-btn').prop('disabled', false);
+        $('.search-text').removeClass('hidden');
+        $('.loading-text').addClass('hidden');
+      }
+    }
+
+    // Display profile function
+    function displayProfile(user) {
+      const profileHtml = `
+    <div class="flex flex-col md:flex-row gap-6">
+      <div class="flex-shrink-0">
+        <img src="${user.avatar_url}" alt="${user.login}" class="w-32 h-32 rounded-full border-4 border-[color:var(--primary-color)]">
+      </div>
+      <div class="flex-1">
+        <div class="mb-4">
+          <h3 class="text-2xl font-bold text-[color:var(--secondary-color)]">${user.name || user.login}</h3>
+          <p class="text-[color:var(--primary-color)] font-medium">@${user.login}</p>
+          ${user.bio ? `<p class="mt-2 text-gray-600">${user.bio}</p>` : ''}
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+          <div class="text-center p-3 bg-gray-50 rounded-lg">
+            <div class="text-xl font-bold text-[color:var(--primary-color)]">${user.public_repos}</div>
+            <div class="text-sm text-gray-600">Repositories</div>
+          </div>
+          <div class="text-center p-3 bg-gray-50 rounded-lg">
+            <div class="text-xl font-bold text-[color:var(--primary-color)]">${user.followers}</div>
+            <div class="text-sm text-gray-600">Followers</div>
+          </div>
+          <div class="text-center p-3 bg-gray-50 rounded-lg">
+            <div class="text-xl font-bold text-[color:var(--primary-color)]">${user.following}</div>
+            <div class="text-sm text-gray-600">Following</div>
+          </div>
+          <div class="text-center p-3 bg-gray-50 rounded-lg">
+            <div class="text-xl font-bold text-[color:var(--primary-color)]">${user.public_gists}</div>
+            <div class="text-sm text-gray-600">Gists</div>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+          ${user.company ? `
+            <div class="flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+              <span>${user.company}</span>
+            </div>
+          ` : ''}
+          
+          ${user.location ? `
+            <div class="flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <span>${user.location}</span>
+            </div>
+          ` : ''}
+          
+          <div class="flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>Joined ${new Date(user.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+          </div>
+        </div>
+        
+        <div class="mt-6 flex gap-3">
+          <a href="${user.html_url}" target="_blank" class="inline-flex items-center px-4 py-2 bg-[color:var(--primary-color)] text-white rounded-lg hover:bg-green-700 transition-colors">
+            <svg class="w-4 h-4 mr-2 github-icon" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            View on GitHub
+          </a>
+          ${user.blog ? `
+            <a href="${user.blog.startsWith('http') ? user.blog : 'https://' + user.blog}" target="_blank" class="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+              Website
+            </a>
+          ` : ''}
+        </div>
+      </div>
+    </div>
+  `;
+
+      $('#profile-content').html(profileHtml);
+      $('#profile-results').removeClass('hidden');
+    }
+
+    // Show error function
+    function showError(message) {
+      $('#error-text').text(message);
+      $('#error-message').removeClass('hidden');
+    }
+
+    // Auto-focus on search input
+    $(document).ready(function () {
+      $('#username-input').focus();
+    });
+  </script>
+
+</body>
+
+</html>

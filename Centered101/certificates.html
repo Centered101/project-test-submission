@@ -34,14 +34,7 @@
 </head>
 
 <body class="bg-[color:var(--bg-color)] min-h-screen">
-    <!-- preloader -->
-    <div id="preloader"
-        class="!fixed inset-0 flex flex-col justify-center items-center bg-[color:var(--bg-color)] text-center min-h-screen uppercase font-semibold md:text-xl space-y-4 z-50 select-none visible touch-none">
-        <span
-            class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto"></span>
-        <h2>Loading</h2>
-        <p>Your adventure is about to begin</p>
-    </div>
+
     <!-- Header -->
     <header class="max-w-6xl mx-auto bg-[color:var(--primary-color)] text-white text-center shadow-lg py-8">
         <h1 class="text-4xl font-bold">ใบประกาศนียบัตร</h1>
@@ -117,6 +110,24 @@
                     class="bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2">
                     <i class="fas fa-certificate"></i>
                 </div>
+
+                <div class="flex gap-2 ml-auto">
+                    <button data-cols="1"
+                        class="grid-btn !w-12 bg-[color:var(--bg-color)] text-center text-sm border rounded-lg shadow-inner px-4 py-2">
+                        <i class="fa-solid fa-list"></i>
+                    </button>
+
+                    <button data-cols="2"
+                        class="grid-btn !w-12 bg-[color:var(--bg-color)] text-center text-sm border rounded-lg shadow-inner px-4 py-2">
+                        <i class="fa-solid fa-grip-vertical"></i>
+                    </button>
+
+                    <button data-cols="3"
+                        class="grid-btn !w-12 bg-[color:var(--bg-color)] text-center text-sm border rounded-lg shadow-inner px-4 py-2">
+                        <i class="fa-solid fa-grip"></i>
+                    </button>
+                </div>
+
             </div>
         </div>
     </section>
@@ -134,7 +145,22 @@
             </div>
         </div>
     </section>
+    <script>
+        const grid = document.getElementById("certificates-grid");
+        const buttons = document.querySelectorAll(".grid-btn");
 
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const cols = btn.dataset.cols;
+
+                // ลบ class เดิมก่อน
+                grid.classList.remove("grid-cols-1", "grid-cols-2", "grid-cols-3");
+
+                // ใส่ class ใหม่
+                grid.classList.add(`grid-cols-${cols}`);
+            });
+        });
+    </script>
     <!-- Image Modal -->
     <div onclick="closeImageModal()" id="image-modal"
         class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-40">
