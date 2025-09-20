@@ -54,19 +54,18 @@
             <img id="fullscreenImage"
                 class="size-full max-w-full max-h-full bg-[color:var(--white-smoker)] border rounded-full md:rounded-none shadow-inner cursor-pointer duration-300 ease-in-out"
                 alt="large profile picture" onclick="toggleImageShape(event)" draggable="false"
-                oncontextmenu="return false" onerror="this.src='/images/icon.svg'" />
+                onerror="this.src='/images/icon.svg'" />
             <div id="qrContainer"
                 class="hidden flex flex-col items-center justify-center bg-white p-4 border rounded-xl overflow-hidden">
                 <div id="loadingSpinner" class="flex flex-col items-center justify-center">
                     <span
                         class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto"></span>
                 </div>
-                <img id="qrImage" src="" alt="QR Code" class="max-w-[90vw] max-h-[70vh] hidden p-4" draggable="false"
-                    oncontextmenu="return false" />
+                <img id="qrImage" src="" alt="QR Code" class="max-w-[90vw] max-h-[70vh] hidden p-4" draggable="false" />
             </div>
         </div>
 
-        <div class="absolute bottom-16 md:bottom-8 flex items-center justify-center gap-6 bg-[color:var(--white-smoker)] border rounded-full p-2 z-40 *:flex *:items-center *:justify-center *:bg-[color:var(--bg-color)] *:rounded-full *:shadow-inner *:p-4 *:transition-all *:duration-300"
+        <div class="absolute bottom-16 md:bottom-4 flex items-center justify-center gap-6 bg-[color:var(--white-smoker)] border rounded-full p-2 z-40 *:flex *:items-center *:justify-center *:bg-[color:var(--bg-color)] *:rounded-full *:shadow-inner *:p-4 *:transition-all *:duration-300"
             onclick="event.stopPropagation()">
 
             <button id="share" title="share" onclick="share()" class="active:scale-90">
@@ -99,7 +98,7 @@
         class="fixed top-0 left-0 h-screen w-5/6 md:w-1/3 lg:w-1/4 bg-[color:var(--white-smoker)] border-r md:block -translate-x-full md:translate-x-0 transform transition-transform duration-300 z-30 overflow-x-auto">
 
         <div class="flex items-center justify-between border-b">
-            <p class="uppercase line-clamp-1 p-4 md:py-8">Menu GitHub API Profile</p>
+            <p class="uppercase line-clamp-1 p-4 md:py-8">Menu Profile</p>
             <div id="notification-history-content"></div>
         </div>
         <!-- Dropdown เปลี่ยนธีม -->
@@ -189,24 +188,24 @@
         <p class="uppercase line-clamp-1 p-4">Social Media Links</p>
         <div class="flex items-center justify-between gap-2 border-y p-4">
             <a title="GitHub" aria-label="GitHub" target="_blank" href="https://github.com/centered101/"
-                class="fade-in w-full flex items-center justify-center bg-[color:var(--bg-color)] border rounded-xl shadow-inner p-2 active:bg-[color:var(--accent-color)]">
+                class="fade-in w-full flex items-center justify-center bg-[color:var(--bg-color)] border rounded-xl shadow-inner p-2 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)]">
                 <i class="fab fa-github"></i>
             </a>
             <a title="Instagram" aria-label="Instagram" target="_blank" href="https://instagram.com/centered101/"
-                class="fade-in w-full flex items-center justify-center bg-[color:var(--bg-color)] border rounded-xl shadow-inner p-2 active:bg-[color:var(--accent-color)]">
+                class="fade-in w-full flex items-center justify-center bg-[color:var(--bg-color)] border rounded-xl shadow-inner p-2 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)]">
                 <i class="fab fa-instagram"></i>
             </a>
             <a title="LinkedIn" aria-label="LinkedIn" target="_blank" href="https://linkedin.com/in/centered101/"
-                class="fade-in w-full flex items-center justify-center bg-[color:var(--bg-color)] border rounded-xl shadow-inner p-2 active:bg-[color:var(--accent-color)]">
+                class="fade-in w-full flex items-center justify-center bg-[color:var(--bg-color)] border rounded-xl shadow-inner p-2 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)]">
                 <i class="fab fa-linkedin"></i>
             </a>
             <a title="Twitter/X" aria-label="Twitter/X" target="_blank" href="https://x.com/centered101"
-                class="fade-in w-full flex items-center justify-center bg-[color:var(--bg-color)] border rounded-xl shadow-inner p-2 active:bg-[color:var(--accent-color)]">
+                class="fade-in w-full flex items-center justify-center bg-[color:var(--bg-color)] border rounded-xl shadow-inner p-2 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)]">
                 <i class="fa-brands fa-twitter"></i>
             </a>
             <a title="Discord" aria-label="Discord" target="_blank"
                 href="https://discordapp.com/users/955850603962183690"
-                class="fade-in w-full flex items-center justify-center bg-[color:var(--bg-color)] border rounded-xl shadow-inner p-2 active:bg-[color:var(--accent-color)]">
+                class="fade-in w-full flex items-center justify-center bg-[color:var(--bg-color)] border rounded-xl shadow-inner p-2 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)]">
                 <i class="fab fa-discord"></i>
             </a>
         </div>
@@ -229,8 +228,7 @@
                 <!-- รูปโปรไฟล์ -->
                 <img id="profile-img"
                     class="size-24 md:size-56 !fill-[color:var(--primary-color)] rounded-full md:rounded-none cursor-pointer"
-                    draggable="false" oncontextmenu="return false" src="/images/icon.svg"
-                    onerror="this.src='/images/icon.svg'">
+                    draggable="false" src="/images/icon.svg" onerror="this.src='/images/icon.svg'">
                 <div class="w-full max-w-xl flex flex-wrap justify-start items-center md:gap-y-4 *:text-sm">
                     <p id="profile-name" translate="no" class="basis-full !text-xl md:!text-3xl px-2">
                         API not connected</p>
@@ -246,19 +244,20 @@
                         class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)] ease-in-out duration-300">
                         Following<span id="following-count">0</span>
                     </label>
+                    <label title="gist" for="gist"
+                        class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)] ease-in-out duration-300">
+                        gist<span id="gist-count">0</span>
+                    </label>
                 </div>
             </div>
 
             <div class="flex flex-col justify-start !gap-6 md:gap-8 px-4">
                 <div id="github-profile-details"
                     class="flex-1 flex flex-col gap-2 *:flex *:flex-row *:items-center *:gap-1">
-                    <p hidden id="github-profile-location" class="w-2/3"></p>
-                    <p hidden id="github-profile-bio" class="w-2/3"></p>
-                    <a class='max-w-min flex items-center gap-1 text-[color:var(--primary-color)]'
-                        href='/centered101/certificates.html' target='_blank'>
-                        <i class="fa-solid fa-link"></i>
-                        <p>Certificates</p>
-                    </a>
+                    <p id="github-profile-date" class="w-2/3"></p>
+                    <p id="github-profile-company" class="w-2/3"></p>
+                    <p id="github-profile-location" class="w-2/3"></p>
+                    <p id="github-profile-bio" class="w-2/3"></p>
                 </div>
                 <div id="github-follow-button-wrapper"
                     class="basis-full flex-1 flex flex-row items-center gap-2 w-full md:max-w-full *:uppercase">

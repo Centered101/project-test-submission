@@ -47,8 +47,7 @@
             onclick="viewImage('https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png')"
             class="shrink-0 touch-manipulation">
             <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
-                alt="พงศ์พล พรมผา" class="size-12 rounded-full object-cover" draggable="false"
-                oncontextmenu="return false" />
+                alt="พงศ์พล พรมผา" class="size-12 rounded-full object-cover" draggable="false"/>
         </button>
         <h2 class="text-3xl text-pretty font-bold !line-clamp-1">
             <span>พงศ์พล พรมผา</span>
@@ -63,7 +62,7 @@
                 ค้นหาใบประกาศนียบัตร
             </h3>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4">
                 <!-- Search Input -->
                 <div>
                     <label for="search-input"
@@ -75,7 +74,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2">
+                <div class="grid grid-cols-2 gap-2 md:gap-4">
                     <!-- Year Filter -->
                     <div>
                         <label for="year-filter"
@@ -97,7 +96,7 @@
                 </div>
             </div>
 
-            <div class="flex gap-2 mt-4 pt-4 border-t">
+            <div class="flex gap-2 md:gap-4 mt-4 pt-4 border-t">
                 <button id="clear-filters"
                     class="bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2 active:bg-[color:var(--accent-color)]">
                     <span class="flex items-center gap-2">
@@ -111,7 +110,7 @@
                     <i class="fas fa-certificate"></i>
                 </div>
 
-                <div class="flex gap-2 ml-auto">
+                <div class="flex gap-2 md:gap-4 ml-auto">
                     <button data-cols="1"
                         class="grid-btn bg-[color:var(--bg-color)] text-center text-sm border rounded-lg shadow-inner px-4 py-2 active:bg-[color:var(--accent-color)]">
                         <i class="fa-solid fa-list"></i>
@@ -147,8 +146,7 @@
     </section>
 
     <!-- Image Modal -->
-    <div onclick="closeImageModal()" id="image-modal"
-        class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-40">
+    <div onclick="closeImageModal()" id="image-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-40">
 
         <!-- Close text -->
         <span
@@ -307,18 +305,14 @@
                     const isNoImage = imageUrl === noimages;
 
                     html += `
-                <div data-aos="fade-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border rounded-lg shadow-sm transition-transform ease-in-out duration-300 overflow-hidden">
+                <div data-aos="fade-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border rounded-lg shadow-sm transition-transform ease-in-out duration-300">
                     ${isNoImage ?
                             `<div class="relative overflow-hidden w-full border-b rounded-t-lg">
-                            <img src="${imageUrl}" alt="${cert.name}" 
-                                class="bg-stripes-gray w-full bg-[color:var(--bg-color)] object-cover"
-                                loading="lazy" draggable="false" oncontextmenu="return false">
+                                <img src="${imageUrl}" alt="${cert.name}" class="bg-stripes-gray w-full bg-[color:var(--bg-color)] object-cover" loading="lazy" draggable="false">
                             </div>`
                             :
                             `<button onclick="viewImage('${imageUrl}', '${cert.name.replace(/'/g, "\\'")}')" class="relative overflow-hidden w-full text-left border-b rounded-t-lg group/img">
-                                <img src="${imageUrl}" alt="${cert.name}" 
-                                    class="bg-stripes-gray w-full bg-[color:var(--bg-color)] object-contain transition-transform duration-300 group-hover/img:scale-105 group-focus/img:scale-105"
-                                    loading="lazy" draggable="false" oncontextmenu="return false">
+                                <img src="${imageUrl}" alt="${cert.name}" class="bg-stripes-gray w-full bg-[color:var(--bg-color)] object-contain transition-transform duration-300 group-hover/img:scale-105 group-focus/img:scale-105" loading="lazy" draggable="false">
                                 <div class="absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-700 flex items-center justify-center group-hover/img:bg-opacity-25 group-focus/img:bg-opacity-25">
                                     <div class="size-16 flex items-center justify-center bg-[color:var(--white-smoker)] text-[color:var(--primary-color)] text-2xl rounded-full opacity-0 transition-opacity duration-700 group-hover/img:opacity-100 group-focus/img:opacity-100">
                                         <i class="fas fa-search-plus"></i>
@@ -330,11 +324,10 @@
                                 </div>
                             </button>
                             `}
-                    <div title="${cert.name}" class="p-4 space-y-2">
+                    <div title="${cert.name} - ${cert.description}" class="p-4 space-y-2">
                         <h3 class="text-lg font-semibold line-clamp-1 leading-tight">${highlightText(cert.name, searchTerm)}</h3>
-                        ${cert.issuer ? `<p class="flex items-center gap-2 text-sm text-[color:var(--text-500)] line-clamp-1"><i class="fas fa-building"></i>${cert.issuer}</p>` : ''}
-                        <p class="flex items-center gap-2 text-sm text-[color:var(--text-500)] line-clamp-1"><i class="fas fa-calendar-alt"></i>${formatDateThai(cert.date)}</p>
-                        ${cert.description ? `<p class="text-sm text-[color:var(--text-600)] line-clamp-3">${highlightText(cert.description, searchTerm)}</p>` : ''}
+                        ${cert.issuer ? `<p class="flex items-center gap-2 text-sm text-[color:var(--text-500)]"><i class="fas fa-building"></i>${cert.issuer}</p>` : ''}
+                        <p class="flex items-center gap-2 text-sm text-[color:var(--text-500)]"><i class="fas fa-calendar-alt"></i>${formatDateThai(cert.date)}</p>
                         ${cert.id ? `<span class="size-6 absolute -top-4 -right-2 flex items-center justify-center bg-[color:var(--primary-color)] text-white text-xs rounded-full font-medium shadow-md">${cert.id}</span>` : ''}
                     </div>
                 </div>`;
@@ -375,6 +368,13 @@
         function viewImage(src, alt = '') {
             $('#modal-image').attr('src', src).attr('alt', alt);
             $('#image-modal').removeClass('hidden');
+            $('#image-modal').append(`
+                        ${cert.description ? `<p class="text-sm text-[color:var(--text-600)] line-clamp-3">${highlightText(cert.description, searchTerm)}</p>` : ''}
+            
+            `);
+            AOS.refresh();
+
+            
         }
         function closeImageModal() { $('#image-modal').addClass('hidden'); }
         $(document).keydown(function (e) { if (e.key === 'Escape') closeImageModal(); });

@@ -1,6 +1,12 @@
 @import url(/style/main.css);
 /* ดึงไฟล์ CSS ภายนอกมาใช้ (main.css) */
 
+*,
+html {
+    scrollbar-width: none;
+    scroll-behavior: smooth
+}
+
 body {
     background-image: radial-gradient(var(--border) 1px, transparent 1px),
         radial-gradient(var(--border) 1px, transparent 1px);
