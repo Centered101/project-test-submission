@@ -211,9 +211,7 @@ function renderHistoryItems() {
                         <p class="text-xs text-gray-500 mt-1">${timeStr}</p>
                     </div>
                     <button class="delete-history-item flex-shrink-0 hover:text-red-500" data-id="${item.id}">
-                        <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                        </svg>
+                        <i class="fa-solid fa-trash text-gray-500"></i>
                     </button>
                 </div>
             </div>
@@ -257,11 +255,13 @@ setInterval(renderHistoryItems, 1000);
 function getTypeIcon(type) {
     switch (type) {
         case 'success':
-            return '<svg class="size-[1em] text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>';
+            return '<i class="fa-solid fa-circle-check text-green-500"></i>';
         case 'error':
-            return '<svg class="size-[1em] text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>';
+            return '<i class="fa-solid fa-circle-exclamation text-red-500"></i>';
+        case 'info':
+            return '<i class="fa-solid fa-circle-info text-yellow-500"></i>';
         default:
-            return '<svg class="size-[1em] text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>';
+            return '<i class="fa-regular fa-circle-info text-blue-500"></i>';
     }
 }
 
@@ -298,17 +298,17 @@ function showNotification(message, type = 'info', link = null) {
         <div class="notification-item max-w-sm min-w-min bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-2 py-1 sm:px-3 sm:py-2 transition-all duration-300 transform translate-x-full select-none ${!link ? 'cursor-pointer' : ''}">
             <div class="flex items-center gap-2">
                 <div class="flex-shrink-0">
-        ${type === 'success' ?
-            '<svg class="size-[1em] text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>' :
+                ${type === 'success' ?
+            '<i class="fa-solid fa-circle-check text-green-500"></i>' :
             type === 'error' ?
-                '<svg class="size-[1em] text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>' :
+                '<i class="fa-solid fa-circle-exclamation text-red-500"></i>' :
                 type === 'info' ?
-                    '<svg class="size-[1em] text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>' :
-                    '<svg class="size-[1em] text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>'
+                    '<i class="fa-solid fa-circle-info text-yellow-500"></i>' :
+                    '<i class="fa-regular fa-circle-info text-blue-500"></i>'
         }
                 </div>
                 <div class="flex-1">
-        ${link ?
+                ${link ?
             `<a href="${link}" target="_blank" class="btn-text text-sm text-[color:var(--primary-color)] font-normal" rel="noopener noreferrer">${message}</a>` :
             `<p class="text-sm font-normal break-words line-clamp-1">${message}</p>`
         }

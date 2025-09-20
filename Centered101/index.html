@@ -250,15 +250,41 @@
                     </label>
                 </div>
             </div>
-
+<style>
+            .loading-skeleton {
+            animation: pulse 1.5s ease-in-out infinite;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+        }
+</style>
             <div class="flex flex-col justify-start !gap-6 md:gap-8 px-4">
                 <div id="github-profile-details"
-                    class="flex-1 flex flex-col gap-2 *:flex *:flex-row *:items-center *:gap-1">
-                    <p id="github-profile-date" class="w-2/3"></p>
-                    <p id="github-profile-company" class="w-2/3"></p>
-                    <p id="github-profile-location" class="w-2/3"></p>
-                    <p id="github-profile-bio" class="w-2/3"></p>
+                    class="flex-1 flex flex-col gap-2 *:flex *:flex-row *:items-center *:gap-2 text-sm md:text-base">
+
+                    <!-- Date -->
+                    <p id="github-profile-date" class="w-2/3">
+                        <i class="fa-solid fa-calendar text-blue-500"></i>
+                        <span></span>
+                    </p>
+
+                    <!-- Company -->
+                    <p id="github-profile-company" class="w-2/3">
+                        <i class="fa-solid fa-building text-blue-500"></i>
+                        <span></span>
+                    </p>
+
+                    <!-- Location -->
+                    <p id="github-profile-location" class="w-2/3">
+                        <i class="fa-solid fa-location-dot text-blue-500"></i>
+                        <span></span>
+                    </p>
+
+                    <!-- Bio -->
+                    <p id="github-profile-bio" class="w-2/3">
+                        <span></span>
+                    </p>
                 </div>
+
                 <div id="github-follow-button-wrapper"
                     class="basis-full flex-1 flex flex-row items-center gap-2 w-full md:max-w-full *:uppercase">
                 </div>

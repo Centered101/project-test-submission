@@ -19,9 +19,7 @@ function updateRateLimit() {
             const warningMessage = (margin = "") => `
                 <div class="bg-[color:var(--white-smoker)] shadow-inner text-[color:var(--text-color)] text-sm text-wrap border rounded-xl ${margin} p-2">
                     <span class="flex items-center justify-center gap-2">
-                        <svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                        </svg>
+                        <i class="fa-solid fa-circle-exclamation text-red-500"></i>
                         You have reached the API limit! Please wait until ${resetTime}.
                     </span>
                 </div>`;
@@ -46,9 +44,7 @@ function updateRateLimit() {
                 $rateStatus.html(`
                     <p>Remaining: <span id="rate-remaining" title="${remaining} requests" class="fade-in text-[color:var(--primary-color)]">${remaining}</span> / 60 requests</p>
                     <p class="flex items-center gap-2">
-                        <svg class="size-6 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                        </svg>
+                        <i class="fa-solid fa-circle-exclamation text-red-500"></i>
                         <span>Please wait until ${resetTime}</span>
                     </p>
                 `);
@@ -144,36 +140,40 @@ async function fetchData(url, callback) {
  * - จำนวน repositories, followers, following
  * - จัดการการแสดง/ซ่อน elements ตามข้อมูลที่มี
  */
-fetchData(`https://api.github.com/users/${username}`, function (data) {
+$.getJSON(`https://api.github.com/users/${username}`, function (data) {
     // ตั้งค่ารูปโปรไฟล์
     $('#profile-img').attr('src', data.avatar_url || "https://project-test-submission.netlify.app/images/icon.svg");
 
-    // ตั้งค่าชื่อ (แก้ไข: เอา + ออกแล้วใช้ || แทน)
+    // ตั้งค่าชื่อ
     $('#profile-name').html(data.name || 'Developer');
 
     // ตั้งค่าข้อมูลสถิติ
     $('#repo-count').text(data.public_repos || "0");
     $('#followers-count').text(data.followers || "0");
     $('#following-count').text(data.following || "0");
-    $('#gist-count').removeClass('loading-skeleton').text(user.public_gists);
-    $('#github-profile-date').textContent = new Date(data.created_at).toLocaleDateString('th-TH');
-    $('#github-profile-location').textContent = data.location || 'Not specified';
-    $('#github-profile-company').textContent = data.company || 'Not specified';
+    $('#gist-count').removeClass('loading-skeleton').text(data.public_gists || "0");
 
-    // // จัดการการแสดง bio
-    // if (data.bio) {
-    //     $('#github-profile-bio').addClass('flex').removeClass('hidden').text(data.bio);
-    // } else {
-    //     $('#github-profile-bio').addClass('hidden').removeClass('flex');
-    // }
+    // ฟังก์ชันกลาง
+    function setProfileField(selector, value, fallback = null) {
+        if (value) {
+            $(`${selector}`).append(value);
+            $(selector).removeClass('hidden').addClass('flex'); // แสดงออกมา
+        } else if (fallback) {
+            $(`${selector}`).append(fallback);
+            $(selector).removeClass('hidden').addClass('flex'); // ยังแสดง (แต่ใช้ fallback)
+        } else {
+            $(selector).addClass('hidden').removeClass('flex'); // ซ่อนถ้าไม่มีข้อมูล
+        }
+    }
 
-    // // ซ่อน github-profile-details ถ้าไม่มี location และ bio
-    // if (!data.location && !data.bio) {
-    //     $('#github-profile-details').addClass('hidden').removeClass('flex');
-    // } else {
-    //     $('#github-profile-details').addClass('flex').removeClass('hidden');
-    // }
+    // เรียกใช้ฟังก์ชัน
+    setProfileField('#github-profile-date', new Date(data.created_at).toLocaleDateString('th-TH'));
+    setProfileField('#github-profile-company', data.company);
+    setProfileField('#github-profile-location', data.location);
+    setProfileField('#github-profile-bio', data.bio);
 });
+
+
 
 /**
  * ดึงและแสดงรายการ repositories
