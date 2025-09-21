@@ -230,8 +230,8 @@
                     class="size-24 md:size-56 !fill-[color:var(--primary-color)] rounded-full md:rounded-none cursor-pointer"
                     draggable="false" src="/images/icon.svg" onerror="this.src='/images/icon.svg'">
                 <div class="w-full max-w-xl flex flex-wrap justify-start items-center md:gap-y-4 *:text-sm">
-                    <p id="profile-name" translate="no" class="basis-full !text-xl md:!text-3xl px-2">
-                        API not connected</p>
+                    <p id="profile-name" translate="no" class="basis-full !text-xl md:!text-3xl px-2">API not connected
+                    </p>
                     <label title="repository" for="repo"
                         class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)] ease-in-out duration-300">
                         Repository<span id="repo-count">0</span>
@@ -244,45 +244,20 @@
                         class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)] ease-in-out duration-300">
                         Following<span id="following-count">0</span>
                     </label>
-                    <label title="gist" for="gist"
-                        class="max-w-sm flex-1 flex flex-col-reverse p-2 cursor-pointer active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)] ease-in-out duration-300">
-                        gist<span id="gist-count">0</span>
-                    </label>
                 </div>
             </div>
-<style>
-            .loading-skeleton {
-            animation: pulse 1.5s ease-in-out infinite;
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-        }
-</style>
+
             <div class="flex flex-col justify-start !gap-6 md:gap-8 px-4">
                 <div id="github-profile-details"
-                    class="flex-1 flex flex-col gap-2 *:flex *:flex-row *:items-center *:gap-2 text-sm md:text-base">
-
+                    class="flex-1 flex flex-col text-sm md:text-base">
                     <!-- Date -->
-                    <p id="github-profile-date" class="w-2/3">
-                        <i class="fa-solid fa-calendar text-blue-500"></i>
-                        <span></span>
-                    </p>
-
+                    <p id="github-profile-date" class="w-2/3"></p>
                     <!-- Company -->
-                    <p id="github-profile-company" class="w-2/3">
-                        <i class="fa-solid fa-building text-blue-500"></i>
-                        <span></span>
-                    </p>
-
+                    <p id="github-profile-company" class="w-2/3"></p>
                     <!-- Location -->
-                    <p id="github-profile-location" class="w-2/3">
-                        <i class="fa-solid fa-location-dot text-blue-500"></i>
-                        <span></span>
-                    </p>
-
+                    <p id="github-profile-location" class="w-2/3"></p>
                     <!-- Bio -->
-                    <p id="github-profile-bio" class="w-2/3">
-                        <span></span>
-                    </p>
+                    <p id="github-profile-bio" class="w-2/3"></p>
                 </div>
 
                 <div id="github-follow-button-wrapper"

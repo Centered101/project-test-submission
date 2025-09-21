@@ -210,8 +210,8 @@ function renderHistoryItems() {
             }
                         <p class="text-xs text-gray-500 mt-1">${timeStr}</p>
                     </div>
-                    <button class="delete-history-item flex-shrink-0 hover:text-red-500" data-id="${item.id}">
-                        <i class="fa-solid fa-trash text-gray-500"></i>
+                    <button class="delete-history-item flex-shrink-0 text-gray-500 hover:text-red-500" data-id="${item.id}">
+                        <i class="fa-solid fa-trash"></i>
                     </button>
                 </div>
             </div>
