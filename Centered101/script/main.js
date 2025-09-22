@@ -218,7 +218,7 @@ const project = [
     { name: "roblox-games-Kru-Wai", link: "https://www.roblox.com/games/76640670602072/Kru-Wai", img: "./images/poster/KRU_WAI.png" },
 ];
 
-const noimages = "https://project-test-submission.netlify.app/images/img/placeholder.svg";
+const noimages = "https://project-test-submission.netlify.app/images/img/noitems.svg";
 
 $.each(project, function (_, { name, link, img }) {
     const listItem = `
