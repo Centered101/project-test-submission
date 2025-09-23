@@ -454,34 +454,6 @@ function initializeNotificationSystem() {
     });
 }
 
-// เพิ่ม CSS animations
-if (!document.getElementById('notification-animations')) {
-    const style = document.createElement('style');
-    style.id = 'notification-animations';
-    style.textContent = `
-        @keyframes slideInRight {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
-        }
-        
-        @keyframes slideOut {
-            from { 
-                opacity: 1; 
-                transform: translateX(0); 
-            }
-            to { 
-                opacity: 0; 
-                transform: translateX(100%); 
-            }
-        }
-        
-        .notification-item:hover {
-            transform: translateY(-2px) !important;
-        }
-    `;
-    document.head.appendChild(style);
-}
-
 // รอให้ jQuery โหลดเสร็จแล้วจึงเริ่มต้นระบบ
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeNotificationSystem);
