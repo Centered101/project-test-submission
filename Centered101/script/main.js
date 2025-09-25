@@ -4,7 +4,7 @@ const URLShare = window.location.href;
 let isQRMode = false;
 
 function openFullscreen(imageSrc) {
-    $("#fullscreen").removeClass("hidden").fadeIn(300);
+    $("#fullscreen").removeClass("hidden").fadeIn(150);
     $("#fullscreenImage").attr("src", imageSrc).removeClass("hidden");
     $("#loadingSpinner").addClass("hidden");
     $("#qrContainer").addClass("hidden");
@@ -13,7 +13,7 @@ function openFullscreen(imageSrc) {
 }
 
 function closeFullscreen() {
-    $("#fullscreen").fadeOut(300);
+    $("#fullscreen").fadeOut(150);
     $("#fullscreenImage").removeClass("hidden");
     $("#loadingSpinner").addClass("hidden");
     $("#qrContainer").addClass("hidden");
@@ -270,17 +270,15 @@ const project = [
 // สร้าง list item ของ project
 $.each(project, function (i, { name, img, link }) {
     const listItem = `
-    <li>
-      <a title="${name}" 
-           class="flex flex-col justify-center items-center w-full h-full overflow-hidden cursor-pointer transition-transform ease-in-out duration-300 active:brightness-90"
-           onclick="showProjectDetails(${i})">
+    <li title="${name}"class="flex flex-col justify-center items-center w-full h-full overflow-hidden cursor-pointer transition-transform ease-in-out duration-300 active:brightness-90"
+        onclick="showProjectDetails(${i})">
         <div class="w-full aspect-[4/5] overflow-hidden">
-          <img src="${img || noimages}"
-               onerror="this.src='${noimages}'"
-               class="block h-full w-full object-cover object-center"
-               style="background-image: url('${noimages}'); background-size: cover; background-position: center;">
+            <img src="${img || noimages}"
+                onerror="this.src='${noimages}'"
+                class="block h-full w-full object-cover object-center"
+                style="background-image: url('${noimages}'); background-size: cover; background-position: center;"
+                draggable="false">
         </div>
-      </a>
     </li>`;
     $("#projects-list").append(listItem);
 });
@@ -289,17 +287,18 @@ $.each(project, function (i, { name, img, link }) {
 function showProjectDetails(index) {
     const { img, name, description, link, date, type, tech } = project[index];
 
-    $("#project-details").removeClass("hidden").fadeIn(300).html(`
-    <div class="relative max-w-3xl flex justify-center gap-4 bg-[color:var(--white-smoker)] border rounded-xl shadow-xl m-4 p-4 md:p-6">
-        <a href="${link}" target="_blank" class="w-1/2 border rounded-lg overflow-hidden">
+    $("#project-details").removeClass("hidden").fadeIn(150).html(`
+    <div class="relative w-full max-w-4xl flex flex-col md:flex-row justify-center gap-6 bg-[color:var(--white-smoker)] border rounded-xl shadow-xl m-2 p-4 md:p-6">
+        <div class="aspect-[4/5] md:w-1/2">
             <img src="${img || noimages}"
                 onerror="this.src='${noimages}'"
-                class="block h-full w-full object-cover object-center"
-                style="background-image: url('${noimages}'); background-size: cover; background-position: center;">
-        </a>
-        <div class="min-h-full flex-1 flex flex-col justify-between gap-4">
+                class="block h-full w-full border rounded-lg object-cover object-center"
+                style="background-image: url('${noimages}'); background-size: cover; background-position: center;"
+                draggable="false">
+        </div>
+        <div class="min-h-full min-w-2xl flex-1 flex flex-col justify-between gap-4">
             <div class="space-y-2">
-                <h2 class="text-xl md:text--3xl font-bold mb-4">${name}</h2>
+                <h2 class="text-xl md:text-3xl font-bold mb-4">${name}</h2>
                 <p class="text-sm text-gray-500">${description || "No description provided"}</p>
 
                 <p class="flex items-center gap-2 text-xs text-gray-600">
@@ -326,7 +325,7 @@ function showProjectDetails(index) {
 
 // เพิ่มฟังก์ชันปิด modal ง่าย ๆ
 function closeModal() {
-    $("#project-details").fadeOut(300);
+    $("#project-details").fadeOut(150);
 }
 
 // ปิด modal เมื่อคลิกนอก
@@ -338,3 +337,76 @@ $(document).on('click', '#project-details', function (e) {
 $(document).on('keydown', function (e) {
     if (e.key === 'Escape') closeModal();
 });
+
+
+
+// —[ Followers/Following Section ]—————————————————————————————————————————————————————————————————————
+function openHighlight(type) {
+    let content = "";
+
+    switch (type) {
+        case "projects":
+            content = `
+        <div class="relative w-80 bg-[color:var(--white-smoker)] rounded-xl p-6">
+          <button id="close-highlight" class="absolute top-2 right-2 text-gray-600">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3 class="text-xl font-bold mb-2">Projects</h3>
+          <p>Here are some of my featured projects with GitHub API integration.</p>
+        </div>
+      `;
+            break;
+
+        case "skills":
+            content = `
+        <div class="relative w-80 bg-[color:var(--white-smoker)] rounded-xl p-6">
+          <button id="close-highlight" class="absolute top-2 right-2 text-gray-600">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3 class="text-xl font-bold mb-2">Skills</h3>
+          <ul class="list-disc list-inside">
+            <li>JavaScript / React</li>
+            <li>Tailwind CSS</li>
+            <li>Node.js</li>
+          </ul>
+        </div>
+      `;
+            break;
+
+        case "certs":
+            content = `
+        <div class="relative w-80 bg-[color:var(--white-smoker)] rounded-xl p-6">
+          <button id="close-highlight" class="absolute top-2 right-2 text-gray-600">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3 class="text-xl font-bold mb-2">Certificates</h3>
+          <p>Some certifications I've achieved in programming and business.</p>
+        </div>
+      `;
+            break;
+    }
+
+    // แสดงผล modal ด้วย jQuery
+    $("#project-details")
+        .removeClass("hidden")
+        .hide()
+        .fadeIn(150)
+        .html(content);
+
+    // ปุ่มปิด
+    $("#close-highlight").on("click", function () {
+        $("#project-details").fadeOut(150, function () {
+            $(this).addClass("hidden").html("");
+        });
+    });
+
+    // ปิด modal เมื่อกดพื้นหลัง
+    $("#project-details").on("click", function (e) {
+        if (e.target === this) {
+            $(this).fadeOut(200, function () {
+                $(this).addClass("hidden").html("");
+            });
+        }
+    });
+
+}

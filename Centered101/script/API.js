@@ -8,25 +8,15 @@ const CONFIG = {
 // Global state
 let lowApiNotified = false;
 
-/**
- * แสดงข้อความแจ้งเตือน (สมมุติว่ามีฟังก์ชัน showNotification อยู่แล้ว)
- * @param {string} message - ข้อความที่จะแสดง
- * @param {string} type - ประเภทของข้อความ ('error', 'warning', etc.)
- */
+// Notification
 function showNotification(message, type = 'info') {
     console.log(`[${type.toUpperCase()}] ${message}`);
-    // Implementation depends on your notification system
 }
 
-/**
- * สร้าง HTML สำหรับข้อความเตือน API limit
- * @param {string} resetTime - เวลาที่ API จะ reset
- * @param {string} margin - CSS class สำหรับ margin
- * @returns {string} HTML string
- */
+// API limit warning
 function createApiLimitWarning(resetTime, margin = "") {
     return `
-        <div class="h-screen flex items-center justify-center bg-[color:var(--white-smoker)] shadow-inner text-[color:var(--text-color)] text-sm text-wrap border rounded-xl ${margin} p-2">
+        <div class="h-screen flex items-center justify-center bg-[color:var(--white-smoker)] shadow-inner text-[color:var(--text-color)] text-sm border rounded-xl ${margin} p-2">
             <span class="flex flex-col items-center justify-center gap-2">
                 <i class="fa-solid fa-circle-exclamation text-3xl md:text-5xl text-red-500"></i>
                 <p class="text-xl md:text-3xl">You have reached the API limit! Please wait until ${resetTime}.</p>
@@ -34,10 +24,6 @@ function createApiLimitWarning(resetTime, margin = "") {
         </div>`;
 }
 
-/**
- * ตรวจสอบและจัดการ API rate limit status
- * @param {number} remaining - จำนวนคำขอที่เหลือ
- */
 function handleApiLimitNotification(remaining) {
     if (remaining <= 10 && remaining > 0 && !lowApiNotified) {
         showNotification('Low API requests remaining! Please wait!');
@@ -47,16 +33,10 @@ function handleApiLimitNotification(remaining) {
     }
 }
 
-/**
- * อัปเดตการแสดงผล rate limit status
- * @param {number} remaining - จำนวนคำขอที่เหลือ
- * @param {string} resetTime - เวลาที่ API จะ reset
- */
 function updateRateLimitDisplay(remaining, resetTime) {
     const $rateStatus = $("#rateStatus").removeClass("animate-pulse");
 
     if (remaining === 0) {
-        // แสดงข้อความเตือนในทุก section
         const warningHtml = createApiLimitWarning(resetTime, "text-center m-0");
         $("#repo-list").html(warningHtml);
         $("#followers-list, #following-list").html(createApiLimitWarning(resetTime, "text-center m-2 md:m-4"));
@@ -76,12 +56,9 @@ function updateRateLimitDisplay(remaining, resetTime) {
     }
 }
 
-/**
- * ดึงข้อมูล rate limit จาก GitHub API และอัปเดตการแสดงผล
- */
 function updateRateLimit() {
     fetch(`${CONFIG.apiBaseUrl}/rate_limit`)
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
             const remaining = data.rate.remaining;
             const resetTime = new Date(data.rate.reset * 1000).toLocaleTimeString();
@@ -89,40 +66,33 @@ function updateRateLimit() {
             handleApiLimitNotification(remaining);
             updateRateLimitDisplay(remaining, resetTime);
         })
-        .catch(error => {
-            console.error("Error fetching API data:", error);
+        .catch(err => {
+            console.error("Error fetching API data:", err);
             showNotification('Error fetching API data', 'error');
         });
 }
 
-/**
- * ตั้งค่า meta tags สำหรับ social sharing
- * @param {string} imageUrl - URL ของรูปภาพ
- */
+// Meta tags
 function setupMetaTags(imageUrl) {
-    const favicon = document.createElement("link");
-    favicon.rel = "shortcut icon";
-    favicon.type = "image/x-icon";
-    favicon.href = imageUrl;
-    document.head.appendChild(favicon);
+    const favicon = $("<link>", {
+        rel: "shortcut icon",
+        type: "image/x-icon",
+        href: imageUrl
+    });
+    $("head").append(favicon);
 
-    const metaTags = [
+    [
         { property: "og:image", content: imageUrl },
         { property: "twitter:image", content: imageUrl }
-    ];
-
-    metaTags.forEach(tag => {
-        const meta = document.createElement("meta");
-        meta.setAttribute("property", tag.property);
-        meta.setAttribute("content", tag.content);
-        document.head.appendChild(meta);
+    ].forEach(tag => {
+        $("head").append($("<meta>", {
+            property: tag.property,
+            content: tag.content
+        }));
     });
 }
 
-/**
- * สร้างปุ่ม Follow และ Share
- * @param {string} username - ชื่อผู้ใช้ GitHub
- */
+// Buttons
 function createActionButtons(username) {
     const buttonClass = "relative w-full sm:w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--accent-color)]";
 
@@ -138,29 +108,19 @@ function createActionButtons(username) {
     `);
 }
 
-/**
- * Helper function สำหรับดึงข้อมูลจาก API
- * @param {string} url - URL endpoint
- * @param {function} callback - ฟังก์ชันที่จะประมวลผลข้อมูล
- */
+// Fetch wrapper
 async function fetchData(url, callback) {
     try {
         const response = await fetch(url);
         const data = await response.json();
         callback(data);
-    } catch (error) {
-        console.error("Error fetching data:", error);
+    } catch (err) {
+        console.error("Error fetching data:", err);
         showNotification('Error fetching data from GitHub API', 'error');
     }
 }
 
-/**
- * ตั้งค่าข้อมูลในฟิลด์โปรไฟล์พร้อมจัดการการซ่อน/แสดง
- * @param {string} selector - jQuery selector
- * @param {string} icon - HTML string ของไอคอน (SVG หรือ FontAwesome)
- * @param {string|null} value - ค่าที่จะแสดง
- * @param {string|null} fallback - ค่า fallback หากไม่มีข้อมูล
- */
+// Profile field helper
 function setProfileField(selector, icon, value, fallback = null) {
     const displayValue = value || fallback;
 
@@ -176,11 +136,7 @@ function setProfileField(selector, icon, value, fallback = null) {
     }
 }
 
-/**
- * สร้าง HTML สำหรับรายการ repository
- * @param {Object} repo - ข้อมูล repository
- * @returns {string} HTML string
- */
+// Repo item
 function createRepoItem(repo) {
     return `
         <li>
@@ -198,11 +154,7 @@ function createRepoItem(repo) {
         </li>`;
 }
 
-/**
- * สร้าง HTML สำหรับรายการผู้ใช้ (followers/following)
- * @param {Object} user - ข้อมูลผู้ใช้
- * @returns {string} HTML string
- */
+// User item
 function createUserItem(user) {
     return `
         <li>
@@ -213,33 +165,26 @@ function createUserItem(user) {
                          onerror="this.src='${CONFIG.fallbackIcon}'">
                     <span>${user.login}</span>
                 </p>
-                <svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16" class="size-[1em]">
-                    <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
-                </svg>
+                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-[color:var(--primary-color)]"></i>
             </a>
         </li>`;
 }
 
-/**
- * โหลดและแสดงข้อมูลโปรไฟล์ผู้ใช้
- */
+// Load profile
 function loadUserProfile() {
     $.getJSON(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}`, function (data) {
-        // ตั้งค่าพื้นฐาน
         document.title = `GitHub Profile ${CONFIG.username}`;
         const avatarUrl = data.avatar_url || CONFIG.fallbackIcon;
 
         setupMetaTags(avatarUrl);
         createActionButtons(CONFIG.username);
 
-        // อัปเดตข้อมูลโปรไฟล์
         $('#profile-img').attr('src', avatarUrl);
         $('#profile-name').removeClass('loading-skeleton')
             .html(`<h1 class="text-3xl font-bold">${data.name || data.login}</h1>`);
         $('#profile-datename').removeClass('loading-skeleton')
             .html(`<p class="text-xl opacity-90">@${data.login}</p>`);
 
-        // ตั้งค่าข้อมูลเพิ่มเติม
         const joinDate = new Date(data.created_at).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -247,57 +192,55 @@ function loadUserProfile() {
         });
 
         setProfileField('#github-profile-date',
-            '<svg class="w-[1em] h-[1em]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>',
+            '<i class="fa-regular fa-calendar"></i>',
             `Joined ${joinDate}`);
 
         setProfileField('#github-profile-company',
-            '<svg class="w-[1em] h-[1em]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>',
+            '<i class="fa-solid fa-building"></i>',
             data.company);
 
         setProfileField('#github-profile-location',
-            '<svg class="w-[1em] h-[1em]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>',
+            '<i class="fa-solid fa-location-dot"></i>',
             data.location);
 
-        // อัปเดตสถิติและ bio
         $('#repo-count').text(data.public_repos || "0");
         $('#followers-count').text(data.followers || "0");
         $('#following-count').text(data.following || "0");
-        $('#github-profile-bio').text(data.bio || ('#github-profile-bio').addClass('hidden').html(''));
+
+        if (data.bio) {
+            $('#github-profile-bio').text(data.bio);
+        } else {
+            $('#github-profile-bio').addClass('hidden').html('');
+        }
     })
-        .fail(() => {
-            console.error("Unable to load GitHub data");
-            showNotification('Unable to load GitHub data.', 'error');
-        });
+    .fail(() => {
+        console.error("Unable to load GitHub data");
+        showNotification('Unable to load GitHub data.', 'error');
+    });
 }
 
-/**
- * โหลดและแสดงรายการ repositories
- */
+// Load repos
 function loadRepositories() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/repos`, repos => {
-        document.getElementById("repo-list").innerHTML = repos.map(createRepoItem).join("");
+        $("#repo-list").addClass("p-2 md:p-4").html(repos.map(createRepoItem).join(""));
     });
 }
 
-/**
- * โหลดและแสดงรายการ followers
- */
+// Load followers
 function loadFollowers() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/followers`, followers => {
-        document.getElementById("followers-list").innerHTML = followers.map(createUserItem).join("");
+        $("#followers-list").html(followers.map(createUserItem).join(""));
     });
 }
 
-/**
- * โหลดและแสดงรายการ following
- */
+// Load following
 function loadFollowing() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/following`, following => {
-        document.getElementById("following-list").innerHTML = following.map(createUserItem).join("");
+        $("#following-list").html(following.map(createUserItem).join(""));
     });
 }
 
-// เริ่มต้นการทำงาน
+// Init
 updateRateLimit();
 loadUserProfile();
 loadRepositories();

@@ -214,12 +214,12 @@ function initializeNotificationSystem() {
         window.updateHistoryBadge();
 
         const panel = $(`
-        <div id="notification-history-panel" class="fixed inset-0 bg-black bg-opacity-25 z-30">
-            <div class="fade-in h-full w-5/6 sm:w-full max-w-md fixed right-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl">
+        <div id="notification-history-panel" class="fixed inset-0 bg-black bg-opacity-75 z-30">
+            <div class="fade-in h-full w-5/6 sm:w-full max-w-md fixed right-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl -translate-x-full">
                 <div class="flex items-center justify-between border-b">
                     <h3 class="uppercase p-4 md:py-8">Notification history</h3>
                     <div class="flex items-center gap-1">
-                        <button id="clear-history-btn" title="delete all" class="fade-in relative bg-[color:var(--bg-color)] text-red-500 rounded shadow-inner m-3 px-4 py-3 cursor-pointer md:mx-4 md:my-5 hover:text-red-700 active:bg-[color:var(--accent-color)]"><i class="fa-solid fa-trash"></i></button>
+                        <button id="clear-history-btn" title="delete all" class="relative bg-[color:var(--bg-color)] text-red-500 rounded shadow-inner m-3 px-4 py-3 cursor-pointer md:mx-4 md:my-5 hover:text-red-700 active:bg-[color:var(--accent-color)]"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
                 <div id="history-content" class="p-4 h-full overflow-y-scroll pb-24">

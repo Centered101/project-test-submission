@@ -113,13 +113,13 @@ function showTabContent(tabId) {
  */
 function updateTabVisualState(activeTabId) {
     // รีเซ็ต CSS classes ทั้งหมด
-    $('#deploy label').removeClass('bg-[color:var(--accent-color)]');
+    $('#deploy label').removeClass('bg-gradient-to-t from-[color:var(--accent-color)]');
     $('#deploy label svg').removeClass('fill-[color:var(--primary-color)]');
     $('nav label').removeClass('bg-[color:var(--accent-color)] text-[color:var(--primary-color)]');
     $('nav label svg').removeClass('fill-[color:var(--primary-color)]');
 
     // เพิ่ม active state ให้ tab ที่เลือก
-    $(`#deploy label[for="${activeTabId}"]`).addClass('bg-[color:var(--accent-color)]');
+    $(`#deploy label[for="${activeTabId}"]`).addClass('bg-gradient-to-t from-[color:var(--accent-color)]');
     $(`#deploy label[for="${activeTabId}"] svg`).addClass('fill-[color:var(--primary-color)]');
     $(`nav label[for="${activeTabId}"]`).addClass('bg-[color:var(--accent-color)] text-[color:var(--primary-color)]');
     $(`nav label[for="${activeTabId}"] svg`).addClass('fill-[color:var(--primary-color)]');
