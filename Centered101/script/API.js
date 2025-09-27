@@ -18,8 +18,8 @@ function createApiLimitWarning(resetTime, margin = "") {
     return `
         <div class="h-screen flex items-center justify-center bg-[color:var(--white-smoker)] shadow-inner text-[color:var(--text-color)] text-sm border rounded-xl ${margin} p-2">
             <span class="flex flex-col items-center justify-center gap-2">
-                <i class="fa-solid fa-circle-exclamation text-3xl md:text-5xl text-red-500"></i>
-                <p class="text-xl md:text-3xl">You have reached the API limit! Please wait until ${resetTime}.</p>
+                <i class="fa-solid fa-circle-exclamation text-3xl text-red-500"></i>
+                <p>You have reached the API limit! Please wait until ${resetTime}.</p>
             </span>
         </div>`;
 }
@@ -94,16 +94,17 @@ function setupMetaTags(imageUrl) {
 
 // Buttons
 function createActionButtons(username) {
-    const buttonClass = "relative w-full sm:w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border rounded-lg truncate p-2 overflow-hidden active:bg-[color:var(--accent-color)]";
+    const buttonClass = "relative w-full sm:w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border-2 rounded-lg truncate p-1 overflow-hidden active:bg-[color:var(--accent-color)]";
 
     $('#github-follow-button-wrapper').append(`
-        <a title="Follow ${username}" aria-label="Follow ${username}" 
-           href="https://github.com/${username}" target="_blank" class="${buttonClass}">
+        <button onclick="window.locetion.herf='https://github.com/${username}, '_blank')" title="Follow ${username}" aria-label="Follow ${username}" class="${buttonClass}">
             <span>Follow</span>
-        </a>
-        <button onclick="share()" title="share profile ${username}" 
-                aria-label="share profile ${username}" class="${buttonClass}">
-            <span>Share profile</span>
+        </button>
+        <button onclick="window.locetion.herf='https://github.com/${username}, '_blank')" title="Message for ${username}" aria-label="Message for ${username}" class="${buttonClass}">
+            <span>Message</span>
+        </button>
+        <button class="w-1/4 bg-[color:var(--white-smoker)] border-2 rounded-lg truncate py-1 overflow-hidden active:bg-[color:var(--accent-color)]" onclick="share()" title="More options">
+           <i class="fa-solid fa-share-nodes"></i>
         </button>
     `);
 }
@@ -116,7 +117,6 @@ async function fetchData(url, callback) {
         callback(data);
     } catch (err) {
         console.error("Error fetching data:", err);
-        showNotification('Error fetching data from GitHub API', 'error');
     }
 }
 
@@ -135,23 +135,58 @@ function setProfileField(selector, icon, value, fallback = null) {
         $(selector).addClass('hidden').html('');
     }
 }
+// กำหนดสีของภาษา (เหมือน GitHub)
+const languageColors = {
+    HTML: "#e34c26",
+    CSS: "#563d7c",
+    JavaScript: "#f1e05a",
+    TypeScript: "#2b7489",
+    Python: "#3572A5",
+    Java: "#b07219",
+    "C++": "#f34b7d",
+    "C#": "#178600",
+    PHP: "#4F5D95",
+    Go: "#00ADD8",
+    Ruby: "#701516",
+    Swift: "#ffac45",
+    Kotlin: "#A97BFF",
+};
 
-// Repo item
+// ฟังก์ชัน repo item
 function createRepoItem(repo) {
+    const lang = repo.language || "";
+    const color = languageColors[lang] || "#999"; // ถ้าไม่มี ให้เป็นเทา
+
     return `
         <li>
-            <a translate="no" title='${repo.name}${repo.language ? " • " + repo.language : ""}' 
-               href="${repo.html_url}" target="_blank" 
-               class="flex flex-col gap-2 bg-[color:var(--bg-color)] border rounded shadow-inner p-2 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)]">
-                <span class="flex items-center gap-1">
-                    <img src="${repo.owner.avatar_url}" class="size-6 border rounded-full" 
+            <a translate="no" 
+               title="${repo.name}${lang ? " • " + lang : ""}" 
+               href="${repo.html_url}" target="_blank"
+               class="group flex flex-col gap-2 rounded-xl border bg-[color:var(--bg-color)] p-4 shadow-sm transition-all duration-300 hover:bg-[color:var(--accent-color)]">
+                
+                <!-- owner -->
+                <div class="flex items-center gap-1">
+                    <img src="${repo.owner.avatar_url}" 
+                         class="size-8 rounded-full border object-cover"
                          onerror="this.src='${CONFIG.fallbackIcon}'">
-                    <span class="text-sm font-normal text-[color:var(--text-400)] truncate">${repo.owner.login}</span>
-                </span>
-                <span class="text-[color:var(--primary-color)] truncate">${repo.name}</span>
-                <span class="text-sm font-normal text-[color:var(--text-500)] truncate">${repo.language || '&nbsp;'}</span>
+                    <span class="text-sm font-medium text-gray-400 group-hover:text-[color:var(--primary-color)] truncate">
+                        ${repo.owner.login}
+                    </span>
+                </div>
+                
+                <!-- repo name -->
+                <h3 class="text-base font-semibold text-[color:var(--primary-color)] truncate">
+                    ${repo.name}
+                </h3>
+                
+                <!-- language -->
+                <p class="flex items-center gap-2 text-xs font-normal text-gray-500 truncate">
+                    <span class="w-3 h-3 rounded-full" style="background:${color}"></span>
+                    ${lang || "—"}
+                </p>
             </a>
-        </li>`;
+        </li>
+    `;
 }
 
 // User item
@@ -180,10 +215,8 @@ function loadUserProfile() {
         createActionButtons(CONFIG.username);
 
         $('#profile-img').attr('src', avatarUrl);
-        $('#profile-name').removeClass('loading-skeleton')
-            .html(`<h1 class="text-3xl font-bold">${data.name || data.login}</h1>`);
-        $('#profile-datename').removeClass('loading-skeleton')
-            .html(`<p class="text-xl opacity-90">@${data.login}</p>`);
+        $('#profile-name').removeClass('loading-skeleton').html(`<p>${data.name || data.login}</p>`);
+        $('#profile-datename').removeClass('loading-skeleton').html(`<p>@${data.login}</p>`);
 
         const joinDate = new Date(data.created_at).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -193,15 +226,15 @@ function loadUserProfile() {
 
         setProfileField('#github-profile-date',
             '<i class="fa-regular fa-calendar"></i>',
-            `Joined ${joinDate}`);
+            `Joined ${joinDate || "N/A"}`);
 
         setProfileField('#github-profile-company',
             '<i class="fa-solid fa-building"></i>',
-            data.company);
+            data.company || "N/A");
 
         setProfileField('#github-profile-location',
             '<i class="fa-solid fa-location-dot"></i>',
-            data.location);
+            data.location || "N/A");
 
         $('#repo-count').text(data.public_repos || "0");
         $('#followers-count').text(data.followers || "0");
@@ -213,10 +246,10 @@ function loadUserProfile() {
             $('#github-profile-bio').addClass('hidden').html('');
         }
     })
-    .fail(() => {
-        console.error("Unable to load GitHub data");
-        showNotification('Unable to load GitHub data.', 'error');
-    });
+        .fail(() => {
+            console.error("Unable to load GitHub data");
+            // showNotification('Unable to load GitHub data.', 'error');
+        });
 }
 
 // Load repos

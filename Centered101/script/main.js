@@ -21,18 +21,6 @@ function closeFullscreen() {
     isQRMode = false;
 }
 
-function toggleImageShape(event) {
-    event.stopPropagation();
-    if (!isQRMode) {
-        const img = $("#fullscreenImage, #profile-img");
-        if (img.hasClass("rounded-full")) {
-            img.removeClass("rounded-full md:rounded-none").addClass("rounded-none md:rounded-full");
-        } else {
-            img.removeClass("rounded-none md:rounded-full").addClass("rounded-full md:rounded-none");
-        }
-    }
-}
-
 function share() {
     const share = $("#share");
     share.prop("disabled", true);
@@ -280,7 +268,7 @@ $.each(project, function (i, { name, img, link }) {
                 draggable="false">
         </div>
     </li>`;
-    $("#projects-list").append(listItem);
+    $("#projects-list").addClass("pt-2").append(listItem);
 });
 
 // ฟังก์ชันแสดงรายละเอียดโปรเจกต์ - ปรับปรุงแค่นิดหน่อย
@@ -288,7 +276,7 @@ function showProjectDetails(index) {
     const { img, name, description, link, date, type, tech } = project[index];
 
     $("#project-details").removeClass("hidden").fadeIn(150).html(`
-    <div class="relative w-full max-w-4xl flex flex-col md:flex-row justify-center gap-6 bg-[color:var(--white-smoker)] border rounded-xl shadow-xl m-2 p-4 md:p-6">
+    <div class="relative w-full max-w-4xl flex flex-col md:flex-row justify-center gap-2 bg-[color:var(--white-smoker)] border rounded-xl shadow-xl m-2 p-4 md:p-6">
         <div class="aspect-[4/5] md:w-1/2">
             <img src="${img || noimages}"
                 onerror="this.src='${noimages}'"
@@ -297,48 +285,71 @@ function showProjectDetails(index) {
                 draggable="false">
         </div>
         <div class="min-h-full min-w-2xl flex-1 flex flex-col justify-between gap-4">
-            <div class="space-y-2">
-                <h2 class="text-xl md:text-3xl font-bold mb-4">${name}</h2>
-                <p class="text-sm text-gray-500">${description || "No description provided"}</p>
+            <div>
+                <P class="md:text-3xl">${name}</p>
+                <p class="text-gray-500">${description || "No description provided"}</p>
 
-                <p class="flex items-center gap-2 text-xs text-gray-600">
+                <p class="flex items-center gap-2 text-gray-600">
                     <i class="fa-regular fa-calendar"></i><span>${date || ""}</span>
                 </p>
 
-                <p class="flex items-center gap-2 text-xs text-gray-600">
+                <p class="flex items-center gap-2 text-gray-600">
                     <i class="fa-solid fa-folder"></i><span>${type || ""}</span>
                 </p>
 
                 ${tech ? `
-                <p class="flex items-center gap-2 text-xs text-gray-600">
+                <p class="flex items-center gap-2 text-gray-600">
                     <i class="fa-solid fa-wrench"></i><span>${tech}</span>
                 </p>
                 ` : ''}
             </div>
             <div class="flex items-center justify-center gap-2">
-                <a href="${link}" target="_blank" class="btn-primary w-full">Demo</a>
+                <button onclick="closeModal()" class="btn-outline w-full">Close</button>
+                <button onclick="window.open('${link}', '_blank')" class="btn-primary w-full">Demo</button>
             </div>
         </div>
     </div>
   `);
 }
 
-// เพิ่มฟังก์ชันปิด modal ง่าย ๆ
+let modalOpen = false;
+
+// ฟังก์ชันเปิด modal
+function openModal() {
+    $("#project-details").fadeIn(150);
+    modalOpen = true;
+
+    // เพิ่ม state ใหม่ใน history
+    history.pushState({ modal: true }, "");
+}
+
+// ฟังก์ชันปิด modal
 function closeModal() {
     $("#project-details").fadeOut(150);
+    modalOpen = false;
+
+    // เวลา modal ถูกปิด ให้ย้อน history กลับไป 1 step (ถ้าอยู่ในมือถือ)
+    if (history.state && history.state.modal) {
+        history.back();
+    }
 }
 
 // ปิด modal เมื่อคลิกนอก
-$(document).on('click', '#project-details', function (e) {
+$(document).on("click", "#project-details", function (e) {
     if (e.target === this) closeModal();
 });
 
 // ปิด modal เมื่อกด ESC
-$(document).on('keydown', function (e) {
-    if (e.key === 'Escape') closeModal();
+$(document).on("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
 });
 
-
+// ดัก event popstate → ถ้ากดย้อนกลับตอน modal เปิดอยู่ ให้ปิดแทน
+window.addEventListener("popstate", function () {
+    if (modalOpen) {
+        closeModal();
+    }
+});
 
 // —[ Followers/Following Section ]—————————————————————————————————————————————————————————————————————
 function openHighlight(type) {

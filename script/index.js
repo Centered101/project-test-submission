@@ -185,7 +185,7 @@ function initializeNotificationSystem() {
                 }
                         <p class="text-xs text-gray-500 mt-1">${timeStr}</p>
                     </div>
-                    <button class="delete-history-item flex-shrink-0 text-gray-500 ease-in-out duration-300 hover:text-red-500" data-id="${item.id}">
+                    <button class="delete-history-item flex-shrink-0 text-gray-500 ease-in-out duration-300 active:text-red-500" data-id="${item.id}">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </div>
@@ -214,8 +214,8 @@ function initializeNotificationSystem() {
         window.updateHistoryBadge();
 
         const panel = $(`
-        <div id="notification-history-panel" class="fixed inset-0 bg-black bg-opacity-75 z-30">
-            <div class="fade-in h-full w-5/6 sm:w-full max-w-md fixed right-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl -translate-x-full">
+        <div id="notification-history-panel" class="fade-in fixed inset-0 bg-black bg-opacity-75 z-30">
+            <div class="animate-slide-in-left h-full w-4/6 md:w-1/3 lg:w-1/4 fixed left-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl duration-300">
                 <div class="flex items-center justify-between border-b">
                     <h3 class="uppercase p-4 md:py-8">Notification history</h3>
                     <div class="flex items-center gap-1">

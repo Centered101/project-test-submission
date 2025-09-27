@@ -124,13 +124,7 @@ button,
     /* ได้ลายเส้นทแยง (stripes) สีเทา */
 }
 
-.border-t,
-.border-b,
-.border-l,
-.border-r,
-.border-y,
-.border-x,
-.border {
+[class*="border"] {
     border-color: var(--border);
 }
 
