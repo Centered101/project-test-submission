@@ -215,7 +215,7 @@ function initializeNotificationSystem() {
 
         const panel = $(`
         <div id="notification-history-panel" class="fade-in fixed inset-0 bg-black bg-opacity-75 z-30">
-            <div class="animate-slide-in-left h-full w-4/6 md:w-1/3 lg:w-1/4 fixed left-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl duration-300">
+            <div class="animate-slide-in-left h-full w-4/6 md:w-1/2 lg:w-1/3 fixed left-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl duration-300">
                 <div class="flex items-center justify-between border-b">
                     <h3 class="uppercase p-4 md:py-8">Notification history</h3>
                     <div class="flex items-center gap-1">
@@ -281,7 +281,7 @@ function initializeNotificationSystem() {
         }
 
         const notification = $(`
-        <div class="notification-item !w-sm max-w-sm bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-2 py-1 sm:px-3 sm:py-2 transition-all duration-300 transform translate-x-full select-none ${!link ? 'cursor-pointer' : ''}">
+        <div class="notification-item !w-sm max-w-sm bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-2 py-1 md:px-3 md:py-2 transition-all duration-300 transform translate-x-full select-none ${!link ? 'cursor-pointer' : ''}">
             <div class="flex items-center gap-2">
                 <div class="flex-shrink-0">
                 ${type === 'success' ?

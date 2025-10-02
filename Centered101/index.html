@@ -203,7 +203,7 @@
         </div>
     </nav>
 
-    <main class="min-h-screen w-full flex flex-col gap-6 ml-auto md:w-2/3 lg:w-3/4">
+    <main class="min-h-screen w-full flex flex-col gap-4 ml-auto md:w-2/3 lg:w-3/4">
         <section class="flex justify-between items-center bg-[color:var(--white-smoker)] border-b-2">
             <p class="profile-name uppercase p-4 md:py-8">GitHub API Profile</p>
             <!-- Toggle Button -->
@@ -218,7 +218,7 @@
 
             <div class="w-full flex flex-row items-center justify-start gap-x-2 p-2 md:px-4">
                 <!-- รูปโปรไฟล์ -->
-                <img id="profile-img" class="size-20 md:size-32 rounded-full mx-2 cursor-pointer" src="/images/icon.svg"
+                <img id="profile-img" class="size-20 md:size-32 rounded-full md:mx-2 cursor-pointer" src="/images/icon.svg"
                     onerror="this.src='/images/icon.svg'" draggable="false" />
                 <div class="w-full max-w-xl flex flex-wrap justify-start items-center md:gap-y-4">
                     <p id="profile-name" translate="no" class="profile-name basis-full px-2 md:text-3xl">API not
@@ -256,37 +256,37 @@
             </div>
         </section>
         <section id="highlights" class="flex justify-start gap-4 px-4 overflow-x-auto md:mx-auto md:p-0">
-            <div class="flex flex-col items-center gap-2 cursor-pointer" onclick="openHighlight('projects')">
+            <div class="flex flex-col items-center cursor-pointer" onclick="openHighlight('projects')">
                 <div class="border-2 rounded-full p-1">
                     <img src="" onerror="this.src='/images/img/noitems.svg'"
-                        class="min-w-16 size-16 border rounded-full object-cover"
+                        class="min-w-14 min-h-14 size-14 border rounded-full object-cover"
                         style="background-image: url('/images/img/noitems.svg'); background-size: cover; background-position: center;"
                         draggable="false">
                 </div>
                 <span class="text-xs mt-1">My Projects</span>
             </div>
-            <div class="flex flex-col items-center gap-2 cursor-pointer" onclick="openHighlight('skills')">
+            <div class="flex flex-col items-center cursor-pointer" onclick="openHighlight('skills')">
                 <div class="border-2 rounded-full p-1">
                     <img src="" onerror="this.src='/images/img/noitems.svg'"
-                        class="min-w-16 size-16 border rounded-full object-cover"
+                        class="min-w-14 min-h-14 size-14 border rounded-full object-cover"
                         style="background-image: url('/images/img/noitems.svg'); background-size: cover; background-position: center;"
                         draggable="false">
                 </div>
                 <span class="text-xs mt-1">Behind</span>
             </div>
-            <div class="flex flex-col items-center gap-2 cursor-pointer" onclick="openHighlight('certs')">
+            <div class="flex flex-col items-center cursor-pointer" onclick="openHighlight('certs')">
                 <div class="border-2 rounded-full p-1">
                     <img src="" onerror="this.src='/images/img/noitems.svg'"
-                        class="min-w-16 size-16 border rounded-full object-cover"
+                        class="min-w-14 min-h-14 size-14 border rounded-full object-cover"
                         style="background-image: url('/images/img/noitems.svg'); background-size: cover; background-position: center;"
                         draggable="false">
                 </div>
                 <span class="text-xs mt-1">Repository</span>
             </div>
-            <div class="flex flex-col items-center gap-2 cursor-pointer" onclick="openHighlight('certs')">
+            <div class="flex flex-col items-center cursor-pointer" onclick="openHighlight('certs')">
                 <div class="border-2 rounded-full p-1">
                     <img src="" onerror="this.src='/images/img/noitems.svg'"
-                        class="min-w-16 size-16 border rounded-full object-cover"
+                        class="min-w-14 min-h-14 size-14 border rounded-full object-cover"
                         style="background-image: url('/images/img/noitems.svg'); background-size: cover; background-position: center;"
                         draggable="false">
                 </div>

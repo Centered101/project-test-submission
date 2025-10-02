@@ -268,7 +268,7 @@ $.each(project, function (i, { name, img, link }) {
                 draggable="false">
         </div>
     </li>`;
-    $("#projects-list").addClass("pt-2").append(listItem);
+    $("#projects-list").addClass("pt-2 md:p-0").append(listItem);
 });
 
 // ฟังก์ชันแสดงรายละเอียดโปรเจกต์ - ปรับปรุงแค่นิดหน่อย
@@ -276,7 +276,7 @@ function showProjectDetails(index) {
     const { img, name, description, link, date, type, tech } = project[index];
 
     $("#project-details").removeClass("hidden").fadeIn(150).html(`
-    <div class="relative w-full max-w-4xl flex flex-col md:flex-row justify-center gap-2 bg-[color:var(--white-smoker)] border rounded-xl shadow-xl m-2 p-4 md:p-6">
+    <div class="relative w-full max-w-4xl flex flex-col md:flex-row justify-center gap-2 md:gap-4 bg-[color:var(--white-smoker)] border rounded-xl shadow-xl m-2 p-2 md:p-4">
         <div class="aspect-[4/5] md:w-1/2">
             <img src="${img || noimages}"
                 onerror="this.src='${noimages}'"
@@ -286,7 +286,7 @@ function showProjectDetails(index) {
         </div>
         <div class="min-h-full min-w-2xl flex-1 flex flex-col justify-between gap-4">
             <div>
-                <P class="md:text-3xl">${name}</p>
+                <P class="text-lg md:text-3xl">${name}</p>
                 <p class="text-gray-500">${description || "No description provided"}</p>
 
                 <p class="flex items-center gap-2 text-gray-600">

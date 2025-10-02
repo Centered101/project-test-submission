@@ -94,18 +94,34 @@ function setupMetaTags(imageUrl) {
 
 // Buttons
 function createActionButtons(username) {
-    const buttonClass = "relative w-full sm:w-1/2 md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border-2 rounded-lg truncate p-1 overflow-hidden active:bg-[color:var(--accent-color)]";
+    const buttonClass = "relative w-full md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border-2 rounded-lg truncate p-1 overflow-hidden active:bg-[color:var(--accent-color)]";
 
     $('#github-follow-button-wrapper').append(`
-        <button onclick="window.locetion.herf='https://github.com/${username}, '_blank')" title="Follow ${username}" aria-label="Follow ${username}" class="${buttonClass}">
-            <span>Follow</span>
-        </button>
-        <button onclick="window.locetion.herf='https://github.com/${username}, '_blank')" title="Message for ${username}" aria-label="Message for ${username}" class="${buttonClass}">
-            <span>Message</span>
-        </button>
-        <button class="w-1/4 bg-[color:var(--white-smoker)] border-2 rounded-lg truncate py-1 overflow-hidden active:bg-[color:var(--accent-color)]" onclick="share()" title="More options">
-           <i class="fa-solid fa-share-nodes"></i>
-        </button>
+    <button onclick="window.open('https://github.com/${username}', '_blank')" 
+        title="Follow ${username}" 
+        aria-label="Follow ${username}" 
+        class="${buttonClass}">
+        <span>Follow</span>
+    </button>
+
+    <button onclick="window.open('https://instagram.com/direct/t/17848003478856472', '_blank')" 
+        title="Message for ${username}" 
+        aria-label="Message for ${username}" 
+        class="${buttonClass}">
+        <span>Message</span>
+    </button>
+        
+    <button class="${buttonClass}" 
+        onclick="share()" 
+        title="Contact">
+        <span>Contact</span>
+    </button>
+
+    <button class="${buttonClass} w-12 p-2 px-3" 
+        onclick="share()" 
+        title="More options">
+        <i class="fa-solid fa-share-nodes"></i>
+    </button>
     `);
 }
 
@@ -255,21 +271,21 @@ function loadUserProfile() {
 // Load repos
 function loadRepositories() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/repos`, repos => {
-        $("#repo-list").addClass("p-2 md:p-4").html(repos.map(createRepoItem).join(""));
+        $("#repo-list").addClass("min-h-screen p-2 md:p-4").html(repos.map(createRepoItem).join(""));
     });
 }
 
 // Load followers
 function loadFollowers() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/followers`, followers => {
-        $("#followers-list").html(followers.map(createUserItem).join(""));
+        $("#followers-list").addClass("").html(followers.map(createUserItem).join(""));
     });
 }
 
 // Load following
 function loadFollowing() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/following`, following => {
-        $("#following-list").html(following.map(createUserItem).join(""));
+        $("#following-list").addClass("").html(following.map(createUserItem).join(""));
     });
 }
 

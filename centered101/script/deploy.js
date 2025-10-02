@@ -13,7 +13,7 @@ document.write('<link href="https://cdnjs.cloudflare.com\/ajax\/libs\/font-aweso
 $(document).ready(function () {
     // เพิ่ม CSS animations ลงใน document head
     injectAnimationStyles();
-    
+
     // ตั้งค่าเริ่มต้น - แสดง projects tab
     initializeDeploySection();
 
@@ -169,7 +169,7 @@ function injectAnimationStyles() {
         }
         </style>
     `;
-    
+
     if ($('#deploy-animations').length === 0) {
         $('head').append(animationCSS);
     }
@@ -184,7 +184,7 @@ function initializeDeploySection() {
 
     // เพิ่ม smooth transition classes
     $('#deploy label, nav label').addClass('smooth-transition');
-    
+
     // แสดงเนื้อหา projects เป็นค่าเริ่มต้นพร้อม animation
     setTimeout(() => {
         showTabContentWithAnimation('projects');
@@ -197,24 +197,24 @@ function initializeDeploySection() {
  */
 function setupTabEventListeners() {
     let isTransitioning = false;
-    
+
     // จับ event การเปลี่ยนแปลง radio buttons
     $('input[name="status"]').on('change', function () {
         if (isTransitioning) return; // ป้องกันการคลิกซ้ำระหว่าง animation
-        
+
         isTransitioning = true;
         const selectedTab = $(this).attr('id');
-        
+
         // เพิ่ม loading effect
         showLoadingState();
-        
+
         setTimeout(() => {
             showTabContentWithAnimation(selectedTab);
             updateTabVisualStateWithAnimation(selectedTab);
-            
+
             // อัปเดต rate limit เมื่อมีการเปลี่ยน tab
             updateRateLimit();
-            
+
             setTimeout(() => {
                 isTransitioning = false;
                 hideLoadingState();
@@ -226,13 +226,13 @@ function setupTabEventListeners() {
     $('#deploy label').on('click', function (e) {
         const $label = $(this);
         const targetId = $label.attr('for');
-        
+
         // เพิ่ม click effect
         $label.addClass('animate-scale-in');
         setTimeout(() => {
             $label.removeClass('animate-scale-in');
         }, 400);
-        
+
         if (targetId) {
             $(`#${targetId}`).prop('checked', true).trigger('change');
         }
@@ -258,11 +258,6 @@ function setupNavigationEventListeners() {
             showTabContentWithAnimation(targetId);
             updateTabVisualStateWithAnimation(targetId);
 
-            // ปิด sidebar ในมือถือพร้อม animation
-            if (window.innerWidth < 768) {
-                closeSidebarWithAnimation();
-            }
-
             // เลื่อนไปยัง deploy section พร้อม animation
             scrollToDeploySectionSmooth();
         }
@@ -277,7 +272,7 @@ function createRippleEffect($element, event) {
     const size = Math.max(rect.width, rect.height);
     const x = event.clientX - rect.left - size / 2;
     const y = event.clientY - rect.top - size / 2;
-    
+
     const $ripple = $('<span class="ripple"></span>');
     $ripple.css({
         position: 'absolute',
@@ -292,9 +287,9 @@ function createRippleEffect($element, event) {
         pointerEvents: 'none',
         zIndex: 1000
     });
-    
+
     $element.css('position', 'relative').append($ripple);
-    
+
     // เพิ่ม keyframe สำหรับ ripple animation
     if ($('#ripple-keyframes').length === 0) {
         $('head').append(`
@@ -308,7 +303,7 @@ function createRippleEffect($element, event) {
             </style>
         `);
     }
-    
+
     setTimeout(() => {
         $ripple.remove();
     }, 600);
@@ -328,24 +323,24 @@ function showTabContentWithAnimation(tabId) {
 
     // Slide out current content
     $allContent.not('.hidden').addClass('content-slide-out');
-    
+
     setTimeout(() => {
         // ซ่อนเนื้อหาทั้งหมด
         $allContent.addClass('hidden').removeClass('content-slide-out content-slide-in');
-        
+
         // แสดงเนื้อหาของ tab ที่เลือก
         const targetContent = contentMap[tabId];
         if (targetContent) {
             const $target = $(targetContent);
             $target.removeClass('hidden').addClass('content-slide-in');
-            
+
             // เพิ่ม stagger animation สำหรับ children
-            $target.find('> *').each(function(index) {
+            $target.find('> *').each(function (index) {
                 $(this).css({
                     'animation-delay': (index * 0.1) + 's',
                     'opacity': '0'
                 }).addClass('animate-fade-in-up');
-                
+
                 setTimeout(() => {
                     $(this).css('opacity', '1');
                 }, index * 100 + 100);
@@ -367,11 +362,11 @@ function updateTabVisualStateWithAnimation(activeTabId) {
     // เพิ่ม active state ให้ tab ที่เลือกพร้อม animation
     const $activeDeployLabel = $(`#deploy label[for="${activeTabId}"]`);
     const $activeNavLabel = $(`nav label[for="${activeTabId}"]`);
-    
+
     setTimeout(() => {
         $activeDeployLabel.addClass('bg-gradient-to-t from-[color:var(--accent-color)] border-b-[color:var(--primary-color)]');
         $activeDeployLabel.find('svg').addClass('fill-[color:var(--primary-color)]');
-        $activeNavLabel.addClass('bg-[color:var(--accent-color)] text-[color:var(--primary-color)] animate-slide-in-right');
+        $activeNavLabel.addClass('bg-[color:var(--accent-color)] text-[color:var(--primary-color)]');
         $activeNavLabel.find('svg').addClass('fill-[color:var(--primary-color)]');
     }, 50);
 }
@@ -392,37 +387,15 @@ function hideLoadingState() {
 }
 
 /**
- * ปิด sidebar พร้อม animation
- */
-function closeSidebarWithAnimation() {
-    // สมมติว่ามี function closeSidebar() อยู่แล้ว
-    if (typeof closeSidebar === 'function') {
-        const $sidebar = $('nav'); // หรือ selector ที่ถูกต้อง
-        $sidebar.addClass('animate-slide-in-left');
-        setTimeout(() => {
-            closeSidebar();
-            $sidebar.removeClass('animate-slide-in-left');
-        }, 300);
-    }
-}
-
-/**
  * เลื่อนหน้าไปยัง deploy section พร้อม smooth animation
  */
 function scrollToDeploySectionSmooth() {
     const deploySection = document.getElementById('deploy');
     if (deploySection) {
-        // เพิ่ม highlight effect ก่อนเลื่อน
-        $(deploySection).addClass('animate-pulse-hover');
-        
         deploySection.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
         });
-        
-        setTimeout(() => {
-            $(deploySection).removeClass('animate-pulse-hover');
-        }, 1000);
     }
 }
 
@@ -440,7 +413,7 @@ function checkEmptyContentWithAnimation() {
     Object.keys(emptyMessages).forEach(tabId => {
         const listSelector = `#${tabId}-list`;
         const $list = $(listSelector);
-        
+
         if ($list.children().length === 0 && $(`#${tabId}`).is(':checked')) {
             const emptyHTML = `
                 <li class="col-span-full text-center text-gray-400 p-8 animate-fade-in-up">
@@ -463,10 +436,10 @@ function refreshTabContentWithAnimation() {
     const currentTab = $('input[name="status"]:checked').attr('id');
     if (currentTab) {
         showLoadingState();
-        
+
         setTimeout(() => {
             showTabContentWithAnimation(currentTab);
-            
+
             // ให้เวลา DOM อัปเดตก่อนตรวจสอบ empty content
             setTimeout(() => {
                 checkEmptyContentWithAnimation();
@@ -482,27 +455,6 @@ $(window).on('load', function () {
         refreshTabContentWithAnimation();
     }, 500);
 });
-
-/**
- * Helper function สำหรับ responsive behavior
- */
-function handleResponsiveChanges() {
-    // จัดการ responsive classes สำหรับ followers/following labels
-    const $followLabels = $('label[for="followers"], label[for="following"]');
-    
-    if (window.innerWidth >= 768) {
-        $followLabels.addClass('md:flex animate-slide-in-right').removeClass('hidden');
-    } else {
-        $followLabels.removeClass('md:flex animate-slide-in-right');
-    }
-}
-
-// ตรวจสอบ responsive changes
-$(window).on('resize', function() {
-    clearTimeout(window.resizeTimer);
-    window.resizeTimer = setTimeout(handleResponsiveChanges, 250);
-});
-handleResponsiveChanges(); // เรียกครั้งแรก
 
 /**
  * เพิ่มการสนับสนุน keyboard navigation พร้อม animation
@@ -525,13 +477,13 @@ $(document).on('keydown', function (e) {
 
             const newTab = tabs[newIndex];
             const $newTabLabel = $(`label[for="${newTab}"]`);
-            
+
             // เพิ่ม keyboard focus animation
             $newTabLabel.addClass('animate-pulse-hover');
             setTimeout(() => {
                 $newTabLabel.removeClass('animate-pulse-hover');
             }, 600);
-            
+
             $(`#${newTab}`).prop('checked', true).trigger('change');
         }
     }
@@ -551,10 +503,10 @@ $("#deploy").on("touchstart", function (e) {
 
 $("#deploy").on("touchmove", function (e) {
     if (!isSwiping) return;
-    
+
     const currentX = e.originalEvent.touches[0].clientX;
     const diff = touchStartX - currentX;
-    
+
     // เพิ่ม visual feedback ระหว่าง swipe
     if (Math.abs(diff) > 20) {
         const $activeContent = $('#projects-list, #repo-list, #followers-list, #following-list').not('.hidden');
@@ -564,14 +516,14 @@ $("#deploy").on("touchmove", function (e) {
 
 $("#deploy").on("touchend", function (e) {
     if (!isSwiping) return;
-    
+
     touchEndX = e.originalEvent.changedTouches[0].clientX;
     isSwiping = false;
-    
+
     // รีเซ็ต transform
     const $activeContent = $('#projects-list, #repo-list, #followers-list, #following-list').not('.hidden');
     $activeContent.css('transform', 'translateX(0)');
-    
+
     handleSwipeWithAnimation();
 });
 
@@ -584,13 +536,14 @@ function handleSwipeWithAnimation() {
     if (touchStartX - touchEndX > swipeThreshold) {
         let newIndex = (currentIndex + 1) % tabs.length;
         const newTab = tabs[newIndex];
-        
+
         // เพิ่ม swipe animation
         const $currentContent = $('#projects-list, #repo-list, #followers-list, #following-list').not('.hidden');
         $currentContent.addClass('animate-slide-in-left');
-        
+
         setTimeout(() => {
             $(`#${newTab}`).prop("checked", true).trigger("change");
+            $currentContent.removeClass('animate-slide-in-left');
         }, 100);
     }
 
@@ -598,13 +551,14 @@ function handleSwipeWithAnimation() {
     if (touchEndX - touchStartX > swipeThreshold) {
         let newIndex = (currentIndex - 1 + tabs.length) % tabs.length;
         const newTab = tabs[newIndex];
-        
+
         // เพิ่ม swipe animation
         const $currentContent = $('#projects-list, #repo-list, #followers-list, #following-list').not('.hidden');
         $currentContent.addClass('animate-slide-in-right');
-        
+
         setTimeout(() => {
             $(`#${newTab}`).prop("checked", true).trigger("change");
+            $currentContent.removeClass('animate-slide-in-right');
         }, 100);
     }
 }
@@ -614,22 +568,22 @@ function handleSwipeWithAnimation() {
  */
 function optimizeAnimations() {
     // ใช้ requestAnimationFrame สำหรับ smooth animations
-    window.requestAnimationFrame = window.requestAnimationFrame || 
-        window.webkitRequestAnimationFrame || 
-        window.mozRequestAnimationFrame || 
-        function(callback) { setTimeout(callback, 16); };
-    
+    window.requestAnimationFrame = window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function (callback) { setTimeout(callback, 16); };
+
     // เพิ่ม will-change สำหรับ elements ที่จะ animate
     $('#projects-list, #repo-list, #followers-list, #following-list').css('will-change', 'transform, opacity');
     $('#deploy label, nav label').css('will-change', 'transform');
 }
 
 // เรียกใช้ optimization เมื่อ DOM พร้อม
-$(document).ready(function() {
+$(document).ready(function () {
     optimizeAnimations();
 });
 
 // ทำความสะอาด animations เมื่อเปลี่ยนหน้า
-$(window).on('beforeunload', function() {
+$(window).on('beforeunload', function () {
     $('*').removeClass('animate-fade-in-up animate-fade-in-down animate-slide-in-right animate-slide-in-left animate-scale-in');
 });
