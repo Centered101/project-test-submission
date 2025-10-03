@@ -13,17 +13,6 @@ function showNotification(message, type = 'info') {
     console.log(`[${type.toUpperCase()}] ${message}`);
 }
 
-// API limit warning
-function createApiLimitWarning(resetTime, margin = "") {
-    return `
-        <div class="h-screen flex items-center justify-center bg-[color:var(--white-smoker)] shadow-inner text-[color:var(--text-color)] text-sm border rounded-xl ${margin} p-2">
-            <span class="flex flex-col items-center justify-center gap-2">
-                <i class="fa-solid fa-circle-exclamation text-3xl text-red-500"></i>
-                <p>You have reached the API limit! Please wait until ${resetTime}.</p>
-            </span>
-        </div>`;
-}
-
 function handleApiLimitNotification(remaining) {
     if (remaining <= 10 && remaining > 0 && !lowApiNotified) {
         showNotification('Low API requests remaining! Please wait!');
@@ -37,10 +26,6 @@ function updateRateLimitDisplay(remaining, resetTime) {
     const $rateStatus = $("#rateStatus").removeClass("animate-pulse");
 
     if (remaining === 0) {
-        const warningHtml = createApiLimitWarning(resetTime, "text-center m-0");
-        $("#repo-list").html(warningHtml);
-        $("#followers-list, #following-list").html(createApiLimitWarning(resetTime, "text-center m-2 md:m-4"));
-
         $rateStatus.html(`
             <p>Remaining: <span class="text-[color:var(--primary-color)]">${remaining}</span> / 60 requests</p>
             <p class="flex items-center gap-2">
@@ -68,7 +53,6 @@ function updateRateLimit() {
         })
         .catch(err => {
             console.error("Error fetching API data:", err);
-            showNotification('Error fetching API data', 'error');
         });
 }
 
@@ -94,9 +78,9 @@ function setupMetaTags(imageUrl) {
 
 // Buttons
 function createActionButtons(username) {
-    const buttonClass = "relative w-full md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] border-2 rounded-lg truncate p-1 overflow-hidden active:bg-[color:var(--accent-color)]";
+    const buttonClass = "relative w-full md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] rounded-lg truncate p-1 overflow-hidden active:bg-[color:var(--accent-color)]";
 
-    $('#github-follow-button-wrapper').append(`
+    $('#github-follow-button-wrapper').html(`
     <button onclick="window.open('https://github.com/${username}', '_blank')" 
         title="Follow ${username}" 
         aria-label="Follow ${username}" 
@@ -151,6 +135,7 @@ function setProfileField(selector, icon, value, fallback = null) {
         $(selector).addClass('hidden').html('');
     }
 }
+
 // กำหนดสีของภาษา (เหมือน GitHub)
 const languageColors = {
     HTML: "#e34c26",
@@ -231,7 +216,7 @@ function loadUserProfile() {
         createActionButtons(CONFIG.username);
 
         $('#profile-img').attr('src', avatarUrl);
-        $('#profile-name').removeClass('loading-skeleton').html(`<p>${data.name || data.login}</p>`);
+        $('[id="profile-name"]').each(function () {$(this).removeClass('loading-skeleton').html(`<p>${data.name || data.login}</p>`);});
         $('#profile-datename').removeClass('loading-skeleton').html(`<p>@${data.login}</p>`);
 
         const joinDate = new Date(data.created_at).toLocaleDateString('en-US', {
@@ -242,25 +227,20 @@ function loadUserProfile() {
 
         setProfileField('#github-profile-date',
             '<i class="fa-regular fa-calendar"></i>',
-            `Joined ${joinDate || "N/A"}`);
+            `Joined ${joinDate || ""}`);
 
         setProfileField('#github-profile-company',
             '<i class="fa-solid fa-building"></i>',
-            data.company || "N/A");
+            data.company || "");
 
         setProfileField('#github-profile-location',
             '<i class="fa-solid fa-location-dot"></i>',
-            data.location || "N/A");
+            data.location || "");
 
         $('#repo-count').text(data.public_repos || "0");
         $('#followers-count').text(data.followers || "0");
         $('#following-count').text(data.following || "0");
-
-        if (data.bio) {
-            $('#github-profile-bio').text(data.bio);
-        } else {
-            $('#github-profile-bio').addClass('hidden').html('');
-        }
+        $('#github-profile-bio').text(data.bio || "N/A");
     })
         .fail(() => {
             console.error("Unable to load GitHub data");
@@ -271,21 +251,21 @@ function loadUserProfile() {
 // Load repos
 function loadRepositories() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/repos`, repos => {
-        $("#repo-list").addClass("min-h-screen p-2 md:p-4").html(repos.map(createRepoItem).join(""));
+        $("#repo-list").addClass("opacite-0 p-2 md:p-4").html(repos.map(createRepoItem).join(""));
     });
 }
 
 // Load followers
 function loadFollowers() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/followers`, followers => {
-        $("#followers-list").addClass("").html(followers.map(createUserItem).join(""));
+        $("#followers-list").addClass("opacite-0").html(followers.map(createUserItem).join(""));
     });
 }
 
 // Load following
 function loadFollowing() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/following`, following => {
-        $("#following-list").addClass("").html(following.map(createUserItem).join(""));
+        $("#following-list").addClass("opacite-0").html(following.map(createUserItem).join(""));
     });
 }
 

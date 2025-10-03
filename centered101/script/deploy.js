@@ -86,15 +86,6 @@ function injectAnimationStyles() {
             }
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
         @keyframes shimmer {
             0% {
                 background-position: -200% 0;
@@ -119,14 +110,6 @@ function injectAnimationStyles() {
 
         .animate-slide-in-left {
             animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .animate-scale-in {
-            animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .animate-pulse-hover:hover {
-            animation: pulse 0.6s ease-in-out;
         }
 
         /* Loading shimmer effect */
@@ -186,10 +169,8 @@ function initializeDeploySection() {
     $('#deploy label, nav label').addClass('smooth-transition');
 
     // แสดงเนื้อหา projects เป็นค่าเริ่มต้นพร้อม animation
-    setTimeout(() => {
-        showTabContentWithAnimation('projects');
-        updateTabVisualStateWithAnimation('projects');
-    }, 100);
+    showTabContentWithAnimation('projects');
+    updateTabVisualStateWithAnimation('projects');
 }
 
 /**
@@ -226,12 +207,6 @@ function setupTabEventListeners() {
     $('#deploy label').on('click', function (e) {
         const $label = $(this);
         const targetId = $label.attr('for');
-
-        // เพิ่ม click effect
-        $label.addClass('animate-scale-in');
-        setTimeout(() => {
-            $label.removeClass('animate-scale-in');
-        }, 400);
 
         if (targetId) {
             $(`#${targetId}`).prop('checked', true).trigger('change');
@@ -399,28 +374,29 @@ function scrollToDeploySectionSmooth() {
     }
 }
 
-/**
- * ตรวจสอบและแสดงข้อความเมื่อไม่มีข้อมูลพร้อม animation
+/** 
+ * ตรวจสอบและแสดงข้อความเมื่อเนื้อหาว่างเปล่าพร้อม animation
  */
 function checkEmptyContentWithAnimation() {
-    const emptyMessages = {
-        'projects': 'ไม่มีโปรเจคในขณะนี้',
-        'repo': 'ไม่มีรีพอซิทอรีในขณะนี้',
-        'followers': 'ไม่มีผู้ติดตามในขณะนี้',
-        'following': 'ไม่ได้ติดตามใครในขณะนี้'
+    const emptyConfig = {
+        'projects':  { msg: 'No projects available',      padding: '' },
+        'repo':      { msg: 'No repositories available',  padding: 'p-10 md:p-20' },
+        'followers': { msg: 'No followers',               padding: '' },
+        'following': { msg: 'Not following anyone',       padding: '' }
     };
 
-    Object.keys(emptyMessages).forEach(tabId => {
-        const listSelector = `#${tabId}-list`;
-        const $list = $(listSelector);
+    Object.keys(emptyConfig).forEach(tabId => {
+        const $list = $(`#${tabId}-list`);
+        const { msg, icon, padding } = emptyConfig[tabId] || {};
+        const liPadding = padding || 'p-12 md:p-24';
 
-        if ($list.children().length === 0 && $(`#${tabId}`).is(':checked')) {
+        // ถ้าไม่มี child → แสดงข้อความ empty ทุก list
+        if ($list.children().length === 0) {
             const emptyHTML = `
-                <li class="col-span-full text-center text-gray-400 p-8 animate-fade-in-up">
+                <li class="col-span-full text-center ${liPadding} animate-fade-in-up">
                     <div class="flex flex-col items-center space-y-3">
                         <i class="fa-solid fa-diagram-project text-3xl"></i>
-                        <p class="text-lg font-medium">${emptyMessages[tabId]}</p>
-                        <p class="text-sm opacity-75">ข้อมูลจะปรากฏที่นี่เมื่อมีการอัปเดต</p>
+                        <p class="text-lg text-gray-400 font-medium">${msg}</p>
                     </div>
                 </li>
             `;
@@ -478,10 +454,7 @@ $(document).on('keydown', function (e) {
             const newTab = tabs[newIndex];
             const $newTabLabel = $(`label[for="${newTab}"]`);
 
-            // เพิ่ม keyboard focus animation
-            $newTabLabel.addClass('animate-pulse-hover');
             setTimeout(() => {
-                $newTabLabel.removeClass('animate-pulse-hover');
             }, 600);
 
             $(`#${newTab}`).prop('checked', true).trigger('change');
@@ -585,5 +558,5 @@ $(document).ready(function () {
 
 // ทำความสะอาด animations เมื่อเปลี่ยนหน้า
 $(window).on('beforeunload', function () {
-    $('*').removeClass('animate-fade-in-up animate-fade-in-down animate-slide-in-right animate-slide-in-left animate-scale-in');
+    $('*').removeClass('animate-fade-in-up animate-fade-in-down animate-slide-in-right animate-slide-in-left');
 });

@@ -148,26 +148,6 @@ $(document).ready(function () {
     });
 });
 
-// —[ defaultSvg ]———————————————————————————————————————————————————————————————————————————————————————————————————
-
-$(document).ready(function () {
-    const radios = $('input[name="status"]');
-
-    // ตั้งค่าเริ่มต้นให้กับ label[for="projects"]
-    $('label[for="projects"] svg').addClass('fill-[color:var(--primary-color)]');
-    $('nav label[for="projects"]').addClass('bg-[color:var(--accent-color)] text-[color:var(--primary-color)]');
-
-    radios.on('change', function () {
-        const targetId = $(this).attr('id');
-
-        // รีเซ็ต fill และพื้นหลังของ label ทั้งหมดภายใน nav
-        $('label svg').removeClass('fill-[color:var(--primary-color)]');
-        $('nav label').removeClass('bg-[color:var(--accent-color)] text-[color:var(--primary-color)]');
-
-        $(`label[for="${targetId}"] svg`).addClass('fill-[color:var(--primary-color)]');
-        $(`nav label[for="${targetId}"]`).addClass('bg-[color:var(--accent-color)] text-[color:var(--primary-color)]');
-    });
-});
 
 // —[ navSidebar ]———————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -268,7 +248,7 @@ $.each(project, function (i, { name, img, link }) {
                 draggable="false">
         </div>
     </li>`;
-    $("#projects-list").addClass("pt-2 md:p-0").append(listItem);
+    $("#projects-list").addClass("opacity-0 pt-2 md:p-0").append(listItem);
 });
 
 // ฟังก์ชันแสดงรายละเอียดโปรเจกต์ - ปรับปรุงแค่นิดหน่อย

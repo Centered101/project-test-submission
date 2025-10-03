@@ -136,7 +136,7 @@ function initializeNotificationSystem() {
 
         if ($('#notification-history-btn').length === 0 && $('#notification-history-content').length > 0) {
             const historyButton = $(`
-                <button id="notification-history-btn" title="notification" type="button" class="fade-in relative bg-[color:var(--bg-color)] rounded shadow-inner m-3 px-4 py-3 cursor-pointer md:mx-4 md:my-5 active:bg-[color:var(--accent-color)]">
+                <button id="notification-history-btn" title="notification" type="button" class="op_btn fade-in">
                     <i class="fa-regular fa-bell"></i>
                 </button>
             `);
@@ -216,10 +216,10 @@ function initializeNotificationSystem() {
         const panel = $(`
         <div id="notification-history-panel" class="fade-in fixed inset-0 bg-black bg-opacity-75 z-30">
             <div class="animate-slide-in-left h-full w-4/6 md:w-1/2 lg:w-1/3 fixed left-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl duration-300">
-                <div class="flex items-center justify-between border-b">
-                    <h3 class="uppercase p-4 md:py-8">Notification history</h3>
+                <div class="flex items-center justify-between border-b p-4">
+                    <h3 class="uppercase">Notification history</h3>
                     <div class="flex items-center gap-1">
-                        <button id="clear-history-btn" title="delete all" class="relative bg-[color:var(--bg-color)] text-red-500 rounded shadow-inner m-3 px-4 py-3 cursor-pointer md:mx-4 md:my-5 hover:text-red-700 active:bg-[color:var(--accent-color)]"><i class="fa-solid fa-trash"></i></button>
+                        <button id="clear-history-btn" title="delete all" class="op_btn text-red-500"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
                 <div id="history-content" class="p-4 h-full overflow-y-scroll pb-24">

@@ -10,7 +10,7 @@ html {
 body {
     font-family: "kanit", sans-serif;
     /* background-image: radial-gradient(var(--border) 1px, transparent 1px), */
-        /* radial-gradient(var(--border) 1px, transparent 1px); */
+    /* radial-gradient(var(--border) 1px, transparent 1px); */
     /* สร้างลายตาราง (grid) ด้วย radial-gradient 2 ชั้น */
 
     /* background-size: 20px 20px; */
@@ -18,4 +18,14 @@ body {
 
     /* background-position: 0 0, 10px 10px; */
     /* ขยับตำแหน่งของ gradient ที่ 2 ให้เลื่อนครึ่งหนึ่ง (10px) เพื่อสร้าง pattern ซ้อนกัน */
+}
+
+.op_btn {
+    position: relative;
+    padding: 0px;
+    cursor: pointer;
+}
+
+.op_btn:active {
+    color: var(--accent-color);
 }
