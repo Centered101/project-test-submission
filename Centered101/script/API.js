@@ -96,12 +96,12 @@ function createActionButtons(username) {
     </button>
         
     <button class="${buttonClass}" 
-        onclick="share()" 
+        onclick="contact()" 
         title="Contact">
         <span>Contact</span>
     </button>
 
-    <button class="${buttonClass} w-12 p-2 px-3" 
+    <button class="${buttonClass} !w-12 !p-2 !px-3" 
         onclick="share()" 
         title="More options">
         <i class="fa-solid fa-share-nodes"></i>
@@ -251,21 +251,21 @@ function loadUserProfile() {
 // Load repos
 function loadRepositories() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/repos`, repos => {
-        $("#repo-list").addClass("opacite-0 p-2 md:p-4").html(repos.map(createRepoItem).join(""));
+        $("#repo-list").addClass("opacity-0 p-2 md:p-4").html(repos.map(createRepoItem).join(""));
     });
 }
 
 // Load followers
 function loadFollowers() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/followers`, followers => {
-        $("#followers-list").addClass("opacite-0").html(followers.map(createUserItem).join(""));
+        $("#followers-list").addClass("opacity-0").html(followers.map(createUserItem).join(""));
     });
 }
 
 // Load following
 function loadFollowing() {
     fetchData(`${CONFIG.apiBaseUrl}/users/${CONFIG.username}/following`, following => {
-        $("#following-list").addClass("opacite-0").html(following.map(createUserItem).join(""));
+        $("#following-list").addClass("opacity-0").html(following.map(createUserItem).join(""));
     });
 }
 

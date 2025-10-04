@@ -174,7 +174,7 @@ function initializeNotificationSystem() {
 
             return `
             <div class="history-item bg-[color:var(--bg-color)] border rounded-lg shadow-inner mb-2 p-2 ${!item.isRead ? 'border-l-2 !border-l-[color:var(--primary-color)]' : ''}">
-                <div class="flex items-start gap-2">
+                <div class="flex items-start gap-1">
                     <div class="flex-shrink-0">
                         ${typeIcon}
                     </div>
@@ -183,9 +183,9 @@ function initializeNotificationSystem() {
                     `<a href="${item.link}" class="text-sm text-[color:var(--primary-color)] hover:underline break-words" target="_blank" rel="noopener noreferrer">${item.message}</a>` :
                     `<p class="text-sm break-words">${item.message}</p>`
                 }
-                        <p class="text-xs text-gray-500 mt-1">${timeStr}</p>
-                    </div>
-                    <button class="delete-history-item flex-shrink-0 text-gray-500 ease-in-out duration-300 active:text-red-500" data-id="${item.id}">
+                <p class="text-xs text-gray-500 mt-1">${timeStr}</p>
+                </div>
+                    <button class="delete-history-item ripple-effect flex-shrink-0 text-gray-500 ease-in-out duration-300 active:text-red-500" data-id="${item.id}">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </div>
@@ -214,7 +214,7 @@ function initializeNotificationSystem() {
         window.updateHistoryBadge();
 
         const panel = $(`
-        <div id="notification-history-panel" class="fade-in fixed inset-0 bg-black bg-opacity-75 z-30">
+        <div id="notification-history-panel" class="animate-slide-in-left fixed inset-0 bg-black bg-opacity-75 z-40">
             <div class="animate-slide-in-left h-full w-4/6 md:w-1/2 lg:w-1/3 fixed left-0 top-0 bg-[color:var(--white-smoker)] border-l shadow-xl duration-300">
                 <div class="flex items-center justify-between border-b p-4">
                     <h3 class="uppercase">Notification history</h3>
@@ -282,7 +282,7 @@ function initializeNotificationSystem() {
 
         const notification = $(`
         <div class="notification-item !w-sm max-w-sm bg-[color:var(--white-smoker)] border rounded-xl shadow-inner px-2 py-1 md:px-3 md:py-2 transition-all duration-300 transform translate-x-full select-none ${!link ? 'cursor-pointer' : ''}">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1">
                 <div class="flex-shrink-0">
                 ${type === 'success' ?
                 '<i class="fa-solid fa-circle-check text-green-500"></i>' :

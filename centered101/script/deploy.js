@@ -240,32 +240,39 @@ function setupNavigationEventListeners() {
 }
 
 /**
- * สร้าง ripple effect บน element
+ * Ripple Effect Utility
+ * ใช้ได้กับทุก element ที่มี class "ripple-effect"
  */
-function createRippleEffect($element, event) {
-    const rect = $element[0].getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
+(function ($) {
+    function createRippleEffect($element, event) {
+        const rect = $element[0].getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
 
-    const $ripple = $('<span class="ripple"></span>');
-    $ripple.css({
-        position: 'absolute',
-        width: size + 'px',
-        height: size + 'px',
-        left: x + 'px',
-        top: y + 'px',
-        background: 'rgba(255, 255, 255, 0.3)',
-        borderRadius: '50%',
-        transform: 'scale(0)',
-        animation: 'ripple-animation 0.6s ease-out',
-        pointerEvents: 'none',
-        zIndex: 1000
-    });
+        const $ripple = $('<span class="ripple"></span>');
+        $ripple.css({
+            position: 'absolute',
+            width: size + 'px',
+            height: size + 'px',
+            left: x + 'px',
+            top: y + 'px',
+            background: 'var(--accent-color)',
+            borderRadius: '50%',
+            transform: 'scale(0)',
+            animation: 'ripple-animation 0.6s ease-out',
+            pointerEvents: 'none',
+            zIndex: 50
+        });
 
-    $element.css('position', 'relative').append($ripple);
+        $element.css('position', 'relative').append($ripple);
 
-    // เพิ่ม keyframe สำหรับ ripple animation
+        setTimeout(() => {
+            $ripple.remove();
+        }, 600);
+    }
+
+    // inject keyframes แค่ครั้งเดียว
     if ($('#ripple-keyframes').length === 0) {
         $('head').append(`
             <style id="ripple-keyframes">
@@ -275,15 +282,25 @@ function createRippleEffect($element, event) {
                     opacity: 0;
                 }
             }
+            .ripple-effect {
+                overflow: hidden; /* ป้องกัน ripple เกินขอบ */
+                position: relative;
+            }
             </style>
         `);
     }
 
-    setTimeout(() => {
-        $ripple.remove();
-    }, 600);
-}
+    // Auto bind event ให้ทุก element ที่มี class ripple-effect
+    $(document).on("click", ".ripple-effect", function (e) {
+        createRippleEffect($(this), e);
+    });
+    // ใช้กับทุก element ที่ class มีคำว่า "btn"
+    $(document).on("click", "[class*='btn']", function (e) {
+        createRippleEffect($(this), e);
+    });
 
+})(jQuery);
+    
 /**
  * แสดงเนื้อหาของ tab ที่เลือกพร้อม animation
  */
@@ -396,7 +413,7 @@ function checkEmptyContentWithAnimation() {
                 <li class="col-span-full text-center ${liPadding} animate-fade-in-up">
                     <div class="flex flex-col items-center space-y-3">
                         <i class="fa-solid fa-diagram-project text-3xl"></i>
-                        <p class="text-lg text-gray-400 font-medium">${msg}</p>
+                        <p class="text-lg font-medium">${msg}</p>
                     </div>
                 </li>
             `;

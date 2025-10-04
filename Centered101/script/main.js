@@ -1,183 +1,178 @@
-// —[ profile ]———————————————————————————————————————————————————————————————————————————————————————————————————
+// ========================================================================================
+// PROFILE SECTION - จัดการรูปโปรไฟล์, QR Code, และการแชร์
+// ========================================================================================
 
 const URLShare = window.location.href;
 let isQRMode = false;
 
+/**
+ * เปิดรูปภาพแบบเต็มจอ
+ * @param {string} imageSrc - URL ของรูปภาพ
+ */
 function openFullscreen(imageSrc) {
     $("#fullscreen").removeClass("hidden").fadeIn(150);
     $("#fullscreenImage").attr("src", imageSrc).removeClass("hidden");
-    $("#loadingSpinner").addClass("hidden");
-    $("#qrContainer").addClass("hidden");
-    $("#qrImage").addClass("hidden");
+    $("#loadingSpinner, #qrContainer, #qrImage").addClass("hidden");
     isQRMode = false;
 }
 
+/**
+ * ปิดโหมดเต็มจอและ QR Code
+ */
 function closeFullscreen() {
     $("#fullscreen").fadeOut(150);
     $("#fullscreenImage").removeClass("hidden");
-    $("#loadingSpinner").addClass("hidden");
-    $("#qrContainer").addClass("hidden");
-    $("#qrImage").addClass("hidden");
+    $("#loadingSpinner, #qrContainer, #qrImage").addClass("hidden");
     isQRMode = false;
 }
 
+/**
+ * แชร์ URL ผ่าน Web Share API หรือใช้ fallback
+ */
 function share() {
-    const share = $("#share");
-    share.prop("disabled", true);
+    const $share = $("#share");
+    $share.prop("disabled", true);
 
     if (navigator.share) {
         navigator.share({
-            title: `Github API Profile`,
+            title: 'Github API Profile',
             text: 'See my profile here.',
             url: URLShare
         }).catch(err => {
             console.error("Share failed:", err);
             fallbackShare();
         }).finally(() => {
-            setTimeout(() => share.prop("disabled", false), 3000);
+            setTimeout(() => $share.prop("disabled", false), 3000);
         });
     } else {
         fallbackShare();
         showNotification('Unable to share via system, fallback used.', 'info');
-        setTimeout(() => share.prop("disabled", false), 3000);
+        setTimeout(() => $share.prop("disabled", false), 3000);
     }
 }
 
+/**
+ * คัดลอก URL ไปยังคลิปบอร์ด พร้อมเปลี่ยนไอคอนเป็น checkmark
+ */
 function copyLink() {
-    const copyLink = $("#copyLink");
+    const $btn = $("#copyLink");
+    const linkIcon = `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>`;
+    const checkIcon = `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor"><path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"/></svg>`;
 
-    // ปิดการกดซ้ำ
-    copyLink.prop("disabled", true);
+    $btn.prop("disabled", true);
 
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(URLShare).then(() => {
-            // เปลี่ยนไอคอนเป็น checkmark
-            copyLink.html(`
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
-                    <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"/>
-                </svg>
-            `);
-
-            showNotification('Link copied successfully!', 'success');
-
-            // รีเซ็ตหลัง 5 วิ
-            setTimeout(() => {
-                copyLink.html(`
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
-                        <path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/>
-                    </svg>
-                `);
-                copyLink.prop("disabled", false); // เปิดให้กดได้อีกครั้ง
-            }, 5000);
-        }).catch(err => {
-            console.error('cannot be copied:', err);
-            showNotification('Unable to copy link', 'error');
-            copyLink.prop("disabled", false); // คืนปุ่มในกรณีผิดพลาด
-        });
-    } else {
-        const textArea = document.createElement('textarea');
-        textArea.value = URLShare;
-        document.body.appendChild(textArea);
-        textArea.select();
-        try {
+    const copyText = () => {
+        if (navigator.clipboard) {
+            return navigator.clipboard.writeText(URLShare);
+        } else {
+            // Fallback สำหรับเบราว์เซอร์เก่า
+            const $temp = $('<textarea>').val(URLShare).appendTo('body').select();
             document.execCommand('copy');
-            showNotification('Link copied successfully!', 'success');
-        } catch (err) {
-            showNotification('Unable to copy link', 'error');
+            $temp.remove();
+            return Promise.resolve();
         }
-        document.body.removeChild(textArea);
-        setTimeout(() => {
-            copyLink.prop("disabled", false);
-        }, 5000);
-    }
+    };
+
+    copyText()
+        .then(() => {
+            $btn.html(checkIcon);
+            showNotification('Link copied successfully!', 'success');
+            setTimeout(() => {
+                $btn.html(linkIcon).prop("disabled", false);
+            }, 5000);
+        })
+        .catch(err => {
+            console.error('Cannot copy:', err);
+            showNotification('Unable to copy link', 'error');
+            $btn.prop("disabled", false);
+        });
 }
 
+/**
+ * สร้าง QR Code จาก URL ปัจจุบัน
+ */
 function generateQRCode() {
-    // แสดง loading spinner
     $("#loadingSpinner").removeClass("hidden");
-    $("#qrImage").addClass("hidden");
-    $("#fullscreenImage").addClass("hidden");
+    $("#qrImage, #fullscreenImage").addClass("hidden");
     $("#qrContainer").removeClass("hidden");
     isQRMode = true;
 
     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(URLShare)}`;
 
-    // สร้าง image object เพื่อตรวจสอบการโหลด
-    const img = new Image();
-    img.onload = function () {
-        // เมื่อโหลดเสร็จ ซ่อน loading และแสดง QR Code
-        $("#loadingSpinner").addClass("hidden");
-        $("#qrImage").attr("src", qrUrl).removeClass("hidden");
-        showNotification('QR Code created successfully!', 'success');
-    };
-    img.onerror = function () {
-        // หากเกิดข้อผิดพลาด
-        $("#loadingSpinner").addClass("hidden");
-        $("#qrContainer").addClass("hidden");
-        $("#fullscreenImage").removeClass("hidden");
-        isQRMode = false;
-        showNotification('Unable to generate QR Code', 'error');
-    };
-
-    // เริ่มโหลดรูปภาพ
-    img.src = qrUrl;
+    $('<img>')
+        .on('load', function() {
+            $("#loadingSpinner").addClass("hidden");
+            $("#qrImage").attr("src", qrUrl).removeClass("hidden");
+            showNotification('QR Code created successfully!', 'success');
+        })
+        .on('error', function() {
+            $("#loadingSpinner, #qrContainer").addClass("hidden");
+            $("#fullscreenImage").removeClass("hidden");
+            isQRMode = false;
+            showNotification('Unable to generate QR Code', 'error');
+        })
+        .attr('src', qrUrl);
 }
 
-// Event Listeners
-$(document).ready(function () {
-    $("#profile-img").on("click", function () {
+// Event Listeners สำหรับ Profile Section
+$(document).ready(function() {
+    $("#profile-img").on("click", function() {
         openFullscreen($(this).attr("src"));
     });
 
-    // ปิดด้วย Esc
-    $(document).on("keydown", function (e) {
-        if (e.key === "Escape") {
-            closeFullscreen();
-        }
+    $(document).on("keydown", function(e) {
+        if (e.key === "Escape") closeFullscreen();
     });
 
-    // คลิกที่ QR container เพื่อปิด QR mode
-    $("#qrContainer").on("click", function (e) {
+    $("#qrContainer").on("click", function(e) {
         if (e.target === this) {
-            $("#qrContainer").addClass("hidden");
+            $(this).addClass("hidden");
             $("#fullscreenImage").removeClass("hidden");
-            $("#loadingSpinner").addClass("hidden");
-            $("#qrImage").addClass("hidden");
+            $("#loadingSpinner, #qrImage").addClass("hidden");
             isQRMode = false;
         }
     });
 });
 
 
-// —[ navSidebar ]———————————————————————————————————————————————————————————————————————————————————————————————————
+// ========================================================================================
+// SIDEBAR NAVIGATION - จัดการเมนูข้างและ overlay
+// ========================================================================================
 
 const navSidebar = document.querySelector("nav");
-const overlay = document.getElementById("overlay");
+const overlay = document.querySelector("[id='overlay']");
 const toggleBtn = document.getElementById("sidebarToggle");
-
 let sidebarOpen = false;
 
+/**
+ * เปิด Sidebar และแสดง overlay
+ */
 function openSidebar() {
     navSidebar.classList.remove("-translate-x-full");
     overlay.classList.remove("hidden");
     sidebarOpen = true;
 }
 
+/**
+ * ปิด Sidebar และซ่อน overlay
+ */
 function closeSidebar() {
     navSidebar.classList.add("-translate-x-full");
     overlay.classList.add("hidden");
     sidebarOpen = false;
 }
 
-toggleBtn.addEventListener("click", () => {
-    sidebarOpen ? closeSidebar() : openSidebar();
-});
-
+toggleBtn.addEventListener("click", () => sidebarOpen ? closeSidebar() : openSidebar());
 overlay.addEventListener("click", closeSidebar);
 
-// —[ Projects Section ]—————————————————————————————————————————————————————————————————————
+
+// ========================================================================================
+// PROJECTS SECTION - แสดงรายการโปรเจกต์และรายละเอียด
+// ========================================================================================
+
 const noimages = "/images/img/noitems.svg";
 
+// ข้อมูลโปรเจกต์ทั้งหมด
 const project = [
     {
         name: "Portfolio Centered101",
@@ -186,7 +181,7 @@ const project = [
         description: "Personal Portfolio Website Built with TailwindCSS and JavaScript.",
         date: "2024-06-15",
         type: "Website",
-        tech: "HTML, CSS, JavaScript, TailwindCSS,"
+        tech: "HTML, CSS, JavaScript, TailwindCSS"
     },
     {
         name: "Project test Submission",
@@ -232,17 +227,18 @@ const project = [
         date: "",
         type: "Website",
         tech: ""
-    },
+    }
 ];
 
-// สร้าง list item ของ project
-$.each(project, function (i, { name, img, link }) {
+/**
+ * สร้างรายการโปรเจกต์แบบ Grid
+ */
+$.each(project, function(i, { name, img }) {
     const listItem = `
-    <li title="${name}"class="flex flex-col justify-center items-center w-full h-full overflow-hidden cursor-pointer transition-transform ease-in-out duration-300 active:brightness-90"
+    <li title="${name}" class="ripple-effect flex flex-col justify-center items-center w-full h-full overflow-hidden cursor-pointer transition-transform ease-in-out duration-300 active:brightness-75"
         onclick="showProjectDetails(${i})">
         <div class="w-full aspect-[4/5] overflow-hidden">
-            <img src="${img || noimages}"
-                onerror="this.src='${noimages}'"
+            <img src="${img || noimages}" onerror="this.src='${noimages}'"
                 class="block h-full w-full object-cover object-center"
                 style="background-image: url('${noimages}'); background-size: cover; background-position: center;"
                 draggable="false">
@@ -251,153 +247,217 @@ $.each(project, function (i, { name, img, link }) {
     $("#projects-list").addClass("opacity-0 pt-2 md:p-0").append(listItem);
 });
 
-// ฟังก์ชันแสดงรายละเอียดโปรเจกต์ - ปรับปรุงแค่นิดหน่อย
+/**
+ * แสดงรายละเอียดโปรเจกต์ใน Modal
+ * @param {number} index - ลำดับของโปรเจกต์
+ */
 function showProjectDetails(index) {
     const { img, name, description, link, date, type, tech } = project[index];
 
     $("#project-details").removeClass("hidden").fadeIn(150).html(`
     <div class="relative w-full max-w-4xl flex flex-col md:flex-row justify-center gap-2 md:gap-4 bg-[color:var(--white-smoker)] border rounded-xl shadow-xl m-2 p-2 md:p-4">
         <div class="aspect-[4/5] md:w-1/2">
-            <img src="${img || noimages}"
-                onerror="this.src='${noimages}'"
+            <img src="${img || noimages}" onerror="this.src='${noimages}'"
                 class="block h-full w-full border rounded-lg object-cover object-center"
                 style="background-image: url('${noimages}'); background-size: cover; background-position: center;"
                 draggable="false">
         </div>
         <div class="min-h-full min-w-2xl flex-1 flex flex-col justify-between gap-4">
             <div>
-                <P class="text-lg md:text-3xl">${name}</p>
+                <p class="text-lg md:text-3xl">${name}</p>
                 <p class="text-gray-500">${description || "No description provided"}</p>
-
-                <p class="flex items-center gap-2 text-gray-600">
-                    <i class="fa-regular fa-calendar"></i><span>${date || ""}</span>
-                </p>
-
-                <p class="flex items-center gap-2 text-gray-600">
-                    <i class="fa-solid fa-folder"></i><span>${type || ""}</span>
-                </p>
-
-                ${tech ? `
-                <p class="flex items-center gap-2 text-gray-600">
-                    <i class="fa-solid fa-wrench"></i><span>${tech}</span>
-                </p>
-                ` : ''}
+                ${date ? `<p class="flex items-center gap-2 text-gray-500"><i class="fa-regular fa-calendar"></i><span>${date}</span></p>` : ''}
+                ${type ? `<p class="flex items-center gap-2 text-gray-500"><i class="fa-solid fa-folder"></i><span>${type}</span></p>` : ''}
+                ${tech ? `<p class="flex items-center gap-2 text-gray-500"><i class="fa-solid fa-wrench"></i><span>${tech}</span></p>` : ''}
             </div>
             <div class="flex items-center justify-center gap-2">
-                <button onclick="closeModal()" class="btn-outline w-full">Close</button>
                 <button onclick="window.open('${link}', '_blank')" class="btn-primary w-full">Demo</button>
+                <button onclick="closeModal()" class="btn-outline w-full">Close</button>
             </div>
         </div>
-    </div>
-  `);
+    </div>`);
+    
+    openModal();
 }
+
+
+// ========================================================================================
+// MODAL MANAGEMENT - จัดการ Modal และ History API
+// ========================================================================================
 
 let modalOpen = false;
 
-// ฟังก์ชันเปิด modal
+/**
+ * เปิด Modal และเพิ่ม state ใน history
+ */
 function openModal() {
     $("#project-details").fadeIn(150);
     modalOpen = true;
-
-    // เพิ่ม state ใหม่ใน history
     history.pushState({ modal: true }, "");
 }
 
-// ฟังก์ชันปิด modal
+/**
+ * ปิด Modal และจัดการ history
+ */
 function closeModal() {
     $("#project-details").fadeOut(150);
     modalOpen = false;
-
-    // เวลา modal ถูกปิด ให้ย้อน history กลับไป 1 step (ถ้าอยู่ในมือถือ)
-    if (history.state && history.state.modal) {
-        history.back();
-    }
+    if (history.state?.modal) history.back();
 }
 
-// ปิด modal เมื่อคลิกนอก
-$(document).on("click", "#project-details", function (e) {
+// ปิด Modal เมื่อคลิกพื้นหลัง
+$(document).on("click", "#project-details", function(e) {
     if (e.target === this) closeModal();
 });
 
-// ปิด modal เมื่อกด ESC
-$(document).on("keydown", function (e) {
+// ปิด Modal เมื่อกด ESC
+$(document).on("keydown", function(e) {
     if (e.key === "Escape") closeModal();
 });
 
-// ดัก event popstate → ถ้ากดย้อนกลับตอน modal เปิดอยู่ ให้ปิดแทน
-window.addEventListener("popstate", function () {
-    if (modalOpen) {
-        closeModal();
-    }
+// จัดการ Back Button ของเบราว์เซอร์
+window.addEventListener("popstate", function() {
+    if (modalOpen) closeModal();
 });
 
-// —[ Followers/Following Section ]—————————————————————————————————————————————————————————————————————
+
+// ========================================================================================
+// HIGHLIGHT MODAL - แสดงข้อมูล Projects, Skills, Certificates
+// ========================================================================================
+
+/**
+ * เปิด Modal แสดงข้อมูลเพิ่มเติม
+ * @param {string} type - ประเภทข้อมูล (projects, skills, certs)
+ */
 function openHighlight(type) {
-    let content = "";
+    const content = {
+        projects: {
+            title: "Projects",
+            body: "<p>Here are some of my featured projects with GitHub API integration.</p>"
+        },
+        skills: {
+            title: "Skills",
+            body: "<ul class='list-disc list-inside'><li>JavaScript / React</li><li>Tailwind CSS</li><li>Node.js</li></ul>"
+        },
+        certs: {
+            title: "Certificates",
+            body: "<p>Some certifications I've achieved in programming and business.</p>"
+        }
+    }[type];
 
-    switch (type) {
-        case "projects":
-            content = `
-        <div class="relative w-80 bg-[color:var(--white-smoker)] rounded-xl p-6">
-          <button id="close-highlight" class="absolute top-2 right-2 text-gray-600">
+    const html = `
+    <div class="relative w-80 bg-[color:var(--white-smoker)] rounded-xl p-6">
+        <button id="close-highlight" class="absolute top-2 right-2 text-gray-600">
             <i class="fa-solid fa-xmark"></i>
-          </button>
-          <h3 class="text-xl font-bold mb-2">Projects</h3>
-          <p>Here are some of my featured projects with GitHub API integration.</p>
-        </div>
-      `;
-            break;
+        </button>
+        <h3 class="text-xl font-bold mb-2">${content.title}</h3>
+        ${content.body}
+    </div>`;
 
-        case "skills":
-            content = `
-        <div class="relative w-80 bg-[color:var(--white-smoker)] rounded-xl p-6">
-          <button id="close-highlight" class="absolute top-2 right-2 text-gray-600">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-          <h3 class="text-xl font-bold mb-2">Skills</h3>
-          <ul class="list-disc list-inside">
-            <li>JavaScript / React</li>
-            <li>Tailwind CSS</li>
-            <li>Node.js</li>
-          </ul>
-        </div>
-      `;
-            break;
+    $("#project-details").removeClass("hidden").hide().fadeIn(150).html(html);
 
-        case "certs":
-            content = `
-        <div class="relative w-80 bg-[color:var(--white-smoker)] rounded-xl p-6">
-          <button id="close-highlight" class="absolute top-2 right-2 text-gray-600">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-          <h3 class="text-xl font-bold mb-2">Certificates</h3>
-          <p>Some certifications I've achieved in programming and business.</p>
-        </div>
-      `;
-            break;
-    }
-
-    // แสดงผล modal ด้วย jQuery
-    $("#project-details")
-        .removeClass("hidden")
-        .hide()
-        .fadeIn(150)
-        .html(content);
-
-    // ปุ่มปิด
-    $("#close-highlight").on("click", function () {
-        $("#project-details").fadeOut(150, function () {
-            $(this).addClass("hidden").html("");
-        });
-    });
-
-    // ปิด modal เมื่อกดพื้นหลัง
-    $("#project-details").on("click", function (e) {
-        if (e.target === this) {
-            $(this).fadeOut(200, function () {
+    $("#close-highlight, #project-details").on("click", function(e) {
+        if (e.target === this || $(e.target).is("#close-highlight, #close-highlight *")) {
+            $("#project-details").fadeOut(150, function() {
                 $(this).addClass("hidden").html("");
             });
         }
     });
+}
 
+
+// ========================================================================================
+// BOTTOM SHEET - Bottom Sheet สำหรับมือถือ (รองรับ Touch และ Mouse)
+// ========================================================================================
+
+const BottomSheet = {
+    $sheet: $("#bottomSheet"),
+    $overlay: $('[id="overlay"]'),
+    $content: $("#bottomSheetContent"),
+    isDragging: false,
+    startY: 0,
+    currentY: 0,
+
+    /**
+     * เปิด Bottom Sheet พร้อมเนื้อหา
+     * @param {Object} options - { title: string, content: string }
+     */
+    open({ title = "", content = "" }) {
+        this.$content.html(`
+            ${title ? `<h2 class="text-xl text-center font-semibold">${title}</h2>` : ""}
+            <div class="border-t mt-2 pb-8 overflow-y-auto">${content}</div>
+        `);
+        this.$sheet.css("bottom", "0");
+        this.$overlay.fadeIn(200);
+    },
+
+    /**
+     * ปิด Bottom Sheet
+     */
+    close() {
+        this.$sheet.css("bottom", "-100%");
+        this.$overlay.fadeOut(200);
+    },
+
+    /**
+     * เริ่มต้น Bottom Sheet พร้อม Drag Support
+     */
+    init() {
+        this.$overlay.on("click", () => this.close());
+
+        // เริ่ม Drag
+        this.$sheet.on("touchstart mousedown", (e) => {
+            this.startY = e.type === "touchstart" ? e.originalEvent.touches[0].clientY : e.clientY;
+            this.isDragging = true;
+        });
+
+        // กำลัง Drag
+        $(document).on("touchmove mousemove", (e) => {
+            if (!this.isDragging) return;
+            this.currentY = e.type === "touchmove" ? e.originalEvent.touches[0].clientY : e.clientY;
+            const diff = this.currentY - this.startY;
+            if (diff > 0) this.$sheet.css("transform", `translateY(${diff}px)`);
+        });
+
+        // จบ Drag
+        $(document).on("touchend mouseup", () => {
+            if (!this.isDragging) return;
+            this.isDragging = false;
+            const diff = this.currentY - this.startY;
+            this.$sheet.css("transform", "");
+            if (diff > 100) this.close();
+        });
+    }
+};
+
+BottomSheet.init();
+
+
+// ========================================================================================
+// CONTACT FUNCTION - แสดงข้อมูลติดต่อใน Bottom Sheet
+// ========================================================================================
+
+/**
+ * แสดงข้อมูลติดต่อทั้งหมด
+ */
+function contact() {
+    const emails = [
+        "centered101@outlook.com",
+        "centered101@hothail.com",
+        "centered101@outlook.co.th",
+        "centered101@icloud.com",
+        "36887@panarai.ac.th"
+    ];
+
+    const emailLinks = emails.map(email => `
+        <a href="mailto:${email}?subject=Hello&body=Hello, would like to contact..." 
+           class="ripple-effect flex flex-col p-2 md:px-4 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)] group">
+            <strong>Email</strong>${email}
+        </a>
+    `).join("");
+
+    BottomSheet.open({
+        title: "Contact",
+        content: emailLinks
+    });
 }
