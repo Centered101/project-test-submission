@@ -139,17 +139,17 @@ $(document).ready(function() {
 // SIDEBAR NAVIGATION - จัดการเมนูข้างและ overlay
 // ========================================================================================
 
-const navSidebar = document.querySelector("nav");
-const overlay = document.querySelector("[id='overlay']");
-const toggleBtn = document.getElementById("sidebarToggle");
+const navSidebar = $("nav");
+const overlay = $("#overlay");
+const toggleBtn = $("#sidebarToggle");
 let sidebarOpen = false;
 
 /**
  * เปิด Sidebar และแสดง overlay
  */
 function openSidebar() {
-    navSidebar.classList.remove("-translate-x-full");
-    overlay.classList.remove("hidden");
+    navSidebar.removeClass("-translate-x-full");
+    overlay.fadeIn(150).removeClass("hidden");
     sidebarOpen = true;
 }
 
@@ -157,13 +157,22 @@ function openSidebar() {
  * ปิด Sidebar และซ่อน overlay
  */
 function closeSidebar() {
-    navSidebar.classList.add("-translate-x-full");
-    overlay.classList.add("hidden");
+    navSidebar.addClass("-translate-x-full");
+    overlay.fadeOut(150, function() {
+        overlay.addClass("hidden").html("");
+    });
     sidebarOpen = false;
 }
 
-toggleBtn.addEventListener("click", () => sidebarOpen ? closeSidebar() : openSidebar());
-overlay.addEventListener("click", closeSidebar);
+// toggleBtn click
+toggleBtn.on("click", function() {
+    sidebarOpen ? closeSidebar() : openSidebar();
+});
+
+// overlay click
+overlay.on("click", function() {
+    closeSidebar();
+});
 
 
 // ========================================================================================
@@ -222,7 +231,7 @@ const project = [
     {
         name: "My Certificates",
         link: "./certificates.html",
-        img: "./images/certificates/certificate.png",
+        img: "",
         description: "My Certificates",
         date: "",
         type: "Website",
@@ -254,7 +263,7 @@ $.each(project, function(i, { name, img }) {
 function showProjectDetails(index) {
     const { img, name, description, link, date, type, tech } = project[index];
 
-    $("#project-details").removeClass("hidden").fadeIn(150).html(`
+    $("[id='overlay']").removeClass("hidden").fadeIn(150).html(`
     <div class="relative w-full max-w-4xl flex flex-col md:flex-row justify-center gap-2 md:gap-4 bg-[color:var(--white-smoker)] border rounded-xl shadow-xl m-2 p-2 md:p-4">
         <div class="aspect-[4/5] md:w-1/2">
             <img src="${img || noimages}" onerror="this.src='${noimages}'"
@@ -271,7 +280,10 @@ function showProjectDetails(index) {
                 ${tech ? `<p class="flex items-center gap-2 text-gray-500"><i class="fa-solid fa-wrench"></i><span>${tech}</span></p>` : ''}
             </div>
             <div class="flex items-center justify-center gap-2">
-                <button onclick="window.open('${link}', '_blank')" class="btn-primary w-full">Demo</button>
+                <button onclick="window.open('${link}', '_blank')" class="btn-primary w-full flex items-center justify-between gap-2">
+                    <span>Demo</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
                 <button onclick="closeModal()" class="btn-outline w-full">Close</button>
             </div>
         </div>
@@ -291,7 +303,7 @@ let modalOpen = false;
  * เปิด Modal และเพิ่ม state ใน history
  */
 function openModal() {
-    $("#project-details").fadeIn(150);
+    $("[id='overlay']").fadeIn(150);
     modalOpen = true;
     history.pushState({ modal: true }, "");
 }
@@ -300,13 +312,13 @@ function openModal() {
  * ปิด Modal และจัดการ history
  */
 function closeModal() {
-    $("#project-details").fadeOut(150);
+    $("[id='overlay']").fadeOut(150);
     modalOpen = false;
     if (history.state?.modal) history.back();
 }
 
 // ปิด Modal เมื่อคลิกพื้นหลัง
-$(document).on("click", "#project-details", function(e) {
+$(document).on("click", "[id='overlay']", function(e) {
     if (e.target === this) closeModal();
 });
 
@@ -354,11 +366,11 @@ function openHighlight(type) {
         ${content.body}
     </div>`;
 
-    $("#project-details").removeClass("hidden").hide().fadeIn(150).html(html);
+    $("[id='overlay']").removeClass("hidden").hide().fadeIn(150).html(html);
 
-    $("#close-highlight, #project-details").on("click", function(e) {
+    $("#close-highlight, [id='overlay']").on("click", function(e) {
         if (e.target === this || $(e.target).is("#close-highlight, #close-highlight *")) {
-            $("#project-details").fadeOut(150, function() {
+            $("[id='overlay']").fadeOut(150, function() {
                 $(this).addClass("hidden").html("");
             });
         }
@@ -372,7 +384,7 @@ function openHighlight(type) {
 
 const BottomSheet = {
     $sheet: $("#bottomSheet"),
-    $overlay: $('[id="overlay"]'),
+    $overlay: $("#overlay"),
     $content: $("#bottomSheetContent"),
     isDragging: false,
     startY: 0,
@@ -380,7 +392,6 @@ const BottomSheet = {
 
     /**
      * เปิด Bottom Sheet พร้อมเนื้อหา
-     * @param {Object} options - { title: string, content: string }
      */
     open({ title = "", content = "" }) {
         this.$content.html(`
@@ -388,7 +399,7 @@ const BottomSheet = {
             <div class="border-t mt-2 pb-8 overflow-y-auto">${content}</div>
         `);
         this.$sheet.css("bottom", "0");
-        this.$overlay.fadeIn(200);
+        this.$overlay.fadeIn(150).removeClass("hidden");
     },
 
     /**
@@ -396,22 +407,24 @@ const BottomSheet = {
      */
     close() {
         this.$sheet.css("bottom", "-100%");
-        this.$overlay.fadeOut(200);
+        this.$overlay.fadeOut(150, () => {
+            this.$overlay.addClass("hidden").html("");
+        });
     },
 
     /**
-     * เริ่มต้น Bottom Sheet พร้อม Drag Support
+     * Init Bottom Sheet พร้อม Drag
      */
     init() {
         this.$overlay.on("click", () => this.close());
 
-        // เริ่ม Drag
+        // เริ่ม drag
         this.$sheet.on("touchstart mousedown", (e) => {
             this.startY = e.type === "touchstart" ? e.originalEvent.touches[0].clientY : e.clientY;
             this.isDragging = true;
         });
 
-        // กำลัง Drag
+        // drag อยู่
         $(document).on("touchmove mousemove", (e) => {
             if (!this.isDragging) return;
             this.currentY = e.type === "touchmove" ? e.originalEvent.touches[0].clientY : e.clientY;
@@ -419,7 +432,7 @@ const BottomSheet = {
             if (diff > 0) this.$sheet.css("transform", `translateY(${diff}px)`);
         });
 
-        // จบ Drag
+        // drag จบ
         $(document).on("touchend mouseup", () => {
             if (!this.isDragging) return;
             this.isDragging = false;
@@ -432,14 +445,9 @@ const BottomSheet = {
 
 BottomSheet.init();
 
-
 // ========================================================================================
 // CONTACT FUNCTION - แสดงข้อมูลติดต่อใน Bottom Sheet
 // ========================================================================================
-
-/**
- * แสดงข้อมูลติดต่อทั้งหมด
- */
 function contact() {
     const emails = [
         "centered101@outlook.com",
@@ -451,8 +459,10 @@ function contact() {
 
     const emailLinks = emails.map(email => `
         <a href="mailto:${email}?subject=Hello&body=Hello, would like to contact..." 
-           class="ripple-effect flex flex-col p-2 md:px-4 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)] group">
-            <strong>Email</strong>${email}
+           class="ripple-effect flex flex-col p-2 md:px-4 
+                  active:bg-[color:var(--accent-color)] 
+                  md:hover:bg-[color:var(--accent-color)] group">
+            <strong>Email:</strong> ${email}
         </a>
     `).join("");
 

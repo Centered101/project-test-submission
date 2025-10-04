@@ -78,7 +78,7 @@ function setupMetaTags(imageUrl) {
 
 // Buttons
 function createActionButtons(username) {
-    const buttonClass = "relative w-full md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] rounded-lg truncate p-1 overflow-hidden active:bg-[color:var(--accent-color)]";
+    const buttonClass = "ripple-effect relative w-full md:max-w-56 flex justify-center items-center gap-2 bg-[color:var(--white-smoker)] rounded-lg truncate p-1 overflow-hidden active:bg-[color:var(--accent-color)]";
 
     $('#github-follow-button-wrapper').html(`
     <button onclick="window.open('https://github.com/${username}', '_blank')" 
@@ -190,20 +190,68 @@ function createRepoItem(repo) {
     `;
 }
 
-// User item
+// ฟังก์ชันสร้าง user item (list)
 function createUserItem(user) {
     return `
-        <li>
-            <a title="${user.login}" href="${user.html_url}" target="_blank" 
-               class="flex justify-between items-center gap-2 font-normal p-2 md:px-4 active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)] group">
-                <p translate="no" class="flex items-center gap-2">
-                    <img src="${user.avatar_url}" class="size-8 flex-1 bg-[color:var(--white-smoker)] border rounded-full" 
-                         onerror="this.src='${CONFIG.fallbackIcon}'">
-                    <span>${user.login}</span>
-                </p>
-                <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-[color:var(--primary-color)]"></i>
-            </a>
+        <li onclick='profile(${JSON.stringify(user)})'
+            class="user-item ripple-effect flex justify-between items-center gap-2 font-normal p-2 md:px-4 
+                   active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)]">
+            <p translate="no" class="flex items-center gap-2">
+                <img src="${user.avatar_url}" 
+                     class="size-8 flex-1 bg-[color:var(--white-smoker)] border rounded-full" 
+                     onerror="this.src='${CONFIG.fallbackIcon}'">
+                <span>${user.login}</span>
+            </p>
         </li>`;
+}
+// ฟังก์ชัน profile เปิด BottomSheet
+function profile(user) {
+    // สร้าง UI เบื้องต้น
+    const profile = `
+        <div class="flex flex-col items-center gap-2 space-y-4 p-4">
+            <div class="flex items-center gap-2">
+                <img src="${user.avatar_url}" class="size-16 rounded-full border"
+                     onerror="this.src='${CONFIG.fallbackIcon}'">
+                <h2 class="text-lg text-center font-semibold">${user.login}</h2>
+            </div>
+            <p id="github-profile-bio" class="text-sm text-start text-gray-500">Loading bio...</p>
+
+            <div class="grid grid-cols-3 gap-4">
+                <div>
+                    <p class="font-bold" id="repo-count">0</p>
+                    <p class="text-xs text-gray-500">Repos</p>
+                </div>
+                <div>
+                    <p class="font-bold" id="followers-count">0</p>
+                    <p class="text-xs text-gray-500">Followers</p>
+                </div>
+                <div>
+                    <p class="font-bold" id="following-count">0</p>
+                    <p class="text-xs text-gray-500">Following</p>
+                </div>
+            </div>
+
+            <div class="w-full flex items-center justify-center gap-2">
+                <button onclick="window.open('${user.html_url}', '_blank')" class="btn-primary w-full flex items-center justify-between gap-2">
+                    <span>GitHub profile</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+                <button onclick="BottomSheet.close()" class="btn-outline w-full">Close</button>
+            </div>
+    `;
+
+    BottomSheet.open({
+        title: `User information`,
+        content: profile
+    });
+
+    // ─── โหลดข้อมูลจาก GitHub API ───
+    $.getJSON(`https://api.github.com/users/${user.login}`, function (data) {
+        $('#repo-count').text(data.public_repos || "0");
+        $('#followers-count').text(data.followers || "0");
+        $('#following-count').text(data.following || "0");
+        $('#github-profile-bio').text(data.bio || "There is no bio.");
+    })
 }
 
 // Load profile
@@ -216,7 +264,7 @@ function loadUserProfile() {
         createActionButtons(CONFIG.username);
 
         $('#profile-img').attr('src', avatarUrl);
-        $('[id="profile-name"]').each(function () {$(this).removeClass('loading-skeleton').html(`<p>${data.name || data.login}</p>`);});
+        $('[id="profile-name"]').each(function () { $(this).removeClass('loading-skeleton').html(`<p>${data.name || data.login}</p>`); });
         $('#profile-datename').removeClass('loading-skeleton').html(`<p>@${data.login}</p>`);
 
         const joinDate = new Date(data.created_at).toLocaleDateString('en-US', {
