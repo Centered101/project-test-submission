@@ -181,7 +181,7 @@ function createRepoItem(repo) {
                 </h3>
                 
                 <!-- language -->
-                <p class="flex items-center gap-2 text-xs font-normal text-gray-500 truncate">
+                <p class="flex items-center gap-1 text-xs font-normal text-gray-500 truncate">
                     <span class="w-3 h-3 rounded-full" style="background:${color}"></span>
                     ${lang || "—"}
                 </p>
@@ -193,13 +193,9 @@ function createRepoItem(repo) {
 // ฟังก์ชันสร้าง user item (list)
 function createUserItem(user) {
     return `
-        <li onclick='profile(${JSON.stringify(user)})'
-            class="user-item ripple-effect flex justify-between items-center gap-2 font-normal p-2 md:px-4 
-                   active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)]">
+        <li onclick='profile(${JSON.stringify(user)})' class="user-item ripple-effect flex justify-between items-center gap-2 font-normal p-2 md:px-4 cursor-pointer active:bg-[color:var(--accent-color)] md:hover:bg-[color:var(--accent-color)]">
             <p translate="no" class="flex items-center gap-2">
-                <img src="${user.avatar_url}" 
-                     class="size-8 flex-1 bg-[color:var(--white-smoker)] border rounded-full" 
-                     onerror="this.src='${CONFIG.fallbackIcon}'">
+                <img src="${user.avatar_url}" class="size-8 flex-1 bg-[color:var(--white-smoker)] border rounded-full" onerror="this.src='${CONFIG.fallbackIcon}'">
                 <span>${user.login}</span>
             </p>
         </li>`;
@@ -325,7 +321,7 @@ function loadUserProfile() {
         });
 
         setProfileField('#github-profile-date',
-            '<i class="fa-regular fa-calendar"></i>',
+            '<i class="fa-regular fa-calendar-day"></i>',
             `Joined ${joinDate || ""}`);
 
         setProfileField('#github-profile-company',

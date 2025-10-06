@@ -410,10 +410,11 @@ function checkEmptyContentWithAnimation() {
         // ถ้าไม่มี child → แสดงข้อความ empty ทุก list
         if ($list.children().length === 0) {
             const emptyHTML = `
-                <li class="col-span-full text-center ${liPadding} animate-fade-in-up">
-                    <div class="flex flex-col items-center space-y-3">
-                        <i class="fa-solid fa-diagram-project text-3xl"></i>
-                        <p class="text-lg font-medium">${msg}</p>
+                <li class="animate-fade-in-up col-span-full text-center ${liPadding}">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fa-solid fa-diagram-project text-xl"></i>
+                        <p>${msg}</p>
+                        <p></p>
                     </div>
                 </li>
             `;
@@ -469,7 +470,6 @@ $(document).on('keydown', function (e) {
             }
 
             const newTab = tabs[newIndex];
-            const $newTabLabel = $(`label[for="${newTab}"]`);
 
             setTimeout(() => {
             }, 600);
