@@ -260,17 +260,17 @@
                 <div class="flex items-center gap-1">
                     <!-- Play / Pause Button with Progress Border -->
                     <button id="playBtn"
-                        class="ripple-effect size-6 relative flex items-center justify-center bg-[color:var(--white-smoker)] !text-sm text-center rounded-full">
-                        <svg class="absolute inset-0 size-6 -rotate-90">
-                            <circle cx="12" cy="12" r="10" class="stroke-[color:var(--border)]" stroke-width="2"
+                        class="ripple-effect size-5 relative flex items-center justify-center bg-[color:var(--white-smoker)] text-center rounded-full">
+                        <svg class="absolute inset-0 size-5 -rotate-90">
+                            <circle cx="10" cy="10" r="9.5" class="stroke-[color:var(--border)]" stroke-width="1"
                                 fill="none" />
-                            <circle id="progressCircle" cx="12" cy="12" r="10" class="stroke-[color:var(--text-color)]"
-                                stroke-width="2" fill="none" stroke-dasharray="62.83" stroke-dashoffset="62.83"
+                            <circle id="progressCircle" cx="10" cy="10" r="9.5" class="stroke-[color:var(--text-color)]"
+                                stroke-width="1" fill="none" stroke-dasharray="62.83" stroke-dashoffset="62.83"
                                 stroke-linecap="round" style="transition: stroke-dashoffset 0.1s linear" />
                         </svg>
                         <i class="fas fa-play relative z-10"></i>
                     </button>
-                    <label for="playBtn" id="songName" class="animate-pulse text-sm">Loading...</label>
+                    <label  id="songName" translate="no" for="playBtn" class="animate-pulse font-semibold cursor-pointer">Loading...</label>
                 </div>
 
                 <audio id="profileSong" preload="auto">

@@ -518,7 +518,7 @@ $("#deploy").on("touchend", function (e) {
 });
 
 function handleSwipeWithAnimation() {
-    const swipeThreshold = 50; // ระยะขั้นต่ำในการปัด (px)
+    const swipeThreshold = 100; // ระยะขั้นต่ำในการปัด (px)
     const tabs = ["projects", "repo", "followers", "following"];
     const currentIndex = tabs.indexOf($('input[name="status"]:checked').attr("id"));
 

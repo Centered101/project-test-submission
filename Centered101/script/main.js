@@ -253,7 +253,7 @@ $.each(project, function (i, { name, img }) {
                 draggable="false">
         </div>
     </li>`;
-    $("#projects-list").addClass("opacity-0 pt-1 md:p-0").append(listItem);
+    $("#projects-list").addClass("opacity-0").append(listItem);
 });
 
 /**
@@ -512,7 +512,7 @@ function contact() {
            class="ripple-effect flex flex-col p-2 md:px-4 
                   active:bg-[color:var(--accent-color)] 
                   md:hover:bg-[color:var(--accent-color)] group">
-            <strong>Email:</strong> ${email}
+            <strong>Email</strong> ${email}
         </a>
     `).join("");
 

@@ -215,12 +215,12 @@ function formatNumber(num) {
 // ─── ฟังก์ชัน profile เปิด BottomSheet ───
 function profile(user) {
     const profileHTML = `
-<div class="flex flex-col gap-8 p-4">
+<div class="flex flex-col gap-4 p-4">
     <div class="flex flex-col">
         <div class="w-full flex flex-row items-center">
             <img id="profile-img" class="size-20" src="${user.avatar_url}" onerror="this.src='${CONFIG.fallbackIcon}'" draggable="false" />
             <div class="w-full flex flex-wrap items-center">
-                <p id="profile-name" translate="no" class="basis-full px-2 text-lg font-semibold">${user.login}</p>
+                <p id="profile-name" translate="no" class="basis-full text-lg font-semibold px-2">${user.login}</p>
                 <div title="repository" class="max-w-sm flex-1 flex flex-col-reverse p-2">
                     <span>Repository</span>
                     <span id="repo-count">0</span>
