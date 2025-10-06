@@ -27,7 +27,7 @@ function updateRateLimitDisplay(remaining, resetTime) {
 
     if (remaining === 0) {
         $rateStatus.html(`
-            <p>Remaining: <span class="text-[color:var(--primary-color)]">${remaining}</span> / 60 requests</p>
+            <p>Remaining: <span class="fade-in text-[color:var(--primary-color)]">${remaining}</span> / 60 requests</p>
             <p class="flex items-center gap-2">
                 <i class="fa-solid fa-circle-exclamation text-red-500"></i>
                 <span>Please wait until ${resetTime}</span>
@@ -204,55 +204,106 @@ function createUserItem(user) {
             </p>
         </li>`;
 }
-// ฟังก์ชัน profile เปิด BottomSheet
+
+// ฟังก์ชัน formatNumber — แปลงตัวเลขให้เป็น K / M
+function formatNumber(num) {
+    if (num >= 1_000_000) return (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (num >= 1_000) return (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
+    return num.toString();
+}
+
+// ─── ฟังก์ชัน profile เปิด BottomSheet ───
 function profile(user) {
-    // สร้าง UI เบื้องต้น
-    const profile = `
-        <div class="flex flex-col items-center gap-2 space-y-4 p-4">
-            <div class="flex items-center gap-2">
-                <img src="${user.avatar_url}" class="size-16 rounded-full border"
-                     onerror="this.src='${CONFIG.fallbackIcon}'">
-                <h2 class="text-lg text-center font-semibold">${user.login}</h2>
-            </div>
-            <p id="github-profile-bio" class="text-sm text-start text-gray-500">Loading bio...</p>
-
-            <div class="grid grid-cols-3 gap-4">
-                <div>
-                    <p class="font-bold" id="repo-count">0</p>
-                    <p class="text-xs text-gray-500">Repos</p>
+    const profileHTML = `
+<div class="flex flex-col gap-8 p-4">
+    <div class="flex flex-col">
+        <div class="w-full flex flex-row items-center">
+            <img id="profile-img" class="size-20" src="${user.avatar_url}" onerror="this.src='${CONFIG.fallbackIcon}'" draggable="false" />
+            <div class="w-full flex flex-wrap items-center">
+                <p id="profile-name" translate="no" class="basis-full px-2 text-lg font-semibold">${user.login}</p>
+                <div title="repository" class="max-w-sm flex-1 flex flex-col-reverse p-2">
+                    <span>Repository</span>
+                    <span id="repo-count">0</span>
                 </div>
-                <div>
-                    <p class="font-bold" id="followers-count">0</p>
-                    <p class="text-xs text-gray-500">Followers</p>
+                <div title="followers" class="max-w-sm flex-1 flex flex-col-reverse p-2">
+                    <span>Followers</span>
+                    <span id="followers-count">0</span>
                 </div>
-                <div>
-                    <p class="font-bold" id="following-count">0</p>
-                    <p class="text-xs text-gray-500">Following</p>
+                <div title="following" class="max-w-sm flex-1 flex flex-col-reverse p-2">
+                    <span>Following</span>
+                    <span id="following-count">0</span>
                 </div>
             </div>
-
-            <div class="w-full flex items-center justify-center gap-2">
-                <button onclick="window.open('${user.html_url}', '_blank')" class="btn-primary w-full flex items-center justify-between gap-2">
-                    <span>GitHub profile</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </button>
-                <button onclick="BottomSheet.close()" class="btn-outline w-full">Close</button>
-            </div>
+        </div>
+        <div id="extra-info" class="flex flex-col text-sm text-gray-500"></div>
+    </div>
+    <div class="w-full flex items-center justify-center gap-2">
+        <button onclick="window.open('${user.html_url}', '_blank')" class="btn-primary w-full flex items-center justify-between gap-2">
+            <span>GitHub profile</span>
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </button>
+        <button onclick="BottomSheet.close()" class="btn-outline w-full">Close</button>
+    </div>
+</div>
     `;
 
     BottomSheet.open({
         title: `User information`,
-        content: profile
+        content: profileHTML
     });
 
     // ─── โหลดข้อมูลจาก GitHub API ───
     $.getJSON(`https://api.github.com/users/${user.login}`, function (data) {
-        $('#repo-count').text(data.public_repos || "0");
-        $('#followers-count').text(data.followers || "0");
-        $('#following-count').text(data.following || "0");
-        $('#github-profile-bio').text(data.bio || "There is no bio.");
-    })
+        // Format วันที่เข้าร่วม
+        const joinDate = new Date(data.created_at).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // อัปเดตค่าตัวเลข
+        $('#repo-count').text(formatNumber(data.public_repos || 0));
+        $('#followers-count').text(formatNumber(data.followers || 0));
+        $('#following-count').text(formatNumber(data.following || 0));
+
+        // ─── สร้าง info ทีละอัน ถ้ามีค่อย append ───
+        const infoContainer = $('#extra-info');
+
+        if (data.created_at) {
+            infoContainer.append(`
+                <p class="flex items-center gap-1">
+                    <i class="fa-solid fa-calendar-day"></i>
+                    <span>Joined ${joinDate}</span>
+                </p>
+            `);
+        }
+
+        if (data.company) {
+            infoContainer.append(`
+                <p class="flex items-center gap-1">
+                    <i class="fa-solid fa-building"></i>
+                    <span>${data.company}</span>
+                </p>
+            `);
+        }
+
+        if (data.location) {
+            infoContainer.append(`
+                <p class="flex items-center gap-1">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>${data.location}</span>
+                </p>
+            `);
+        }
+
+        if (data.bio) {
+            infoContainer.append(`
+                <p>${data.bio}</p>
+            `);
+        }
+    });
 }
+
 
 // Load profile
 function loadUserProfile() {

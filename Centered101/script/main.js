@@ -100,12 +100,12 @@ function generateQRCode() {
     const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(URLShare)}`;
 
     $('<img>')
-        .on('load', function() {
+        .on('load', function () {
             $("#loadingSpinner").addClass("hidden");
             $("#qrImage").attr("src", qrUrl).removeClass("hidden");
             showNotification('QR Code created successfully!', 'success');
         })
-        .on('error', function() {
+        .on('error', function () {
             $("#loadingSpinner, #qrContainer").addClass("hidden");
             $("#fullscreenImage").removeClass("hidden");
             isQRMode = false;
@@ -115,16 +115,16 @@ function generateQRCode() {
 }
 
 // Event Listeners สำหรับ Profile Section
-$(document).ready(function() {
-    $("#profile-img").on("click", function() {
+$(document).ready(function () {
+    $("#profile-img").on("click", function () {
         openFullscreen($(this).attr("src"));
     });
 
-    $(document).on("keydown", function(e) {
+    $(document).on("keydown", function (e) {
         if (e.key === "Escape") closeFullscreen();
     });
 
-    $("#qrContainer").on("click", function(e) {
+    $("#qrContainer").on("click", function (e) {
         if (e.target === this) {
             $(this).addClass("hidden");
             $("#fullscreenImage").removeClass("hidden");
@@ -158,19 +158,19 @@ function openSidebar() {
  */
 function closeSidebar() {
     navSidebar.addClass("-translate-x-full");
-    overlay.fadeOut(150, function() {
+    overlay.fadeOut(150, function () {
         overlay.addClass("hidden").html("");
     });
     sidebarOpen = false;
 }
 
 // toggleBtn click
-toggleBtn.on("click", function() {
+toggleBtn.on("click", function () {
     sidebarOpen ? closeSidebar() : openSidebar();
 });
 
 // overlay click
-overlay.on("click", function() {
+overlay.on("click", function () {
     closeSidebar();
 });
 
@@ -242,7 +242,7 @@ const project = [
 /**
  * สร้างรายการโปรเจกต์แบบ Grid
  */
-$.each(project, function(i, { name, img }) {
+$.each(project, function (i, { name, img }) {
     const listItem = `
     <li title="${name}" class="ripple-effect flex flex-col justify-center items-center w-full h-full overflow-hidden cursor-pointer transition-transform ease-in-out duration-300 active:brightness-75"
         onclick="showProjectDetails(${i})">
@@ -253,7 +253,7 @@ $.each(project, function(i, { name, img }) {
                 draggable="false">
         </div>
     </li>`;
-    $("#projects-list").addClass("opacity-0 pt-2 md:p-0").append(listItem);
+    $("#projects-list").addClass("opacity-0 pt-1 md:p-0").append(listItem);
 });
 
 /**
@@ -273,7 +273,7 @@ function showProjectDetails(index) {
         </div>
         <div class="min-h-full min-w-2xl flex-1 flex flex-col justify-between gap-4">
             <div>
-                <p class="text-lg md:text-3xl">${name}</p>
+                <p class="text-lg md:text-3xl font-semibold">${name}</p>
                 <p class="text-gray-500">${description || "No description provided"}</p>
                 ${date ? `<p class="flex items-center gap-2 text-gray-500"><i class="fa-regular fa-calendar"></i><span>${date}</span></p>` : ''}
                 ${type ? `<p class="flex items-center gap-2 text-gray-500"><i class="fa-solid fa-folder"></i><span>${type}</span></p>` : ''}
@@ -288,7 +288,7 @@ function showProjectDetails(index) {
             </div>
         </div>
     </div>`);
-    
+
     openModal();
 }
 
@@ -318,65 +318,115 @@ function closeModal() {
 }
 
 // ปิด Modal เมื่อคลิกพื้นหลัง
-$(document).on("click", "[id='overlay']", function(e) {
+$(document).on("click", "[id='overlay']", function (e) {
     if (e.target === this) closeModal();
 });
 
 // ปิด Modal เมื่อกด ESC
-$(document).on("keydown", function(e) {
+$(document).on("keydown", function (e) {
     if (e.key === "Escape") closeModal();
 });
 
 // จัดการ Back Button ของเบราว์เซอร์
-window.addEventListener("popstate", function() {
+window.addEventListener("popstate", function () {
     if (modalOpen) closeModal();
 });
 
+/*
 
-// ========================================================================================
-// HIGHLIGHT MODAL - แสดงข้อมูล Projects, Skills, Certificates
-// ========================================================================================
+$("#highlight").html(`
+    <div class="flex flex-col items-center cursor-pointer" onclick="openHighlight('myProjects')">
+        <div class="border-2 rounded-full p-1">
+            <img src="" onerror="this.src='/images/img/noitems.svg'"
+                class="min-w-14 min-h-14 size-14 border rounded-full object-cover"
+                style="background-image: url('/images/img/noitems.svg'); background-size: cover; background-position: center;"
+                draggable="false">
+        </div>
+        <span class="text-xs mt-1">My Projects</span>
+    </div>`)
 
-/**
- * เปิด Modal แสดงข้อมูลเพิ่มเติม
- * @param {string} type - ประเภทข้อมูล (projects, skills, certs)
- */
+
+
 function openHighlight(type) {
-    const content = {
-        projects: {
-            title: "Projects",
-            body: "<p>Here are some of my featured projects with GitHub API integration.</p>"
+    const contentMap = {
+        myProjects: {
+            title: "My Projects",
+            body: `
+                <div class="flex flex-col gap-3">
+                    <img src="/images/66201020151.webp" 
+                        alt="My project preview"
+                        class="w-full rounded-lg object-cover">
+                    <video controls class="w-full rounded-lg">
+                        <source src="/images/Video/%E0%B9%80%E0%B8%8B%E0%B9%87%E0%B8%97%E0%B8%9C%E0%B8%A1%E0%B9%84%E0%B8%9B%E0%B8%AB%E0%B8%99%E0%B9%88%E0%B8%AD%E0%B8%A2.mp4">
+                        Your browser does not support video playback.
+                    </video>
+                    <p class="text-sm text-gray-700">โปรเจกต์ตัวอย่างจาก Centered101</p>
+                </div>
+            `
         },
-        skills: {
-            title: "Skills",
-            body: "<ul class='list-disc list-inside'><li>JavaScript / React</li><li>Tailwind CSS</li><li>Node.js</li></ul>"
+        behind: {
+            title: "Behind",
+            body: `
+                <div class="flex flex-col gap-2">
+                    <img src="/images/%E0%B8%87%E0%B9%88%E0%B8%A7%E0%B8%87%E0%B8%99%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%A7%E0%B8%A5%E0%B8%B2%E0%B9%80%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%99.webp" class="w-full rounded-lg object-cover">
+                    <p class="text-sm text-gray-700">เบื้องหลังการทำเว็บและระบบต่าง ๆ</p>
+                </div>
+            `
         },
-        certs: {
-            title: "Certificates",
-            body: "<p>Some certifications I've achieved in programming and business.</p>"
-        }
-    }[type];
+        repository: {
+            title: "Repository",
+            body: `
+                <div class="grid grid-cols-2 gap-3">
+                    <img src="/images/Tes-Dee.webp" class="w-full rounded-lg object-cover">
+                    <img src="/images/Tes-D.webp" class="w-full rounded-lg object-cover">
+                </div>
+                <p class="mt-2 text-sm text-gray-700">รวมภาพจาก repository ล่าสุด</p>
+            `
+        },
+        favTracks: {
+            title: "Fav Tracks",
+            body: `
+                <div class="flex flex-col items-center gap-2">
+                    <img src="/images/%E0%B8%84%E0%B8%99%E0%B8%AB%E0%B8%A5%E0%B9%88%E0%B8%AD%E0%B8%99%E0%B8%A1%E0%B8%9C%E0%B8%87.webp" class="w-40 h-40 rounded-lg object-cover">
+                    <audio controls class="w-full">
+                        <source src="/Audio/%E0%B8%99%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%8B%E0%B9%87%E0%B8%99%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B9%82%E0%B8%84%E0%B8%94%E0%B8%AB%E0%B8%A5%E0%B9%88%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B8%9A.wav" type="audio/mpeg">
+                    </audio>
+                    <p class="text-sm text-gray-700">เพลงที่ชอบที่สุดตอนนี้</p>
+                </div>
+            `
+        },
+    };
+
+    const content = contentMap[type];
+    if (!content) return;
 
     const html = `
-    <div class="relative w-80 bg-[color:var(--white-smoker)] rounded-xl p-6">
-        <button id="close-highlight" class="absolute top-2 right-2 text-gray-600">
+    <div class="relative w-[90%] max-w-md bg-[color:var(--white-smoker)] rounded-xl p-6">
+        <button id="close-highlight" class="absolute top-2 right-2 text-gray-600 hover:text-black">
             <i class="fa-solid fa-xmark"></i>
         </button>
-        <h3 class="text-xl font-bold mb-2">${content.title}</h3>
-        ${content.body}
+        <h3 class="text-xl font-bold mb-3">${content.title}</h3>
+        <div class="highlight-content overflow-y-auto max-h-[70vh]">
+            ${content.body}
+        </div>
     </div>`;
 
-    $("[id='overlay']").removeClass("hidden").hide().fadeIn(150).html(html);
+    // แสดง overlay
+    $("#overlay")
+        .removeClass("hidden")
+        .hide()
+        .fadeIn(150)
+        .html(html);
 
-    $("#close-highlight, [id='overlay']").on("click", function(e) {
+    // ปิดเมื่อคลิก overlay หรือปุ่มปิด
+    $("#close-highlight, #overlay").on("click", function (e) {
         if (e.target === this || $(e.target).is("#close-highlight, #close-highlight *")) {
-            $("[id='overlay']").fadeOut(150, function() {
+            $("#overlay").fadeOut(150, function () {
                 $(this).addClass("hidden").html("");
             });
         }
     });
-}
-
+} */
 
 // ========================================================================================
 // BOTTOM SHEET - Bottom Sheet สำหรับมือถือ (รองรับ Touch และ Mouse)
