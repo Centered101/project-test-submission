@@ -321,7 +321,7 @@ function loadUserProfile() {
         });
 
         setProfileField('#github-profile-date',
-            '<i class="fa-regular fa-calendar-day"></i>',
+            '<i class="fa-solid fa-calendar-day"></i>',
             `Joined ${joinDate || ""}`);
 
         setProfileField('#github-profile-company',
