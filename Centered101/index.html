@@ -35,8 +35,7 @@
 
 <body class="flex flex-row text-sm md:text-base select-none bg-[color:var(--bg-color)]" draggable="false"
     oncontextmenu="return false">
-    <div id="overlay"
-        class="fixed inset-0 flex hidden items-center justify-center bg-black bg-opacity-75 md:p-8 z-40 touch-none">
+    <div id="overlay" class="fixed inset-0 flex hidden items-center justify-center bg-black bg-opacity-75 md:p-8 z-40">
     </div>
     <!-- bottom sheet -->
     <div id="bottomSheet"
@@ -125,7 +124,8 @@
                 <p class="uppercase font-semibold">GitHub API Usage</p>
                 <p class="text-gray-500">Check how many API Requests remain</p>
             </div>
-            <div id="rateStatus" class="animate-pulse bg-[color:var(--bg-color)] rounded-xl p-4 shadow-inner">
+            <div id="rateStatus" onclick="updateRateLimit()"
+                class="animate-pulse ripple-effect bg-[color:var(--bg-color)] rounded-xl p-4 shadow-inner cursor-pointer">
                 <p>Loading rate limit...</p>
             </div>
         </div>
@@ -260,17 +260,19 @@
                 <div class="flex items-center gap-1">
                     <!-- Play / Pause Button with Progress Border -->
                     <button id="playBtn"
-                        class="ripple-effect size-5 relative flex items-center justify-center bg-[color:var(--white-smoker)] text-center rounded-full">
-                        <svg class="absolute inset-0 size-5 -rotate-90">
-                            <circle cx="10" cy="10" r="9.5" class="stroke-[color:var(--border)]" stroke-width="1"
+                        class="ripple-effect size-4 relative flex items-center justify-center bg-[color:var(--white-smoker)] text-center rounded-full">
+                        <svg class="absolute inset-0 size-4 -rotate-90">
+                            <circle cx="8" cy="8" r="7" class="stroke-[color:var(--border)]" stroke-width="2"
                                 fill="none" />
-                            <circle id="progressCircle" cx="10" cy="10" r="9.5" class="stroke-[color:var(--text-color)]"
-                                stroke-width="1" fill="none" stroke-dasharray="62.83" stroke-dashoffset="62.83"
+                            <circle id="progressCircle" cx="8" cy="8" r="7" class="stroke-[color:var(--text-color)]"
+                                stroke-width="2" fill="none" stroke-dasharray="62.83" stroke-dashoffset="62.83"
                                 stroke-linecap="round" style="transition: stroke-dashoffset 0.1s linear" />
                         </svg>
-                        <i class="fas fa-play relative z-10"></i>
+
+                        <i class="fa-solid fa-circle-play"></i>
                     </button>
-                    <label  id="songName" translate="no" for="playBtn" class="animate-pulse font-semibold cursor-pointer">Loading...</label>
+                    <label id="songName" translate="no" for="playBtn"
+                        class="animate-pulse font-semibold cursor-pointer">Loading...</label>
                 </div>
 
                 <audio id="profileSong" preload="auto">
@@ -291,11 +293,11 @@
                         $("#playBtn").click(function () {
                             if (audio.paused) {
                                 audio.play();
-                                $(this).find('i').attr('class', 'fas fa-pause relative z-10');
+                                $(this).find('i').attr('class', 'fa-solid fa-circle-pause');
                             } else {
                                 audio.pause();
                                 audio.currentTime = 0;
-                                $(this).find('i').attr('class', 'fas fa-play relative z-10');
+                                $(this).find('i').attr('class', 'fa-solid fa-circle-play');
                             }
                         });
 
@@ -307,7 +309,7 @@
                         });
 
                         audio.addEventListener("ended", function () {
-                            $("#playBtn").find('i').attr('class', 'fas fa-play relative z-10');
+                            $("#playBtn").find('i').attr('class', 'fa-solid fa-circle-play');
                             progressCircle.style.strokeDashoffset = circumference; // Reset progress
                         });
                     }); 

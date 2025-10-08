@@ -157,7 +157,7 @@ function initializeNotificationSystem() {
             case 'info':
                 return '<i class="fa-solid fa-circle-info text-yellow-500"></i>';
             default:
-                return '<i class="fa-regular fa-circle-info text-blue-500"></i>';
+                return '<i class="fa-solid fa-circle-info text-blue-500"></i>';
         }
     };
 
@@ -259,7 +259,7 @@ function initializeNotificationSystem() {
     };
 
     // ฟังก์ชันหลักแสดง notification
-    window.showNotification = function (message, type = 'info', link = null) {
+    window.showNotification = function (message, type = '', link = null) {
         if (!message) {
             console.warn('showNotification: message is required');
             return;
@@ -290,7 +290,7 @@ function initializeNotificationSystem() {
                     '<i class="fa-solid fa-circle-exclamation text-red-500"></i>' :
                     type === 'info' ?
                         '<i class="fa-solid fa-circle-info text-yellow-500"></i>' :
-                        '<i class="fa-regular fa-circle-info text-blue-500"></i>'
+                        '<i class="fa-solid fa-circle-info text-blue-500"></i>'
             }
                 </div>
                 <div class="flex-1">

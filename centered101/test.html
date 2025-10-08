@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+    <title>__Document__Title__</title>
+    <meta charset=UTF-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name=theme-color content=#409EFE>
+    <meta name=keywords content="HTML, CSS, XML, JavaScript, Centered101">
+    <meta name=author content="Centered101">
+    <meta name=description content="__นี่คือคำอธิบายของหน้าเว็บของคุณ__">
+
+    <meta property=og:type content=website>
+    <meta property=og:url content="https://project-test-submission.netlify.app">
+    <meta property=og:title content="__Document__Title__">
+    <meta property=og:description content="__นี่คือคำอธิบายของหน้าเว็บของคุณ__">
+    <meta property=og:image content="favicon.ico">
+
+    <meta property=twitter:card content=summary_large_image>
+    <meta property=twitter:url content="https://project-test-submission.netlify.app">
+    <meta property=twitter:title content="__Document__Title__">
+    <meta property=twitter:description content="__นี่คือคำอธิบายของหน้าเว็บของคุณ__">
+    <meta property=twitter:image content="favicon.ico">
+
+    <link rel="shortcut icon" type=image/x-icon href="favicon.ico">
+    <link rel=stylesheet href="/style/style.css">
+    <link rel=stylesheet href="/style/main.css">
+    <script src=https://cdn.tailwindcss.com></script>
+    <script src=https://cdn.jsdelivr.net/npm/toastify-js></script>
+    <script src=https://project-test-submission.netlify.app/animation/script.js></script>
+    <link rel="shortcut icon" type="image/x-icon" href="">
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <script src=https://cdn.tailwindcss.com></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+
+<body draggable=false oncontextmenu=return!1>
+    <div class="flex flex-col gap-4 p-4">
+        <!-- owner -->
+        <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-1">
+                <img src="${repo.owner.avatar_url}" class="size-8 rounded-full border object-cover"
+                    onerror="this.src='${CONFIG.fallbackIcon}'">
+                <span class="text-sm font-medium">${repo.owner.login}</span>
+            </div>
+            <!-- repo name -->
+            <h3 class="text-base font-semibold text-[color:var(--primary-color)]">${repo.name}</h3>
+            <!-- project description -->
+            <p class="leading-snug">${repo.description ? repo.description : ""}</p>
+        </div>
+
+        <!-- repo info -->
+        <div class="grid grid-cols-2 gap-2">
+            <p>
+                <span class="font-semibold">Language:</span>
+                <span class="inline-flex items-center gap-1">
+                    <span class="w-3 h-3 rounded-full" style="background:${langColor}"></span>
+                    ${repo.language || "—"}
+                </span>
+            </p>
+            <p><span class="font-semibold">Status:</span> ${repo.private ? "Private 🔒" : "Public 🌍"}</p>
+            <p><span class="font-semibold">Stars:</span> ⭐ ${repo.stargazers_count}</p>
+            <p><span class="font-semibold">Forks:</span> 🍴 ${repo.forks_count}</p>
+            <p><span class="font-semibold">Watchers:</span> 👀 ${repo.watchers_count}</p>
+            <p><span class="font-semibold">Size:</span> ${repo.size} KB</p>
+        </div>
+
+        <!-- date info -->
+        <div class="text-xs text-gray-400">
+            <p>Created when: ${new Date(repo.created_at).toLocaleString()}</p>
+            <p>Latest update: ${new Date(repo.updated_at).toLocaleString()}</p>
+        </div>
+
+        <!-- button -->
+        <div class="w-full flex items-center justify-center gap-2">
+            <button onclick="window.open('${repo.html_url}', '_blank')"
+                class="btn-primary w-full flex items-center justify-between gap-2">
+                <span>View on GitHub</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </button>
+            <button onclick="BottomSheet.close()" class="btn-outline w-full">Close</button>
+        </div>
+    </div>
+    <div class="flex flex-col gap-4 p-4">
+        <div class="flex flex-col">
+            <div class="w-full flex flex-row items-center">
+                <img id="profile-img" class="size-20" src="${user.avatar_url}"
+                    onerror="this.src='${CONFIG.fallbackIcon}'" draggable="false" />
+                <div class="w-full flex flex-wrap items-center">
+                    <p id="profile-name" translate="no" class="basis-full text-lg font-semibold px-2">${user.login}</p>
+                    <div title="repository" class="max-w-sm flex-1 flex flex-col-reverse p-2">
+                        <span>Repository</span>
+                        <span id="repo-count">0</span>
+                    </div>
+                    <div title="followers" class="max-w-sm flex-1 flex flex-col-reverse p-2">
+                        <span>Followers</span>
+                        <span id="followers-count">0</span>
+                    </div>
+                    <div title="following" class="max-w-sm flex-1 flex flex-col-reverse p-2">
+                        <span>Following</span>
+                        <span id="following-count">0</span>
+                    </div>
+                </div>
+            </div>
+            <div id="extra-info" class="flex flex-col text-sm text-gray-500"></div>
+        </div>
+        <div class="w-full flex items-center justify-center gap-2">
+            <button onclick="window.open('${user.html_url}', '_blank')"
+                class="btn-primary w-full flex items-center justify-between gap-2">
+                <span>GitHub profile</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </button>
+            <button onclick="BottomSheet.close()" class="btn-outline w-full">Close</button>
+        </div>
+    </div>
+    <script>
+        const CONFIG = {
+            username: "Centered101",
+            apiBaseUrl: "https://api.github.com",
+            fallbackIcon: "https://project-test-submission.netlify.app/images/icon.svg"
+        };
+    </script>
+</body>
+
+</html>

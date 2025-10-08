@@ -267,7 +267,7 @@ function showProjectDetails(index) {
     <div class="relative w-full max-w-4xl flex flex-col md:flex-row justify-center gap-2 md:gap-4 bg-[color:var(--white-smoker)] border rounded-xl shadow-xl m-2 p-2 md:p-4">
         <div class="aspect-[4/5] md:w-1/2">
             <img src="${img || noimages}" onerror="this.src='${noimages}'"
-                class="block h-full w-full border rounded-lg object-cover object-center"
+                class="block h-full w-full border rounded-lg object-cover object-center shadow-inner"
                 style="background-image: url('${noimages}'); background-size: cover; background-position: center;"
                 draggable="false">
         </div>
@@ -312,7 +312,7 @@ function openModal() {
  * ปิด Modal และจัดการ history
  */
 function closeModal() {
-    $("[id='overlay']").fadeOut(150);
+    $("[id='overlay']").fadeOut(150).html('');
     modalOpen = false;
     if (history.state?.modal) history.back();
 }
@@ -325,6 +325,7 @@ $(document).on("click", "[id='overlay']", function (e) {
 // ปิด Modal เมื่อกด ESC
 $(document).on("keydown", function (e) {
     if (e.key === "Escape") closeModal();
+    BottomSheet.close();
 });
 
 // จัดการ Back Button ของเบราว์เซอร์
