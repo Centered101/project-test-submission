@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="th">
 
@@ -24,11 +25,11 @@
     <meta property="twitter:image" content="/images/icon.svg">
 
     <link rel="shortcut icon" type="image/x-icon" href="/images/icon.svg">
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://project-test-submission.netlify.app/centered101/index.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-    <script src=https://cdn.tailwindcss.com></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
@@ -44,7 +45,7 @@
     <section
         class="max-w-6xl sticky top-0 flex flex-row items-center gap-2 md:gap-4 bg-[color:var(--white-smoker)] border rounded-b-xl shadow-lg mx-auto p-4 z-10">
         <button
-            onclick="viewImage('https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png')"
+            onclick="viewImage('https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png', 'พงศ์พล พรมผา')"
             class="shrink-0 touch-manipulation">
             <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
                 alt="พงศ์พล พรมผา" class="size-12 rounded-full object-cover" draggable="false" />
@@ -58,7 +59,7 @@
     <section data-aos="fade-down" class="max-w-6xl mx-auto px-4 py-6">
         <div class="bg-[color:var(--white-smoker)] border shadow-sm rounded-xl space-y-4 p-4 md:p-6 overflow-hidden">
             <h3 class="flex items-center gap-2 text-lg font-semibold">
-                <i class="fas fa-searchtext-[color:var(--primary-color)]"></i>
+                <i class="fas fa-search text-[color:var(--primary-color)]"></i>
                 ค้นหาใบประกาศนียบัตร
             </h3>
 
@@ -153,35 +154,256 @@
         </span>
 
         <!-- Image container -->
-        <div class="fade-in max-w-3xl border rounded-lg shadow-2xl mx-4 overflow-hidden">
-            <div class="bg-stripes-gray relative bg-[color:var(--bg-color)] p-4">
-                <img id="modal-image" src="" alt="" class="w-full max-h-[80vh] object-contain" draggable="false">
+        <div onclick="event.stopPropagation()"
+            class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 bg-[color:var(--bg-color)] bg-stripes-gray border rounded-lg shadow-2xl mx-4 overflow-hidden">
+            <div class="relative flex items-center justify-center border-b md:border-b-0 md:border-r">
+                <img id="modal-image" src="" alt="" class="w-full max-h-[80vh] p-2 object-contain" onerror="this.src='/images/img/noitems.svg'" draggable="false">
+            </div>
+            <div id="modal-details" class="hidden md:block bg-[color:var(--bg-color)] space-y-2 p-4 overflow-y-auto">
+                <!-- Details will be inserted here by JavaScript -->
             </div>
         </div>
     </div>
+
     <footer class="max-w-6xl mx-auto bg-[color:var(--white-smoker)] text-center border shadow-lg mt-56 p-4">
         <p>Developed by <a class="text-[color:var(--primary-color)]" href="/Centered101/" target="_blank"
                 rel="noopener noreferrer">Centered101</a>
         </p>
     </footer>
+
     <script>
-        $(document).ready(function () {
-            $(".grid-btn").on("click", function () {
-                const cols = $(this).data("cols");
-
-                // ลบ class เดิมก่อน
-                $("#certificates-grid")
-                    .removeClass("grid-cols-1 grid-cols-2 grid-cols-3 sm:grid-cols-2 md:grid-cols-3")
-                    .addClass(`grid-cols-${cols}`);
-                renderCertificates();
-            });
-        });
-
+        // Global variables
+        let allCertificates = [];
         const sheetId = "17ppLfag2cZb1_-dPeRKqdoaDpFyHjU6vykr9DEOwS1c";
-        const sheetName = "Sheet1"; // ถ้าเปลี่ยนชื่อชีท ต้องแก้นี้
+        const sheetName = "Sheet1";
         const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?sheet=${sheetName}`;
         const noimages = "/images/img/noitems.svg";
 
+        // Utility functions
+        function parseCertDate(sheetDate) {
+            if (!sheetDate) return new Date(0);
+            const match = sheetDate.match(/Date\((\d+),(\d+),(\d+)\)/);
+            if (match) return new Date(parseInt(match[1]), parseInt(match[2]), parseInt(match[3]));
+            if (sheetDate.includes('-')) return new Date(sheetDate);
+            return new Date(0);
+        }
+
+        function formatDateThai(sheetDate) {
+            if (!sheetDate) return "";
+            const months = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+                "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+            const date = parseCertDate(sheetDate);
+            if (date.getTime() === 0) return sheetDate;
+            return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+        }
+
+        function highlightText(text, term) {
+            if (!term || !text) return text || '';
+            const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+            return text.replace(regex, '<mark>$1</mark>');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Modal functions
+        function viewImage(src, alt = '', certData = null) {
+            $('#modal-image').attr('src', src).attr('alt', alt);
+
+            if (certData) {
+                const searchTerm = $('#search-input').val().toLowerCase() || '';
+
+                const detailsHtml = `
+                    <div class="relative">
+                        <!-- ${certData.id ? `<span class="size-8 absolute -top-2 -right-2 flex items-center justify-center bg-[color:var(--primary-color)] text-white text-sm rounded-full font-medium shadow-md">${certData.id}</span>` : ''}  -->
+                        <h3 class="text-xl font-semibold line-clamp-3 leading-tight mb-4">${highlightText(certData.name, searchTerm)}</h3>
+                    </div>
+                    <div class="space-y-2">
+                        ${certData.issuer ? `
+                        <div class="flex items-start gap-2 text-sm text-gray-600">
+                            <i class="fas fa-building mt-1 text-[color:var(--primary-color)]"></i>
+                            <span>${escapeHtml(certData.issuer)}</span>
+                        </div>` : ''}
+                        <div class="flex items-start gap-2 text-sm text-gray-600">
+                            <i class="fas fa-calendar-alt mt-1 text-[color:var(--primary-color)]"></i>
+                            <span>${formatDateThai(certData.date)}</span>
+                        </div>
+                        ${certData.description ? `
+                        <div class="pt-2 border-t">
+                            <p class="text-sm text-gray-600 leading-relaxed">${highlightText(certData.description, searchTerm)}</p>
+                        </div>` : ''}
+                    </div>
+                `;
+
+                $('#modal-details').html(detailsHtml).removeClass('hidden');
+            } else {
+                $('#modal-details').addClass('hidden');
+            }
+
+            $('#image-modal').removeClass('hidden');
+            AOS.refresh();
+        }
+
+        function closeImageModal() {
+            $('#image-modal').addClass('hidden');
+            $('#modal-details').addClass('hidden').html('');
+        }
+
+        // Store certificate data for modal access
+        let certificateDataStore = {};
+
+        // Render certificates
+        function renderCertificates(data = allCertificates, searchTerm = '') {
+            const $grid = $('#certificates-grid');
+
+            if (!data.length) {
+                $grid.html(`
+                    <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
+                        <i class="fas fa-certificate text-6xl mb-4 text-[color:var(--primary-color)]"></i>
+                        <p class="text-xl text-[color:var(--primary-color)]">ไม่พบใบประกาศนียบัตร</p>
+                        <p class="text-gray-400">ลองค้นหาด้วยคำอื่นหรือเปลี่ยนตัวกรอง</p>
+                    </div>
+                `);
+                return;
+            }
+
+            let html = '';
+            data.forEach((cert, index) => {
+                const imageUrl = cert.image && cert.image !== '-' ? cert.image : noimages;
+                const isNoImage = imageUrl === noimages;
+                const certId = `cert_${index}`;
+
+                // Store certificate data
+                certificateDataStore[certId] = cert;
+
+                html += `
+                    <div data-aos="fade-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border rounded-lg shadow-sm transition-transform ease-in-out duration-300">
+                        ${isNoImage ?
+                        `<div class="relative overflow-hidden w-full border-b rounded-t-lg">
+                            <img src="${imageUrl}" alt="${escapeHtml(cert.name)}" class="w-full bg-[color:var(--bg-color)] object-cover" loading="lazy" draggable="false" onerror="this.onerror=null;this.src='${noimages}';">
+                        </div>`
+                        :
+                        `<button onclick="viewImageWithData('${certId}')" class="relative overflow-hidden w-full text-left border-b rounded-t-lg group/img">
+                            <img src="${imageUrl}" alt="${cert.name}" class="min-h-40 aspect-auto bg-stripes-gray w-full bg-[color:var(--bg-color)] object-contain transition-transform duration-700 group-hover/img:scale-105 group-focus/img:scale-105" loading="lazy" draggable="false" style="background-image: url('${noimages}'); background-size: cover; background-position: center;" onerror="this.onerror=null;this.src='${noimages}';">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-700 flex items-center justify-center group-hover/img:bg-opacity-25 group-focus/img:bg-opacity-25">
+                                <div class="size-16 flex items-center justify-center bg-[color:var(--white-smoker)] text-[color:var(--primary-color)] text-2xl rounded-full opacity-0 transition-opacity duration-700 group-hover/img:opacity-100 group-focus/img:opacity-100">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                                <div class="absolute bottom-4 flex items-center justify-center gap-2 bg-[color:var(--white-smoker)] opacity-0 border rounded px-2 py-1 text-sm select-none transition-opacity duration-700 group-hover/img:opacity-100 group-focus/img:opacity-100">
+                                    <i class="fa-solid fa-expand"></i>
+                                    <p>แตะเพื่อดูภาพขนาดเต็ม</p>
+                                </div>
+                            </div>
+                        </button>`}
+                        <div title="${escapeHtml(cert.name)}" class="p-4 space-y-2">
+                            <h3 class="text-lg font-semibold line-clamp-2 leading-tight mb-4">${highlightText(cert.name, searchTerm)}</h3>
+                            <span class="space-y-2">
+                                ${cert.issuer ? `<p class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-building"></i>${escapeHtml(cert.issuer)}</p>` : ''}
+                                <p class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-calendar-alt"></i>${formatDateThai(cert.date)}</p>
+                            </span>
+                            ${cert.id ? `<span class="size-6 absolute -top-4 -right-2 flex items-center justify-center bg-[color:var(--primary-color)] text-white text-xs rounded-full font-medium shadow-md">${cert.id}</span>` : ''}
+                        </div>
+                    </div>`;
+            });
+            $grid.html(html);
+        }
+
+        // Wrapper function to access stored certificate data
+        function viewImageWithData(certId) {
+            const cert = certificateDataStore[certId];
+            if (cert) {
+                const imageUrl = cert.image && cert.image !== '-' ? cert.image : noimages;
+                viewImage(imageUrl, cert.name, cert);
+            }
+        }
+
+        // Filter certificates
+        function filterCertificates() {
+            const searchTerm = $('#search-input').val().toLowerCase() || '';
+            const selectedYear = $('#year-filter').val();
+            const selectedIssuer = $('#issuer-filter').val();
+
+            let filtered = allCertificates.filter(c => {
+                const matchName = c.name.toLowerCase().includes(searchTerm);
+                const matchDesc = c.description.toLowerCase().includes(searchTerm);
+
+                const certDate = parseCertDate(c.date);
+                const matchYear = selectedYear ? certDate.getFullYear() === parseInt(selectedYear) : true;
+                const matchIssuer = selectedIssuer ? c.issuer === selectedIssuer : true;
+
+                return (matchName || matchDesc) && matchYear && matchIssuer;
+            });
+
+            // Sort by date (newest first), then by id
+            filtered.sort((a, b) => {
+                const dateDiff = parseCertDate(b.date) - parseCertDate(a.date);
+                if (dateDiff !== 0) return dateDiff;
+                return (b.id ?? 0) - (a.id ?? 0);
+            });
+
+            renderCertificates(filtered, searchTerm);
+
+            if (filtered.length === allCertificates.length) {
+                $('#results-count').html(
+                    `<span data-aos="fade" class="flex items-center gap-2"><i class="fas fa-certificate"></i><p class="line-clamp-1">แสดงทั้งหมด ${allCertificates.length} ใบ</p></span>`
+                );
+            } else {
+                $('#results-count').html(
+                    `<span data-aos="fade" class="flex items-center gap-2"><i class="fas fa-certificate"></i><p class="line-clamp-1">แสดง ${filtered.length} จาก ${allCertificates.length} ใบ</p></span>`
+                );
+            }
+            AOS.refresh();
+        }
+
+        // Initialize certificates
+        function initCertificates(certificates) {
+            allCertificates = certificates;
+
+            // Populate year dropdown
+            const years = [...new Set(certificates.map(c => {
+                const d = parseCertDate(c.date);
+                return isNaN(d.getFullYear()) ? null : d.getFullYear();
+            }))].filter(year => year).sort((a, b) => b - a);
+
+            years.forEach(year => {
+                $('#year-filter').append(`<option value="${year}">${year}</option>`);
+            });
+
+            // Populate issuer dropdown
+            const issuers = [...new Set(certificates.map(c => c.issuer))].filter(issuer => issuer).sort();
+            issuers.forEach(issuer => {
+                $('#issuer-filter').append(`<option value="${escapeHtml(issuer)}">${escapeHtml(issuer)}</option>`);
+            });
+
+            // Event listeners
+            $('#search-input').on('input', filterCertificates);
+            $('#year-filter').on('change', filterCertificates);
+            $('#issuer-filter').on('change', filterCertificates);
+
+            $('#clear-filters').on('click', function () {
+                $('#search-input').val('');
+                $('#year-filter').val('');
+                $('#issuer-filter').val('');
+                filterCertificates();
+            });
+
+            // Grid layout buttons
+            $('.grid-btn').on('click', function () {
+                const cols = $(this).data('cols');
+                $('#certificates-grid')
+                    .removeClass('grid-cols-1 grid-cols-2 grid-cols-3 sm:grid-cols-2 md:grid-cols-3')
+                    .addClass(`grid-cols-${cols}`);
+                renderCertificates();
+            });
+
+            // Initial render
+            filterCertificates();
+        }
+
+        // Fetch data from Google Sheets
         fetch(url)
             .then(res => res.text())
             .then(text => {
@@ -197,190 +419,25 @@
                     image: row.c[5]?.v ?? ""
                 })).filter(cert => cert.name);
 
-                window.certificates = certificates;
                 $(document).ready(() => initCertificates(certificates));
             })
             .catch(err => {
                 console.error("Error fetching sheet:", err);
-                showNotification(`ข้อผิดพลาดในการดึงแผ่นงาน`, 'error');
                 $('#certificates-grid').html(`
-            <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
-                <i class="fas fa-exclamation-triangle text-6xl mb-4 text-red-500"></i>
-                <p class="text-xl text-red-500">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>
-                <p class="text-gray-400">กรุณาลองใหม่อีกครั้ง</p>
-            </div>
-        `);
-            });
-
-        function initCertificates(certificates) {
-            const $searchInput = $('#search-input');
-            const $yearFilter = $('#year-filter');
-            const $issuerFilter = $('#issuer-filter');
-            const $resultsCount = $('#results-count');
-            const $grid = $('#certificates-grid');
-
-            // เตรียม dropdown ปี
-            const years = [...new Set(certificates.map(c => {
-                const d = parseCertDate(c.date);
-                return isNaN(d.getFullYear()) ? null : d.getFullYear();
-            }))].filter(year => year).sort((a, b) => b - a);
-            years.forEach(year => $yearFilter.append(`<option value="${year}">${year}</option>`));
-
-            // เตรียม dropdown issuer
-            const issuers = [...new Set(certificates.map(c => c.issuer))].filter(issuer => issuer).sort();
-            issuers.forEach(issuer => {
-                $issuerFilter.append(`<option value="${issuer}">${issuer}</option>`);
-            });
-
-            // ฟังก์ชัน filter หลัก
-            function filterCertificates() {
-                const searchTerm = $searchInput.val().toLowerCase() || '';
-                const selectedYear = $yearFilter.val();
-                const selectedIssuer = $issuerFilter.val();
-
-                let filtered = certificates.filter(c => {
-                    const matchName = c.name.toLowerCase().includes(searchTerm);
-                    const matchDesc = c.description.toLowerCase().includes(searchTerm);
-
-                    const certDate = parseCertDate(c.date);
-                    const matchYear = selectedYear ? certDate.getFullYear() === parseInt(selectedYear) : true;
-                    const matchIssuer = selectedIssuer ? c.issuer === selectedIssuer : true;
-
-                    return (matchName || matchDesc) && matchYear && matchIssuer;
-                });
-
-                // sort ล่าสุดขึ้นบน + ถ้าวันเดียวกันให้เช็ค id
-                filtered.sort((a, b) => {
-                    const dateDiff = parseCertDate(b.date) - parseCertDate(a.date);
-                    if (dateDiff !== 0) return dateDiff;
-                    return (b.id ?? 0) - (a.id ?? 0); // ถ้าวันเดียวกัน → id มาก่อน
-                });
-
-                renderCertificates(filtered, searchTerm);
-                if (filtered.length === certificates.length) {
-                    $resultsCount.html(
-                        `<span data-aos="fade" class="flex items-center gap-2"><i class="fas fa-certificate"></i><p class="line-clamp-1">แสดงทั้งหมด ${certificates.length} ใบ</p></span>`
-                    );
-                } else {
-                    $resultsCount.html(
-                        `<span data-aos="fade" class="flex items-center gap-2"><i class="fas fa-certificate"></i><p class="line-clamp-1">แสดง ${filtered.length} จาก ${certificates.length} ใบ</p></span>`
-                    );
-                }
-                AOS.refresh();
-            }
-
-            // ฟังก์ชัน clear-filters (ประกาศครั้งเดียว ไม่ต้องอยู่ใน filterCertificates)
-            $('#clear-filters').on('click', function () {
-                $searchInput.val('');
-                $yearFilter.val('');
-                $issuerFilter.val('');
-                filterCertificates(); // reload ใหม่
-            });
-
-            // event listener
-            $searchInput.on('input', filterCertificates);
-            $yearFilter.on('change', filterCertificates);
-            $issuerFilter.on('change', filterCertificates);
-
-            // โหลดครั้งแรก → ล่าสุดขึ้นบน
-            filterCertificates();
-
-            function renderCertificates(data, searchTerm) {
-                if (!data.length) {
-                    $grid.html(`
-                <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
-                    <i class="fas fa-certificate text-6xl mb-4 text-[color:var(--primary-color)]"></i>
-                    <p class="text-xl text-[color:var(--primary-color)]">ไม่พบใบประกาศนียบัตร</p>
-                    <p class="text-gray-400">ลองค้นหาด้วยคำอื่นหรือเปลี่ยนตัวกรอง</p>
-                </div>
-                `);
-                    return;
-                }
-
-                let html = '';
-                data.forEach((cert, index) => {
-                    const imageUrl = cert.image && cert.image !== '-' ? cert.image : noimages;
-                    const isNoImage = imageUrl === noimages;
-
-                    html += `
-                <div data-aos="fade-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border rounded-lg shadow-sm transition-transform ease-in-out duration-300">
-                    ${isNoImage ?
-                            `<div class="relative overflow-hidden w-full border-b rounded-t-lg">
-                                <img src="${imageUrl}" alt="${cert.name}" class="bg-stripes-gray w-full bg-[color:var(--bg-color)] object-cover" loading="lazy" draggable="false" style="background-image: url('${noimages}'); background-size: cover; background-position: center;" onerror="this.onerror=null;this.src='${noimages}';">
-                            </div>`
-                            :
-                            `<button onclick="viewImage('${imageUrl}', '${cert.name.replace(/'/g, "\\'")}')" class="relative overflow-hidden w-full text-left border-b rounded-t-lg group/img">
-                                <img src="${imageUrl}" alt="${cert.name}" class="bg-stripes-gray w-full bg-[color:var(--bg-color)] object-contain transition-transform duration-300 group-hover/img:scale-105 group-focus/img:scale-105" loading="lazy" draggable="false" style="background-image: url('${noimages}'); background-size: cover; background-position: center;" onerror="this.onerror=null;this.src='${noimages}';">
-                                <div class="absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-700 flex items-center justify-center group-hover/img:bg-opacity-25 group-focus/img:bg-opacity-25">
-                                    <div class="size-16 flex items-center justify-center bg-[color:var(--white-smoker)] text-[color:var(--primary-color)] text-2xl rounded-full opacity-0 transition-opacity duration-700 group-hover/img:opacity-100 group-focus/img:opacity-100">
-                                        <i class="fas fa-search-plus"></i>
-                                    </div>
-                                    <div class="absolute bottom-4 flex items-center justify-center gap-2 bg-[color:var(--white-smoker)] opacity-0 border rounded px-2 py-1 text-sm select-none transition-opacity duration-700 group-hover/img:opacity-100 group-focus/img:opacity-100">
-                                        <i class="fa-solid fa-expand"></i>
-                                        <p>แตะเพื่อดูภาพขนาดเต็ม</p>
-                                    </div>
-                                </div>
-                            </button>
-                            `}
-                    <div title="${cert.name}" class="p-4 space-y-2">
-                        <h3 class="text-lg font-semibold line-clamp-2 leading-tight">${highlightText(cert.name, searchTerm)}</h3>
-                        <span>
-                            ${cert.issuer ? `<p class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-building"></i>${cert.issuer}</p>` : ''}
-                            <p class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-calendar-alt"></i>${formatDateThai(cert.date)}</p>
-                        </span>
-                        <p class="text-sm text-gray-500 line-clamp-3">${cert.description}</p>
-                        ${cert.id ? `<span class="size-6 absolute -top-4 -right-2 flex items-center justify-center bg-[color:var(--primary-color)] text-white text-xs rounded-full font-medium shadow-md">${cert.id}</span>` : ''}
+                    <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
+                        <i class="fas fa-exclamation-triangle text-6xl mb-4 text-red-500"></i>
+                        <p class="text-xl text-red-500">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>
+                        <p class="text-gray-400">กรุณาลองใหม่อีกครั้ง</p>
                     </div>
-                </div>`;
-                });
-                $grid.html(html);
-            }
+                `);
+            });
 
-            function highlightText(text, term) {
-                if (!term || !text) return text || '';
-                const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-                return text.replace(regex, '<mark>$1</mark>');
-            }
+        // Keyboard shortcuts
+        $(document).keydown(function (e) {
+            if (e.key === 'Escape') closeImageModal();
+        });
 
-            function parseCertDate(sheetDate) {
-                if (!sheetDate) return new Date(0);
-                const match = sheetDate.match(/Date\((\d+),(\d+),(\d+)\)/);
-                if (match) return new Date(parseInt(match[1]), parseInt(match[2]), parseInt(match[3]));
-                if (sheetDate.includes('-')) return new Date(sheetDate);
-                return new Date(0);
-            }
-
-            function formatDateThai(sheetDate) {
-                if (!sheetDate) return "";
-                const months = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
-                const date = parseCertDate(sheetDate);
-                if (date.getTime() === 0) return sheetDate;
-                return `${date.getFullYear()} ${months[date.getMonth()]} ${date.getDate()}`;
-            }
-
-            $searchInput?.on('input', filterCertificates);
-            $yearFilter.on('change', filterCertificates);
-            $issuerFilter?.on('change', filterCertificates);
-
-            filterCertificates();
-        }
-
-        // Modal functions
-        function viewImage(src, alt = '') {
-            $('#modal-image').attr('src', src).attr('alt', alt);
-            $('#image-modal').removeClass('hidden');
-            $('#image-modal').append(`
-                        ${cert.description ? `<p class="text-sm text-gray-600 line-clamp-3">${highlightText(cert.description, searchTerm)}</p>` : ''}
-            
-            `);
-            AOS.refresh();
-
-
-        }
-        function closeImageModal() { $('#image-modal').addClass('hidden'); }
-        $(document).keydown(function (e) { if (e.key === 'Escape') closeImageModal(); });
-
-        // Init AOS
+        // Initialize AOS
         AOS.init({ duration: 700, once: true });
     </script>
     <script src="/script/index.js"></script>
