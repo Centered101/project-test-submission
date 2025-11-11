@@ -218,11 +218,7 @@
 
                 const detailsHtml = `
                     <div class="relative">
-<<<<<<< HEAD
                         <!-- ${certData.id ? `<span class="size-8 absolute -top-2 -right-2 flex items-center justify-center bg-[color:var(--primary-color)] text-white text-sm rounded-full font-medium shadow-md">${certData.id}</span>` : ''}  -->
-=======
-                        ${certData.id ? `<span class="size-8 absolute -top-2 -right-2 flex items-center justify-center bg-[color:var(--primary-color)] text-white text-sm rounded-full font-medium shadow-md">${certData.id}</span>` : ''}
->>>>>>> a1de9ac97fd117ebc39d13d83907eaed6252111e
                         <h3 class="text-xl font-semibold line-clamp-3 leading-tight mb-4">${highlightText(certData.name, searchTerm)}</h3>
                     </div>
                     <div class="space-y-2">
@@ -291,7 +287,6 @@
                         </div>`
                         :
                         `<button onclick="viewImageWithData('${certId}')" class="relative overflow-hidden w-full text-left border-b rounded-t-lg group/img">
-<<<<<<< HEAD
                             <img src="${imageUrl}" alt="${cert.name}" class="min-h-40 aspect-auto bg-stripes-gray w-full bg-[color:var(--bg-color)] object-contain transition-transform duration-700 group-hover/img:scale-105 group-focus/img:scale-105" loading="lazy" draggable="false" style="background-image: url('${noimages}'); background-size: cover; background-position: center;" onerror="this.onerror=null;this.src='${noimages}';">
                             <div class="absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-700 flex items-center justify-center group-hover/img:bg-opacity-25 group-focus/img:bg-opacity-25">
                                 <div class="size-16 flex items-center justify-center bg-[color:var(--white-smoker)] text-[color:var(--primary-color)] text-2xl rounded-full opacity-0 transition-opacity duration-700 group-hover/img:opacity-100 group-focus/img:opacity-100">
@@ -304,13 +299,8 @@
                             </div>
                         </button>`}
                         <div title="${escapeHtml(cert.name)}" class="p-4 space-y-2">
-<<<<<<< HEAD
                             <h3 class="text-lg font-semibold line-clamp-2 leading-tight mb-4">${highlightText(cert.name, searchTerm)}</h3>
                             <span class="space-y-2">
-=======
-                            <h3 class="text-lg font-semibold line-clamp-2 leading-tight">${highlightText(cert.name, searchTerm)}</h3>
-                            <span>
->>>>>>> a1de9ac97fd117ebc39d13d83907eaed6252111e
                                 ${cert.issuer ? `<p class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-building"></i>${escapeHtml(cert.issuer)}</p>` : ''}
                                 <p class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-calendar-alt"></i>${formatDateThai(cert.date)}</p>
                             </span>
