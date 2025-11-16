@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Movies App</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#1ED760">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
+    <meta name="author" content="Centered101">
+    <meta name="description" content="Movies App">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://project-test-submission.netlify.app">
+    <meta property="og:title" content="Movies App">
+    <meta property="og:description" content="Movies App">
+    <meta property="og:image" content="/images/icon.svg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://project-test-submission.netlify.app">
+    <meta property="twitter:title" content="Movies App">
+    <meta property="twitter:description" content="Movies App">
+    <meta property="twitter:image" content="/images/icon.svg">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/images/icon.svg">
+    <link rel="stylesheet" href="https://project-test-submission.netlify.app/centered101/index.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<style>
+    :root {
+        --primary-color: #409EFE;
+        --secondary-color: #1ED760;
+        --success: #00CC4F;
+        --error: #FE4040;
+        --warning: #FFB84D;
+        --info: #59B7FF;
+
+        --bg-color: #0a0a0a;
+        --white-smoker: #1a1a1a;
+        --card-bg: #151515;
+    }
+
+    *,
+    html {
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    body {
+        font-family: "Inter", 'kanit', sans-serif;
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        min-height: 100vh;
+        user-select: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-family: "Bebas Neue", 'kanit', sans-serif;
+        letter-spacing: 1px;
+    }
+
+    .movie-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: var(--card-bg);
+        border: 1px solid #2a2a2a;
+    }
+
+    .movie-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        border-color: #3a3a3a;
+    }
+
+    .movie-poster {
+        aspect-ratio: 2/3;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .movie-card:hover .movie-poster {
+        transform: scale(1.05);
+    }
+
+    .filter-btn,
+    .genre-btn {
+        transition: all 0.2s ease;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.875rem;
+    }
+
+    .filter-btn.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .genre-btn.active {
+        background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+    }
+
+    .rating-badge {
+        backdrop-filter: blur(10px);
+        font-weight: 700;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .overlay {
+        backdrop-filter: blur(10px);
+        background: rgba(10, 10, 10, 0.95);
+    }
+
+    #search {
+        background: var(--card-bg);
+        border: 1px solid #2a2a2a;
+        transition: all 0.3s ease;
+    }
+
+    #search:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .header-glow {
+        background: linear-gradient(180deg, var(--secondary-color) 0%, var(--bg-color) 100%);
+    }
+</style>
+
+<body class="bg-[color:var(--bg-color)] text-white">
+    <header class="header-glow bg-[color:var(--card-bg)] shadow-2xl py-8 px-4 mb-10 relative">
+        <div class="max-w-7xl mx-auto">
+            <h1
+                class="text-5xl md:text-6xl font-bold text-center mb-2 bg-gradient-to-r from-[#409EFE] to-[#1ED760] bg-clip-text text-transparent">
+                Centered MOVIES
+            </h1>
+            <p class="text-center text-gray-400 mb-6 text-sm uppercase tracking-wider">Discover Your Next Favorite Film
+            </p>
+
+            <!-- Search Form -->
+            <form id="form" class="max-w-2xl mx-auto mb-8">
+                <div class="relative">
+                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" id="search" placeholder="Search for movies..."
+                        class="w-full pl-12 pr-4 py-4 rounded-xl text-white placeholder-gray-500 focus:outline-none transition duration-200" />
+                </div>
+            </form>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-6">
+                <button class="filter-btn active px-6 py-3 rounded-xl transition shadow-lg" data-filter="popular">
+                    <i class="fas fa-fire mr-2"></i>Popular
+                </button>
+                <button
+                    class="filter-btn px-6 py-3 rounded-xl bg-[color:var(--card-bg)] hover:bg-gray-700 transition shadow-lg"
+                    data-filter="top_rated">
+                    <i class="fas fa-star mr-2"></i>Top Rated
+                </button>
+                <button
+                    class="filter-btn px-6 py-3 rounded-xl bg-[color:var(--card-bg)] hover:bg-gray-700 transition shadow-lg"
+                    data-filter="upcoming">
+                    <i class="fas fa-clock mr-2"></i>Upcoming
+                </button>
+                <button
+                    class="filter-btn px-6 py-3 rounded-xl bg-[color:var(--card-bg)] hover:bg-gray-700 transition shadow-lg"
+                    data-filter="now_playing">
+                    <i class="fas fa-film mr-2"></i>Now Playing
+                </button>
+            </div>
+
+            <!-- Genre Filter -->
+            <div class="flex flex-wrap justify-center gap-2" id="genreFilter">
+                <button class="genre-btn active px-4 py-2 text-sm rounded-full transition shadow-lg" data-genre="all">
+                    All Genres
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="content"
+        class="max-w-7xl mx-auto px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 pb-12">
+    </div>
+
+    <script>
+
+        const API_KEY = "04c35731a5ee918f014970082a0088b1";
+        const BASE_URL = "https://api.themoviedb.org/3";
+        const IMGPATH = "https://image.tmdb.org/t/p/w500";
+        const LANG = "en-US";
+
+        let currentFilter = "popular";
+        let currentGenre = "all";
+        let allGenres = [];
+
+        const genreNames = {
+            28: "Action",
+            12: "Adventure",
+            16: "Animation",
+            35: "Comedy",
+            80: "Crime",
+            99: "Documentary",
+            18: "Drama",
+            10751: "Family",
+            14: "Fantasy",
+            36: "History",
+            27: "Horror",
+            10402: "Music",
+            9648: "Mystery",
+            10749: "Romance",
+            878: "Sci-Fi",
+            10770: "TV Movie",
+            53: "Thriller",
+            10752: "War",
+            37: "Western"
+        };
+
+        $(document).ready(function () {
+            loadGenres();
+            getMovies(currentFilter);
+
+            $('.filter-btn').on('click', function () {
+                $('.filter-btn').removeClass('active').addClass('bg-[color:var(--card-bg)]');
+                $(this).removeClass('bg-[color:var(--card-bg)]').addClass('active');
+
+                currentFilter = $(this).data('filter');
+                getMovies(currentFilter);
+            });
+
+            $('#form').on('submit', function (e) {
+                e.preventDefault();
+                const searchTerm = $('#search').val().trim();
+
+                if (searchTerm) {
+                    searchMovies(searchTerm);
+                    $('#search').val('');
+                }
+            });
+
+            $('#genreFilter').on('click', '.genre-btn', function () {
+                $('.genre-btn').removeClass('active').addClass('bg-[color:var(--card-bg)]');
+                $(this).removeClass('bg-[color:var(--card-bg)]').addClass('active');
+
+                currentGenre = $(this).data('genre');
+                getMovies(currentFilter);
+            });
+        });
+
+        async function loadGenres() {
+            try {
+                const response = await $.ajax({
+                    url: `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANG}`,
+                    method: 'GET'
+                });
+
+                allGenres = response.genres;
+                displayGenreButtons();
+            } catch (error) {
+                console.error('Error loading genres:', error);
+            }
+        }
+
+        function displayGenreButtons() {
+            const $genreFilter = $('#genreFilter');
+
+            allGenres.forEach(genre => {
+                const genreName = genreNames[genre.id] || genre.name;
+                $genreFilter.append(`
+                    <button class="genre-btn px-4 py-2 text-sm rounded-full bg-[color:var(--card-bg)] hover:bg-gray-700 transition shadow-lg" data-genre="${genre.id}">
+                        ${genreName}
+                    </button>
+                `);
+            });
+        }
+
+        async function getMovies(filter) {
+            let url = `${BASE_URL}/movie/${filter}?api_key=${API_KEY}&language=${LANG}&page=1`;
+
+            try {
+                const response = await $.ajax({
+                    url: url,
+                    method: 'GET'
+                });
+
+                let movies = response.results;
+
+                if (currentGenre !== "all") {
+                    movies = movies.filter(movie =>
+                        movie.genre_ids.includes(parseInt(currentGenre))
+                    );
+                }
+
+                showMovies(movies);
+            } catch (error) {
+                console.error('Error fetching movies:', error);
+                $('#content').html('<p class="text-center text-red-500 col-span-full">Error loading data</p>');
+            }
+        }
+
+        async function searchMovies(query) {
+            const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=${LANG}&query=${query}`;
+
+            try {
+                const response = await $.ajax({
+                    url: url,
+                    method: 'GET'
+                });
+
+                showMovies(response.results);
+            } catch (error) {
+                console.error('Error searching movies:', error);
+            }
+        }
+
+        function showMovies(movies) {
+            const $main = $('#content');
+            $main.empty();
+
+            if (movies.length === 0) {
+                $main.html('<p class="text-center col-span-full text-gray-400 text-xl">No movies found</p>');
+                return;
+            }
+
+            movies.forEach(movie => {
+                const { poster_path, title, vote_average, overview, genre_ids } = movie;
+
+                const movieGenres = genre_ids
+                    .map(id => genreNames[id] || '')
+                    .filter(name => name)
+                    .slice(0, 2)
+                    .join(' • ');
+
+                const movieEl = $(`
+                    <div class="movie-card rounded-xl overflow-hidden shadow-xl relative group cursor-pointer">
+                        <div class="overflow-hidden">
+                            <img
+                                src="${poster_path ? IMGPATH + poster_path : 'https://via.placeholder.com/500x750?text=No+Image'}"
+                                alt="${title}"
+                                class="movie-poster w-full"
+                            />
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-base font-bold flex-1 mr-2 line-clamp-2 leading-tight">${title}</h3>
+                                <span class="rating-badge px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1 ${getClassByRate(vote_average)}">
+                                    <i class="fas fa-star text-xs"></i>
+                                    ${vote_average.toFixed(1)}
+                                </span>
+                            </div>
+                            <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">${movieGenres || 'No Genre'}</p>
+                        </div>
+                        <div class="overlay absolute inset-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto">
+                            <h3 class="text-2xl font-bold mb-3 text-white">Overview</h3>
+                            <p class="text-sm text-gray-300 leading-relaxed">${overview || 'No overview available'}</p>
+                        </div>
+                    </div>
+                `);
+
+                $main.append(movieEl);
+            });
+        }
+
+        function getClassByRate(vote) {
+            if (vote >= 8) {
+                return "bg-green-500 text-white";
+            } else if (vote >= 5) {
+                return "bg-orange-500 text-white";
+            } else {
+                return "bg-red-500 text-white";
+            }
+        }
+    </script>
+</body>
+
+</html>
