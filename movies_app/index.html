@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta name="theme-color" content="#1ED760">
+    <meta name="theme-color" content="#409EFE">
     <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
     <meta name="author" content="Centered101">
     <meta name="description" content="Movies App">
@@ -35,192 +35,553 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'kanit', Arial, sans-serif;
+            background: #141414;
+            color: #fff;
+        }
+
+        .magazine-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #000;
+        }
+
+        /* Magazine Cover - Netflix Style */
+        .magazine-cover {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%),
+                url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none" stroke="rgba(64,158,254,0.1)" stroke-width="1"/></svg>');
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .magazine-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(64, 158, 254, 0.15) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .language-toggle {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            z-index: 10;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 10px 24px;
+            border: 2px solid #409efe;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn:hover {
+            background: #409efe;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(64, 158, 254, 0.4);
+        }
+
+        .lang-btn.active {
+            background: #409efe;
+            border-color: #409efe;
+            box-shadow: 0 0 20px rgba(64, 158, 254, 0.6);
+        }
+
+        .magazine-title {
+            font-size: 90px;
+            font-weight: 900;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #409efe;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 30px rgba(64, 158, 254, 0.5);
+        }
+
+        .magazine-subtitle {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .issue-date {
+            font-size: 16px;
+            color: #999;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Filter Buttons - Netflix Style */
+        .filter-section {
+            background: #141414;
+            padding: 30px 40px;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 12px 28px;
+            border: 2px solid #333;
+            background: rgba(20, 20, 20, 0.8);
+            color: #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover {
+            background: rgba(64, 158, 254, 0.2);
+            border-color: #409efe;
+            color: #409efe;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(64, 158, 254, 0.3);
+        }
+
+        .filter-btn.active {
+            background: #409efe;
+            border-color: #409efe;
+            color: #fff;
+            box-shadow: 0 5px 25px rgba(64, 158, 254, 0.5);
+        }
+
+        .filter-btn i {
+            margin-right: 8px;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 80px;
+            font-size: 24px;
+            color: #409efe;
+        }
+
+        .loading i {
+            font-size: 48px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Movie Grid - Netflix Style */
+        .movies-grid {
+            padding: 60px 40px;
+            background: #141414;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 50px;
+            text-align: left;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #409efe;
+            box-shadow: 0 0 10px rgba(64, 158, 254, 0.5);
+        }
+
+        .movie-item {
+            display: flex;
+            background: #1a1a1a;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+            border: 1px solid #222;
+            position: relative;
+        }
+
+        .movie-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(64, 158, 254, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .movie-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(64, 158, 254, 0.3);
+            border-color: #409efe;
+        }
+
+        .movie-item:hover::before {
+            opacity: 1;
+        }
+
+        .movie-rank {
+            min-width: 100px;
+            background: linear-gradient(135deg, #409efe 0%, #0066cc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            font-weight: 900;
+            color: white;
+            flex-shrink: 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .movie-poster {
+            width: 220px;
+            height: 330px;
+            object-fit: cover;
+            flex-shrink: 0;
+            transition: transform 0.4s ease;
+        }
+
+        .movie-item:hover .movie-poster {
+            transform: scale(1.05);
+        }
+
+        .movie-content {
+            padding: 35px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+
+        .movie-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .movie-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .rating:hover {
+            /* transform: scale(1.1); */
+        }
+
+        .rating.high {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border: 2px solid #4caf50;
+        }
+
+        .rating.medium {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+            border: 2px solid #ffc107;
+        }
+
+        .rating.low {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 2px solid #f44336;
+        }
+
+        .genres {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .genre-tag {
+            padding: 6px 14px;
+            background: rgba(64, 158, 254, 0.15);
+            color: #409efe;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(64, 158, 254, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .genre-tag:hover {
+            background: rgba(64, 158, 254, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .movie-overview {
+            color: #bbb;
+            line-height: 1.7;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .release-date {
+            color: #666;
+            font-size: 14px;
+            margin-top: auto;
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .release-date i {
+            color: #409efe;
+        }
+
+        /* Footer - Netflix Style */
+        .magazine-footer {
+            background: #000;
+            color: #666;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .magazine-title {
+                font-size: 48px;
+            }
+
+            .magazine-cover {
+                padding: 60px 20px;
+                min-height: 400px;
+            }
+
+            .language-toggle {
+                top: 20px;
+                right: 20px;
+            }
+
+            .filter-section {
+                padding: 20px;
+            }
+
+            .filter-buttons {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+
+            .movies-grid {
+                padding: 40px 20px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .movie-item {
+                flex-direction: column;
+            }
+
+            .movie-rank {
+                width: 100%;
+                min-width: auto;
+                height: 80px;
+                font-size: 48px;
+            }
+
+            .movie-poster {
+                width: 100%;
+                height: 450px;
+            }
+
+            .movie-content {
+                padding: 25px;
+            }
+
+            .movie-title {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
-<style>
-    :root {
-        --primary-color: #409EFE;
-        --secondary-color: #1ED760;
-        --success: #00CC4F;
-        --error: #FE4040;
-        --warning: #FFB84D;
-        --info: #59B7FF;
 
-        --bg-color: #0a0a0a;
-        --white-smoker: #1a1a1a;
-        --card-bg: #151515;
-    }
-
-    *,
-    html {
-        scrollbar-width: none;
-        scroll-behavior: smooth;
-    }
-
-    ::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: #0a0a0a;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: #333;
-        border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
-
-    body {
-        font-family: "Inter", 'kanit', sans-serif;
-        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-        min-height: 100vh;
-        user-select: none;
-    }
-
-    h1,
-    h2,
-    h3 {
-        font-family: "Bebas Neue", 'kanit', sans-serif;
-        letter-spacing: 1px;
-    }
-
-    .movie-card {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        background: var(--card-bg);
-        border: 1px solid #2a2a2a;
-    }
-
-    .movie-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        border-color: #3a3a3a;
-    }
-
-    .movie-poster {
-        aspect-ratio: 2/3;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .movie-card:hover .movie-poster {
-        transform: scale(1.05);
-    }
-
-    .filter-btn,
-    .genre-btn {
-        transition: all 0.2s ease;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-size: 0.875rem;
-    }
-
-    .filter-btn.active {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    }
-
-    .genre-btn.active {
-        background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
-        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
-    }
-
-    .rating-badge {
-        backdrop-filter: blur(10px);
-        font-weight: 700;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    }
-
-    .overlay {
-        backdrop-filter: blur(10px);
-        background: rgba(10, 10, 10, 0.95);
-    }
-
-    #search {
-        background: var(--card-bg);
-        border: 1px solid #2a2a2a;
-        transition: all 0.3s ease;
-    }
-
-    #search:focus {
-        border-color: var(--secondary-color);
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-
-    .header-glow {
-        background: linear-gradient(180deg, var(--secondary-color) 0%, var(--bg-color) 100%);
-    }
-</style>
-
-<body class="bg-[color:var(--bg-color)] text-white">
-    <header class="header-glow bg-[color:var(--card-bg)] shadow-2xl py-8 px-4 mb-10 relative">
-        <div class="max-w-7xl mx-auto">
-            <h1
-                class="text-5xl md:text-6xl font-bold text-center mb-2 bg-gradient-to-r from-[#409EFE] to-[#1ED760] bg-clip-text text-transparent">
-                Centered MOVIES
-            </h1>
-            <p class="text-center text-gray-400 mb-6 text-sm uppercase tracking-wider">Discover Your Next Favorite Film
-            </p>
-
-            <!-- Search Form -->
-            <form id="form" class="max-w-2xl mx-auto mb-8">
-                <div class="relative">
-                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    <input type="text" id="search" placeholder="Search for movies..."
-                        class="w-full pl-12 pr-4 py-4 rounded-xl text-white placeholder-gray-500 focus:outline-none transition duration-200" />
-                </div>
-            </form>
-
-            <!-- Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-3 mb-6">
-                <button class="filter-btn active px-6 py-3 rounded-xl transition shadow-lg" data-filter="popular">
-                    <i class="fas fa-fire mr-2"></i>Popular
-                </button>
-                <button
-                    class="filter-btn px-6 py-3 rounded-xl bg-[color:var(--card-bg)] hover:bg-gray-700 transition shadow-lg"
-                    data-filter="top_rated">
-                    <i class="fas fa-star mr-2"></i>Top Rated
-                </button>
-                <button
-                    class="filter-btn px-6 py-3 rounded-xl bg-[color:var(--card-bg)] hover:bg-gray-700 transition shadow-lg"
-                    data-filter="upcoming">
-                    <i class="fas fa-clock mr-2"></i>Upcoming
-                </button>
-                <button
-                    class="filter-btn px-6 py-3 rounded-xl bg-[color:var(--card-bg)] hover:bg-gray-700 transition shadow-lg"
-                    data-filter="now_playing">
-                    <i class="fas fa-film mr-2"></i>Now Playing
-                </button>
+<body>
+    <div class="magazine-container">
+        <!-- Magazine Cover -->
+        <div class="magazine-cover" data-aos="fade-down" data-aos-duration="1000">
+            <div class="language-toggle">
+                <button class="lang-btn active" data-lang="th"><i class="fas fa-language"></i> ไทย</button>
+                <button class="lang-btn" data-lang="en"><i class="fas fa-language"></i> ENG</button>
             </div>
+            <h1 class="magazine-title" data-aos="zoom-in" data-aos-delay="200">CENTERED CINEMANIA</h1>
+            <p class="magazine-subtitle" id="coverSubtitle" data-aos="fade-up" data-aos-delay="400">
+                TOP 10 TRENDING MOVIES
+            </p>
+            <p class="issue-date" id="issueDate" data-aos="fade-up" data-aos-delay="600">
+                Loading...
+            </p>
+        </div>
 
-            <!-- Genre Filter -->
-            <div class="flex flex-wrap justify-center gap-2" id="genreFilter">
-                <button class="genre-btn active px-4 py-2 text-sm rounded-full transition shadow-lg" data-genre="all">
-                    All Genres
+        <!-- Filter Section -->
+        <div class="filter-section" data-aos="fade-up" data-aos-duration="800">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="trending" data-th="กำลังมาแรง" data-en="Trending">
+                    <i class="fas fa-fire"></i> <span class="filter-text">กำลังมาแรง</span>
+                </button>
+                <button class="filter-btn" data-filter="popular" data-th="ยอดนิยม" data-en="Popular">
+                    <i class="fas fa-star"></i> <span class="filter-text">ยอดนิยม</span>
+                </button>
+                <button class="filter-btn" data-filter="top_rated" data-th="ติด Top" data-en="Top Rated">
+                    <i class="fas fa-trophy"></i> <span class="filter-text">ติด Top</span>
+                </button>
+                <button class="filter-btn" data-filter="upcoming" data-th="เร็วๆ นี้" data-en="Upcoming">
+                    <i class="fas fa-calendar-alt"></i> <span class="filter-text">เร็วๆ นี้</span>
+                </button>
+                <button class="filter-btn" data-filter="now_playing" data-th="กำลังฉาย" data-en="Now Playing">
+                    <i class="fas fa-film"></i> <span class="filter-text">กำลังฉาย</span>
                 </button>
             </div>
         </div>
-    </header>
 
-    <div id="content"
-        class="max-w-7xl mx-auto px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 pb-12">
+        <!-- Loading State -->
+        <div class="loading" id="loading">
+            <i class="fas fa-spinner"></i>
+            <p id="loadingText" class="min-h-screen" style="margin-top: 20px;">
+                กำลังโหลดหนังยอดนิยม...
+            </p>
+        </div>
+
+        <!-- Movies Content -->
+        <div class="movies-grid" id="moviesGrid" style="display: none;">
+            <h2 class="section-title" id="sectionTitle">10 อันดับหนังที่กำลังมาแรง</h2>
+            <div id="moviesList"></div>
+        </div>
+
+        <!-- Footer -->
+        <div class="magazine-footer">
+            <p>
+                <i class="fas fa-copyright"></i> 2025 CINEMANIA Magazine | Powered by The Movie Database (TMDb)
+            </p>
+        </div>
     </div>
 
     <script>
-
         const API_KEY = "04c35731a5ee918f014970082a0088b1";
         const BASE_URL = "https://api.themoviedb.org/3";
         const IMGPATH = "https://image.tmdb.org/t/p/w500";
-        const LANG = "en-US";
+        const NO_IMAGE = "http://project-test-submission.netlify.app/images/img/noitems.svg";
 
-        let currentFilter = "popular";
-        let currentGenre = "all";
-        let allGenres = [];
+        let currentLang = "th";
+        let currentFilter = "trending";
 
-        const genreNames = {
+        const genreNamesTH = {
+            28: "แอ็คชั่น",
+            12: "ผจญภัย",
+            16: "แอนิเมชั่น",
+            35: "ตลก",
+            80: "อาชญากรรม",
+            99: "สารคดี",
+            18: "ดราม่า",
+            10751: "ครอบครัว",
+            14: "แฟนตาซี",
+            36: "ประวัติศาสตร์",
+            27: "สยองขวัญ",
+            10402: "ดนตรี",
+            9648: "ลึกลับ",
+            10749: "โรแมนติก",
+            878: "ไซไฟ",
+            53: "ระทึกขวัญ",
+            10752: "สงคราม",
+            37: "คาวบอย"
+        };
+
+        const genreNamesEN = {
             28: "Action",
             12: "Adventure",
             16: "Animation",
@@ -236,165 +597,199 @@
             9648: "Mystery",
             10749: "Romance",
             878: "Sci-Fi",
-            10770: "TV Movie",
             53: "Thriller",
             10752: "War",
             37: "Western"
         };
 
+        const translations = {
+            th: {
+                coverSubtitle: "TOP 10 TRENDING MOVIES",
+                issuePrefix: "ฉบับที่",
+                loading: "กำลังโหลดหนังยอดนิยม...",
+                sectionTitles: {
+                    trending: "10 อันดับหนังที่กำลังมาแรง",
+                    popular: "10 อันดับหนังยอดนิยม",
+                    top_rated: "10 อันดับหนังติด Top",
+                    upcoming: "10 อันดับหนังที่จะออกเร็วๆ นี้",
+                    now_playing: "10 อันดับหนังที่กำลังฉาย"
+                },
+                releaseYear: "ปีที่ออกฉาย:",
+                noOverview: "ไม่มีเรื่องย่อ",
+                months: ["มกราคม",
+                    "กุมภาพันธ์",
+                    "มีนาคม",
+                    "เมษายน",
+                    "พฤษภาคม",
+                    "มิถุนายน",
+                    "กรกฎาคม",
+                    "สิงหาคม",
+                    "กันยายน",
+                    "ตุลาคม",
+                    "พฤศจิกายน",
+                    "ธันวาคม"]
+            },
+            en: {
+                coverSubtitle: "TOP 10 TRENDING MOVIES",
+                issuePrefix: "Issue",
+                loading: "Loading trending movies...",
+                sectionTitles: {
+                    trending: "Top 10 Trending Movies",
+                    popular: "Top 10 Popular Movies",
+                    top_rated: "Top 10 Rated Movies",
+                    upcoming: "Top 10 Upcoming Movies",
+                    now_playing: "Top 10 Now Playing Movies"
+                },
+                releaseYear: "Release Year:",
+                noOverview: "No overview available",
+                months: ["January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December"]
+            }
+        };
+
         $(document).ready(function () {
-            loadGenres();
-            getMovies(currentFilter);
-
-            $('.filter-btn').on('click', function () {
-                $('.filter-btn').removeClass('active').addClass('bg-[color:var(--card-bg)]');
-                $(this).removeClass('bg-[color:var(--card-bg)]').addClass('active');
-
-                currentFilter = $(this).data('filter');
-                getMovies(currentFilter);
+            // Initialize AOS
+            AOS.init({
+                duration: 600,
+                easing: 'ease-out',
+                once: true,
+                offset: 50
             });
 
-            $('#form').on('submit', function (e) {
-                e.preventDefault();
-                const searchTerm = $('#search').val().trim();
+            updateDate();
+            loadMovies(currentFilter);
 
-                if (searchTerm) {
-                    searchMovies(searchTerm);
-                    $('#search').val('');
+            // Language toggle
+            $('.lang-btn').on('click', function () {
+                const lang = $(this).data('lang');
+                if (lang !== currentLang) {
+                    currentLang = lang;
+                    $('.lang-btn').removeClass('active');
+                    $(this).addClass('active');
+                    updateLanguage();
+                    loadMovies(currentFilter);
                 }
             });
 
-            $('#genreFilter').on('click', '.genre-btn', function () {
-                $('.genre-btn').removeClass('active').addClass('bg-[color:var(--card-bg)]');
-                $(this).removeClass('bg-[color:var(--card-bg)]').addClass('active');
-
-                currentGenre = $(this).data('genre');
-                getMovies(currentFilter);
-            });
+            // Filter buttons
+            $('.filter-btn').on('click',
+                function () {
+                    $('.filter-btn').removeClass('active');
+                    $(this).addClass('active');
+                    currentFilter = $(this).data('filter');
+                    loadMovies(currentFilter);
+                });
         });
 
-        async function loadGenres() {
-            try {
-                const response = await $.ajax({
-                    url: `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=${LANG}`,
-                    method: 'GET'
-                });
-
-                allGenres = response.genres;
-                displayGenreButtons();
-            } catch (error) {
-                console.error('Error loading genres:', error);
-            }
+        function updateDate() {
+            const today = new Date();
+            const trans = translations[currentLang];
+            const dateStr = `${trans.issuePrefix} ${today.getDate()} ${trans.months[today.getMonth()]} ${currentLang === 'th' ? today.getFullYear() + 543 : today.getFullYear()}`;
+            $('#issueDate').text(dateStr);
         }
 
-        function displayGenreButtons() {
-            const $genreFilter = $('#genreFilter');
+        function updateLanguage() {
+            const trans = translations[currentLang];
+            $('#loadingText').text(trans.loading);
+            $('#sectionTitle').text(trans.sectionTitles[currentFilter]);
 
-            allGenres.forEach(genre => {
-                const genreName = genreNames[genre.id] || genre.name;
-                $genreFilter.append(`
-                    <button class="genre-btn px-4 py-2 text-sm rounded-full bg-[color:var(--card-bg)] hover:bg-gray-700 transition shadow-lg" data-genre="${genre.id}">
-                        ${genreName}
-                    </button>
-                `);
+            // Update filter button texts
+            $('.filter-btn').each(function () {
+                const text = $(this).data(currentLang);
+                $(this).find('.filter-text').text(text);
             });
+
+            updateDate();
         }
 
-        async function getMovies(filter) {
-            let url = `${BASE_URL}/movie/${filter}?api_key=${API_KEY}&language=${LANG}&page=1`;
+        async function loadMovies(filter) {
+            $('#loading').show();
+            $('#moviesGrid').hide();
+
+            const lang = currentLang === 'th' ? 'th-TH' : 'en-US';
+            let url;
+
+            if (filter === 'trending') {
+                url = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=${lang}`;
+            } else {
+                url = `${BASE_URL}/movie/${filter}?api_key=${API_KEY}&language=${lang}&page=1`;
+            }
 
             try {
                 const response = await $.ajax({
-                    url: url,
-                    method: 'GET'
+                    url: url, method: 'GET'
                 });
+                const top10 = response.results.slice(0, 10);
+                displayMovies(top10);
 
-                let movies = response.results;
-
-                if (currentGenre !== "all") {
-                    movies = movies.filter(movie =>
-                        movie.genre_ids.includes(parseInt(currentGenre))
-                    );
-                }
-
-                showMovies(movies);
+                $('#loading').hide();
+                $('#moviesGrid').show();
+                $('#sectionTitle').text(translations[currentLang].sectionTitles[filter]);
             } catch (error) {
-                console.error('Error fetching movies:', error);
-                $('#content').html('<p class="text-center text-red-500 col-span-full">Error loading data</p>');
+                console.error('Error loading movies:', error);
+                $('#loadingText').html('<p style="color: #f44336;">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>');
             }
         }
 
-        async function searchMovies(query) {
-            const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=${LANG}&query=${query}`;
+        function displayMovies(movies) {
+            const $list = $('#moviesList');
+            $list.empty();
 
-            try {
-                const response = await $.ajax({
-                    url: url,
-                    method: 'GET'
-                });
+            const genreNames = currentLang === 'th' ? genreNamesTH : genreNamesEN;
+            const trans = translations[currentLang];
 
-                showMovies(response.results);
-            } catch (error) {
-                console.error('Error searching movies:', error);
-            }
-        }
-
-        function showMovies(movies) {
-            const $main = $('#content');
-            $main.empty();
-
-            if (movies.length === 0) {
-                $main.html('<p class="text-center col-span-full text-gray-400 text-xl">No movies found</p>');
-                return;
-            }
-
-            movies.forEach(movie => {
-                const { poster_path, title, vote_average, overview, genre_ids } = movie;
+            movies.forEach((movie, index) => {
+                const {
+                    poster_path, title, vote_average, overview, genre_ids, release_date
+                } = movie;
 
                 const movieGenres = genre_ids
-                    .map(id => genreNames[id] || '')
+                    .map(id => genreNames[id])
                     .filter(name => name)
-                    .slice(0, 2)
-                    .join(' • ');
+                    .slice(0, 4);
 
-                const movieEl = $(`
-                    <div class="movie-card rounded-xl overflow-hidden shadow-xl relative group cursor-pointer">
-                        <div class="overflow-hidden">
-                            <img
-                                src="${poster_path ? IMGPATH + poster_path : 'https://via.placeholder.com/500x750?text=No+Image'}"
-                                alt="${title}"
-                                class="movie-poster w-full"
-                            />
-                        </div>
-                        <div class="p-4">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-base font-bold flex-1 mr-2 line-clamp-2 leading-tight">${title}</h3>
-                                <span class="rating-badge px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1 ${getClassByRate(vote_average)}">
-                                    <i class="fas fa-star text-xs"></i>
-                                    ${vote_average.toFixed(1)}
-                                </span>
-                            </div>
-                            <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">${movieGenres || 'No Genre'}</p>
-                        </div>
-                        <div class="overlay absolute inset-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto">
-                            <h3 class="text-2xl font-bold mb-3 text-white">Overview</h3>
-                            <p class="text-sm text-gray-300 leading-relaxed">${overview || 'No overview available'}</p>
-                        </div>
-                    </div>
-                `);
+                const ratingClass = vote_average >= 8 ? 'high' : vote_average >= 6 ? 'medium' : 'low';
+                const posterUrl = poster_path ? IMGPATH + poster_path : NO_IMAGE;
 
-                $main.append(movieEl);
+                const releaseYear = release_date ? new Date(release_date).getFullYear() : 'N/A';
+
+                const movieHtml = `
+                <div class="movie-item" data-aos="fade-up" data-aos-delay="${index * 50}">
+                <div class="movie-rank">${index + 1}</div>
+                <img src="${posterUrl}" alt="${title}" class="movie-poster" onerror="this.src='${NO_IMAGE}'">
+                <div class="movie-content">
+                <h3 class="movie-title">${title}</h3>
+                <div class="movie-meta">
+                <span class="rating ${ratingClass}">
+                <i class="fas fa-star"></i> ${vote_average.toFixed(1)}
+                </span>
+                <div class="genres">
+                ${movieGenres.map(g => `<span class="genre-tag">${g}</span>`).join('')}
+                </div>
+                </div>
+                <p class="movie-overview">${overview || trans.noOverview}</p>
+                <p class="release-date">
+                <i class="fas fa-calendar"></i> ${trans.releaseYear} ${releaseYear}
+                </p>
+                </div>
+                </div>
+                `;
+
+                $list.append(movieHtml);
             });
-        }
 
-        function getClassByRate(vote) {
-            if (vote >= 8) {
-                return "bg-green-500 text-white";
-            } else if (vote >= 5) {
-                return "bg-orange-500 text-white";
-            } else {
-                return "bg-red-500 text-white";
-            }
+            // Refresh AOS for new elements
+            AOS.refresh();
         }
     </script>
 </body>
