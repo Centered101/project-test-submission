@@ -7,24 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="theme-color" content="#409EFE">
-    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Centered101">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, TailwindCSS, jQuery, Centered101">
     <meta name="author" content="Centered101">
-    <meta name="description" content="ใบประกาศนียบัตร">
+    <meta name="description" content="ใบประกาศนียบัตร พงศ์พล พรมผา">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://project-test-submission.netlify.app">
-    <meta property="og:title" content="ใบประกาศนียบัตร">
-    <meta property="og:description" content="ใบประกาศนียบัตร">
-    <meta property="og:image" content="/images/icon.svg">
+    <meta property="og:title" content="Class Track Room">
+    <meta property="og:description" content="ใบประกาศนียบัตร พงศ์พล พรมผา">
+    <meta property="og:image" content="/favicon.ico">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://project-test-submission.netlify.app">
-    <meta property="twitter:title" content="ใบประกาศนียบัตร">
-    <meta property="twitter:description" content="ใบประกาศนียบัตร">
-    <meta property="twitter:image" content="/images/icon.svg">
+    <meta property="twitter:title" content="Class Track Room">
+    <meta property="twitter:description" content="ใบประกาศนียบัตร พงศ์พล พรมผา">
+    <meta property="twitter:image" content="/favicon.ico">
 
-    <link rel="shortcut icon" type="image/x-icon" href="/images/icon.svg">
-    <link rel="stylesheet" href="https://project-test-submission.netlify.app/centered101/index.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://asia-lb.web.app/style/index.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
@@ -33,30 +33,85 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
-<body class="bg-[color:var(--bg-color)] min-h-screen">
+<style>
+    :root {
+        --primary-color: #409EFE;
+    }
+</style>
 
+<body class="bg-gray-50 min-h-screen">
     <!-- Header -->
-    <header class="max-w-6xl mx-auto bg-[color:var(--primary-color)] text-white text-center shadow-lg py-8">
-        <h1 class="text-4xl font-bold">ใบประกาศนียบัตร</h1>
+    <header data-aos="fade-down" data-aos-duration="3000"
+        class="mx-auto bg-[color:var(--primary-color)] text-white text-center shadow-lg py-8">
+        <h1 class="text-5xl font-bold">ใบประกาศนียบัตร</h1>
     </header>
 
-    <!-- About Section -->
-    <section
-        class="max-w-6xl sticky top-0 flex flex-row items-center gap-2 md:gap-4 bg-[color:var(--white-smoker)] border rounded-b-xl shadow-lg mx-auto p-4 z-10">
-        <button
-            onclick="viewImage('https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png', 'พงศ์พล พรมผา')"
-            class="shrink-0 touch-manipulation">
+    <nav data-aos="fade-down" data-aos-duration="2700"
+        class="bg-[color:var(--white-smoker)] border shadow sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <button id="student-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+                    class="ripple-effect flex items-center gap-2 rounded cursor-pointer">
+                    <div
+                        class="flex items-center justify-center bg-[color:var(--primary-color)] rounded-md text-white font-bold overflow-hidden">
+                        <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
+                            alt="พงศ์พล พรมผา" class="size-12 object-cover" draggable="false" />
+                    </div>
+                    <span class="font-semibold text-3xl pr-2">พงศ์พล พรมผา</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Student Info Card -->
+    <div id="student-info" class="hidden fixed top-24 left-1/2 -translate-x-1/2 z-40 bg-[color:var(--white-smoker)] border rounded-2xl shadow-xl w-[90%] max-w-md p-4 space-y-3">
+
+        <div class="flex items-center gap-4">
             <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
-                alt="พงศ์พล พรมผา" class="size-12 rounded-full object-cover" draggable="false" />
-        </button>
-        <h2 class="text-3xl text-pretty font-bold !line-clamp-1">
-            <span>พงศ์พล พรมผา</span>
-        </h2>
-    </section>
+                class="size-16 border rounded-md object-cover" draggable="false">
+
+            <div>
+                <p class="text-lg font-semibold">พงศ์พล พรมผา</p>
+                <p class="text-sm text-gray-500">นักศึกษา เทคโนโลยีธุรกิจดิจิทัล</p>
+                <p class="text-sm text-gray-500">ว่าที่นักศึกษา วิทยาการคอมพิวเตอร์ และ ไซเบอร์ซีเคียวริตี้</p>
+            </div>
+        </div>
+
+        <div class="bg-gray-50 text-sm text-gray-600 border rounded-md shadow-inner space-y-1 p-2">
+            <p><i class="fas fa-id-card mr-2"></i>รหัสนักศึกษา: 36887</p>
+            <p><i class="fas fa-school mr-2"></i>โรงเรียนพระนารายณ์</p>
+            <p><i class="fas fa-laptop-code mr-2"></i>สาย: Programmer / Web Dev</p>
+        </div>
+    </div>
+
+    <script>
+        // Toggle student info
+        $('#student-btn').on('click', function (e) {
+            e.stopPropagation();
+
+            const $info = $('#student-info');
+
+            if ($info.is(':visible')) {
+                $info.fadeOut(300).addClass('hidden');
+            } else {
+                $info.removeClass('hidden').hide().fadeIn(300);
+            }
+        });
+
+        // คลิกที่อื่นให้ปิด
+        $(document).on('click', function () {
+            $('#student-info').fadeOut(300).addClass('hidden');
+        });
+
+        // กันไม่ให้คลิกในกล่องแล้วปิด
+        $('#student-info').on('click', function (e) {
+            e.stopPropagation();
+        });
+    </script>
 
     <!-- Filter Section -->
-    <section data-aos="fade-down" class="max-w-6xl mx-auto px-4 py-6">
-        <div class="bg-[color:var(--white-smoker)] border shadow-sm rounded-xl space-y-4 p-4 md:p-6 overflow-hidden">
+    <section data-aos="fade-down" data-aos-duration="1500" class="max-w-7xl mx-auto px-4 py-6">
+        <div class="bg-[color:var(--white-smoker)] border rounded-2xl shadow space-y-4 p-4 md:p-6 overflow-hidden">
             <h3 class="flex items-center gap-2 text-lg font-semibold">
                 <i class="fas fa-search text-[color:var(--primary-color)]"></i>
                 ค้นหาใบประกาศนียบัตร
@@ -68,7 +123,7 @@
                     <label for="search-input" class="block text-sm font-medium text-gray-400 mb-2">ชื่อหลักสูตร</label>
                     <div class="relative">
                         <input type="text" id="search-input" placeholder="ค้นหาชื่อหลักสูตร..."
-                            class="w-full px-4 py-2 pl-10 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--primary-color)] focus:border-transparent">
+                            class="w-full bg-gray-50 border rounded-lg shadow-inner px-4 py-2 pl-10 focus:ring-2 focus:ring-[color:var(--primary-color)]">
                         <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                     </div>
                 </div>
@@ -78,7 +133,7 @@
                     <div>
                         <label for="year-filter" class="block text-sm font-medium text-gray-400 mb-2">ปี</label>
                         <select id="year-filter"
-                            class="w-full px-4 py-2 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--primary-color)] focus:border-transparent">
+                            class="w-full bg-gray-50 border rounded-lg shadow-inner px-4 py-2 focus:ring-2 focus:ring-[color:var(--primary-color)]">
                             <option class="fade-in" value="">ทุกปี</option>
                         </select>
                     </div>
@@ -86,7 +141,7 @@
                     <div>
                         <label for="issuer-filter" class="block text-sm font-medium text-gray-400 mb-2">ผู้ออก</label>
                         <select id="issuer-filter"
-                            class="w-full px-4 py-2 bg-[color:var(--bg-color)] border rounded-lg shadow-inner focus:ring-2 focus:ring-[color:var(--primary-color)] focus:border-transparent">
+                            class="w-full bg-gray-50 border rounded-lg shadow-inner px-4 py-2 focus:ring-2 focus:ring-[color:var(--primary-color)]">
                             <option class="fade-in" value="">ทั้งหมด</option>
                         </select>
                     </div>
@@ -95,31 +150,32 @@
 
             <div class="flex gap-2 md:gap-4 mt-4 pt-4 border-t">
                 <button id="clear-filters"
-                    class="bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2 active:bg-[color:var(--accent-color)]">
+                    class="ripple-effect bg-gray-50 text-sm border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
                     <span class="flex items-center gap-2">
                         <i class="fas fa-times"></i>
-                        <p class="hidden md:block">ล้างตัวกรอง</p>
+                        <p class="hidden md:block">
+                            ล้างตัวกรอง
+                        </p>
                     </span>
                 </button>
 
-                <div id="results-count"
-                    class="bg-[color:var(--bg-color)] text-sm border rounded-lg shadow-inner px-4 py-2">
+                <div id="results-count" class="bg-gray-50 text-sm border rounded-lg shadow-inner px-4 py-2">
                     <i class="fas fa-certificate"></i>
                 </div>
 
                 <div class="flex gap-2 md:gap-4 ml-auto">
                     <button data-cols="1"
-                        class="grid-btn bg-[color:var(--bg-color)] text-center text-sm border rounded-lg shadow-inner px-4 py-2 active:bg-[color:var(--accent-color)]">
+                        class="grid-btn bg-gray-50 text-center text-sm border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
                         <i class="fa-solid fa-list"></i>
                     </button>
 
                     <button data-cols="2"
-                        class="grid-btn bg-[color:var(--bg-color)] text-center text-sm border rounded-lg shadow-inner px-4 py-2 active:bg-[color:var(--accent-color)]">
+                        class="grid-btn bg-gray-50 text-center text-sm border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
                         <i class="fa-solid fa-grip-vertical"></i>
                     </button>
 
                     <button data-cols="3"
-                        class="grid-btn bg-[color:var(--bg-color)] text-center text-sm border rounded-lg shadow-inner px-4 py-2 active:bg-[color:var(--accent-color)]">
+                        class="grid-btn bg-gray-50 text-center text-sm border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
                         <i class="fa-solid fa-grip"></i>
                     </button>
                 </div>
@@ -129,55 +185,43 @@
     </section>
 
     <!-- Certificates Section -->
-    <section class="max-w-6xl mx-auto p-4">
+    <section class="max-w-7xl mx-auto p-4">
         <div id="certificates-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <!-- Loading placeholder -->
             <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
                 <div
                     class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto mb-4">
                 </div>
-                <p class="text-xl">กำลังโหลดข้อมูล</p>
-                <p class="text-gray-400">กำลังโหลดข้อมูล ใบประกาศนียบัตร</p>
+                <p class="text-xl">
+                    กำลังโหลดข้อมูล
+                </p>
+                <p class="text-gray-400">
+                    กำลังโหลดข้อมูล ใบประกาศนียบัตร
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Image Modal -->
-    <div onclick="closeImageModal()" id="image-modal"
-        class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-40">
-
-        <!-- Close text -->
-        <span
-            class="fade-in absolute top-8 text-sm bg-[color:var(--white-smoker)] border rounded px-2 py-1 select-none">
-            แตะพื้นที่ว่างเพื่อปิด
-        </span>
-
-        <!-- Image container -->
-        <div onclick="event.stopPropagation()"
-            class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 bg-[color:var(--bg-color)] bg-stripes-gray border rounded-lg shadow-2xl mx-4 overflow-hidden">
-            <div class="relative flex items-center justify-center border-b md:border-b-0 md:border-r">
-                <img id="modal-image" src="" alt="" class="w-full p-2 object-contain" 
-                    onerror="this.src='/images/img/noitems.svg'" draggable="false">
-            </div>
-            <div id="modal-details" class="hidden md:block bg-[color:var(--bg-color)] space-y-2 p-4 overflow-y-auto">
-                <!-- Details will be inserted here by JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <footer class="max-w-6xl mx-auto bg-[color:var(--white-smoker)] text-center border shadow-lg mt-56 p-4">
-        <p>Developed by <a class="text-[color:var(--primary-color)]" href="/Centered101/" target="_blank"
-                rel="noopener noreferrer">Centered101</a>
+    <!-- Footer -->
+    <footer class="text-center text-sm text-gray-500 py-12">
+        <p>
+            <span>©&#8201;2025</span>
+            <a href="https://project-test-submission.netlify.app/centered101/" target="_blank" rel="noopener noreferrer"
+                class="btn-text text-[color:var(--primary-color)] p-0">Centered101</a>
+            <span>&#8201;—&#8201;ผู้พัฒนา</span>
         </p>
     </footer>
 
     <script>
+
+        // —[ content certificate ]———————————————————————————————————————————————————————————————————————————————————————————————————
+
         // Global variables
         let allCertificates = [];
         const sheetId = "17ppLfag2cZb1_-dPeRKqdoaDpFyHjU6vykr9DEOwS1c";
         const sheetName = "Sheet1";
         const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?sheet=${sheetName}`;
-        const noimages = "/images/img/noitems.svg";
+        const noimages = "https://project-test-submission.netlify.app/images/img/noitems.svg";
 
         // Utility functions
         function parseCertDate(sheetDate) {
@@ -190,8 +234,18 @@
 
         function formatDateThai(sheetDate) {
             if (!sheetDate) return "";
-            const months = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-                "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+            const months = ["มกราคม",
+                "กุมภาพันธ์",
+                "มีนาคม",
+                "เมษายน",
+                "พฤษภาคม",
+                "มิถุนายน",
+                "กรกฎาคม",
+                "สิงหาคม",
+                "กันยายน",
+                "ตุลาคม",
+                "พฤศจิกายน",
+                "ธันวาคม"];
             const date = parseCertDate(sheetDate);
             if (date.getTime() === 0) return sheetDate;
             return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
@@ -209,48 +263,100 @@
             return div.innerHTML;
         }
 
+        // —[ Image Modal (JS Generated) ]—————————————————————————
+        const imageModalHTML = `
+<div id="image-modal"
+    class="hidden fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-evenly sm:justify-center p-4 z-40">
+    
+    <div onclick="event.stopPropagation()"
+        class="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 bg-[color:var(--white-smoker)] border rounded-2xl shadow overflow-hidden">
+        
+        <div class="relative flex items-center justify-center border-b md:border-b-0 md:border-r">
+            <img id="modal-image" src="" alt=""
+                class="w-full object-contain"
+                style="background-image:url('${noimages}');
+                       background-size:cover;
+                       background-position:center;"
+                onerror="this.src='${noimages}'"
+                draggable="false">
+        </div>
+
+        <div id="modal-details"
+            class="hidden md:block bg-gray-50 space-y-2 p-4 overflow-y-auto">
+        </div>
+    </div>
+
+    <span class="sm:absolute top-8 bg-[color:var(--white-smoker)] border rounded px-2 py-1 select-none">
+        แตะพื้นที่ว่างเพื่อปิด
+    </span>
+</div>
+`;
+
+        $('body').append(imageModalHTML);
+
+        // ปิด modal เมื่อคลิกพื้นหลัง
+        $('body').on('click', '#image-modal', closeImageModal);
+
+
         // Modal functions
         function viewImage(src, alt = '', certData = null) {
-            $('#modal-image').attr('src', src).attr('alt', alt);
+            $('#modal-image').attr({
+                src: src,
+                alt: alt
+            });
 
             if (certData) {
                 const searchTerm = $('#search-input').val().toLowerCase() || '';
 
                 const detailsHtml = `
-                    <div class="relative">
-                        <!-- ${certData.id ? `<span class="size-8 absolute -top-2 -right-2 flex items-center justify-center bg-[color:var(--primary-color)] text-white text-sm rounded-full font-medium shadow-md">${certData.id}</span>` : ''}  -->
-                        <h3 class="text-xl font-semibold line-clamp-3 leading-tight mb-4">${highlightText(certData.name, searchTerm)}</h3>
-                    </div>
-                    <div class="space-y-2">
-                        ${certData.issuer ? `
-                        <div class="flex items-start gap-2 text-sm text-gray-600">
-                            <i class="fas fa-building mt-1 text-[color:var(--primary-color)]"></i>
-                            <span>${escapeHtml(certData.issuer)}</span>
-                        </div>` : ''}
-                        <div class="flex items-start gap-2 text-sm text-gray-600">
-                            <i class="fas fa-calendar-alt mt-1 text-[color:var(--primary-color)]"></i>
-                            <span>${formatDateThai(certData.date)}</span>
-                        </div>
-                        ${certData.description ? `
-                        <div class="pt-2 border-t">
-                            <p class="text-sm text-gray-600 leading-relaxed">${highlightText(certData.description, searchTerm)}</p>
-                        </div>` : ''}
-                    </div>
-                `;
+        <div class="relative">
+            <h3 class="text-xl font-semibold line-clamp-3 leading-tight">
+                ${highlightText(certData.name, searchTerm)}
+            </h3>
+        </div>
+
+        <div>
+            ${certData.issuer ? `
+            <div class="flex items-start gap-2 text-sm text-gray-600">
+                <i class="fas fa-building"></i>
+                <span>${escapeHtml(certData.issuer)}</span>
+            </div>` : ''}
+
+            <div class="flex items-start gap-2 text-sm text-gray-600">
+                <i class="fas fa-calendar-alt"></i>
+                <span>${formatDateThai(certData.date)}</span>
+            </div>
+
+            ${certData.description ? `
+            <div class="border-t mt-2 pt-2">
+                <p class="text-sm text-gray-600 leading-relaxed">
+                    ${highlightText(certData.description, searchTerm)}
+                </p>
+            </div>` : ''}
+        </div>
+        `;
 
                 $('#modal-details').html(detailsHtml).removeClass('hidden');
             } else {
-                $('#modal-details').addClass('hidden');
+                $('#modal-details').addClass('hidden').html('');
             }
 
-            $('#image-modal').removeClass('hidden');
+            $('#image-modal')
+                .removeClass('hidden')
+                .hide()
+                .fadeIn(300);
+
             AOS.refresh();
         }
 
+
         function closeImageModal() {
-            $('#image-modal').addClass('hidden');
-            $('#modal-details').addClass('hidden').html('');
+            $('#image-modal').fadeOut(300, function () {
+                $(this).addClass('hidden');
+                $('#modal-details').addClass('hidden').html('');
+            });
         }
+
 
         // Store certificate data for modal access
         let certificateDataStore = {};
@@ -261,11 +367,11 @@
 
             if (!data.length) {
                 $grid.html(`
-                    <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
-                        <i class="fas fa-certificate text-6xl mb-4 text-[color:var(--primary-color)]"></i>
-                        <p class="text-xl text-[color:var(--primary-color)]">ไม่พบใบประกาศนียบัตร</p>
-                        <p class="text-gray-400">ลองค้นหาด้วยคำอื่นหรือเปลี่ยนตัวกรอง</p>
-                    </div>
+                <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
+                <i class="fas fa-certificate fa-beat text-6xl mb-4 text-[color:var(--primary-color)]"></i>
+                <p class="text-xl text-[color:var(--primary-color)]">ไม่พบใบประกาศนียบัตร</p>
+                <p class="text-gray-400">ลองค้นหาด้วยคำอื่นหรือเปลี่ยนตัวกรอง</p>
+                </div>
                 `);
                 return;
             }
@@ -280,33 +386,29 @@
                 certificateDataStore[certId] = cert;
 
                 html += `
-                    <div data-aos="fade-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border rounded-lg shadow-sm transition-transform ease-in-out duration-300">
-                        ${isNoImage ?
-                        `<div class="relative overflow-hidden w-full border-b rounded-t-lg">
-                            <img src="${imageUrl}" alt="${escapeHtml(cert.name)}" class="w-full bg-[color:var(--bg-color)] object-cover" loading="lazy" draggable="false" onerror="this.onerror=null;this.src='${noimages}';">
-                        </div>`
-                        :
-                        `<button onclick="viewImageWithData('${certId}')" class="relative overflow-hidden w-full text-left border-b rounded-t-lg group/img">
-                            <img src="${imageUrl}" alt="${cert.name}" class="min-h-40 aspect-auto bg-stripes-gray w-full bg-[color:var(--bg-color)] object-contain transition-transform duration-700 group-hover/img:scale-105 group-focus/img:scale-105" loading="lazy" draggable="false" style="background-image: url('${noimages}'); background-size: cover; background-position: center;" onerror="this.onerror=null;this.src='${noimages}';">
-                            <div class="absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-700 flex items-center justify-center group-hover/img:bg-opacity-25 group-focus/img:bg-opacity-25">
-                                <div class="size-16 flex items-center justify-center bg-[color:var(--white-smoker)] text-[color:var(--primary-color)] text-2xl rounded-full opacity-0 transition-opacity duration-700 group-hover/img:opacity-100 group-focus/img:opacity-100">
-                                    <i class="fas fa-search-plus"></i>
-                                </div>
-                                <div class="absolute bottom-4 flex items-center justify-center gap-2 bg-[color:var(--white-smoker)] opacity-0 border rounded px-2 py-1 text-sm select-none transition-opacity duration-700 group-hover/img:opacity-100 group-focus/img:opacity-100">
-                                    <i class="fa-solid fa-expand"></i>
-                                    <p>แตะเพื่อดูภาพขนาดเต็ม</p>
-                                </div>
-                            </div>
-                        </button>`}
-                        <div title="${escapeHtml(cert.name)}" class="p-4 space-y-2">
-                            <h3 class="text-lg font-semibold line-clamp-2 leading-tight mb-4">${highlightText(cert.name, searchTerm)}</h3>
-                            <span class="space-y-2">
-                                ${cert.issuer ? `<p class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-building"></i>${escapeHtml(cert.issuer)}</p>` : ''}
-                                <p class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-calendar-alt"></i>${formatDateThai(cert.date)}</p>
-                            </span>
-                            ${cert.id ? `<span class="size-6 absolute -top-4 -right-2 flex items-center justify-center bg-[color:var(--primary-color)] text-white text-xs rounded-full font-medium shadow-md">${cert.id}</span>` : ''}
-                        </div>
-                    </div>`;
+            <div data-aos="fade-up" data-aos-delay="${index * 30}" class="relative bg-[color:var(--white-smoker)] border rounded-2xl shadow">
+            ${isNoImage ?
+                        `<div class="relative overflow-hidden w-full border-b">
+            <img src="${imageUrl}" alt="${escapeHtml(cert.name)}" class="w-full bg-gray-50 object-cover" loading="lazy" draggable="false" onerror="this.onerror=null;this.src='${noimages}';">
+            </div>`:
+                        `<button onclick="viewImageWithData('${certId}')" class="relative overflow-hidden w-full text-left border-b rounded-t-2xl group/img">
+            <img src="${imageUrl}" alt="${cert.name}" class="aspect-auto bg-stripes-gray w-full bg-gray-50 object-contain transition-transform duration-700" loading="lazy" draggable="false" style="background-image: url('${noimages}'); background-size: cover; background-position: center;" onerror="this.onerror=null;this.src='${noimages}';">
+            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover/img:bg-opacity-50 group-focus/img:bg-opacity-50">
+            <div class="absolute bottom-4 flex items-center justify-center gap-2 bg-[color:var(--white-smoker)] opacity-0 border rounded px-2 py-1 text-sm select-none transition-all group-hover/img:opacity-100 group-focus/img:opacity-100">
+            <i class="fa-solid fa-expand"></i>
+            <p>แตะเพื่อดูภาพขนาดเต็ม</p>
+            </div>
+            </div>
+            </button>`}
+            <div title="${escapeHtml(cert.name)}" class="p-4 space-y-2">
+            <h3 class="text-lg font-semibold line-clamp-2 leading-tight">${highlightText(cert.name, searchTerm)}</h3>
+            <span class="">
+            ${cert.issuer ? `<p class="flex items-center gap-2 text-sm text-gray-600"><i class="fas fa-building"></i>${escapeHtml(cert.issuer)}</p>` : ''}
+            <p class="flex items-center gap-2 text-sm text-gray-600"><i class="fas fa-calendar-alt"></i>${formatDateThai(cert.date)}</p>
+            </span>
+            ${cert.id ? `<span class="size-6 absolute -top-4 -right-2 flex items-center justify-center bg-[color:var(--primary-color)] text-white text-xs rounded-full font-medium shadow">${cert.id}</span>` : ''}
+            </div>
+            </div>`;
             });
             $grid.html(html);
         }
@@ -344,7 +446,8 @@
                 return (b.id ?? 0) - (a.id ?? 0);
             });
 
-            renderCertificates(filtered, searchTerm);
+            renderCertificates(filtered,
+                searchTerm);
 
             if (filtered.length === allCertificates.length) {
                 $('#results-count').html(
@@ -424,12 +527,11 @@
             .catch(err => {
                 console.error("Error fetching sheet:", err);
                 $('#certificates-grid').html(`
-                    <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
-                        <i class="fas fa-exclamation-triangle text-6xl mb-4 text-red-500"></i>
-                        <p class="text-xl text-red-500">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>
-                        <p class="text-gray-400">กรุณาลองใหม่อีกครั้ง</p>
-                    </div>
-                `);
+                <div class="col-span-full text-center text-red-500 space-y-4 py-24">
+                <i class="fas fa-exclamation-triangle fa-beat text-6xl"></i>
+                <p>เกิดข้อผิดพลาดในการโหลดข้อมูล</p>
+                </div>
+            `);
             });
 
         // Keyboard shortcuts
@@ -438,9 +540,12 @@
         });
 
         // Initialize AOS
-        AOS.init({ duration: 700, once: true });
+        AOS.init({
+            duration: 700,
+            once: true
+        });
     </script>
-    <script src="/script/index.js"></script>
+    <script src="https://asia-lb.web.app/script/index.js"></script>
 </body>
 
 </html>
