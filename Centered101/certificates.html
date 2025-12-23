@@ -37,6 +37,15 @@
     :root {
         --primary-color: #409EFE;
     }
+
+    mark {
+        background-color: var(--primary-color) !important;
+        color: #FFFFFF;
+        transition: color;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        /* ease-in-out */
+        transition-duration: 300ms
+    }
 </style>
 
 <body class="bg-gray-50 min-h-screen">
@@ -64,7 +73,8 @@
     </nav>
 
     <!-- Student Info Card -->
-    <div id="student-info" class="hidden fixed top-24 left-1/2 -translate-x-1/2 z-40 bg-[color:var(--white-smoker)] border rounded-2xl shadow-xl w-[90%] max-w-md p-4 space-y-3">
+    <div id="student-info"
+        class="hidden fixed top-24 left-1/2 -translate-x-1/2 z-40 bg-[color:var(--white-smoker)] border rounded-2xl shadow-xl w-[90%] max-w-md p-4 space-y-3">
 
         <div class="flex items-center gap-4">
             <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
@@ -205,7 +215,7 @@
     <!-- Footer -->
     <footer class="text-center text-sm text-gray-500 py-12">
         <p>
-            <script>document.write("©&#8201;"+(new Date().getFullYear()))</script>
+            <script>document.write("©&#8201;" + (new Date().getFullYear()))</script>
             <a href="https://project-test-submission.netlify.app/centered101/" target="_blank" rel="noopener noreferrer"
                 class="btn-text text-[color:var(--primary-color)] p-0">Centered101</a>
             <span>&#8201;—&#8201;ผู้พัฒนา</span>
