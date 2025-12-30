@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="theme-color" content="#409EFE">
-    <meta name="keywords" content="HTML, CSS, XML, JavaScript, TailwindCSS, jQuery, Centered101">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, TailwindCSS, jQuery, Certificate, Centered101">
     <meta name="author" content="Centered101">
     <meta name="description" content="ใบประกาศนียบัตร พงศ์พล พรมผา">
 
@@ -15,20 +15,20 @@
     <meta property="og:url" content="https://project-test-submission.netlify.app">
     <meta property="og:title" content="ใบประกาศนียบัตร">
     <meta property="og:description" content="ใบประกาศนียบัตร พงศ์พล พรมผา">
-    <meta property="og:image" content="/favicon.ico">
+    <meta property="og:image" content="/images/icon.svg">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://project-test-submission.netlify.app">
     <meta property="twitter:title" content="ใบประกาศนียบัตร">
     <meta property="twitter:description" content="ใบประกาศนียบัตร พงศ์พล พรมผา">
-    <meta property="twitter:image" content="/favicon.ico">
+    <meta property="twitter:image" content="/images/icon.svg">
 
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://asia-lb.web.app/style/index.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/icon.svg">
+    <link rel="stylesheet" href="https://asia-lb.firebaseapp.com/style/index.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src=https://cdn.tailwindcss.com></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
@@ -46,18 +46,90 @@
         /* ease-in-out */
         transition-duration: 300ms
     }
+
+    .slide-up {
+        animation: slideUp 300ms ease;
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(100px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .stamp-icon {
+        opacity: 0;
+        transform: translateY(120px) scale(1.4);
+        animation: stampDown 2s cubic-bezier(.2, .9, .3, 1.2) forwards;
+        animation-delay: 1500ms;
+    }
+
+    @keyframes stampDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-120px) rotate(180deg) scale(1.4);
+        }
+
+        60% {
+            opacity: 1;
+            transform: translateY(10px) rotate(0deg) scale(0.95);
+        }
+
+        80% {
+            transform: translateY(-4px) rotate(0deg) scale(1.02);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg) scale(1);
+        }
+    }
+
+    .brop-icon {
+        opacity: 0;
+        transform: translateY(-120px) rscale(1.4);
+        animation: bropDown 1s cubic-bezier(.2, .9, .3, 1.2) forwards;
+        animation-delay: 500ms;
+    }
+
+    @keyframes bropDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-120px) rotate(90deg) scale(1.4);
+        }
+
+        60% {
+            opacity: 1;
+            transform: translateY(10px) rotate(0deg) scale(0.90);
+        }
+
+        80% {
+            transform: translateY(-4px) rotate(10deg) scale(1.02);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg) scale(1);
+        }
+    }
 </style>
 
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-gray-50 min-h-screen overflow-x-hidden">
     <!-- Header -->
     <header data-aos="fade-down" data-aos-duration="3000"
         class="mx-auto bg-[color:var(--primary-color)] text-white text-center shadow-lg py-8">
-        <h1 class="text-5xl font-bold">ใบประกาศนียบัตร</h1>
+        <h1 class="text-4xl font-bold">ใบประกาศนียบัตร</h1>
     </header>
 
     <nav data-aos="fade-down" data-aos-duration="2700"
         class="bg-[color:var(--white-smoker)] border shadow sticky top-0 z-30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <button id="student-btn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
                     class="ripple-effect flex items-center gap-2 rounded cursor-pointer">
@@ -66,68 +138,26 @@
                         <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
                             alt="พงศ์พล พรมผา" class="size-12 object-cover" draggable="false" />
                     </div>
-                    <span class="font-semibold text-3xl pr-2">พงศ์พล พรมผา</span>
+                    <span class="font-semibold text-2xl pr-2">พงศ์พล พรมผา</span>
                 </button>
             </div>
+            <a href="upcertificates.html"
+                class="btn-text flex items-center gap-1 text-sm bg-gray-50 border rounded-md shadow-inner p-2 overflow-hidden"><i
+                    class="fas fa-upload"></i><span>upload</span></a>
         </div>
     </nav>
 
-    <!-- Student Info Card -->
-    <div id="student-info"
-        class="hidden fixed top-24 left-1/2 -translate-x-1/2 z-40 bg-[color:var(--white-smoker)] border rounded-2xl shadow-xl w-[90%] max-w-md p-4 space-y-3">
-
-        <div class="flex items-center gap-4">
-            <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
-                class="size-16 border rounded-md object-cover" draggable="false">
-
-            <div>
-                <p class="text-lg font-semibold">พงศ์พล พรมผา</p>
-                <p class="text-sm text-gray-500">นักศึกษา เทคโนโลยีธุรกิจดิจิทัล</p>
-                <p class="text-sm text-gray-500">ว่าที่นักศึกษา วิทยาการคอมพิวเตอร์ และไซเบอร์ซีเคียวริตี้</p>
-            </div>
-        </div>
-
-        <div class="bg-gray-50 text-sm text-gray-600 border rounded-md shadow-inner space-y-1 p-2">
-            <p><i class="fas fa-id-card mr-2"></i>รหัสนักศึกษา: 36887</p>
-            <p><i class="fas fa-school mr-2"></i>โรงเรียนพระนารายณ์</p>
-            <p><i class="fas fa-laptop-code mr-2"></i>สาย: Programmer / Web Dev</p>
-        </div>
-    </div>
-
-    <script>
-        // Toggle student info
-        $('#student-btn').on('click', function (e) {
-            e.stopPropagation();
-
-            const $info = $('#student-info');
-
-            if ($info.is(':visible')) {
-                $info.fadeOut(300).addClass('hidden');
-            } else {
-                $info.removeClass('hidden').hide().fadeIn(300);
-            }
-        });
-
-        // คลิกที่อื่นให้ปิด
-        $(document).on('click', function () {
-            $('#student-info').fadeOut(300).addClass('hidden');
-        });
-
-        // กันไม่ให้คลิกในกล่องแล้วปิด
-        $('#student-info').on('click', function (e) {
-            e.stopPropagation();
-        });
-    </script>
-
-    <!-- Filter Section -->
-    <section data-aos="fade-down" data-aos-duration="1500" class="max-w-7xl mx-auto px-4 py-6">
-        <div class="bg-[color:var(--white-smoker)] border rounded-2xl shadow space-y-4 p-4 md:p-6 overflow-hidden">
+    <!-- Main Content -->
+    <main class="max-w-7xl space-y-8 mx-auto p-4 py-6">
+        <!-- Filter Section -->
+        <section data-aos="fade-down" data-aos-duration="1500"
+            class="bg-[color:var(--white-smoker)] border rounded-2xl shadow space-y-4 p-4 md:p-6 overflow-hidden">
             <h3 class="flex items-center gap-2 text-lg font-semibold">
                 <i class="fas fa-search text-[color:var(--primary-color)]"></i>
                 ค้นหาใบประกาศนียบัตร
             </h3>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4">
+            <div class="flex flex-col gap-2 md:gap-4">
                 <!-- Search Input -->
                 <div>
                     <label for="search-input" class="block text-sm font-medium text-gray-400 mb-2">ชื่อหลักสูตร</label>
@@ -138,67 +168,77 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2 md:gap-4">
+                <div class="flex items-center gap-2 md:gap-4 *:flex-1">
                     <!-- Year Filter -->
-                    <div>
-                        <label for="year-filter" class="block text-sm font-medium text-gray-400 mb-2">ปี</label>
+                    <div class="space-y-2">
+                        <label for="year-filter" class="block text-sm font-medium text-gray-400">ปี</label>
                         <select id="year-filter"
                             class="w-full bg-gray-50 border rounded-lg shadow-inner px-4 py-2 focus:ring-2 focus:ring-[color:var(--primary-color)]">
-                            <option class="fade-in" value="">ทุกปี</option>
+                            <option value="">ทุกปี</option>
                         </select>
                     </div>
                     <!-- issuer Filter -->
-                    <div>
-                        <label for="issuer-filter" class="block text-sm font-medium text-gray-400 mb-2">ผู้ออก</label>
+                    <div class="space-y-2">
+                        <label for="issuer-filter" class="block text-sm font-medium text-gray-400">ผู้ออก</label>
                         <select id="issuer-filter"
                             class="w-full bg-gray-50 border rounded-lg shadow-inner px-4 py-2 focus:ring-2 focus:ring-[color:var(--primary-color)]">
-                            <option class="fade-in" value="">ทั้งหมด</option>
+                            <option value="">ทั้งหมด</option>
+                        </select>
+                    </div>
+                    <!-- type Filter -->
+                    <div class="space-y-2">
+                        <label for="type-filter" class="block text-sm font-medium text-gray-400">ประเภท</label>
+                        <select id="type-filter"
+                            class="w-full bg-gray-50 border rounded-lg shadow-inner px-4 py-2 focus:ring-2 focus:ring-[color:var(--primary-color)]">
+                            <option value="">ทั้งหมด</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div class="flex gap-2 md:gap-4 mt-4 pt-4 border-t">
+            <div class="flex justify-between gap-2 md:gap-4 text-sm mt-4 pt-4 border-t-2">
                 <button id="clear-filters"
-                    class="ripple-effect bg-gray-50 text-sm border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
+                    class="ripple-effect flex items-center justify-center bg-gray-50 border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
                     <span class="flex items-center gap-2">
                         <i class="fas fa-times"></i>
-                        <p class="hidden md:block">
+                        <span class="hidden md:block">
                             ล้างตัวกรอง
-                        </p>
+                        </span>
                     </span>
                 </button>
 
-                <div id="results-count" class="bg-gray-50 text-sm border rounded-lg shadow-inner px-4 py-2">
-                    <i class="fas fa-certificate"></i>
+                <div id="results-count" class="flex-1 bg-gray-50 border rounded-lg shadow-inner px-4 py-2">
+                    <span class="flex items-center gap-2"><i class="fa-regular fa-compass fa-spin"></i>
+                        <p class="line-clamp-1">
+                            กำลังโหลดข้อมูล
+                        </p>
+                    </span>
                 </div>
 
-                <div class="flex gap-2 md:gap-4 ml-auto">
+                <div class="flex gap-2 md:gap-4">
                     <button data-cols="1"
-                        class="grid-btn bg-gray-50 text-center text-sm border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
+                        class="grid-btn bg-gray-50 text-center border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
                         <i class="fa-solid fa-list"></i>
                     </button>
 
                     <button data-cols="2"
-                        class="grid-btn bg-gray-50 text-center text-sm border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
+                        class="grid-btn bg-gray-50 text-center border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
                         <i class="fa-solid fa-grip-vertical"></i>
                     </button>
 
                     <button data-cols="3"
-                        class="hidden sm:block grid-btn bg-gray-50 text-center text-sm border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
+                        class="hidden sm:block grid-btn bg-gray-50 text-center border rounded-lg shadow-inner px-4 py-2 overflow-hidden">
                         <i class="fa-solid fa-grip"></i>
                     </button>
                 </div>
 
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Certificates Section -->
-    <section class="max-w-7xl mx-auto p-4">
-        <div id="certificates-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <!-- Certificates Section -->
+        <section id="certificates-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <!-- Loading placeholder -->
-            <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
+            <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-36">
                 <div
                     class="size-16 border-8 border-y-transparent rounded-full animate-spin border-[color:var(--primary-color)] mx-auto mb-4">
                 </div>
@@ -209,42 +249,77 @@
                     กำลังโหลดข้อมูล ใบประกาศนียบัตร
                 </p>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="text-center text-sm text-gray-500 py-12">
         <p>
-            <script>document.write("©&#8201;" + (new Date().getFullYear()))</script>
+            <script>
+                document.write("©&#8201;" + (new Date().getFullYear()))
+            </script>
             <a href="https://project-test-submission.netlify.app/centered101/" target="_blank" rel="noopener noreferrer"
                 class="btn-text text-[color:var(--primary-color)] p-0">Centered101</a>
-            <span>&#8201;—&#8201;ผู้พัฒนา</span>
+            <span>•&#8201;mycert&#8201;—&#8201;All rights reserved.</span>
         </p>
     </footer>
 
     <script>
 
-        // —[ content certificate ]———————————————————————————————————————————————————————————————————————————————————————————————————
+        // =====================================================================
+        // CERTIFICATE VIEWER - Main Script
+        // =====================================================================
 
-        // Global variables
-        let allCertificates = [];
-        const sheetId = "17ppLfag2cZb1_-dPeRKqdoaDpFyHjU6vykr9DEOwS1c";
-        const sheetName = "Sheet1";
-        const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?sheet=${sheetName}`;
-        const noimages = "https://project-test-submission.netlify.app/images/img/noitems.svg";
+        // ---------------------------------------------------------------------
+        // 1. CONFIGURATION & GLOBAL VARIABLES
+        // ---------------------------------------------------------------------
 
-        // Utility functions
+        const CONFIG = {
+            sheetId: "17ppLfag2cZb1_-dPeRKqdoaDpFyHjU6vykr9DEOwS1c",
+            sheetName: "Sheet1",
+            noImageUrl: "https://project-test-submission.netlify.app/images/img/noitems.svg"
+        };
+
+        const STATE = {
+            allCertificates: [],
+            certificateDataStore: {}
+        };
+
+        // Google Sheets API URL
+        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${CONFIG.sheetId}/gviz/tq?sheet=${CONFIG.sheetName}`;
+
+        // ---------------------------------------------------------------------
+        // 2. UTILITY FUNCTIONS
+        // ---------------------------------------------------------------------
+
+        /**
+        * แปลงวันที่จาก Google Sheets เป็น Date object
+        */
         function parseCertDate(sheetDate) {
             if (!sheetDate) return new Date(0);
+
+            // รูปแบบ Date(yyyy,mm,dd)
             const match = sheetDate.match(/Date\((\d+),(\d+),(\d+)\)/);
-            if (match) return new Date(parseInt(match[1]), parseInt(match[2]), parseInt(match[3]));
-            if (sheetDate.includes('-')) return new Date(sheetDate);
+            if (match) {
+                return new Date(parseInt(match[1]), parseInt(match[2]), parseInt(match[3]));
+            }
+
+            // รูปแบบ yyyy-mm-dd
+            if (sheetDate.includes('-')) {
+                return new Date(sheetDate);
+            }
+
             return new Date(0);
         }
 
+        /**
+        * แปลงวันที่เป็นรูปแบบภาษาไทย
+        */
         function formatDateThai(sheetDate) {
             if (!sheetDate) return "";
-            const months = ["มกราคม",
+
+            const THAI_MONTHS = [
+                "มกราคม",
                 "กุมภาพันธ์",
                 "มีนาคม",
                 "เมษายน",
@@ -255,307 +330,543 @@
                 "กันยายน",
                 "ตุลาคม",
                 "พฤศจิกายน",
-                "ธันวาคม"];
+                "ธันวาคม"
+            ];
+
             const date = parseCertDate(sheetDate);
             if (date.getTime() === 0) return sheetDate;
-            return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+
+            return `${date.getDate()} ${THAI_MONTHS[date.getMonth()]} ${date.getFullYear()}`;
         }
 
-        function highlightText(text, term) {
-            if (!term || !text) return text || '';
-            const regex = new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        /**
+        * ไฮไลต์ข้อความที่ค้นหา
+        */
+        function highlightText(text, searchTerm) {
+            if (!searchTerm || !text) return text || '';
+
+            const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(`(${escapedTerm})`, 'gi');
+
             return text.replace(regex, '<mark>$1</mark>');
         }
 
+        /**
+        * ป้องกัน XSS โดยการ escape HTML
+        */
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
 
-        // —[ Image Modal (JS Generated) ]—————————————————————————
-        const imageModalHTML = `
-<div id="image-modal"
-    class="hidden fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-evenly sm:justify-center p-4 z-40">
-    
-    <div onclick="event.stopPropagation()"
-        class="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 bg-[color:var(--white-smoker)] border rounded-2xl shadow overflow-hidden">
-        
-        <div class="relative flex items-center justify-center border-b md:border-b-0 md:border-r">
-            <img id="modal-image" src="" alt=""
-                class="w-full object-contain"
-                style="background-image:url('${noimages}');
-                       background-size:cover;
-                       background-position:center;"
-                onerror="this.src='${noimages}'"
-                draggable="false">
+        // ---------------------------------------------------------------------
+        // 3. MODAL FUNCTIONS
+        // ---------------------------------------------------------------------
+
+        /**
+        * สร้าง HTML ของ Modal
+        */
+        function createImageModal() {
+            const modalHTML = `
+        <div id="image-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex flex-col items-center justify-evenly sm:justify-center p-4 z-40">
+        <div onclick="event.stopPropagation()" class="slide-up relative max-h-[80%] max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 bg-[color:var(--white-smoker)] shadow">
+
+        <!-- ID Badge -->
+        <span class="stamp-icon absolute -top-10 left-[25%] text-center">
+        <i class="fa-solid fa-certificate absolute inset-0 flex items-center justify-center text-8xl text-[color:var(--primary-color)] drop-shadow-lg z-0"></i>
+        <span id="modal-cert-id" class="relative text-white text-2xl font-medium z-10"></span>
+        </span>
+
+        <!-- Image Section -->
+        <div class="relative flex items-center justify-center border-b md:border-b-0 md:border-r overflow-hidden">
+        <img id="modal-image"
+        src=""
+        alt=""
+        class="aspect-auto w-full min-h-full md:max-h- object-contain"
+        style="background-image:url('${CONFIG.noImageUrl}'); background-size:cover; background-position:center;"
+        onerror="this.src='${CONFIG.noImageUrl}'"
+        draggable="false">
         </div>
 
-        <div id="modal-details"
-            class="hidden md:block bg-gray-50 space-y-2 p-4 overflow-y-auto">
+        <!-- Details Section -->
+        <div id="modal-details" class="hidden md:flex flex-col bg-[color:var(--white-smoker)] space-y-2 p-4"></div>
         </div>
-    </div>
 
-    <span class="sm:absolute top-8 bg-[color:var(--white-smoker)] border rounded px-2 py-1 select-none">
+        <!-- Close Hint -->
+        <span class="brop-icon sm:absolute bottom-8 bg-[color:var(--white-smoker)] border rounded px-2 py-1 select-none">
         แตะพื้นที่ว่างเพื่อปิด
-    </span>
-</div>
-`;
+        </span>
+        </div>
+        `;
 
-        $('body').append(imageModalHTML);
+            $('body').append(modalHTML);
 
-        // ปิด modal เมื่อคลิกพื้นหลัง
-        $('body').on('click', '#image-modal', closeImageModal);
+            // ปิด modal เมื่อคลิกพื้นหลัง
+            $('#image-modal').on('click', closeImageModal);
+        }
 
-
-        // Modal functions
-        function viewImage(src, alt = '', certData = null) {
+        /**
+        * เปิด Modal พร้อมแสดงรายละเอียด
+        */
+        function viewImage(imageSrc, altText = '', certData = null) {
             $('#modal-image').attr({
-                src: src,
-                alt: alt
+                src: imageSrc,
+                alt: altText
             });
 
             if (certData) {
                 const searchTerm = $('#search-input').val().toLowerCase() || '';
 
-                const detailsHtml = `
-        <div class="relative">
-            <h3 class="text-xl font-semibold line-clamp-3 leading-tight">
-                ${highlightText(certData.name, searchTerm)}
+                const detailsHTML = `
+            <h3 class="text-xl font-semibold leading-tight">
+            ${highlightText(certData.name, searchTerm)}
             </h3>
-        </div>
 
-        <div>
+            <div class="flex flex-col gap-px">
+
             ${certData.issuer ? `
-            <div class="flex items-start gap-2 text-sm text-gray-600">
-                <i class="fas fa-building"></i>
-                <span>${escapeHtml(certData.issuer)}</span>
-            </div>` : ''}
+            <p class="flex items-center gap-2 text-sm text-gray-600">
+            <i class="fas fa-building"></i>
+            <span>${escapeHtml(certData.issuer)}</span>
+            `: ''}
+            </p>
 
-            <div class="flex items-start gap-2 text-sm text-gray-600">
-                <i class="fas fa-calendar-alt"></i>
-                <span>${formatDateThai(certData.date)}</span>
+            ${certData.type ? `
+            <p class="flex items-center gap-2 text-sm text-gray-600">
+            <i class="fa-solid fa-fire"></i>
+            <span>ประเภท: ${escapeHtml(certData.type)}</span>
+            `: ''}
+            </p>
+
+            <p class="flex items-center gap-2 text-sm text-gray-600">
+            <i class="fas fa-calendar-alt"></i>
+            <span>${formatDateThai(certData.date)}</span>
+            </p>
+
             </div>
 
             ${certData.description ? `
-            <div class="border-t mt-2 pt-2">
-                <p class="text-sm text-gray-600 leading-relaxed">
-                    ${highlightText(certData.description, searchTerm)}
-                </p>
-            </div>` : ''}
-        </div>
-        `;
+            <div class="max-h-[40vh] md:h-full bg-gray-50 border rounded-md shadow-inner mt-4 p-2 overflow-y-auto">
+            <p class="text-sm text-gray-600 leading-relaxed">
+            ${highlightText(certData.description, searchTerm)}
+            </p>
+            </div>
+            `: ''}
 
-                $('#modal-details').html(detailsHtml).removeClass('hidden');
+            </div>
+            `;
+
+                $('#modal-cert-id').text(certData.id || '');
+                $('#modal-details').html(detailsHTML).removeClass('hidden');
             } else {
                 $('#modal-details').addClass('hidden').html('');
             }
 
-            $('#image-modal')
-                .removeClass('hidden')
-                .hide()
-                .fadeIn(300);
+            // แสดง modal พร้อม fade effect
+            $('#image-modal').removeClass('hidden').hide().fadeIn(300);
+
+            // Push state สำหรับปุ่มย้อนกลับ
+            history.pushState({
+                imageModal: true
+            }, "");
 
             AOS.refresh();
         }
 
-
+        /**
+        * ปิด Modal
+        */
         function closeImageModal() {
             $('#image-modal').fadeOut(300, function () {
-                $(this).addClass('hidden');
+                $(this).fadeOut(300);
                 $('#modal-details').addClass('hidden').html('');
             });
+
+            // ย้อนกลับ history ถ้าปิดด้วยการคลิก
+            if (history.state && history.state.imageModal) {
+                history.back();
+            }
         }
 
+        /**
+        * เปิด Modal จากข้อมูลที่เก็บไว้
+        */
+        function viewImageWithData(certId) {
+            const cert = STATE.certificateDataStore[certId];
+            if (!cert) return;
 
-        // Store certificate data for modal access
-        let certificateDataStore = {};
+            const imageUrl = cert.image && cert.image !== '-'
+                ? cert.image : CONFIG.noImageUrl;
 
-        // Render certificates
-        function renderCertificates(data = allCertificates, searchTerm = '') {
+            viewImage(imageUrl, cert.name, cert);
+        }
+
+        // ---------------------------------------------------------------------
+        // 4. RENDER FUNCTIONS
+        // ---------------------------------------------------------------------
+
+        /**
+        * แสดงใบประกาศนียบัตรทั้งหมด
+        */
+        function renderCertificates(certificates = STATE.allCertificates, searchTerm = '') {
             const $grid = $('#certificates-grid');
 
-            if (!data.length) {
+            // กรณีไม่มีข้อมูล
+            if (!certificates.length) {
                 $grid.html(`
-                <div data-aos="fade-up" class="col-span-full text-center space-y-2 py-24">
-                <i class="fas fa-certificate fa-beat text-6xl mb-4 text-[color:var(--primary-color)]"></i>
-                <p class="text-xl text-[color:var(--primary-color)]">ไม่พบใบประกาศนียบัตร</p>
+                <div data-aos="fade-up" class="col-span-full text-center text-[color:var(--primary-color)] space-y-2 py-32">
+                <i class="fas fa-certificate fa-beat text-5xl mb-4"></i>
+                <p class="text-xl">ไม่พบใบประกาศนียบัตร</p>
                 <p class="text-gray-400">ลองค้นหาด้วยคำอื่นหรือเปลี่ยนตัวกรอง</p>
                 </div>
                 `);
                 return;
             }
 
-            let html = '';
-            data.forEach((cert, index) => {
-                const imageUrl = cert.image && cert.image !== '-' ? cert.image : noimages;
-                const isNoImage = imageUrl === noimages;
+            // สร้าง HTML สำหรับแต่ละใบประกาศนียบัตร
+            const certificateCards = certificates.map((cert, index) => {
+                const imageUrl = cert.image && cert.image !== '-'
+                    ? cert.image : CONFIG.noImageUrl;
+
+                const isNoImage = imageUrl === CONFIG.noImageUrl;
                 const certId = `cert_${index}`;
 
-                // Store certificate data
-                certificateDataStore[certId] = cert;
+                // เก็บข้อมูลไว้ใช้ใน modal
+                STATE.certificateDataStore[certId] = cert;
 
-                html += `
-            <div data-aos="fade-up" data-aos-delay="${index * 30}" class="relative bg-[color:var(--white-smoker)] border rounded-2xl shadow">
-            ${isNoImage ?
-                        `<div class="relative overflow-hidden w-full border-b">
-            <img src="${imageUrl}" alt="${escapeHtml(cert.name)}" class="w-full bg-gray-50 object-cover" loading="lazy" draggable="false" onerror="this.onerror=null;this.src='${noimages}';">
-            </div>`:
-                        `<button onclick="viewImageWithData('${certId}')" class="relative overflow-hidden w-full text-left border-b rounded-t-2xl group/img">
-            <img src="${imageUrl}" alt="${cert.name}" class="aspect-auto bg-stripes-gray w-full bg-gray-50 object-contain transition-transform duration-700" loading="lazy" draggable="false" style="background-image: url('${noimages}'); background-size: cover; background-position: center;" onerror="this.onerror=null;this.src='${noimages}';">
-            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover/img:bg-opacity-50 group-focus/img:bg-opacity-50">
-            <div class="absolute bottom-4 flex items-center justify-center gap-2 bg-[color:var(--white-smoker)] opacity-0 border rounded px-2 py-1 text-sm select-none transition-all group-hover/img:opacity-100 group-focus/img:opacity-100">
-            <i class="fa-solid fa-expand"></i>
-            <p>แตะเพื่อดูภาพขนาดเต็ม</p>
-            </div>
-            </div>
-            </button>`}
-            <div title="${escapeHtml(cert.name)}" class="p-4 space-y-2">
-            <h3 class="text-lg font-semibold line-clamp-2 leading-tight">${highlightText(cert.name, searchTerm)}</h3>
-            <span class="">
-            ${cert.issuer ? `<p class="flex items-center gap-2 text-sm text-gray-600"><i class="fas fa-building"></i>${escapeHtml(cert.issuer)}</p>` : ''}
-            <p class="flex items-center gap-2 text-sm text-gray-600"><i class="fas fa-calendar-alt"></i>${formatDateThai(cert.date)}</p>
-            </span>
-            ${cert.id ? `<span class="size-6 absolute -top-4 -right-2 flex items-center justify-center bg-[color:var(--primary-color)] text-white text-xs rounded-full font-medium shadow">${cert.id}</span>` : ''}
-            </div>
-            </div>`;
-            });
-            $grid.html(html);
+                return createCertificateCard(cert, certId, imageUrl, isNoImage, index, searchTerm);
+            }).join('');
+
+            $grid.html(certificateCards);
         }
 
-        // Wrapper function to access stored certificate data
-        function viewImageWithData(certId) {
-            const cert = certificateDataStore[certId];
-            if (cert) {
-                const imageUrl = cert.image && cert.image !== '-' ? cert.image : noimages;
-                viewImage(imageUrl, cert.name, cert);
-            }
+        /**
+        * สร้าง HTML สำหรับแต่ละการ์ด
+        */
+        function createCertificateCard(cert, certId, imageUrl, isNoImage, index, searchTerm) {
+            const imageSection = isNoImage
+                ? createStaticImage(imageUrl, cert.name) : createClickableImage(certId, imageUrl, cert.name);
+
+            return `
+        <div data-aos="zoom-in-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border shadow">
+
+        ${imageSection}
+
+        <div title="${escapeHtml(cert.name)}" class="space-y-px p-4">
+
+        <h3 class="text-lg font-semibold line-clamp-2 leading-tight">
+        ${highlightText(cert.name, searchTerm)}
+        </h3>
+
+        ${cert.issuer ? `
+        <p class="flex items-center gap-2 text-sm text-gray-600">
+        <i class="fas fa-building"></i>
+        <span>${escapeHtml(cert.issuer)}</span>
+        </p>
+        `: ''}
+
+        ${cert.type ? `
+        <p class="flex items-center gap-2 text-sm text-gray-600">
+        <i class="fa-solid fa-fire"></i>
+        <span>ประเภท: ${escapeHtml(cert.type)}</span>
+        </p>
+        `: ''}
+
+        <p class="flex items-center gap-2 text-sm text-gray-600">
+        <i class="fas fa-calendar-alt"></i>
+        <span>${formatDateThai(cert.date)}</span>
+        </p>
+
+        ${cert.id ? `
+        <span class="stamp-icon absolute -top-2 -left-0 flex items-center justify-center">
+        <i class="fa-solid fa-certificate absolute inset-0 flex items-center justify-center text-4xl text-[color:var(--primary-color)] drop-shadow-lg z-0"></i>
+        <span class="relative text-white text-sm font-medium z-10">${cert.id}</span>
+        </span>
+        `: ''}
+
+        </div>
+        </div>
+        `;
         }
 
-        // Filter certificates
+        /**
+        * สร้าง HTML สำหรับรูปภาพที่ไม่สามารถคลิกได้
+        */
+        function createStaticImage(imageUrl, altText) {
+            return `
+        <div class="relative w-full overflow-hidden">
+        <img src="${imageUrl}"
+        alt="${escapeHtml(altText)}"
+        class="w-full bg-gray-50 object-cover"
+        loading="lazy"
+        draggable="false"
+        onerror="this.onerror=null;this.src='${CONFIG.noImageUrl}';">
+        </div>
+        `;
+        }
+
+        /**
+        * สร้าง HTML สำหรับรูปภาพที่สามารถคลิกเพื่อดูขนาดเต็ม
+        */
+        function createClickableImage(certId, imageUrl, altText) {
+            return `
+        <button onclick="viewImageWithData('${certId}')"
+        class="relative w-full overflow-hidden group/img">
+
+        <img src="${imageUrl}"
+        alt="${escapeHtml(altText)}"
+        class="aspect-auto w-full bg-gray-50 object-contain transition-transform duration-700"
+        loading="lazy"
+        style="background-image: url('${CONFIG.noImageUrl}'); background-size: cover; background-position: center;"
+        onerror="this.onerror=null;this.src='${CONFIG.noImageUrl}';"
+        draggable="false" />
+
+        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover/img:bg-opacity-50 group-focus/img:bg-opacity-50">
+        <div class="absolute bottom-4 flex items-center justify-center gap-2 bg-[color:var(--white-smoker)] opacity-0 border rounded px-2 py-1 text-sm select-none transition-all group-hover/img:opacity-100 group-focus/img:opacity-100">
+        <i class="fa-solid fa-expand"></i>
+        <p>แตะเพื่อดูภาพขนาดเต็ม</p>
+        </div>
+        </div>
+        </button>
+        `;
+        }
+
+        // ---------------------------------------------------------------------
+        // 5. FILTER & SEARCH FUNCTIONS
+        // ---------------------------------------------------------------------
+
+        /**
+        * กรองและค้นหาใบประกาศนียบัตร
+        */
         function filterCertificates() {
             const searchTerm = $('#search-input').val().toLowerCase() || '';
             const selectedYear = $('#year-filter').val();
             const selectedIssuer = $('#issuer-filter').val();
+            const selectedType = $('#type-filter').val();
 
-            let filtered = allCertificates.filter(c => {
-                const matchName = c.name.toLowerCase().includes(searchTerm);
-                const matchDesc = c.description.toLowerCase().includes(searchTerm);
+            // กรองตามเงื่อนไข
+            let filtered = STATE.allCertificates.filter(cert => {
+                const matchName = cert.name.toLowerCase().includes(searchTerm);
+                const matchDesc = cert.description.toLowerCase().includes(searchTerm);
+                const matchSearch = matchName || matchDesc;
 
-                const certDate = parseCertDate(c.date);
-                const matchYear = selectedYear ? certDate.getFullYear() === parseInt(selectedYear) : true;
-                const matchIssuer = selectedIssuer ? c.issuer === selectedIssuer : true;
+                const certDate = parseCertDate(cert.date);
+                const matchYear = selectedYear
+                    ? certDate.getFullYear() === parseInt(selectedYear) : true;
 
-                return (matchName || matchDesc) && matchYear && matchIssuer;
+                const matchIssuer = selectedIssuer
+                    ? cert.issuer === selectedIssuer : true;
+
+                const matchType = selectedType
+                    ? cert.type === selectedType : true;
+
+                return matchSearch && matchYear && matchIssuer && matchType;
             });
 
-            // Sort by date (newest first), then by id
+            // เรียงลำดับตามวันที่ (ใหม่สุดก่อน) และ ID
             filtered.sort((a, b) => {
                 const dateDiff = parseCertDate(b.date) - parseCertDate(a.date);
                 if (dateDiff !== 0) return dateDiff;
                 return (b.id ?? 0) - (a.id ?? 0);
             });
 
+            // แสดงผลลัพธ์
             renderCertificates(filtered,
                 searchTerm);
+            updateResultsCount(filtered.length);
 
-            if (filtered.length === allCertificates.length) {
-                $('#results-count').html(
-                    `<span data-aos="fade" class="flex items-center gap-2"><i class="fas fa-certificate"></i><p class="line-clamp-1">แสดงทั้งหมด ${allCertificates.length} ใบ</p></span>`
-                );
-            } else {
-                $('#results-count').html(
-                    `<span data-aos="fade" class="flex items-center gap-2"><i class="fas fa-certificate"></i><p class="line-clamp-1">แสดง ${filtered.length} จาก ${allCertificates.length} ใบ</p></span>`
-                );
-            }
             AOS.refresh();
         }
 
-        // Initialize certificates
-        function initCertificates(certificates) {
-            allCertificates = certificates;
+        /**
+        * อัพเดทจำนวนผลลัพธ์
+        */
+        function updateResultsCount(filteredCount) {
+            const totalCount = STATE.allCertificates.length;
+            const resultText = filteredCount === totalCount
+                ? `แสดงทั้งหมด ${totalCount} ใบ` : `แสดง ${filteredCount} จาก ${totalCount} ใบ`;
 
-            // Populate year dropdown
-            const years = [...new Set(certificates.map(c => {
-                const d = parseCertDate(c.date);
-                return isNaN(d.getFullYear()) ? null : d.getFullYear();
-            }))].filter(year => year).sort((a, b) => b - a);
+            $('#results-count').html(`
+            <span data-aos="fade" class="flex items-center gap-2">
+            <i class="fa-regular fa-compass fa-spin"></i>
+            <p class="line-clamp-1">${resultText}</p>
+            </span>
+            `);
+        }
+
+        /**
+        * ล้างตัวกรองทั้งหมด
+        */
+        function clearAllFilters() {
+            $('#search-input').val('');
+            $('#year-filter').val('');
+            $('#issuer-filter').val('');
+            $('#type-filter').val('');
+            filterCertificates();
+        }
+
+        // ---------------------------------------------------------------------
+        // 6. INITIALIZATION FUNCTIONS
+        // ---------------------------------------------------------------------
+
+        /**
+        * สร้าง dropdown สำหรับตัวกรอง
+        */
+        function populateFilters(certificates) {
+            // ปีทั้งหมด
+            const years = [...new Set(
+                certificates
+                    .map(cert => {
+                        const date = parseCertDate(cert.date);
+                        return isNaN(date.getFullYear()) ? null : date.getFullYear();
+                    })
+                    .filter(Boolean)
+            )].sort((a, b) => b - a);
 
             years.forEach(year => {
                 $('#year-filter').append(`<option value="${year}">${year}</option>`);
             });
 
-            // Populate issuer dropdown
-            const issuers = [...new Set(certificates.map(c => c.issuer))].filter(issuer => issuer).sort();
+            // หน่วยงานผู้ออกทั้งหมด
+            const issuers = [...new Set(
+                certificates
+                    .map(cert => cert.issuer)
+                    .filter(Boolean)
+            )].sort();
+
             issuers.forEach(issuer => {
-                $('#issuer-filter').append(`<option value="${escapeHtml(issuer)}">${escapeHtml(issuer)}</option>`);
+                $('#issuer-filter').append(
+                    `<option value="${escapeHtml(issuer)}">${escapeHtml(issuer)}</option>`
+                );
             });
 
-            // Event listeners
-            $('#search-input').on('input', filterCertificates);
-            $('#year-filter').on('change', filterCertificates);
-            $('#issuer-filter').on('change', filterCertificates);
+            // ประเภทของใบประกาศนิยบัตร
+            const types = [...new Set(
+                certificates
+                    .map(cert => cert.type)
+                    .filter(Boolean)
+            )].sort();
 
-            $('#clear-filters').on('click', function () {
-                $('#search-input').val('');
-                $('#year-filter').val('');
-                $('#issuer-filter').val('');
-                filterCertificates();
+            types.forEach(type => {
+                $('#type-filter').append(
+                    `<option value="${escapeHtml(type)}">${escapeHtml(type)}</option>`
+                );
             });
-
-            // Grid layout buttons
-            $('.grid-btn').on('click', function () {
-                const cols = $(this).data('cols');
-                $('#certificates-grid')
-                    .removeClass('grid-cols-1 grid-cols-2 grid-cols-3 sm:grid-cols-2 md:grid-cols-3')
-                    .addClass(`grid-cols-${cols}`);
-                renderCertificates();
-            });
-
-            // Initial render
-            filterCertificates();
         }
 
-        // Fetch data from Google Sheets
-        fetch(url)
-            .then(res => res.text())
-            .then(text => {
-                const json = JSON.parse(text.substr(47).slice(0, -2));
-                const rows = json.table.rows;
+        /**
+        * ผูก Event Listeners
+        */
+        function bindEventListeners() {
+            // Search & Filter
+            $('#search-input').on('input',
+                filterCertificates);
+            $('#year-filter').on('change',
+                filterCertificates);
+            $('#issuer-filter').on('change',
+                filterCertificates);
+            $('#type-filter').on('change',
+                filterCertificates);
+            $('#clear-filters').on('click',
+                clearAllFilters);
 
-                const certificates = rows.map((row, index) => ({
-                    id: row.c[0]?.v ?? index + 1,
-                    name: row.c[1]?.v ?? "",
-                    issuer: row.c[2]?.v ?? "",
-                    date: row.c[3]?.v ?? "",
-                    description: row.c[4]?.v ?? "",
-                    image: row.c[5]?.v ?? ""
-                })).filter(cert => cert.name);
+            // Grid Layout
+            $('.grid-btn').on('click',
+                function () {
+                    const cols = $(this).data('cols');
+                    $('#certificates-grid')
+                        .removeClass('grid-cols-1 grid-cols-2 grid-cols-3 sm:grid-cols-2 md:grid-cols-3')
+                        .addClass(`grid-cols-${cols}`);
+                    filterCertificates();
+                });
 
-                $(document).ready(() => initCertificates(certificates));
-            })
-            .catch(err => {
-                console.error("Error fetching sheet:", err);
-                $('#certificates-grid').html(`
-                <div class="col-span-full text-center text-red-500 space-y-4 py-24">
-                <i class="fas fa-exclamation-triangle fa-beat text-6xl"></i>
-                <p>เกิดข้อผิดพลาดในการโหลดข้อมูล</p>
-                </div>
-            `);
+            // Modal Controls
+            $(document).keydown(function (e) {
+                if (e.key === "Escape") closeImageModal();
             });
 
-        // Keyboard shortcuts
-        $(document).keydown(function (e) {
-            if (e.key === 'Escape') closeImageModal();
+            window.addEventListener("popstate",
+                function () {
+                    if (!$("#image-modal").fadeOut(300)) {
+                        $("#image-modal").fadeOut(300);
+                    }
+                });
+        }
+
+        /**
+        * เริ่มต้นระบบแสดงใบประกาศนียบัตร
+        */
+        function initCertificates(certificates) {
+            STATE.allCertificates = certificates;
+
+            populateFilters(certificates);
+            bindEventListeners();
+            filterCertificates(); // แสดงผลครั้งแรก
+        }
+
+        // ---------------------------------------------------------------------
+        // 7. DATA FETCHING
+        // ---------------------------------------------------------------------
+
+        /**
+        * ดึงข้อมูลจาก Google Sheets
+        */
+        function fetchCertificatesData() {
+            fetch(SHEET_URL)
+                .then(response => response.text())
+                .then(text => {
+                    // Parse JSON จาก Google Sheets API
+                    const json = JSON.parse(text.substr(47).slice(0, -2));
+                    const rows = json.table.rows;
+
+                    // แปลงข้อมูลเป็น object
+                    const certificates = rows
+                        .map((row, index) => ({
+                            id: row.c[0]?.v ?? index + 1,
+                            name: row.c[1]?.v ?? "",
+                            issuer: row.c[2]?.v ?? "",
+                            type: row.c[3]?.v ?? "",
+                            date: row.c[4]?.v ?? "",
+                            description: row.c[5]?.v ?? "",
+                            image: row.c[6]?.v ?? ""
+                        }))
+                        .filter(cert => cert.name); // กรองเฉพาะที่มีชื่อ
+
+                    // เริ่มต้นระบบเมื่อ DOM พร้อม
+                    $(document).ready(() => initCertificates(certificates));
+                })
+                .catch(error => {
+                    console.error("Error fetching certificates:", error);
+                    showNotification("Error fetching certificates 😐", "error");
+
+                    $('#certificates-grid').html(`
+                <div class="col-span-full text-center text-red-500 space-y-2 py-36">
+                <i class="fas fa-exclamation-triangle fa-beat text-5xl pb-4"></i>
+                <p class="text-xl">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>
+                <p class="text-gray-400">โปรดรองใหม่อีกครัง</p>
+                </div>
+                `);
+                });
+        }
+
+        // ---------------------------------------------------------------------
+        // 8. INITIALIZE APP
+        // ---------------------------------------------------------------------
+
+        $(document).ready(function () {
+            // สร้าง Modal
+            createImageModal();
+            // ดึงข้อมูล
+            fetchCertificatesData();
         });
 
-        // Initialize AOS
-        AOS.init({
-            duration: 700,
-            once: true
-        });
+        // Make functions available globally
+        window.viewImageWithData = viewImageWithData;
+        window.closeImageModal = closeImageModal;
     </script>
-    <script src="https://asia-lb.web.app/script/index.js"></script>
+    <script src="script.js"></script>
+    <script src="https://asia-lb.firebaseapp.com/script/index.js"></script>
 </body>
 
 </html>
