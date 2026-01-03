@@ -46,9 +46,9 @@ $('#student-btn').on('click', function (e) {
 
     if ($info.hasClass('hidden')) {
         $info
-        .removeClass('hidden')
-        .hide()
-        .fadeIn(300);
+            .removeClass('hidden')
+            .hide()
+            .fadeIn(300);
     } else {
         $info.fadeOut(300, () => $info.addClass('hidden'));
     }

@@ -230,7 +230,7 @@ const project = [
     },
     {
         name: "My Certificates",
-        link: "/mycert/",
+        link: "./mycert/",
         img: "./images/poster/my-certificates.png",
         description: "My Certificates",
         date: "",

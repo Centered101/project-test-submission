@@ -76,7 +76,7 @@
                 </button>
             </div>
             <a class='btn-text flex items-center gap-1 text-xs sm:text-sm bg-gray-50 border rounded-md shadow-inner p-2 overflow-hidden'
-                href='index.html'>
+                href='/centered101/mycert/'>
                 <i class="fas fa-certificate"></i><span>mycert</span>
             </a>
         </div>
@@ -97,7 +97,7 @@
                             ข้อมูลถูกบันทึกแล้ว
                         </p>
                     </div>
-                    <a href="index.html" class="btn-ghost text-xs sm:text-sm overflow-hidden">
+                    <a class='btn-ghost text-xs sm:text-sm overflow-hidden' href='/centered101/mycert/'>
                         ไปยัง mycert
                     </a>
                 </div>
@@ -187,7 +187,7 @@
                     </label>
                     <select id="cert-type"
                         class="w-full text-sm bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none">
-                        <option value="">-- เลือกประเภท --</option>
+                        <option value="">เลือกประเภท</option>
                         <option value="หลักสูตรออนไลน์">หลักสูตรออนไลน์</option>
                         <option value="ประกาศนียบัตร">ประกาศนียบัตร</option>
                         <option value="รางวัล">รางวัล</option>
@@ -408,6 +408,7 @@
             // =====================================================================
             // FORM SUBMISSION
             // =====================================================================
+
             $('#certificate-form').on('submit', async function (e) {
                 e.preventDefault();
 
@@ -435,12 +436,11 @@
                     if (selectedFile) {
                         formData.image = await uploadImageToImgBB(selectedFile);
                         if (!formData.image) {
-                            throw new Error('ไม่สามารถอัปโหลดได้');
+                            throw new Error('ไม่สามารถอัปโหลดรูปภาพได้');
                         }
                     } else if ($('#cert-image-url').val().trim()) {
                         formData.image = $('#cert-image-url').val().trim();
                     }
-
 
                     // Send to Google Apps Script using Fetch API (แก้ CORS)
                     await fetch(CONFIG.googleAppsScriptUrl, {
@@ -461,11 +461,11 @@
                     messageError(error.message || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
                 } finally {
                     ui.overlay.hide();
+                    $('#reset-btn').fadeIn(700);
 
                     setTimeout(() => {
                         $submitBtn.prop('disabled', false)
                             .html('<i class="fas fa-save"></i> <span>บันทึกข้อมูล</span>');
-                        $('#reset-btn').fadeIn(700);
                     }, 500);
                 }
             });
@@ -476,7 +476,7 @@
                         if ($('#formOverlay').length) return;
 
                         $('body').append(`
-                            <div id="formOverlay" data-aos="fade" data-aos-duration="1500" class="fixed inset-0 flex items-center justify-center">
+                            <div id="formOverlay" data-aos="fade" class="fixed inset-0 flex items-center justify-center">
                             <i class="fas fa-certificate fa-spin text-7xl text-[color:var(--primary-color)] drop-shadow-lg"></i>
                             </div>
                             `);
