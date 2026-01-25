@@ -1,0 +1,97 @@
+@import url(https://asia-lb.firebaseapp.com/style/index.css);
+
+:root {
+    --primary-color: #409EFE;
+    --accent-color: #e3f2fd;
+    --white-smoker: #F5F5F5;
+}
+
+body {
+    background-color: var(--accent-color);
+}
+
+#upload-area.dragover {
+    border-color: var(--primary-color);
+    background-color: #eff6ff;
+}
+
+mark {
+    background-color: var(--primary-color) !important;
+    color: #FFFFFF;
+    transition: color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    /* ease-in-out */
+    transition-duration: 300ms
+}
+
+.slide-up {
+    animation: slideUp 300ms ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.stamp-icon {
+    opacity: 0;
+    transform: translateY(120px) scale(1.4);
+    animation: stampDown 2s cubic-bezier(.2, .9, .3, 1.2) forwards;
+    animation-delay: 1500ms;
+}
+
+@keyframes stampDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-120px) rotate(180deg) scale(1.4);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(10px) rotate(0deg) scale(0.95);
+    }
+
+    80% {
+        transform: translateY(-4px) rotate(0deg) scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+}
+
+.brop-icon {
+    opacity: 0;
+    transform: translateY(-120px) rscale(1.4);
+    animation: bropDown 1s cubic-bezier(.2, .9, .3, 1.2) forwards;
+    animation-delay: 500ms;
+}
+
+@keyframes bropDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-120px) rotate(90deg) scale(1.4);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(10px) rotate(0deg) scale(0.90);
+    }
+
+    80% {
+        transform: translateY(-4px) rotate(10deg) scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+}
