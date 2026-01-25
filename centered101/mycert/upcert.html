@@ -12,19 +12,19 @@
     <meta name="description" content="อัปโหลดใบประกาศนียบัตร">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://project-test-submission.netlify.app">
+    <meta property="og:url" content="https://mycert.com">
     <meta property="og:title" content="อัปโหลดใบประกาศนียบัตร">
     <meta property="og:description" content="ใบประกาศนียบัตร">
-    <meta property="og:image" content="/images/icon.svg">
+    <meta property="og:image" content="/favicon.ico">
 
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://project-test-submission.netlify.app">
+    <meta property="twitter:url" content="https://mycert.com">
     <meta property="twitter:title" content="อัปโหลดใบประกาศนียบัตร">
     <meta property="twitter:description" content="อัปโหลดใบประกาศนียบัตร">
-    <meta property="twitter:image" content="/images/icon.svg">
+    <meta property="twitter:image" content="/favicon.ico">
 
-    <link rel="shortcut icon" type="image/x-icon" href="/images/icon.svg">
-    <link rel="stylesheet" href="https://asia-lb.firebaseapp.com/style/index.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
@@ -32,18 +32,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-<style>
-    :root {
-        --primary-color: #409EFE;
-    }
 
-    #upload-area.dragover {
-        border-color: var(--primary-color);
-        background-color: #eff6ff;
-    }
-</style>
-
-<body class="bg-gray-50 min-h-screen" draggable="false" oncontextmenu="return false">
+<body class="bg-[color:var(--accent-color)] min-h-screen" draggable="false" oncontextmenu="return false">
 
     <!-- Preloader -->
     <div id="preloader"
@@ -67,25 +57,44 @@
                     <div
                         class="flex items-center justify-center bg-[color:var(--primary-color)] rounded-md text-white font-bold overflow-hidden">
                         <img src="https://mycourseville-default.s3.ap-southeast-1.amazonaws.com/user_files/392/1408392/profilepict/profilepict-1408392-17542882116511.png"
-                            alt="พงศ์พล พรมผา" class="size-12 object-cover" draggable="false" />
-                    </div>
-                    <div class="flex flex-col items-start">
-                        <span class="font-semibold text-lg sm:text-xl sm:text-2xl line-clamp-1">พงศ์พล พรมผา</span>
-                        <span class="text-xs sm:text-sm text-gray-600">Phongphon Phompha</span>
-                    </div>
-                </button>
-            </div>
-            <a class='btn-text flex items-center gap-1 text-xs sm:text-sm bg-gray-50 border rounded-md shadow-inner p-2 overflow-hidden'
-                href='/centered101/mycert/'>
-                <i class="fas fa-certificate"></i><span>mycert</span>
-            </a>
+                        alt="พงศ์พล พรมผา" class="size-10 sm:size-12 object-cover" draggable="false" />
+                </div>
+                <div class="flex flex-col items-start">
+                    <span class="font-semibold text-lg sm:text-xl sm:text-2xl line-clamp-1">พงศ์พล พรมผา</span>
+                    <span class="text-xs sm:text-sm text-gray-600">Phongphon Phompha</span>
+                </div>
+            </button>
         </div>
-    </nav>
+        <a class='btn-text flex items-center gap-1 text-xs sm:text-sm bg-gray-50 border rounded-md shadow-inner p-2 overflow-hidden'
+            href='index.html'>
+            <i class="fas fa-certificate"></i><span>mycert</span>
+        </a>
+    </div>
+</nav>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl space-y-8 mx-auto p-2 sm:p-4 py-6">
+<!-- Main Content -->
+<main class="max-w-6xl flex flex-col md:flex-row gap-6 md:gap-8 mx-auto p-2 sm:p-4 py-6">
 
-        <section class="max-w-xl mx-auto space-y-4">
+    <label class="max-w-xl w-full mx-auto space-y-4">
+        <!-- Info Box -->
+        <div class="sticky top-20 space-y-4">
+            <div data-aos="zoom-in-up" data-aos-duration="3000"
+                class="bg-blue-50 border-2 border-l-4 border-blue-500 rounded-lg p-4">
+                <div class="flex items-start gap-3">
+                    <i class="fas fa-info-circle text-blue-500 text-2xl"></i>
+                    <div class="text-xs sm:text-sm text-blue-800">
+                        <p class="font-semibold mb-1">
+                            หมายเหตุ:
+                        </p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>ข้อมูลจะถูกบันทึกลง ฐานข้อมูล โดยอัตโนมัติ</li>
+                            <li>รูปภาพจะถูกอัปโหลดไปยัง ImgBB (ฟรี)</li>
+                            <li>กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนบันทึก</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <!-- Success Message -->
             <div id="success-message" data-aos="fade-down" data-aos-duration="1500"
                 class="hidden bg-green-50 border-2 border-green-500 rounded-lg p-4">
@@ -97,7 +106,7 @@
                             ข้อมูลถูกบันทึกแล้ว
                         </p>
                     </div>
-                    <a class='btn-ghost text-xs sm:text-sm overflow-hidden' href='/centered101/mycert/'>
+                    <a class='btn-ghost text-xs sm:text-sm bg-gray-50 border shadow-inner overflow-hidden' href='/'>
                         ไปยัง mycert
                     </a>
                 </div>
@@ -110,500 +119,523 @@
                     <i class="fas fa-exclamation-circle text-red-500 text-2xl"></i>
                     <div>
                         <h3 class="font-semibold text-red-800">เกิดข้อผิดพลาด!</h3>
-                        <p id="error-text" class="text-xs sm:text-sm text-red-600"></p>
+                        <p id="error-text" class="text-xs sm:text-sm text-red-600">
+                            Lorem ipsum dolor sit amet
+                            consectetur adipisicing elit. Nam, iusto!
+                        </p>
                     </div>
                 </div>
             </div>
+        </div>
+    </label>
 
-            <!-- Info Box -->
-            <div data-aos="zoom-in-up"
-                class="hidden bg-blue-50 border-2 border-l-4 border-blue-500 rounded-lg p-4 mt-6">
-                <div class="flex items-start gap-3">
-                    <i class="fas fa-info-circle text-blue-500 text-2xl"></i>
-                    <div class="text-xs sm:text-sm text-blue-800">
-                        <p class="font-semibold mb-1">
-                            หมายเหตุ:
-                        </p>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li>ข้อมูลจะถูกบันทึกลง Google Sheets โดยอัตโนมัติ</li>
-                            <li>รูปภาพจะถูกอัปโหลดไปยัง ImgBB (ฟรี)</li>
-                            <li>กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนบันทึก</li>
-                        </ul>
-                    </div>
+    <!-- Form Card -->
+    <section data-aos="zoom-in-up" data-aos-duration="3000"
+        class="max-w-xl w-full bg-[color:var(--white-smoker)] border rounded-2xl shadow p-2 mx-auto sm:p-4 md:p-6">
+        <form id="certificate-form" class="flex flex-col gap-6">
+            <h3 class="flex items-center gap-2 sm:text-lg font-semibold py-4 border-b">
+                <i class="fas fa-upload text-[color:var(--primary-color)]"></i>
+                <span>เพิ่มข้อมูลใบประกาศนียบัตรของคุณ</span>
+            </h3>
+
+            <!-- ID (Auto) -->
+            <div>
+                <label class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                    <i class="fas fa-hashtag text-[color:var(--primary-color)]"></i>
+                    <span>รหัสใบประกาศ (สร้างอัตโนมัติ)</span>
+                </label>
+                <input type="text" id="cert-id" readonly
+                class="w-full text-left text-sm sm:text-base text-gray-500 bg-gray-200 border-2 rounded-lg shadow-inner px-4 py-2 cursor-not-allowed focus:border-[color:var(--primary-color)] focus:outline-none"
+                placeholder="จะสร้างอัตโนมัติเมื่อบันทึก">
+            </div>
+
+            <!-- Name -->
+            <div>
+                <label for="cert-name"
+                    class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                    <i class="fas fa-certificate text-[color:var(--primary-color)]"></i>
+                    <span>ชื่อหลักสูตร/ใบประกาศ</span><span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="cert-name" required
+                class="w-full text-left text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none"
+                placeholder="เช่น: หลักสูตร Full Stack Web Development">
+            </div>
+
+            <!-- Issuer -->
+            <div>
+                <label for="cert-issuer"
+                    class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                    <i class="fas fa-building text-[color:var(--primary-color)]"></i>
+                    <span>หน่วยงานผู้ออก</span>
+                </label>
+                <input type="text" id="cert-issuer"
+                class="w-full text-left text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none"
+                placeholder="เช่น: มหาวิทยาลัย, สถาบัน, บริษัท">
+            </div>
+
+            <!-- Type -->
+            <div>
+                <label for="cert-type"
+                    class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                    <i class="fas fa-tag text-[color:var(--primary-color)]"></i>
+                    <span>ประเภท</span>
+                </label>
+                <select id="cert-type"
+                    class="w-full text-left text-sm bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none">
+
+                    <option value="">เลือกประเภท</option>
+                    <option value="workshop">Workshop</option>
+                    <option value="training">อบรม / สัมมนา</option>
+                    <option value="online-course">หลักสูตรออนไลน์</option>
+                    <option value="competition">การแข่งขัน</option>
+                    <option value="award">รางวัล</option>
+                    <option value="professional-skill">ทักษะเฉพาะทาง</option>
+                    <option value="certificate">ประกาศนียบัตร / วุฒิบัตร</option>
+
+                </select>
+            </div>
+
+            <!-- Date -->
+            <div>
+                <label for="cert-date"
+                    class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                    <i class="fas fa-calendar text-[color:var(--primary-color)]"></i>
+                    <span>วันที่ได้รับ</span><span class="text-red-500">*</span>
+                </label>
+                <input type="date" id="cert-date" required
+                class="w-full text-left text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:border-[color:var(--primary-color)] focus:outline-none">
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label for="cert-description"
+                    class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                    <i class="fas fa-align-left text-[color:var(--primary-color)]"></i>
+                    <span>คำอธิบาย/รายละเอียด</span>
+                </label>
+                <textarea id="cert-description" rows="4"
+                    class="resize-none w-full text-left text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:border-[color:var(--primary-color)] focus:outline-none"
+                    placeholder="อธิบายเกี่ยวกับหลักสูตร ทักษะที่ได้รับ หรือรายละเอียดเพิ่มเติม"></textarea>
+            </div>
+
+            <!-- Image Upload -->
+            <div>
+                <label class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                    <i class="fas fa-image text-[color:var(--primary-color)]"></i>
+                    <span>รูปภาพใบประกาศ</span>
+                </label>
+
+                <!-- Upload Area -->
+                <div id="upload-area"
+                    class="text-center text-sm bg-gray-50 border-2 border-dashed rounded-lg shadow-inner py-8 px-4 cursor-pointer select-none">
+                    <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
+                    <p class="text-gray-600">
+                        คลิกหรือลากไฟล์มาวางที่นี่
+                    </p>
+                    <p class="text-xs sm:text-sm text-gray-400 mt-1">
+                        รองรับ: JPG, PNG, GIF, PDF (แนะนำขนาดไม่เกิน 2MB)
+                    </p>
+                    <input type="file" id="cert-image" accept="image/*,application/pdf" hidden>
                 </div>
             </div>
-        </section>
+            <div id="file-info" class="hidden text-xs text-gray-600 mt-2">
+                <i class="fas fa-file"></i>
+                <span id="file-name"></span>
+                <span id="file-size" class="ml-1 text-gray-400"></span>
+            </div>
+            <!-- Image Preview -->
+            <div id="preview-container" class="hidden">
+                <div class="relative inline-block space-y-2 w-full">
+                    <img
+                    id="preview-image"
+                    class="object-contain w-full border rounded-lg shadow-inner"
+                    >
 
-        <!-- Form Card -->
-        <section data-aos="zoom-in-up" data-aos-duration="3000"
-            class="max-w-xl bg-[color:var(--white-smoker)] border rounded-2xl shadow p-2 mx-auto sm:p-4 md:p-6">
-            <form id="certificate-form" class="flex flex-col gap-6">
-                <h3 class="flex items-center gap-2 sm:text-lg font-semibold">
-                    <i class="fas fa-upload text-[color:var(--primary-color)]"></i>
-                    <span>เพิ่มข้อมูลใบประกาศนียบัตรของคุณ</span>
-                </h3>
+                    <iframe
+                        id="preview-pdf"
+                        class="w-full h-96 border rounded-lg shadow-inner hidden"
+                        ></iframe>
 
-                <!-- ID (Auto) -->
-                <div>
-                    <label class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                        <i class="fas fa-hashtag text-[color:var(--primary-color)]"></i>
-                        <span>รหัสใบประกาศ (สร้างอัตโนมัติ)</span>
-                    </label>
-                    <input type="text" id="cert-id" readonly
-                        class="w-full text-sm sm:text-base text-gray-500 bg-gray-200 border-2 rounded-lg shadow-inner px-4 py-2 cursor-not-allowed focus:border-[color:var(--primary-color)] focus:outline-none"
-                        placeholder="จะสร้างอัตโนมัติเมื่อบันทึก">
+                    <button
+                        type="button"
+                        id="remove-image"
+                        class="size-8 absolute -top-4 -right-2 flex items-center justify-center text-red-500 bg-white border border-red-500 rounded-full hover:bg-red-100"
+                        >
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
+            </div>
 
-                <!-- Name -->
-                <div>
-                    <label for="cert-name"
-                        class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                        <i class="fas fa-certificate text-[color:var(--primary-color)]"></i>
-                        <span>ชื่อหลักสูตร/ใบประกาศ</span><span class="text-red-500">*</span>
-                    </label>
-                    <input type="text" id="cert-name" required
-                        class="w-full text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none"
-                        placeholder="เช่น: หลักสูตร Full Stack Web Development">
-                </div>
+            <!-- Or Image URL -->
+            <div>
+                <label for="cert-image-url" class="block text-xs sm:text-sm text-gray-600 mb-2">หรือใส่ URL
+                    รูปภาพ:</label>
+                <input type="url" id="cert-image-url" required
+                class="w-full text-left text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none"
+                placeholder="https://example.com/certificate.jpg">
+            </div>
 
-                <!-- Issuer -->
-                <div>
-                    <label for="cert-issuer"
-                        class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                        <i class="fas fa-building text-[color:var(--primary-color)]"></i>
-                        <span>หน่วยงานผู้ออก</span>
-                    </label>
-                    <input type="text" id="cert-issuer"
-                        class="w-full text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none"
-                        placeholder="เช่น: มหาวิทยาลัย, สถาบัน, บริษัท">
-                </div>
+            <!-- Buttons -->
+            <div class="flex gap-2 text-sm sm:text-base">
+                <button type="submit" id="submit-btn"
+                    class="btn-primary flex-1 flex items-center justify-center gap-2 font-semibold overflow-hidden">
+                    <i class="fas fa-save"></i>
+                    <span>บันทึกข้อมูล</span>
+                </button>
 
-                <!-- Type -->
-                <div>
-                    <label for="cert-type"
-                        class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                        <i class="fas fa-tag text-[color:var(--primary-color)]"></i>
-                        <span>ประเภท</span>
-                    </label>
-                    <select id="cert-type"
-                        class="w-full text-sm bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none">
-                        <option value="">เลือกประเภท</option>
-                        <option value="หลักสูตรออนไลน์">หลักสูตรออนไลน์</option>
-                        <option value="ประกาศนียบัตร">ประกาศนียบัตร</option>
-                        <option value="รางวัล">รางวัล</option>
-                        <option value="การแข่งขัน">การแข่งขัน</option>
-                        <option value="อบรม/สัมมนา">อบรม/สัมมนา</option>
-                        <option value="ทักษะเฉพาะทาง">ทักษะเฉพาะทาง</option>
-                    </select>
-                </div>
+                <button type="button" id="reset-btn"
+                    class="btn-outline flex items-center justify-center gap-2 font-semibold overflow-hidden">
+                    <i class="fas fa-redo"></i>
+                    <span>ล้างฟอร์ม</span>
+                </button>
+            </div>
+        </form>
+    </section>
+</main>
 
-                <!-- Date -->
-                <div>
-                    <label for="cert-date"
-                        class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                        <i class="fas fa-calendar text-[color:var(--primary-color)]"></i>
-                        <span>วันที่ได้รับ</span><span class="text-red-500">*</span>
-                    </label>
-                    <input type="date" id="cert-date" required
-                        class="w-full text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:border-[color:var(--primary-color)] focus:outline-none">
-                </div>
+<!-- Footer -->
+<footer class="text-center text-xs sm:text-sm text-gray-500 py-12">
+    <p>
+        <script>
+            document.write("©&#8201;" + (new Date().getFullYear()))
+        </script>
+        <a href="https://project-test-submission.netlify.app/centered101/" target="_blank" rel="noopener noreferrer"
+            class="btn-text text-[color:var(--primary-color)] p-0">Centered101</a>
+        <span>• mycert — All rights reserved.</span>
+    </p>
+</footer>
 
-                <!-- Description -->
-                <div>
-                    <label for="cert-description"
-                        class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                        <i class="fas fa-align-left text-[color:var(--primary-color)]"></i>
-                        <span>คำอธิบาย/รายละเอียด</span>
-                    </label>
-                    <textarea id="cert-description" rows="4"
-                        class="resize-none w-full text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:border-[color:var(--primary-color)] focus:outline-none"
-                        placeholder="อธิบายเกี่ยวกับหลักสูตร ทักษะที่ได้รับ หรือรายละเอียดเพิ่มเติม"></textarea>
-                </div>
+<script>
+    $(document).ready(function () {
+        // =====================================================================
+        // CONFIGURATION
+        // =====================================================================
 
-                <!-- Image Upload -->
-                <div>
-                    <label class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                        <i class="fas fa-image text-[color:var(--primary-color)]"></i>
-                        <span>รูปภาพใบประกาศ</span>
-                    </label>
+        const CONFIG = {
+            googleAppsScriptUrl: 'https://script.google.com/macros/s/AKfycbyxbXbbAofU4gFay7UtCGECEd9s3WyGfg7dxGKtGMPJDPVWEPivxpiDgADlf3HHMva7/exec',
+            imgbbApiKey: 'dac9107419e9c9cb4acbf457f9db52e8'
+        };
 
-                    <!-- Upload Area -->
-                    <div id="upload-area"
-                        class="text-center text-sm bg-gray-50 border-2 border-dashed rounded-lg shadow-inner py-8 px-4 cursor-pointer select-none">
-                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
-                        <p class="text-gray-600">
-                            คลิกหรือลากไฟล์มาวางที่นี่
-                        </p>
-                        <p class="text-xs sm:text-sm text-gray-400 mt-1">
-                            รองรับ: JPG, PNG, GIF (แนะนำขนาดไม่เกิน 2MB)
-                        </p>
-                        <input type="file" id="cert-image" accept="image/*" hidden>
-                    </div>
+        // =====================================================================
+        // GLOBAL VARIABLES
+        // =====================================================================
 
-                    <!-- Image Preview -->
-                    <div id="preview-container" class="hidden mt-4">
-                        <div class="relative inline-block space-y-2">
-                            <img id="preview-image" class="object-contain w-full border rounded-lg shadow-inner">
-                            <button type="button" id="remove-image"
-                                class="size-8 absolute -top-4 -right-2 flex items-center justify-center text-red-500 bg-white border border-red-500 rounded-full hover:bg-red-100">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
+        let selectedFile = null;
 
-                    <!-- Or Image URL -->
-                    <div class="mt-4">
-                        <label for="cert-image-url" class="block text-xs sm:text-sm text-gray-600 mb-2">หรือใส่ URL
-                            รูปภาพ:</label>
-                        <input type="url" id="cert-image-url" readonly
-                            class="w-full text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none"
-                            placeholder="https://example.com/certificate.jpg">
-                    </div>
+        // =====================================================================
+        // IMAGE UPLOAD HANDLING
+        // =====================================================================
 
-                    <!-- Buttons -->
-                    <div class="flex gap-2 text-sm sm:text-base pt-4">
-                        <button type="submit" id="submit-btn"
-                            class="btn-primary flex-1 flex items-center justify-center gap-2 font-semibold overflow-hidden">
-                            <i class="fas fa-save"></i>
-                            <span>บันทึกข้อมูล</span>
-                        </button>
+        // Click to upload
+        $('#upload-area').on('click', function (e) {
+            e.stopPropagation(); // ป้องกัน event ซ้อน
+            $('#cert-image')[0].click(); // ใช้ [0] เพื่อเข้าถึง DOM element
+        });
 
-                        <button type="button" id="reset-btn"
-                            class="btn-outline flex items-center justify-center gap-2 font-semibold overflow-hidden">
-                            <i class="fas fa-redo"></i>
-                            <span>ล้างฟอร์ม</span>
-                        </button>
-                    </div>
-            </form>
-        </section>
-    </main>
+        // File selection
+        $('#cert-image').on('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        });
 
-    <!-- Footer -->
-    <footer class="text-center text-xs sm:text-sm text-gray-500 py-12">
-        <p>
-            <script>
-                document.write("©&#8201;" + (new Date().getFullYear()))
-            </script>
-            <a href="https://project-test-submission.netlify.app/centered101/" target="_blank" rel="noopener noreferrer"
-                class="btn-text text-[color:var(--primary-color)] p-0">Centered101</a>
-            <span>• mycert — All rights reserved.</span>
-        </p>
-    </footer>
-
-    <script>
-        $(document).ready(function () {
-            // =====================================================================
-            // CONFIGURATION
-            // =====================================================================
-
-            const CONFIG = {
-                googleAppsScriptUrl: 'https://script.google.com/macros/s/AKfycbyxbXbbAofU4gFay7UtCGECEd9s3WyGfg7dxGKtGMPJDPVWEPivxpiDgADlf3HHMva7/exec',
-                imgbbApiKey: 'dac9107419e9c9cb4acbf457f9db52e8'
-            };
-
-            // =====================================================================
-            // GLOBAL VARIABLES
-            // =====================================================================
-
-            let selectedFile = null;
-
-            // =====================================================================
-            // IMAGE UPLOAD HANDLING
-            // =====================================================================
-
-            // Click to upload
-            $('#upload-area').on('click', function (e) {
-                e.stopPropagation(); // ป้องกัน event ซ้อน
-                $('#cert-image')[0].click(); // ใช้ [0] เพื่อเข้าถึง DOM element
+        // Drag and drop
+        $('#upload-area').on('dragover',
+            function (e) {
+                e.preventDefault();
+                $(this).addClass('dragover');
             });
 
-            // File selection
-            $('#cert-image').on('change', function (e) {
-                const file = e.target.files[0];
-                if (file) {
+        $('#upload-area').on('dragleave',
+            function () {
+                $(this).removeClass('dragover');
+            });
+
+        $('#upload-area').on('drop',
+            function (e) {
+                e.preventDefault();
+                $(this).removeClass('dragover');
+
+                const file = e.originalEvent.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
                     handleFile(file);
                 }
             });
 
-            // Drag and drop
-            $('#upload-area').on('dragover',
-                function (e) {
-                    e.preventDefault();
-                    $(this).addClass('dragover');
-                });
+        function handleFile(file) {
+            const maxSize = 5 * 1024 * 1024; // 5MB
 
-            $('#upload-area').on('dragleave',
-                function () {
-                    $(this).removeClass('dragover');
-                });
+            if (file.size > maxSize) {
+                messageError('ไฟล์มีขนาดเกิน 5MB');
+                return;
+            }
 
-            $('#upload-area').on('drop',
-                function (e) {
-                    e.preventDefault();
-                    $(this).removeClass('dragover');
+            selectedFile = file;
 
-                    const file = e.originalEvent.dataTransfer.files[0];
-                    if (file && file.type.startsWith('image/')) {
-                        handleFile(file);
-                    }
-                });
+            // แสดงชื่อ + ขนาด
+            $('#file-name').text(file.name);
+            $('#file-size').text(`(${(file.size / 1024 / 1024).toFixed(2)} MB)`);
+            $('#file-info').fadeIn(300);
 
-            // Handle file
-            function handleFile(file) {
-                if (file.size > 5 * 1024 * 1024) {
-                    messageError('ไฟล์รูปภาพมีขนาดใหญ่กิน 5MB');
-                    return;
-                }
-
-                selectedFile = file;
-
-                // Show preview
+            // ถ้าเป็นรูป → preview
+            if (file.type.startsWith('image/')) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     $('#preview-image').attr('src', e.target.result);
-                    $('#preview-container').fadeIn(700);
-                    $('#cert-image-url').val(''); // Clear URL input
-                    $('#cert-image-url').attr('readonly', true).addClass('bg-gray-200 cursor-not-allowed');
+                    $('#preview-container').fadeIn(300);
                 };
                 reader.readAsDataURL(file);
             }
-
-            // Remove image
-            $('#remove-image').on('click', function (e) {
-                e.stopPropagation(); // ป้องกันไม่ให้กด upload area
-                selectedFile = null;
-                $('#cert-image').val('');
-                $('#preview-container').fadeOut(700);
-                $('#cert-image-url').removeAttr('readonly').removeClass('bg-gray-200 cursor-not-allowed')
-            });
-
-            // =====================================================================
-            // UPLOAD TO IMGBB
-            // =====================================================================
-
-            async function uploadImageToImgBB(file) {
-                const formData = new FormData();
-                formData.append('image', file);
-
-                try {
-                    const response = await $.ajax({
-                        url: `https://api.imgbb.com/1/upload?key=${CONFIG.imgbbApiKey}`,
-                        type: 'POST',
-                        data: formData,
-                        processData: false,
-                        contentType: false
-                    });
-
-                    if (response.success) {
-                        return response.data.url;
-                    } else {
-                        throw new Error('Upload failed');
-                    }
-                } catch (error) {
-                    console.error('ImgBB upload error:', error);
-                    return null;
-                }
+            // ถ้าเป็น PDF → ไม่ preview
+            else if (file.type === 'application/pdf') {
+                $('#preview-container').hide();
             }
 
-            // =====================================================================
-            // FORM SUBMISSION
-            // =====================================================================
+            $('#cert-image-url')
+            .val('')
+            .attr('readonly', true)
+            .addClass('bg-gray-300 cursor-not-allowed');
+        }
 
-            $('#certificate-form').on('submit', async function (e) {
-                e.preventDefault();
+        // Remove image
+        $('#remove-image').on('click', function (e) {
+            e.stopPropagation(); // ป้องกันไม่ให้กด upload area
+            selectedFile = null;
+            $('#cert-image').val('');
+            $('#preview-container').fadeOut(700);
+            $('#cert-image-url').removeAttr('readonly').removeClass('bg-gray-300 cursor-not-allowed')
+            $('#file-info').fadeOut(700);
+        });
 
-                // Disable submit button
-                const $submitBtn = $('#submit-btn');
-                $submitBtn.prop('disabled', true)
-                    .html('<i class="fas fa-circle-notch fa-spin"></i> กำลังบันทึก');
-                $('#reset-btn').fadeOut(700);
+        // =====================================================================
+        // UPLOAD TO IMGBB
+        // =====================================================================
 
-                hideMessages();
-                ui.overlay.show();
+        async function uploadImageToImgBB(file) {
+            const formData = new FormData();
+            formData.append('image', file);
 
-                try {
-                    // Get form data
-                    const formData = {
-                        name: $('#cert-name').val().trim(),
-                        issuer: $('#cert-issuer').val().trim(),
-                        type: $('#cert-type').val(),
-                        date: $('#cert-date').val(),
-                        description: $('#cert-description').val().trim(),
-                        image: ''
-                    };
+            try {
+                const response = await $.ajax({
+                    url: `https://api.imgbb.com/1/upload?key=${CONFIG.imgbbApiKey}`,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false
+                });
 
-                    // Upload image if selected
-                    if (selectedFile) {
-                        formData.image = await uploadImageToImgBB(selectedFile);
-                        if (!formData.image) {
-                            throw new Error('ไม่สามารถอัปโหลดรูปภาพได้');
-                        }
-                    } else if ($('#cert-image-url').val().trim()) {
-                        formData.image = $('#cert-image-url').val().trim();
-                    }
-
-                    // Send to Google Apps Script using Fetch API (แก้ CORS)
-                    await fetch(CONFIG.googleAppsScriptUrl, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(formData)
-                    });
-
-                    $('#certificate-form')[0].reset();
-                    $('#cert-date').val(new Date().toISOString().split('T')[0]);
-                    showSuccess();
-                    resetImage();
-
-                } catch (error) {
-                    messageError(error.message || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
-                } finally {
-                    ui.overlay.hide();
-                    $('#reset-btn').fadeIn(700);
-
-                    setTimeout(() => {
-                        $submitBtn.prop('disabled', false)
-                            .html('<i class="fas fa-save"></i> <span>บันทึกข้อมูล</span>');
-                    }, 500);
+                if (response.success) {
+                    return response.data.url;
+                } else {
+                    throw new Error('Upload failed');
                 }
-            });
+            } catch (error) {
+                console.error('ImgBB upload error:', error);
+                return null;
+            }
+        }
 
-            const ui = {
-                overlay: {
-                    show() {
-                        if ($('#formOverlay').length) return;
+        // =====================================================================
+        // FORM SUBMISSION
+        // =====================================================================
 
-                        $('body').append(`
-                            <div id="formOverlay" data-aos="fade" class="fixed inset-0 flex items-center justify-center">
-                            <i class="fas fa-certificate fa-spin text-7xl text-[color:var(--primary-color)] drop-shadow-lg"></i>
-                            </div>
-                            `);
+        $('#certificate-form').on('submit', async function (e) {
+            e.preventDefault();
+
+            // Disable submit button
+            const $submitBtn = $('#submit-btn');
+            $submitBtn.prop('disabled', true)
+            .html('<i class="fas fa-circle-notch fa-spin"></i> กำลังบันทึก');
+            $('#reset-btn').fadeOut(700);
+
+            hideMessages();
+            ui.overlay.show();
+
+            try {
+                // Get form data
+                const formData = {
+                    name: $('#cert-name').val().trim(),
+                    issuer: $('#cert-issuer').val().trim(),
+                    type: $('#cert-type').val(),
+                    date: $('#cert-date').val(),
+                    description: $('#cert-description').val().trim(),
+                    image: ''
+                };
+
+                // Upload image if selected
+                if (selectedFile) {
+                    formData.image = await uploadImageToImgBB(selectedFile);
+                    if (!formData.image) {
+                        throw new Error('ไม่สามารถอัปโหลดรูปภาพได้');
+                    }
+                } else if ($('#cert-image-url').val().trim()) {
+                    formData.image = $('#cert-image-url').val().trim();
+                }
+
+                // Send to Google Apps Script using Fetch API (แก้ CORS)
+                await fetch(CONFIG.googleAppsScriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
                     },
-                    hide() {
-                        $('#formOverlay').fadeOut(700, function () {
-                            $(this).remove();
-                        });
-                    }
-                }
-            }
-
-            // =====================================================================
-            // RESET FORM
-            // =====================================================================
-
-            function resetImage() {
-                selectedFile = null;
-                $('#cert-image').val('');
-                $('#preview-container').fadeOut(700);
-                $('#cert-image-url').removeAttr('readonly').removeClass('bg-gray-200 cursor-not-allowed').val('');
-            }
-
-            $('#reset-btn').on('click', function () {
-                if (confirm('ต้องการล้างข้อมูลในฟอร์มทั้งหมดใช่หรือไม่?')) {
-                    $('#certificate-form')[0].reset();
-                    $('#cert-date').val(new Date().toISOString().split('T')[0]);
-                    resetImage();
-                    hideMessages();
-                    showNotification('ล้างข้อมูลในฟอร์มแล้ว', 'success');
-                }
-            });
-
-            // =====================================================================
-            // MESSAGE FUNCTIONS
-            // =====================================================================
-
-            let successTimer, errorTimer;
-
-            function showSuccess() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+                    body: JSON.stringify(formData)
                 });
 
-                const $success = $('#success-message');
+                $('#certificate-form')[0].reset();
+                $('#cert-date').val(new Date().toISOString().split('T')[0]);
+                showSuccess();
+                resetImage();
 
-                clearTimeout(successTimer);
-
-                $success
-                    .removeClass('hidden animate-pulse')
-                    .css({
-                        opacity: 1,
-                        transform: 'translateX(0)',
-                        transition: 'opacity 500ms ease, transform 500ms ease'
-                    });
-
-                if (typeof showNotification === 'function') {
-                    showNotification("บันทึกประกาศนียบัตร สำเร็จ", "success");
-                    setTimeout(() => showNotification("ไปยัง mycert", "", "index.html"), 1000);
-                }
-
-                setTimeout(() => $success.addClass('animate-pulse'), 5000);
-
-                successTimer = setTimeout(() => hideElement($success), 10000);
-
-                $success.off('click').on('click', () => hideElement($success));
-            }
-
-            function messageError(message) {
-                window.scrollTo({
-                    top: 0, behavior: 'smooth'
-                });
-
-                const $error = $('#error-message');
-
-                clearTimeout(errorTimer);
-
-                $('#error-text').text(message);
-
-                $error
-                    .removeClass('hidden animate-pulse')
-                    .css({
-                        opacity: 1,
-                        transform: 'translateX(0)',
-                        transition: 'opacity 500ms ease, transform 500ms ease'
-                    });
-
-                if (typeof showNotification === 'function') {
-                    showNotification(message, "error");
-                }
-
-                setTimeout(() => $error.addClass('animate-pulse'), 5000);
-
-                errorTimer = setTimeout(() => hideElement($error), 10000);
-
-                $error.off('click').on('click', () => hideElement($error));
-            }
-
-            /* utility */
-            function hideElement($el) {
-                $el.css({
-                    opacity: 0,
-                    transform: 'translateX(100%)'
-                });
+            } catch (error) {
+                messageError(error.message || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+            } finally {
+                ui.overlay.hide();
+                $('#reset-btn').fadeIn(700);
 
                 setTimeout(() => {
-                    $el.addClass('hidden').removeClass('animate-pulse');
+                    $submitBtn.prop('disabled', false)
+                    .html('<i class="fas fa-save"></i> <span>บันทึกข้อมูล</span>');
                 }, 500);
             }
+        });
 
-            function hideMessages() {
-                hideElement($('#success-message'));
-                hideElement($('#error-message'));
+        const ui = {
+            overlay: {
+                show() {
+                    if ($('#formOverlay').length) return;
+
+                    $('body').append(`
+                        <div id="formOverlay" data-aos="fade" class="fixed inset-0 flex items-center justify-center">
+                        <i class="fas fa-certificate fa-spin text-7xl text-[color:var(--primary-color)] drop-shadow-lg"></i>
+                        </div>
+                        `);
+                },
+                hide() {
+                    $('#formOverlay').fadeOut(700, function () {
+                        $(this).remove();
+                    });
+                }
+            }
+        }
+
+        // =====================================================================
+        // RESET FORM
+        // =====================================================================
+
+        function resetImage() {
+            selectedFile = null;
+            $('#cert-image').val('');
+            $('#preview-container').fadeOut(700);
+            $('#cert-image-url').removeAttr('readonly').removeClass('bg-gray-300 cursor-not-allowed').val('');
+            $('#file-info').fadeOut(700);
+        }
+
+        $('#reset-btn').on('click', function () {
+            if (confirm('ต้องการล้างข้อมูลในฟอร์มทั้งหมดใช่หรือไม่?')) {
+                $('#certificate-form')[0].reset();
+                $('#cert-date').val(new Date().toISOString().split('T')[0]);
+                resetImage();
+                hideMessages();
+                showNotification('ล้างข้อมูลในฟอร์มแล้ว', 'success');
+            }
+        });
+
+        // =====================================================================
+        // MESSAGE FUNCTIONS
+        // =====================================================================
+
+        let successTimer, errorTimer;
+
+        function showSuccess() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            const $success = $('#success-message');
+
+            clearTimeout(successTimer);
+
+            $success
+            .removeClass('hidden animate-pulse')
+            .css({
+                opacity: 1,
+                transform: 'translateX(0)',
+                transition: 'opacity 500ms ease, transform 500ms ease'
+            });
+
+            if (typeof showNotification === 'function') {
+                showNotification("บันทึกประกาศนียบัตร สำเร็จ", "success");
+                setTimeout(() => showNotification("ไปยัง mycert", "", "index.html"), 1000);
             }
 
-            // =====================================================================
-            // INITIALIZE
-            // =====================================================================
+            setTimeout(() => $success.addClass('animate-pulse'), 5000);
 
-            // Set today's date as default
-            const today = new Date().toISOString().split('T')[0];
-            $('#cert-date').val(today);
-        });
-    </script>
-    <script src="script.js"></script>
-    <script src="https://asia-lb.firebaseapp.com/script/index.js"></script>
+            successTimer = setTimeout(() => hideElement($success), 10000);
+
+            $success.off('click').on('click', () => hideElement($success));
+        }
+
+        function messageError(message) {
+            window.scrollTo({
+                top: 0, behavior: 'smooth'
+            });
+
+            const $error = $('#error-message');
+
+            clearTimeout(errorTimer);
+
+            $('#error-text').text(message);
+
+            $error
+            .removeClass('hidden animate-pulse')
+            .css({
+                opacity: 1,
+                transform: 'translateX(0)',
+                transition: 'opacity 500ms ease, transform 500ms ease'
+            });
+
+            if (typeof showNotification === 'function') {
+                showNotification(message, "error");
+            }
+
+            setTimeout(() => $error.addClass('animate-pulse'), 5000);
+
+            errorTimer = setTimeout(() => hideElement($error), 10000);
+
+            $error.off('click').on('click', () => hideElement($error));
+        }
+
+        /* utility */
+        function hideElement($el) {
+            $el.css({
+                opacity: 0,
+                transform: 'translateX(100%)'
+            });
+
+            setTimeout(() => {
+                $el.addClass('hidden').removeClass('animate-pulse');
+            }, 500);
+        }
+
+        function hideMessages() {
+            hideElement($('#success-message'));
+            hideElement($('#error-message'));
+        }
+
+        // =====================================================================
+        // INITIALIZE
+        // =====================================================================
+
+        // Set today's date as default
+        const today = new Date().toISOString().split('T')[0];
+        $('#cert-date').val(today);
+    });
+</script>
+<script src="script.js"></script>
+<script src="https://asia-lb.firebaseapp.com/script/index.js"></script>
 </body>
 
 </html>
