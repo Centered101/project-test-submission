@@ -24,7 +24,7 @@
     <meta property="twitter:image" content="/favicon.ico">
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
@@ -33,7 +33,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
-<body class="bg-[color:var(--accent-color)] min-h-screen" draggable="false" oncontextmenu="return false">
+<body class="bg-[color:var(--accent-color)] min-h-screen" draggable="false" oncontextmenu="return true">
 
     <!-- Preloader -->
     <div id="preloader"
@@ -106,7 +106,7 @@
                             ข้อมูลถูกบันทึกแล้ว
                         </p>
                     </div>
-                    <a class='btn-ghost text-xs sm:text-sm bg-gray-50 border shadow-inner overflow-hidden' href='/'>
+                    <a class='btn-ghost text-xs sm:text-sm bg-gray-50 border shadow-inner overflow-hidden' href='index.html'>
                         ไปยัง mycert
                     </a>
                 </div>
@@ -152,11 +152,14 @@
             <!-- Name -->
             <div>
                 <label for="cert-name"
-                    class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                    <i class="fas fa-certificate text-[color:var(--primary-color)]"></i>
-                    <span>ชื่อหลักสูตร/ใบประกาศ</span><span class="text-red-500">*</span>
+                    class="flex items-center justify-between gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-certificate text-[color:var(--primary-color)]"></i>
+                        <span>ชื่อหลักสูตร/ใบประกาศ</span><span class="text-red-500">*</span>
+                    </span>
+                    <span class="char-count text-xs text-gray-400/50">0/255</span>
                 </label>
-                <input type="text" id="cert-name" required
+                <input type="text" id="cert-name" maxlength="255" required
                 class="w-full text-left text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none"
                 placeholder="เช่น: หลักสูตร Full Stack Web Development">
             </div>
@@ -164,11 +167,14 @@
             <!-- Issuer -->
             <div>
                 <label for="cert-issuer"
-                    class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                    <i class="fas fa-building text-[color:var(--primary-color)]"></i>
-                    <span>หน่วยงานผู้ออก</span>
+                    class="flex items-center justify-between gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-building text-[color:var(--primary-color)]"></i>
+                        <span>หน่วยงานผู้ออก</span>
+                    </span>
+                    <span class="char-count text-xs text-gray-400/50">0/255</span>
                 </label>
-                <input type="text" id="cert-issuer"
+                <input type="text" id="cert-issuer" maxlength="255"
                 class="w-full text-left text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none"
                 placeholder="เช่น: มหาวิทยาลัย, สถาบัน, บริษัท">
             </div>
@@ -182,16 +188,14 @@
                 </label>
                 <select id="cert-type"
                     class="w-full text-left text-sm bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:outline-none">
-
                     <option value="">เลือกประเภท</option>
-                    <option value="workshop">Workshop</option>
+                    <option value="Workshop">Workshop</option>
                     <option value="training">อบรม / สัมมนา</option>
                     <option value="online-course">หลักสูตรออนไลน์</option>
                     <option value="competition">การแข่งขัน</option>
                     <option value="award">รางวัล</option>
                     <option value="professional-skill">ทักษะเฉพาะทาง</option>
                     <option value="certificate">ประกาศนียบัตร / วุฒิบัตร</option>
-
                 </select>
             </div>
 
@@ -209,11 +213,14 @@
             <!-- Description -->
             <div>
                 <label for="cert-description"
-                    class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                    <i class="fas fa-align-left text-[color:var(--primary-color)]"></i>
-                    <span>คำอธิบาย/รายละเอียด</span>
+                    class="flex items-center justify-between gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-align-left text-[color:var(--primary-color)]"></i>
+                        <span>คำอธิบาย/รายละเอียด</span>
+                    </span>
+                    <span class="char-count text-xs text-gray-400/50">0/765</span>
                 </label>
-                <textarea id="cert-description" rows="4"
+                <textarea id="cert-description" rows="4" maxlength="765" oncontextmenu="return true"
                     class="resize-none w-full text-left text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2 focus:border-[color:var(--primary-color)] focus:border-[color:var(--primary-color)] focus:outline-none"
                     placeholder="อธิบายเกี่ยวกับหลักสูตร ทักษะที่ได้รับ หรือรายละเอียดเพิ่มเติม"></textarea>
             </div>
@@ -246,21 +253,12 @@
             <!-- Image Preview -->
             <div id="preview-container" class="hidden">
                 <div class="relative inline-block space-y-2 w-full">
-                    <img
-                    id="preview-image"
-                    class="object-contain w-full border rounded-lg shadow-inner"
-                    >
+                    <img id="preview-image" class="object-contain w-full border rounded-lg shadow-inner">
 
-                    <iframe
-                        id="preview-pdf"
-                        class="w-full h-96 border rounded-lg shadow-inner hidden"
-                        ></iframe>
+                    <iframe id="preview-pdf" class="w-full h-96 border rounded-lg shadow-inner hidden"></iframe>
 
-                    <button
-                        type="button"
-                        id="remove-image"
-                        class="size-8 absolute -top-4 -right-2 flex items-center justify-center text-red-500 bg-white border border-red-500 rounded-full hover:bg-red-100"
-                        >
+                    <button type="button" id="remove-image"
+                        class="size-8 absolute -top-4 -right-2 flex items-center justify-center text-red-500 bg-white border border-red-500 rounded-full hover:bg-red-100">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -306,6 +304,30 @@
 </footer>
 
 <script>
+    $(document).on('input', 'input[maxlength], textarea[maxlength]', function () {
+        const max = parseInt($(this).attr('maxlength'), 10);
+        const length = $(this).val().length;
+        const percent = length / max;
+
+        const $counter = $(this)
+        .closest('div')
+        .find('.char-count');
+
+        // อัปเดตตัวเลข
+        $counter.text(`${length}/${max}`);
+
+        // ล้างคลาสก่อน
+        $counter.removeClass('text-gray-400/50 text-yellow-400/50 text-red-400/50');
+
+        if (percent >= 0.8) {
+            $counter.addClass('text-red-400/50');
+        } else if (percent >= 0.6) {
+            $counter.addClass('text-yellow-400/50');
+        } else {
+            $counter.addClass('text-gray-400/50');
+        }
+    });
+
     $(document).ready(function () {
         // =====================================================================
         // CONFIGURATION
@@ -412,45 +434,71 @@
         // UPLOAD TO IMGBB
         // =====================================================================
 
-        async function uploadImageToImgBB(file) {
+        function uploadImageToImgBB(file) {
             const formData = new FormData();
             formData.append('image', file);
 
-            try {
-                const response = await $.ajax({
+            return new Promise((resolve, reject) => {
+                uploadRequest = $.ajax({
                     url: `https://api.imgbb.com/1/upload?key=${CONFIG.imgbbApiKey}`,
                     type: 'POST',
                     data: formData,
                     processData: false,
-                    contentType: false
+                    contentType: false,
+                    success(res) {
+                        if (res.success) resolve(res.data.url);
+                        else reject(new Error('Upload failed'));
+                    },
+                    error(err) {
+                        if (isCanceled) {
+                            reject(new Error('cancelled'));
+                        } else {
+                            reject(err);
+                        }
+                    }
                 });
-
-                if (response.success) {
-                    return response.data.url;
-                } else {
-                    throw new Error('Upload failed');
-                }
-            } catch (error) {
-                console.error('ImgBB upload error:', error);
-                return null;
-            }
+            });
         }
 
         // =====================================================================
         // FORM SUBMISSION
         // =====================================================================
+        let submitController = null;
+        let uploadRequest = null;
+        let isCanceled = false;
 
         $('#certificate-form').on('submit', async function (e) {
             e.preventDefault();
 
+            // Reset cancel flag
+            isCanceled = false;
+
             // Disable submit button
             const $submitBtn = $('#submit-btn');
-            $submitBtn.prop('disabled', true)
+            $submitBtn.prop('disabled',
+                true)
             .html('<i class="fas fa-circle-notch fa-spin"></i> กำลังบันทึก');
             $('#reset-btn').fadeOut(700);
 
             hideMessages();
-            ui.overlay.show();
+
+            // 🔥 เพิ่ม callback function สำหรับยกเลิก
+            ui.overlay.show(() => {
+                isCanceled = true;
+
+                // ยกเลิก upload request ถ้ามี
+                if (uploadRequest) {
+                    uploadRequest.abort();
+                    uploadRequest = null;
+                }
+
+                messageError('ยกเลิกการบันทึกข้อมูลแล้ว');
+
+                // Reset ปุ่มกลับสู่สภาพปกติ
+                $submitBtn.prop('disabled', false)
+                .html('<i class="fas fa-save"></i> <span>บันทึกข้อมูล</span>');
+                $('#reset-btn').fadeIn(700);
+            });
 
             try {
                 // Get form data
@@ -466,6 +514,12 @@
                 // Upload image if selected
                 if (selectedFile) {
                     formData.image = await uploadImageToImgBB(selectedFile);
+
+                    // 🔥 เช็คว่ายกเลิกหรือไม่
+                    if (isCanceled) {
+                        return;
+                    }
+
                     if (!formData.image) {
                         throw new Error('ไม่สามารถอัปโหลดรูปภาพได้');
                     }
@@ -473,7 +527,12 @@
                     formData.image = $('#cert-image-url').val().trim();
                 }
 
-                // Send to Google Apps Script using Fetch API (แก้ CORS)
+                // 🔥 เช็คว่ายกเลิกก่อนส่งข้อมูล
+                if (isCanceled) {
+                    return;
+                }
+
+                // Send to Google Apps Script using Fetch API
                 await fetch(CONFIG.googleAppsScriptUrl, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -483,15 +542,27 @@
                     body: JSON.stringify(formData)
                 });
 
+                // 🔥 เช็คว่ายกเลิกหลังส่งข้อมูล
+                if (isCanceled) {
+                    return;
+                }
+
                 $('#certificate-form')[0].reset();
                 $('#cert-date').val(new Date().toISOString().split('T')[0]);
                 showSuccess();
                 resetImage();
 
             } catch (error) {
-                messageError(error.message || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+                // 🔥 ไม่แสดง error ถ้ายกเลิกไปแล้ว
+                if (!isCanceled) {
+                    messageError(error.message || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+                }
             } finally {
-                ui.overlay.hide();
+                // 🔥 ซ่อน overlay เฉพาะเมื่อไม่ได้ยกเลิก (ถ้ายกเลิกจะซ่อนใน callback แล้ว)
+                if (!isCanceled) {
+                    ui.overlay.hide();
+                }
+
                 $('#reset-btn').fadeIn(700);
 
                 setTimeout(() => {
@@ -503,22 +574,60 @@
 
         const ui = {
             overlay: {
-                show() {
+                _timer30: null,
+                _timer60: null,
+                _onCancelCallback: null, // 🔥 เก็บ callback
+
+                show(onCancel) {
                     if ($('#formOverlay').length) return;
 
+                    // 🔥 เก็บ callback ไว้
+                    this._onCancelCallback = onCancel;
+
                     $('body').append(`
-                        <div id="formOverlay" data-aos="fade" class="fixed inset-0 flex items-center justify-center">
+                        <div id="formOverlay" class="fixed inset-0 flex flex-col items-center justify-center gap-4 bg-black/40 z-50">
                         <i class="fas fa-certificate fa-spin text-7xl text-[color:var(--primary-color)] drop-shadow-lg"></i>
+
+                        <p id="slowText" class="hidden text-lg sm:text-xl text-white drop-shadow-lg">
+                        อาจใช้เวลานานหน่อย
+                        </p>
+
+                        <button id="cancelBtn"
+                        class="btn-outline hidden text-red-500 border-red-500 hover:bg-red-600 rounded px-6 py-2 overflow-hidden">
+                        ยกเลิก
+                        </button>
                         </div>
                         `);
-                },
-                hide() {
-                    $('#formOverlay').fadeOut(700, function () {
-                        $(this).remove();
+
+                    this._timer30 = setTimeout(() => {
+                        $('#slowText').fadeIn();
+                    }, 10000);
+
+                    this._timer60 = setTimeout(() => {
+                        $('#cancelBtn').fadeIn();
+                    }, 30000);
+
+                    // 🔥 เรียก callback เมื่อกดยกเลิก
+                    $('#cancelBtn').one('click', () => {
+                        if (this._onCancelCallback) {
+                            this._onCancelCallback();
+                        }
+                        this.hide();
                     });
+                },
+
+                hide() {
+                    clearTimeout(this._timer30);
+                    clearTimeout(this._timer60);
+                    this._onCancelCallback = null; // 🔥 ล้าง callback
+
+                    $('#formOverlay').fadeOut(700,
+                        function () {
+                            $(this).remove();
+                        });
                 }
             }
-        }
+        };
 
         // =====================================================================
         // RESET FORM
@@ -532,15 +641,22 @@
             $('#file-info').fadeOut(700);
         }
 
-        $('#reset-btn').on('click', function () {
-            if (confirm('ต้องการล้างข้อมูลในฟอร์มทั้งหมดใช่หรือไม่?')) {
-                $('#certificate-form')[0].reset();
-                $('#cert-date').val(new Date().toISOString().split('T')[0]);
-                resetImage();
-                hideMessages();
-                showNotification('ล้างข้อมูลในฟอร์มแล้ว', 'success');
-            }
-        });
+        $('#reset-btn').on('click',
+            function () {
+                if (confirm('ต้องการล้างข้อมูลในฟอร์มทั้งหมดใช่หรือไม่?')) {
+                    $('#certificate-form')[0].reset();
+                    $('#cert-date').val(new Date().toISOString().split('T')[0]);
+                    resetImage();
+                    hideMessages();
+
+                    // 🔥 เพิ่มบรรทัดนี้
+                    $('#certificate-form')
+                    .find('input[maxlength], textarea[maxlength]')
+                    .trigger('input');
+
+                    showNotification('ล้างข้อมูลในฟอร์มแล้ว', 'success');
+                }
+            });
 
         // =====================================================================
         // MESSAGE FUNCTIONS
