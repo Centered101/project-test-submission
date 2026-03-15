@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบสั่งอาหารออนไลน์ด้วย QR Code - Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Prompt', sans-serif;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+            min-height: 100vh;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .float-anim {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #fff9e1 0%, #fef3c7 50%, #fde68a 100%);
+        }
+
+        .card-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .step-card {
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-btn {
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.1);
+            background-color: #f97316;
+            color: white;
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        }
+
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+
+        @media print {
+            .slide {
+                display: block !important;
+                page-break-after: always;
+                min-height: 100vh;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+    <base target="_blank">
+</head>
+
+<body class="bg-gray-50 overflow-hidden">
+
+    <!-- Navigation Controls -->
+    <div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 flex gap-4 no-print">
+        <button onclick="prevSlide()" class="nav-btn bg-white p-4 rounded-full shadow-lg text-gray-700 hover:shadow-xl">
+            <i class="fas fa-chevron-left text-xl"></i>
+        </button>
+        <div class="bg-white px-6 py-4 rounded-full shadow-lg flex items-center gap-2">
+            <span id="currentSlide" class="font-bold text-orange-600 text-xl">1</span>
+            <span class="text-gray-400">/</span>
+            <span class="text-gray-600 text-xl">9</span>
+        </div>
+        <button onclick="nextSlide()" class="nav-btn bg-white p-4 rounded-full shadow-lg text-gray-700 hover:shadow-xl">
+            <i class="fas fa-chevron-right text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-2 bg-gray-200 z-50 no-print">
+        <div id="progressBar" class="progress-bar h-full bg-gradient-to-r from-orange-400 to-red-500"
+            style="width: 11%"></div>
+    </div>
+
+    <!-- Slide 1: Title -->
+    <div class="slide active gradient-bg items-center justify-center p-8" id="slide1">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="mb-8 float-anim">
+                <span class="text-8xl">🍽️</span>
+            </div>
+            <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-6 leading-tight">
+                ระบบสั่งอาหารออนไลน์<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">ด้วย QR
+                    Code</span>
+            </h1>
+            <p class="text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+                โซลูชันการสั่งอาหารที่ทันสมัย ใช้งานง่าย และมีประสิทธิภาพ<br>
+                สำหรับศูนย์อาหารและร้านค้าหลายจุด
+            </p>
+
+            <div class="flex justify-center gap-6 flex-wrap">
+                <div class="bg-white px-6 py-3 rounded-full card-shadow flex items-center gap-2">
+                    <i class="fas fa-qrcode text-orange-500"></i>
+                    <span class="font-semibold text-gray-700">สแกน & สั่ง</span>
+                </div>
+                <div class="bg-white px-6 py-3 rounded-full card-shadow flex items-center gap-2">
+                    <i class="fas fa-store text-blue-500"></i>
+                    <span class="font-semibold text-gray-700">หลายร้านในคราวเดียว</span>
+                </div>
+                <div class="bg-white px-6 py-3 rounded-full card-shadow flex items-center gap-2">
+                    <i class="fas fa-chart-line text-green-500"></i>
+                    <span class="font-semibold text-gray-700">Real-time Dashboard</span>
+                </div>
+            </div>
+
+            <div class="mt-16 text-gray-500">
+                <p class="text-lg">กดลูกศรขวาหรือปุ่มด้านล่างเพื่อดำเนินการต่อ <i class="fas fa-arrow-right ml-2"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Problem & Solution -->
+    <div class="slide bg-white items-center justify-center p-8" id="slide2">
+        <div class="max-w-6xl mx-auto w-full">
+            <h2 class="text-5xl font-bold text-center mb-16 text-gray-800">ปัญหา & โซลูชัน</h2>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Problems -->
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-red-500 mb-6 flex items-center gap-3">
+                        <i class="fas fa-times-circle"></i> ปัญหาที่พบ
+                    </h3>
+
+                    <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-500">
+                        <h4 class="font-bold text-xl mb-2 text-gray-800">ลูกค้ารอนาน</h4>
+                        <p class="text-gray-600">ต้องรอพนักงานมารับออเดอร์ โดยเฉพาะช่วงเวลาเร่งด่วน</p>
+                    </div>
+
+                    <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-500">
+                        <h4 class="font-bold text-xl mb-2 text-gray-800">สับสนในการสั่ง</h4>
+                        <p class="text-gray-600">สั่งจากหลายร้าน ต้องบอกพนักงานหลายคน ข้อมูลคลาดเคลื่อน</p>
+                    </div>
+
+                    <div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-500">
+                        <h4 class="font-bold text-xl mb-2 text-gray-800">จัดการออเดอร์ยาก</h4>
+                        <p class="text-gray-600">ร้านค้าไม่ทราบจำนวนออเดอร์แบบเรียลไทม์ ทำอาหารไม่ทัน</p>
+                    </div>
+                </div>
+
+                <!-- Solutions -->
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-green-500 mb-6 flex items-center gap-3">
+                        <i class="fas fa-check-circle"></i> โซลูชันของเรา
+                    </h3>
+
+                    <div class="bg-green-50 p-6 rounded-xl border-l-4 border-green-500">
+                        <h4 class="font-bold text-xl mb-2 text-gray-800">สั่งอาหารทันที</h4>
+                        <p class="text-gray-600">สแกน QR Code ที่โต๊ะ สั่งได้เลยไม่ต้องรอพนักงาน</p>
+                    </div>
+
+                    <div class="bg-green-50 p-6 rounded-xl border-l-4 border-green-500">
+                        <h4 class="font-bold text-xl mb-2 text-gray-800">ระบบ Multi-Store</h4>
+                        <p class="text-gray-600">เลือกสั่งจากหลายร้านในคราวเดียว ระบบจัดการให้อัตโนมัติ</p>
+                    </div>
+
+                    <div class="bg-green-50 p-6 rounded-xl border-l-4 border-green-500">
+                        <h4 class="font-bold text-xl mb-2 text-gray-800">Dashboard เรียลไทม์</h4>
+                        <p class="text-gray-600">ร้านค้าเห็นออเดอร์ทันที พร้อมหมายเลขโต๊ะและรายละเอียดครบถ้วน</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Key Features -->
+    <div class="slide gradient-bg items-center justify-center p-8" id="slide3">
+        <div class="max-w-6xl mx-auto w-full">
+            <h2 class="text-5xl font-bold text-center mb-4 text-gray-800">คุณสมบัติเด่น</h2>
+            <p class="text-center text-gray-600 mb-12 text-xl">รองรับทั้งลูกค้าและร้านค้าในหนึ่งเดียว</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Customer Features -->
+                <div class="bg-white rounded-2xl p-8 card-shadow">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-3xl">
+                            👥
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">สำหรับลูกค้า</h3>
+                    </div>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-green-500 mt-1"></i>
+                            <div>
+                                <span class="font-semibold text-gray-800">สแกน QR Code ครั้งเดียว</span>
+                                <p class="text-sm text-gray-600">ระบบจำโต๊ะอัตโนมัติ ไม่ต้องกรอกข้อมูล</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-green-500 mt-1"></i>
+                            <div>
+                                <span class="font-semibold text-gray-800">สั่งจากหลายร้านพร้อมกัน</span>
+                                <p class="text-sm text-gray-600">เลือกร้านอาหาร ร้านน้ำ ขนม ในคราวเดียว</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-green-500 mt-1"></i>
+                            <div>
+                                <span class="font-semibold text-gray-800">ดูราคารวมแบบเรียลไทม์</span>
+                                <p class="text-sm text-gray-600">คำนวณราคาอัตโนมัติ พร้อมใส่หมายเหตุพิเศษ</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-green-500 mt-1"></i>
+                            <div>
+                                <span class="font-semibold text-gray-800">รองรับทุกอุปกรณ์</span>
+                                <p class="text-sm text-gray-600">มือถือ แท็บเล็ต คอมพิวเตอร์</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Store Features -->
+                <div class="bg-white rounded-2xl p-8 card-shadow">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center text-3xl">
+                            🏪
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">สำหรับร้านค้า</h3>
+                    </div>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-green-500 mt-1"></i>
+                            <div>
+                                <span class="font-semibold text-gray-800">เห็นออเดอร์ทันที</span>
+                                <p class="text-sm text-gray-600">แสดงหมายเลขโต๊ะ รายการอาหาร และหมายเหตุ</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-green-500 mt-1"></i>
+                            <div>
+                                <span class="font-semibold text-gray-800">แยกออเดอร์ตามร้าน</span>
+                                <p class="text-sm text-gray-600">แต่ละร้านเห็นเฉพาะออเดอร์ของตัวเอง</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-green-500 mt-1"></i>
+                            <div>
+                                <span class="font-semibold text-gray-800">จัดการเมนูผ่าน Google Sheets</span>
+                                <p class="text-sm text-gray-600">อัปเดตราคา สถานะสินค้า ง่ายๆ ไม่ต้องเขียนโค้ด</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-green-500 mt-1"></i>
+                            <div>
+                                <span class="font-semibold text-gray-800">Auto-refresh ทุก 30 วินาที</span>
+                                <p class="text-sm text-gray-600">ไม่พลาดทุกออเดอร์ใหม่</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: System Architecture -->
+    <div class="slide bg-gray-900 items-center justify-center p-8 text-white" id="slide4">
+        <div class="max-w-6xl mx-auto w-full">
+            <h2 class="text-5xl font-bold text-center mb-12">สถาปัตยกรรมระบบ</h2>
+
+            <div class="flex flex-col items-center space-y-6">
+                <!-- Customer Layer -->
+                <div class="w-full max-w-3xl bg-gradient-to-r from-blue-600 to-blue-400 p-6 rounded-xl card-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="text-4xl">📱</div>
+                        <div>
+                            <h3 class="text-xl font-bold">ลูกค้า (Customer)</h3>
+                            <p class="text-blue-100">สแกน QR → เลือกร้าน → สั่งอาหาร</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-4xl text-gray-600">↓</div>
+
+                <!-- Frontend Layer -->
+                <div class="w-full max-w-3xl bg-gradient-to-r from-purple-600 to-purple-400 p-6 rounded-xl card-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="text-4xl">🌐</div>
+                        <div>
+                            <h3 class="text-xl font-bold">Frontend (HTML/JS/Tailwind)</h3>
+                            <p class="text-purple-100">index.html • menu.html • cart.html</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-4xl text-gray-600">↓</div>
+
+                <!-- Backend Layer -->
+                <div class="w-full max-w-3xl bg-gradient-to-r from-orange-600 to-orange-400 p-6 rounded-xl card-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="text-4xl">⚙️</div>
+                        <div>
+                            <h3 class="text-xl font-bold">Backend (Google Apps Script)</h3>
+                            <p class="text-orange-100">รับออเดอร์ • กรองข้อมูล • ส่งต่อ Database</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-4xl text-gray-600">↓</div>
+
+                <!-- Database Layer -->
+                <div class="w-full max-w-3xl bg-gradient-to-r from-green-600 to-green-400 p-6 rounded-xl card-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="text-4xl">🗄️</div>
+                        <div>
+                            <h3 class="text-xl font-bold">Database (Google Sheets)</h3>
+                            <p class="text-green-100">menu_store_1-4 • orders • เก็บประวัติการสั่งซื้อ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-4xl text-gray-600">↓</div>
+
+                <!-- Admin Layer -->
+                <div class="w-full max-w-3xl bg-gradient-to-r from-red-600 to-red-400 p-6 rounded-xl card-shadow">
+                    <div class="flex items-center gap-4">
+                        <div class="text-4xl">🖥️</div>
+                        <div>
+                            <h3 class="text-xl font-bold">ร้านค้า (Store Admin)</h3>
+                            <p class="text-red-100">Dashboard ดูออเดอร์เรียลไทม์ • จัดการสถานะ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: How It Works -->
+    <div class="slide gradient-bg items-center justify-center p-8" id="slide5">
+        <div class="max-w-6xl mx-auto w-full">
+            <h2 class="text-5xl font-bold text-center mb-12 text-gray-800">ขั้นตอนการใช้งาน</h2>
+
+            <div class="grid md:grid-cols-5 gap-4">
+                <div class="step-card bg-white p-6 rounded-2xl card-shadow text-center relative">
+                    <div
+                        class="absolute -top-4 -right-4 w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">
+                        1</div>
+                    <div class="text-5xl mb-4">📷</div>
+                    <h3 class="font-bold text-lg mb-2">สแกน QR</h3>
+                    <p class="text-sm text-gray-600">ลูกค้าสแกน QR Code ที่โต๊ะ ระบบจำโต๊ะอัตโนมัติ</p>
+                </div>
+
+                <div class="step-card bg-white p-6 rounded-2xl card-shadow text-center relative">
+                    <div
+                        class="absolute -top-4 -right-4 w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">
+                        2</div>
+                    <div class="text-5xl mb-4">🏪</div>
+                    <h3 class="font-bold text-lg mb-2">เลือกร้าน</h3>
+                    <p class="text-sm text-gray-600">เลือกร้านอาหารที่ต้องการ สามารถเลือกได้หลายร้าน</p>
+                </div>
+
+                <div class="step-card bg-white p-6 rounded-2xl card-shadow text-center relative">
+                    <div
+                        class="absolute -top-4 -right-4 w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">
+                        3</div>
+                    <div class="text-5xl mb-4">🍜</div>
+                    <h3 class="font-bold text-lg mb-2">เลือกเมนู</h3>
+                    <p class="text-sm text-gray-600">เลือกรายการอาหาร ระบุจำนวน และหมายเหตุพิเศษ</p>
+                </div>
+
+                <div class="step-card bg-white p-6 rounded-2xl card-shadow text-center relative">
+                    <div
+                        class="absolute -top-4 -right-4 w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">
+                        4</div>
+                    <div class="text-5xl mb-4">✅</div>
+                    <h3 class="font-bold text-lg mb-2">ยืนยันออเดอร์</h3>
+                    <p class="text-sm text-gray-600">ตรวจสอบรายการและราคา ยืนยันการสั่งซื้อ</p>
+                </div>
+
+                <div class="step-card bg-white p-6 rounded-2xl card-shadow text-center relative">
+                    <div
+                        class="absolute -top-4 -right-4 w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">
+                        5</div>
+                    <div class="text-5xl mb-4">🍽️</div>
+                    <h3 class="font-bold text-lg mb-2">รับอาหาร</h3>
+                    <p class="text-sm text-gray-600">ร้านค้าเห็นออเดอร์ทันที ทำอาหารและเสิร์ฟตามโต๊ะ</p>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-white p-8 rounded-2xl card-shadow">
+                <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">สำหรับร้านค้า</h3>
+                <div class="flex justify-center items-center gap-8 flex-wrap">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl">1</div>
+                        <span class="text-gray-700">เปิด Store Admin</span>
+                    </div>
+                    <i class="fas fa-arrow-right text-gray-400"></i>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl">2</div>
+                        <span class="text-gray-700">Login ด้วยรหัสร้าน</span>
+                    </div>
+                    <i class="fas fa-arrow-right text-gray-400"></i>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl">3</div>
+                        <span class="text-gray-700">รับออเดอร์เรียลไทม์</span>
+                    </div>
+                    <i class="fas fa-arrow-right text-gray-400"></i>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl">4</div>
+                        <span class="text-gray-700">เสิร์ฟอาหาร</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Tech Stack -->
+    <div class="slide bg-white items-center justify-center p-8" id="slide6">
+        <div class="max-w-6xl mx-auto w-full">
+            <h2 class="text-5xl font-bold text-center mb-12 text-gray-800">เทคโนโลยีที่ใช้</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-2xl border-2 border-orange-200">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Frontend</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center gap-2"><i class="fab fa-html5 text-orange-600"></i> HTML5</li>
+                        <li class="flex items-center gap-2"><i class="fab fa-css3 text-blue-600"></i> CSS3 + TailwindCSS
+                        </li>
+                        <li class="flex items-center gap-2"><i class="fab fa-js text-yellow-500"></i> JavaScript +
+                            jQuery</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-mobile-alt text-purple-600"></i> Responsive
+                            Design</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border-2 border-blue-200">
+                    <div class="text-4xl mb-4">⚙️</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Backend</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center gap-2"><i class="fab fa-google text-green-600"></i> Google Apps
+                            Script</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-server text-gray-600"></i> Serverless
+                            Architecture</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-plug text-blue-600"></i> RESTful API</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-shield-alt text-red-500"></i> HTTPS Only
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl border-2 border-green-200">
+                    <div class="text-4xl mb-4">🗄️</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Database & Tools</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center gap-2"><i class="fas fa-table text-green-600"></i> Google Sheets
+                        </li>
+                        <li class="flex items-center gap-2"><i class="fas fa-qrcode text-black"></i> QRCode.js</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-font text-blue-500"></i> Font Awesome</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-magic text-purple-500"></i> AOS Animation
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-gray-50 p-8 rounded-2xl">
+                <h3 class="text-xl font-bold mb-4 text-center">ร้านอาหารที่รองรับ</h3>
+                <div class="flex justify-center gap-6 flex-wrap">
+                    <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow">
+                        <span class="text-2xl">🍚</span>
+                        <span class="font-semibold text-orange-600">ร้านข้าว</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow">
+                        <span class="text-2xl">🧃</span>
+                        <span class="font-semibold text-blue-600">ร้านน้ำ</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow">
+                        <span class="text-2xl">🍜</span>
+                        <span class="font-semibold text-red-600">ร้านก๋วยเตี๋ยว</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow">
+                        <span class="text-2xl">🍗</span>
+                        <span class="font-semibold text-yellow-600">ร้านไก่และขนม</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Installation -->
+    <div class="slide gradient-bg items-center justify-center p-8" id="slide7">
+        <div class="max-w-6xl mx-auto w-full">
+            <h2 class="text-5xl font-bold text-center mb-12 text-gray-800">การติดตั้ง (Quick Start)</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl card-shadow flex gap-4">
+                        <div
+                            class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0">
+                            1</div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">ตั้งค่า Google Sheets</h3>
+                            <p class="text-gray-600 text-sm">สร้าง 5 Sheets: menu_store_1-4 และ orders
+                                ใส่ข้อมูลเมนูตามรูปแบบที่กำหนด</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl card-shadow flex gap-4">
+                        <div
+                            class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0">
+                            2</div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Deploy Google Apps Script</h3>
+                            <p class="text-gray-600 text-sm">Extensions > Apps Script → Copy Code → Deploy as Web App →
+                                Copy URL</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl card-shadow flex gap-4">
+                        <div
+                            class="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0">
+                            3</div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Update Configuration</h3>
+                            <p class="text-gray-600 text-sm">แก้ไข SCRIPT_URL ใน script.js และ store-admin.html</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl card-shadow flex gap-4">
+                        <div
+                            class="w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0">
+                            4</div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">Deploy to Hosting</h3>
+                            <p class="text-gray-600 text-sm">Netlify, Vercel, GitHub Pages หรือ Firebase Hosting</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl card-shadow flex gap-4">
+                        <div
+                            class="w-12 h-12 bg-red-500 text-white rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0">
+                            5</div>
+                        <div>
+                            <h3 class="font-bold text-xl mb-2">สร้าง QR Code</h3>
+                            <p class="text-gray-600 text-sm">ใช้ qr-generator.html สร้าง QR Code สำหรับทุกโต๊ะ
+                                พิมพ์และติดที่โต๊ะ</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-orange-400 to-red-500 p-6 rounded-xl text-white">
+                        <h3 class="font-bold text-xl mb-2"><i class="fas fa-clock mr-2"></i>เวลาที่ใช้</h3>
+                        <p class="text-3xl font-bold">15 นาที</p>
+                        <p class="text-sm opacity-90">พร้อมใช้งานทันที ไม่ต้องติดตั้ง Server</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Security & Benefits -->
+    <div class="slide bg-white items-center justify-center p-8" id="slide8">
+        <div class="max-w-6xl mx-auto w-full">
+            <h2 class="text-5xl font-bold text-center mb-12 text-gray-800">ความปลอดภัย & ประโยชน์</h2>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-3">
+                        <i class="fas fa-shield-alt text-green-500"></i> ความปลอดภัย
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 bg-green-50 p-4 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            <div>
+                                <span class="font-semibold">HTTPS Only</span>
+                                <p class="text-sm text-gray-600">เข้ารหัสข้อมูลทั้งหมด</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-green-50 p-4 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            <div>
+                                <span class="font-semibold">รหัสผ่านร้านค้า</span>
+                                <p class="text-sm text-gray-600">แต่ละร้านมีรหัสผ่านเฉพาะ</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-green-50 p-4 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            <div>
+                                <span class="font-semibold">Data Isolation</span>
+                                <p class="text-sm text-gray-600">แยกข้อมูลแต่ละร้านชัดเจน</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-green-50 p-4 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                            <div>
+                                <span class="font-semibold">ไม่เก็บข้อมูลลับ</span>
+                                <p class="text-sm text-gray-600">ไม่มีข้อมูลบัตรเครดิต</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800 flex items-center gap-3">
+                        <i class="fas fa-chart-line text-blue-500"></i> ประโยชน์ที่ได้รับ
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <h4 class="font-bold text-gray-800">ลดการสื่อสารผิดพลาด</h4>
+                            <p class="text-sm text-gray-600">ลูกค้ากรอกเอง ไม่ผิดเพี้ยน</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <h4 class="font-bold text-gray-800">เพิ่มความเร็วในการให้บริการ</h4>
+                            <p class="text-sm text-gray-600">สั่งทันที ไม่ต้องรอพนักงาน</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <h4 class="font-bold text-gray-800">บันทึกข้อมูลอัตโนมัติ</h4>
+                            <p class="text-sm text-gray-600">สถิติการขาย ยอดขายรายวัน</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <h4 class="font-bold text-gray-800">ลดต้นทุนพนักงาน</h4>
+                            <p class="text-sm text-gray-600">ไม่ต้องมีพนักงานรับออเดอร์</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Thank You / Contact -->
+    <div class="slide gradient-bg items-center justify-center p-8" id="slide9">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="text-8xl mb-8">🎉</div>
+            <h2 class="text-6xl font-bold text-gray-800 mb-6">ขอบคุณ</h2>
+            <p class="text-2xl text-gray-600 mb-12">ระบบสั่งอาหารออนไลน์ด้วย QR Code<br>พร้อมใช้งานแล้ววันนี้</p>
+
+            <div class="bg-white p-8 rounded-2xl card-shadow max-w-2xl mx-auto mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-gray-800">ติดต่อสอบถาม</h3>
+                <div class="space-y-4 text-left">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Email</p>
+                            <p class="font-semibold text-gray-800">support@food-ordering-system.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">Website</p>
+                            <p class="font-semibold text-gray-800">https://food-ordering-system.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-800">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">GitHub</p>
+                            <p class="font-semibold text-gray-800">github.com/yourusername/food-ordering-system</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-4 text-gray-500">
+                <span class="flex items-center gap-2"><i class="fas fa-code"></i> Made with ❤️</span>
+                <span>|</span>
+                <span class="flex items-center gap-2">🇹🇭 Made in Thailand</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 9;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            if (n > totalSlides) currentSlide = 1;
+            if (n < 1) currentSlide = totalSlides;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            document.getElementById(`slide${currentSlide}`).classList.add('active');
+
+            document.getElementById('currentSlide').textContent = currentSlide;
+            document.getElementById('progressBar').style.width = `${(currentSlide / totalSlides) * 100}%`;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'Escape') {
+                // Toggle fullscreen or exit presentation mode if needed
+            }
+        });
+
+        // Touch/Swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide(); // Swipe left -> next
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide(); // Swipe right -> previous
+            }
+        }
+
+        // Auto-advance option (optional - uncomment if needed)
+        /*
+        let autoPlay = false;
+        let autoPlayInterval;
+        
+        function toggleAutoPlay() {
+            if (autoPlay) {
+                clearInterval(autoPlayInterval);
+                autoPlay = false;
+            } else {
+                autoPlayInterval = setInterval(nextSlide, 5000); // 5 seconds per slide
+                autoPlay = true;
+            }
+        }
+        */
+
+        // Initialize
+        showSlide(currentSlide);
+
+        // Prevent context menu on right click for better presentation experience
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target.tagName !== 'A') {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+
+</html>
