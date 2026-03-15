@@ -71,8 +71,7 @@
                     </div>
                 </button>
             </div>
-            <a class='btn-text flex items-center gap-1 text-xs sm:text-sm bg-gray-50 border rounded-md shadow-inner p-2 overflow-hidden'
-                href='upcert.html'>
+            <a class='btn-text flex items-center gap-1 text-xs sm:text-sm bg-gray-50 border rounded-md shadow-inner p-2 overflow-hidden' href='upcert.html'>
                 <i class="fas fa-upload"></i><span>upload</span>
             </a>
         </div>
@@ -89,17 +88,40 @@
         </div>
     </div>
 
+    <!-- ══════════ HEATMAP ══════════ -->
+    <div class="max-w-6xl mx-auto px-2 sm:px-4 pt-4">
+        <div id="heatmap-wrap" class="bg-[color:var(--white-smoker)] border rounded-2xl shadow p-4 sm:p-5 space-y-3">
+            <div class="flex items-center justify-between gap-2">
+                <h3 class="flex items-center gap-2 text-sm font-bold text-gray-700">
+                    <i class="fas fa-calendar-alt text-[color:var(--primary-color)]"></i>
+                    <span id="heatmap-title">กิจกรรมใบประกาศนียบัตร</span>
+                </h3>
+                <div class="flex items-center gap-1.5 text-xs text-gray-400">
+                    <span>น้อย</span>
+                    <span class="inline-block w-3 h-3 rounded-sm" style="background:#e3f2fd"></span>
+                    <span class="inline-block w-3 h-3 rounded-sm" style="background:#90caf9"></span>
+                    <span class="inline-block w-3 h-3 rounded-sm" style="background:#42a5f5"></span>
+                    <span class="inline-block w-3 h-3 rounded-sm" style="background:#1976d2"></span>
+                    <span class="inline-block w-3 h-3 rounded-sm" style="background:#0d47a1"></span>
+                    <span>มาก</span>
+                </div>
+            </div>
+            <!-- heatmap grid rendered by JS -->
+            <div id="heatmap-grid" class="overflow-x-auto pb-1">
+                <div class="flex gap-1 h-24 items-center justify-center">
+                    <i class="fas fa-circle-notch fa-spin text-[color:var(--primary-color)] opacity-50"></i>
+                </div>
+            </div>
+            <p id="heatmap-hover" class="text-xs text-gray-400 h-4 transition-all"></p>
+        </div>
+    </div>
+
     <!-- ══════════ MAIN ══════════ -->
     <main class="max-w-7xl space-y-6 mx-auto p-2 py-6">
 
         <!-- Filter Section -->
         <section data-aos="fade-down" data-aos-duration="1500"
             class="max-w-6xl bg-[color:var(--white-smoker)] border rounded-2xl shadow space-y-4 mx-auto p-2 sm:p-4 md:p-6 overflow-hidden">
-
-            <!-- top accent line -->
-            <div
-                class="-mx-2 sm:-mx-4 md:-mx-6 -mt-2 sm:-mt-4 md:-mt-6 mb-4 h-1 bg-gradient-to-r from-[color:var(--primary-color)] via-blue-300 to-sky-200">
-            </div>
 
             <h3 class="flex items-center gap-2 text-base sm:text-lg font-bold text-gray-700">
                 <i class="fas fa-filter text-[color:var(--primary-color)]"></i>
@@ -116,21 +138,21 @@
 
                 <div class="flex items-center gap-2 md:gap-3 *:flex-1 text-xs sm:text-sm">
                     <div>
-                        <label class="block font-semibold text-gray-400 mb-1 text-xs">📅 ปี</label>
+                        <label class="block font-semibold text-gray-400 mb-1 text-xs"><i class="fas fa-calendar mr-1"></i>ปี</label>
                         <select id="year-filter"
                             class="w-full bg-gray-50 border-2 rounded-xl shadow-inner px-3 py-2 focus:border-[color:var(--primary-color)] focus:outline-none transition">
                             <option value="">ทุกปี</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block font-semibold text-gray-400 mb-1 text-xs">🏢 ผู้ออก</label>
+                        <label class="block font-semibold text-gray-400 mb-1 text-xs"><i class="fas fa-building mr-1"></i>ผู้ออก</label>
                         <select id="issuer-filter"
                             class="w-full bg-gray-50 border-2 rounded-xl shadow-inner px-3 py-2 focus:border-[color:var(--primary-color)] focus:outline-none transition">
                             <option value="">ทั้งหมด</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block font-semibold text-gray-400 mb-1 text-xs">🏷️ ประเภท</label>
+                        <label class="block font-semibold text-gray-400 mb-1 text-xs"><i class="fas fa-tag mr-1"></i>ประเภท</label>
                         <select id="type-filter"
                             class="w-full bg-gray-50 border-2 rounded-xl shadow-inner px-3 py-2 focus:border-[color:var(--primary-color)] focus:outline-none transition">
                             <option value="">ทั้งหมด</option>
@@ -308,7 +330,7 @@
         function createImageModal() {
             $('body').append(`
             <div id="image-modal" class="hidden fixed inset-0 flex flex-col items-center justify-evenly sm:justify-center bg-black/70 backdrop-blur-sm p-4 z-40">
-                <div onclick="event.stopPropagation()" class="slide-up relative max-h-[85%] max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 bg-[color:var(--white-smoker)] rounded-2xl shadow-2xl overflow-hidden">
+                <div onclick="event.stopPropagation()" class="slide-up relative max-h-[85%] max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 bg-[color:var(--white-smoker)] shadow-2xl">
 
                     <!-- stamp icon -->
                     <span class="stamp-icon absolute -top-10 left-[25%] text-center z-20">
@@ -324,7 +346,7 @@
                     </div>
 
                     <!-- Details -->
-                    <div id="modal-details" class="hidden md:flex flex-col gap-3 bg-white p-5 overflow-y-auto max-h-[85vh]"></div>
+                    <div id="modal-details" class="flex flex-col !gap-3 bg-white p-5 overflow-y-auto max-h-[85vh]"></div>
                 </div>
 
                 <!-- close hint -->
@@ -377,7 +399,7 @@
                     <!-- Verify URL -->
                     ${certData.verifyUrl ? `
                     <a href="${escapeHtml(certData.verifyUrl)}" target="_blank" rel="noopener noreferrer"
-                        class="flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold text-white bg-green-500 hover:bg-green-600 rounded-xl px-4 py-2.5 transition shadow">
+                        class="flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold text-white bg-green-400 hover:bg-green-500 rounded-xl px-4 py-2.5 transition shadow">
                         <i class="fas fa-shield-alt"></i>
                         ตรวจสอบใบประกาศ
                         <i class="fas fa-external-link-alt text-xs opacity-70"></i>
@@ -438,82 +460,98 @@
                 : createClickableImage(certId, imageUrl, cert.name);
 
             return `
-            <div data-aos="zoom-in-up" data-aos-delay="${index * 40}"
-                class="relative bg-white border rounded-2xl shadow-sm overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-300">
+        <div data-aos="zoom-in-up" data-aos-delay="${index * 50}" class="relative bg-[color:var(--white-smoker)] border shadow">
 
-                ${imgSection}
+        ${imgSection}
 
-                <div class="flex flex-col gap-1.5 p-3 flex-1">
-                    <!-- Type badge -->
-                    ${cert.type ? `<div class="mb-0.5">${typeBadgeHtml(cert.type)}</div>` : ''}
+        <div title="${escapeHtml(cert.name)}" class="space-y-px p-2">
 
-                    <!-- Name -->
-                    <h3 title="${escapeHtml(cert.name)}" class="text-sm sm:text-base font-bold text-gray-800 leading-snug line-clamp-2">
-                        ${highlightText(escapeHtml(cert.name), searchTerm)}
-                    </h3>
+        <h3 class="leading-tight text-base sm:text-lg font-semibold line-clamp-2">
+        ${highlightText(escapeHtml(cert.name), searchTerm)}
+        </h3>
 
-                    <!-- Issuer -->
-                    ${cert.issuer ? `
-                    <p class="flex items-center gap-1.5 text-xs text-gray-500">
-                        <i class="fas fa-building text-[color:var(--primary-color)] w-3 flex-shrink-0"></i>
-                        <span class="line-clamp-1">${escapeHtml(cert.issuer)}</span>
-                    </p>` : ''}
+        ${cert.issuer ? `
+        <p class="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+        <i class="fas fa-building"></i>
+        <span class="line-clamp-1">${escapeHtml(cert.issuer)}</span>
+        </p>
+        `: ''}
 
-                    <!-- Date -->
-                    <p class="flex items-center gap-1.5 text-xs text-gray-400">
-                        <i class="fas fa-calendar-alt text-[color:var(--primary-color)] w-3 flex-shrink-0"></i>
-                        <span>${formatDateThai(cert.date) || '—'}</span>
-                    </p>
+        ${cert.type ? `
+        <p class="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+        <i class="fas fa-tag"></i>
+        <span class="line-clamp-1">${escapeHtml(cert.type)}</span>
+        </p>
+        `: ''}
 
-                    <!-- Spacer + footer -->
-                    <div class="flex-1"></div>
-                    <div class="flex items-center justify-between gap-2 pt-2 mt-1 border-t border-gray-100">
-                        <!-- Cert ID badge -->
-                        ${cert.id ? `
-                        <span class="inline-flex items-center gap-1 text-xs font-mono text-blue-500 bg-blue-50 border border-blue-100 rounded-full px-2 py-0.5">
-                            <i class="fas fa-hashtag text-[9px]"></i>${escapeHtml(String(cert.id))}
-                        </span>` : '<span></span>'}
+        <p class="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
+        <i class="fas fa-calendar-alt"></i>
+        <span class="line-clamp-1">${formatDateThai(cert.date) || '—'}</span>
+        </p>
 
-                        <!-- Verify URL button -->
-                        ${cert.verifyUrl ? `
-                        <a href="${escapeHtml(cert.verifyUrl)}" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center gap-1 text-xs font-semibold text-green-600 bg-green-50 border border-green-200 rounded-full px-2 py-0.5 hover:bg-green-100 transition"
-                            title="ตรวจสอบใบประกาศ" onclick="event.stopPropagation()">
-                            <i class="fas fa-shield-alt text-[9px]"></i>Verify
-                        </a>` : ''}
-                    </div>
-                </div>
-            </div>`;
+        ${cert.verifyUrl ? `
+        <p class="flex items-center gap-2 text-xs sm:text-sm">
+        <a href="${escapeHtml(cert.verifyUrl)}" target="_blank" rel="noopener noreferrer"
+            class="flex items-center gap-1 text-green-600 hover:text-green-700 hover:underline"
+            onclick="event.stopPropagation()">
+        <i class="fas fa-shield-alt"></i><span>Verify</span>
+        </a>
+        </p>
+        `: ''}
+
+        ${cert.id ? `
+        <span class="stamp-icon absolute -top-2 -left-0 flex items-center justify-center">
+        <i class="fa-solid fa-certificate absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl text-[color:var(--primary-color)] drop-shadow-lg z-0"></i>
+        <span class="relative text-xs sm:text-sm font-medium text-white z-10">${escapeHtml(String(cert.id))}</span>
+        </span>
+        `: ''}
+
+        </div>
+        </div>
+        `;
         }
 
         function createStaticImage(imageUrl, altText) {
             return `
-            <div class="relative w-full overflow-hidden bg-gray-100" style="aspect-ratio:16/9">
-                <img src="${imageUrl}" alt="${escapeHtml(altText)}"
-                    class="w-full h-full object-cover opacity-30" loading="lazy" draggable="false"
-                    onerror="this.onerror=null;this.src='${CONFIG.noImageUrl}';">
-                <div class="absolute inset-0 flex flex-col items-center justify-center gap-1">
-                    <i class="fas fa-image text-3xl text-gray-300"></i>
-                    <span class="text-xs text-gray-400">ไม่มีรูปภาพ</span>
-                </div>
-            </div>`;
+        <div class="relative w-full overflow-hidden">
+        <img src="${imageUrl}"
+        alt="${escapeHtml(altText)}"
+        class="w-full bg-gray-50 object-cover"
+        loading="lazy"
+        draggable="false"
+        onerror="this.onerror=null;this.src='${CONFIG.noImageUrl}';">
+
+        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <i class="fa-solid fa-expand fa-beat text-9xl text-black"></i>
+        <span class="absolute bottom-4 flex items-center justify-center gap-2 text-xs sm:text-sm text-white bg-black rounded px-2 py-1">
+        <i class="fas fa-image"></i>ไม่พบรูปใบประกาศนียบัตร
+        </span>
+        </div>
+        </div>
+        `;
         }
 
         function createClickableImage(certId, imageUrl, altText) {
             return `
-            <button onclick="viewImageWithData('${certId}')"
-                class="relative w-full overflow-hidden group/img bg-gray-50" style="aspect-ratio:16/9">
-                <img src="${imageUrl}" alt="${escapeHtml(altText)}"
-                    class="w-full h-full object-contain transition-transform duration-500 group-hover/img:scale-105"
-                    loading="lazy"
-                    style="background-image:url('${CONFIG.noImageUrl}');background-size:cover;background-position:center;"
-                    onerror="this.onerror=null;this.src='${CONFIG.noImageUrl}';" draggable="false" />
-                <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover/img:bg-black/40 transition-all duration-300">
-                    <div class="flex items-center gap-1.5 text-xs font-semibold text-white bg-black/50 backdrop-blur-sm rounded-full px-3 py-1.5 opacity-0 group-hover/img:opacity-100 transition-all duration-300 translate-y-2 group-hover/img:translate-y-0">
-                        <i class="fas fa-expand"></i> ดูภาพเต็ม
-                    </div>
-                </div>
-            </button>`;
+        <button onclick="viewImageWithData('${certId}')"
+        class="relative w-full overflow-hidden group/img">
+
+        <img src="${imageUrl}"
+        alt="${escapeHtml(altText)}"
+        class="aspect-auto w-full bg-gray-50 object-contain transition-transform duration-700"
+        loading="lazy"
+        style="background-image: url('${CONFIG.noImageUrl}'); background-size: cover; background-position: center;"
+        onerror="this.onerror=null;this.src='${CONFIG.noImageUrl}';"
+        draggable="false" />
+
+        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover/img:bg-opacity-50 group-focus/img:bg-opacity-50">
+        <div class="absolute bottom-4 flex items-center justify-center gap-2 text-xs sm:text-sm bg-[color:var(--white-smoker)] opacity-0 border rounded px-2 py-1 select-none transition-all group-hover/img:opacity-100 group-focus/img:opacity-100">
+        <i class="fa-solid fa-expand"></i>
+        <p>แตะเพื่อดูภาพขนาดเต็ม</p>
+        </div>
+        </div>
+        </button>
+        `;
         }
 
         // 6. FILTER & SEARCH
@@ -599,9 +637,153 @@
         function initCertificates(certificates) {
             STATE.allCertificates = certificates;
             renderStatsBar(certificates);
+            renderHeatmap(certificates);
             populateFilters(certificates);
             bindEventListeners();
             filterCertificates();
+        }
+
+        // 3b. HEATMAP
+
+        function renderHeatmap(certificates) {
+            // ── สร้าง map: "YYYY-MM-DD" → count ──
+            const dateMap = {};
+            certificates.forEach(c => {
+                const d = parseCertDate(c.date);
+                if (d.getTime() === 0) return;
+                const key = d.toISOString().split('T')[0];
+                dateMap[key] = (dateMap[key] || 0) + 1;
+            });
+
+            if (Object.keys(dateMap).length === 0) {
+                $('#heatmap-grid').html(`
+                    <p class="text-xs text-gray-400 py-4 w-full text-center">
+                        <i class="fas fa-calendar-times mr-1"></i>ยังไม่มีข้อมูลวันที่
+                    </p>`);
+                return;
+            }
+
+            // ── กำหนดช่วงเวลา: 52 สัปดาห์ย้อนหลัง ──
+            const today    = new Date();
+            today.setHours(0,0,0,0);
+            const startDay = new Date(today);
+            startDay.setDate(startDay.getDate() - 364); // ~52 weeks
+            // เลื่อนไปวันอาทิตย์ก่อนหน้า
+            startDay.setDate(startDay.getDate() - startDay.getDay());
+
+            const DAYS_TH  = ['อา','จ','อ','พ','พฤ','ศ','ส'];
+            const MONTHS_TH= ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.',
+                               'ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+
+            // color scale สีฟ้า
+            const COLORS = ['#e3f2fd','#90caf9','#42a5f5','#1976d2','#0d47a1'];
+            const maxCount = Math.max(...Object.values(dateMap), 1);
+            function getColor(count) {
+                if (!count) return null;
+                const idx = Math.min(Math.ceil((count / maxCount) * COLORS.length) - 1, COLORS.length - 1);
+                return COLORS[idx];
+            }
+
+            // ── สร้าง grid columns (แต่ละ column = 1 สัปดาห์) ──
+            const weeks = [];
+            const cur = new Date(startDay);
+            let prevMonth = -1;
+            const monthLabels = []; // { weekIndex, label }
+
+            while (cur <= today) {
+                const week = [];
+                for (let dow = 0; dow < 7; dow++) {
+                    const d = new Date(cur);
+                    d.setDate(d.getDate() + dow);
+                    week.push(new Date(d));
+                }
+                // track month label
+                const firstVisible = week.find(d => d <= today);
+                if (firstVisible && firstVisible.getMonth() !== prevMonth) {
+                    monthLabels.push({ weekIndex: weeks.length, label: MONTHS_TH[firstVisible.getMonth()] });
+                    prevMonth = firstVisible.getMonth();
+                }
+                weeks.push(week);
+                cur.setDate(cur.getDate() + 7);
+            }
+
+            // ── HTML ──
+            const CELL = 12; // px cell size
+            const GAP  = 2;
+            const totalW = weeks.length * (CELL + GAP);
+
+            let svg = `<svg xmlns="http://www.w3.org/2000/svg"
+                width="${totalW}" height="${7 * (CELL+GAP) + 20}"
+                style="display:block;font-family:inherit;">`;
+
+            // Month labels
+            monthLabels.forEach(({ weekIndex, label }) => {
+                const x = weekIndex * (CELL + GAP);
+                svg += `<text x="${x}" y="10" font-size="9" fill="#9ca3af">${label}</text>`;
+            });
+
+            // Day label (Mon, Wed, Fri only)
+            [1,3,5].forEach(dow => {
+                const y = 20 + dow * (CELL + GAP) + CELL * 0.75;
+                svg += `<text x="-2" y="${y}" font-size="8" fill="#9ca3af" text-anchor="end">${DAYS_TH[dow]}</text>`;
+            });
+
+            // Cells
+            weeks.forEach((week, wi) => {
+                week.forEach((day, dow) => {
+                    if (day > today) return;
+                    const key   = day.toISOString().split('T')[0];
+                    const count = dateMap[key] || 0;
+                    const color = getColor(count) || '#e3f2fd';
+                    const x     = wi * (CELL + GAP);
+                    const y     = 20 + dow * (CELL + GAP);
+                    const dateStr = `${day.getDate()} ${MONTHS_TH[day.getMonth()]} ${day.getFullYear()+543}`;
+                    const tip   = count
+                        ? `${count} ใบ — ${dateStr}`
+                        : `ไม่มี — ${dateStr}`;
+                    const opacity = count ? 1 : 0.35;
+
+                    svg += `<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}"
+                        rx="2" fill="${color}" opacity="${opacity}"
+                        data-date="${key}" data-count="${count}" data-tip="${tip}"
+                        class="heatmap-cell" style="cursor:${count?'pointer':'default'}"/>`;
+                });
+            });
+
+            svg += `</svg>`;
+
+            // wrap ใน container ที่ scroll ได้ พร้อม day-label margin
+            $('#heatmap-grid').html(`
+                <div style="overflow-x:auto;padding-bottom:4px;">
+                    <div style="padding-left:20px;display:inline-block;">
+                        ${svg}
+                    </div>
+                </div>`);
+
+            // ── Tooltip hover ──
+            $(document).on('mouseenter', '.heatmap-cell', function() {
+                const tip   = $(this).data('tip');
+                const count = parseInt($(this).data('count'));
+                const icon  = count ? '<i class="fas fa-certificate mr-1 text-[color:var(--primary-color)]"></i>' : '<i class="far fa-calendar mr-1 text-gray-300"></i>';
+                $('#heatmap-hover').html(`${icon}${tip}`);
+            });
+            $(document).on('mouseleave', '.heatmap-cell', function() {
+                $('#heatmap-hover').text('');
+            });
+
+            // click → filter ปีนั้น
+            $(document).on('click', '.heatmap-cell', function() {
+                const count = parseInt($(this).data('count'));
+                if (!count) return;
+                const date  = $(this).data('date');
+                const year  = new Date(date).getFullYear();
+                $('#year-filter').val(year).trigger('change');
+                $('html,body').animate({ scrollTop: $('#certificates-grid').offset().top - 80 }, 400);
+            });
+
+            // update title
+            const total = Object.values(dateMap).reduce((a,b) => a+b, 0);
+            $('#heatmap-title').text(`${total} ใบประกาศ ใน 12 เดือนที่ผ่านมา`);
         }
 
         // 7. CACHE HELPERS
