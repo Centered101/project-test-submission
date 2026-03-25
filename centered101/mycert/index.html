@@ -92,24 +92,25 @@
 
                 <div class="flex items-center gap-2 md:gap-3 *:flex-1 text-xs sm:text-sm">
                     <div>
-                        <label class="block font-semibold text-gray-400 mb-1 text-xs"><i class="fa fa-solid">📅</i>
-                            ปี</label>
+                        <label class="flex items-center gap-1 font-semibold text-gray-400 mb-1 text-xs"><i
+                                class="fa fa-calendar-alt"></i><span>ปี</span></label>
                         <select id="year-filter"
                             class="w-full bg-gray-50 border-2 rounded-xl shadow-inner px-3 py-2 focus:border-[color:var(--primary-color)] focus:outline-none transition">
                             <option value="">ทุกปี</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block font-semibold text-gray-400 mb-1 text-xs"><i class="fa fa-solid">🏢</i>
-                            ผู้ออก</label>
+                        <label class="flex items-center gap-1 font-semibold text-gray-400 mb-1 text-xs"><i
+                                class="fa fa-building"></i><span>ผู้ออก</span></label>
                         <select id="issuer-filter"
                             class="w-full bg-gray-50 border-2 rounded-xl shadow-inner px-3 py-2 focus:border-[color:var(--primary-color)] focus:outline-none transition">
                             <option value="">ทั้งหมด</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block font-semibold text-gray-400 mb-1 text-xs"><i class="fa">🏷️</i>
-                            ประเภท</label>
+                        <label class="flex items-center gap-1 font-semibold text-gray-400 mb-1 text-xs"><i
+                                class="fas fa-tag"></i>
+                            <span>ประเภท</span></label>
                         <select id="type-filter"
                             class="w-full bg-gray-50 border-2 rounded-xl shadow-inner px-3 py-2 focus:border-[color:var(--primary-color)] focus:outline-none transition">
                             <option value="">ทั้งหมด</option>
@@ -154,6 +155,33 @@
                 </div>
             </div>
         </section>
+
+        <!-- ══════════ HEATMAP ══════════ -->
+        <div id="heatmap-wrap" data-aos="fade-up" data-aos-duration="1500"
+            class="bg-[color:var(--white-smoker)] border rounded-2xl shadow p-4 sm:p-5 space-y-3">
+            <div class="flex items-center justify-between gap-2">
+                <h3 class="flex items-center gap-2 text-sm font-bold text-gray-700">
+                    <i class="fas fa-calendar-alt text-[color:var(--primary-color)]"></i>
+                    <span id="heatmap-title">กิจกรรมใบประกาศนียบัตร</span>
+                </h3>
+                <div class="flex items-center gap-1.5 text-xs text-gray-400">
+                    <span>น้อย</span>
+                    <span class="inline-block w-3 h-3 rounded-sm" style="background:#e3f2fd"></span>
+                    <span class="inline-block w-3 h-3 rounded-sm" style="background:#90caf9"></span>
+                    <span class="inline-block w-3 h-3 rounded-sm" style="background:#42a5f5"></span>
+                    <span class="inline-block w-3 h-3 rounded-sm" style="background:#1976d2"></span>
+                    <span class="inline-block w-3 h-3 rounded-sm" style="background:#0d47a1"></span>
+                    <span>มาก</span>
+                </div>
+            </div>
+            <!-- heatmap grid rendered by JS -->
+            <div id="heatmap-grid" class="overflow-x-auto pb-1">
+                <div class="flex gap-1 h-24 items-center justify-center">
+                    <i class="fas fa-circle-notch fa-spin text-[color:var(--primary-color)] opacity-50"></i>
+                </div>
+            </div>
+            <p id="heatmap-hover" class="text-xs text-gray-400 h-4 transition-all"></p>
+        </div>
 
         <!-- Certificates Grid -->
         <section id="certificates-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
@@ -249,7 +277,149 @@
                 </div>
             </div>`).join(''));
         }
+        // 3b. HEATMAP
 
+        function renderHeatmap(certificates) {
+            // ── สร้าง map: "YYYY-MM-DD" → count ──
+            const dateMap = {};
+            certificates.forEach(c => {
+                const d = parseCertDate(c.date);
+                if (d.getTime() === 0) return;
+                const key = d.toISOString().split('T')[0];
+                dateMap[key] = (dateMap[key] || 0) + 1;
+            });
+
+            if (Object.keys(dateMap).length === 0) {
+                $('#heatmap-grid').html(`
+                    <p class="text-xs text-gray-400 py-4 w-full text-center">
+                        <i class="fas fa-calendar-times mr-1"></i>ยังไม่มีข้อมูลวันที่
+                    </p>`);
+                return;
+            }
+
+            // ── กำหนดช่วงเวลา: 52 สัปดาห์ย้อนหลัง ──
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const startDay = new Date(today);
+            startDay.setDate(startDay.getDate() - 364); // ~52 weeks
+            // เลื่อนไปวันอาทิตย์ก่อนหน้า
+            startDay.setDate(startDay.getDate() - startDay.getDay());
+
+            const DAYS_TH = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
+            const MONTHS_TH = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.',
+                'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+
+            // color scale สีฟ้า
+            const COLORS = ['#e3f2fd', '#90caf9', '#42a5f5', '#1976d2', '#0d47a1'];
+            const maxCount = Math.max(...Object.values(dateMap), 1);
+            function getColor(count) {
+                if (!count) return null;
+                const idx = Math.min(Math.ceil((count / maxCount) * COLORS.length) - 1, COLORS.length - 1);
+                return COLORS[idx];
+            }
+
+            // ── สร้าง grid columns (แต่ละ column = 1 สัปดาห์) ──
+            const weeks = [];
+            const cur = new Date(startDay);
+            let prevMonth = -1;
+            const monthLabels = []; // { weekIndex, label }
+
+            while (cur <= today) {
+                const week = [];
+                for (let dow = 0; dow < 7; dow++) {
+                    const d = new Date(cur);
+                    d.setDate(d.getDate() + dow);
+                    week.push(new Date(d));
+                }
+                // track month label
+                const firstVisible = week.find(d => d <= today);
+                if (firstVisible && firstVisible.getMonth() !== prevMonth) {
+                    monthLabels.push({ weekIndex: weeks.length, label: MONTHS_TH[firstVisible.getMonth()] });
+                    prevMonth = firstVisible.getMonth();
+                }
+                weeks.push(week);
+                cur.setDate(cur.getDate() + 7);
+            }
+
+            // ── HTML ──
+            const CELL = 12; // px cell size
+            const GAP = 2;
+            const totalW = weeks.length * (CELL + GAP);
+
+            let svg = `<svg xmlns="http://www.w3.org/2000/svg"
+                width="${totalW}" height="${7 * (CELL + GAP) + 20}"
+                style="display:block;font-family:inherit;">`;
+
+            // Month labels
+            monthLabels.forEach(({ weekIndex, label }) => {
+                const x = weekIndex * (CELL + GAP);
+                svg += `<text x="${x}" y="10" font-size="9" fill="#9ca3af">${label}</text>`;
+            });
+
+            // Day label (Mon, Wed, Fri only)
+            [1, 3, 5].forEach(dow => {
+                const y = 20 + dow * (CELL + GAP) + CELL * 0.75;
+                svg += `<text x="-2" y="${y}" font-size="8" fill="#9ca3af" text-anchor="end">${DAYS_TH[dow]}</text>`;
+            });
+
+            // Cells
+            weeks.forEach((week, wi) => {
+                week.forEach((day, dow) => {
+                    if (day > today) return;
+                    const key = day.toISOString().split('T')[0];
+                    const count = dateMap[key] || 0;
+                    const color = getColor(count) || '#e3f2fd';
+                    const x = wi * (CELL + GAP);
+                    const y = 20 + dow * (CELL + GAP);
+                    const dateStr = `${day.getDate()} ${MONTHS_TH[day.getMonth()]} ${day.getFullYear() + 543}`;
+                    const tip = count
+                        ? `${count} ใบ — ${dateStr}`
+                        : `ไม่มี — ${dateStr}`;
+                    const opacity = count ? 1 : 0.35;
+
+                    svg += `<rect x="${x}" y="${y}" width="${CELL}" height="${CELL}"
+                        rx="2" fill="${color}" opacity="${opacity}"
+                        data-date="${key}" data-count="${count}" data-tip="${tip}"
+                        class="heatmap-cell" style="cursor:${count ? 'pointer' : 'default'}"/>`;
+                });
+            });
+
+            svg += `</svg>`;
+
+            // wrap ใน container ที่ scroll ได้ พร้อม day-label margin
+            $('#heatmap-grid').html(`
+                <div style="overflow-x:auto;padding-bottom:4px;">
+                    <div style="padding-left:20px;display:inline-block;">
+                        ${svg}
+                    </div>
+                </div>`);
+
+            // ── Tooltip hover ──
+            $(document).on('mouseenter', '.heatmap-cell', function () {
+                const tip = $(this).data('tip');
+                const count = parseInt($(this).data('count'));
+                const icon = count ? '<i class="fas fa-certificate mr-1 text-[color:var(--primary-color)]"></i>' : '<i class="far fa-calendar mr-1 text-gray-300"></i>';
+                $('#heatmap-hover').html(`${icon}${tip}`);
+            });
+            $(document).on('mouseleave', '.heatmap-cell', function () {
+                $('#heatmap-hover').text('');
+            });
+
+            // click → filter ปีนั้น
+            $(document).on('click', '.heatmap-cell', function () {
+                const count = parseInt($(this).data('count'));
+                if (!count) return;
+                const date = $(this).data('date');
+                const year = new Date(date).getFullYear();
+                $('#year-filter').val(year).trigger('change');
+                $('html,body').animate({ scrollTop: $('#certificates-grid').offset().top - 80 }, 400);
+            });
+
+            // update title
+            const total = Object.values(dateMap).reduce((a, b) => a + b, 0);
+            $('#heatmap-title').text(`${total} ใบประกาศ ใน 12 เดือนที่ผ่านมา`);
+        }
+        
         // ── MODAL ──────────────────────────────────────────────────────────────
 
         function createImageModal() {
