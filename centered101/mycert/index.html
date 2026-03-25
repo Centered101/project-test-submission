@@ -228,7 +228,20 @@
 
         function formatDateThai(d) {
             if (!d) return '';
-            const MONTHS = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+            const MONTHS = [
+                'มกราคม',
+                'กุมภาพันธ์',
+                'มีนาคม',
+                'เมษายน',
+                'พฤษภาคม',
+                'มิถุนายน',
+                'กรกฎาคม',
+                'สิงหาคม',
+                'กันยายน',
+                'ตุลาคม',
+                'พฤศจิกายน',
+                'ธันวาคม'
+            ];
             const date = parseCertDate(d);
             if (!date.getTime()) return d;
             return `${date.getDate()} ${MONTHS[date.getMonth()]} ${date.getFullYear() + 543}`;
@@ -419,7 +432,7 @@
             const total = Object.values(dateMap).reduce((a, b) => a + b, 0);
             $('#heatmap-title').text(`${total} ใบประกาศ ใน 12 เดือนที่ผ่านมา`);
         }
-        
+
         // ── MODAL ──────────────────────────────────────────────────────────────
 
         function createImageModal() {
