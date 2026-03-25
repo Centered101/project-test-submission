@@ -2,13 +2,13 @@
 <html lang="th">
 
 <head>
-    <title>อัปโหลดใบประกาศนียบัตร</title>
+    <title>แก้ไขใบประกาศนียบัตร</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="theme-color" content="#409EFE">
     <meta name="author" content="Centered101">
-    <meta name="description" content="อัปโหลดใบประกาศนียบัตร">
+    <meta name="description" content="แก้ไขใบประกาศนียบัตร">
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="style.css">
@@ -80,7 +80,7 @@
         }
 
         .cert-header {
-            background: linear-gradient(135deg, #409EFE 0%, #60b8ff 60%, #a5d8ff 100%);
+            background: linear-gradient(135deg, #f97316 0%, #fb923c 60%, #fed7aa 100%);
             position: relative;
             overflow: hidden;
         }
@@ -134,27 +134,9 @@
             letter-spacing: .04em;
             padding: .3rem .8rem;
             border-radius: 9999px;
-            background: linear-gradient(90deg, #dbeafe, #bfdbfe);
-            color: #1d4ed8;
-            border: 1px solid #93c5fd;
-        }
-
-        @keyframes pulseRing {
-            0% {
-                box-shadow: 0 0 0 0 #22c55e44;
-            }
-
-            70% {
-                box-shadow: 0 0 0 10px transparent;
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 transparent;
-            }
-        }
-
-        .pulse-ring {
-            animation: pulseRing 1.5s infinite;
+            background: linear-gradient(90deg, #ffedd5, #fed7aa);
+            color: #c2410c;
+            border: 1px solid #fdba74;
         }
 
         ::-webkit-scrollbar {
@@ -177,17 +159,16 @@
     <!-- Preloader -->
     <div id="preloader"
         class="visible min-h-screen fixed inset-0 flex flex-col items-center justify-center gap-2 bg-gray-50 z-50 touch-none">
-        <span
-            class="animate-spin size-16 border-8 border-[color:var(--primary-color)] border-y-transparent rounded-full mb-4"></span>
+        <span class="animate-spin size-16 border-8 border-orange-400 border-y-transparent rounded-full mb-4"></span>
     </div>
 
     <!-- ══════════ HEADER ══════════ -->
     <header data-aos="fade-down" data-aos-duration="3000" class="cert-header text-white text-center shadow-lg py-8">
-        <i class="fas fa-certificate cert-header-icon"></i>
+        <i class="fas fa-edit cert-header-icon"></i>
         <div class="relative z-10">
             <p class="text-xs font-semibold tracking-widest uppercase opacity-70 mb-1">mycert system</p>
-            <h1 class="text-3xl sm:text-5xl font-bold drop-shadow">อัปโหลดใบประกาศนียบัตร</h1>
-            <p class="mt-2 text-sm opacity-80">บันทึกใบประกาศนียบัตรและความสำเร็จของคุณ</p>
+            <h1 class="text-3xl sm:text-5xl font-bold drop-shadow">แก้ไขใบประกาศนียบัตร</h1>
+            <p class="mt-2 text-sm opacity-80">อัปเดตหรือลบข้อมูลใบประกาศนียบัตร</p>
         </div>
     </header>
 
@@ -224,45 +205,72 @@
         <aside class="max-w-xl w-full mx-auto md:mx-0 space-y-4">
             <div class="sticky top-20 space-y-4">
 
+                <!-- Current image preview -->
+                <div id="current-image-box" class="hidden glass-info p-4 space-y-3">
+                    <p class="section-label"><i class="fas fa-image"></i> รูปปัจจุบัน</p>
+                    <img id="current-image" src="" alt=""
+                        class="w-full rounded-xl border object-contain max-h-48 bg-gray-50">
+                </div>
+
+                <!-- Info -->
                 <div data-aos="zoom-in-up" data-aos-duration="700" class="glass-info p-4">
                     <div class="flex items-start gap-3">
                         <div
-                            class="size-9 flex-shrink-0 flex items-center justify-center rounded-full bg-blue-100 text-blue-500">
-                            <i class="fas fa-info-circle"></i>
+                            class="size-9 flex-shrink-0 flex items-center justify-center rounded-full bg-orange-100 text-orange-500">
+                            <i class="fas fa-edit"></i>
                         </div>
                         <div class="text-xs sm:text-sm text-blue-800">
-                            <p class="font-bold mb-2 text-blue-700">หมายเหตุการใช้งาน</p>
+                            <p class="font-bold mb-2 text-orange-600">แก้ไขใบประกาศ</p>
                             <ul class="space-y-2">
                                 <li class="flex items-start gap-2"><i
-                                        class="fas fa-database text-blue-400 mt-0.5"></i><span>ข้อมูลจะถูกบันทึกลงฐานข้อมูลโดยอัตโนมัติ</span>
-                                </li>
+                                        class="fas fa-info-circle text-blue-400 mt-0.5"></i><span>ข้อมูลจะถูกโหลดอัตโนมัติจาก
+                                        ID ใน URL</span></li>
                                 <li class="flex items-start gap-2"><i
-                                        class="fas fa-cloud-upload-alt text-blue-400 mt-0.5"></i><span>รูปภาพจะถูกอัปโหลดไปยัง
-                                        ImgBB (ฟรี)</span></li>
+                                        class="fas fa-image text-blue-400 mt-0.5"></i><span>อัปโหลดรูปใหม่เพื่อแทนที่รูปเดิม
+                                        หรือเว้นว่างไว้</span></li>
                                 <li class="flex items-start gap-2"><i
-                                        class="fas fa-link text-blue-400 mt-0.5"></i><span>ระบุ URL
-                                        ตรวจสอบเพื่อเพิ่มความน่าเชื่อถือ</span></li>
-                                <li class="flex items-start gap-2"><i
-                                        class="fas fa-check-circle text-blue-400 mt-0.5"></i><span>ตรวจสอบข้อมูลให้ถูกต้องก่อนบันทึก</span>
-                                </li>
+                                        class="fas fa-trash-alt text-red-400 mt-0.5"></i><span>กด "ลบ"
+                                        เพื่อลบใบประกาศออกจากระบบ</span></li>
                             </ul>
                         </div>
                     </div>
+                </div>
+
+                <!-- Loading skeleton -->
+                <div id="load-skeleton" class="space-y-3">
+                    <div class="bg-white border rounded-xl p-4 animate-pulse space-y-3">
+                        <div class="h-4 bg-gray-200 rounded w-1/2"></div>
+                        <div class="h-3 bg-gray-100 rounded w-3/4"></div>
+                        <div class="h-3 bg-gray-100 rounded w-2/3"></div>
+                    </div>
+                </div>
+
+                <!-- Error: ไม่พบ ID -->
+                <div id="not-found-box"
+                    class="hidden bg-orange-50 border-2 border-orange-300 rounded-xl p-4 text-center space-y-3">
+                    <i class="fas fa-exclamation-circle text-4xl text-orange-400"></i>
+                    <p class="font-bold text-orange-700">กรอก ID ใบประกาศนียบัตร</p>
+                    <input type="number" id="not-found-text" class="hidden">
+                    <label for="not-found-text" class="border" popover="555">vd</label>
+                    <button
+                        class="inline-flex items-center gap-1 text-sm text-white bg-[color:var(--primary-color)] px-4 py-2 rounded-xl shadow">
+                        <i class="fas fa-edit"></i>แก้ไขใบประกาศ
+                    </button>
                 </div>
 
                 <!-- Success -->
                 <div id="success-message" class="hidden bg-green-50 border-2 border-green-400 rounded-xl p-4">
                     <div class="flex items-center gap-3">
                         <div
-                            class="size-10 flex-shrink-0 flex items-center justify-center rounded-full bg-green-100 text-green-500 pulse-ring">
+                            class="size-10 flex-shrink-0 flex items-center justify-center rounded-full bg-green-100 text-green-500">
                             <i class="fas fa-check-circle text-xl"></i>
                         </div>
                         <div class="flex-1">
-                            <h3 class="font-bold text-green-800">บันทึกสำเร็จ!</h3>
-                            <p class="text-xs text-green-600">ข้อมูลถูกบันทึกลงฐานข้อมูลแล้ว</p>
+                            <h3 class="font-bold text-green-800">อัปเดตสำเร็จ!</h3>
+                            <p class="text-xs text-green-600">ข้อมูลถูกอัปเดตในฐานข้อมูลแล้ว</p>
                         </div>
                         <a class="btn-ghost text-xs bg-gray-50 border shadow-inner overflow-hidden"
-                            href="index.html">ไปยัง mycert</a>
+                            href="index.html">กลับหน้าหลัก</a>
                     </div>
                 </div>
 
@@ -291,32 +299,29 @@
 
                 <div class="flex items-center justify-between">
                     <h3 class="flex items-center gap-2 text-base sm:text-lg font-bold text-gray-800">
-                        <i class="fas fa-upload text-[color:var(--primary-color)]"></i>
-                        <span>เพิ่มใบประกาศนียบัตร</span>
+                        <i class="fas fa-edit text-orange-500"></i>
+                        <span>แก้ไขใบประกาศ</span>
                     </h3>
-                    <div id="cert-id-badge" class="id-badge">
+                    <div class="id-badge">
                         <i class="fas fa-hashtag"></i>
-                        <span id="cert-id-text">รอบันทึก...</span>
+                        <span id="cert-id-text">—</span>
                     </div>
                 </div>
 
                 <!-- SECTION 1: รูปภาพ -->
                 <div class="space-y-4">
-                    <p class="section-label"><i class="fas fa-image"></i> รูปภาพใบประกาศ</p>
-                    <div id="upload-area" class="text-center text-sm rounded-xl py-10 px-4 cursor-pointer select-none">
+                    <p class="section-label"><i class="fas fa-image"></i> รูปภาพ (อัปโหลดใหม่เพื่อแทนที่)</p>
+                    <div id="upload-area" class="text-center text-sm rounded-xl py-8 px-4 cursor-pointer select-none">
                         <div class="flex flex-col items-center gap-3">
                             <div
-                                class="size-16 flex items-center justify-center rounded-full bg-white shadow-inner border-2 border-blue-100">
+                                class="size-14 flex items-center justify-center rounded-full bg-white shadow-inner border-2 border-blue-100">
                                 <i
-                                    class="fas fa-cloud-upload-alt text-3xl text-[color:var(--primary-color)] opacity-60"></i>
+                                    class="fas fa-cloud-upload-alt text-2xl text-[color:var(--primary-color)] opacity-60"></i>
                             </div>
                             <div>
-                                <p class="font-bold text-gray-700">คลิกหรือลากไฟล์มาวางที่นี่</p>
-                                <p class="text-xs text-gray-400 mt-0.5">รองรับ: JPG, PNG, GIF (ไม่เกิน 5MB) · PDF
-                                    จะบันทึกโดยไม่มีรูป</p>
+                                <p class="font-bold text-gray-700">คลิกหรือลากไฟล์มาวาง</p>
+                                <p class="text-xs text-gray-400 mt-0.5">เว้นว่างไว้เพื่อคงรูปเดิม</p>
                             </div>
-                            <span
-                                class="text-xs bg-[color:var(--primary-color)] text-white px-3 py-1 rounded-full font-semibold opacity-80">เลือกไฟล์</span>
                         </div>
                         <input type="file" id="cert-image" accept="image/*,application/pdf" hidden>
                     </div>
@@ -334,7 +339,6 @@
                         <div class="relative w-full">
                             <img id="preview-image"
                                 class="object-contain w-full border-2 border-blue-100 rounded-xl shadow-inner">
-                            <iframe id="preview-pdf" class="w-full h-96 border rounded-xl shadow-inner hidden"></iframe>
                             <button type="button" id="remove-image"
                                 class="size-8 absolute -top-3 -right-3 flex items-center justify-center text-red-500 bg-white border border-red-400 rounded-full shadow hover:bg-red-50">
                                 <i class="fas fa-times text-xs"></i>
@@ -346,8 +350,7 @@
                         <label for="cert-image-url"
                             class="flex items-center gap-1.5 text-xs sm:text-sm font-semibold mb-2">
                             <i class="fas fa-link text-[color:var(--primary-color)]"></i>
-                            <span>หรือใส่ URL รูปภาพ</span>
-                            <span class="text-xs font-normal text-gray-700">(ถ้าไม่อัปโหลดไฟล์)</span>
+                            <span>URL รูปภาพ</span>
                         </label>
                         <input type="url" id="cert-image-url"
                             class="form-input w-full text-sm bg-white border-2 rounded-lg shadow-inner px-4 py-2.5 transition"
@@ -369,7 +372,7 @@
                         </label>
                         <input type="text" id="cert-name" maxlength="255" required
                             class="form-input w-full text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2.5 transition"
-                            placeholder="เช่น: หลักสูตร Full Stack Web Development">
+                            placeholder="ชื่อหลักสูตร/ใบประกาศ">
                     </div>
 
                     <div>
@@ -381,17 +384,17 @@
                         </label>
                         <input type="text" id="cert-issuer" maxlength="255"
                             class="form-input w-full text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2.5 transition"
-                            placeholder="เช่น: มหาวิทยาลัย, สถาบัน, บริษัท">
+                            placeholder="หน่วยงานผู้ออก">
                     </div>
 
                     <div>
                         <label for="cert-date"
                             class="flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
                             <i class="fas fa-calendar text-[color:var(--primary-color)]"></i>
-                            <span>วันที่ได้รับ</span><span class="text-red-500">*</span>
+                            <span>วันที่ได้รับ</span>
                         </label>
                         <div class="flex items-center gap-2">
-                            <input type="date" id="cert-date" required
+                            <input type="date" id="cert-date"
                                 class="form-input w-full text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2.5 transition">
                             <i class="fa-solid fa-arrow-right text-gray-200"></i>
                             <span id="date-output"
@@ -400,7 +403,7 @@
                     </div>
                 </div>
 
-                <!-- SECTION 3: ประเภท (rendered by JS from MYCERT.TYPES) -->
+                <!-- SECTION 3: ประเภท -->
                 <div class="space-y-3">
                     <p class="section-label"><i class="fas fa-tag"></i> ประเภทใบประกาศ</p>
                     <select id="cert-type" class="hidden">
@@ -424,36 +427,32 @@
                         </label>
                         <textarea id="cert-description" rows="4" maxlength="765" oncontextmenu="return true"
                             class="form-input resize-none w-full text-sm sm:text-base bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2.5 transition"
-                            placeholder="อธิบายเกี่ยวกับหลักสูตร ทักษะที่ได้รับ หรือรายละเอียดเพิ่มเติม"></textarea>
+                            placeholder="คำอธิบาย/รายละเอียด"></textarea>
                     </div>
                 </div>
 
                 <!-- SECTION 5: Verify URL -->
                 <div class="space-y-3">
                     <p class="section-label"><i class="fas fa-shield-alt"></i> ลิงก์ตรวจสอบ</p>
-                    <label for="cert-verify-url"
-                        class="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
-                        <i class="fas fa-shield-alt text-[color:var(--primary-color)]"></i>
-                        <span>URL ตรวจสอบใบประกาศ (Verify URL)</span>
-                    </label>
                     <input type="url" id="cert-verify-url"
                         class="form-input w-full text-sm bg-white border-2 rounded-lg shadow-inner px-4 py-2.5 transition"
                         placeholder="https://coursera.org/verify/XXXXXXXXX">
-                    <p class="mt-1.5 text-xs text-gray-400/50 flex items-center gap-1">
-                        <i class="fas fa-info-circle"></i>ลิงก์สำหรับให้บุคคลอื่นตรวจสอบความถูกต้องของใบประกาศ
-                    </p>
                 </div>
 
                 <!-- BUTTONS -->
                 <div class="flex gap-2 pt-2 text-sm sm:text-base border-t">
                     <button type="submit" id="submit-btn"
                         class="btn-primary flex-1 flex items-center justify-center gap-2 font-bold overflow-hidden">
-                        <i class="fas fa-save"></i><span>บันทึกข้อมูล</span>
+                        <i class="fas fa-save"></i><span>บันทึกการแก้ไข</span>
                     </button>
-                    <button type="button" id="reset-btn"
-                        class="btn-outline flex items-center justify-center gap-2 font-semibold overflow-hidden">
-                        <i class="fas fa-redo"></i><span>ล้างฟอร์ม</span>
+                    <button type="button" id="delete-btn"
+                        class="btn-outline flex items-center justify-center gap-2 font-semibold border-red-400 text-red-500 hover:bg-red-50 overflow-hidden px-4">
+                        <i class="fas fa-trash-alt"></i><span class="hidden sm:inline">ลบ</span>
                     </button>
+                    <a href="index.html"
+                        class="btn-outline flex items-center justify-center gap-2 font-semibold overflow-hidden px-4">
+                        <i class="fas fa-times"></i>
+                    </a>
                 </div>
 
             </form>
@@ -478,17 +477,19 @@
             AOS.init({ once: true, offset: 60 });
             $('#preloader').addClass('opacity-0 pointer-events-none').delay(400).queue(function () { $(this).hide(); });
 
-            // ── Render type chips + select from MYCERT.TYPES ──────────────
+            // ── อ่าน ?id= จาก URL ────────────────────────────────────────
+            const certId = new URLSearchParams(location.search).get('id');
+
+            // ── Render type chips + select ────────────────────────────────
             const $chips = $('#type-chips');
             const $select = $('#cert-type');
-            // ไม่มี = ล้างค่า
             $chips.append(`<label class="type-chip"><input type="radio" name="cert-type-chip" value=""><span class="chip-label"><i class="fas fa-ban"></i>ไม่มี</span></label>`);
             MYCERT.TYPES.forEach(t => {
                 $chips.append(`<label class="type-chip"><input type="radio" name="cert-type-chip" value="${t.label}"><span class="chip-label"><i class="fas ${t.icon}"></i>${t.label}</span></label>`);
                 $select.append(`<option value="${t.label}">${t.label}</option>`);
             });
 
-            // ── Thai date preview ──────────────────────────────────────────
+            // ── Thai date preview ─────────────────────────────────────────
             const MONTHS = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
             function formatThaiDate(s) {
                 if (!s) return '--/--/----';
@@ -496,11 +497,8 @@
                 return isNaN(d) ? s : `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear() + 543}`;
             }
             $('#cert-date').on('change input', function () { $('#date-output').text(formatThaiDate($(this).val())); });
-            // set today
-            const today = new Date().toISOString().split('T')[0];
-            $('#cert-date').val(today).trigger('input');
 
-            // ── Char counter ───────────────────────────────────────────────
+            // ── Char counter ──────────────────────────────────────────────
             $(document).on('input', 'input[maxlength], textarea[maxlength]', function () {
                 const max = +$(this).attr('maxlength'), len = $(this).val().length, pct = len / max;
                 $(this).closest('div').find('.char-count')
@@ -509,12 +507,12 @@
                     .addClass(pct >= .8 ? 'text-red-400/50' : pct >= .6 ? 'text-yellow-400/50' : 'text-gray-400/50');
             });
 
-            // ── Type chips → sync select ───────────────────────────────────
+            // ── Type chips → sync select ──────────────────────────────────
             $(document).on('change', 'input[name="cert-type-chip"]', function () {
                 $('#cert-type').val($(this).val());
             });
 
-            // ── Upload area ────────────────────────────────────────────────
+            // ── Upload area ───────────────────────────────────────────────
             let selectedFile = null, uploadRequest = null, isCanceled = false;
 
             $('#upload-area').on('click', function (e) { e.stopPropagation(); $('#cert-image')[0].click(); });
@@ -526,15 +524,6 @@
                     if (e.originalEvent.dataTransfer.files[0]) handleFile(e.originalEvent.dataTransfer.files[0]);
                 });
 
-            // paste รูปจาก clipboard
-            $(document).on('paste', function (e) {
-                const items = (e.originalEvent.clipboardData || e.originalEvent.clipboard)?.items;
-                if (!items) return;
-                for (const item of items) {
-                    if (item.type.startsWith('image/')) { handleFile(item.getAsFile()); break; }
-                }
-            });
-
             function handleFile(file) {
                 if (file.size > 5 * 1024 * 1024) { messageError('ไฟล์มีขนาดเกิน 5MB'); return; }
                 selectedFile = file;
@@ -544,12 +533,10 @@
                 $('#upload-area').addClass('has-file');
                 if (file.type.startsWith('image/')) {
                     const reader = new FileReader();
-                    reader.onload = e => { $('#preview-image').attr('src', e.target.result).show(); $('#preview-pdf').hide().addClass('hidden'); $('#preview-container').slideDown(300); };
+                    reader.onload = e => { $('#preview-image').attr('src', e.target.result).show(); $('#preview-container').slideDown(300); };
                     reader.readAsDataURL(file);
-                } else if (file.type === 'application/pdf') {
-                    $('#preview-container').hide();
                 }
-                $('#cert-image-url').val('').attr('readonly', true).addClass('bg-gray-100 cursor-not-allowed');
+                $('#cert-image-url').attr('readonly', true).addClass('bg-gray-100 cursor-not-allowed');
             }
 
             function resetImage() {
@@ -558,12 +545,11 @@
                 $('#preview-container').slideUp(300);
                 $('#file-info').slideUp(200);
                 $('#upload-area').removeClass('has-file dragover');
-                $('#cert-image-url').removeAttr('readonly').removeClass('bg-gray-100 cursor-not-allowed').val('');
+                $('#cert-image-url').removeAttr('readonly').removeClass('bg-gray-100 cursor-not-allowed');
             }
-
             $('#remove-image, #remove-file-info').on('click', function (e) { e.stopPropagation(); resetImage(); });
 
-            // ── ImgBB Upload ───────────────────────────────────────────────
+            // ── ImgBB Upload ──────────────────────────────────────────────
             function uploadImageToImgBB(file) {
                 const fd = new FormData();
                 fd.append('image', file);
@@ -574,69 +560,43 @@
                         success: res => res.success ? resolve(res.data.url) : reject(new Error('Upload failed')),
                         error: (xhr, status) => {
                             if (isCanceled) { reject(new Error('cancelled')); return; }
-                            let detail = '';
-                            try { detail = JSON.parse(xhr.responseText)?.error?.message || ''; } catch (_) { }
-                            reject(new Error(`ImgBB อัปโหลดล้มเหลว (${xhr.status || status})${detail ? ': ' + detail : ''}`));
+                            reject(new Error(`ImgBB อัปโหลดล้มเหลว (${xhr.status || status})`));
                         }
                     });
                 });
             }
 
-            // ── Loading Overlay ────────────────────────────────────────────
+            // ── Loading Overlay ───────────────────────────────────────────
             const ui = {
                 overlay: {
-                    _t30: null, _t60: null,
-                    show(onCancel) {
+                    show() {
                         if ($('#formOverlay').length) return;
                         $('body').append(`
                         <div id="formOverlay" class="fixed inset-0 flex flex-col items-center justify-center gap-4 bg-black/50 backdrop-blur-sm z-50">
                             <div class="bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center gap-4 max-w-xs w-full mx-4">
-                                <i class="fas fa-certificate fa-spin text-6xl text-[color:var(--primary-color)]"></i>
-                                <p class="font-semibold text-gray-700">กำลังบันทึกข้อมูล...</p>
+                                <i class="fas fa-edit fa-spin text-6xl text-orange-400"></i>
+                                <p class="font-semibold text-gray-700">กำลังอัปเดตข้อมูล...</p>
                                 <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
-                                    <div class="h-2 bg-[color:var(--primary-color)] rounded-full animate-pulse" style="width:70%"></div>
+                                    <div class="h-2 bg-orange-400 rounded-full animate-pulse" style="width:70%"></div>
                                 </div>
-                                <p id="slowText" class="hidden text-sm text-amber-500"><i class="fas fa-clock mr-1"></i>อาจใช้เวลานานหน่อย</p>
-                                <button id="cancelBtn" class="btn-outline hidden text-red-500 border-red-500 text-sm px-6 py-2 overflow-hidden">ยกเลิก</button>
                             </div>
                         </div>`);
-                        this._t30 = setTimeout(() => $('#slowText').fadeIn(), 10000);
-                        this._t60 = setTimeout(() => $('#cancelBtn').fadeIn(), 30000);
-                        $('#cancelBtn').one('click', () => { if (onCancel) onCancel(); this.hide(); });
                     },
-                    hide() {
-                        clearTimeout(this._t30); clearTimeout(this._t60);
-                        $('#formOverlay').fadeOut(700, function () { $(this).remove(); });
-                    }
+                    hide() { $('#formOverlay').fadeOut(700, function () { $(this).remove(); }); }
                 }
             };
 
-            // ── Reset ──────────────────────────────────────────────────────
-            $('#reset-btn').on('click', function () {
-                if (!confirm('ต้องการล้างข้อมูลในฟอร์มทั้งหมดใช่หรือไม่?')) return;
-                $('#certificate-form')[0].reset();
-                $('#cert-date').val(new Date().toISOString().split('T')[0]).trigger('input');
-                $('input[name="cert-type-chip"]').prop('checked', false);
-                $('#cert-type').val('');
-                resetImage();
-                hideMessages();
-                $('#certificate-form').find('input[maxlength], textarea[maxlength]').trigger('input');
-                if (typeof showNotification === 'function') showNotification('ล้างข้อมูลในฟอร์มแล้ว', 'success');
-            });
-
-            // ── Messages ───────────────────────────────────────────────────
+            // ── Messages ──────────────────────────────────────────────────
             let successTimer, errorTimer;
-            function showSuccess() {
+            function showSuccess(msg = 'ข้อมูลถูกอัปเดตในฐานข้อมูลแล้ว') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 const $s = $('#success-message');
                 clearTimeout(successTimer);
+                $s.find('p.text-xs').text(msg);
                 $s.removeClass('hidden').css({ opacity: 1, transform: 'translateX(0)', transition: 'opacity .5s, transform .5s' });
-                if (typeof showNotification === 'function') {
-                    showNotification('บันทึกประกาศนียบัตร สำเร็จ', 'success');
-                    setTimeout(() => showNotification('ไปยัง mycert', '', 'index.html'), 1000);
-                }
-                successTimer = setTimeout(() => hideElement($s), 10000);
-                $s.off('click').on('click', () => hideElement($s));
+                if (typeof showNotification === 'function') showNotification(msg, 'success');
+                successTimer = setTimeout(() => hideEl($s), 10000);
+                $s.off('click').on('click', () => hideEl($s));
             }
             function messageError(msg) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -645,57 +605,99 @@
                 $('#error-text').text(msg);
                 $e.removeClass('hidden').css({ opacity: 1, transform: 'translateX(0)', transition: 'opacity .5s, transform .5s' });
                 if (typeof showNotification === 'function') showNotification(msg, 'error');
-                errorTimer = setTimeout(() => hideElement($e), 10000);
-                $e.off('click').on('click', () => hideElement($e));
+                errorTimer = setTimeout(() => hideEl($e), 10000);
+                $e.off('click').on('click', () => hideEl($e));
             }
-            function hideElement($el) { $el.css({ opacity: 0, transform: 'translateX(100%)' }); setTimeout(() => $el.addClass('hidden'), 500); }
-            function hideMessages() { hideElement($('#success-message')); hideElement($('#error-message')); }
+            function hideEl($el) { $el.css({ opacity: 0, transform: 'translateX(100%)' }); setTimeout(() => $el.addClass('hidden'), 500); }
 
-            // ── Submit ─────────────────────────────────────────────────────
+            // ── FILL FORM จาก API ─────────────────────────────────────────
+            function fillForm(cert) {
+                $('#cert-id-text').text(cert.id ?? '—');
+                $('#cert-name').val(cert.name).trigger('input');
+                $('#cert-issuer').val(cert.issuer).trigger('input');
+                $('#cert-description').val(cert.description).trigger('input');
+                $('#cert-verify-url').val(cert.verifyUrl);
+
+                // วันที่: แปลง GViz Date() → yyyy-mm-dd ถ้าจำเป็น
+                let dateVal = cert.date || '';
+                const gvizMatch = String(dateVal).match(/Date\((\d+),(\d+),(\d+)\)/);
+                if (gvizMatch) {
+                    const d = new Date(+gvizMatch[1], +gvizMatch[2], +gvizMatch[3]);
+                    dateVal = d.toISOString().split('T')[0];
+                }
+                $('#cert-date').val(dateVal).trigger('input');
+
+                // Type chips
+                $('#cert-type').val(cert.type);
+                $(`input[name="cert-type-chip"][value="${cert.type}"]`).prop('checked', true);
+
+                // รูปภาพเดิม
+                if (cert.image && cert.image !== '-') {
+                    $('#current-image').attr({ src: cert.image, alt: cert.name });
+                    $('#cert-image-url').val(cert.image);
+                    $('#current-image-box').show();
+                }
+            }
+
+            function loadCert() {
+                if (!certId) {
+                    $('#load-skeleton').hide();
+                    $('#not-found-box').show();
+                    $('#not-found-text').text('ไม่มี ?id= ใน URL');
+                    $('#certificate-form').closest('section').addClass('opacity-50 pointer-events-none');
+                    return;
+                }
+
+                $.getJSON(`${MYCERT.API_URL}?id=${encodeURIComponent(certId)}`)
+                    .done(function (data) {
+                        $('#load-skeleton').hide();
+                        if (!data.success || !data.data?.length) {
+                            $('#not-found-box').show();
+                            $('#not-found-text').text(`ไม่พบ id: ${certId}`);
+                            $('#certificate-form').closest('section').addClass('opacity-50 pointer-events-none');
+                            return;
+                        }
+                        fillForm(data.data[0]);
+                    })
+                    .fail(function () {
+                        $('#load-skeleton').hide();
+                        messageError('โหลดข้อมูลไม่สำเร็จ — ตรวจสอบ API_URL ใน script.js');
+                    });
+            }
+
+            loadCert();
+
+            // ── SUBMIT (UPDATE) ───────────────────────────────────────────
             $('#certificate-form').on('submit', async function (e) {
                 e.preventDefault();
+                if (!certId) return;
                 isCanceled = false;
 
                 const $btn = $('#submit-btn');
-                $btn.prop('disabled', true).html('<i class="fas fa-circle-notch fa-spin"></i> กำลังบันทึก');
-                $('#reset-btn').fadeOut(300);
-                hideMessages();
-
-                ui.overlay.show(() => {
-                    isCanceled = true;
-                    if (uploadRequest) { uploadRequest.abort(); uploadRequest = null; }
-                    messageError('ยกเลิกการบันทึกข้อมูลแล้ว');
-                    $btn.prop('disabled', false).html('<i class="fas fa-save"></i> <span>บันทึกข้อมูล</span>');
-                    $('#reset-btn').fadeIn(300);
-                });
+                $btn.prop('disabled', true).html('<i class="fas fa-circle-notch fa-spin"></i> กำลังบันทึก...');
+                ui.overlay.show();
 
                 try {
+                    let imageUrl = $('#cert-image-url').val().trim();
+
+                    if (selectedFile && selectedFile.type.startsWith('image/')) {
+                        imageUrl = await uploadImageToImgBB(selectedFile);
+                        if (!imageUrl) throw new Error('ไม่สามารถอัปโหลดรูปภาพได้');
+                    }
+
                     const payload = {
+                        action: 'update',
+                        id: certId,
                         name: $('#cert-name').val().trim(),
                         issuer: $('#cert-issuer').val().trim(),
                         type: $('#cert-type').val(),
                         date: $('#cert-date').val(),
                         description: $('#cert-description').val().trim(),
                         verifyUrl: $('#cert-verify-url').val().trim(),
-                        image: ''
+                        ...(imageUrl && { image: imageUrl }),
                     };
 
                     if (!payload.name) throw new Error('กรุณากรอกชื่อหลักสูตร/ใบประกาศ');
-
-                    // Image
-                    if (selectedFile) {
-                        if (selectedFile.type === 'application/pdf') {
-                            payload.image = $('#cert-image-url').val().trim() || '';
-                        } else {
-                            payload.image = await uploadImageToImgBB(selectedFile);
-                            if (isCanceled) return;
-                            if (!payload.image) throw new Error('ไม่สามารถอัปโหลดรูปภาพได้');
-                        }
-                    } else {
-                        payload.image = $('#cert-image-url').val().trim();
-                    }
-
-                    if (isCanceled) return;
 
                     await fetch(MYCERT.API_URL, {
                         method: 'POST', mode: 'no-cors',
@@ -703,24 +705,43 @@
                         body: JSON.stringify(payload)
                     });
 
-                    if (isCanceled) return;
-
-                    // Reset form
-                    $('#certificate-form')[0].reset();
-                    $('input[name="cert-type-chip"]').prop('checked', false);
-                    $('#cert-type').val('');
-                    $('#cert-date').val(new Date().toISOString().split('T')[0]).trigger('input');
-                    resetImage();
-                    // ล้าง cache หน้าหลัก
                     try { localStorage.removeItem(MYCERT.CACHE_KEY); } catch (_) { }
-                    showSuccess();
+                    showSuccess('บันทึกการแก้ไขสำเร็จ');
 
                 } catch (err) {
-                    if (!isCanceled) messageError(err.message || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
+                    messageError(err.message || 'เกิดข้อผิดพลาดในการอัปเดตข้อมูล');
                 } finally {
-                    if (!isCanceled) ui.overlay.hide();
-                    $('#reset-btn').fadeIn(300);
-                    setTimeout(() => $btn.prop('disabled', false).html('<i class="fas fa-save"></i> <span>บันทึกข้อมูล</span>'), 500);
+                    ui.overlay.hide();
+                    $btn.prop('disabled', false).html('<i class="fas fa-save"></i> <span>บันทึกการแก้ไข</span>');
+                }
+            });
+
+            // ── DELETE ────────────────────────────────────────────────────
+            $('#delete-btn').on('click', async function () {
+                if (!certId) return;
+                const name = $('#cert-name').val() || `id: ${certId}`;
+                if (!confirm(`⚠️ ต้องการลบ "${name}" ออกจากระบบ?\n\nการกระทำนี้ไม่สามารถย้อนกลับได้`)) return;
+
+                $(this).prop('disabled', true).html('<i class="fas fa-circle-notch fa-spin"></i>');
+                ui.overlay.show();
+
+                try {
+                    await fetch(MYCERT.API_URL, {
+                        method: 'POST', mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'delete', id: certId })
+                    });
+
+                    try { localStorage.removeItem(MYCERT.CACHE_KEY); } catch (_) { }
+                    if (typeof showNotification === 'function') showNotification('ลบใบประกาศสำเร็จ', 'success');
+
+                    // redirect หลังลบ
+                    setTimeout(() => { location.href = 'index.html'; }, 1500);
+
+                } catch (err) {
+                    messageError(err.message || 'เกิดข้อผิดพลาดในการลบข้อมูล');
+                    ui.overlay.hide();
+                    $('#delete-btn').prop('disabled', false).html('<i class="fas fa-trash-alt"></i><span class="hidden sm:inline">ลบ</span>');
                 }
             });
 
