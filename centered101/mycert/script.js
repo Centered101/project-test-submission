@@ -14,7 +14,7 @@
 window.MYCERT = {
 
   // 🔗 GAS REST API URL — วาง URL หลัง deploy เป็น Web App
-  API_URL: 'https://script.google.com/macros/s/AKfycbysyL_ugQqCQ0aHB13FfJ7z5nLuQ6kzzHDCVDB890rl3RwH-5j8dXPZ13Rc_-lrotqaPg/exec',
+  API_URL: 'https://script.google.com/macros/s/AKfycbzgGqzR-szGXPiyTDnyNHQMQ50Wq8Xd1gOwwZ9Mub-5f69rHKHdyovQ7SBzDQJ3ZTOlZg/exec',
 
   // 🖼️ ImgBB API Key
   IMGBB_KEY: 'dac9107419e9c9cb4acbf457f9db52e8',

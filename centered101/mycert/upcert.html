@@ -289,10 +289,45 @@
 
             <form id="certificate-form" class="flex flex-col gap-6 p-4 sm:p-6">
 
+                <!-- ══ MODE TOGGLE ══ -->
+                <div class="flex rounded-xl overflow-hidden border-2 border-[color:var(--primary-color)] text-sm font-semibold">
+                    <button type="button" id="tab-insert"
+                        class="tab-btn flex-1 flex items-center justify-center gap-2 py-2.5 bg-[color:var(--primary-color)] text-white transition">
+                        <i class="fas fa-plus-circle"></i><span>เพิ่มใหม่</span>
+                    </button>
+                    <button type="button" id="tab-edit"
+                        class="tab-btn flex-1 flex items-center justify-center gap-2 py-2.5 bg-white text-[color:var(--primary-color)] transition">
+                        <i class="fas fa-edit"></i><span>แก้ไข / ลบ</span>
+                    </button>
+                </div>
+
+                <!-- ══ EDIT: ID Search (shown only in edit mode) ══ -->
+                <div id="edit-id-section" class="hidden space-y-3">
+                    <p class="section-label"><i class="fas fa-search"></i> ค้นหาจาก ID</p>
+                    <div class="flex gap-2">
+                        <input type="text" id="edit-id-input" maxlength="10"
+                            class="form-input flex-1 text-sm bg-gray-50 border-2 rounded-lg shadow-inner px-4 py-2.5 transition font-mono"
+                            placeholder="เช่น 0001">
+                        <button type="button" id="edit-load-btn"
+                            class="btn-primary flex items-center gap-2 px-4 py-2.5 text-sm font-semibold overflow-hidden">
+                            <i class="fas fa-search"></i><span class="hidden sm:inline">โหลด</span>
+                        </button>
+                    </div>
+                    <div id="edit-load-status" class="hidden text-xs text-gray-400 flex items-center gap-2">
+                        <i class="fas fa-circle-notch fa-spin"></i><span>กำลังโหลด...</span>
+                    </div>
+                    <!-- Current image preview -->
+                    <div id="current-image-box" class="hidden">
+                        <p class="section-label text-orange-500"><i class="fas fa-image"></i> รูปปัจจุบัน</p>
+                        <img id="current-image" src="" alt="" class="w-full rounded-xl border object-contain max-h-36 bg-gray-50 mt-2">
+                    </div>
+                </div>
+
+                <!-- form title + id badge -->
                 <div class="flex items-center justify-between">
                     <h3 class="flex items-center gap-2 text-base sm:text-lg font-bold text-gray-800">
-                        <i class="fas fa-upload text-[color:var(--primary-color)]"></i>
-                        <span>เพิ่มใบประกาศนียบัตร</span>
+                        <i id="form-mode-icon" class="fas fa-upload text-[color:var(--primary-color)]"></i>
+                        <span id="form-mode-title">เพิ่มใบประกาศนียบัตร</span>
                     </h3>
                     <div id="cert-id-badge" class="id-badge">
                         <i class="fas fa-hashtag"></i>
@@ -448,11 +483,16 @@
                 <div class="flex gap-2 pt-2 text-sm sm:text-base border-t">
                     <button type="submit" id="submit-btn"
                         class="btn-primary flex-1 flex items-center justify-center gap-2 font-bold overflow-hidden">
-                        <i class="fas fa-save"></i><span>บันทึกข้อมูล</span>
+                        <i class="fas fa-save"></i><span id="submit-label">บันทึกข้อมูล</span>
                     </button>
                     <button type="button" id="reset-btn"
                         class="btn-outline flex items-center justify-center gap-2 font-semibold overflow-hidden">
                         <i class="fas fa-redo"></i><span>ล้างฟอร์ม</span>
+                    </button>
+                    <!-- Delete button — only visible in edit mode -->
+                    <button type="button" id="delete-btn"
+                        class="hidden btn-outline flex items-center justify-center gap-2 font-semibold border-red-400 text-red-500 hover:bg-red-50 overflow-hidden px-4">
+                        <i class="fas fa-trash-alt"></i><span class="hidden sm:inline">ลบ</span>
                     </button>
                 </div>
 
@@ -478,42 +518,30 @@
             AOS.init({ once: true, offset: 60 });
             $('#preloader').addClass('opacity-0 pointer-events-none').delay(400).queue(function () { $(this).hide(); });
 
-            // ── Render type chips + select from MYCERT.TYPES ──────────────
-            const $chips = $('#type-chips');
-            const $select = $('#cert-type');
-            // ไม่มี = ล้างค่า
+            // ── MODE STATE ─────────────────────────────────────────────────
+            let mode       = 'insert'; // 'insert' | 'edit'
+            let editCertId = null;     // ID ที่โหลดมาสำหรับ edit
+
+            // ── TYPE CHIPS ─────────────────────────────────────────────────
+            const $chips = $('#type-chips'), $select = $('#cert-type');
             $chips.append(`<label class="type-chip"><input type="radio" name="cert-type-chip" value=""><span class="chip-label"><i class="fas fa-ban"></i>ไม่มี</span></label>`);
             MYCERT.TYPES.forEach(t => {
                 $chips.append(`<label class="type-chip"><input type="radio" name="cert-type-chip" value="${t.label}"><span class="chip-label"><i class="fas ${t.icon}"></i>${t.label}</span></label>`);
                 $select.append(`<option value="${t.label}">${t.label}</option>`);
             });
 
-            // ── Thai date preview ──────────────────────────────────────────
-            const MONTHS = [
-                'มกราคม',
-                'กุมภาพันธ์',
-                'มีนาคม',
-                'เมษายน',
-                'พฤษภาคม',
-                'มิถุนายน',
-                'กรกฎาคม',
-                'สิงหาคม',
-                'กันยายน',
-                'ตุลาคม',
-                'พฤศจิกายน',
-                'ธันวาคม'
-            ];
+            // ── THAI DATE ──────────────────────────────────────────────────
+            const MONTHS = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน',
+                            'กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
             function formatThaiDate(s) {
                 if (!s) return '--/--/----';
                 const d = new Date(s);
                 return isNaN(d) ? s : `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear() + 543}`;
             }
             $('#cert-date').on('change input', function () { $('#date-output').text(formatThaiDate($(this).val())); });
-            // set today
-            const today = new Date().toISOString().split('T')[0];
-            $('#cert-date').val(today).trigger('input');
+            $('#cert-date').val(new Date().toISOString().split('T')[0]).trigger('input');
 
-            // ── Char counter ───────────────────────────────────────────────
+            // ── CHAR COUNTER ───────────────────────────────────────────────
             $(document).on('input', 'input[maxlength], textarea[maxlength]', function () {
                 const max = +$(this).attr('maxlength'), len = $(this).val().length, pct = len / max;
                 $(this).closest('div').find('.char-count')
@@ -522,12 +550,121 @@
                     .addClass(pct >= .8 ? 'text-red-400/50' : pct >= .6 ? 'text-yellow-400/50' : 'text-gray-400/50');
             });
 
-            // ── Type chips → sync select ───────────────────────────────────
-            $(document).on('change', 'input[name="cert-type-chip"]', function () {
-                $('#cert-type').val($(this).val());
-            });
+            // ── TYPE CHIPS SYNC ────────────────────────────────────────────
+            $(document).on('change', 'input[name="cert-type-chip"]', function () { $('#cert-type').val($(this).val()); });
 
-            // ── Upload area ────────────────────────────────────────────────
+            // ══════════════════════════════════════════════════════════════
+            //  TOGGLE TABS
+            // ══════════════════════════════════════════════════════════════
+            function setMode(m) {
+                mode = m;
+                const isEdit = m === 'edit';
+
+                // tab style
+                $('#tab-insert').toggleClass('bg-[color:var(--primary-color)] text-white', !isEdit)
+                               .toggleClass('bg-white text-[color:var(--primary-color)]', isEdit);
+                $('#tab-edit')  .toggleClass('bg-[color:var(--primary-color)] text-white', isEdit)
+                               .toggleClass('bg-white text-[color:var(--primary-color)]', !isEdit);
+
+                // show/hide edit ID section
+                if (isEdit) $('#edit-id-section').slideDown(200);
+                else         $('#edit-id-section').slideUp(200);
+
+                // delete btn
+                $('#delete-btn').toggleClass('hidden', !isEdit);
+
+                // form title + icon + submit label
+                if (isEdit) {
+                    $('#form-mode-icon').attr('class', 'fas fa-edit text-orange-500');
+                    $('#form-mode-title').text('แก้ไขใบประกาศ');
+                    $('#submit-label').text('บันทึกการแก้ไข');
+                    $('#cert-id-text').text(editCertId || '—');
+                } else {
+                    $('#form-mode-icon').attr('class', 'fas fa-upload text-[color:var(--primary-color)]');
+                    $('#form-mode-title').text('เพิ่มใบประกาศนียบัตร');
+                    $('#submit-label').text('บันทึกข้อมูล');
+                    $('#cert-id-text').text('รอบันทึก...');
+                }
+
+                if (!isEdit) {
+                    // reset edit state
+                    editCertId = null;
+                    $('#edit-id-input').val('');
+                    $('#edit-load-status').addClass('hidden');
+                    $('#current-image-box').hide();
+                    clearForm();
+                }
+            }
+
+            $('#tab-insert').on('click', () => setMode('insert'));
+            $('#tab-edit').on('click', () => setMode('edit'));
+
+            // check ?mode=edit&id=xxxx from URL (when coming from index page)
+            (function () {
+                const params = new URLSearchParams(location.search);
+                if (params.get('mode') === 'edit' && params.get('id')) {
+                    setMode('edit');
+                    $('#edit-id-input').val(params.get('id'));
+                    loadCertById(params.get('id'));
+                }
+            })();
+
+            // ── LOAD CERT BY ID ────────────────────────────────────────────
+            function loadCertById(id) {
+                if (!id) return;
+                editCertId = null;
+                $('#cert-id-text').text('—');
+                $('#edit-load-status').removeClass('hidden').html('<i class="fas fa-circle-notch fa-spin mr-1"></i>กำลังโหลด...');
+                $('#current-image-box').hide();
+
+                $.getJSON(`${MYCERT.API_URL}?id=${encodeURIComponent(id)}`)
+                    .done(function (data) {
+                        if (!data.success || !data.data?.length) {
+                            $('#edit-load-status').html('<i class="fas fa-exclamation-circle mr-1 text-red-400"></i>ไม่พบ id: ' + id);
+                            return;
+                        }
+                        fillForm(data.data[0]);
+                        $('#edit-load-status').html('<i class="fas fa-check-circle mr-1 text-green-500"></i>โหลดสำเร็จ — แก้ไขแล้วกด "บันทึกการแก้ไข"');
+                    })
+                    .fail(function () {
+                        $('#edit-load-status').html('<i class="fas fa-exclamation-circle mr-1 text-red-400"></i>โหลดไม่สำเร็จ — ตรวจสอบ API_URL');
+                    });
+            }
+
+            $('#edit-load-btn').on('click', function () {
+                const id = $('#edit-id-input').val().trim();
+                if (!id) { messageError('กรุณากรอก ID ก่อน'); return; }
+                loadCertById(id);
+            });
+            $('#edit-id-input').on('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('#edit-load-btn').trigger('click'); } });
+
+            function fillForm(cert) {
+                editCertId = String(cert.id ?? '');
+                $('#cert-id-text').text(editCertId || '—');
+                $('#cert-name').val(cert.name || '').trigger('input');
+                $('#cert-issuer').val(cert.issuer || '').trigger('input');
+                $('#cert-description').val(cert.description || '').trigger('input');
+                $('#cert-verify-url').val(cert.verifyUrl || '');
+
+                // date: handle GViz Date() format
+                let dateVal = cert.date || '';
+                const gm = String(dateVal).match(/Date\((\d+),(\d+),(\d+)\)/);
+                if (gm) dateVal = new Date(+gm[1], +gm[2], +gm[3]).toISOString().split('T')[0];
+                $('#cert-date').val(dateVal).trigger('input');
+
+                // type chips
+                $('#cert-type').val(cert.type || '');
+                $(`input[name="cert-type-chip"][value="${cert.type || ''}"]`).prop('checked', true);
+
+                // current image
+                if (cert.image && cert.image !== '-') {
+                    $('#current-image').attr({ src: cert.image, alt: cert.name });
+                    $('#cert-image-url').val(cert.image);
+                    $('#current-image-box').show();
+                }
+            }
+
+            // ── UPLOAD AREA ────────────────────────────────────────────────
             let selectedFile = null, uploadRequest = null, isCanceled = false;
 
             $('#upload-area').on('click', function (e) { e.stopPropagation(); $('#cert-image')[0].click(); });
@@ -538,14 +675,10 @@
                     e.preventDefault(); $(this).removeClass('dragover');
                     if (e.originalEvent.dataTransfer.files[0]) handleFile(e.originalEvent.dataTransfer.files[0]);
                 });
-
-            // paste รูปจาก clipboard
             $(document).on('paste', function (e) {
                 const items = (e.originalEvent.clipboardData || e.originalEvent.clipboard)?.items;
                 if (!items) return;
-                for (const item of items) {
-                    if (item.type.startsWith('image/')) { handleFile(item.getAsFile()); break; }
-                }
+                for (const item of items) { if (item.type.startsWith('image/')) { handleFile(item.getAsFile()); break; } }
             });
 
             function handleFile(file) {
@@ -574,9 +707,20 @@
                 $('#cert-image-url').removeAttr('readonly').removeClass('bg-gray-100 cursor-not-allowed').val('');
             }
 
+            function clearForm() {
+                $('#certificate-form')[0].reset();
+                $('#cert-date').val(new Date().toISOString().split('T')[0]).trigger('input');
+                $('input[name="cert-type-chip"]').prop('checked', false);
+                $('#cert-type').val('');
+                resetImage();
+                hideMessages();
+                $('#certificate-form').find('input[maxlength], textarea[maxlength]').trigger('input');
+                $('#current-image-box').hide();
+            }
+
             $('#remove-image, #remove-file-info').on('click', function (e) { e.stopPropagation(); resetImage(); });
 
-            // ── ImgBB Upload ───────────────────────────────────────────────
+            // ── ImgBB UPLOAD ───────────────────────────────────────────────
             function uploadImageToImgBB(file) {
                 const fd = new FormData();
                 fd.append('image', file);
@@ -595,7 +739,7 @@
                 });
             }
 
-            // ── Loading Overlay ────────────────────────────────────────────
+            // ── LOADING OVERLAY ────────────────────────────────────────────
             const ui = {
                 overlay: {
                     _t30: null, _t60: null,
@@ -605,7 +749,7 @@
                         <div id="formOverlay" class="fixed inset-0 flex flex-col items-center justify-center gap-4 bg-black/50 backdrop-blur-sm z-50">
                             <div class="bg-white rounded-2xl shadow-2xl p-8 flex flex-col items-center gap-4 max-w-xs w-full mx-4">
                                 <i class="fas fa-certificate fa-spin text-6xl text-[color:var(--primary-color)]"></i>
-                                <p class="font-semibold text-gray-700">กำลังบันทึกข้อมูล...</p>
+                                <p id="overlay-msg" class="font-semibold text-gray-700">กำลังบันทึกข้อมูล...</p>
                                 <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
                                     <div class="h-2 bg-[color:var(--primary-color)] rounded-full animate-pulse" style="width:70%"></div>
                                 </div>
@@ -617,6 +761,7 @@
                         this._t60 = setTimeout(() => $('#cancelBtn').fadeIn(), 30000);
                         $('#cancelBtn').one('click', () => { if (onCancel) onCancel(); this.hide(); });
                     },
+                    setMsg(m) { $('#overlay-msg').text(m); },
                     hide() {
                         clearTimeout(this._t30); clearTimeout(this._t60);
                         $('#formOverlay').fadeOut(700, function () { $(this).remove(); });
@@ -624,28 +769,24 @@
                 }
             };
 
-            // ── Reset ──────────────────────────────────────────────────────
+            // ── RESET BTN ──────────────────────────────────────────────────
             $('#reset-btn').on('click', function () {
                 if (!confirm('ต้องการล้างข้อมูลในฟอร์มทั้งหมดใช่หรือไม่?')) return;
-                $('#certificate-form')[0].reset();
-                $('#cert-date').val(new Date().toISOString().split('T')[0]).trigger('input');
-                $('input[name="cert-type-chip"]').prop('checked', false);
-                $('#cert-type').val('');
-                resetImage();
-                hideMessages();
-                $('#certificate-form').find('input[maxlength], textarea[maxlength]').trigger('input');
+                clearForm();
+                if (mode === 'edit') { editCertId = null; $('#cert-id-text').text('—'); $('#edit-load-status').addClass('hidden'); }
                 if (typeof showNotification === 'function') showNotification('ล้างข้อมูลในฟอร์มแล้ว', 'success');
             });
 
-            // ── Messages ───────────────────────────────────────────────────
+            // ── MESSAGES ───────────────────────────────────────────────────
             let successTimer, errorTimer;
-            function showSuccess() {
+            function showSuccess(msg = 'ข้อมูลถูกบันทึกลงฐานข้อมูลแล้ว 📧') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 const $s = $('#success-message');
                 clearTimeout(successTimer);
+                $s.find('p.text-xs').text(msg);
                 $s.removeClass('hidden').css({ opacity: 1, transform: 'translateX(0)', transition: 'opacity .5s, transform .5s' });
                 if (typeof showNotification === 'function') {
-                    showNotification('บันทึกประกาศนียบัตร สำเร็จ', 'success');
+                    showNotification(msg, 'success');
                     setTimeout(() => showNotification('ไปยัง mycert', '', 'index.html'), 1000);
                 }
                 successTimer = setTimeout(() => hideElement($s), 10000);
@@ -664,10 +805,18 @@
             function hideElement($el) { $el.css({ opacity: 0, transform: 'translateX(100%)' }); setTimeout(() => $el.addClass('hidden'), 500); }
             function hideMessages() { hideElement($('#success-message')); hideElement($('#error-message')); }
 
-            // ── Submit ─────────────────────────────────────────────────────
+            // ══════════════════════════════════════════════════════════════
+            //  SUBMIT — INSERT or UPDATE
+            // ══════════════════════════════════════════════════════════════
             $('#certificate-form').on('submit', async function (e) {
                 e.preventDefault();
                 isCanceled = false;
+
+                // Validate: edit mode needs loaded cert
+                if (mode === 'edit' && !editCertId) {
+                    messageError('กรุณาโหลดใบประกาศก่อน — กรอก ID แล้วกด "โหลด"');
+                    return;
+                }
 
                 const $btn = $('#submit-btn');
                 $btn.prop('disabled', true).html('<i class="fas fa-circle-notch fa-spin"></i> กำลังบันทึก');
@@ -678,28 +827,32 @@
                     isCanceled = true;
                     if (uploadRequest) { uploadRequest.abort(); uploadRequest = null; }
                     messageError('ยกเลิกการบันทึกข้อมูลแล้ว');
-                    $btn.prop('disabled', false).html('<i class="fas fa-save"></i> <span>บันทึกข้อมูล</span>');
+                    $btn.prop('disabled', false).html(`<i class="fas fa-save"></i> <span id="submit-label">${mode === 'edit' ? 'บันทึกการแก้ไข' : 'บันทึกข้อมูล'}</span>`);
                     $('#reset-btn').fadeIn(300);
                 });
 
                 try {
                     const payload = {
-                        name: $('#cert-name').val().trim(),
-                        issuer: $('#cert-issuer').val().trim(),
-                        type: $('#cert-type').val(),
-                        date: $('#cert-date').val(),
+                        action:      mode === 'edit' ? 'update' : 'insert',
+                        name:        $('#cert-name').val().trim(),
+                        issuer:      $('#cert-issuer').val().trim(),
+                        type:        $('#cert-type').val(),
+                        date:        $('#cert-date').val(),
                         description: $('#cert-description').val().trim(),
-                        verifyUrl: $('#cert-verify-url').val().trim(),
-                        image: ''
+                        verifyUrl:   $('#cert-verify-url').val().trim(),
+                        image:       ''
                     };
+
+                    if (mode === 'edit') payload.id = editCertId;
 
                     if (!payload.name) throw new Error('กรุณากรอกชื่อหลักสูตร/ใบประกาศ');
 
-                    // Image
+                    // Image upload
                     if (selectedFile) {
                         if (selectedFile.type === 'application/pdf') {
                             payload.image = $('#cert-image-url').val().trim() || '';
                         } else {
+                            ui.overlay.setMsg('กำลังอัปโหลดรูปภาพ...');
                             payload.image = await uploadImageToImgBB(selectedFile);
                             if (isCanceled) return;
                             if (!payload.image) throw new Error('ไม่สามารถอัปโหลดรูปภาพได้');
@@ -710,6 +863,7 @@
 
                     if (isCanceled) return;
 
+                    ui.overlay.setMsg(mode === 'edit' ? 'กำลังอัปเดตและส่ง Email...' : 'กำลังบันทึกและส่ง Email...');
                     await fetch(MYCERT.API_URL, {
                         method: 'POST', mode: 'no-cors',
                         headers: { 'Content-Type': 'application/json' },
@@ -718,22 +872,54 @@
 
                     if (isCanceled) return;
 
-                    // Reset form
-                    $('#certificate-form')[0].reset();
-                    $('input[name="cert-type-chip"]').prop('checked', false);
-                    $('#cert-type').val('');
-                    $('#cert-date').val(new Date().toISOString().split('T')[0]).trigger('input');
-                    resetImage();
-                    // ล้าง cache หน้าหลัก
                     try { localStorage.removeItem(MYCERT.CACHE_KEY); } catch (_) { }
-                    showSuccess();
+
+                    if (mode === 'insert') {
+                        clearForm();
+                        showSuccess('บันทึกสำเร็จ! 📧 ส่ง Email แจ้งเตือนแล้ว');
+                    } else {
+                        showSuccess('อัปเดตสำเร็จ! 📧 ส่ง Email แจ้งเตือนแล้ว');
+                        // reload cert into form after update
+                        setTimeout(() => loadCertById(editCertId), 800);
+                    }
 
                 } catch (err) {
                     if (!isCanceled) messageError(err.message || 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
                 } finally {
                     if (!isCanceled) ui.overlay.hide();
                     $('#reset-btn').fadeIn(300);
-                    setTimeout(() => $btn.prop('disabled', false).html('<i class="fas fa-save"></i> <span>บันทึกข้อมูล</span>'), 500);
+                    const lbl = mode === 'edit' ? 'บันทึกการแก้ไข' : 'บันทึกข้อมูล';
+                    setTimeout(() => $btn.prop('disabled', false).html(`<i class="fas fa-save"></i> <span id="submit-label">${lbl}</span>`), 500);
+                }
+            });
+
+            // ══════════════════════════════════════════════════════════════
+            //  DELETE
+            // ══════════════════════════════════════════════════════════════
+            $('#delete-btn').on('click', async function () {
+                if (!editCertId) { messageError('ยังไม่ได้โหลดใบประกาศ'); return; }
+                const name = $('#cert-name').val() || `id: ${editCertId}`;
+                if (!confirm(`⚠️ ต้องการลบ "${name}" ออกจากระบบ?\n\nการกระทำนี้ไม่สามารถย้อนกลับได้`)) return;
+
+                $(this).prop('disabled', true).html('<i class="fas fa-circle-notch fa-spin"></i>');
+                ui.overlay.show();
+                ui.overlay.setMsg('กำลังลบข้อมูล...');
+
+                try {
+                    await fetch(MYCERT.API_URL, {
+                        method: 'POST', mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'delete', id: editCertId })
+                    });
+                    try { localStorage.removeItem(MYCERT.CACHE_KEY); } catch (_) { }
+                    if (typeof showNotification === 'function') showNotification('ลบใบประกาศสำเร็จ', 'success');
+                    // switch back to insert after delete
+                    setTimeout(() => { setMode('insert'); }, 800);
+                } catch (err) {
+                    messageError(err.message || 'เกิดข้อผิดพลาดในการลบข้อมูล');
+                } finally {
+                    ui.overlay.hide();
+                    $('#delete-btn').prop('disabled', false).html('<i class="fas fa-trash-alt"></i><span class="hidden sm:inline">ลบ</span>');
                 }
             });
 

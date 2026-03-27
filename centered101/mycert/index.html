@@ -479,11 +479,23 @@
             <div class="flex-1 bg-gray-50 border rounded-xl shadow-inner p-3 overflow-y-auto text-xs sm:text-sm text-gray-600 leading-relaxed">
                 ${highlightText(escapeHtml(cert.description), q)}
             </div>` : ''}
-            ${cert.verifyUrl ? `
-            <a href="${escapeHtml(cert.verifyUrl)}" target="_blank" rel="noopener noreferrer"
-                class="flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold text-green-600 bg-green-50 border border-green-200 rounded-xl hover:bg-green-100 px-4 py-2.5 transition shadow">
-                <i class="fas fa-shield-alt"></i>ตรวจสอบใบประกาศ<i class="fas fa-external-link-alt text-xs opacity-70"></i>
-            </a>` : ''}
+            ${cert.portfolio ? `
+            <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-3 space-y-1">
+                <p class="text-xs font-bold text-indigo-600"><i class="fas fa-briefcase mr-1"></i>ผลงานที่ทำได้</p>
+                <p class="text-xs sm:text-sm text-gray-700 leading-relaxed whitespace-pre-wrap">${highlightText(escapeHtml(cert.portfolio), q)}</p>
+            </div>` : ''}
+            <div class="flex flex-col gap-2 pt-2 border-t">
+                ${cert.verifyUrl ? `
+                <a href="${escapeHtml(cert.verifyUrl)}" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold text-green-600 bg-green-50 border border-green-200 rounded-xl hover:bg-green-100 px-4 py-2.5 transition shadow">
+                    <i class="fas fa-shield-alt"></i>ตรวจสอบใบประกาศ<i class="fas fa-external-link-alt text-xs opacity-70"></i>
+                </a>` : ''}
+                ${cert.pdfUrl ? `
+                <a href="${escapeHtml(cert.pdfUrl)}" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold text-red-600 bg-red-50 border border-red-200 rounded-xl hover:bg-red-100 px-4 py-2.5 transition shadow">
+                    <i class="fas fa-file-pdf"></i>ดาวน์โหลด PDF
+                </a>` : ''}
+            </div>
         `).removeClass('hidden');
 
             $('#modal-cert-id').text(cert.id || '');
@@ -548,10 +560,18 @@
                     </h3>
                     ${cert.issuer ? `<p class="flex items-center gap-1.5 text-xs text-gray-500"><i class="fas fa-building text-[color:var(--primary-color)] w-3 flex-shrink-0"></i><span class="line-clamp-1">${escapeHtml(cert.issuer)}</span></p>` : ''}
                     <p class="flex items-center gap-1.5 text-xs text-gray-400"><i class="fas fa-calendar-alt text-[color:var(--primary-color)] w-3 flex-shrink-0"></i><span>${formatDateThai(cert.date) || '—'}</span></p>
+                    ${cert.portfolio ? `
+                    <p class="flex items-start gap-1.5 text-xs text-indigo-600 bg-indigo-50 border border-indigo-100 rounded-lg px-2 py-1 line-clamp-2">
+                        <i class="fas fa-briefcase w-3 flex-shrink-0 mt-0.5"></i>
+                        <span>${highlightText(escapeHtml(cert.portfolio), searchTerm)}</span>
+                    </p>` : ''}
                     <div class="flex-1"></div>
                     <div class="flex items-center justify-between gap-2 pt-2 mt-1 border-t border-gray-100">
                         ${cert.id ? `<span class="inline-flex items-center gap-1 text-xs text-blue-500 bg-blue-50 border border-blue-100 rounded-full px-2 py-0.5"><i class="fas fa-hashtag text-[9px]"></i>${escapeHtml(String(cert.id))}</span>` : '<span></span>'}
-                        <div class="flex items-center gap-1">
+                        <div class="flex items-center gap-1 ml-auto">
+                            ${cert.pdfUrl ? `<a href="${escapeHtml(cert.pdfUrl)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"
+                                class="inline-flex items-center gap-1 text-xs font-semibold text-red-600 bg-red-50 border border-red-200 rounded-full px-2 py-0.5 hover:bg-red-100 transition"
+                                title="PDF"><i class="fas fa-file-pdf text-[9px]"></i>PDF</a>` : ''}
                             ${cert.verifyUrl ? `<a href="${escapeHtml(cert.verifyUrl)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"
                                 class="inline-flex items-center gap-1 text-xs font-semibold text-green-600 bg-green-50 border border-green-200 rounded-full px-2 py-0.5 hover:bg-green-100 transition"
                                 title="ตรวจสอบ"><i class="fas fa-shield-alt text-[9px]"></i>Verify</a>` : ''}
@@ -571,7 +591,7 @@
             const type = $('#type-filter').val();
 
             let filtered = STATE.allCertificates.filter(c => {
-                const matchQ = !q || c.name.toLowerCase().includes(q) || (c.description || '').toLowerCase().includes(q) || (c.issuer || '').toLowerCase().includes(q);
+                const matchQ = !q || c.name.toLowerCase().includes(q) || (c.description || '').toLowerCase().includes(q) || (c.issuer || '').toLowerCase().includes(q) || (c.portfolio || '').toLowerCase().includes(q);
                 const certYear = parseCertDate(c.date).getFullYear();
                 const matchYear = !year || certYear === parseInt(year);
                 const matchIssuer = !issuer || c.issuer === issuer;
@@ -618,6 +638,7 @@
         function initCertificates(certs) {
             STATE.allCertificates = certs;
             renderStatsBar(certs);
+            renderHeatmap(certs);
             populateFilters(certs);
             bindEventListeners();
             filterCertificates();
@@ -654,7 +675,10 @@
         function parseCertificatesFromREST(json) {
             return json.data.filter(c => c.name).map(c => ({
                 id: c.id ?? '', name: c.name ?? '', issuer: c.issuer ?? '', type: c.type ?? '',
-                date: c.date ?? '', description: c.description ?? '', image: c.image ?? '', verifyUrl: c.verifyUrl ?? ''
+                date: c.date ?? '', description: c.description ?? '', image: c.image ?? '',
+                verifyUrl: c.verifyUrl ?? '',
+                pdfUrl:    c.pdfUrl    ?? '',   // col J
+                portfolio: c.portfolio ?? '',   // col K
             }));
         }
 
@@ -662,7 +686,10 @@
             const gviz = JSON.parse(text.substr(47).slice(0, -2));
             return gviz.table.rows.map((row, i) => ({
                 id: row.c[0]?.v ?? i + 1, name: row.c[1]?.v ?? '', issuer: row.c[2]?.v ?? '', type: row.c[3]?.v ?? '',
-                date: row.c[4]?.v ?? '', description: row.c[5]?.v ?? '', image: row.c[6]?.v ?? '', verifyUrl: row.c[7]?.v ?? ''
+                date: row.c[4]?.v ?? '', description: row.c[5]?.v ?? '', image: row.c[6]?.v ?? '',
+                verifyUrl: row.c[7]?.v ?? '',
+                pdfUrl:    row.c[9]?.v  ?? '',  // col J
+                portfolio: row.c[10]?.v ?? '',  // col K
             })).filter(c => c.name);
         }
 
